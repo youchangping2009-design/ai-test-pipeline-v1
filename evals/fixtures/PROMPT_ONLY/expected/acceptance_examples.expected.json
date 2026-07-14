@@ -1,0 +1,17 @@
+{
+  "project_code": "EVAL",
+  "work_item_id": "PROMPT_ONLY",
+  "examples": [
+    {
+      "example_id": "AE-001",
+      "source_gate_ids": ["TG-001"],
+      "title": "上传区域展示建议尺寸和格式提示",
+      "given": ["运营人员打开素材上传区域"],
+      "when": ["运营人员查看上传字段旁的提示信息"],
+      "then": ["页面展示建议尺寸和格式提示"],
+      "verification_side": "B端页面展示",
+      "oracle_strength": "soft_display",
+      "confidence": "confirmed"
+    }
+  ]
+}

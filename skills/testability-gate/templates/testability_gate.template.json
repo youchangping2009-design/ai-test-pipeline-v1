@@ -1,0 +1,16 @@
+{
+  "project_code": "",
+  "work_item_id": "",
+  "items": [
+    {
+      "gate_id": "TG-001",
+      "source_rule_id": "R001",
+      "source_text": "待补充原始规则文本",
+      "classification": "field_constraint",
+      "testability": "testable",
+      "decision": "generate_case_plan",
+      "reason": "待补充可测性判断依据",
+      "confidence": "confirmed"
+    }
+  ]
+}

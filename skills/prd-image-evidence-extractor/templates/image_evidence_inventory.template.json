@@ -1,0 +1,72 @@
+{
+  "project_code": "",
+  "work_item_id": "",
+  "generated_from": [],
+  "images": [
+    {
+      "image_id": "",
+      "source_file": "",
+      "page_name": "",
+      "sections": [
+        {
+          "section_name": "",
+          "section_type": "display_area",
+          "evidence_source_type": "explicit_text",
+          "raw_text": "",
+          "ocr_text": "",
+          "visual_elements": [],
+          "interactive_entries": [],
+          "section_rules": [],
+          "field_candidates": [
+            {
+              "field_name": "",
+              "display_name": "",
+              "data_type": "",
+              "control_type": "",
+              "required": false,
+              "editable": true,
+              "default_value": "",
+              "enum_values": [],
+              "content_values": [],
+              "format_rule": "",
+              "length_rule": "",
+              "data_source": "",
+              "conditional_visibility": "",
+              "conditional_editability": "",
+              "notes": ""
+            }
+          ],
+          "field_rules": [
+            {
+              "field_name": "",
+              "display_name": "",
+              "rule_text": "",
+              "rule_type": "",
+              "error_message": "",
+              "must_preserve_terms": [],
+              "notes": ""
+            }
+          ],
+          "field_rule_tables": [
+            {
+              "field_name": "",
+              "table_name": "",
+              "table_desc": "",
+              "rows": [
+                {
+                  "row_name": "",
+                  "rule_text": "",
+                  "expected_effect": "",
+                  "related_fields": []
+                }
+              ]
+            }
+          ],
+          "confidence": 0.0,
+          "needs_confirmation": false,
+          "ambiguity_reason": ""
+        }
+      ]
+    }
+  ]
+}

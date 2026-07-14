@@ -1,0 +1,11 @@
+forbidden_patterns:
+  - id: no_product_acceptance
+    artifact: case_plan.expected.json
+    pattern: "validation_path"\s*:\s*"product_acceptance"
+  - id: no_acceptance_example
+    artifact: acceptance_examples.expected.json
+    pattern: "example_id"
+required_patterns:
+  - id: has_risk_note
+    artifact: case_plan.expected.json
+    pattern: "validation_path"\s*:\s*"risk_note"

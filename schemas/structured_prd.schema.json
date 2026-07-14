@@ -1,0 +1,901 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Structured PRD Schema",
+  "type": "object",
+  "required": [
+    "project_info",
+    "requirement_info",
+    "modules",
+    "flows"
+  ],
+  "definitions": {
+    "condition_expr": {
+      "oneOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "object",
+          "additionalProperties": true
+        },
+        {
+          "type": "array",
+          "items": {
+            "oneOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "object",
+                "additionalProperties": true
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "sort_expr": {
+      "oneOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "object",
+          "additionalProperties": true
+        },
+        {
+          "type": "array",
+          "items": {
+            "oneOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "object",
+                "additionalProperties": true
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "field_schema": {
+      "type": "object",
+      "anyOf": [
+        {
+          "required": [
+            "name"
+          ]
+        },
+        {
+          "required": [
+            "field_name"
+          ]
+        }
+      ],
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "field_name": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string"
+        },
+        "display_name": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "data_type": {
+          "type": "string"
+        },
+        "control_type": {
+          "type": "string"
+        },
+        "required": {
+          "type": "boolean"
+        },
+        "editable": {
+          "type": "boolean"
+        },
+        "default": {},
+        "default_value": {},
+        "enum_values": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "content_values": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "format_rule": {
+          "type": "string"
+        },
+        "length_rule": {
+          "type": "string"
+        },
+        "data_source": {
+          "type": "string"
+        },
+        "conditional_visibility": {
+          "type": "string"
+        },
+        "conditional_editability": {
+          "type": "string"
+        },
+        "required_when": {
+          "$ref": "#/definitions/condition_expr"
+        },
+        "visible_when": {
+          "$ref": "#/definitions/condition_expr"
+        },
+        "editable_when": {
+          "$ref": "#/definitions/condition_expr"
+        },
+        "readonly_when": {
+          "$ref": "#/definitions/condition_expr"
+        },
+        "max_length": {
+          "type": "integer"
+        },
+        "min": {
+          "type": "number"
+        },
+        "max": {
+          "type": "number"
+        },
+        "integer_only": {
+          "type": "boolean"
+        },
+        "formats": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "max_count": {
+          "type": "integer"
+        },
+        "filter": {
+          "$ref": "#/definitions/condition_expr"
+        },
+        "display": {
+          "$ref": "#/definitions/condition_expr"
+        },
+        "order_by": {
+          "$ref": "#/definitions/sort_expr"
+        },
+        "terminal": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "feature_rule_schema": {
+      "type": "object",
+      "required": [
+        "rule_type"
+      ],
+      "properties": {
+        "rule_id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "rule_type": {
+          "type": "string",
+          "enum": [
+            "conditional_required",
+            "conditional_visibility",
+            "conditional_editability",
+            "conditional_readonly",
+            "value_constraint",
+            "data_source_constraint",
+            "order_constraint",
+            "display_constraint",
+            "max_count_constraint",
+            "state_constraint",
+            "other"
+          ]
+        },
+        "field_name": {
+          "type": "string"
+        },
+        "target": {
+          "type": "string"
+        },
+        "condition": {
+          "$ref": "#/definitions/condition_expr"
+        },
+        "required_when": {
+          "$ref": "#/definitions/condition_expr"
+        },
+        "visible_when": {
+          "$ref": "#/definitions/condition_expr"
+        },
+        "editable_when": {
+          "$ref": "#/definitions/condition_expr"
+        },
+        "readonly_when": {
+          "$ref": "#/definitions/condition_expr"
+        },
+        "value": {},
+        "allowed_values": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "max_length": {
+          "type": "integer"
+        },
+        "min": {
+          "type": "number"
+        },
+        "max": {
+          "type": "number"
+        },
+        "integer_only": {
+          "type": "boolean"
+        },
+        "formats": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "max_count": {
+          "type": "integer"
+        },
+        "data_source": {
+          "type": "string"
+        },
+        "filter": {
+          "$ref": "#/definitions/condition_expr"
+        },
+        "display": {
+          "$ref": "#/definitions/condition_expr"
+        },
+        "order_by": {
+          "$ref": "#/definitions/sort_expr"
+        },
+        "rule_text": {
+          "type": "string"
+        },
+        "notes": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "properties": {
+    "project_info": {
+      "type": "object",
+      "required": [
+        "project_code",
+        "project_name"
+      ],
+      "properties": {
+        "project_code": {
+          "type": "string"
+        },
+        "project_name": {
+          "type": "string"
+        },
+        "business_line": {
+          "type": "string"
+        },
+        "prd_source": {
+          "type": "string"
+        },
+        "prd_version": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "requirement_info": {
+      "type": "object",
+      "required": [
+        "requirement_title"
+      ],
+      "properties": {
+        "requirement_title": {
+          "type": "string"
+        },
+        "requirement_background": {
+          "type": "string"
+        },
+        "requirement_goal": {
+          "type": "string"
+        },
+        "explicit_rules": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "rule_id",
+              "rule_text",
+              "rule_type",
+              "priority"
+            ],
+            "properties": {
+              "rule_id": {
+                "type": "string"
+              },
+              "rule_text": {
+                "type": "string"
+              },
+              "rule_type": {
+                "type": "string",
+                "enum": [
+                  "display_constraint",
+                  "navigation_rule",
+                  "interaction_rule",
+                  "data_rule",
+                  "state_constraint",
+                  "order_constraint",
+                  "fallback_constraint",
+                  "style_constraint",
+                  "container_constraint",
+                  "extensibility_constraint",
+                  "coverage_constraint"
+                ]
+              },
+              "priority": {
+                "type": "string",
+                "enum": [
+                  "high",
+                  "medium",
+                  "low"
+                ]
+              },
+              "applies_to": {
+                "type": "string"
+              },
+              "expected_items": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "fidelity_points": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "required": [
+                    "constraint_type",
+                    "value"
+                  ],
+                  "properties": {
+                    "constraint_type": {
+                      "type": "string",
+                      "enum": [
+                        "time_constraint",
+                        "quantity_constraint",
+                        "source_constraint",
+                        "state_constraint",
+                        "order_constraint",
+                        "fallback_constraint",
+                        "copy_constraint",
+                        "target_constraint",
+                        "field_constraint",
+                        "style_constraint",
+                        "container_constraint",
+                        "selection_constraint",
+                        "sequence_constraint",
+                        "extensibility_constraint"
+                      ]
+                    },
+                    "value": {
+                      "type": "string"
+                    },
+                    "must_preserve": {
+                      "type": "boolean"
+                    },
+                    "forbidden_rewrites": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "additionalProperties": false
+                }
+              },
+              "notes": {
+                "type": "string"
+              }
+            },
+            "additionalProperties": false
+          }
+        },
+        "scope": {
+          "type": "object",
+          "properties": {
+            "in_scope": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "out_of_scope": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false
+    },
+    "pages": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "page_name",
+          "sections"
+        ],
+        "properties": {
+          "page_name": {
+            "type": "string"
+          },
+          "page_desc": {
+            "type": "string"
+          },
+          "sections": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": [
+                "section_name",
+                "section_type"
+              ],
+              "properties": {
+                "section_name": {
+                  "type": "string"
+                },
+                "section_type": {
+                  "type": "string",
+                  "enum": [
+                    "filter_area",
+                    "list_area",
+                    "action_area",
+                    "edit_modal",
+                    "sort_modal",
+                    "field_rule_table",
+                    "display_area",
+                    "tab_area",
+                    "popup_area",
+                    "other"
+                  ]
+                },
+                "section_desc": {
+                  "type": "string"
+                },
+                "module_name": {
+                  "type": "string"
+                },
+                "feature_names": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "section_rules": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "field_refs": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "field_rule_table_refs": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              },
+              "additionalProperties": false
+            }
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "modules": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "module_name",
+          "features"
+        ],
+        "properties": {
+          "module_name": {
+            "type": "string"
+          },
+          "module_desc": {
+            "type": "string"
+          },
+          "features": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": [
+                "feature_name",
+                "rules"
+              ],
+              "properties": {
+                "feature_name": {
+                  "type": "string"
+                },
+                "page_name": {
+                  "type": "string"
+                },
+                "section_name": {
+                  "type": "string"
+                },
+                "feature_desc": {
+                  "type": "string"
+                },
+                "actors": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "entry_conditions": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "rules": {
+                  "type": "array",
+                  "items": {
+                    "oneOf": [
+                      {
+                        "type": "string"
+                      },
+                      {
+                        "$ref": "#/definitions/feature_rule_schema"
+                      }
+                    ]
+                  }
+                },
+                "fields": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/field_schema"
+                  }
+                },
+                "field_definitions": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/field_schema"
+                  }
+                },
+                "field_rules": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "required": [
+                      "rule_id",
+                      "field_name",
+                      "rule_text",
+                      "rule_type"
+                    ],
+                    "properties": {
+                      "rule_id": {
+                        "type": "string"
+                      },
+                      "field_name": {
+                        "type": "string"
+                      },
+                      "display_name": {
+                        "type": "string"
+                      },
+                      "rule_text": {
+                        "type": "string"
+                      },
+                      "rule_type": {
+                        "type": "string",
+                        "enum": [
+                          "required_constraint",
+                          "enum_constraint",
+                          "format_constraint",
+                          "length_constraint",
+                          "range_constraint",
+                          "effect_constraint",
+                          "status_constraint",
+                          "data_source_constraint",
+                          "conditional_visibility_rule",
+                          "conditional_editability_rule",
+                          "conditional_required_rule",
+                          "other"
+                        ]
+                      },
+                      "expected_effects": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      },
+                      "must_cover": {
+                        "type": "boolean"
+                      },
+                      "enum_preserve_terms": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      }
+                    },
+                    "additionalProperties": false
+                  }
+                },
+                "field_rule_tables": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "required": [
+                      "field_name",
+                      "table_name",
+                      "rows"
+                    ],
+                    "properties": {
+                      "field_name": {
+                        "type": "string"
+                      },
+                      "table_name": {
+                        "type": "string"
+                      },
+                      "table_desc": {
+                        "type": "string"
+                      },
+                      "rows": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "required": [
+                            "row_id",
+                            "row_name",
+                            "rule_text"
+                          ],
+                          "properties": {
+                            "row_id": {
+                              "type": "string"
+                            },
+                            "row_name": {
+                              "type": "string"
+                            },
+                            "rule_text": {
+                              "type": "string"
+                            },
+                            "expected_effect": {
+                              "type": "string"
+                            },
+                            "enum_value": {
+                              "type": "string"
+                            }
+                          },
+                          "additionalProperties": false
+                        }
+                      }
+                    },
+                    "additionalProperties": false
+                  }
+                },
+                "visible_elements": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "interactive_entries": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "abnormal_scenarios": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "boundary_scenarios": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "dependencies": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              },
+              "additionalProperties": false
+            }
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "flows": {
+      "type": "array",
+      "description": "关键业务流程定义",
+      "items": {
+        "type": "object",
+        "required": [
+          "flow_id",
+          "flow_name",
+          "flow_type",
+          "business_goal",
+          "steps"
+        ],
+        "properties": {
+          "flow_id": {
+            "type": "string"
+          },
+          "flow_name": {
+            "type": "string"
+          },
+          "flow_type": {
+            "type": "string",
+            "enum": [
+              "main_flow",
+              "support_flow",
+              "pre_flow",
+              "post_flow"
+            ]
+          },
+          "business_goal": {
+            "type": "string"
+          },
+          "trigger": {
+            "type": "string"
+          },
+          "preconditions": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "steps": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "type": "object",
+              "required": [
+                "step_no",
+                "step_name",
+                "module_name",
+                "feature_name",
+                "action",
+                "expected_result"
+              ],
+              "properties": {
+                "step_no": {
+                  "type": "integer",
+                  "minimum": 1
+                },
+                "step_name": {
+                  "type": "string"
+                },
+                "step_type": {
+                  "type": "string",
+                  "enum": [
+                    "operation",
+                    "system_response",
+                    "state_change",
+                    "data_validation",
+                    "manual_review"
+                  ]
+                },
+                "module_name": {
+                  "type": "string"
+                },
+                "feature_name": {
+                  "type": "string"
+                },
+                "actor": {
+                  "type": "string"
+                },
+                "action": {
+                  "type": "string"
+                },
+                "input_data": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "expected_result": {
+                  "type": "string"
+                },
+                "state_transition": {
+                  "type": "object",
+                  "properties": {
+                    "from": {
+                      "type": "string"
+                    },
+                    "to": {
+                      "type": "string"
+                    }
+                  },
+                  "additionalProperties": false
+                },
+                "checkpoints": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "rule_references": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "is_key_checkpoint": {
+                  "type": "boolean"
+                }
+              },
+              "additionalProperties": false
+            }
+          },
+          "postconditions": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "success_criteria": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "related_modules": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "priority": {
+            "type": "string"
+          },
+          "tags": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false
+}

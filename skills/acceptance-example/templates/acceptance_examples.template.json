@@ -1,0 +1,17 @@
+{
+  "project_code": "",
+  "work_item_id": "",
+  "examples": [
+    {
+      "example_id": "AE-001",
+      "source_gate_ids": ["TG-001"],
+      "title": "待补充验收示例",
+      "given": ["待补充前置上下文"],
+      "when": ["待补充用户或系统动作"],
+      "then": ["待补充可观测结果"],
+      "verification_side": "B端写侧",
+      "oracle_strength": "business_behavior",
+      "confidence": "confirmed"
+    }
+  ]
+}

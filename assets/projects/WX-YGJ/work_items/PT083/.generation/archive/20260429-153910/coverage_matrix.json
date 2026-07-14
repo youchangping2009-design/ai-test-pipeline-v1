@@ -1,0 +1,10 @@
+{
+  "project_code": "WX-YGJ",
+  "work_item_id": "PT083",
+  "generated_at": "2026-04-18T16:20:00+08:00",
+  "generated_from": [
+    "structured_prd/structured_prd.json",
+    "testcases/testcases_main.md"
+  ],
+  "entries": []
+}

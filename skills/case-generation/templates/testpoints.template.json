@@ -1,0 +1,27 @@
+{
+  "project_code": "<PROJECT_CODE>",
+  "work_item_id": "<WORK_ITEM_ID>",
+  "truth_source": "testcases/case_plan.json",
+  "projection_only": true,
+  "generated_from": ["testcases/case_plan.json"],
+  "testpoints": [
+    {
+      "testpoint_id": "TP-001",
+      "source_case_plan_id": "CP-001",
+      "source_gate_ids": ["TG-001"],
+      "source_example_ids": [],
+      "source_responsibility_ids": [],
+      "page_name": "页面名称",
+      "section_name": "板块名称",
+      "module_name": "模块名称",
+      "feature_name": "功能点名称",
+      "test_dimension": "field_rule",
+      "test_point": "验证具体测试点",
+      "assertion": "可观察断言",
+      "priority": "P1",
+      "validation_path": "product_acceptance",
+      "should_generate_case": true,
+      "generated_testcase_ids": []
+    }
+  ]
+}

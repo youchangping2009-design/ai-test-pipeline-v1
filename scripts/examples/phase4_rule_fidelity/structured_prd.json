@@ -1,0 +1,263 @@
+{
+  "project_info": {
+    "project_code": "DEMO",
+    "project_name": "规则保真校验示例",
+    "business_line": "Validation",
+    "prd_source": "sample://phase4-rule-fidelity",
+    "prd_version": "phase-4"
+  },
+  "requirement_info": {
+    "requirement_title": "原始规则到 testcase 的保真校验示例",
+    "requirement_background": "用于验证高价值规则在 structured_prd 和 testcase 两段链路中的缺失告警。",
+    "requirement_goal": "发现条件规则、边界规则和数据源规则在结构化或用例阶段的丢失。",
+    "explicit_rules": [
+      {
+        "rule_id": "ER-001",
+        "rule_text": "选择活动仅展示状态=发布的活动，按活动创建时间倒序排序。",
+        "rule_type": "data_rule",
+        "priority": "high",
+        "applies_to": "选择活动字段",
+        "fidelity_points": [
+          {
+            "constraint_type": "state_constraint",
+            "value": "状态=发布",
+            "must_preserve": true
+          },
+          {
+            "constraint_type": "order_constraint",
+            "value": "按活动创建时间倒序",
+            "must_preserve": true
+          }
+        ]
+      }
+    ],
+    "scope": {
+      "in_scope": [
+        "规则保真校验"
+      ],
+      "out_of_scope": []
+    }
+  },
+  "pages": [
+    {
+      "page_name": "示例配置页",
+      "page_desc": "用于校验条件规则与数据源规则的最小页面。",
+      "sections": [
+        {
+          "section_name": "添加弹窗",
+          "section_type": "edit_modal",
+          "section_desc": "规则型字段示例",
+          "module_name": "示例配置模块",
+          "feature_names": [
+            "规则保真示例"
+          ],
+          "section_rules": [],
+          "field_refs": [
+            "activity_name",
+            "display_days",
+            "link_url",
+            "selected_activity"
+          ],
+          "field_rule_table_refs": []
+        }
+      ]
+    }
+  ],
+  "modules": [
+    {
+      "module_name": "示例配置模块",
+      "module_desc": "用于校验规则缺失告警。",
+      "features": [
+        {
+          "feature_name": "规则保真示例",
+          "page_name": "示例配置页",
+          "section_name": "添加弹窗",
+          "feature_desc": "覆盖条件必填、条件展示、条件可编辑/只读、边界和值域、数据源过滤排序。",
+          "actors": [
+            "后台运营"
+          ],
+          "entry_conditions": [
+            "进入示例配置页并打开添加弹窗"
+          ],
+          "rules": [
+            {
+              "rule_id": "RULE-001",
+              "rule_type": "conditional_required",
+              "field_name": "display_days",
+              "required_when": "display_type=after_days",
+              "rule_text": "display_type=after_days"
+            },
+            {
+              "rule_id": "RULE-002",
+              "rule_type": "conditional_visibility",
+              "field_name": "display_days",
+              "visible_when": "display_type=after_days",
+              "rule_text": "display_type=after_days"
+            },
+            {
+              "rule_id": "RULE-003",
+              "rule_type": "conditional_readonly",
+              "field_name": "link_url",
+              "readonly_when": "jump_type=activity_center",
+              "rule_text": "jump_type=activity_center"
+            },
+            {
+              "rule_id": "RULE-004",
+              "rule_type": "value_constraint",
+              "field_name": "display_days",
+              "min": 1,
+              "max": 99,
+              "integer_only": true,
+              "rule_text": "display_days; min=1; max=99; integer_only=true"
+            },
+            {
+              "rule_id": "RULE-005",
+              "rule_type": "data_source_constraint",
+              "field_name": "selected_activity",
+              "data_source": "活动中心渠道=小程序的活动",
+              "filter": "状态=发布",
+              "display": "id+活动名称",
+              "order_by": "按活动创建时间倒序",
+              "rule_text": "活动中心渠道=小程序的活动; 状态=发布; 按活动创建时间倒序"
+            }
+          ],
+          "fields": [
+            {
+              "name": "activity_name",
+              "field_name": "activity_name",
+              "display_name": "活动名称",
+              "type": "text_input",
+              "data_type": "string",
+              "required": true,
+              "editable": true,
+              "default": "",
+              "max_length": 20
+            },
+            {
+              "name": "display_days",
+              "field_name": "display_days",
+              "display_name": "展示天数",
+              "type": "number_input",
+              "data_type": "integer",
+              "required": false,
+              "editable": true,
+              "default": null,
+              "required_when": "display_type=after_days",
+              "visible_when": "display_type=after_days",
+              "editable_when": "display_type=after_days",
+              "min": 1,
+              "max": 99,
+              "integer_only": true
+            },
+            {
+              "name": "link_url",
+              "field_name": "link_url",
+              "display_name": "活动链接",
+              "type": "text_input",
+              "data_type": "string",
+              "required": false,
+              "editable": true,
+              "default": "",
+              "readonly_when": "jump_type=activity_center"
+            },
+            {
+              "name": "selected_activity",
+              "field_name": "selected_activity",
+              "display_name": "选择活动",
+              "type": "select_single",
+              "data_type": "string",
+              "required": true,
+              "editable": true,
+              "default": "",
+              "data_source": "活动中心渠道=小程序的活动",
+              "filter": "状态=发布",
+              "display": "id+活动名称",
+              "order_by": "按活动创建时间倒序"
+            }
+          ],
+          "field_definitions": [
+            {
+              "field_name": "activity_name",
+              "display_name": "活动名称",
+              "data_type": "string",
+              "required": true,
+              "editable": true,
+              "default_value": "",
+              "max_length": 20
+            },
+            {
+              "field_name": "display_days",
+              "display_name": "展示天数",
+              "data_type": "integer",
+              "required": false,
+              "editable": true,
+              "default_value": null,
+              "required_when": "display_type=after_days",
+              "visible_when": "display_type=after_days",
+              "editable_when": "display_type=after_days",
+              "min": 1,
+              "max": 99,
+              "integer_only": true
+            },
+            {
+              "field_name": "link_url",
+              "display_name": "活动链接",
+              "data_type": "string",
+              "required": false,
+              "editable": true,
+              "default_value": "",
+              "readonly_when": "jump_type=activity_center"
+            },
+            {
+              "field_name": "selected_activity",
+              "display_name": "选择活动",
+              "data_type": "string",
+              "required": true,
+              "editable": true,
+              "default_value": "",
+              "data_source": "活动中心渠道=小程序的活动",
+              "filter": "状态=发布",
+              "display": "id+活动名称",
+              "order_by": "按活动创建时间倒序"
+            }
+          ],
+          "field_rules": [],
+          "field_rule_tables": [],
+          "visible_elements": [],
+          "interactive_entries": [],
+          "abnormal_scenarios": [],
+          "boundary_scenarios": [],
+          "dependencies": []
+        }
+      ]
+    }
+  ],
+  "flows": [
+    {
+      "flow_id": "FLOW-001",
+      "flow_name": "示例配置提交流程",
+      "flow_type": "main_flow",
+      "business_goal": "用于示例保真校验。",
+      "related_modules": [
+        "示例配置模块"
+      ],
+      "steps": [
+        {
+          "step_no": 1,
+          "step_name": "打开添加弹窗",
+          "action": "打开示例配置页添加弹窗",
+          "expected_result": "添加弹窗展示规则型字段",
+          "module_name": "示例配置模块",
+          "feature_name": "规则保真示例"
+        }
+      ],
+      "success_criteria": [
+        "规则保真告警能够识别缺失"
+      ],
+      "priority": "P1",
+      "tags": [
+        "validation"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+required_assertions:
+  - id: no_risk_acceptance
+    artifact: acceptance_examples.expected.json
+    selector: examples[source_gate_ids~TG-001]
+    absent: true
+    reason: 风险/API 类规则不应生成主验收 acceptance example
+  - id: api_guard_required
+    artifact: responsibility_map.expected.json
+    selector: responsibilities[source_rule_id=R-ILLEGAL-ENUM-API]
+    field: api_guard_required
+    in: true
+    reason: 非法枚举直调接口必须进入 API 兜底责任
+  - id: risk_note_required
+    artifact: responsibility_map.expected.json
+    selector: responsibilities[source_rule_id=R-ILLEGAL-ENUM-API]
+    field: risk_note_required
+    in: true
+    reason: 非法枚举直调接口必须保留风险项
+  - id: risk_case_plan_path
+    artifact: case_plan.expected.json
+    selector: case_plans[source_gate_ids~TG-001]
+    field: validation_path
+    in: risk_note,api_guard
+    reason: 风险/API 类计划不得进入 product_acceptance

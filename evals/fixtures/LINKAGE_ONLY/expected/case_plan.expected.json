@@ -1,0 +1,20 @@
+{
+  "project_code": "EVAL",
+  "work_item_id": "LINKAGE_ONLY",
+  "case_plans": [
+    {
+      "case_plan_id": "CP-001",
+      "source_gate_ids": ["TG-001"],
+      "source_example_ids": ["AE-001"],
+      "source_responsibility_ids": ["VR-001"],
+      "generated_testcase_ids": [],
+      "title": "验证免费体验商品从后台配置到C端领取链路",
+      "verification_side": "B端+C端",
+      "case_type": "linkage",
+      "priority": "P0",
+      "assertion": "后台配置免费体验商品后，C端用户可完成领取且不进入支付页",
+      "validation_path": "product_acceptance",
+      "should_generate_case": true
+    }
+  ]
+}

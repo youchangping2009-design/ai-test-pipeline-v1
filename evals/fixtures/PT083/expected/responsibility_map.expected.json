@@ -1,0 +1,50 @@
+{
+  "project_code": "WX-YGJ",
+  "work_item_id": "PT083",
+  "responsibilities": [
+    {
+      "responsibility_id": "VR-001",
+      "source_rule_id": "R-PROMO-SIZE-HINT",
+      "rule_text": "宣传图片格式/尺寸为提示展示，不作为保存拦截条件。",
+      "primary_verification_side": "B端页面展示",
+      "primary_verification_method": "字段提示文案展示检查",
+      "consumer_verification_required": false,
+      "api_guard_required": false,
+      "risk_note_required": false,
+      "reason": "该规则属于提示展示，应验证页面提示是否出现，不应升级为保存失败。"
+    },
+    {
+      "responsibility_id": "VR-002",
+      "source_rule_id": "R-SPECIAL-MAX-4",
+      "rule_text": "特殊区最多配置4个，超过4个不可保存并提示。",
+      "primary_verification_side": "B端写侧",
+      "primary_verification_method": "保存拦截",
+      "consumer_verification_required": false,
+      "api_guard_required": false,
+      "risk_note_required": false,
+      "reason": "数量上限应由后台配置保存侧承接，C端最多展示4个只作为结果观察。"
+    },
+    {
+      "responsibility_id": "VR-003",
+      "source_rule_id": "R-FREE-TRIAL-LINK",
+      "rule_text": "0元商品 / 免费体验配置后，C端用户必须能消费该配置并完成领取链路。",
+      "primary_verification_side": "B端配置到C端消费链路",
+      "primary_verification_method": "后台配置生效后在C端完成免费体验领取",
+      "consumer_verification_required": true,
+      "api_guard_required": false,
+      "risk_note_required": false,
+      "reason": "免费体验不是单纯后台字段保存，必须验证 C端 是否正确消费配置。"
+    },
+    {
+      "responsibility_id": "VR-004",
+      "source_rule_id": "R-GOODS-REGION-ILLEGAL",
+      "rule_text": "goodsRegion 前端枚举限制下，非法枚举直调接口不进入主验收用例，只进入风险/API兜底建议。",
+      "primary_verification_side": "API兜底",
+      "primary_verification_method": "接口非法枚举风险加固建议",
+      "consumer_verification_required": false,
+      "api_guard_required": true,
+      "risk_note_required": true,
+      "reason": "非法枚举属于绕过前端限制的接口兜底风险，不能混入 product_acceptance 主用例。"
+    }
+  ]
+}

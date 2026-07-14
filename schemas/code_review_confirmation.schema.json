@@ -1,0 +1,48 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Code Review Confirmation Schema",
+  "type": "object",
+  "required": [
+    "stage",
+    "review_type",
+    "manual_confirmation_required",
+    "confirmation_status"
+  ],
+  "properties": {
+    "stage": {
+      "type": "string",
+      "enum": [
+        "frontend_code_review",
+        "backend_code_review"
+      ]
+    },
+    "review_type": {
+      "type": "string",
+      "enum": [
+        "frontend_code",
+        "backend_code"
+      ]
+    },
+    "manual_confirmation_required": {
+      "type": "boolean"
+    },
+    "confirmation_status": {
+      "type": "string",
+      "enum": [
+        "pending",
+        "confirmed",
+        "rejected"
+      ]
+    },
+    "confirmed_by": {
+      "type": "string"
+    },
+    "confirmed_at": {
+      "type": "string"
+    },
+    "confirmation_note": {
+      "type": "string"
+    }
+  },
+  "additionalProperties": false
+}

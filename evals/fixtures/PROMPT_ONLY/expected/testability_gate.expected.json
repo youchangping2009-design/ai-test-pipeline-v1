@@ -1,0 +1,16 @@
+{
+  "project_code": "EVAL",
+  "work_item_id": "PROMPT_ONLY",
+  "items": [
+    {
+      "gate_id": "TG-001",
+      "source_rule_id": "R-PROMPT-HINT",
+      "source_text": "上传区域旁展示建议尺寸和格式提示。",
+      "classification": "soft_prompt",
+      "testability": "partially_testable",
+      "decision": "generate_acceptance_example",
+      "reason": "提示文案只验证展示，不升级为保存拦截。",
+      "confidence": "confirmed"
+    }
+  ]
+}

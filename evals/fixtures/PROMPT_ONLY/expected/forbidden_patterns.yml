@@ -1,0 +1,8 @@
+forbidden_patterns:
+  - id: no_hard_block
+    artifact: case_plan.expected.json
+    pattern: "save_block|保存失败|阻止保存|不可保存"
+required_patterns:
+  - id: has_prompt_display
+    artifact: case_plan.expected.json
+    pattern: "prompt_display"

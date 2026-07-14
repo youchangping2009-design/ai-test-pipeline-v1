@@ -1,0 +1,21 @@
+{
+  "project_info": {
+    "project_code": "WX-YGJ",
+    "project_name": "WX-YGJ",
+    "business_line": "WX-YGJ",
+    "prd_source": "",
+    "prd_version": ""
+  },
+  "requirement_info": {
+    "requirement_title": "",
+    "requirement_background": "",
+    "requirement_goal": "",
+    "scope": {
+      "in_scope": [],
+      "out_of_scope": []
+    }
+  },
+  "pages": [],
+  "modules": [],
+  "flows": []
+}

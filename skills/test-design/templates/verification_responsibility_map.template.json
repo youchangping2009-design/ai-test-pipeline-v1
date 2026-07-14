@@ -1,0 +1,17 @@
+{
+  "project_code": "",
+  "work_item_id": "",
+  "responsibilities": [
+    {
+      "responsibility_id": "VR-001",
+      "source_rule_id": "R001",
+      "rule_text": "待补充规则文本",
+      "primary_verification_side": "B端写侧",
+      "primary_verification_method": "待补充验证方法",
+      "consumer_verification_required": false,
+      "api_guard_required": false,
+      "risk_note_required": false,
+      "reason": "待补充责任划分依据"
+    }
+  ]
+}

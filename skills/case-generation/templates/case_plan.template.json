@@ -1,0 +1,22 @@
+{
+  "project_code": "",
+  "work_item_id": "",
+  "case_plans": [
+    {
+      "case_plan_id": "CP-001",
+      "source_gate_ids": ["TG-001"],
+      "source_example_ids": [],
+      "source_responsibility_ids": [],
+      "generated_testcase_ids": [],
+      "page_name": "",
+      "section_name": "",
+      "title": "验证待补充规则",
+      "verification_side": "B端",
+      "case_type": "field_constraint",
+      "priority": "P1",
+      "assertion": "待补充单一断言",
+      "validation_path": "product_acceptance",
+      "should_generate_case": true
+    }
+  ]
+}

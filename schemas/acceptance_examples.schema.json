@@ -1,0 +1,53 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "AI Test Pipeline Acceptance Examples",
+  "type": "object",
+  "required": ["work_item_id", "examples"],
+  "properties": {
+    "project_code": { "type": "string" },
+    "work_item_id": { "type": "string" },
+    "examples": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": [
+          "example_id",
+          "source_gate_ids",
+          "title",
+          "given",
+          "when",
+          "then",
+          "verification_side",
+          "oracle_strength",
+          "confidence"
+        ],
+        "properties": {
+          "example_id": { "type": "string", "pattern": "^AE-[0-9]{3,}$" },
+          "source_gate_ids": { "type": "array", "minItems": 1, "items": { "type": "string" } },
+          "title": { "type": "string" },
+          "given": { "type": "array", "minItems": 1, "items": { "type": "string" } },
+          "when": { "type": "array", "minItems": 1, "items": { "type": "string" } },
+          "then": { "type": "array", "minItems": 1, "items": { "type": "string" } },
+          "verification_side": { "type": "string" },
+          "oracle_strength": {
+            "type": "string",
+            "enum": [
+              "hard_block",
+              "soft_display",
+              "display_only",
+              "business_behavior",
+              "backend_job",
+              "linkage",
+              "risk_only"
+            ]
+          },
+          "confidence": { "type": "string", "enum": ["confirmed", "inferred", "unknown"] },
+          "inference_basis": { "type": "string" }
+        },
+        "additionalProperties": true
+      }
+    }
+  },
+  "additionalProperties": true
+}

@@ -1,0 +1,584 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Reasoning Pack Schema",
+  "type": "object",
+  "required": [
+    "project_code",
+    "work_item_id",
+    "generated_at",
+    "generated_from",
+    "requirement_summary",
+    "explicit_rules",
+    "implicit_rules",
+    "field_constraints",
+    "data_source_rules",
+    "business_risks",
+    "edge_cases",
+    "ambiguities",
+    "recommended_test_dimensions",
+    "coverage_candidates"
+  ],
+  "definitions": {
+    "source_ref": {
+      "type": "object",
+      "required": [
+        "source_type",
+        "path"
+      ],
+      "properties": {
+        "source_type": {
+          "type": "string",
+          "enum": [
+            "manifest",
+            "input_markdown",
+            "image_evidence",
+            "image_section",
+            "image_field_rule",
+            "image_table"
+          ]
+        },
+        "path": {
+          "type": "string"
+        },
+        "page_name": {
+          "type": "string"
+        },
+        "section_name": {
+          "type": "string"
+        },
+        "field_name": {
+          "type": "string"
+        },
+        "excerpt": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "reasoning_item": {
+      "type": "object",
+      "required": [
+        "id",
+        "title",
+        "statement",
+        "confidence",
+        "source_refs"
+      ],
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        },
+        "statement": {
+          "type": "string"
+        },
+        "confidence": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "reasoning_notes": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "must_preserve_terms": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "source_refs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/source_ref"
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "field_constraint": {
+      "type": "object",
+      "required": [
+        "constraint_id",
+        "page_name",
+        "section_name",
+        "field_name",
+        "display_name",
+        "constraint_summary",
+        "confidence",
+        "source_refs"
+      ],
+      "properties": {
+        "constraint_id": {
+          "type": "string"
+        },
+        "page_name": {
+          "type": "string"
+        },
+        "section_name": {
+          "type": "string"
+        },
+        "field_name": {
+          "type": "string"
+        },
+        "display_name": {
+          "type": "string"
+        },
+        "control_type": {
+          "type": "string"
+        },
+        "data_type": {
+          "type": "string"
+        },
+        "constraint_summary": {
+          "type": "string"
+        },
+        "normalized_constraints": {
+          "type": "object",
+          "properties": {
+            "required": {
+              "type": "boolean"
+            },
+            "required_when": {
+              "type": "string"
+            },
+            "visible_when": {
+              "type": "string"
+            },
+            "readonly_when": {
+              "type": "string"
+            },
+            "editable_when": {
+              "type": "string"
+            },
+            "default_value": {},
+            "max_length": {
+              "type": "integer"
+            },
+            "min": {
+              "type": "number"
+            },
+            "max": {
+              "type": "number"
+            },
+            "integer_only": {
+              "type": "boolean"
+            },
+            "enum_values": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "max_count": {
+              "type": "integer"
+            },
+            "single_image_only": {
+              "type": "boolean"
+            }
+          },
+          "additionalProperties": false
+        },
+        "raw_rule_texts": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "confidence": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "source_refs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/source_ref"
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "data_source_rule": {
+      "type": "object",
+      "required": [
+        "rule_id",
+        "title",
+        "statement",
+        "confidence",
+        "source_refs"
+      ],
+      "properties": {
+        "rule_id": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        },
+        "page_name": {
+          "type": "string"
+        },
+        "section_name": {
+          "type": "string"
+        },
+        "field_name": {
+          "type": "string"
+        },
+        "statement": {
+          "type": "string"
+        },
+        "data_source": {
+          "type": "string"
+        },
+        "filters": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "order_by": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "confidence": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "source_refs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/source_ref"
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "risk_item": {
+      "type": "object",
+      "required": [
+        "risk_id",
+        "title",
+        "risk_statement",
+        "severity",
+        "source_refs"
+      ],
+      "properties": {
+        "risk_id": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        },
+        "risk_statement": {
+          "type": "string"
+        },
+        "severity": {
+          "type": "string",
+          "enum": [
+            "high",
+            "medium",
+            "low"
+          ]
+        },
+        "impact_scope": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "source_refs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/source_ref"
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "edge_case": {
+      "type": "object",
+      "required": [
+        "edge_case_id",
+        "title",
+        "scenario",
+        "priority",
+        "source_refs"
+      ],
+      "properties": {
+        "edge_case_id": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        },
+        "scenario": {
+          "type": "string"
+        },
+        "priority": {
+          "type": "string",
+          "enum": [
+            "P0",
+            "P1",
+            "P2",
+            "P3"
+          ]
+        },
+        "related_field": {
+          "type": "string"
+        },
+        "source_refs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/source_ref"
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "ambiguity": {
+      "type": "object",
+      "required": [
+        "ambiguity_id",
+        "title",
+        "description",
+        "status",
+        "source_refs"
+      ],
+      "properties": {
+        "ambiguity_id": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string",
+          "enum": [
+            "open",
+            "mitigated",
+            "closed"
+          ]
+        },
+        "suggested_resolution": {
+          "type": "string"
+        },
+        "source_refs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/source_ref"
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "test_dimension": {
+      "type": "object",
+      "required": [
+        "dimension_id",
+        "dimension",
+        "rationale",
+        "priority"
+      ],
+      "properties": {
+        "dimension_id": {
+          "type": "string"
+        },
+        "dimension": {
+          "type": "string"
+        },
+        "rationale": {
+          "type": "string"
+        },
+        "priority": {
+          "type": "string",
+          "enum": [
+            "high",
+            "medium",
+            "low"
+          ]
+        },
+        "related_reasoning_ids": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "coverage_candidate": {
+      "type": "object",
+      "required": [
+        "candidate_id",
+        "candidate_type",
+        "title",
+        "scope",
+        "priority"
+      ],
+      "properties": {
+        "candidate_id": {
+          "type": "string"
+        },
+        "candidate_type": {
+          "type": "string",
+          "enum": [
+            "page",
+            "section",
+            "field_group",
+            "rule_cluster",
+            "flow_surface"
+          ]
+        },
+        "title": {
+          "type": "string"
+        },
+        "scope": {
+          "type": "string"
+        },
+        "priority": {
+          "type": "string",
+          "enum": [
+            "high",
+            "medium",
+            "low"
+          ]
+        },
+        "rationale": {
+          "type": "string"
+        },
+        "suggested_test_types": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "source_reasoning_ids": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "properties": {
+    "project_code": {
+      "type": "string"
+    },
+    "work_item_id": {
+      "type": "string"
+    },
+    "generated_at": {
+      "type": "string"
+    },
+    "generated_from": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "requirement_summary": {
+      "type": "object",
+      "required": [
+        "title",
+        "summary_text",
+        "primary_pages",
+        "primary_user_surfaces",
+        "source_notes"
+      ],
+      "properties": {
+        "title": {
+          "type": "string"
+        },
+        "summary_text": {
+          "type": "string"
+        },
+        "primary_pages": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "primary_user_surfaces": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "source_notes": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "explicit_rules": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/reasoning_item"
+      }
+    },
+    "implicit_rules": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/reasoning_item"
+      }
+    },
+    "field_constraints": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/field_constraint"
+      }
+    },
+    "data_source_rules": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/data_source_rule"
+      }
+    },
+    "business_risks": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/risk_item"
+      }
+    },
+    "edge_cases": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/edge_case"
+      }
+    },
+    "ambiguities": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/ambiguity"
+      }
+    },
+    "recommended_test_dimensions": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/test_dimension"
+      }
+    },
+    "coverage_candidates": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/coverage_candidate"
+      }
+    }
+  },
+  "additionalProperties": false
+}

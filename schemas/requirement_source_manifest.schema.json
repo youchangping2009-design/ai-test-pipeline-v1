@@ -1,0 +1,51 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "AI Test Pipeline Requirement Source Manifest",
+  "type": "object",
+  "required": ["project_code", "work_item_id", "manifest_type", "sources"],
+  "properties": {
+    "project_code": { "type": "string" },
+    "work_item_id": { "type": "string" },
+    "manifest_type": { "type": "string", "const": "requirement_source_manifest" },
+    "summary_artifact": { "type": "string", "const": "inputs/requirement_summary.md" },
+    "sources": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["source_id", "source_type", "location", "status"],
+        "properties": {
+          "source_id": { "type": "string", "pattern": "^SRC-[0-9]{3,}$" },
+          "source_type": {
+            "type": "string",
+            "enum": [
+              "local_file",
+              "image",
+              "feishu_doc",
+              "feishu_message",
+              "prototype_link",
+              "public_doc",
+              "markdown",
+              "pdf",
+              "chat_summary",
+              "other"
+            ]
+          },
+          "location": { "type": "string" },
+          "status": {
+            "type": "string",
+            "enum": ["available", "pending_auth", "failed", "skipped"]
+          },
+          "local_artifact": { "type": "string" },
+          "retrieved_at": { "type": "string" },
+          "notes": { "type": "string" }
+        },
+        "additionalProperties": true
+      }
+    },
+    "unresolved_sources": {
+      "type": "array",
+      "items": { "type": "string" }
+    }
+  },
+  "additionalProperties": true
+}

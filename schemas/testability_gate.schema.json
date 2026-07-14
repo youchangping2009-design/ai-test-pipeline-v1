@@ -1,0 +1,76 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "AI Test Pipeline Testability Gate",
+  "type": "object",
+  "required": ["work_item_id", "items"],
+  "properties": {
+    "project_code": { "type": "string" },
+    "work_item_id": { "type": "string" },
+    "items": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "gate_id",
+          "source_rule_id",
+          "source_text",
+          "classification",
+          "testability",
+          "decision",
+          "reason",
+          "confidence"
+        ],
+        "properties": {
+          "gate_id": { "type": "string", "pattern": "^TG-[0-9]{3,}$" },
+          "source_rule_id": { "type": "string" },
+          "source_text": { "type": "string" },
+          "classification": {
+            "type": "string",
+            "enum": [
+              "product_behavior",
+              "field_constraint",
+              "linkage",
+              "soft_prompt",
+              "technical_background",
+              "backend_job",
+              "third_party_capability",
+              "permission_scope",
+              "platform_scope",
+              "risk_hardening"
+            ]
+          },
+          "testability": {
+            "type": "string",
+            "enum": [
+              "testable",
+              "partially_testable",
+              "not_directly_testable",
+              "needs_confirmation",
+              "risk_only",
+              "out_of_scope"
+            ]
+          },
+          "decision": {
+            "type": "string",
+            "enum": [
+              "generate_acceptance_example",
+              "generate_case_plan",
+              "skip_case",
+              "needs_confirmation",
+              "risk_note_only",
+              "out_of_scope"
+            ]
+          },
+          "reason": { "type": "string" },
+          "confidence": {
+            "type": "string",
+            "enum": ["confirmed", "inferred", "unknown"]
+          },
+          "inference_basis": { "type": "string" }
+        },
+        "additionalProperties": true
+      }
+    }
+  },
+  "additionalProperties": true
+}

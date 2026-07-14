@@ -1,0 +1,16 @@
+{
+  "project_code": "EVAL",
+  "work_item_id": "LINKAGE_ONLY",
+  "items": [
+    {
+      "gate_id": "TG-001",
+      "source_rule_id": "R-LINKAGE-FREE-TRIAL",
+      "source_text": "后台配置免费体验商品后，C端用户可以完成领取并不进入支付页。",
+      "classification": "linkage",
+      "testability": "testable",
+      "decision": "generate_acceptance_example",
+      "reason": "跨端消费链路可观测，应生成验收示例和链路计划。",
+      "confidence": "confirmed"
+    }
+  ]
+}

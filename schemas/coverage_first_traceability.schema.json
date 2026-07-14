@@ -1,0 +1,138 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Coverage First Traceability Schema",
+  "type": "object",
+  "required": [
+    "project_code",
+    "work_item_id",
+    "generated_at",
+    "generated_from",
+    "records"
+  ],
+  "properties": {
+    "project_code": {
+      "type": "string"
+    },
+    "work_item_id": {
+      "type": "string"
+    },
+    "generated_at": {
+      "type": "string"
+    },
+    "generated_from": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "summary": {
+      "type": "object",
+      "properties": {
+        "record_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "invalid_record_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "false_traceability_rate": {
+          "type": "number",
+          "minimum": 0
+        }
+      },
+      "additionalProperties": false
+    },
+    "records": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "record_id",
+          "rule_id",
+          "coverage_id",
+          "testcase_id",
+          "source_origin",
+          "fidelity_status"
+        ],
+        "properties": {
+          "record_id": {
+            "type": "string"
+          },
+          "rule_id": {
+            "type": "string"
+          },
+          "coverage_id": {
+            "type": "string"
+          },
+          "testcase_id": {
+            "type": "string"
+          },
+          "testcase_title": {
+            "type": "string"
+          },
+          "source_origin": {
+            "type": "string",
+            "enum": [
+              "explicit_rule",
+              "ai_reasoning"
+            ]
+          },
+          "coverage_level": {
+            "type": "string"
+          },
+          "emit_mode": {
+            "type": "string"
+          },
+          "fidelity_status": {
+            "type": "string",
+            "enum": [
+              "kept_exact_phrase",
+              "kept_equivalent_phrase",
+              "missing",
+              "not_applicable"
+            ]
+          },
+          "evidence_ids": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "reasoning_refs": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "structured_targets": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "target_type": {
+                  "type": "string"
+                },
+                "module_name": {
+                  "type": "string"
+                },
+                "feature_name": {
+                  "type": "string"
+                },
+                "field_name": {
+                  "type": "string"
+                },
+                "target_name": {
+                  "type": "string"
+                }
+              },
+              "additionalProperties": false
+            }
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false
+}

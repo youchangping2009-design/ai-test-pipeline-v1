@@ -1,0 +1,66 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "AI Test Pipeline Testcase Bundle Projection",
+  "type": "object",
+  "required": [
+    "project_code",
+    "work_item_id",
+    "truth_source",
+    "projection_only",
+    "generated_from",
+    "cases"
+  ],
+  "properties": {
+    "project_code": { "type": "string" },
+    "work_item_id": { "type": "string" },
+    "truth_source": { "type": "string", "const": "testcases/testcases_main.md" },
+    "projection_only": { "type": "boolean", "const": true },
+    "generated_from": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "cases": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "testcase_id",
+          "page_name",
+          "section_name",
+          "module",
+          "feature",
+          "title",
+          "preconditions",
+          "steps",
+          "expected_results",
+          "priority",
+          "tags",
+          "test_type",
+          "remark",
+          "source_case_plan_ids"
+        ],
+        "properties": {
+          "testcase_id": { "type": "string" },
+          "page_name": { "type": "string" },
+          "section_name": { "type": "string" },
+          "module": { "type": "string" },
+          "feature": { "type": "string" },
+          "title": { "type": "string" },
+          "preconditions": { "type": "string" },
+          "steps": { "type": "string" },
+          "expected_results": { "type": "string" },
+          "priority": { "type": "string" },
+          "tags": { "type": "array", "items": { "type": "string" } },
+          "test_type": { "type": "string" },
+          "remark": { "type": "string" },
+          "source_case_plan_ids": {
+            "type": "array",
+            "items": { "type": "string", "pattern": "^CP-[0-9]{3,}$" }
+          }
+        },
+        "additionalProperties": true
+      }
+    }
+  },
+  "additionalProperties": true
+}

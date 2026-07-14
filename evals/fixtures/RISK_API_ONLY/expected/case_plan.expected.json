@@ -1,0 +1,20 @@
+{
+  "project_code": "EVAL",
+  "work_item_id": "RISK_API_ONLY",
+  "case_plans": [
+    {
+      "case_plan_id": "CP-001",
+      "source_gate_ids": ["TG-001"],
+      "source_example_ids": [],
+      "source_responsibility_ids": ["VR-001"],
+      "generated_testcase_ids": [],
+      "title": "记录非法枚举直调接口 API 兜底风险",
+      "verification_side": "API",
+      "case_type": "risk_hardening",
+      "priority": "P2",
+      "assertion": "非法枚举直调接口只进入 API 兜底或风险建议，不进入主验收用例",
+      "validation_path": "risk_note",
+      "should_generate_case": false
+    }
+  ]
+}

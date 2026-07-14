@@ -1,0 +1,129 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Traceability Matrix Schema",
+  "type": "object",
+  "required": [
+    "project_code",
+    "work_item_id",
+    "records"
+  ],
+  "properties": {
+    "project_code": {
+      "type": "string"
+    },
+    "work_item_id": {
+      "type": "string"
+    },
+    "records": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "record_id",
+          "evidence_id",
+          "coverage_level"
+        ],
+        "properties": {
+          "record_id": {
+            "type": "string"
+          },
+          "evidence_id": {
+            "type": "string"
+          },
+          "coverage_level": {
+            "type": "string",
+            "enum": [
+              "full",
+              "partial",
+              "none",
+              "needs_confirmation"
+            ]
+          },
+          "structured_targets": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": [
+                "target_type"
+              ],
+              "properties": {
+                "target_type": {
+                  "type": "string",
+                  "enum": [
+                    "page",
+                    "section",
+                    "module",
+                    "feature",
+                    "rule",
+                    "field_definition",
+                    "field_attribute",
+                    "field_rule",
+                    "field_rule_table_row",
+                    "flow"
+                  ]
+                },
+                "module_name": {
+                  "type": "string"
+                },
+                "feature_name": {
+                  "type": "string"
+                },
+                "field_name": {
+                  "type": "string"
+                },
+                "attribute_name": {
+                  "type": "string"
+                },
+                "table_name": {
+                  "type": "string"
+                },
+                "target_name": {
+                  "type": "string"
+                }
+              },
+              "additionalProperties": false
+            }
+          },
+          "testcase_ids": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "gap_notes": {
+            "type": "string"
+          },
+          "implementation_binding": {
+            "type": "string",
+            "enum": [
+              "frontend_behavior",
+              "backend_contract",
+              "shared_contract",
+              "prd_only"
+            ]
+          },
+          "recommended_cr_stage": {
+            "type": "string",
+            "enum": [
+              "frontend_code",
+              "backend_code",
+              "dual_code",
+              "no_code_review"
+            ]
+          },
+          "manual_confirmation_required": {
+            "type": "boolean"
+          },
+          "cr_focus_points": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false
+}

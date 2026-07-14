@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "AI Test Pipeline Verification Responsibility Map",
+  "type": "object",
+  "required": ["work_item_id", "responsibilities"],
+  "properties": {
+    "project_code": { "type": "string" },
+    "work_item_id": { "type": "string" },
+    "responsibilities": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": [
+          "responsibility_id",
+          "source_rule_id",
+          "rule_text",
+          "primary_verification_side",
+          "primary_verification_method",
+          "consumer_verification_required",
+          "api_guard_required",
+          "risk_note_required",
+          "reason"
+        ],
+        "properties": {
+          "responsibility_id": { "type": "string", "pattern": "^VR-[0-9]{3,}$" },
+          "source_rule_id": { "type": "string" },
+          "rule_text": { "type": "string" },
+          "primary_verification_side": { "type": "string" },
+          "primary_verification_method": { "type": "string" },
+          "consumer_verification_required": { "type": "boolean" },
+          "api_guard_required": { "type": "boolean" },
+          "risk_note_required": { "type": "boolean" },
+          "reason": { "type": "string" }
+        },
+        "additionalProperties": true
+      }
+    }
+  },
+  "additionalProperties": true
+}

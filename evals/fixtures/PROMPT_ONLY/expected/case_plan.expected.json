@@ -1,0 +1,20 @@
+{
+  "project_code": "EVAL",
+  "work_item_id": "PROMPT_ONLY",
+  "case_plans": [
+    {
+      "case_plan_id": "CP-001",
+      "source_gate_ids": ["TG-001"],
+      "source_example_ids": ["AE-001"],
+      "source_responsibility_ids": ["VR-001"],
+      "generated_testcase_ids": [],
+      "title": "验证上传区域建议尺寸和格式提示展示",
+      "verification_side": "B端",
+      "case_type": "prompt_display",
+      "priority": "P1",
+      "assertion": "上传字段旁展示建议尺寸和格式提示，不作为保存拦截条件",
+      "validation_path": "product_acceptance",
+      "should_generate_case": true
+    }
+  ]
+}

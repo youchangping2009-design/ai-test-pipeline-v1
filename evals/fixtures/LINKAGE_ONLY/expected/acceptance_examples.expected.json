@@ -1,0 +1,17 @@
+{
+  "project_code": "EVAL",
+  "work_item_id": "LINKAGE_ONLY",
+  "examples": [
+    {
+      "example_id": "AE-001",
+      "source_gate_ids": ["TG-001"],
+      "title": "免费体验商品可在C端完成领取",
+      "given": ["后台已配置状态开启且库存充足的免费体验商品"],
+      "when": ["C端用户选择该商品并点击领取免费体验"],
+      "then": ["系统完成免费体验领取", "页面不跳转支付页"],
+      "verification_side": "B端配置到C端消费链路",
+      "oracle_strength": "business_behavior",
+      "confidence": "confirmed"
+    }
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "project_code": "EVAL",
+  "work_item_id": "RISK_API_ONLY",
+  "responsibilities": [
+    {
+      "responsibility_id": "VR-001",
+      "source_rule_id": "R-ILLEGAL-ENUM-API",
+      "rule_text": "前端已限制枚举值，非法枚举直调接口只作为 API 兜底风险建议。",
+      "primary_verification_side": "API兜底",
+      "primary_verification_method": "接口非法枚举风险加固建议",
+      "consumer_verification_required": false,
+      "api_guard_required": true,
+      "risk_note_required": true,
+      "reason": "该规则属于绕过前端限制的 API 风险，不进入 product_acceptance 主用例。"
+    }
+  ]
+}

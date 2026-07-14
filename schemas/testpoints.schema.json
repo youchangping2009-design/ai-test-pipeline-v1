@@ -1,0 +1,76 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "AI Test Pipeline Testpoints Projection",
+  "type": "object",
+  "required": [
+    "project_code",
+    "work_item_id",
+    "truth_source",
+    "projection_only",
+    "generated_from",
+    "testpoints"
+  ],
+  "properties": {
+    "project_code": { "type": "string" },
+    "work_item_id": { "type": "string" },
+    "truth_source": { "type": "string", "const": "testcases/case_plan.json" },
+    "projection_only": { "type": "boolean", "const": true },
+    "generated_from": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "testpoints": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "testpoint_id",
+          "source_case_plan_id",
+          "source_gate_ids",
+          "page_name",
+          "section_name",
+          "module_name",
+          "feature_name",
+          "test_dimension",
+          "test_point",
+          "assertion",
+          "priority",
+          "validation_path",
+          "should_generate_case"
+        ],
+        "properties": {
+          "testpoint_id": { "type": "string", "pattern": "^TP-[0-9]{3,}$" },
+          "source_case_plan_id": { "type": "string", "pattern": "^CP-[0-9]{3,}$" },
+          "source_gate_ids": {
+            "type": "array",
+            "items": { "type": "string", "pattern": "^TG-[0-9]{3,}$" }
+          },
+          "source_example_ids": {
+            "type": "array",
+            "items": { "type": "string", "pattern": "^AE-[0-9]{3,}$" }
+          },
+          "source_responsibility_ids": {
+            "type": "array",
+            "items": { "type": "string", "pattern": "^VR-[0-9]{3,}$" }
+          },
+          "page_name": { "type": "string" },
+          "section_name": { "type": "string" },
+          "module_name": { "type": "string" },
+          "feature_name": { "type": "string" },
+          "test_dimension": { "type": "string" },
+          "test_point": { "type": "string" },
+          "assertion": { "type": "string" },
+          "priority": { "type": "string", "enum": ["P0", "P1", "P2", "P3"] },
+          "validation_path": { "type": "string" },
+          "should_generate_case": { "type": "boolean" },
+          "generated_testcase_ids": {
+            "type": "array",
+            "items": { "type": "string" }
+          }
+        },
+        "additionalProperties": true
+      }
+    }
+  },
+  "additionalProperties": true
+}

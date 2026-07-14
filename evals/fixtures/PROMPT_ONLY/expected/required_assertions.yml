@@ -1,0 +1,19 @@
+required_assertions:
+  - id: prompt_acceptance_soft_display
+    artifact: acceptance_examples.expected.json
+    selector: examples[source_gate_ids~TG-001]
+    field: oracle_strength
+    in: soft_display
+    reason: 提示类规则必须生成 soft_display 验收示例
+  - id: prompt_responsibility_display
+    artifact: responsibility_map.expected.json
+    selector: responsibilities[source_rule_id=R-PROMPT-HINT]
+    field: primary_verification_side
+    in: B端页面展示
+    reason: 提示类规则责任应落在 B端展示
+  - id: prompt_case_plan_type
+    artifact: case_plan.expected.json
+    selector: case_plans[source_gate_ids~TG-001]
+    field: case_type
+    in: prompt_display
+    reason: 提示类规则只能生成展示类计划

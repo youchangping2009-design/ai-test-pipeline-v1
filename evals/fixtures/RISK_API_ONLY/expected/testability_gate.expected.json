@@ -1,0 +1,16 @@
+{
+  "project_code": "EVAL",
+  "work_item_id": "RISK_API_ONLY",
+  "items": [
+    {
+      "gate_id": "TG-001",
+      "source_rule_id": "R-ILLEGAL-ENUM-API",
+      "source_text": "前端已限制枚举值，非法枚举直调接口只作为 API 兜底风险建议。",
+      "classification": "risk_hardening",
+      "testability": "risk_only",
+      "decision": "risk_note_only",
+      "reason": "绕过前端限制的非法枚举不进入主验收，只进入 API/risk 建议。",
+      "confidence": "confirmed"
+    }
+  ]
+}

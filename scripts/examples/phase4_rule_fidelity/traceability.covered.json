@@ -1,0 +1,29 @@
+{
+  "project_code": "DEMO",
+  "work_item_id": "RULE-FIDELITY",
+  "records": [
+    {
+      "record_id": "TR-001",
+      "evidence_id": "EVD-001",
+      "coverage_level": "full",
+      "structured_targets": [
+        {
+          "target_type": "feature",
+          "module_name": "示例配置模块",
+          "feature_name": "规则保真示例",
+          "target_name": "规则保真示例"
+        }
+      ],
+      "testcase_ids": [
+        "DEMO-CONFIG-MOD-ADMIN-DV-001"
+      ],
+      "implementation_binding": "backend_contract",
+      "recommended_cr_stage": "backend_code",
+      "manual_confirmation_required": false,
+      "cr_focus_points": [
+        "状态=发布",
+        "按活动创建时间倒序"
+      ]
+    }
+  ]
+}

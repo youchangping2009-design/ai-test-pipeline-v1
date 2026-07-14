@@ -1,0 +1,180 @@
+version: 3
+description: 测试用例统一编号规则（页面/页面模块/终端入编号）
+
+format: "{project_code}-{page_code}-{page_module_code}-{terminal_code}-{type_code}-{seq}"
+
+principles:
+  - 页面、页面模块、终端信息统一由编号承接
+  - 测试类型同时体现在编号中的 type_code 和用例模板中的【测试类型】字段
+  - 编号用于快速定位和归档，不用于替代用例标题与步骤说明
+  - 编号必须唯一、稳定、可扩展
+  - 编号字段采用大写英文编码
+  - 若当前需求暂未覆盖某映射，需在映射表中补充后再正式产出
+
+fields:
+  project_code:
+    description: 项目标识，如 WX-YYPT
+
+  page_code:
+    description: 页面编码
+    examples:
+      - HOME
+      - OFFICIAL
+      - TOPBAR
+      - LOGINPOP
+      - REGISTERPOP
+      - SERVERPOP
+
+  page_module_code:
+    description: 页面模块编码
+    examples:
+      - NAV
+      - BANNER
+      - USERINFO
+      - SERVERLIST
+      - GAMELIST
+      - ANNOUNCE
+      - SERVERSELECT
+      - FOOTER
+
+  terminal_code:
+    description: 终端编码
+    allowed_values:
+      - WEB
+      - H5
+      - MINI
+      - ADMIN
+      - API
+      - SERVER
+
+  type_code:
+    description: 用例类型编码
+    allowed_values:
+      - FN
+      - BD
+      - AB
+      - PM
+      - FL
+      - ST
+      - DV
+
+  seq:
+    description: 三位及以上递增序号
+    example: "001"
+
+page_code_mapping:
+  首页: HOME
+  小程序后台配置: MPCONFIG
+  小程序后台: MPCONFIG
+  小程序首页: MINIHOME
+  小程序首页分发页: MINIHOME
+  游戏官网: OFFICIAL
+  页游顶栏: TOPBAR
+  登录弹窗: LOGINPOP
+  注册弹窗: REGISTERPOP
+  选服弹窗: SERVERPOP
+  充值页: RECHARGE
+  客服页: CS
+  个人中心: PROFILE
+
+page_module_code_mapping:
+  顶部导航: NAV
+  导航栏: NAV
+  导航配置: NAVCFG
+  导航排序: NAVCFG
+  banner: BANNER
+  banner配置: BANNER
+  轮播banner: BANNER
+  瓷片区: TILE
+  瓷片区配置: TILE
+  金刚区: ICON
+  金刚区配置: ICON
+  弹窗配置: POPUP
+  单人单码弹窗: QRCODEPOP
+  企微单人单码弹窗: QRCODEPOP
+  营销弹窗: MKTPOP
+  用户信息区: USERINFO
+  登录窗口: LOGINBOX
+  开服列表: SERVERLIST
+  游戏列表: GAMELIST
+  游戏公告: ANNOUNCE
+  公告列表: ANNOUNCE
+  公告弹窗: ANNOUNCEPOP
+  区服选择: SERVERSELECT
+  推荐区服: RECOMMENDSERVER
+  更多服务器: MORESERVER
+  游戏介绍: GAMEINTRO
+  底栏: FOOTER
+  收藏功能: FAVORITE
+  平台功能区: PLATFORMNAV
+  最近在玩: RECENTPLAY
+  最近登录: RECENTLOGIN
+
+terminal_code_mapping:
+  B端: ADMIN
+  后台: ADMIN
+  C端: WEB
+  官网: WEB
+  页游平台: WEB
+  H5: H5
+  小程序: MINI
+  接口: API
+  服务端: SERVER
+
+type_code_mapping:
+  功能: FN
+  边界: BD
+  异常: AB
+  权限: PM
+  流程验证: FL
+  状态流转: ST
+  数据校验: DV
+
+generation_rules:
+  - project_code 取 project_info.project_code
+  - page_code 必须根据页面归属明确映射，不允许省略
+  - page_module_code 必须根据页面模块明确映射，不允许省略
+  - terminal_code 必须根据终端归属明确映射，不允许省略
+  - type_code 必须根据【测试类型】字段映射生成
+  - seq 在同一 project_code + page_code + page_module_code + terminal_code + type_code 组合下递增
+  - 编号一旦发布，不应因文案微调而随意重排
+  - 若一个用例跨多个页面模块，应优先归属主承载页面模块
+  - 若一个流程型用例跨多个页面模块，应按主入口页面和主控制模块归档
+
+type_selection_rules:
+  - 正常功能校验使用 FN
+  - 边界值或临界条件校验使用 BD
+  - 非法输入、异常状态、错误场景使用 AB
+  - 权限、越权、角色差异使用 PM
+  - 完整业务流程链路使用 FL
+  - 核心状态变化验证使用 ST
+  - 以数据落库、接口返回、结果一致性为主验证目标时使用 DV
+
+flow_rules:
+  - Flow 流程型用例默认优先使用 FL
+  - 若流程型用例主验证目标是状态变化，可使用 ST
+  - 若流程型用例主验证目标是数据正确性，可使用 DV
+  - 不允许因为是流程型用例就忽略 page_code / page_module_code / terminal_code
+  - 流程型用例应按主入口页面和主控制模块进行编号归属
+
+examples:
+  - code: WX-YYPT-HOME-NAV-WEB-FN-001
+    meaning: 首页-导航栏-WEB端-功能用例-001
+  - code: WX-YYPT-HOME-SERVERLIST-WEB-FL-001
+    meaning: 首页-开服列表-WEB端-流程验证-001
+  - code: WX-YYPT-OFFICIAL-ANNOUNCE-WEB-FN-001
+    meaning: 游戏官网-游戏公告-WEB端-功能用例-001
+  - code: WX-YYPT-OFFICIAL-SERVERSELECT-WEB-ST-001
+    meaning: 游戏官网-区服选择-WEB端-状态流转-001
+  - code: WX-YYPT-TOPBAR-PLATFORMNAV-WEB-FN-001
+    meaning: 页游顶栏-平台功能区-WEB端-功能用例-001
+  - code: WX-YYPT-LOGINPOP-LOGINBOX-WEB-PM-001
+    meaning: 登录弹窗-登录框-WEB端-权限/登录态相关-001
+
+governance_rules:
+  - 新页面必须先补充 page_code_mapping
+  - 新页面模块必须先补充 page_module_code_mapping
+  - 新终端必须先补充 terminal_code_mapping
+  - 新测试类型必须先补充 type_code_mapping
+  - 不允许直接手写未登记编码
+  - 若页面名称与模块名称发生调整，应统一更新映射表，不允许临时写法并存

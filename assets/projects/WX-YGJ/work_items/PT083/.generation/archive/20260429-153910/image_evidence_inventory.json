@@ -1,0 +1,732 @@
+{
+  "project_code": "WX-YGJ",
+  "work_item_id": "PT083",
+  "generated_from": [
+    "inputs/images/PT083-01_副本.png",
+    "inputs/images/PT083-02_副本.png",
+    "inputs/images/PT083-03-01_副本.png",
+    "inputs/images/PT083-03-02_副本.png",
+    "inputs/images/PT083-03-03_副本.png",
+    "inputs/images/PT083-04_副本.png"
+  ],
+  "images": [
+    {
+      "image_id": "IMG-001",
+      "source_file": "inputs/images/PT083-01_副本.png",
+      "page_name": "云机技术约束",
+      "sections": [
+        {
+          "section_name": "背景与目标",
+          "section_type": "display_area",
+          "evidence_source_type": "explicit_text",
+          "raw_text": "背景：太古单日新增用户盒子引入率约17%，云挂机前三日覆盖仅3%-4%；两轮免费领云机活动引导约100名新用户发生破冰，较无活动时新客破冰率提升7个百分点（3%->10%），其中60%用户购买周卡+商品。问题：云挂机画面模糊、卡顿，需更新SDK；多数用户需要搭配脚本使用，现有优算云尺寸不支持，目标尺寸调整为720*1280。目的：通过免费体验提升云机覆盖率，通过更新SDK改善画质卡顿，通过固定720*1280支持脚本接入。",
+          "ocr_text": "",
+          "visual_elements": [
+            "需求介绍标题",
+            "背景段落",
+            "目的段落"
+          ],
+          "interactive_entries": [],
+          "section_rules": [
+            "免费体验云机用于提升云机覆盖率。",
+            "需要更新云机SDK以改善画面模糊和卡顿。",
+            "云机画面尺寸需要调整为720*1280以支持脚本接入。"
+          ],
+          "field_candidates": [],
+          "field_rules": [],
+          "field_rule_tables": [],
+          "confidence": 0.99,
+          "needs_confirmation": false,
+          "ambiguity_reason": ""
+        }
+      ]
+    },
+    {
+      "image_id": "IMG-002",
+      "source_file": "inputs/images/PT083-02_副本.png",
+      "page_name": "云挂机购买页",
+      "sections": [
+        {
+          "section_name": "顶部tab与宣传图区域",
+          "section_type": "tab_area",
+          "evidence_source_type": "explicit_text",
+          "raw_text": "以下内容各盒子的全新版tab下和常规版tab下都需要更改。宣传图占位：建议尺寸1008*160；图片源于盒子管理后台-云挂机-云手机商品管理-编辑宣传内容-字段：宣传图片；需保证首屏普通区商品列表能够展示两个及以上商品。",
+          "ocr_text": "",
+          "visual_elements": [
+            "常规版tab",
+            "全新版tab",
+            "宣传图轮播占位"
+          ],
+          "interactive_entries": [
+            "切换常规版tab",
+            "切换全新版tab"
+          ],
+          "section_rules": [
+            "常规版tab和全新版tab均需要展示改版后的宣传图区域。",
+            "宣传图片建议尺寸为1008*160。",
+            "宣传图片数据来源于后台编辑宣传内容中的宣传图片字段。",
+            "首屏普通区商品列表需展示两个及以上商品。"
+          ],
+          "field_candidates": [
+            {
+              "field_name": "promo_image",
+              "display_name": "宣传图片",
+              "data_type": "image",
+              "control_type": "other",
+              "required": true,
+              "editable": false,
+              "default_value": "",
+              "data_source": "盒子管理后台-云挂机-云手机商品管理-编辑宣传内容-宣传图片",
+              "notes": "前台展示字段"
+            }
+          ],
+          "field_rules": [],
+          "field_rule_tables": [],
+          "confidence": 0.98,
+          "needs_confirmation": false,
+          "ambiguity_reason": ""
+        },
+        {
+          "section_name": "宣传专区",
+          "section_type": "list_area",
+          "evidence_source_type": "explicit_text",
+          "raw_text": "宣传区：增加宣传专区，展示宣传口号和性能参数，数据源于编辑宣传内容中的宣传口号、性能参数，后台可配置一行20个字符，若C端展示超过一行则换行展示。特殊区商品列表：区域名称特价专区，数据源于云手机商品管理，展示现价、原价、商品名称、商品标签类型；若后台无配置此区域隐藏；横排展示，首屏一横排2个半，最多展示4个商品。普通区商品列表：原商品列表更名为限时购买；竖排展示；数量逻辑保持之前逻辑；数据源于云手机商品管理，展示现价、原价、商品名称、商品标签类型；其余逻辑不变。",
+          "ocr_text": "",
+          "visual_elements": [
+            "宣传专区",
+            "宣传口号",
+            "性能参数",
+            "特价专区标题",
+            "特价商品卡片",
+            "限时购买标题",
+            "普通区商品卡片",
+            "数量选择器",
+            "确认支付按钮"
+          ],
+          "interactive_entries": [
+            "点击特价商品",
+            "点击普通区商品",
+            "调整购买数量",
+            "点击确认支付"
+          ],
+          "section_rules": [
+            "宣传专区展示宣传口号和性能参数。",
+            "宣传口号和性能参数后台每行可配置20个字符，C端超一行时换行展示。",
+            "特价专区名称固定为特价专区，未配置时整个专区不展示。",
+            "特价专区横排展示，首屏展示2个半卡片，最多展示4个商品。",
+            "普通区商品列表更名为限时购买并保持竖排展示。",
+            "普通区商品列表数量逻辑保持原逻辑不变。"
+          ],
+          "field_candidates": [
+            {
+              "field_name": "promo_slogan",
+              "display_name": "宣传口号",
+              "data_type": "string",
+              "control_type": "display_text",
+              "required": true,
+              "editable": false,
+              "default_value": "",
+              "data_source": "盒子管理后台-云挂机-云手机商品管理-编辑宣传内容-宣传口号",
+              "length_rule": "后台单行20个字符，C端超一行换行",
+              "notes": "前台展示字段"
+            },
+            {
+              "field_name": "performance_params",
+              "display_name": "性能参数",
+              "data_type": "string",
+              "control_type": "display_text",
+              "required": true,
+              "editable": false,
+              "default_value": "",
+              "data_source": "盒子管理后台-云挂机-云手机商品管理-编辑宣传内容-性能参数",
+              "length_rule": "后台单行20个字符，C端超一行换行",
+              "notes": "前台展示字段"
+            }
+          ],
+          "field_rules": [],
+          "field_rule_tables": [],
+          "confidence": 0.98,
+          "needs_confirmation": false,
+          "ambiguity_reason": ""
+        }
+      ]
+    },
+    {
+      "image_id": "IMG-003",
+      "source_file": "inputs/images/PT083-03-01_副本.png",
+      "page_name": "云手机商品管理页",
+      "sections": [
+        {
+          "section_name": "管理操作区",
+          "section_type": "action_area",
+          "evidence_source_type": "explicit_text",
+          "raw_text": "点击添加按钮展示配置界面；编辑宣传图按钮更名为编辑宣传内容，点击按钮展示配置界面；增加商品区字段，数据源于配置。",
+          "ocr_text": "",
+          "visual_elements": [
+            "编辑商品顺序按钮",
+            "添加按钮",
+            "编辑宣传内容按钮"
+          ],
+          "interactive_entries": [
+            "点击添加",
+            "点击编辑宣传内容",
+            "点击编辑商品顺序"
+          ],
+          "section_rules": [
+            "点击添加按钮进入商品配置界面。",
+            "编辑宣传图按钮更名为编辑宣传内容。",
+            "点击编辑宣传内容按钮进入宣传内容配置界面。"
+          ],
+          "field_candidates": [],
+          "field_rules": [],
+          "field_rule_tables": [],
+          "confidence": 0.99,
+          "needs_confirmation": false,
+          "ambiguity_reason": ""
+        },
+        {
+          "section_name": "商品列表区",
+          "section_type": "list_area",
+          "evidence_source_type": "visual_layout",
+          "raw_text": "",
+          "ocr_text": "",
+          "visual_elements": [
+            "ID列",
+            "云手机商品类型列",
+            "商品类型列",
+            "云机类型列",
+            "商品展示时间列",
+            "服务时长列",
+            "原价列",
+            "现价列",
+            "盒子内价格列",
+            "商品区列",
+            "盒子内排序列",
+            "单天服务价格列",
+            "展示用户列",
+            "状态列",
+            "备注列",
+            "编辑操作",
+            "删除操作"
+          ],
+          "interactive_entries": [
+            "点击编辑",
+            "点击删除"
+          ],
+          "section_rules": [
+            "商品列表新增商品区字段。",
+            "商品列表仍保留编辑、删除等操作入口。"
+          ],
+          "field_candidates": [
+            {
+              "field_name": "product_area",
+              "display_name": "商品区",
+              "data_type": "enum",
+              "control_type": "table_column",
+              "required": false,
+              "editable": false,
+              "default_value": "",
+              "data_source": "来源配置",
+              "notes": "新增列表字段"
+            }
+          ],
+          "field_rules": [],
+          "field_rule_tables": [],
+          "confidence": 0.95,
+          "needs_confirmation": false,
+          "ambiguity_reason": ""
+        },
+        {
+          "section_name": "编辑同构弹窗待确认",
+          "section_type": "edit_modal",
+          "evidence_source_type": "inference",
+          "raw_text": "列表存在编辑入口，预计编辑弹窗与添加弹窗字段结构同构，但本次截图未展开。",
+          "ocr_text": "",
+          "visual_elements": [
+            "编辑操作入口"
+          ],
+          "interactive_entries": [
+            "点击编辑"
+          ],
+          "section_rules": [
+            "编辑入口指向商品配置界面，字段结构大概率与添加弹窗同构。"
+          ],
+          "field_candidates": [
+            {
+              "field_name": "service_duration",
+              "display_name": "服务时长",
+              "data_type": "range",
+              "control_type": "number_input_pair",
+              "required": true,
+              "editable": true,
+              "default_value": "",
+              "notes": "推测与添加弹窗同构，待确认"
+            },
+            {
+              "field_name": "product_area",
+              "display_name": "商品区",
+              "data_type": "enum",
+              "control_type": "select_single",
+              "required": true,
+              "editable": true,
+              "default_value": "",
+              "content_values": [
+                "特殊区",
+                "普通区"
+              ],
+              "notes": "推测与添加弹窗同构，待确认"
+            },
+            {
+              "field_name": "inside_sort_order",
+              "display_name": "盒子内排序",
+              "data_type": "integer",
+              "control_type": "number_input",
+              "required": true,
+              "editable": true,
+              "default_value": "",
+              "notes": "推测与添加弹窗同构，待确认"
+            },
+            {
+              "field_name": "status",
+              "display_name": "状态",
+              "data_type": "enum",
+              "control_type": "radio",
+              "required": true,
+              "editable": true,
+              "default_value": "关闭",
+              "enum_values": [
+                "开启",
+                "关闭"
+              ],
+              "notes": "推测与添加弹窗同构，待确认"
+            }
+          ],
+          "field_rules": [
+            {
+              "field_name": "product_area",
+              "display_name": "商品区",
+              "rule_text": "编辑弹窗中的商品区规则预计与添加弹窗一致，特殊区数量不得超过4。",
+              "rule_type": "dependency_rule",
+              "notes": "推测与添加弹窗同构，待确认"
+            }
+          ],
+          "field_rule_tables": [],
+          "confidence": 0.66,
+          "needs_confirmation": true,
+          "ambiguity_reason": "截图仅展示编辑入口，未展示编辑弹窗内容。"
+        }
+      ]
+    },
+    {
+      "image_id": "IMG-004",
+      "source_file": "inputs/images/PT083-03-02_副本.png",
+      "page_name": "添加云手机商品弹窗",
+      "sections": [
+        {
+          "section_name": "添加云手机商品表单",
+          "section_type": "edit_modal",
+          "evidence_source_type": "visual_layout",
+          "raw_text": "",
+          "ocr_text": "",
+          "visual_elements": [
+            "云手机商品类型",
+            "云机类型",
+            "商品名称",
+            "原价",
+            "现价",
+            "服务时长",
+            "商品区",
+            "盒子内排序",
+            "商品标签类型",
+            "展示用户",
+            "用户可购买次数",
+            "商品展示时间",
+            "库存预警值",
+            "购买数量报警通知人",
+            "状态"
+          ],
+          "interactive_entries": [
+            "选择云手机商品类型",
+            "选择云机类型",
+            "输入商品名称",
+            "输入原价",
+            "输入现价",
+            "输入服务时长",
+            "选择商品区",
+            "输入盒子内排序",
+            "选择购买数量报警通知人",
+            "切换状态",
+            "点击确定"
+          ],
+          "section_rules": [
+            "服务时长字段为必填数字选择器，格式为n天x时。",
+            "商品区字段为必填下拉列表，content为特殊区、普通区。",
+            "盒子内排序字段为必填数字框，数值上限为1000。",
+            "库存预警值字段为非必填数字框，数值上限为200。",
+            "购买数量报警通知人为必填下拉字段。"
+          ],
+          "field_candidates": [
+            {
+              "field_name": "service_duration",
+              "display_name": "服务时长",
+              "data_type": "range",
+              "control_type": "number_input_pair",
+              "required": true,
+              "editable": true,
+              "default_value": "",
+              "format_rule": "n天x时；前后项仅非负整数；前项最大370；后项最大23；前后项不可同时为0"
+            },
+            {
+              "field_name": "product_area",
+              "display_name": "商品区",
+              "data_type": "enum",
+              "control_type": "select_single",
+              "required": true,
+              "editable": true,
+              "default_value": "",
+              "content_values": [
+                "特殊区",
+                "普通区"
+              ]
+            },
+            {
+              "field_name": "inside_sort_order",
+              "display_name": "盒子内排序",
+              "data_type": "integer",
+              "control_type": "number_input",
+              "required": true,
+              "editable": true,
+              "default_value": "",
+              "format_rule": "正整数，数值上限1000"
+            },
+            {
+              "field_name": "inventory_warning_threshold",
+              "display_name": "库存预警值",
+              "data_type": "integer",
+              "control_type": "number_input",
+              "required": false,
+              "editable": true,
+              "default_value": "",
+              "format_rule": "正整数，数值上限200"
+            },
+            {
+              "field_name": "purchase_quantity_alert_users",
+              "display_name": "购买数量报警通知人",
+              "data_type": "array",
+              "control_type": "select_single",
+              "required": true,
+              "editable": true,
+              "default_value": "",
+              "data_source": "盒子后台管理员列表"
+            }
+          ],
+          "field_rules": [],
+          "field_rule_tables": [],
+          "confidence": 0.97,
+          "needs_confirmation": false,
+          "ambiguity_reason": ""
+        },
+        {
+          "section_name": "添加云手机商品字段说明表",
+          "section_type": "field_rule_table",
+          "evidence_source_type": "explicit_text",
+          "raw_text": "现价/原价已有功能，数值限制修改为大于等于0.00；服务时长：n天x时，前后项仅非负整数，前项最大370，后项最大23，前后项不可同时为0；商品区：单选，content特殊区/普通区，若特殊区配置数量是否小于等于4，失败则toast：特殊区只能展示4个商品，当前字段的配置数量已超过4个，请关闭之前的商品或调整配置；盒子内排序：正整数，值相同则按创建时间倒序；商品展示时间：若无配置则长期展示，鼠标悬浮问号展示提示；库存预警值：需每20分钟校验库存是否小于等于配置数量，失败时C端商品隐藏且不给用户分配云机，并通知机器人；购买数量报警通知人：单选，content盒子后台管理员列表。",
+          "ocr_text": "",
+          "visual_elements": [
+            "字段说明表"
+          ],
+          "interactive_entries": [],
+          "section_rules": [],
+          "field_candidates": [],
+          "field_rules": [
+            {
+              "field_name": "product_area",
+              "display_name": "商品区",
+              "rule_text": "若商品区选择特殊区，需校验当前生效中的特殊区商品数量是否小于等于4。",
+              "rule_type": "range_rule",
+              "error_message": "特殊区只能展示4个商品，当前字段的配置数量已超过4个，请关闭之前的商品或调整配置",
+              "must_preserve_terms": [
+                "特殊区",
+                "普通区",
+                "特殊区只能展示4个商品，当前字段的配置数量已超过4个，请关闭之前的商品或调整配置"
+              ]
+            },
+            {
+              "field_name": "inventory_warning_threshold",
+              "display_name": "库存预警值",
+              "rule_text": "每20分钟校验云机库存是否小于等于所配置的数量；若校验失败，C端商品隐藏且不给用户分配云机，并发送机器人报警。",
+              "rule_type": "effect_rule",
+              "must_preserve_terms": [
+                "每20分钟",
+                "商品隐藏",
+                "不给用户分配云机"
+              ]
+            }
+          ],
+          "field_rule_tables": [
+            {
+              "field_name": "cloud_phone_product",
+              "table_name": "添加云手机商品字段说明表",
+              "table_desc": "添加云手机商品弹窗中新增或变更字段的约束说明",
+              "rows": [
+                {
+                  "row_name": "服务时长",
+                  "rule_text": "前后项仅非负整数，前项最大370，后项最大23，前后项不可同时为0",
+                  "expected_effect": "输入非法值或0天0时时不可提交",
+                  "related_fields": [
+                    "service_duration"
+                  ]
+                },
+                {
+                  "row_name": "商品区",
+                  "rule_text": "单选，content为特殊区、普通区；特殊区配置数量需小于等于4",
+                  "expected_effect": "超过4个特殊区商品时阻止保存并提示精确toast",
+                  "related_fields": [
+                    "product_area"
+                  ]
+                },
+                {
+                  "row_name": "盒子内排序",
+                  "rule_text": "正整数，数值上限1000；值相同则按创建时间倒序",
+                  "expected_effect": "非法值不可保存；排序并列时按创建时间倒序生效",
+                  "related_fields": [
+                    "inside_sort_order"
+                  ]
+                },
+                {
+                  "row_name": "库存预警值",
+                  "rule_text": "正整数，数值上限200；每20分钟执行库存校验并在失败时隐藏商品和触发通知",
+                  "expected_effect": "库存不足时前台商品隐藏且触发机器人报警",
+                  "related_fields": [
+                    "inventory_warning_threshold"
+                  ]
+                },
+                {
+                  "row_name": "购买数量报警通知人",
+                  "rule_text": "单选，content为盒子后台管理员列表",
+                  "expected_effect": "未选择时不可提交，选择值来自管理员列表",
+                  "related_fields": [
+                    "purchase_quantity_alert_users"
+                  ]
+                }
+              ]
+            }
+          ],
+          "confidence": 0.97,
+          "needs_confirmation": false,
+          "ambiguity_reason": ""
+        }
+      ]
+    },
+    {
+      "image_id": "IMG-005",
+      "source_file": "inputs/images/PT083-03-03_副本.png",
+      "page_name": "编辑宣传内容弹窗",
+      "sections": [
+        {
+          "section_name": "编辑宣传内容表单",
+          "section_type": "edit_modal",
+          "evidence_source_type": "visual_layout",
+          "raw_text": "",
+          "ocr_text": "",
+          "visual_elements": [
+            "云机类型",
+            "宣传图片上传区",
+            "宣传口号",
+            "性能参数",
+            "新增按钮",
+            "删除图标",
+            "确定按钮"
+          ],
+          "interactive_entries": [
+            "选择云机类型",
+            "上传宣传图片",
+            "输入宣传口号",
+            "输入性能参数",
+            "点击新增",
+            "点击删除",
+            "点击确定"
+          ],
+          "section_rules": [
+            "云机类型字段为必填下拉列表。",
+            "宣传图片字段为必传图片按钮。",
+            "宣传口号字段为必填文本框。",
+            "性能参数字段为必填文本框。",
+            "新增按钮用于追加一条宣传内容配置。"
+          ],
+          "field_candidates": [
+            {
+              "field_name": "cloud_type",
+              "display_name": "云机类型",
+              "data_type": "enum",
+              "control_type": "select_single",
+              "required": true,
+              "editable": true,
+              "default_value": ""
+            },
+            {
+              "field_name": "promo_image",
+              "display_name": "宣传图片",
+              "data_type": "image",
+              "control_type": "upload_image",
+              "required": true,
+              "editable": true,
+              "default_value": "",
+              "format_rule": "支持gif/jpg/jpeg/png，单文件最大500k，建议尺寸1008*160"
+            },
+            {
+              "field_name": "promo_slogan",
+              "display_name": "宣传口号",
+              "data_type": "string",
+              "control_type": "text_input",
+              "required": true,
+              "editable": true,
+              "default_value": "",
+              "length_rule": "文本长度20个字符，C端超一行换行"
+            },
+            {
+              "field_name": "performance_params",
+              "display_name": "性能参数",
+              "data_type": "string",
+              "control_type": "text_input",
+              "required": true,
+              "editable": true,
+              "default_value": "",
+              "length_rule": "文本长度20个字符，C端超一行换行"
+            }
+          ],
+          "field_rules": [],
+          "field_rule_tables": [],
+          "confidence": 0.98,
+          "needs_confirmation": false,
+          "ambiguity_reason": ""
+        },
+        {
+          "section_name": "编辑宣传内容字段说明表",
+          "section_type": "field_rule_table",
+          "evidence_source_type": "explicit_text",
+          "raw_text": "云机类型：单选，content为盒子现有云机类型（全新版/常规版），需校验所有云机类型是否都有配置内容且不存在云机类型相同配置内容；失败toast：所有云机类型都需要配置宣传内容，且云机类型不重复！宣传图片：最多上传5张图，支持删除重新上传；支持gif/jpg/jpeg/png，最大不超过500k，建议尺寸1008*160；鼠标悬浮问号显示提示。宣传口号/性能参数：文本长度20个字符，C端超一行换行展示。新增：点击后新增一条内容配置，最多新增额外1条，内容达到2条时禁用此按钮；所配置内容C端全部展示。",
+          "ocr_text": "",
+          "visual_elements": [
+            "字段说明表"
+          ],
+          "interactive_entries": [],
+          "section_rules": [],
+          "field_candidates": [],
+          "field_rules": [
+            {
+              "field_name": "cloud_type",
+              "display_name": "云机类型",
+              "rule_text": "所有云机类型都需要配置宣传内容，且云机类型不重复。",
+              "rule_type": "dependency_rule",
+              "error_message": "所有云机类型都需要配置宣传内容，且云机类型不重复！",
+              "must_preserve_terms": [
+                "全新版",
+                "常规版",
+                "所有云机类型都需要配置宣传内容，且云机类型不重复！"
+              ]
+            },
+            {
+              "field_name": "promo_image",
+              "display_name": "宣传图片",
+              "rule_text": "最多上传5张图，支持删除并重新上传，支持gif/jpg/jpeg/png且单文件最大500k。",
+              "rule_type": "format_rule",
+              "must_preserve_terms": [
+                "gif",
+                "jpg",
+                "jpeg",
+                "png",
+                "500k",
+                "1008*160"
+              ]
+            }
+          ],
+          "field_rule_tables": [
+            {
+              "field_name": "promo_content",
+              "table_name": "编辑宣传内容字段说明表",
+              "table_desc": "宣传内容配置中的字段和按钮约束",
+              "rows": [
+                {
+                  "row_name": "云机类型",
+                  "rule_text": "content为现有云机类型（全新版、常规版）；所有云机类型都需要配置且不可重复",
+                  "expected_effect": "缺失配置或重复时点击确定不可保存并提示精确toast",
+                  "related_fields": [
+                    "cloud_type"
+                  ]
+                },
+                {
+                  "row_name": "宣传图片",
+                  "rule_text": "最多上传5张图；支持gif/jpg/jpeg/png；最大不超过500k；建议尺寸1008*160",
+                  "expected_effect": "超格式、超大小或超数量时不可继续保存",
+                  "related_fields": [
+                    "promo_image"
+                  ]
+                },
+                {
+                  "row_name": "宣传口号",
+                  "rule_text": "文本长度20个字符，C端超一行换行展示",
+                  "expected_effect": "后台长度受控，前台长文本折行",
+                  "related_fields": [
+                    "promo_slogan"
+                  ]
+                },
+                {
+                  "row_name": "性能参数",
+                  "rule_text": "文本长度20个字符，C端超一行换行展示",
+                  "expected_effect": "后台长度受控，前台长文本折行",
+                  "related_fields": [
+                    "performance_params"
+                  ]
+                },
+                {
+                  "row_name": "新增",
+                  "rule_text": "点击后新增一条内容配置，最多新增额外1条，内容达到2条时禁用新增按钮",
+                  "expected_effect": "达到2条配置后新增按钮不可再点击，已配置内容全部在C端展示",
+                  "related_fields": [
+                    "cloud_type",
+                    "promo_image",
+                    "promo_slogan",
+                    "performance_params"
+                  ]
+                }
+              ]
+            }
+          ],
+          "confidence": 0.98,
+          "needs_confirmation": false,
+          "ambiguity_reason": ""
+        }
+      ]
+    },
+    {
+      "image_id": "IMG-006",
+      "source_file": "inputs/images/PT083-04_副本.png",
+      "page_name": "云机技术约束",
+      "sections": [
+        {
+          "section_name": "SDK与尺寸约束",
+          "section_type": "display_area",
+          "evidence_source_type": "explicit_text",
+          "raw_text": "1. 更新云机SDK 2. 画面尺寸调整为720*1280",
+          "ocr_text": "",
+          "visual_elements": [
+            "更新云机SDK标题",
+            "720*1280尺寸标题"
+          ],
+          "interactive_entries": [],
+          "section_rules": [
+            "云机SDK需要更新。",
+            "云机画面尺寸调整为720*1280。"
+          ],
+          "field_candidates": [],
+          "field_rules": [],
+          "field_rule_tables": [],
+          "confidence": 0.99,
+          "needs_confirmation": false,
+          "ambiguity_reason": ""
+        }
+      ]
+    }
+  ]
+}

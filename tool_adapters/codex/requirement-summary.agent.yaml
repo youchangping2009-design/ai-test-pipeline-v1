@@ -1,0 +1,4 @@
+interface:
+  display_name: "需求整理"
+  short_description: "结合工作项输入资料和外部来源生成需求整理文档"
+  default_prompt: "Use $requirement-summary to read this work item inputs and source links, then create inputs/requirement_summary.md."

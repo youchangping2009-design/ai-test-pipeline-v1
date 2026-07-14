@@ -1,0 +1,36 @@
+{
+  "project_code": "DEMO",
+  "work_item_id": "RULE-FIDELITY",
+  "generated_from": [
+    "sample://phase4-rule-fidelity"
+  ],
+  "evidence_items": [
+    {
+      "evidence_id": "EVD-001",
+      "evidence_source_type": "explicit_text",
+      "priority": "high",
+      "source_file": "sample://phase4-rule-fidelity",
+      "page_name": "示例配置页",
+      "area_name": "添加弹窗",
+      "element_name": "选择活动规则",
+      "element_text": "选择活动仅展示状态=发布的活动，按活动创建时间倒序排序。",
+      "element_type": "text",
+      "actionability": "data_rule",
+      "rule_intent": "data_rule",
+      "status": "covered",
+      "assert_keywords": [
+        "状态=发布",
+        "按活动创建时间倒序"
+      ],
+      "structured_targets": [
+        {
+          "target_type": "feature",
+          "module_name": "示例配置模块",
+          "feature_name": "规则保真示例",
+          "target_name": "规则保真示例"
+        }
+      ],
+      "notes": "高价值原始规则示例"
+    }
+  ]
+}

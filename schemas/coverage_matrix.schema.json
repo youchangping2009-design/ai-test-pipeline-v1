@@ -1,0 +1,156 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Coverage Matrix Schema",
+  "type": "object",
+  "required": [
+    "project_code",
+    "work_item_id",
+    "generated_at",
+    "generated_from",
+    "entries"
+  ],
+  "properties": {
+    "project_code": {
+      "type": "string"
+    },
+    "work_item_id": {
+      "type": "string"
+    },
+    "generated_at": {
+      "type": "string"
+    },
+    "generated_from": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "entries": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "coverage_id",
+          "coverage_type",
+          "coverage_level",
+          "emit_mode",
+          "source_origin",
+          "title",
+          "priority",
+          "planned_assertions"
+        ],
+        "properties": {
+          "coverage_id": {
+            "type": "string"
+          },
+          "coverage_type": {
+            "type": "string",
+            "enum": [
+              "field_property",
+              "required",
+              "conditional_required",
+              "conditional_visibility",
+              "conditional_editability",
+              "value_boundary",
+              "invalid_input",
+              "data_source_filter",
+              "data_source_display",
+              "data_source_order",
+              "happy_path_combo"
+            ]
+          },
+          "coverage_level": {
+            "type": "string",
+            "enum": [
+              "critical",
+              "business",
+              "structural",
+              "audit_only"
+            ]
+          },
+          "emit_mode": {
+            "type": "string",
+            "enum": [
+              "main_testcase",
+              "audit_item",
+              "group_audit",
+              "drop"
+            ]
+          },
+          "source_origin": {
+            "type": "string",
+            "enum": [
+              "explicit_rule",
+              "ai_reasoning"
+            ]
+          },
+          "source_type": {
+            "type": "string",
+            "enum": [
+              "structured_field",
+              "structured_rule",
+              "field_constraint",
+              "data_source_rule",
+              "edge_case",
+              "business_risk",
+              "recommended_test_dimension",
+              "coverage_candidate"
+            ]
+          },
+          "title": {
+            "type": "string"
+          },
+          "page_name": {
+            "type": "string"
+          },
+          "section_name": {
+            "type": "string"
+          },
+          "module_name": {
+            "type": "string"
+          },
+          "feature_name": {
+            "type": "string"
+          },
+          "field_name": {
+            "type": "string"
+          },
+          "rule_name": {
+            "type": "string"
+          },
+          "priority": {
+            "type": "string",
+            "enum": [
+              "high",
+              "medium",
+              "low"
+            ]
+          },
+          "rationale": {
+            "type": "string"
+          },
+          "planned_assertions": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "structured_refs": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "reasoning_refs": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false
+}

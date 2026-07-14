@@ -1,0 +1,200 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Evidence Inventory Schema",
+  "type": "object",
+  "required": [
+    "project_code",
+    "work_item_id",
+    "generated_from",
+    "evidence_items"
+  ],
+  "properties": {
+    "project_code": {
+      "type": "string"
+    },
+    "work_item_id": {
+      "type": "string"
+    },
+    "generated_from": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "evidence_items": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "evidence_id",
+          "source_file",
+          "page_name",
+          "area_name",
+          "element_name",
+          "element_type",
+          "actionability",
+          "status"
+        ],
+        "properties": {
+          "evidence_id": {
+            "type": "string"
+          },
+          "evidence_source_type": {
+            "type": "string",
+            "enum": [
+              "explicit_text",
+              "visual_layout",
+              "interaction_hint",
+              "supplement_doc"
+            ]
+          },
+          "priority": {
+            "type": "string",
+            "enum": [
+              "high",
+              "medium",
+              "low"
+            ]
+          },
+          "source_file": {
+            "type": "string"
+          },
+          "page_name": {
+            "type": "string"
+          },
+          "area_name": {
+            "type": "string"
+          },
+          "element_name": {
+            "type": "string"
+          },
+          "element_text": {
+            "type": "string"
+          },
+          "element_type": {
+            "type": "string",
+            "enum": [
+              "section",
+              "banner",
+              "list",
+              "card",
+              "button",
+              "link",
+              "tab",
+              "input",
+              "checkbox",
+              "modal",
+              "footer",
+              "icon",
+              "empty_state",
+              "text"
+            ]
+          },
+          "actionability": {
+            "type": "string",
+            "enum": [
+              "display",
+              "interaction",
+              "input",
+              "data_rule",
+              "state_rule",
+              "flow_hint",
+              "context"
+            ]
+          },
+          "rule_intent": {
+            "type": "string",
+            "enum": [
+              "display_rule",
+              "interaction_rule",
+              "navigation_rule",
+              "data_rule",
+              "state_rule",
+              "style_rule",
+              "container_rule",
+              "selection_rule",
+              "extensibility_rule",
+              "boundary_rule",
+              "coverage_rule",
+              "context"
+            ]
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "covered",
+              "mapped",
+              "needs_confirmation",
+              "out_of_scope"
+            ]
+          },
+          "conflict_group": {
+            "type": "string"
+          },
+          "assert_keywords": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "forbidden_keywords": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "structured_targets": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": [
+                "target_type"
+              ],
+              "properties": {
+                "target_type": {
+                  "type": "string",
+                  "enum": [
+                    "page",
+                    "section",
+                    "module",
+                    "feature",
+                    "rule",
+                    "field_definition",
+                    "field_attribute",
+                    "field_rule",
+                    "field_rule_table_row",
+                    "flow"
+                  ]
+                },
+                "module_name": {
+                  "type": "string"
+                },
+                "feature_name": {
+                  "type": "string"
+                },
+                "field_name": {
+                  "type": "string"
+                },
+                "attribute_name": {
+                  "type": "string"
+                },
+                "table_name": {
+                  "type": "string"
+                },
+                "target_name": {
+                  "type": "string"
+                }
+              },
+              "additionalProperties": false
+            }
+          },
+          "notes": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false
+}

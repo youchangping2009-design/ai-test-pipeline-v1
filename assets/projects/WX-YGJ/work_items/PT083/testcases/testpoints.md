@@ -1,0 +1,32 @@
+# Testpoints View
+
+- Project: `WX-YGJ`
+- Work Item: `PT083`
+- Truth Source: `testcases/case_plan.json`
+- Projection Only: `true`
+
+> This file is a review-friendly projection derived from `case_plan`; it is not a testcase truth source.
+
+| 测试点ID | 页面 | 板块 | 模块 | 功能点 | 测试维度 | 测试点 | 核心断言 | 优先级 | 来源 CasePlan | 是否生成用例 |
+|---|---|---|---|---|---|---|---|---|---|---|
+| TP-001 |  |  |  |  | ui_display | 验证常规版和全新版均展示宣传图区域 | 常规版tab和全新版tab均展示宣传图区域且读取后台宣传图片配置 | P1 | CP-001 | True |
+| TP-002 |  |  |  |  | prompt_display | 验证宣传图片建议尺寸提示展示 | 宣传图片字段展示1008*160建议尺寸提示，不产生保存失败或禁止上传断言 | P1 | CP-002 | True |
+| TP-003 |  |  |  |  | cross_surface_linkage | 验证宣传口号和性能参数配置后C端换行展示 | 后台配置宣传口号和性能参数后，C端宣传专区展示并在超过单行时换行 | P1 | CP-003 | True |
+| TP-004 |  |  |  |  | cross_surface_linkage | 验证特价专区空配置隐藏和有配置横排展示 | 无特殊区商品时不展示特价专区，有生效特殊区商品时展示特价专区标题、横排卡片、首屏2个半卡片且最多展示4个商品 | P1 | CP-004 | True |
+| TP-005 |  |  |  |  | ui_display | 验证普通区更名为限时购买并竖排展示 | 普通区商品列表标题展示为限时购买，商品卡片按竖排展示 | P1 | CP-005 | True |
+| TP-006 |  |  |  |  | field_rule | 验证服务时长边界和非法组合保存失败 | 0天0时、371天或24时不可保存，370天23时作为合法边界通过校验 | P0 | CP-006 | True |
+| TP-007 |  |  |  |  | save_block | 验证特殊区配置超过4个时保存失败 | 超过4个生效特殊区商品时系统阻止保存并提示精确文案 | P0 | CP-007 | True |
+| TP-008 |  |  |  |  | field_rule | 验证盒子内排序输入边界 | 排序值必须为1到1000正整数，0、1001和非整数不可通过校验 | P0 | CP-008 | True |
+| TP-009 |  |  |  |  | cross_surface_linkage | 验证库存预警任务触发后C端隐藏商品 | 库存预警任务命中后C端隐藏对应商品 | P0 | CP-009 | True |
+| TP-010 |  |  |  |  | save_block | 验证宣传内容云机类型必须完整且不重复 | 未覆盖所有云机类型或云机类型重复时系统阻止保存并提示精确文案 | P0 | CP-010 | True |
+| TP-011 |  |  |  |  | field_rule | 验证宣传图片上传数量格式大小约束 | 宣传图片最多5张，格式限制为gif/jpg/jpeg/png且单文件不超过500k；建议尺寸只做提示 | P0 | CP-011 | True |
+| TP-012 |  |  |  |  | cross_surface_linkage | 验证宣传内容最多两条且C端全部展示 | 后台最多配置2条宣传内容，达到2条时禁用新增按钮，C端展示全部配置内容 | P1 | CP-012 | True |
+| TP-013 |  |  |  |  | cross_surface_linkage | 验证0元商品从后台配置到C端免费体验领取链路 | 后台配置0元商品后，C端用户可完成免费体验领取且不进入支付页 | P0 | CP-013 | True |
+| TP-014 |  |  |  |  | cross_surface_linkage | 验证免费体验服务时长按天和小时换算 | 0元商品领取后试用时长按duration天数和hour小时共同换算，不能只按小时计算 | P0 | CP-015 | True |
+| TP-015 |  |  |  |  | risk_hardening | 记录免费体验订单落库后MQ分配失败补偿风险 | 免费体验订单成功落库后若MQ发送或云机分配失败，应具备补偿、重试或人工修复路径 | P1 | CP-016 | False |
+| TP-016 |  |  |  |  | risk_hardening | 记录库存确认幂等失败后的重试与解冻风险 | 库存确认失败或幂等重复后应能通过重试或解冻机制恢复，不应长期阻塞免费体验领取 | P2 | CP-017 | False |
+| TP-017 |  |  |  |  | backend_job | 验证库存预警命中后阻断云机分配 | 库存小于等于预警值后，用户不能被分配该商品对应云机 | P0 | CP-018 | True |
+| TP-018 |  |  |  |  | backend_job | 验证库存预警命中后机器人报警通知 | 库存预警任务命中后机器人发送报警并通知到配置的购买数量报警通知人 | P0 | CP-019 | True |
+| TP-019 |  |  |  |  | field_rule | 验证宣传图片删除后可重新上传 | 宣传图片支持删除已上传图片并重新上传，重新上传后仍受最多5张限制 | P1 | CP-020 | True |
+| TP-020 |  |  |  |  | data_persistence | 验证盒子内排序值相同时按创建时间倒序 | 多个商品盒子内排序值相同时，列表按创建时间倒序排列 | P1 | CP-021 | True |
+| TP-021 |  |  |  |  | risk_hardening | 记录goodsRegion非法枚举接口加固建议 | goodsRegion非法枚举直调接口只进入风险/API兜底建议，不进入主验收用例 | P2 | CP-014 | False |

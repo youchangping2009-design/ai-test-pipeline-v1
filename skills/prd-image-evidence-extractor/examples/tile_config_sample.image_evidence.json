@@ -1,0 +1,667 @@
+{
+  "project_code": "DEMO",
+  "work_item_id": "SKILL-DEMO",
+  "generated_from": [
+    "sample://wx-xcx/tile-config-annotated-image"
+  ],
+  "images": [
+    {
+      "image_id": "IMG-DEMO-TILE-001",
+      "source_file": "sample://wx-xcx/tile-config-annotated-image",
+      "page_name": "小程序瓷片区配置页",
+      "sections": [
+        {
+          "section_name": "筛选区",
+          "section_type": "filter_area",
+          "evidence_source_type": "explicit_text",
+          "raw_text": "瓷片区名称、跳转类型、状态筛选",
+          "ocr_text": "瓷片区名称 文本输入框；跳转类型 下拉单选 content: 无交互/活动中心/链接；状态 下拉单选 content: 开启/关闭",
+          "visual_elements": [
+            "瓷片区名称输入框",
+            "跳转类型下拉框",
+            "状态下拉框",
+            "重置按钮",
+            "搜索按钮"
+          ],
+          "interactive_entries": [
+            "输入瓷片区名称",
+            "选择跳转类型",
+            "选择状态",
+            "点击重置",
+            "点击搜索"
+          ],
+          "section_rules": [
+            "瓷片区名称为文本输入框，varchar(10)",
+            "跳转类型为下拉单选，content: 无交互、活动中心、链接",
+            "状态为下拉单选，content: 开启、关闭"
+          ],
+          "field_candidates": [
+            {
+              "field_name": "tile_name",
+              "display_name": "瓷片区名称",
+              "data_type": "string",
+              "control_type": "text_input",
+              "required": false,
+              "editable": true,
+              "default_value": "",
+              "enum_values": [],
+              "content_values": [],
+              "format_rule": "",
+              "length_rule": "varchar(10)",
+              "data_source": "",
+              "conditional_visibility": "",
+              "conditional_editability": "",
+              "notes": "筛选字段"
+            },
+            {
+              "field_name": "jump_type",
+              "display_name": "跳转类型",
+              "data_type": "enum",
+              "control_type": "select_single",
+              "required": false,
+              "editable": true,
+              "default_value": "",
+              "enum_values": [
+                "无交互",
+                "活动中心",
+                "链接"
+              ],
+              "content_values": [
+                "无交互",
+                "活动中心",
+                "链接"
+              ],
+              "format_rule": "",
+              "length_rule": "",
+              "data_source": "",
+              "conditional_visibility": "",
+              "conditional_editability": "",
+              "notes": "筛选字段"
+            },
+            {
+              "field_name": "status",
+              "display_name": "状态",
+              "data_type": "enum",
+              "control_type": "select_single",
+              "required": false,
+              "editable": true,
+              "default_value": "",
+              "enum_values": [
+                "开启",
+                "关闭"
+              ],
+              "content_values": [
+                "开启",
+                "关闭"
+              ],
+              "format_rule": "",
+              "length_rule": "",
+              "data_source": "",
+              "conditional_visibility": "",
+              "conditional_editability": "",
+              "notes": "筛选字段"
+            }
+          ],
+          "field_rules": [],
+          "field_rule_tables": [],
+          "confidence": 0.98,
+          "needs_confirmation": false,
+          "ambiguity_reason": ""
+        },
+        {
+          "section_name": "列表区",
+          "section_type": "list_area",
+          "evidence_source_type": "explicit_text",
+          "raw_text": "瓷片区配置列表",
+          "ocr_text": "列头: ID、瓷片区名称、瓷片区样式、展示类型、触达用户类型、跳转类型、展示tab、状态、创建人、创建时间、修改时间、操作",
+          "visual_elements": [
+            "ID列",
+            "瓷片区名称列",
+            "瓷片区样式列",
+            "展示类型列",
+            "触达用户类型列",
+            "跳转类型列",
+            "展示tab列",
+            "状态列",
+            "创建人列",
+            "创建时间列",
+            "修改时间列",
+            "操作列"
+          ],
+          "interactive_entries": [
+            "点击编辑",
+            "点击复用",
+            "点击删除",
+            "点击瓷片区样式查看大图"
+          ],
+          "section_rules": [
+            "后台数据按照创建时间倒序排列",
+            "编辑：点击弹窗编辑，编辑情况详见添加弹窗",
+            "复用：点击复用，点击复用该条数据",
+            "删除：二次弹窗确认删除"
+          ],
+          "field_candidates": [
+            {
+              "field_name": "creator_name",
+              "display_name": "创建人",
+              "data_type": "string",
+              "control_type": "display_text",
+              "required": false,
+              "editable": false,
+              "default_value": "",
+              "enum_values": [],
+              "content_values": [],
+              "format_rule": "",
+              "length_rule": "",
+              "data_source": "创建该条数据的账号名",
+              "conditional_visibility": "",
+              "conditional_editability": "",
+              "notes": "列表元数据列"
+            },
+            {
+              "field_name": "created_at",
+              "display_name": "创建时间",
+              "data_type": "datetime",
+              "control_type": "display_text",
+              "required": false,
+              "editable": false,
+              "default_value": "",
+              "enum_values": [],
+              "content_values": [],
+              "format_rule": "",
+              "length_rule": "",
+              "data_source": "创建该条数据时间",
+              "conditional_visibility": "",
+              "conditional_editability": "",
+              "notes": "列表元数据列"
+            },
+            {
+              "field_name": "updated_at",
+              "display_name": "修改时间",
+              "data_type": "datetime",
+              "control_type": "display_text",
+              "required": false,
+              "editable": false,
+              "default_value": "",
+              "enum_values": [],
+              "content_values": [],
+              "format_rule": "",
+              "length_rule": "",
+              "data_source": "数据最新修改时间",
+              "conditional_visibility": "",
+              "conditional_editability": "",
+              "notes": "列表元数据列"
+            }
+          ],
+          "field_rules": [
+            {
+              "field_name": "tile_style",
+              "display_name": "瓷片区样式",
+              "rule_text": "列表中瓷片区样式来源配置，点击查看大图",
+              "rule_type": "interaction_rule",
+              "error_message": "",
+              "must_preserve_terms": [
+                "点击查看大图"
+              ],
+              "notes": ""
+            }
+          ],
+          "field_rule_tables": [],
+          "confidence": 0.96,
+          "needs_confirmation": false,
+          "ambiguity_reason": ""
+        },
+        {
+          "section_name": "操作区",
+          "section_type": "action_area",
+          "evidence_source_type": "explicit_text",
+          "raw_text": "瓷片区排序、添加",
+          "ocr_text": "瓷片区排序 添加",
+          "visual_elements": [
+            "瓷片区排序按钮",
+            "添加按钮"
+          ],
+          "interactive_entries": [
+            "点击瓷片区排序",
+            "点击添加"
+          ],
+          "section_rules": [],
+          "field_candidates": [],
+          "field_rules": [],
+          "field_rule_tables": [],
+          "confidence": 0.99,
+          "needs_confirmation": false,
+          "ambiguity_reason": ""
+        },
+        {
+          "section_name": "添加弹窗",
+          "section_type": "edit_modal",
+          "evidence_source_type": "explicit_text",
+          "raw_text": "瓷片区配置添加表单",
+          "ocr_text": "瓷片区名称、瓷片区样式、展示类型、X、触达用户类型、跳转类型、选择活动、链接、展示tab、状态",
+          "visual_elements": [
+            "添加弹窗标题",
+            "瓷片区名称输入框",
+            "瓷片区样式上传框",
+            "展示类型下拉框",
+            "X输入框",
+            "触达用户类型下拉框",
+            "跳转类型下拉框",
+            "选择活动下拉框",
+            "链接输入框",
+            "展示tab下拉框",
+            "状态开关",
+            "取消按钮",
+            "确认按钮"
+          ],
+          "interactive_entries": [
+            "上传瓷片区样式",
+            "选择展示类型",
+            "输入X",
+            "选择触达用户类型",
+            "选择跳转类型",
+            "选择活动",
+            "输入链接",
+            "选择展示tab",
+            "切换状态",
+            "点击确认",
+            "点击取消"
+          ],
+          "section_rules": [
+            "展示类型为下拉单选，必选，content: 用户满足符合触达用户类型时展示、用户满足触达用户类型后X天（自然日）内展示，默认为空，不可编辑",
+            "X在展示类型=用户满足触达用户类型后X天（自然日）内展示时配置，数字输入框，必填，[1,99]之间的正整数，默认为空，可编辑",
+            "触达用户类型为下拉单选，必选，content: 详见表触达用户类型，默认为空，不可编辑",
+            "跳转类型为下拉单选，必选，content: 无交互、活动中心、链接，默认为空，可编辑",
+            "选择活动在跳转类型=活动中心时展示，下拉菜单，单选，必选，content: 活动中心渠道=小程序的活动，状态=发布，展示id+活动名称，根据活动创建时间倒序，默认为空，可编辑",
+            "链接在跳转类型=链接时展示，文本输入框，必填，varchar(1000)，默认为空，可编辑",
+            "活动中心场景只展示活动，不允许编辑链接",
+            "展示tab为下拉单选，多选，必选，content: 小程序导航名称列表，默认为空，可编辑",
+            "状态为单选，必选，默认关闭，可编辑"
+          ],
+          "field_candidates": [
+            {
+              "field_name": "tile_name",
+              "display_name": "瓷片区名称",
+              "data_type": "string",
+              "control_type": "text_input",
+              "required": true,
+              "editable": true,
+              "default_value": "",
+              "enum_values": [],
+              "content_values": [],
+              "format_rule": "",
+              "length_rule": "varchar(10)",
+              "data_source": "",
+              "conditional_visibility": "",
+              "conditional_editability": "",
+              "notes": "文本输入框"
+            },
+            {
+              "field_name": "tile_style",
+              "display_name": "瓷片区样式",
+              "data_type": "image",
+              "control_type": "upload_image",
+              "required": true,
+              "editable": true,
+              "default_value": "",
+              "enum_values": [],
+              "content_values": [
+                "支持gif",
+                "jpg",
+                "jpeg",
+                "png"
+              ],
+              "format_rule": "仅能上传一张",
+              "length_rule": "",
+              "data_source": "",
+              "conditional_visibility": "",
+              "conditional_editability": "",
+              "notes": "图片上传"
+            },
+            {
+              "field_name": "display_type",
+              "display_name": "展示类型",
+              "data_type": "enum",
+              "control_type": "select_single",
+              "required": true,
+              "editable": false,
+              "default_value": "",
+              "enum_values": [],
+              "content_values": [
+                "用户满足符合触达用户类型时展示",
+                "用户满足触达用户类型后X天（自然日）内展示"
+              ],
+              "format_rule": "",
+              "length_rule": "",
+              "data_source": "",
+              "conditional_visibility": "",
+              "conditional_editability": "",
+              "notes": "content来自红字说明"
+            },
+            {
+              "field_name": "display_day_x",
+              "display_name": "X",
+              "data_type": "integer",
+              "control_type": "number_input",
+              "required": true,
+              "editable": true,
+              "default_value": "",
+              "enum_values": [],
+              "content_values": [],
+              "format_rule": "[1,99]之间的正整数",
+              "length_rule": "",
+              "data_source": "",
+              "conditional_visibility": "展示类型=用户满足触达用户类型后X天（自然日）内展示时展示",
+              "conditional_editability": "",
+              "notes": ""
+            },
+            {
+              "field_name": "touch_user_type",
+              "display_name": "触达用户类型",
+              "data_type": "enum",
+              "control_type": "select_single",
+              "required": true,
+              "editable": false,
+              "default_value": "",
+              "enum_values": [
+                "游戏付费用户",
+                "当日未进入游戏",
+                "全部用户"
+              ],
+              "content_values": [
+                "详见表触达用户类型"
+              ],
+              "format_rule": "",
+              "length_rule": "",
+              "data_source": "触达用户类型说明表",
+              "conditional_visibility": "",
+              "conditional_editability": "",
+              "notes": ""
+            },
+            {
+              "field_name": "jump_type",
+              "display_name": "跳转类型",
+              "data_type": "enum",
+              "control_type": "select_single",
+              "required": true,
+              "editable": true,
+              "default_value": "",
+              "enum_values": [
+                "无交互",
+                "活动中心",
+                "链接"
+              ],
+              "content_values": [
+                "无交互",
+                "活动中心",
+                "链接"
+              ],
+              "format_rule": "",
+              "length_rule": "",
+              "data_source": "",
+              "conditional_visibility": "",
+              "conditional_editability": "",
+              "notes": ""
+            },
+            {
+              "field_name": "selected_activity",
+              "display_name": "选择活动",
+              "data_type": "enum",
+              "control_type": "select_single",
+              "required": true,
+              "editable": true,
+              "default_value": "",
+              "enum_values": [],
+              "content_values": [],
+              "format_rule": "",
+              "length_rule": "",
+              "data_source": "活动中心渠道=小程序的活动，状态=发布，按活动创建时间倒序",
+              "conditional_visibility": "跳转类型=活动中心时展示",
+              "conditional_editability": "",
+              "notes": ""
+            },
+            {
+              "field_name": "link_url",
+              "display_name": "链接",
+              "data_type": "string",
+              "control_type": "text_input",
+              "required": true,
+              "editable": true,
+              "default_value": "",
+              "enum_values": [],
+              "content_values": [],
+              "format_rule": "",
+              "length_rule": "varchar(1000)",
+              "data_source": "",
+              "conditional_visibility": "跳转类型=链接时展示",
+              "conditional_editability": "活动中心场景只展示活动，不允许编辑链接",
+              "notes": ""
+            },
+            {
+              "field_name": "show_tab",
+              "display_name": "展示tab",
+              "data_type": "array",
+              "control_type": "select_multi",
+              "required": true,
+              "editable": true,
+              "default_value": "",
+              "enum_values": [],
+              "content_values": [
+                "小程序导航名称列表"
+              ],
+              "format_rule": "",
+              "length_rule": "",
+              "data_source": "小程序导航名称列表",
+              "conditional_visibility": "",
+              "conditional_editability": "",
+              "notes": ""
+            },
+            {
+              "field_name": "status",
+              "display_name": "状态",
+              "data_type": "enum",
+              "control_type": "switch",
+              "required": true,
+              "editable": true,
+              "default_value": "关闭",
+              "enum_values": [
+                "关闭",
+                "开启"
+              ],
+              "content_values": [
+                "关闭",
+                "开启"
+              ],
+              "format_rule": "",
+              "length_rule": "",
+              "data_source": "",
+              "conditional_visibility": "",
+              "conditional_editability": "",
+              "notes": "单选，默认关闭，可编辑"
+            }
+          ],
+          "field_rules": [
+            {
+              "field_name": "display_type",
+              "display_name": "展示类型",
+              "rule_text": "展示类型默认为空，不可编辑",
+              "rule_type": "editability_rule",
+              "error_message": "",
+              "must_preserve_terms": [
+                "默认为空",
+                "不可编辑"
+              ],
+              "notes": ""
+            },
+            {
+              "field_name": "link_url",
+              "display_name": "链接",
+              "rule_text": "活动中心场景只展示活动，不允许编辑链接",
+              "rule_type": "conditional_editability_rule",
+              "error_message": "",
+              "must_preserve_terms": [
+                "不允许编辑"
+              ],
+              "notes": ""
+            }
+          ],
+          "field_rule_tables": [],
+          "confidence": 0.97,
+          "needs_confirmation": false,
+          "ambiguity_reason": ""
+        },
+        {
+          "section_name": "瓷片区配置数据说明",
+          "section_type": "other",
+          "evidence_source_type": "explicit_text",
+          "raw_text": "瓷片区配置数据说明",
+          "ocr_text": "后台数据按照创建时间倒序排列；单tab下开启状态的瓷片区不允许超过4条，超出保存时提示“{导航名称}下已存在4条瓷片区数据”",
+          "visual_elements": [
+            "黄色便签"
+          ],
+          "interactive_entries": [],
+          "section_rules": [
+            "后台数据按照创建时间倒序排列",
+            "单tab下开启状态的瓷片区不允许超过4条",
+            "超出保存时提示“{导航名称}下已存在4条瓷片区数据”"
+          ],
+          "field_candidates": [],
+          "field_rules": [
+            {
+              "field_name": "show_tab",
+              "display_name": "展示tab",
+              "rule_text": "单tab下开启状态的瓷片区不允许超过4条",
+              "rule_type": "range_rule",
+              "error_message": "{导航名称}下已存在4条瓷片区数据",
+              "must_preserve_terms": [
+                "开启状态",
+                "4条",
+                "瓷片区数据"
+              ],
+              "notes": "条数上限规则"
+            }
+          ],
+          "field_rule_tables": [],
+          "confidence": 0.96,
+          "needs_confirmation": false,
+          "ambiguity_reason": ""
+        },
+        {
+          "section_name": "排序弹窗",
+          "section_type": "sort_modal",
+          "evidence_source_type": "explicit_text",
+          "raw_text": "瓷片区排序",
+          "ocr_text": "展示属于该tab的所有瓷片区，拖动调整顺序；初始排序根据瓷片区创建时间顺序；瓷片区删除/关闭后，后面顺位上移；已有排序后新增瓷片区，根据创建顺序置于最前",
+          "visual_elements": [
+            "导航名称tab",
+            "瓷片区拖拽排序列表",
+            "取消按钮",
+            "确认按钮"
+          ],
+          "interactive_entries": [
+            "切换导航tab",
+            "拖动瓷片区排序",
+            "点击确认",
+            "点击取消"
+          ],
+          "section_rules": [
+            "展示属于该tab的所有瓷片区，拖动调整顺序",
+            "展示小程序所有开启的导航配置",
+            "初始排序根据瓷片区创建时间顺序",
+            "瓷片区删除/关闭后，后面顺位上移",
+            "已有排序后新增瓷片区，根据创建顺序置于最前"
+          ],
+          "field_candidates": [],
+          "field_rules": [],
+          "field_rule_tables": [],
+          "confidence": 0.95,
+          "needs_confirmation": false,
+          "ambiguity_reason": ""
+        },
+        {
+          "section_name": "触达用户类型",
+          "section_type": "field_rule_table",
+          "evidence_source_type": "explicit_text",
+          "raw_text": "触达用户类型说明表",
+          "ocr_text": "游戏付费用户、当日未进入游戏、全部用户；游戏付费用户附加充值金额区间",
+          "visual_elements": [
+            "content列",
+            "说明列",
+            "其他关联字段列",
+            "充值金额区间输入框"
+          ],
+          "interactive_entries": [],
+          "section_rules": [
+            "充值金额为数字输入框，非负整数，闭区间，范围[0,999999999]",
+            "前值点击toast值不能大于后值",
+            "默认为空，可编辑"
+          ],
+          "field_candidates": [
+            {
+              "field_name": "recharge_amount_range",
+              "display_name": "充值金额",
+              "data_type": "range",
+              "control_type": "number_input_pair",
+              "required": false,
+              "editable": true,
+              "default_value": "",
+              "enum_values": [],
+              "content_values": [],
+              "format_rule": "非负整数，闭区间，范围[0,999999999]",
+              "length_rule": "",
+              "data_source": "",
+              "conditional_visibility": "触达用户类型=游戏付费用户时展示",
+              "conditional_editability": "",
+              "notes": ""
+            }
+          ],
+          "field_rules": [
+            {
+              "field_name": "recharge_amount_range",
+              "display_name": "充值金额",
+              "rule_text": "前值点击toast值不能大于后值",
+              "rule_type": "range_rule",
+              "error_message": "前值点击toast值不能大于后值",
+              "must_preserve_terms": [
+                "不能大于后值"
+              ],
+              "notes": ""
+            }
+          ],
+          "field_rule_tables": [
+            {
+              "field_name": "touch_user_type",
+              "table_name": "触达用户类型",
+              "table_desc": "触达用户类型字段说明表",
+              "rows": [
+                {
+                  "row_name": "游戏付费用户",
+                  "rule_text": "展示该tab的用户对应uid在当前appkey下的累计充值达标",
+                  "expected_effect": "需要配置充值金额区间",
+                  "related_fields": [
+                    "recharge_amount_range"
+                  ]
+                },
+                {
+                  "row_name": "当日未进入游戏",
+                  "rule_text": "展示该tab的用户对应uid今日在当前appkey下无进入游戏行为",
+                  "expected_effect": "无需附加字段",
+                  "related_fields": []
+                },
+                {
+                  "row_name": "全部用户",
+                  "rule_text": "展示该tab的全部用户",
+                  "expected_effect": "无需附加字段",
+                  "related_fields": []
+                }
+              ]
+            }
+          ],
+          "confidence": 0.95,
+          "needs_confirmation": false,
+          "ambiguity_reason": ""
+        }
+      ]
+    }
+  ]
+}

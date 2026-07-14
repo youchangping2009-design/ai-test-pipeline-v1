@@ -1,0 +1,320 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Image Evidence Inventory Schema",
+  "type": "object",
+  "required": [
+    "project_code",
+    "work_item_id",
+    "generated_from",
+    "images"
+  ],
+  "properties": {
+    "project_code": {
+      "type": "string"
+    },
+    "work_item_id": {
+      "type": "string"
+    },
+    "generated_from": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "images": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "image_id",
+          "source_file",
+          "page_name",
+          "sections"
+        ],
+        "properties": {
+          "image_id": {
+            "type": "string"
+          },
+          "source_file": {
+            "type": "string"
+          },
+          "page_name": {
+            "type": "string"
+          },
+          "sections": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": [
+                "section_name",
+                "section_type",
+                "evidence_source_type",
+                "confidence",
+                "needs_confirmation"
+              ],
+              "properties": {
+                "section_name": {
+                  "type": "string"
+                },
+                "section_type": {
+                  "type": "string",
+                  "enum": [
+                    "filter_area",
+                    "list_area",
+                    "action_area",
+                    "edit_modal",
+                    "sort_modal",
+                    "field_rule_table",
+                    "display_area",
+                    "tab_area",
+                    "popup_area",
+                    "other"
+                  ]
+                },
+                "evidence_source_type": {
+                  "type": "string",
+                  "enum": [
+                    "explicit_text",
+                    "visual_layout",
+                    "inference"
+                  ]
+                },
+                "raw_text": {
+                  "type": "string"
+                },
+                "ocr_text": {
+                  "type": "string"
+                },
+                "visual_elements": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "interactive_entries": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "section_rules": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "field_candidates": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "required": [
+                      "display_name"
+                    ],
+                    "properties": {
+                      "field_name": {
+                        "type": "string"
+                      },
+                      "display_name": {
+                        "type": "string"
+                      },
+                      "data_type": {
+                        "type": "string",
+                        "enum": [
+                          "string",
+                          "integer",
+                          "float",
+                          "boolean",
+                          "enum",
+                          "array",
+                          "image",
+                          "datetime",
+                          "date",
+                          "range",
+                          "other"
+                        ]
+                      },
+                      "control_type": {
+                        "type": "string",
+                        "enum": [
+                          "text_input",
+                          "textarea",
+                          "select_single",
+                          "select_multi",
+                          "upload_image",
+                          "switch",
+                          "radio",
+                          "checkbox",
+                          "number_input",
+                          "number_input_pair",
+                          "display_text",
+                          "button",
+                          "link",
+                          "table_column",
+                          "other"
+                        ]
+                      },
+                      "required": {
+                        "type": "boolean"
+                      },
+                      "editable": {
+                        "type": "boolean"
+                      },
+                      "default_value": {},
+                      "enum_values": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      },
+                      "content_values": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      },
+                      "format_rule": {
+                        "type": "string"
+                      },
+                      "length_rule": {
+                        "type": "string"
+                      },
+                      "data_source": {
+                        "type": "string"
+                      },
+                      "conditional_visibility": {
+                        "type": "string"
+                      },
+                      "conditional_editability": {
+                        "type": "string"
+                      },
+                      "notes": {
+                        "type": "string"
+                      }
+                    },
+                    "additionalProperties": false
+                  }
+                },
+                "field_rules": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "required": [
+                      "rule_text"
+                    ],
+                    "properties": {
+                      "field_name": {
+                        "type": "string"
+                      },
+                      "display_name": {
+                        "type": "string"
+                      },
+                      "rule_text": {
+                        "type": "string"
+                      },
+                      "rule_type": {
+                        "type": "string",
+                        "enum": [
+                          "required_rule",
+                          "enum_rule",
+                          "format_rule",
+                          "length_rule",
+                          "range_rule",
+                          "effect_rule",
+                          "status_rule",
+                          "data_source_rule",
+                          "editability_rule",
+                          "conditional_visibility_rule",
+                          "conditional_editability_rule",
+                          "interaction_rule",
+                          "dependency_rule",
+                          "other"
+                        ]
+                      },
+                      "error_message": {
+                        "type": "string"
+                      },
+                      "must_preserve_terms": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      },
+                      "notes": {
+                        "type": "string"
+                      }
+                    },
+                    "additionalProperties": false
+                  }
+                },
+                "field_rule_tables": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "required": [
+                      "table_name",
+                      "rows"
+                    ],
+                    "properties": {
+                      "field_name": {
+                        "type": "string"
+                      },
+                      "table_name": {
+                        "type": "string"
+                      },
+                      "table_desc": {
+                        "type": "string"
+                      },
+                      "rows": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "required": [
+                            "row_name",
+                            "rule_text"
+                          ],
+                          "properties": {
+                            "row_name": {
+                              "type": "string"
+                            },
+                            "rule_text": {
+                              "type": "string"
+                            },
+                            "expected_effect": {
+                              "type": "string"
+                            },
+                            "related_fields": {
+                              "type": "array",
+                              "items": {
+                                "type": "string"
+                              }
+                            }
+                          },
+                          "additionalProperties": false
+                        }
+                      }
+                    },
+                    "additionalProperties": false
+                  }
+                },
+                "confidence": {
+                  "type": "number",
+                  "minimum": 0,
+                  "maximum": 1
+                },
+                "needs_confirmation": {
+                  "type": "boolean"
+                },
+                "ambiguity_reason": {
+                  "type": "string"
+                }
+              },
+              "additionalProperties": false
+            }
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false
+}

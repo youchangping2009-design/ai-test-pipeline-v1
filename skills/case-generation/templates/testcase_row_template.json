@@ -1,0 +1,79 @@
+{
+  "rule_driven_patterns": [
+    {
+      "pattern": "required_when",
+      "case_title": "验证{condition}时{field_display}必填",
+      "case_type": "功能"
+    },
+    {
+      "pattern": "visible_when",
+      "case_title": "验证{condition}时展示{field_display}",
+      "case_type": "功能"
+    },
+    {
+      "pattern": "readonly_when",
+      "case_title": "验证{condition}时{field_display}只读",
+      "case_type": "功能"
+    },
+    {
+      "pattern": "required",
+      "case_title": "验证{field_display}为空时保存失败",
+      "case_type": "功能"
+    },
+    {
+      "pattern": "max_length_pass",
+      "case_title": "验证{field_display}长度等于{max_length}时允许保存",
+      "case_type": "边界"
+    },
+    {
+      "pattern": "max_length_fail",
+      "case_title": "验证{field_display}长度超过{max_length}时保存失败",
+      "case_type": "边界"
+    },
+    {
+      "pattern": "min_pass",
+      "case_title": "验证{field_display}等于{min}时允许保存",
+      "case_type": "边界"
+    },
+    {
+      "pattern": "min_fail",
+      "case_title": "验证{field_display}小于{min}时保存失败",
+      "case_type": "边界"
+    },
+    {
+      "pattern": "max_pass",
+      "case_title": "验证{field_display}等于{max}时允许保存",
+      "case_type": "边界"
+    },
+    {
+      "pattern": "max_fail",
+      "case_title": "验证{field_display}大于{max}时保存失败",
+      "case_type": "边界"
+    },
+    {
+      "pattern": "integer_only_fail",
+      "case_title": "验证{field_display}输入非整数时保存失败",
+      "case_type": "边界"
+    },
+    {
+      "pattern": "data_source_source",
+      "case_title": "验证{field_display}候选数据来源于{data_source}",
+      "case_type": "数据校验"
+    },
+    {
+      "pattern": "data_source_filter",
+      "case_title": "验证{field_display}列表仅展示满足{filter}的数据",
+      "case_type": "数据校验"
+    },
+    {
+      "pattern": "data_source_order",
+      "case_title": "验证{field_display}按{order_by}排列",
+      "case_type": "数据校验"
+    },
+    {
+      "pattern": "legal_combination",
+      "case_title": "验证{feature_name}合法组合场景可成功提交",
+      "case_type": "功能"
+    }
+  ]
+}

@@ -1,0 +1,138 @@
+{
+  "project_code": "WX-YGJ",
+  "work_item_id": "PT083",
+  "checked_at": "2026-04-28",
+  "latest_recheck_at": "2026-04-28",
+  "truth_source": "testcases/testcases_main.md",
+  "policy": "code review feedback must go to design layer and must not directly overwrite testcase",
+  "branch_scope": [
+    {
+      "side": "backend",
+      "repo": "/Users/xin/IdeaProjects/platform-cloud",
+      "branch": "feature/pt083_cloud",
+      "ref": "origin/feature/pt083_cloud",
+      "commit": "78d9f25fdd07592f558bbcf7d3e5d9f174ef4852"
+    },
+    {
+      "side": "backend",
+      "repo": "/Users/xin/IdeaProjects/platform-cloud-admin",
+      "branch": "feature/pt083_cloud",
+      "ref": "origin/feature/pt083_cloud",
+      "commit": "a5b6bd3dde07ce2f74238b5f1590e8f7690fd1b7"
+    },
+    {
+      "side": "backend",
+      "repo": "/Users/xin/IdeaProjects/platform-cloud-order",
+      "branch": "feature/pt083_cloud",
+      "ref": "origin/feature/pt083_cloud",
+      "commit": "eedafaaa4946cb886dc246c918dbe78a28f84e7a"
+    },
+    {
+      "side": "backend",
+      "repo": "/Users/xin/IdeaProjects/platform-box-order-center",
+      "branch": "feature/pt083_cloud",
+      "ref": "origin/feature/pt083_cloud",
+      "commit": "f0cc786ab8777ed99708a7aee00f76c3904aace3"
+    },
+    {
+      "side": "backend",
+      "repo": "/Users/xin/IdeaProjects/wx-order-center",
+      "branch": "feature/pt083_cloud",
+      "ref": "origin/feature/pt083_cloud",
+      "commit": "aef5a08d52df93dc509403fc36e82f0a7d502a9f"
+    },
+    {
+      "side": "backend",
+      "repo": "/Users/xin/IdeaProjects/bt-order-center",
+      "branch": "feature/pt083_cloud",
+      "ref": "origin/feature/pt083_cloud",
+      "commit": "31376d0fab0ae22acb6fb631eb773083a2438535"
+    },
+    {
+      "side": "frontend",
+      "repo": "/Users/xin/WebstormProjects/platform-cloud-admin-front",
+      "branch": "feature/PT083云挂机用户体验及SDK迭代/260421/sqt",
+      "ref": "origin/feature/PT083云挂机用户体验及SDK迭代/260421/sqt",
+      "commit": "284a67f5e1669e4c7d6d43c056a5ea7c16c329fa"
+    },
+    {
+      "side": "frontend",
+      "repo": "/Users/xin/WebstormProjects/platform-box-h5-ios",
+      "branch": "feature/PT083云挂机用户体验及SDK迭代/260422/sqt",
+      "ref": "origin/feature/PT083云挂机用户体验及SDK迭代/260422/sqt",
+      "commit": "9844de57242d7c2c3f5db89ef70ce160f5fd3251"
+    }
+  ],
+  "findings": [
+    {
+      "finding_id": "TC-GAP-001",
+      "feedback_id": "DF-001",
+      "type": "case_gap",
+      "severity": "P0",
+      "source_case_plan_ids": ["CP-013"],
+      "source_testcase_ids": ["WX-YGJ-PT083-FREE-TRIAL-MINIAPP-FL-001"],
+      "title": "免费体验时长计算缺少天数校验用例",
+      "latest_code_status": "fixed_in_code",
+      "latest_test_asset_status": "case_plan_follow_up_still_open",
+      "evidence": [
+        "/Users/xin/IdeaProjects/platform-box-order-center/src/main/java/com/wxbz/box/core/order/service/impl/OrderServiceImpl.java:465",
+        "/Users/xin/IdeaProjects/wx-order-center/src/main/java/com/wxbz/box/core/order/service/impl/OrderServiceImpl.java:479",
+        "/Users/xin/IdeaProjects/bt-order-center/src/main/java/com/wxbz/box/core/order/service/impl/OrderServiceImpl.java:466"
+      ]
+    },
+    {
+      "finding_id": "TC-GAP-002",
+      "feedback_id": "DF-002",
+      "type": "case_gap",
+      "severity": "P1",
+      "source_case_plan_ids": ["CP-013"],
+      "source_testcase_ids": ["WX-YGJ-PT083-FREE-TRIAL-MINIAPP-FL-001"],
+      "title": "免费体验成功订单到MQ分配缺少失败补偿验证",
+      "latest_code_status": "not_fixed",
+      "evidence": ["/Users/xin/IdeaProjects/platform-box-order-center/src/main/java/com/wxbz/box/core/order/service/impl/OrderServiceImpl.java:455"]
+    },
+    {
+      "finding_id": "TC-GAP-003",
+      "feedback_id": "DF-003",
+      "type": "risk_note",
+      "severity": "P2",
+      "source_case_plan_ids": ["CP-013"],
+      "source_testcase_ids": ["WX-YGJ-PT083-FREE-TRIAL-MINIAPP-FL-001"],
+      "title": "库存确认幂等键先写入导致短期重试风险",
+      "latest_code_status": "not_fixed",
+      "evidence": ["/Users/xin/IdeaProjects/platform-cloud/src/main/java/com/wxbz/platform/core/cloud/service/impl/UserFacilitiesServiceImpl.java:2581"]
+    },
+    {
+      "finding_id": "TC-GAP-004",
+      "feedback_id": "DF-004",
+      "type": "implementation_gap",
+      "severity": "P1",
+      "source_case_plan_ids": ["CP-005"],
+      "source_testcase_ids": ["WX-YGJ-PT083-NORMAL-MINIAPP-FN-001"],
+      "title": "限时购买标题用例已覆盖但前端实现仍显示超值套餐",
+      "latest_code_status": "not_fixed",
+      "evidence": ["/Users/xin/WebstormProjects/platform-box-h5-ios/src/views/cloud/purchase.vue:102"]
+    },
+    {
+      "finding_id": "TC-GAP-005",
+      "feedback_id": "DF-005",
+      "type": "implementation_gap",
+      "severity": "P1",
+      "source_case_plan_ids": ["CP-010"],
+      "source_testcase_ids": ["WX-YGJ-PT083-PROMO-CLOUDTYPE-ADMIN-AB-001"],
+      "title": "宣传内容云机类型完整且不重复用例已覆盖但前端缺少提交前统一toast",
+      "latest_code_status": "not_fixed",
+      "evidence": ["/Users/xin/WebstormProjects/platform-cloud-admin-front/src/pages/goods/index.tsx:214"]
+    },
+    {
+      "finding_id": "TC-GAP-006",
+      "feedback_id": "DF-006",
+      "type": "no_action",
+      "severity": "closed",
+      "source_case_plan_ids": ["CP-013"],
+      "source_testcase_ids": ["WX-YGJ-PT083-FREE-TRIAL-MINIAPP-FL-001"],
+      "title": "sceneType=4 重复分配旧风险当前分支已关闭",
+      "evidence": ["/Users/xin/IdeaProjects/platform-cloud/src/main/java/com/wxbz/platform/core/cloud/service/impl/UserFacilitiesServiceImpl.java:1430"]
+    }
+  ]
+}

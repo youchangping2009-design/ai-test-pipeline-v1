@@ -1,0 +1,39 @@
+{
+  "project_code": "WX-YGJ",
+  "work_item_id": "PT083",
+  "examples": [
+    {
+      "example_id": "AE-001",
+      "source_gate_ids": ["TG-002"],
+      "title": "宣传图片建议尺寸提示展示",
+      "given": ["运营人员打开编辑宣传内容弹窗"],
+      "when": ["运营人员查看宣传图片字段旁的提示信息"],
+      "then": ["页面展示宣传图片支持格式、大小和建议尺寸提示"],
+      "verification_side": "B端页面展示",
+      "oracle_strength": "soft_display",
+      "confidence": "confirmed"
+    },
+    {
+      "example_id": "AE-002",
+      "source_gate_ids": ["TG-003"],
+      "title": "特殊区超过4个时保存失败",
+      "given": ["后台已有4个生效中的特殊区商品"],
+      "when": ["运营新增第5个特殊区商品并点击保存"],
+      "then": ["系统阻止保存", "页面提示特殊区只能展示4个商品"],
+      "verification_side": "B端写侧",
+      "oracle_strength": "hard_block",
+      "confidence": "confirmed"
+    },
+    {
+      "example_id": "AE-003",
+      "source_gate_ids": ["TG-004"],
+      "title": "0元商品可完成免费体验领取链路",
+      "given": ["后台已配置状态开启、现价为0.00且库存充足的0元云挂机商品"],
+      "when": ["C端用户选择该商品并点击领取免费体验"],
+      "then": ["系统完成免费体验领取", "页面不跳转支付页"],
+      "verification_side": "B端配置到C端消费链路",
+      "oracle_strength": "business_behavior",
+      "confidence": "confirmed"
+    }
+  ]
+}

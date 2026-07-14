@@ -1,0 +1,17 @@
+{
+  "project_code": "EVAL",
+  "work_item_id": "PROMPT_ONLY",
+  "responsibilities": [
+    {
+      "responsibility_id": "VR-001",
+      "source_rule_id": "R-PROMPT-HINT",
+      "rule_text": "上传区域旁展示建议尺寸和格式提示。",
+      "primary_verification_side": "B端页面展示",
+      "primary_verification_method": "提示文案展示检查",
+      "consumer_verification_required": false,
+      "api_guard_required": false,
+      "risk_note_required": false,
+      "reason": "soft_prompt 只验证页面提示展示。"
+    }
+  ]
+}

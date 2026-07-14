@@ -1,0 +1,95 @@
+required_assertions:
+  - id: sdk_720_skipped
+    artifact: testability_gate.expected.json
+    selector: items[source_rule_id=R-SDK-720]
+    field: decision
+    in: skip_case
+    reason: SDK / 720*1280 技术背景必须被跳过或标记为不可直接测试
+  - id: sdk_720_not_directly_testable
+    artifact: testability_gate.expected.json
+    selector: items[source_rule_id=R-SDK-720]
+    field: testability
+    in: not_directly_testable
+    reason: SDK / 720*1280 技术背景必须被 skip_case 或 not_directly_testable 处理
+  - id: promo_size_soft_prompt
+    artifact: testability_gate.expected.json
+    selector: items[source_rule_id=R-PROMO-SIZE-HINT]
+    field: classification
+    in: soft_prompt
+    reason: 宣传图片格式/尺寸提示必须归类为 soft_prompt
+  - id: special_area_write_side
+    artifact: responsibility_map.expected.json
+    selector: responsibilities[source_rule_id=R-SPECIAL-MAX-4]
+    field: primary_verification_side
+    in: B端写侧
+    reason: 特殊区最多4个必须优先落到 B端写侧
+  - id: promo_size_display_responsibility
+    artifact: responsibility_map.expected.json
+    selector: responsibilities[source_rule_id=R-PROMO-SIZE-HINT]
+    field: primary_verification_side
+    in: B端页面展示
+    reason: 宣传图片提示必须落在页面展示责任，不应进入写侧强拦截
+  - id: free_trial_consumer_required
+    artifact: responsibility_map.expected.json
+    selector: responsibilities[source_rule_id=R-FREE-TRIAL-LINK]
+    field: consumer_verification_required
+    in: true
+    reason: 0元商品 / 免费体验必须要求 C端消费链路验证
+  - id: goods_region_api_guard_required
+    artifact: responsibility_map.expected.json
+    selector: responsibilities[source_rule_id=R-GOODS-REGION-ILLEGAL]
+    field: api_guard_required
+    in: true
+    reason: goodsRegion 非法枚举必须进入 API 兜底或风险加固建议
+  - id: goods_region_risk_note_required
+    artifact: responsibility_map.expected.json
+    selector: responsibilities[source_rule_id=R-GOODS-REGION-ILLEGAL]
+    field: risk_note_required
+    in: true
+    reason: goodsRegion 非法枚举必须保留风险项，而非主验收
+  - id: special_area_save_block
+    artifact: case_plan.expected.json
+    selector: case_plans[source_gate_ids~TG-003]
+    field: case_type
+    in: save_block
+    reason: 特殊区最多4个必须生成 save_block 类计划
+  - id: free_trial_linkage
+    artifact: case_plan.expected.json
+    selector: case_plans[source_gate_ids~TG-004]
+    field: case_type
+    in: linkage
+    reason: 0元商品 / 免费体验必须存在 linkage 类 case_plan
+  - id: goods_region_risk_note
+    artifact: case_plan.expected.json
+    selector: case_plans[source_gate_ids~TG-005]
+    field: validation_path
+    in: risk_note,api_guard
+    reason: goodsRegion 非法枚举不能进入 product_acceptance 主验收
+  - id: special_area_hard_block_acceptance
+    artifact: acceptance_examples.expected.json
+    selector: examples[source_gate_ids~TG-003]
+    field: oracle_strength
+    in: hard_block
+    reason: 特殊区最多4个必须存在 hard_block acceptance example
+  - id: promo_size_soft_display_acceptance
+    artifact: acceptance_examples.expected.json
+    selector: examples[source_gate_ids~TG-002]
+    field: oracle_strength
+    in: soft_display
+    reason: 宣传图片提示必须存在 soft_display acceptance example
+  - id: free_trial_business_acceptance
+    artifact: acceptance_examples.expected.json
+    selector: examples[source_gate_ids~TG-004]
+    field: oracle_strength
+    in: business_behavior,linkage
+    reason: 0元商品 / 免费体验必须存在 business_behavior 或 linkage acceptance example
+  - id: no_sdk_acceptance
+    artifact: acceptance_examples.expected.json
+    selector: examples[source_gate_ids~TG-001]
+    absent: true
+    reason: SDK / 720*1280 不能存在 acceptance example
+  - id: no_goods_region_acceptance
+    artifact: acceptance_examples.expected.json
+    selector: examples[source_gate_ids~TG-005]
+    absent: true
+    reason: goodsRegion 非法枚举不能存在 product_acceptance acceptance example

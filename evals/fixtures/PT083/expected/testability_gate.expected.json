@@ -1,0 +1,56 @@
+{
+  "project_code": "WX-YGJ",
+  "work_item_id": "PT083",
+  "items": [
+    {
+      "gate_id": "TG-001",
+      "source_rule_id": "R-SDK-720",
+      "source_text": "云机SDK需要更新，云机画面尺寸需要调整为720*1280。",
+      "classification": "technical_background",
+      "testability": "not_directly_testable",
+      "decision": "skip_case",
+      "reason": "SDK更新与固定尺寸属于技术背景/实现约束，不生成文档校验型业务用例。",
+      "confidence": "confirmed"
+    },
+    {
+      "gate_id": "TG-002",
+      "source_rule_id": "R-PROMO-SIZE-HINT",
+      "source_text": "宣传图片建议尺寸1008*160。",
+      "classification": "soft_prompt",
+      "testability": "partially_testable",
+      "decision": "generate_case_plan",
+      "reason": "建议尺寸若仅作为问号提示语或展示提示，只验证提示展示，不升级为保存拦截。",
+      "confidence": "confirmed"
+    },
+    {
+      "gate_id": "TG-003",
+      "source_rule_id": "R-SPECIAL-MAX-4",
+      "source_text": "特殊区最多配置4个，超过4个不可保存并提示。",
+      "classification": "field_constraint",
+      "testability": "testable",
+      "decision": "generate_case_plan",
+      "reason": "数量上限是明确写侧保存约束。",
+      "confidence": "confirmed"
+    },
+    {
+      "gate_id": "TG-004",
+      "source_rule_id": "R-FREE-TRIAL-LINK",
+      "source_text": "0元商品/免费体验需要从后台配置生效到C端领取消费链路。",
+      "classification": "linkage",
+      "testability": "testable",
+      "decision": "generate_case_plan",
+      "reason": "跨端链路是核心业务验收路径。",
+      "confidence": "confirmed"
+    },
+    {
+      "gate_id": "TG-005",
+      "source_rule_id": "R-GOODS-REGION-ILLEGAL",
+      "source_text": "goodsRegion 非法枚举直调接口风险。",
+      "classification": "risk_hardening",
+      "testability": "risk_only",
+      "decision": "risk_note_only",
+      "reason": "前端枚举已限制，非法枚举直调接口不进入主验收用例。",
+      "confidence": "confirmed"
+    }
+  ]
+}

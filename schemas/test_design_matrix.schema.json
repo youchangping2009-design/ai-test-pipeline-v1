@@ -1,0 +1,46 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "AI Test Pipeline Test Design Matrix",
+  "type": "object",
+  "required": ["work_item_id", "items"],
+  "properties": {
+    "project_code": { "type": "string" },
+    "work_item_id": { "type": "string" },
+    "items": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "matrix_id",
+          "source_rule_id",
+          "gate_id",
+          "example_id",
+          "responsibility_id",
+          "case_plan_id",
+          "verification_side",
+          "case_type",
+          "coverage_focus",
+          "assertion",
+          "risk_level",
+          "note"
+        ],
+        "properties": {
+          "matrix_id": { "type": "string", "pattern": "^TDM-[0-9]{3,}$" },
+          "source_rule_id": { "type": "string" },
+          "gate_id": { "type": "string", "pattern": "^TG-[0-9]{3,}$" },
+          "example_id": { "type": "string", "pattern": "^AE-[0-9]{3,}$" },
+          "responsibility_id": { "type": "string", "pattern": "^VR-[0-9]{3,}$" },
+          "case_plan_id": { "type": "string", "pattern": "^CP-[0-9]{3,}$" },
+          "verification_side": { "type": "string" },
+          "case_type": { "type": "string" },
+          "coverage_focus": { "type": "string" },
+          "assertion": { "type": "string" },
+          "risk_level": { "type": "string", "enum": ["low", "medium", "high", "critical"] },
+          "note": { "type": "string" }
+        },
+        "additionalProperties": true
+      }
+    }
+  },
+  "additionalProperties": true
+}

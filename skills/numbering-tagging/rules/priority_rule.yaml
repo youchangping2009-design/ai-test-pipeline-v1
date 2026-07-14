@@ -1,0 +1,50 @@
+version: 2
+description: 测试用例优先级规则（含 Flow 流程型用例）
+
+priority_definition:
+  P0: 核心主链路，阻断使用，资金/数据/发布风险高，或上线前必须通过
+  P1: 重要功能，影响较大，但存在绕行方案，或为主链路重要支撑
+  P2: 一般功能，影响有限，非关键链路
+  P3: 低风险优化项、表现层细节、弱影响项
+
+judgement_rules:
+  - 涉及登录、支付、创建、提交流程、核心配置生效，优先级不低于 P1
+  - 涉及资金、结算、核心数据统计、关键状态流转，优先级定为 P0
+  - 普通展示、文案、非关键筛选项，一般为 P2/P3
+  - 边界与异常场景如果会导致系统错误、数据错误，优先级提升一级
+
+flow_priority_rules:
+  description: Flow 流程型用例优先级判定规则
+
+  default_rules:
+    - main_flow 默认 P0
+    - pre_flow 默认 P1；若是主流程成立前提，则提升为 P0
+    - post_flow 默认 P1；若直接决定业务闭环是否成立，则提升为 P0
+    - support_flow 默认 P1 或 P2，按对主链路影响程度确定
+
+  escalation_rules:
+    - Flow 涉及核心链路时，优先级不得低于 P1
+    - Flow 涉及发布、生效、审核、回传、结算、资金、状态终态时，优先级优先判定为 P0
+    - Flow 涉及关键数据正确性校验时，优先级至少为 P1；若数据错误会直接影响业务结果，则为 P0
+    - Flow 涉及跨模块链路且失败会阻断业务闭环时，优先级提升一级
+    - Flow 的 success_criteria 若属于上线必测条件，则优先级判定为 P0
+
+  downgrade_rules:
+    - support_flow 若仅为辅助查看、弱影响查询、非关键展示链路，可为 P2
+    - post_flow 若仅涉及非关键展示确认，可为 P2
+    - 不直接影响主链路成立的低风险辅助流程，可为 P2/P3
+
+decision_examples:
+  - case: "广告计划从创建到审核通过并成功发布"
+    priority: "P0"
+  - case: "活动发布后前端展示生效"
+    priority: "P0"
+  - case: "前置素材准备流程"
+    priority: "P1"
+  - case: "非核心运营配置查看链路"
+    priority: "P2"
+
+recommendations:
+  - 黄金流程用例默认优先级应为 P0
+  - main_flow 对应用例在回归集和发布集中的优先级应高于同模块普通单点用例
+  - 若流程型用例与单点用例优先级冲突，以业务链路风险优先

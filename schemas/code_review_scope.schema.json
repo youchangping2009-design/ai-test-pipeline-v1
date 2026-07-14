@@ -1,0 +1,43 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Code Review Scope Schema",
+  "type": "object",
+  "required": [
+    "status",
+    "frontend_code_dirs",
+    "backend_code_dirs",
+    "next_action",
+    "updated_at"
+  ],
+  "properties": {
+    "status": {
+      "type": "string",
+      "enum": [
+        "awaiting_code_directories",
+        "ready_for_code_review",
+        "frontend_review_in_progress",
+        "backend_review_in_progress",
+        "code_review_completed"
+      ]
+    },
+    "frontend_code_dirs": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "backend_code_dirs": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "next_action": {
+      "type": "string"
+    },
+    "updated_at": {
+      "type": "string"
+    }
+  },
+  "additionalProperties": false
+}

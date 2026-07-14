@@ -1,0 +1,62 @@
+{
+  "project_code": "WX-YGJ",
+  "work_item_id": "PT083",
+  "case_plans": [
+    {
+      "case_plan_id": "CP-001",
+      "source_gate_ids": ["TG-002"],
+      "source_example_ids": ["AE-001"],
+      "source_responsibility_ids": ["VR-001"],
+      "generated_testcase_ids": [],
+      "title": "验证宣传图片建议尺寸提示展示",
+      "verification_side": "B端",
+      "case_type": "prompt_display",
+      "priority": "P1",
+      "assertion": "宣传图片字段展示1008*160建议尺寸提示，不作为保存拦截条件",
+      "validation_path": "product_acceptance",
+      "should_generate_case": true
+    },
+    {
+      "case_plan_id": "CP-002",
+      "source_gate_ids": ["TG-003"],
+      "source_example_ids": ["AE-002"],
+      "source_responsibility_ids": ["VR-002"],
+      "generated_testcase_ids": [],
+      "title": "验证特殊区配置超过4个时保存失败",
+      "verification_side": "B端",
+      "case_type": "save_block",
+      "priority": "P0",
+      "assertion": "超过4个特殊区时系统阻止保存并提示",
+      "validation_path": "product_acceptance",
+      "should_generate_case": true
+    },
+    {
+      "case_plan_id": "CP-003",
+      "source_gate_ids": ["TG-004"],
+      "source_example_ids": ["AE-003"],
+      "source_responsibility_ids": ["VR-003"],
+      "generated_testcase_ids": [],
+      "title": "验证0元商品从后台配置到C端免费体验领取链路",
+      "verification_side": "B端+C端",
+      "case_type": "linkage",
+      "priority": "P0",
+      "assertion": "后台配置0元商品后，C端可完成免费体验领取且不进入支付页",
+      "validation_path": "product_acceptance",
+      "should_generate_case": true
+    },
+    {
+      "case_plan_id": "CP-004",
+      "source_gate_ids": ["TG-005"],
+      "source_example_ids": [],
+      "source_responsibility_ids": ["VR-004"],
+      "generated_testcase_ids": [],
+      "title": "记录goodsRegion非法枚举接口加固建议",
+      "verification_side": "API",
+      "case_type": "risk_hardening",
+      "priority": "P2",
+      "assertion": "非法枚举直调接口只进入风险/API兜底建议，不进入主验收用例",
+      "validation_path": "risk_note",
+      "should_generate_case": false
+    }
+  ]
+}

@@ -1,0 +1,79 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "AI Test Pipeline Case Plan",
+  "type": "object",
+  "required": ["work_item_id", "case_plans"],
+  "properties": {
+    "project_code": { "type": "string" },
+    "work_item_id": { "type": "string" },
+    "case_plans": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "case_plan_id",
+          "source_gate_ids",
+          "title",
+          "verification_side",
+          "case_type",
+          "priority",
+          "assertion",
+          "validation_path",
+          "should_generate_case"
+        ],
+        "properties": {
+          "case_plan_id": { "type": "string", "pattern": "^CP-[0-9]{3,}$" },
+          "source_gate_ids": {
+            "type": "array",
+            "items": { "type": "string", "pattern": "^TG-[0-9]{3,}$" }
+          },
+          "source_example_ids": {
+            "type": "array",
+            "items": { "type": "string", "pattern": "^AE-[0-9]{3,}$" }
+          },
+          "source_responsibility_ids": {
+            "type": "array",
+            "items": { "type": "string", "pattern": "^VR-[0-9]{3,}$" }
+          },
+          "generated_testcase_ids": {
+            "type": "array",
+            "items": { "type": "string" }
+          },
+          "page_name": { "type": "string" },
+          "section_name": { "type": "string" },
+          "title": { "type": "string" },
+          "verification_side": { "type": "string" },
+          "case_type": {
+            "type": "string",
+            "enum": [
+              "field_constraint",
+              "save_block",
+              "prompt_display",
+              "data_persistence",
+              "linkage",
+              "ui_display",
+              "backend_job",
+              "permission_scope",
+              "risk_hardening"
+            ]
+          },
+          "priority": { "type": "string", "enum": ["P0", "P1", "P2", "P3"] },
+          "assertion": { "type": "string" },
+          "validation_path": {
+            "type": "string",
+            "enum": [
+              "product_acceptance",
+              "api_guard",
+              "security_hardening",
+              "risk_note",
+              "out_of_scope"
+            ]
+          },
+          "should_generate_case": { "type": "boolean" }
+        },
+        "additionalProperties": true
+      }
+    }
+  },
+  "additionalProperties": true
+}

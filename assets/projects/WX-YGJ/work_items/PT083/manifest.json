@@ -1,0 +1,69 @@
+{
+  "project_code": "WX-YGJ",
+  "work_item_id": "PT083",
+  "title": "PT083需求",
+  "requirement_version": "",
+  "created_at": "2026-04-18T15:24:18.661867+00:00",
+  "status": "initialized",
+  "quality_gate": {
+    "enabled": false,
+    "mode": "soft",
+    "rollout_source": "new_work_item",
+    "thresholds": {
+      "false_traceability_rate_fail": 0.05,
+      "generalized_case_rate_warn": 0.03,
+      "generalized_case_count_warn": 5,
+      "duplicate_case_rate_warn": 0.005,
+      "duplicate_case_count_warn": 1
+    }
+  },
+  "artifact_retention": {
+    "mode": "minimal",
+    "cleanup_script": "scripts/cleanup_derived_artifacts.py",
+    "backups_preserved": true,
+    "notes": "兼容投影和过程审计产物按需再生，不作为长期保留真源。"
+  },
+  "artifacts": {
+    "inputs": "inputs/",
+    "image_evidence": "image_evidence/image_evidence_inventory.json",
+    "analysis": {
+      "analysis_report": "analysis/analysis_report.md",
+      "reasoning_pack": "analysis/reasoning_pack.json"
+    },
+    "coverage": "coverage/coverage_matrix.json",
+    "evidence": "evidence/evidence_inventory.json",
+    "structured_prd_markdown": "structured_prd/structured_prd.md",
+    "structured_prd_json": "structured_prd/structured_prd.json",
+    "structured_prd": "structured_prd/structured_prd.json",
+    "testability_gate_markdown": "acceptance/testability_gate.md",
+    "testability_gate_json": "acceptance/testability_gate.json",
+    "acceptance_examples_markdown": "acceptance/acceptance_examples.md",
+    "acceptance_examples_json": "acceptance/acceptance_examples.json",
+    "verification_responsibility_map_markdown": "design/verification_responsibility_map.md",
+    "verification_responsibility_map_json": "design/verification_responsibility_map.json",
+    "test_design_matrix_markdown": "design/test_design_matrix.md",
+    "test_design_matrix_json": "design/test_design_matrix.json",
+    "design_feedback_markdown": "design/design_feedback.md",
+    "design_feedback_json": "design/design_feedback.json",
+    "traceability_primary": "traceability/coverage_first_traceability.json",
+    "traceability": "traceability/coverage_first_traceability.json",
+    "case_plan_markdown": "testcases/case_plan.md",
+    "case_plan_json": "testcases/case_plan.json",
+    "testcases_main": "testcases/testcases_main.md",
+    "testcases": "testcases/testcases_main.md",
+    "reviews": "reviews/review_record.md",
+    "review_artifacts": {
+      "quality_report": "reviews/quality_report.json"
+    },
+    "code_reviews": {
+      "scope": "code_reviews/code_review_scope.json",
+      "request": "code_reviews/code_review_request.md",
+      "frontend_review": "code_reviews/frontend_code_review.md",
+      "frontend_confirmation": "code_reviews/frontend_confirmation.json",
+      "backend_review": "code_reviews/backend_code_review.md",
+      "backend_confirmation": "code_reviews/backend_confirmation.json",
+      "testcase_gap_check_markdown": "code_reviews/testcase_gap_check.md",
+      "testcase_gap_check_json": "code_reviews/testcase_gap_check.json"
+    }
+  }
+}

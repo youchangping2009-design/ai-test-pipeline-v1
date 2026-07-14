@@ -1,0 +1,19 @@
+required_assertions:
+  - id: linkage_acceptance_business
+    artifact: acceptance_examples.expected.json
+    selector: examples[source_gate_ids~TG-001]
+    field: oracle_strength
+    in: business_behavior,linkage
+    reason: 跨端链路必须有业务行为验收示例
+  - id: linkage_consumer_required
+    artifact: responsibility_map.expected.json
+    selector: responsibilities[source_rule_id=R-LINKAGE-FREE-TRIAL]
+    field: consumer_verification_required
+    in: true
+    reason: 跨端链路必须要求 C端消费验证
+  - id: linkage_case_plan
+    artifact: case_plan.expected.json
+    selector: case_plans[source_gate_ids~TG-001]
+    field: case_type
+    in: linkage
+    reason: 跨端链路必须生成 linkage 计划

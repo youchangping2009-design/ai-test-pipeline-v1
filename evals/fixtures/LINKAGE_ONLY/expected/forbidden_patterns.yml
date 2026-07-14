@@ -1,0 +1,8 @@
+forbidden_patterns:
+  - id: no_display_only_plan
+    artifact: case_plan.expected.json
+    pattern: "case_type"\s*:\s*"ui_display"
+required_patterns:
+  - id: has_linkage
+    artifact: case_plan.expected.json
+    pattern: "case_type"\s*:\s*"linkage"

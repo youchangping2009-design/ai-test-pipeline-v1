@@ -1,0 +1,11 @@
+[project]
+name = "ai-test-pipeline-v1"
+version = "0.1.0"
+description = "AI test pipeline repository"
+requires-python = ">=3.10"
+
+[tool.black]
+line-length = 100
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

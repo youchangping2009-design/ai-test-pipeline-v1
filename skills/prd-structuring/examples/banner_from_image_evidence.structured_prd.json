@@ -1,0 +1,633 @@
+{
+  "project_info": {
+    "project_code": "DEMO",
+    "project_name": "图片证据桥接示例",
+    "business_line": "小程序广告位管理",
+    "prd_source": "sample://wx-xcx/banner-config-annotated-image",
+    "prd_version": "image-evidence-demo"
+  },
+  "requirement_info": {
+    "requirement_title": "小程序banner配置页图片证据桥接示例",
+    "requirement_background": "用于验证 image_evidence_inventory 能被 structured_prd 消费。",
+    "requirement_goal": "验证页面骨架、字段矩阵、说明表和排序规则能从图片证据稳定映射到 structured_prd。",
+    "scope": {
+      "in_scope": [
+        "banner配置页",
+        "字段矩阵",
+        "排序弹窗",
+        "触达用户类型说明表"
+      ],
+      "out_of_scope": []
+    }
+  },
+  "pages": [
+    {
+      "page_name": "小程序banner配置页",
+      "page_desc": "后台管理首页banner配置、排序和触达人群说明表。",
+      "sections": [
+        {
+          "section_name": "筛选区",
+          "section_type": "filter_area",
+          "section_desc": "banner名称、跳转类型、状态筛选",
+          "module_name": "小程序banner配置",
+          "feature_names": [
+            "banner配置录入与状态字段"
+          ],
+          "section_rules": [
+            "支持按banner名称、跳转类型、状态筛选"
+          ],
+          "field_refs": [
+            "banner_name",
+            "jump_type",
+            "status"
+          ],
+          "field_rule_table_refs": []
+        },
+        {
+          "section_name": "banner配置数据说明",
+          "section_type": "display_area",
+          "section_desc": "banner配置条数上限与提示语说明",
+          "module_name": "小程序banner配置",
+          "feature_names": [
+            "banner条数上限与排序维护"
+          ],
+          "section_rules": [
+            "单tab下开启状态的banner不允许超过5条",
+            "超出保存时提示“{导航名称}下已存在5条banner数据”"
+          ],
+          "field_refs": [
+            "show_tab"
+          ],
+          "field_rule_table_refs": []
+        },
+        {
+          "section_name": "列表区",
+          "section_type": "list_area",
+          "section_desc": "banner配置主列表",
+          "module_name": "小程序banner配置",
+          "feature_names": [
+            "banner列表字段与操作",
+            "banner条数上限与排序维护"
+          ],
+          "section_rules": [
+            "后台数据按照创建时间倒序排列"
+          ],
+          "field_refs": [
+            "banner_name",
+            "banner_image",
+            "display_type",
+            "touch_user_type",
+            "jump_type",
+            "show_tab",
+            "status",
+            "creator_name",
+            "created_at",
+            "updated_at"
+          ],
+          "field_rule_table_refs": []
+        },
+        {
+          "section_name": "操作区",
+          "section_type": "action_area",
+          "section_desc": "banner排序与添加入口",
+          "module_name": "小程序banner配置",
+          "feature_names": [
+            "banner列表字段与操作"
+          ],
+          "section_rules": [],
+          "field_refs": [],
+          "field_rule_table_refs": []
+        },
+        {
+          "section_name": "添加弹窗",
+          "section_type": "edit_modal",
+          "section_desc": "banner配置添加表单",
+          "module_name": "小程序banner配置",
+          "feature_names": [
+            "banner配置录入与状态字段"
+          ],
+          "section_rules": [
+            "banner字段矩阵"
+          ],
+          "field_refs": [
+            "banner_name",
+            "banner_image",
+            "display_type",
+            "display_day_x",
+            "touch_user_type",
+            "jump_type",
+            "selected_activity",
+            "link_url",
+            "show_tab",
+            "status"
+          ],
+          "field_rule_table_refs": [
+            "触达用户类型"
+          ]
+        },
+        {
+          "section_name": "排序弹窗",
+          "section_type": "sort_modal",
+          "section_desc": "banner排序弹窗",
+          "module_name": "小程序banner配置",
+          "feature_names": [
+            "banner条数上限与排序维护"
+          ],
+          "section_rules": [
+            "展示tab排序所有开启的导航配置",
+            "初始排序根据banner创建时间顺序",
+            "banner删除/关闭后，后面顺位上移",
+            "已有排序后新增banner，根据创建顺序置于最前"
+          ],
+          "field_refs": [],
+          "field_rule_table_refs": []
+        },
+        {
+          "section_name": "触达用户类型",
+          "section_type": "field_rule_table",
+          "section_desc": "banner触达用户类型说明表",
+          "module_name": "小程序banner配置",
+          "feature_names": [
+            "banner触达用户类型字段语义"
+          ],
+          "section_rules": [
+            "字段定义 + 说明表",
+            "字段语义扩展"
+          ],
+          "field_refs": [
+            "touch_user_type"
+          ],
+          "field_rule_table_refs": [
+            "触达用户类型"
+          ]
+        }
+      ]
+    }
+  ],
+  "modules": [
+    {
+      "module_name": "小程序banner配置",
+      "module_desc": "管理首页banner资源、排序与触达人群。",
+      "features": [
+        {
+          "feature_name": "banner筛选条件",
+          "page_name": "小程序banner配置页",
+          "section_name": "筛选区",
+          "feature_desc": "承接banner名称、跳转类型、状态筛选条件。",
+          "actors": [
+            "后台运营"
+          ],
+          "entry_conditions": [
+            "进入小程序banner配置页"
+          ],
+          "rules": [
+            "支持按banner名称、跳转类型、状态筛选"
+          ],
+          "field_definitions": [
+            {
+              "field_name": "banner_name",
+              "display_name": "banner名称",
+              "data_type": "string",
+              "required": false,
+              "editable": true,
+              "length_rule": "varchar(10)",
+              "terminal": "ADMIN"
+            },
+            {
+              "field_name": "jump_type",
+              "display_name": "跳转类型",
+              "data_type": "enum",
+              "required": false,
+              "editable": true,
+              "enum_values": [
+                "无交互",
+                "活动中心",
+                "链接"
+              ],
+              "terminal": "ADMIN"
+            },
+            {
+              "field_name": "status",
+              "display_name": "状态",
+              "data_type": "enum",
+              "required": false,
+              "editable": true,
+              "enum_values": [
+                "开启",
+                "关闭"
+              ],
+              "terminal": "ADMIN"
+            }
+          ],
+          "field_rules": [],
+          "field_rule_tables": [],
+          "visible_elements": [
+            "banner名称输入框",
+            "跳转类型下拉框",
+            "状态下拉框"
+          ],
+          "interactive_entries": [
+            "点击重置",
+            "点击搜索"
+          ],
+          "abnormal_scenarios": [],
+          "boundary_scenarios": [],
+          "dependencies": []
+        },
+        {
+          "feature_name": "banner列表字段与操作",
+          "page_name": "小程序banner配置页",
+          "section_name": "列表区",
+          "feature_desc": "承接列表列头、元数据列与操作入口。",
+          "actors": [
+            "后台运营"
+          ],
+          "entry_conditions": [
+            "进入小程序banner配置页"
+          ],
+          "rules": [
+            "列表区展示banner名称、banner图片、展示类型、触达用户类型、跳转类型、展示tab、状态、创建人、创建时间、修改时间",
+            "支持编辑、复用、删除、点击图片查看大图"
+          ],
+          "field_definitions": [
+            {
+              "field_name": "banner_name",
+              "display_name": "banner名称",
+              "data_type": "string",
+              "required": false,
+              "editable": false,
+              "length_rule": "varchar(10)",
+              "terminal": "ADMIN"
+            },
+            {
+              "field_name": "banner_image",
+              "display_name": "banner图片",
+              "data_type": "image",
+              "required": false,
+              "editable": false,
+              "terminal": "ADMIN"
+            },
+            {
+              "field_name": "creator_name",
+              "display_name": "创建人",
+              "data_type": "string",
+              "required": false,
+              "editable": false,
+              "terminal": "ADMIN"
+            }
+          ],
+          "field_rules": [
+            {
+              "rule_id": "FR-BANNER-LIST-001",
+              "field_name": "banner_image",
+              "display_name": "banner图片",
+              "rule_text": "列表中banner图片来源配置，点击查看大图",
+              "rule_type": "effect_constraint",
+              "must_cover": true
+            }
+          ],
+          "field_rule_tables": [],
+          "visible_elements": [
+            "banner名称列",
+            "banner图片列",
+            "展示类型列",
+            "触达用户类型列",
+            "跳转类型列",
+            "展示tab列",
+            "状态列",
+            "创建人列",
+            "创建时间列",
+            "修改时间列",
+            "操作列"
+          ],
+          "interactive_entries": [
+            "点击编辑",
+            "点击复用",
+            "点击删除",
+            "点击banner图片查看大图",
+            "点击banner排序",
+            "点击添加"
+          ],
+          "abnormal_scenarios": [
+            "删除前进行二次确认"
+          ],
+          "boundary_scenarios": [],
+          "dependencies": []
+        },
+        {
+          "feature_name": "banner配置录入与状态字段",
+          "page_name": "小程序banner配置页",
+          "section_name": "添加弹窗",
+          "feature_desc": "校验banner字段录入、状态字段与条件展示。",
+          "actors": [
+            "后台运营"
+          ],
+          "entry_conditions": [
+            "进入小程序banner配置页"
+          ],
+          "rules": [
+            "banner名称必填",
+            "banner图片必填且仅支持一张",
+            "展示类型必选",
+            "X必填且范围为1到99",
+            "触达用户类型必选",
+            "跳转类型支持无交互、活动中心、链接",
+            "跳转类型=活动中心时选择活动必填",
+            "跳转类型=链接时链接必填",
+            "展示tab必选",
+            "状态默认关闭且状态选项为关闭、开启"
+          ],
+          "field_definitions": [
+            {
+              "field_name": "banner_name",
+              "display_name": "banner名称",
+              "data_type": "string",
+              "required": true,
+              "editable": true,
+              "length_rule": "varchar(10)",
+              "terminal": "ADMIN"
+            },
+            {
+              "field_name": "banner_image",
+              "display_name": "banner图片",
+              "data_type": "image",
+              "required": true,
+              "editable": true,
+              "terminal": "ADMIN"
+            },
+            {
+              "field_name": "display_type",
+              "display_name": "展示类型",
+              "data_type": "enum",
+              "required": true,
+              "editable": false,
+              "terminal": "ADMIN"
+            },
+            {
+              "field_name": "display_day_x",
+              "display_name": "X",
+              "data_type": "integer",
+              "required": true,
+              "editable": true,
+              "format_rule": "[1,99]之间的正整数",
+              "terminal": "ADMIN"
+            },
+            {
+              "field_name": "touch_user_type",
+              "display_name": "触达用户类型",
+              "data_type": "enum",
+              "required": true,
+              "editable": false,
+              "enum_values": [
+                "游戏付费用户",
+                "当日未进入游戏",
+                "全部用户"
+              ],
+              "terminal": "ADMIN"
+            },
+            {
+              "field_name": "jump_type",
+              "display_name": "跳转类型",
+              "data_type": "enum",
+              "required": true,
+              "editable": true,
+              "enum_values": [
+                "无交互",
+                "活动中心",
+                "链接"
+              ],
+              "terminal": "ADMIN"
+            },
+            {
+              "field_name": "selected_activity",
+              "display_name": "选择活动",
+              "data_type": "enum",
+              "required": true,
+              "editable": true,
+              "data_source": "活动中心渠道=小程序活动，状态=发布，按活动创建时间倒序",
+              "terminal": "ADMIN"
+            },
+            {
+              "field_name": "link_url",
+              "display_name": "链接",
+              "data_type": "string",
+              "required": true,
+              "editable": true,
+              "length_rule": "varchar(1000)",
+              "terminal": "ADMIN"
+            },
+            {
+              "field_name": "show_tab",
+              "display_name": "展示tab",
+              "data_type": "array",
+              "required": true,
+              "editable": true,
+              "data_source": "小程序导航名称列表",
+              "terminal": "ADMIN"
+            },
+            {
+              "field_name": "status",
+              "display_name": "状态",
+              "data_type": "enum",
+              "required": true,
+              "editable": true,
+              "default_value": "关闭",
+              "enum_values": [
+                "关闭",
+                "开启"
+              ],
+              "terminal": "ADMIN"
+            }
+          ],
+          "field_rules": [
+            {
+              "rule_id": "FR-BANNER-001",
+              "field_name": "display_type",
+              "display_name": "展示类型",
+              "rule_text": "展示类型默认为空，不可编辑",
+              "rule_type": "effect_constraint",
+              "must_cover": true
+            },
+            {
+              "rule_id": "FR-BANNER-002",
+              "field_name": "selected_activity",
+              "display_name": "选择活动",
+              "rule_text": "跳转类型=活动中心时选择活动必填，数据来源于状态为发布的小程序活动",
+              "rule_type": "data_source_constraint",
+              "must_cover": true
+            }
+          ],
+          "field_rule_tables": [],
+          "visible_elements": [
+            "banner添加弹窗"
+          ],
+          "interactive_entries": [
+            "点击确认",
+            "点击取消"
+          ],
+          "abnormal_scenarios": [
+            "链接场景链接为空时不允许保存"
+          ],
+          "boundary_scenarios": [
+            "X超出范围时不允许保存"
+          ],
+          "dependencies": []
+        },
+        {
+          "feature_name": "banner条数上限与排序维护",
+          "page_name": "小程序banner配置页",
+          "section_name": "排序弹窗",
+          "feature_desc": "控制banner条数上限、初始顺序和排序变化。",
+          "actors": [
+            "后台运营"
+          ],
+          "entry_conditions": [
+            "同一tab下存在多条banner配置"
+          ],
+          "rules": [
+            "后台数据按照创建时间倒序排列",
+            "单tab下开启状态的banner不允许超过5条",
+            "展示tab排序所有开启的导航配置",
+            "初始排序根据banner创建时间顺序",
+            "banner删除/关闭后，后面顺位上移",
+            "已有排序后新增banner，根据创建顺序置于最前",
+            "活动被引用后不允许删除",
+            "活动已被xxx(功能名称,id)引用，无法删除"
+          ],
+          "field_definitions": [],
+          "field_rules": [
+            {
+              "rule_id": "FR-BANNER-003",
+              "field_name": "show_tab",
+              "display_name": "展示tab",
+              "rule_text": "单tab下开启状态的banner不允许超过5条",
+              "rule_type": "range_constraint",
+              "must_cover": true
+            }
+          ],
+          "field_rule_tables": [],
+          "visible_elements": [
+            "banner排序弹窗"
+          ],
+          "interactive_entries": [
+            "拖动banner排序",
+            "点击确认",
+            "点击取消"
+          ],
+          "abnormal_scenarios": [
+            "{导航名称}下已存在5条banner数据",
+            "活动已被xxx(功能名称,id)引用，无法删除"
+          ],
+          "boundary_scenarios": [],
+          "dependencies": []
+        },
+        {
+          "feature_name": "banner触达用户类型字段语义",
+          "page_name": "小程序banner配置页",
+          "section_name": "添加弹窗",
+          "feature_desc": "说明添加弹窗中触达用户类型字段的枚举效果与充值金额区间规则。",
+          "actors": [
+            "后台运营"
+          ],
+          "entry_conditions": [
+            "打开banner添加弹窗并查看触达用户类型字段"
+          ],
+          "rules": [
+            "游戏付费用户附加充值金额区间",
+            "充值金额为非负整数闭区间，前值不允许大于后值"
+          ],
+          "field_definitions": [
+            {
+              "field_name": "recharge_amount_range",
+              "display_name": "充值金额",
+              "data_type": "range",
+              "required": false,
+              "editable": true,
+              "format_rule": "非负整数，闭区间，范围[0,999999999]",
+              "terminal": "ADMIN"
+            }
+          ],
+          "field_rules": [
+            {
+              "rule_id": "FR-BANNER-004",
+              "field_name": "recharge_amount_range",
+              "display_name": "充值金额",
+              "rule_text": "前值点击toast值不能大于后值",
+              "rule_type": "range_constraint",
+              "must_cover": true
+            }
+          ],
+          "field_rule_tables": [
+            {
+              "field_name": "touch_user_type",
+              "table_name": "触达用户类型",
+              "rows": [
+                {
+                  "row_id": "BANNER-TUT-001",
+                  "row_name": "游戏付费用户",
+                  "rule_text": "展示该tab的用户对应uid在当前appkey下的累计充值达标",
+                  "expected_effect": "需要配置充值金额区间"
+                },
+                {
+                  "row_id": "BANNER-TUT-002",
+                  "row_name": "当日未进入游戏",
+                  "rule_text": "展示该tab的用户对应uid当日在当前appkey下无进入游戏行为",
+                  "expected_effect": "无需附加字段"
+                },
+                {
+                  "row_id": "BANNER-TUT-003",
+                  "row_name": "全部用户",
+                  "rule_text": "展示该tab的全部用户",
+                  "expected_effect": "无需附加字段"
+                }
+              ]
+            }
+          ],
+          "visible_elements": [
+            "触达用户类型说明表"
+          ],
+          "interactive_entries": [],
+          "abnormal_scenarios": [],
+          "boundary_scenarios": [],
+          "dependencies": []
+        }
+      ]
+    }
+  ],
+  "flows": [
+    {
+      "flow_id": "FLOW-IMG-001",
+      "flow_name": "banner图片证据驱动结构化建模",
+      "flow_type": "main_flow",
+      "business_goal": "验证 image evidence 中的页面、字段和规则能够映射到 structured_prd。",
+      "steps": [
+        {
+          "step_no": 1,
+          "step_name": "消费列表与弹窗证据",
+          "module_name": "小程序banner配置",
+          "feature_name": "banner配置录入与状态字段",
+          "action": "将图片中的字段矩阵映射为 field_definitions 与 field_rules",
+          "expected_result": "banner字段矩阵进入 structured_prd"
+        },
+        {
+          "step_no": 2,
+          "step_name": "消费排序与字段语义证据",
+          "module_name": "小程序banner配置",
+          "feature_name": "banner触达用户类型字段语义",
+          "action": "将说明表逐行映射为 field_rule_tables，并回挂到触达用户类型字段语义",
+          "expected_result": "排序规则和字段说明表行进入 structured_prd"
+        }
+      ],
+      "success_criteria": [
+        "image evidence 中的页面、字段和说明表均可在 structured_prd 中找到对应承接"
+      ],
+      "related_modules": [
+        "小程序banner配置"
+      ],
+      "priority": "P1",
+      "tags": [
+        "评审用例"
+      ]
+    }
+  ]
+}
