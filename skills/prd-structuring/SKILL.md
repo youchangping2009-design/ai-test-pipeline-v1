@@ -17,7 +17,7 @@
 - `image_evidence/image_evidence_inventory.json`
 - 原型说明
 - 补充口述
-- `inputs/requirement_summary.md`（存在时优先于分散 raw inputs）
+- `inputs/requirement_summary.md`（主流程必需，优先于分散 raw inputs）
 - 已整理的需求文本
 - 项目编码 / 项目名称 / 业务线
 
@@ -80,7 +80,7 @@ Schema：
 
 ### 1. 先整理输入
 
-若已存在 `inputs/requirement_summary.md`，优先读取并作为结构化阶段的归一化输入；否则使用 `prompts/prd_input_prompt.md`，把原始材料整理成：
+先读取主流程产物 `inputs/requirement_summary.md` 作为结构化阶段的归一化输入，并结合原始 `inputs/` 做来源核对。若该文件缺失或仍为模板，停止进入 structured_prd 阶段，先回到 `requirement-summary` 完成：
 
 - 已明确的信息
 - 待确认的信息

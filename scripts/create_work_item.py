@@ -25,6 +25,8 @@ from datetime import timezone
 from pathlib import Path
 from typing import List
 
+from work_item_policy import DEFAULT_WORK_ITEM_LEVEL
+from work_item_policy import VALID_WORK_ITEM_LEVELS
 
 TESTCASE_HEADER = (
     "# 页面：待补充\n"
@@ -80,13 +82,20 @@ def write_file(
     written_files.append(path)
 
 
-def build_readme(project_code: str, work_item_id: str, title: str, requirement_version: str) -> str:
+def build_readme(
+    project_code: str,
+    work_item_id: str,
+    title: str,
+    requirement_version: str,
+    work_item_level: str,
+) -> str:
     return (
         f"# {work_item_id}\n\n"
         f"- 项目编码：{project_code}\n"
         f"- 工作项 ID：{work_item_id}\n"
         f"- 标题：{title or '待补充'}\n"
-        f"- 需求版本：{requirement_version or '待补充'}\n\n"
+        f"- 需求版本：{requirement_version or '待补充'}\n"
+        f"- 工作项级别：{work_item_level}\n\n"
         "## 目录说明\n\n"
         "- `inputs/`：该工作项原始资料与补充输入\n"
         "- `image_evidence/`：图片类 PRD 的中间证据层\n"
@@ -103,17 +112,13 @@ def build_readme(project_code: str, work_item_id: str, title: str, requirement_v
         "- `.generation/`：该工作项的重生成任务包\n\n"
         "## 建议流程\n\n"
         "1. 将该需求原始资料放入 `inputs/`\n"
-        "2. 若输入主要是截图，先产出 `image_evidence/image_evidence_inventory.json`\n"
-        "3. 先生成 `analysis/analysis_report.md` 与 `analysis/reasoning_pack.json`\n"
-        "4. 生成 `coverage/coverage_matrix.json`\n"
-        "5. 使用 `scripts/prepare_regeneration_run.py` 生成本次重跑任务包\n"
-        "6. 使用 `scripts/generate_regeneration_bundle.py` 生成本次 bundle（existing / command / openai provider）\n"
-        "7. 使用 `scripts/execute_regeneration_bundle.py` 落盘产物并自动编译/导出/校验；其中先由 `structured_prd.md` 编译出 `structured_prd.json`\n"
-        "8. 完成前端代码 CR、后端代码 CR，并分别人工确认\n"
-        "9. 如需人工修订，再回写 bundle 或重新生成 bundle 后重跑\n"
-        "10. 运行 reviewer + scorer，产出质量报告\n"
-        "11. 使用 `scripts/validate_work_item.py` 执行工作项级统一校验\n"
-        "12. 使用项目级校验脚本对该工作项产物执行检查\n"
+        "2. 生成 `inputs/requirement_summary.md` 与 `inputs/source_manifest.json`\n"
+        "3. 若输入主要是截图，产出 `image_evidence/image_evidence_inventory.json`\n"
+        "4. 生成 `analysis/analysis_report.md` 与 `analysis/reasoning_pack.json`\n"
+        "5. 生成 structured_prd、测试设计决策层与 `case_plan`\n"
+        "6. 同步生成 `testpoints.md/json` 与 `testcases_main.md`\n"
+        "7. 生成 traceability、review 和导出产物\n"
+        "8. 使用 `scripts/validate_work_item.py --strict` 执行工作项级统一校验\n"
     )
 
 
@@ -122,14 +127,20 @@ def build_manifest(
     work_item_id: str,
     title: str,
     requirement_version: str,
+    work_item_level: str,
 ) -> str:
     payload = {
         "project_code": project_code,
         "work_item_id": work_item_id,
         "title": title or "",
         "requirement_version": requirement_version or "",
+        "work_item_level": work_item_level,
         "created_at": datetime.now(timezone.utc).isoformat(),
         "status": "initialized",
+        "pipeline_policy": {
+            "requirement_intake_required": True,
+            "testpoints_required": True,
+        },
         "quality_gate": {
             "enabled": False,
             "mode": "soft",
@@ -144,6 +155,8 @@ def build_manifest(
         },
         "artifacts": {
             "inputs": "inputs/",
+            "requirement_summary": "inputs/requirement_summary.md",
+            "source_manifest": "inputs/source_manifest.json",
             "image_evidence": "image_evidence/image_evidence_inventory.json",
             "analysis": {
                 "analysis_report": "analysis/analysis_report.md",
@@ -170,6 +183,8 @@ def build_manifest(
             "traceability": "traceability/traceability_matrix.json",
             "case_plan_markdown": "testcases/case_plan.md",
             "case_plan_json": "testcases/case_plan.json",
+            "testpoints_markdown": "testcases/testpoints.md",
+            "testpoints_json": "testcases/testpoints.json",
             "testcases_main": "testcases/testcases_main.md",
             "testcase_bundle_json": "testcases/testcase_bundle.json",
             "field_audit": "testcases/field_audit.json",
@@ -211,6 +226,45 @@ def build_inputs_readme() -> str:
         "- `inputs/received_screenshots.md`：记录图片说明、页名、补充口述、OCR 修正和图片文件对应关系\n"
         "- 后续重新增强图片识别时，优先直接消费 `inputs/images/` 中的本地图片文件\n"
     )
+
+
+def build_requirement_summary_placeholder(work_item_id: str, title: str) -> str:
+    return (
+        f"# {work_item_id} {title or '需求'}需求整理\n\n"
+        "整理时间：待补充\n\n"
+        "## 1. 资料来源\n\n"
+        "- 待补充\n\n"
+        "## 2. 需求结论\n\n"
+        "- 待补充\n\n"
+        "## 3. 前置条件 / 准备工作\n\n"
+        "- 待补充\n\n"
+        "## 4. 业务范围与不做范围\n\n"
+        "- 待补充\n\n"
+        "## 5. 面向研发的需求拆解\n\n"
+        "- 待补充\n\n"
+        "## 6. 面向测试的验收关注点\n\n"
+        "- 待补充\n\n"
+        "## 7. 数据 / 埋点 / 接口 / 配置要求\n\n"
+        "- 待补充\n\n"
+        "## 8. 风险与兼容性\n\n"
+        "- 待补充\n\n"
+        "## 9. 待确认问题\n\n"
+        "- 待补充\n\n"
+        "## 10. 本轮整理边界\n\n"
+        "- 待补充\n"
+    )
+
+
+def build_source_manifest_placeholder(project_code: str, work_item_id: str) -> str:
+    payload = {
+        "project_code": project_code,
+        "work_item_id": work_item_id,
+        "manifest_type": "requirement_source_manifest",
+        "summary_artifact": "inputs/requirement_summary.md",
+        "sources": [],
+        "unresolved_sources": [],
+    }
+    return json.dumps(payload, ensure_ascii=False, indent=2) + "\n"
 
 
 def build_input_images_readme() -> str:
@@ -375,8 +429,8 @@ def build_case_plan_placeholder(project_code: str, work_item_id: str) -> str:
 def build_case_plan_markdown_placeholder() -> str:
     return (
         "# Case Plan\n\n"
-        "| case_plan_id | source_gate_ids | source_example_ids | source_responsibility_ids | generated_testcase_ids | title | verification_side | case_type | priority | assertion | validation_path | should_generate_case |\n"
-        "|---|---|---|---|---|---|---|---|---|---|---|---|\n"
+        "| case_plan_id | source_gate_ids | source_example_ids | source_responsibility_ids | source_coverage_ids | generated_testcase_ids | title | verification_side | case_type | priority | assertion | validation_path | should_generate_case |\n"
+        "|---|---|---|---|---|---|---|---|---|---|---|---|---|\n"
     )
 
 
@@ -390,6 +444,30 @@ def build_testcase_bundle_placeholder(project_code: str, work_item_id: str) -> s
         "cases": [],
     }
     return json.dumps(payload, ensure_ascii=False, indent=2) + "\n"
+
+
+def build_testpoints_placeholder(project_code: str, work_item_id: str) -> str:
+    payload = {
+        "project_code": project_code,
+        "work_item_id": work_item_id,
+        "truth_source": "testcases/case_plan.json",
+        "projection_only": True,
+        "generated_from": ["testcases/case_plan.json", "testcases/testcases_main.md"],
+        "testpoints": [],
+    }
+    return json.dumps(payload, ensure_ascii=False, indent=2) + "\n"
+
+
+def build_testpoints_markdown_placeholder(project_code: str, work_item_id: str) -> str:
+    return (
+        "# Testpoints View\n\n"
+        f"- Project: `{project_code}`\n"
+        f"- Work Item: `{work_item_id}`\n"
+        "- Truth Source: `testcases/case_plan.json`\n"
+        "- Projection Only: `true`\n\n"
+        "| 测试点ID | 页面 | 板块 | 模块 | 功能点 | 测试维度 | 测试点 | 核心断言 | 优先级 | 来源 CasePlan | 是否生成用例 |\n"
+        "|---|---|---|---|---|---|---|---|---|---|---|\n"
+    )
 
 
 def build_quality_report_placeholder() -> str:
@@ -604,6 +682,12 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--work-item-id", required=True, help="工作项 ID，空格会替换为中划线并转为大写")
     parser.add_argument("--title", required=False, help="工作项标题")
     parser.add_argument("--requirement-version", required=False, help="需求版本")
+    parser.add_argument(
+        "--work-item-level",
+        choices=sorted(VALID_WORK_ITEM_LEVELS),
+        default=DEFAULT_WORK_ITEM_LEVEL,
+        help="工作项复杂度级别，写入 manifest.json；默认 M",
+    )
     parser.add_argument("--force", action="store_true", help="允许覆盖已存在文件")
     return parser.parse_args()
 
@@ -620,6 +704,7 @@ def main() -> int:
 
     title = (args.title or "").strip()
     requirement_version = (args.requirement_version or "").strip()
+    work_item_level = args.work_item_level
 
     repo_root = get_repo_root()
     project_root = repo_root / "assets" / "projects" / project_code
@@ -671,14 +756,14 @@ def main() -> int:
 
     write_file(
         work_item_root / "README.md",
-        build_readme(project_code, work_item_id, title, requirement_version),
+        build_readme(project_code, work_item_id, title, requirement_version, work_item_level),
         args.force,
         written_files,
         skipped_files,
     )
     write_file(
         work_item_root / "manifest.json",
-        build_manifest(project_code, work_item_id, title, requirement_version),
+        build_manifest(project_code, work_item_id, title, requirement_version, work_item_level),
         args.force,
         written_files,
         skipped_files,
@@ -686,6 +771,20 @@ def main() -> int:
     write_file(
         inputs_dir / "README.md",
         build_inputs_readme(),
+        args.force,
+        written_files,
+        skipped_files,
+    )
+    write_file(
+        inputs_dir / "requirement_summary.md",
+        build_requirement_summary_placeholder(work_item_id, title),
+        args.force,
+        written_files,
+        skipped_files,
+    )
+    write_file(
+        inputs_dir / "source_manifest.json",
+        build_source_manifest_placeholder(project_code, work_item_id),
         args.force,
         written_files,
         skipped_files,
@@ -845,6 +944,20 @@ def main() -> int:
         skipped_files,
     )
     write_file(
+        testcases_dir / "testpoints.json",
+        build_testpoints_placeholder(project_code, work_item_id),
+        args.force,
+        written_files,
+        skipped_files,
+    )
+    write_file(
+        testcases_dir / "testpoints.md",
+        build_testpoints_markdown_placeholder(project_code, work_item_id),
+        args.force,
+        written_files,
+        skipped_files,
+    )
+    write_file(
         testcases_dir / "testcase_bundle.json",
         build_testcase_bundle_placeholder(project_code, work_item_id),
         args.force,
@@ -939,6 +1052,7 @@ def main() -> int:
     print_section("Work Item Init Summary")
     print(f"项目编码: {project_code}")
     print(f"工作项 ID: {work_item_id}")
+    print(f"工作项级别: {work_item_level}")
     print(f"工作项目录: {work_item_root}")
 
     print("\n创建的目录：")
@@ -965,24 +1079,19 @@ def main() -> int:
     print("\n下一步建议操作：")
     print(f"1. 将本次需求原始资料放入 {inputs_dir}")
     print(f"   - 图片原件优先放入 {input_images_dir}")
-    print(f"2. 若输入主要是截图，补全 {image_evidence_dir / 'image_evidence_inventory.json'}")
-    print(f"3. 先生成 {analysis_dir / 'analysis_report.md'} 与 {analysis_dir / 'reasoning_pack.json'}")
-    print(f"4. 生成 {coverage_dir / 'coverage_matrix.json'}")
-    print(f"5. 补全 {evidence_dir / 'evidence_inventory.json'}")
-    print(f"6. 先补全 {structured_prd_dir / 'structured_prd.md'}")
-    print(f"7. 再编译生成 {structured_prd_dir / 'structured_prd.json'}")
-    print(f"8. 补全 {acceptance_dir / 'testability_gate.json'}，先判断规则是否可测")
-    print(f"9. 补全 {testcases_dir / 'case_plan.json'}，正式用例应从 case_plan 派生")
-    print(f"10. 补全 {traceability_dir / 'traceability_matrix.json'}")
-    print(f"11. 补全 {testcases_dir / 'testcases_main.md'} 与兼容镜像 {testcases_dir / 'testcases.md'}")
-    print(f"12. 运行 reviewer + scorer，产出 {reviews_dir / 'quality_report.json'} 等质量报告")
-    print(f"13. 完成 {code_reviews_dir / 'frontend_code_review.md'} 与人工确认")
-    print(f"14. 完成 {code_reviews_dir / 'backend_code_review.md'} 与人工确认")
+    print(f"2. 生成 {inputs_dir / 'requirement_summary.md'} 与 {inputs_dir / 'source_manifest.json'}")
+    print(f"3. 若输入主要是截图，补全 {image_evidence_dir / 'image_evidence_inventory.json'}")
+    print(f"4. 生成 reasoning、structured_prd、coverage 与测试设计决策层")
+    print(f"5. 补全 {testcases_dir / 'case_plan.json'}")
+    print(f"6. 同步生成 {testcases_dir / 'testpoints.md'}、{testcases_dir / 'testpoints.json'} 与 {testcases_dir / 'testcases_main.md'}")
+    print(f"7. 生成 traceability、review、code review 与导出产物")
     print(
-        "10. 执行工作项级校验："
+        "8. 执行工作项级校验："
         f" /usr/bin/python3 {repo_root / 'scripts' / 'validate_work_item.py'}"
         f" --project-code {project_code}"
         f" --work-item-id {work_item_id}"
+        f" --work-item-level {work_item_level}"
+        " --strict"
     )
 
     return 0

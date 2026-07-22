@@ -17,16 +17,24 @@ def read_json(path: Path) -> dict[str, Any]:
     return payload
 
 
-def load_case_plan_ids(path: Path) -> set[str]:
+def load_case_plan_ids(path: Path) -> tuple[set[str], set[str]]:
     payload = read_json(path)
     plans = payload.get("case_plans", [])
     if not isinstance(plans, list):
-        return set()
-    return {
+        return set(), set()
+    all_ids = {
         str(item.get("case_plan_id", "")).strip()
         for item in plans
         if isinstance(item, dict) and str(item.get("case_plan_id", "")).strip()
     }
+    active_ids = {
+        str(item.get("case_plan_id", "")).strip()
+        for item in plans
+        if isinstance(item, dict)
+        and str(item.get("case_plan_id", "")).strip()
+        and bool(item.get("should_generate_case"))
+    }
+    return all_ids, active_ids
 
 
 def load_gate_ids(path: Path | None) -> set[str]:
@@ -43,20 +51,32 @@ def load_gate_ids(path: Path | None) -> set[str]:
     }
 
 
-def validate(payload: dict[str, Any], case_plan_ids: set[str], gate_ids: set[str]) -> tuple[list[str], list[str]]:
+def validate(
+    payload: dict[str, Any],
+    case_plan_ids: set[str],
+    active_case_plan_ids: set[str],
+    gate_ids: set[str],
+    strict: bool = False,
+) -> tuple[list[str], list[str]]:
     errors: list[str] = []
     warnings: list[str] = []
     if payload.get("truth_source") != "testcases/case_plan.json":
         errors.append("testpoints.truth_source 必须为 testcases/case_plan.json")
     if payload.get("projection_only") is not True:
         errors.append("testpoints.projection_only 必须为 true，不能切换 testcase 真源")
-    if payload.get("generated_from") != ["testcases/case_plan.json"]:
-        errors.append("testpoints.generated_from 必须只包含 testcases/case_plan.json")
+    generated_from = payload.get("generated_from")
+    allowed_generated_from = [
+        ["testcases/case_plan.json"],
+        ["testcases/case_plan.json", "testcases/testcases_main.md"],
+    ]
+    if generated_from not in allowed_generated_from:
+        errors.append("testpoints.generated_from 必须以 case_plan 为主，可附加 testcases_main 上下文")
     items = payload.get("testpoints")
     if not isinstance(items, list):
         return errors + ["testpoints 必须为数组"], warnings
 
     seen: set[str] = set()
+    seen_case_plan_ids: set[str] = set()
     for index, item in enumerate(items, start=1):
         if not isinstance(item, dict):
             errors.append(f"第 {index} 个 testpoint 必须为对象")
@@ -70,6 +90,7 @@ def validate(payload: dict[str, Any], case_plan_ids: set[str], gate_ids: set[str
         seen.add(testpoint_id)
         if source_case_plan_id not in case_plan_ids:
             errors.append(f"{testpoint_id or index} source_case_plan_id 不存在于 case_plan: {source_case_plan_id}")
+        seen_case_plan_ids.add(source_case_plan_id)
         source_gate_ids = item.get("source_gate_ids", [])
         if not isinstance(source_gate_ids, list) or not source_gate_ids:
             errors.append(f"{testpoint_id or index} source_gate_ids 不能为空")
@@ -80,10 +101,22 @@ def validate(payload: dict[str, Any], case_plan_ids: set[str], gate_ids: set[str
         for field in ["test_point", "assertion", "priority", "validation_path"]:
             if not str(item.get(field, "")).strip():
                 errors.append(f"{testpoint_id or index} 字段 {field} 不能为空")
+        should_generate = bool(item.get("should_generate_case"))
         if not str(item.get("page_name", "")).strip():
-            warnings.append(f"{testpoint_id or index} 缺少 page_name，建议在 case_plan 中补充页面上下文")
+            message = f"{testpoint_id or index} 缺少 page_name，建议在 case_plan 中补充页面上下文"
+            (errors if strict and should_generate else warnings).append(message)
         if not str(item.get("section_name", "")).strip():
-            warnings.append(f"{testpoint_id or index} 缺少 section_name，建议在 case_plan 中补充板块上下文")
+            message = f"{testpoint_id or index} 缺少 section_name，建议在 case_plan 中补充板块上下文"
+            (errors if strict and should_generate else warnings).append(message)
+    if strict:
+        missing_plans = sorted(case_plan_ids - seen_case_plan_ids)
+        extra_plans = sorted(seen_case_plan_ids - case_plan_ids)
+        if missing_plans:
+            errors.append(f"testpoints 未覆盖 case_plan: {missing_plans}")
+        if extra_plans:
+            errors.append(f"testpoints 引用了额外 case_plan: {extra_plans}")
+        if active_case_plan_ids and not items:
+            errors.append("strict 主流程要求 testpoints 非空")
     return errors, warnings
 
 
@@ -92,17 +125,24 @@ def main() -> int:
     parser.add_argument("--input", required=True)
     parser.add_argument("--case-plan", required=True)
     parser.add_argument("--testability-gate", required=False)
+    parser.add_argument("--strict", action="store_true")
     args = parser.parse_args()
 
     try:
         payload = read_json(Path(args.input).resolve())
-        case_plan_ids = load_case_plan_ids(Path(args.case_plan).resolve())
+        case_plan_ids, active_case_plan_ids = load_case_plan_ids(Path(args.case_plan).resolve())
         gate_ids = load_gate_ids(Path(args.testability_gate).resolve()) if args.testability_gate else set()
     except Exception as exc:
         print(f"读取 testpoints 或来源产物失败: {exc}")
         return 1
 
-    errors, warnings = validate(payload, case_plan_ids, gate_ids)
+    errors, warnings = validate(
+        payload,
+        case_plan_ids,
+        active_case_plan_ids,
+        gate_ids,
+        strict=args.strict,
+    )
     if errors:
         print("❌ testpoints 校验失败")
         for error in errors:

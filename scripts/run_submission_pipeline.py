@@ -12,6 +12,10 @@ import sys
 from datetime import datetime
 from pathlib import Path
 
+from work_item_policy import DEFAULT_WORK_ITEM_LEVEL
+from work_item_policy import VALID_WORK_ITEM_LEVELS
+from work_item_policy import persist_default_work_item_level
+from work_item_policy import resolve_work_item_level
 
 ROOT = Path(__file__).resolve().parents[1]
 LEVEL_STAGE_POLICY = {
@@ -56,7 +60,13 @@ def work_item_root(project_code: str, work_item_id: str) -> Path:
     return ROOT / "assets" / "projects" / project_code / "work_items" / work_item_id
 
 
-def ensure_work_item(project_code: str, work_item_id: str, title: str, requirement_version: str) -> None:
+def ensure_work_item(
+    project_code: str,
+    work_item_id: str,
+    title: str,
+    requirement_version: str,
+    work_item_level: str,
+) -> None:
     item_root = work_item_root(project_code, work_item_id)
     if item_root.exists():
         return
@@ -72,6 +82,7 @@ def ensure_work_item(project_code: str, work_item_id: str, title: str, requireme
         command.extend(["--title", title])
     if requirement_version:
         command.extend(["--requirement-version", requirement_version])
+    command.extend(["--work-item-level", work_item_level])
     ok, output = run_command(command)
     if not ok:
         raise SystemExit(f"创建工作项失败:\n{output}")
@@ -208,9 +219,9 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--skip-generate", action="store_true", help="只落输入与任务包，不生成 bundle")
     parser.add_argument(
         "--work-item-level",
-        choices=["S", "M", "L"],
-        default="M",
-        help="工作项复杂度级别；S 强制 testability/case_plan，M 增加 acceptance，L 增加 responsibility/test_design_matrix",
+        choices=sorted(VALID_WORK_ITEM_LEVELS),
+        default=None,
+        help="显式覆盖 manifest.json 中的工作项级别；未指定时读取 manifest，缺失则回退 M",
     )
     parser.add_argument(
         "--stop-at",
@@ -236,10 +247,26 @@ def main() -> int:
     args = parse_args()
     project_code = normalize_code(args.project_code)
     work_item_id = normalize_code(args.work_item_id)
-    level_stages = LEVEL_STAGE_POLICY[args.work_item_level]
-
-    ensure_work_item(project_code, work_item_id, args.title.strip(), args.requirement_version.strip())
     item_root = work_item_root(project_code, work_item_id)
+    manifest_path = item_root / "manifest.json"
+    if item_root.exists() and not manifest_path.exists():
+        raise SystemExit(f"工作项目录已存在但缺少 manifest.json: {manifest_path}")
+    if item_root.exists() and manifest_path.exists():
+        persisted_level, _ = persist_default_work_item_level(manifest_path)
+        manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+        work_item_level, level_source = resolve_work_item_level(manifest, args.work_item_level)
+    else:
+        work_item_level = args.work_item_level or DEFAULT_WORK_ITEM_LEVEL
+        level_source = "cli" if args.work_item_level else "default"
+        ensure_work_item(
+            project_code,
+            work_item_id,
+            args.title.strip(),
+            args.requirement_version.strip(),
+            work_item_level,
+        )
+        persisted_level = work_item_level
+    level_stages = LEVEL_STAGE_POLICY[work_item_level]
 
     copied_inputs = sync_inputs(item_root, args.input)
 
@@ -251,6 +278,8 @@ def main() -> int:
             project_code,
             "--work-item-id",
             work_item_id,
+            "--work-item-level",
+            work_item_level,
         ]
     )
     if not ok:
@@ -261,7 +290,9 @@ def main() -> int:
         print(f"copied_inputs: {len(copied_inputs)}")
         for path in copied_inputs:
             print(f"- {path}")
-        print(f"work_item_level: {args.work_item_level}")
+        print(f"work_item_level: {work_item_level}")
+        print(f"work_item_level_source: {level_source}")
+        print(f"manifest_work_item_level: {persisted_level}")
         print(f"level_stage_policy: {','.join(level_stages)}")
         print(f"stop_at: {args.stop_at}")
         if args.stop_at not in level_stages:
@@ -305,6 +336,8 @@ def main() -> int:
             str(item_root / ".generation" / "latest" / "regeneration_bundle.json"),
             "--skip-code-reviews",
         ]
+        if args.strict:
+            execute_command.append("--strict")
         ok, output = run_command(execute_command)
         if not ok:
             raise SystemExit(f"执行重生成失败:\n{output}")
@@ -342,7 +375,9 @@ def main() -> int:
     print(f"code_review_status: {status}")
     print(f"code_review_scope: {scope_path}")
     print(f"code_review_request: {request_path}")
-    print(f"work_item_level: {args.work_item_level}")
+    print(f"work_item_level: {work_item_level}")
+    print(f"work_item_level_source: {level_source}")
+    print(f"manifest_work_item_level: {persisted_level}")
     print(f"strict_requested: {str(args.strict).lower()}")
     if args.repair:
         print("repair_requested: true (reserved)")

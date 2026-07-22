@@ -69,7 +69,7 @@ Codex 在本仓库中工作时，必须优先遵守本协议。本协议用于�
 ## 1. PRD Structurer
 负责将原始 PRD、截图、补充描述转为结构化 PRD。
 
-当 `inputs/` 来源分散（飞书文档、群聊、截图、公网资料并存）时，建议先使用 `skills/requirement-summary/` 产出 `inputs/requirement_summary.md`，并可用 `inputs/source_manifest.json` 记录来源清单，再作为 `prd-structuring` 的优先输入；原始 PRD 已足够规整时可跳过。需求整理只归一化输入，不替代 `structured_prd`、`testability_gate` 或 `case_plan`。
+需求接入与归一化是正式主流程第一阶段。所有工作项都应使用 `skills/requirement-summary/` 产出 `inputs/requirement_summary.md`，并用 `inputs/source_manifest.json` 记录实际消费的来源及访问状态，再进入 `prd-structuring`。需求整理只归一化输入，不替代 `structured_prd`、`testability_gate` 或 `case_plan`。
 
 ## 2. Case Generator
 负责基于测试设计决策层产出标准测试用例。正式用例不再建议直接从 structured_prd 临时生成，而应从 `testcases/case_plan.json` / `case_plan.md` 派生。
@@ -112,8 +112,12 @@ Codex 在本仓库中工作时，必须优先遵守本协议。本协议用于�
 16. 正式测试用例中的关键页面、按钮、弹窗、字段、值、状态、提示语和技术字段应遵守 `rules/testcase_element_notation.md`
 17. 正式测试用例必须遵守 `rules/testcase_grouping_rules.md`：最终 `testcases_main.md` 按“页面 + 板块”分表，表格内继续保留“所属模块 / 所属功能点”列。
 18. 正式测试用例的标题、前置条件、测试步骤和预期结果应遵守 `rules/testcase_human_readable_style.md`，优先写成人工可读、可执行、可判断的表达。
-19. `inputs/requirement_summary.md` 是可选输入归一化产物，不是 strict gate 必填项；存在时 `prd-structuring` 应优先消费，不存在时仍可直接从原始 `inputs/` 进入结构化阶段。`inputs/source_manifest.json` 只记录需求来源与访问状态，不替代原始输入。
-20. `testcases/testpoints.md` / `testpoints.json` 只能作为从 `case_plan.json` 派生的人工评审视图，不得替代 `case_plan` 或 `testcases_main.md`。
+19. `inputs/requirement_summary.md` 与 `inputs/source_manifest.json` 是主流程正式产物，strict 必须校验；它们不得替代原始输入，`prd-structuring` 必须优先消费归一化结果。
+20. `testcases/testpoints.md` / `testpoints.json` 与 `testcases_main.md` 必须在 Case Generator 主流程中同步生成。测试点以 `case_plan.json` 为来源，可引用主用例补充页面/板块上下文，但不得替代 `case_plan` 或 `testcases_main.md`。
+21. 工作项复杂度必须持久化到 `manifest.json.work_item_level`；执行优先级为命令行显式覆盖 > manifest > 默认 M，生成与校验必须使用同一有效档位。
+22. `reasoning_pack` 必须显式消费 `requirement_summary.md` 与 `source_manifest.json`；纯文本需求不得因缺少 image evidence 被阻塞。
+23. `should_generate_case=true` 的 Case Plan 必须提供 `source_coverage_ids` 或稳定的 `generated_testcase_ids`，否则不得进入正式用例生成。
+24. bundle 后处理必须刷新 testcase bundle、testpoints、开发自测、traceability 与 quality report；旧质量报告指纹与当前主产物不一致时必须失败。
 
 # Case Generation Rules
 

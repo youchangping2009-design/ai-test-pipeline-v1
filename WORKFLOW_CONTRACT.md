@@ -83,8 +83,8 @@
 
 - 原始输入优先保留
 - 不允许只保留最终结果而丢失可追溯中间层
-- 推荐（非强制）在多源输入场景下先产出 `inputs/requirement_summary.md`，见 `skills/requirement-summary/`
-- `inputs/source_manifest.json` 可用于记录需求来源、外部链接、本地材料和访问状态；它是来源清单，不替代原始输入或 `requirement_summary.md`
+- 正式主流程必须先产出 `inputs/requirement_summary.md`，见 `skills/requirement-summary/`
+- `inputs/source_manifest.json` 必须记录实际消费的需求来源、外部链接、本地材料和访问状态；它是来源清单，不替代原始输入或 `requirement_summary.md`
 
 ## 4. 产物契约
 
@@ -100,7 +100,7 @@
 - `testcases/testcases_main.md` 是主 testcase 真源
 - `testcases/testcases.md` 是兼容镜像，可按需再生
 - `testcases/testcase_bundle.json` 是 compatibility-only 结构化投影，由 `testcases_main.md` 派生，不反写真源，可按需再生
-- `testcases/testpoints.md` / `testpoints.json` 是从 `case_plan.json` 派生的人工评审视图，不反写 `case_plan` 或 `testcases_main.md`，可按需再生
+- `testcases/testpoints.md` / `testpoints.json` 与 `testcases_main.md` 在 Case Generator 主流程同步生成；它以 `case_plan.json` 为来源，可引用主用例补充上下文，但不反写 `case_plan` 或替代 `testcases_main.md`
 - `testcases/field_audit.json` 是 audit item 派生产物，可按需再生或清理
 - `testcases/grouped_audit.json` 是 grouped audit 派生产物，可按需再生或清理
 - 正式 testcase 的步骤和预期结果应遵守 `rules/testcase_element_notation.md`，让页面、按钮、弹窗、字段、值、状态、提示语和技术字段具备稳定语义
@@ -151,15 +151,13 @@
 仓库支持两类保留策略：
 
 - `full`：保留真源、兼容镜像、legacy 对照、审计 JSON、导出物和生成过程包，适合调试、迁移和问题复盘。
-- `minimal`：只长期保留输入、结构化 PRD、测试设计决策层、case_plan、`testcases_main.md`、主 traceability、review 结论和必要质量报告；兼容投影与过程产物可按需再生。
+- `minimal`：长期保留输入归一化结果、结构化 PRD、测试设计决策层、case_plan、`testpoints.*`、`testcases_main.md`、主 traceability、review 结论和必要质量报告；兼容投影与过程产物可按需再生。
 
 minimal 下可清理：
 
 - `.generation/latest`
 - `.generation/archive`
 - `testcases/testcases.md`
-- `testcases/testpoints.md`
-- `testcases/testpoints.json`
 - `testcases/testcase_bundle.json`
 - `testcases/field_audit.json`
 - `testcases/grouped_audit.json`
@@ -201,6 +199,14 @@ minimal 下可清理：
 - 当前 endpoint / base_url，可为空
 - 当前凭证，可为空
 - 当前执行器入口
+
+工作项复杂度必须持久化为 `manifest.json.work_item_level`。有效档位解析顺序为：
+
+```text
+命令行 --work-item-level 显式覆盖 > manifest.json.work_item_level > 默认 M
+```
+
+重生成任务包应记录本轮有效档位，执行后的校验必须复用该档位，避免生成与校验档位不一致。
 
 解析优先级由宿主适配层决定，核心流程不规定品牌。
 
@@ -294,6 +300,13 @@ structured_prd -> testability_gate -> acceptance_examples -> verification_respon
 14. 元素标注规范是正式 testcase 可读性、可评审性和自动化映射的一部分；非 strict 可 warning，strict 可在显式启用后作为质量门。
 15. testcase grouping 规范是正式 testcase 可读性和可追溯性的一部分；`page_name / section_name` 应从 structured_prd、coverage、case_plan 到 testcase 持续保留，strict 会逐步禁止缺页面、缺板块和弱兜底分组。
 16. 人工可读表达风格是正式 testcase 面向人工执行的一部分；不得用“语义等价 / 结构化规则一致 / 字段展示正确 / 功能正常”等抽象词替代可观察结果，也不得把业务字段写成技术字段。
+17. strict 主流程必须存在非模板 `inputs/requirement_summary.md` 和至少一条真实来源的 `inputs/source_manifest.json`。
+18. Case Generator 必须在同一轮同步生成 `testpoints.*` 与 `testcases_main.md`；strict 下测试点必须覆盖全部 case_plan，生成正式用例的测试点必须保留页面与板块上下文。
+19. `manifest.json.work_item_level` 是工作项长期档位配置；CLI 只做本轮显式覆盖，重跑 bundle 与统一校验必须复用同一有效档位。
+20. reasoning 层必须显式读取 requirement summary 和 source manifest；image evidence 是图片型需求的增强输入，不是纯文本需求的前置阻塞。
+21. S/M/L bundle 必须携带对应测试设计资产；测试设计阶段在任务包中独立于 Case Generator。
+22. Case Plan 必须提供 coverage 或稳定 testcase 映射；存在活跃计划但 coverage 为空或无候选匹配时，生成器必须失败，禁止空结果覆盖主用例。
+23. quality report 必须记录 structured PRD、coverage、testcase 与主 traceability 指纹；默认只读校验发现指纹变化时要求显式刷新。
 
 ## 9. Skill 契约
 

@@ -35,6 +35,13 @@
             "type": "array",
             "items": { "type": "string", "pattern": "^VR-[0-9]{3,}$" }
           },
+          "source_coverage_id": {
+            "type": "string"
+          },
+          "source_coverage_ids": {
+            "type": "array",
+            "items": { "type": "string" }
+          },
           "generated_testcase_ids": {
             "type": "array",
             "items": { "type": "string" }

@@ -5,6 +5,8 @@ from __future__ import annotations
 
 import argparse
 import json
+import subprocess
+import sys
 from pathlib import Path
 
 from build_dev_self_testcases import build_dev_self_markdown
@@ -36,6 +38,8 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--duplicate-report", required=False, help="duplicate_case_report.json 输出路径")
     parser.add_argument("--dev-self-output", required=False, help="dev_self_testcases.md 输出路径")
     parser.add_argument("--case-plan", required=False, help="case_plan.json 路径；提供后用例备注会写入来源 CasePlan 追溯")
+    parser.add_argument("--testpoints-json-output", required=False, help="testpoints.json 输出路径")
+    parser.add_argument("--testpoints-md-output", required=False, help="testpoints.md 输出路径")
     return parser.parse_args()
 
 
@@ -52,6 +56,8 @@ def main() -> int:
         duplicate_report_path = Path(args.duplicate_report).resolve() if args.duplicate_report else root / "reviews" / "duplicate_case_report.json"
         dev_self_output_path = Path(args.dev_self_output).resolve() if args.dev_self_output else root / "testcases" / "dev_self_testcases.md"
         case_plan_path = Path(args.case_plan).resolve() if args.case_plan else root / "testcases" / "case_plan.json"
+        testpoints_json_path = Path(args.testpoints_json_output).resolve() if args.testpoints_json_output else root / "testcases" / "testpoints.json"
+        testpoints_md_path = Path(args.testpoints_md_output).resolve() if args.testpoints_md_output else root / "testcases" / "testpoints.md"
     else:
         if not (args.structured_prd and args.coverage_matrix and args.output):
             raise SystemExit("必须提供 --project-code + --work-item-id，或显式提供 --structured-prd --coverage-matrix --output")
@@ -64,6 +70,8 @@ def main() -> int:
         duplicate_report_path = Path(args.duplicate_report).resolve() if args.duplicate_report else output_path.parent / "duplicate_case_report.json"
         dev_self_output_path = Path(args.dev_self_output).resolve() if args.dev_self_output else output_path.parent / "dev_self_testcases.md"
         case_plan_path = Path(args.case_plan).resolve() if args.case_plan else None
+        testpoints_json_path = Path(args.testpoints_json_output).resolve() if args.testpoints_json_output else output_path.parent / "testpoints.json"
+        testpoints_md_path = Path(args.testpoints_md_output).resolve() if args.testpoints_md_output else output_path.parent / "testpoints.md"
 
     structured_prd = read_json(structured_prd_path)
     coverage_matrix = read_json(coverage_matrix_path)
@@ -92,9 +100,32 @@ def main() -> int:
     dev_self_markdown, dev_self_count = build_dev_self_markdown(main_output_path)
     dev_self_output_path.parent.mkdir(parents=True, exist_ok=True)
     dev_self_output_path.write_text(dev_self_markdown, encoding="utf-8")
+    if case_plan_path and case_plan_path.exists():
+        testpoints_command = [
+            sys.executable,
+            str(ROOT / "skills" / "case-generation" / "scripts" / "generate_testpoints_view.py"),
+            "--project-code",
+            normalize_code(args.project_code) if args.project_code else str(case_plan.get("project_code", "")).strip(),
+            "--work-item-id",
+            normalize_code(args.work_item_id) if args.work_item_id else str(case_plan.get("work_item_id", "")).strip(),
+            "--case-plan",
+            str(case_plan_path),
+            "--testcases",
+            str(main_output_path),
+            "--json-output",
+            str(testpoints_json_path),
+            "--md-output",
+            str(testpoints_md_path),
+        ]
+        result = subprocess.run(testpoints_command, cwd=ROOT, capture_output=True, text=True, encoding="utf-8")
+        if result.returncode != 0:
+            raise SystemExit(f"同步生成 testpoints 失败:\n{result.stdout}\n{result.stderr}")
     print(f"testcases: {output_path}")
     print(f"testcases_main: {main_output_path}")
     print(f"dev_self_testcases: {dev_self_output_path}")
+    if case_plan_path and case_plan_path.exists():
+        print(f"testpoints_json: {testpoints_json_path}")
+        print(f"testpoints_markdown: {testpoints_md_path}")
     print(f"field_audit: {field_audit_output_path}")
     print(f"grouped_audit: {grouped_audit_output_path}")
     print(f"source: {coverage_matrix_path}")

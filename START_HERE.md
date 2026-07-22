@@ -122,7 +122,7 @@
 - `testcases/testcases_main.md` 是主 testcase 真源
 - `testcases/testcases.md` 是兼容镜像
 - `testcases/testcase_bundle.json` 是从 `testcases_main.md` 派生的 compatibility-only 结构化投影，不是真源
-- `testcases/testpoints.md` / `testpoints.json` 是从 `case_plan.json` 派生的人工评审视图，不是真源
+- `testcases/testpoints.md` / `testpoints.json` 与正式用例在 Case Generator 主流程同步生成，是从 `case_plan.json` 派生的人工评审视图，不是真源
 - `testcases/field_audit.json` 与 `testcases/grouped_audit.json` 是审计产物
 - `testcases_main.md` 按 `# 页面：xxx` + `## 板块：yyy` 分表；“所属模块 / 所属功能点”是表格内列，不是唯一分表依据
 - testcase row 的 `__page_name / __section_name` 是隐藏分组字段，用于渲染和校验；规则见 `rules/testcase_grouping_rules.md`
@@ -169,11 +169,11 @@
 
 - `assets/projects/<PROJECT_CODE>/work_items/<WORK_ITEM_ID>/inputs/`
 
-多源输入可先归一化为：
+所有工作项先归一化需求为：
 
 - `assets/projects/<PROJECT_CODE>/work_items/<WORK_ITEM_ID>/inputs/requirement_summary.md`
 
-如需记录需求来源、外部链接和访问状态，可补充：
+同时记录需求来源、外部链接和访问状态：
 
 - `assets/projects/<PROJECT_CODE>/work_items/<WORK_ITEM_ID>/inputs/source_manifest.json`
 
@@ -265,8 +265,6 @@
 - `.generation/latest`
 - `.generation/archive`
 - `testcases/testcases.md`
-- `testcases/testpoints.md`
-- `testcases/testpoints.json`
 - `testcases/testcase_bundle.json`
 - `testcases/field_audit.json`
 - `testcases/grouped_audit.json`
@@ -299,8 +297,12 @@ minimal 校验：
 
 strict 模式会阻止：
 
+- 缺少或仍为模板的 `requirement_summary.md` / `source_manifest.json`
 - 空模板 `testability_gate`
 - 空模板 `case_plan`
+- 缺少、为空或与 `case_plan` 不一致的 `testpoints.md/json`
+- 活跃 Case Plan 缺少 coverage/testcase 生成映射，或生成结果为空
+- `quality_report.json` 的主产物指纹已过期
 - 仍含 TODO / TEMPLATE / 待补充 / 示例值的弱产物
 - 无真实 testcase
 - testcase 未显式引用 `case_plan_id`
@@ -331,6 +333,8 @@ S/M/L 当前执行策略：
 - S: `testability_gate -> case_plan -> testcases`
 - M: `testability_gate -> acceptance_examples -> case_plan -> testcases`
 - L: `testability_gate -> acceptance_examples -> verification_responsibility_map -> test_design_matrix -> case_plan -> testcases`
+
+工作项级别写入 `manifest.json.work_item_level`。执行时按“命令行显式 `--work-item-level` 覆盖 > manifest > 默认 M”解析；未指定命令行参数时不再盲目固定使用 S 或 M，而是优先读取工作项配置。
 
 ## 不该做什么
 

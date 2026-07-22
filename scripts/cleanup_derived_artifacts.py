@@ -16,8 +16,6 @@ MINIMAL_DERIVED_PATHS = [
     ".generation/archive",
     "testcases/testcases.md",
     "testcases/dev_self_testcases.md",
-    "testcases/testpoints.md",
-    "testcases/testpoints.json",
     "testcases/testcase_bundle.json",
     "testcases/field_audit.json",
     "testcases/grouped_audit.json",

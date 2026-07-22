@@ -2079,6 +2079,49 @@ def build_case_plan_index(case_plan: dict[str, Any] | None) -> dict[str, list[st
     return {key: dedupe_preserve_order(value) for key, value in index.items()}
 
 
+def build_case_plan_testcase_index(
+    case_plan: dict[str, Any] | None,
+) -> dict[str, list[str]]:
+    index: defaultdict[str, list[str]] = defaultdict(list)
+    if not isinstance(case_plan, dict):
+        return {}
+    for plan in case_plan.get("case_plans", []) or []:
+        if not isinstance(plan, dict) or not bool(plan.get("should_generate_case")):
+            continue
+        plan_id = str(plan.get("case_plan_id", "")).strip()
+        if not plan_id:
+            continue
+        for testcase_id in plan.get("generated_testcase_ids", []) or []:
+            testcase_id_text = str(testcase_id).strip()
+            if testcase_id_text:
+                index[testcase_id_text].append(plan_id)
+    return {key: dedupe_preserve_order(value) for key, value in index.items()}
+
+
+def apply_planned_testcase_trace(
+    cases: list[dict[str, Any]],
+    testcase_plan_index: dict[str, list[str]],
+) -> list[dict[str, Any]]:
+    result: list[dict[str, Any]] = []
+    for case in cases:
+        testcase_id = str(case.get("用例编号", "")).strip()
+        plan_ids = testcase_plan_index.get(testcase_id, [])
+        if not plan_ids:
+            continue
+        case["__case_plan_ids"] = dedupe_preserve_order(
+            [*case.get("__case_plan_ids", []), *plan_ids]
+        )
+        case["备注"] = build_remarks(
+            case.get("__coverage_ids", []),
+            case.get("__source_origins", []),
+            case.get("__reasoning_refs", []),
+            case["__case_plan_ids"],
+            case.get("__flow_ids", []),
+        )
+        result.append(case)
+    return result
+
+
 def build_flow_coverage_map(coverage_matrix: dict[str, Any] | None) -> dict[str, dict[str, Any]]:
     result: dict[str, dict[str, Any]] = {}
     if not isinstance(coverage_matrix, dict):
@@ -2323,6 +2366,17 @@ def generate_testcases_bundle(
     field_map = structured_field_map(structured_prd)
     field_context = field_context_map(structured_prd)
     case_plan_index = build_case_plan_index(case_plan)
+    testcase_plan_index = build_case_plan_testcase_index(case_plan)
+    active_case_plans = [
+        plan
+        for plan in (case_plan.get("case_plans", []) if isinstance(case_plan, dict) else [])
+        if isinstance(plan, dict) and bool(plan.get("should_generate_case"))
+    ]
+    if active_case_plans and not (coverage_matrix.get("entries", []) or []):
+        raise ValueError(
+            "存在 should_generate_case=true 的 Case Plan，但 coverage_matrix.entries 为空；"
+            "禁止用空生成结果覆盖正式 testcase"
+        )
     seqs: defaultdict[tuple[str, str, str], int] = defaultdict(int)
     case_drafts: list[dict[str, Any]] = []
 
@@ -2346,6 +2400,17 @@ def generate_testcases_bundle(
         untraced_case_count = before_filter - len(main_cases)
         case_plan_trace_count = len(main_cases)
     main_cases = assign_case_ids(main_cases, project_code)
+    if case_plan is not None and not case_plan_index:
+        if not testcase_plan_index:
+            raise ValueError(
+                "case_plan 缺少 source_coverage_ids / generated_testcase_ids，不能控制正式 testcase 生成"
+            )
+        main_cases = apply_planned_testcase_trace(main_cases, testcase_plan_index)
+        case_plan_trace_count = len(main_cases)
+    if active_case_plans and not main_cases:
+        raise ValueError(
+            "Case Plan 未匹配到任何候选 testcase；禁止写出空主用例，请补齐 source_coverage_ids 或由 AI Case Generator 生成完整 bundle"
+        )
     section_order, coverage_order = build_generation_order(coverage_matrix)
 
     def case_sort_key(item: dict[str, Any]) -> tuple[int, int, str, str, str]:

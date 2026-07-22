@@ -3,7 +3,7 @@
   "work_item_id": "<WORK_ITEM_ID>",
   "truth_source": "testcases/case_plan.json",
   "projection_only": true,
-  "generated_from": ["testcases/case_plan.json"],
+  "generated_from": ["testcases/case_plan.json", "testcases/testcases_main.md"],
   "testpoints": [
     {
       "testpoint_id": "TP-001",

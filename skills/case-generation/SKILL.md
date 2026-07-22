@@ -30,7 +30,7 @@
 标准输出文件：
 
 - 项目级兼容镜像：`testcases/testcases.md`
-- 工作项级测试点评审视图：`testcases/testpoints.md` / `testpoints.json`（从 `case_plan.json` 派生，不是真源）
+- 工作项级测试点评审视图：`testcases/testpoints.md` / `testpoints.json`（与正式用例同步生成，以 `case_plan.json` 为来源，不是真源）
 - 工作项级主真源：`testcases/testcases_main.md`
 - 工作项级兼容镜像：`testcases/testcases.md`
 - 工作项级审计产物：`field_audit.json` / `grouped_audit.json`
@@ -238,7 +238,7 @@
 
 ### 6. 生成测试点评审视图
 
-如需人工先看“模块 -> 功能点 -> 测试维度 -> 测试点”，从 `testcases/case_plan.json` 派生：
+Case Generator 必须在生成正式 testcase 的同一轮同步产出“模块 -> 功能点 -> 测试维度 -> 测试点”视图：
 
 - `testcases/testpoints.md`
 - `testcases/testpoints.json`
@@ -249,14 +249,16 @@
 - `projection_only = true`
 - 不得替代 `case_plan.json`
 - 不得作为 `testcases_main.md` 的生成真源
+- 可读取 `testcases_main.md` 补充页面、板块、模块和功能点上下文
 
-建议执行：
+必须执行：
 
 ```bash
 /usr/bin/python3 skills/case-generation/scripts/generate_testpoints_view.py \
   --project-code <PROJECT_CODE> \
   --work-item-id <WORK_ITEM_ID> \
   --case-plan <case_plan.json> \
+  --testcases <testcases_main.md> \
   --json-output <testpoints.json> \
   --md-output <testpoints.md>
 ```
@@ -301,7 +303,9 @@
 - 若存在 `触达用户类型` 说明表，是否已经在所属字段 / 弹窗 / 业务规则中显式承接
 - 若存在 `展示规则 / 选择活动 / 被引用不可删除 / 默认关闭` 等精确规则，是否原词进入 testcase
 - 是否避免输出“字段矩阵完整性”这类摘要型标题
-- 若生成 `testpoints.md/json`，是否确认它只从 `case_plan.json` 派生且不替代主链真源
+- 是否与 `testcases_main.md` 同步生成 `testpoints.md/json`，并确认它以 `case_plan.json` 为来源且不替代主链真源
+- 每个生成正式用例的 Case Plan 是否提供 `source_coverage_ids` 或稳定的 `generated_testcase_ids`
+- 若 Coverage 为空或 Case Plan 无法匹配候选，是否已停止生成而不是写出空 `testcases_main.md`
 
 ---
 

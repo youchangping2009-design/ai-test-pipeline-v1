@@ -40,6 +40,13 @@ def load_text(path: Path) -> str:
     return path.read_text(encoding="utf-8")
 
 
+def display_path(path: Path) -> str:
+    try:
+        return str(path.relative_to(ROOT))
+    except ValueError:
+        return str(path)
+
+
 def slugify(text: str) -> str:
     normalized = re.sub(r"[^a-zA-Z0-9]+", "-", text).strip("-").lower()
     return normalized or "item"
@@ -109,7 +116,7 @@ def parse_received_screenshots(path: Path) -> list[dict[str, Any]]:
                 "fields": [],
                 "explicit_rules": [],
                 "notes": [],
-                "source_path": str(path.relative_to(ROOT)),
+                "source_path": display_path(path),
             }
             subsection = ""
             continue
@@ -142,6 +149,40 @@ def parse_received_screenshots(path: Path) -> list[dict[str, Any]]:
     if current:
         records.append(current)
     return records
+
+
+def parse_requirement_summary(path: Path) -> dict[str, Any]:
+    if not path.exists():
+        return {"title": "", "sections": {}, "rule_lines": [], "source_path": ""}
+    lines = path.read_text(encoding="utf-8").splitlines()
+    title = ""
+    current_section = ""
+    sections: dict[str, list[str]] = defaultdict(list)
+    for raw_line in lines:
+        stripped = raw_line.strip()
+        if not stripped:
+            continue
+        if stripped.startswith("# ") and not title:
+            title = stripped[2:].strip()
+            continue
+        if stripped.startswith("## "):
+            current_section = stripped[3:].strip()
+            continue
+        if current_section:
+            value = stripped[2:].strip() if stripped.startswith("- ") else stripped
+            if value:
+                sections[current_section].append(value)
+
+    rule_sections = ("2. 需求结论", "5. 面向研发的需求拆解", "6. 面向测试的验收关注点", "7. 数据 / 埋点 / 接口 / 配置要求")
+    rule_lines = unique_strings(
+        [line for section in rule_sections for line in sections.get(section, [])]
+    )
+    return {
+        "title": title,
+        "sections": dict(sections),
+        "rule_lines": rule_lines,
+        "source_path": display_path(path),
+    }
 
 
 def collect_rule_candidates(section: dict[str, Any]) -> list[str]:
@@ -222,6 +263,7 @@ def build_requirement_summary(
     manifest: dict[str, Any],
     image_evidence: dict[str, Any],
     screenshot_items: list[dict[str, Any]],
+    requirement_doc: dict[str, Any],
 ) -> dict[str, Any]:
     page_names = unique_strings([img.get("page_name", "") for img in image_evidence.get("images", [])])
     section_names = unique_strings(
@@ -239,12 +281,28 @@ def build_requirement_summary(
             if "当前图" in note or "说明" in note or "首次引入" in note
         ]
     )[:6]
-    title = str(manifest.get("title") or manifest.get("work_item_id") or "待确认").strip()
-    summary_text = (
-        f"{title} 以后台配置页驱动小程序首页分发页、企微单人单码弹窗和营销弹窗；"
-        f"当前输入覆盖 {len(page_names)} 个逻辑页面、{len(section_names)} 类主要板块，"
-        "reasoning_pack 先沉淀显式规则、复用模式、字段约束、数据来源和潜在风险。"
-    )
+    title = str(
+        requirement_doc.get("title")
+        or manifest.get("title")
+        or manifest.get("work_item_id")
+        or "待确认"
+    ).strip()
+    conclusions = requirement_doc.get("sections", {}).get("2. 需求结论", [])
+    if conclusions:
+        summary_text = " ".join(conclusions)
+    else:
+        summary_text = (
+            f"{title} 当前输入覆盖 {len(page_names)} 个逻辑页面、{len(section_names)} 类主要板块，"
+            "reasoning_pack 沉淀显式规则、字段约束、数据来源、边界和潜在风险。"
+        )
+    if requirement_doc.get("source_path"):
+        notes = unique_strings(
+            [
+                *notes,
+                f"归一化需求来源：{requirement_doc['source_path']}",
+                *requirement_doc.get("source_notes", []),
+            ]
+        )
     return {
         "title": title,
         "summary_text": summary_text,
@@ -257,10 +315,35 @@ def build_requirement_summary(
 def build_explicit_rules(
     screenshot_items: list[dict[str, Any]],
     image_evidence: dict[str, Any],
+    requirement_doc: dict[str, Any],
 ) -> list[dict[str, Any]]:
     rules: list[dict[str, Any]] = []
     seen: set[tuple[str, str, str]] = set()
     counter = 1
+
+    for text in requirement_doc.get("rule_lines", []):
+        key = ("需求整理", "", text)
+        if key in seen:
+            continue
+        seen.add(key)
+        rules.append(
+            {
+                "id": f"ER-{counter:03d}",
+                "title": f"需求整理-{classify_rule(text)}",
+                "statement": text,
+                "confidence": 0.99,
+                "reasoning_notes": ["来自主流程 requirement_summary.md 的确认需求。"],
+                "must_preserve_terms": infer_rule_terms(text),
+                "source_refs": [
+                    build_source_ref(
+                        "input_markdown",
+                        str(requirement_doc.get("source_path", "")),
+                        text,
+                    )
+                ],
+            }
+        )
+        counter += 1
 
     for item in screenshot_items:
         page_name = item.get("pages", ["待确认"])[0] if item.get("pages") else "待确认"
@@ -1047,7 +1130,9 @@ def render_analysis_report(reasoning_pack: dict[str, Any]) -> str:
 
 
 def parse_args() -> argparse.Namespace:
-    parser = argparse.ArgumentParser(description="从原始输入和 image_evidence 生成 analysis_report 与 reasoning_pack")
+    parser = argparse.ArgumentParser(
+        description="从 requirement summary/source manifest 与可选 image evidence 生成 analysis_report 和 reasoning_pack"
+    )
     parser.add_argument("--project-code", required=False, help="项目编码")
     parser.add_argument("--work-item-id", required=False, help="工作项 ID")
     parser.add_argument("--work-item-root", required=False, help="工作项根目录")
@@ -1069,6 +1154,8 @@ def main() -> int:
         raise SystemExit("必须提供 --work-item-root，或同时提供 --project-code 与 --work-item-id")
 
     manifest_path = work_item_root / "manifest.json"
+    requirement_summary_path = work_item_root / "inputs" / "requirement_summary.md"
+    source_manifest_path = work_item_root / "inputs" / "source_manifest.json"
     inputs_path = work_item_root / "inputs" / "received_screenshots.md"
     image_evidence_path = work_item_root / "image_evidence" / "image_evidence_inventory.json"
     analysis_dir = work_item_root / "analysis"
@@ -1077,14 +1164,25 @@ def main() -> int:
 
     if not manifest_path.exists():
         raise SystemExit(f"manifest 不存在: {manifest_path}")
-    if not image_evidence_path.exists():
-        raise SystemExit(f"image_evidence 不存在: {image_evidence_path}")
-
     manifest = read_json(manifest_path)
-    image_evidence = read_json(image_evidence_path)
+    requirement_doc = parse_requirement_summary(requirement_summary_path)
+    if source_manifest_path.exists():
+        source_manifest = read_json(source_manifest_path)
+        requirement_doc["source_notes"] = unique_strings(
+            [
+                f"{item.get('source_id', '')}: {item.get('location', '')} ({item.get('status', '')})"
+                for item in source_manifest.get("sources", [])
+                if isinstance(item, dict)
+            ]
+        )
+    image_evidence = (
+        read_json(image_evidence_path)
+        if image_evidence_path.exists()
+        else {"project_code": manifest.get("project_code", ""), "images": []}
+    )
     screenshot_items = parse_received_screenshots(inputs_path)
 
-    explicit_rules = build_explicit_rules(screenshot_items, image_evidence)
+    explicit_rules = build_explicit_rules(screenshot_items, image_evidence, requirement_doc)
     implicit_rules = build_implicit_rules(image_evidence, screenshot_items)
     field_constraints = build_field_constraints(image_evidence, screenshot_items)
     data_source_rules = build_data_source_rules(image_evidence, screenshot_items)
@@ -1100,12 +1198,23 @@ def main() -> int:
         "generated_at": datetime.now().isoformat(timespec="seconds"),
         "generated_from": unique_strings(
             [
-                str(path.relative_to(ROOT))
-                for path in [manifest_path, inputs_path, image_evidence_path]
+                display_path(path)
+                for path in [
+                    manifest_path,
+                    requirement_summary_path,
+                    source_manifest_path,
+                    inputs_path,
+                    image_evidence_path,
+                ]
                 if path.exists()
             ]
         ),
-        "requirement_summary": build_requirement_summary(manifest, image_evidence, screenshot_items),
+        "requirement_summary": build_requirement_summary(
+            manifest,
+            image_evidence,
+            screenshot_items,
+            requirement_doc,
+        ),
         "explicit_rules": explicit_rules,
         "implicit_rules": implicit_rules,
         "field_constraints": field_constraints,

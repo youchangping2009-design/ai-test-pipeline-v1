@@ -31,15 +31,24 @@ def read_json(path: Path) -> Any:
         return json.load(f)
 
 
-def validate_manifest(payload: dict[str, Any], manifest_path: Path, summary_path: Path | None) -> list[str]:
+def validate_manifest(
+    payload: dict[str, Any],
+    manifest_path: Path,
+    summary_path: Path | None,
+    strict: bool = False,
+) -> list[str]:
     errors: list[str] = []
     if payload.get("manifest_type") != "requirement_source_manifest":
         errors.append("manifest_type 必须为 requirement_source_manifest")
     if payload.get("summary_artifact") not in (None, SUMMARY_ARTIFACT):
         errors.append(f"summary_artifact 必须为 {SUMMARY_ARTIFACT}")
+    if strict and payload.get("summary_artifact") != SUMMARY_ARTIFACT:
+        errors.append(f"strict 主流程要求 summary_artifact={SUMMARY_ARTIFACT}")
     sources = payload.get("sources")
     if not isinstance(sources, list):
         return errors + ["sources 必须为数组"]
+    if strict and not sources:
+        errors.append("strict 主流程要求 sources 至少包含一条真实需求来源")
 
     seen: set[str] = set()
     for index, item in enumerate(sources, start=1):
@@ -67,8 +76,20 @@ def validate_manifest(payload: dict[str, Any], manifest_path: Path, summary_path
             if not local_path.exists():
                 errors.append(f"{source_id or index} local_artifact 不存在: {local_artifact}")
 
-    if summary_path is not None and summary_path.exists() and not summary_path.read_text(encoding="utf-8").strip():
-        errors.append(f"{SUMMARY_ARTIFACT} 存在但内容为空")
+    if summary_path is None or not summary_path.exists():
+        if strict:
+            errors.append(f"strict 主流程要求存在 {SUMMARY_ARTIFACT}")
+    else:
+        summary_text = summary_path.read_text(encoding="utf-8").strip()
+        if not summary_text:
+            errors.append(f"{SUMMARY_ARTIFACT} 存在但内容为空")
+        if strict:
+            required_sections = ["## 1. 资料来源", "## 2. 需求结论", "## 6. 面向测试的验收关注点"]
+            for section in required_sections:
+                if section not in summary_text:
+                    errors.append(f"{SUMMARY_ARTIFACT} 缺少主流程章节: {section}")
+            if "待补充" in summary_text or "TEMPLATE" in summary_text or "TODO" in summary_text:
+                errors.append(f"{SUMMARY_ARTIFACT} 仍包含模板/占位内容")
     return errors
 
 
@@ -76,6 +97,7 @@ def main() -> int:
     parser = argparse.ArgumentParser(description="校验需求来源清单与英文 requirement_summary 输入归一化产物")
     parser.add_argument("--input", required=False, help="source_manifest.json 路径")
     parser.add_argument("--work-item-dir", required=False, help="工作项目录")
+    parser.add_argument("--strict", action="store_true", help="主流程严格校验 summary 和真实来源")
     args = parser.parse_args()
 
     if args.input:
@@ -86,6 +108,9 @@ def main() -> int:
         raise SystemExit("Provide --input or --work-item-dir")
 
     if not manifest_path.exists():
+        if args.strict:
+            print(f"strict 主流程要求 source_manifest: {manifest_path}", file=sys.stderr)
+            return 1
         print(f"source_manifest 不存在，跳过需求来源清单校验: {manifest_path}")
         return 0
 
@@ -98,7 +123,7 @@ def main() -> int:
         return 1
 
     summary_path = manifest_path.parent / "requirement_summary.md"
-    errors = validate_manifest(payload, manifest_path, summary_path)
+    errors = validate_manifest(payload, manifest_path, summary_path, strict=args.strict)
     if errors:
         print("❌ requirement source manifest 校验失败")
         for error in errors:

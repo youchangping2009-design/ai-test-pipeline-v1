@@ -40,6 +40,7 @@ python scripts/validate_work_item.py \
 from __future__ import annotations
 
 import argparse
+import hashlib
 import json
 import re
 import subprocess
@@ -50,6 +51,8 @@ from typing import List, Optional, Tuple
 from backend_config_utils import has_backend_config_family_pages
 from build_dev_self_testcases import build_dev_self_markdown
 from quality_gate_policy import resolve_rollout_source
+from work_item_policy import VALID_WORK_ITEM_LEVELS
+from work_item_policy import resolve_work_item_level
 
 
 def print_section(title: str) -> None:
@@ -396,6 +399,7 @@ def validate_testpoints_view(
     testpoints_path: Path,
     case_plan_path: Path,
     testability_gate_path: Path,
+    strict: bool,
 ) -> Tuple[bool, str]:
     script_path = repo_root / "skills" / "case-generation" / "scripts" / "validate_testpoints_view.py"
     if not script_path.exists():
@@ -411,11 +415,17 @@ def validate_testpoints_view(
     ]
     if testability_gate_path.exists():
         command.extend(["--testability-gate", str(testability_gate_path)])
+    if strict:
+        command.append("--strict")
     code, output = run_subprocess(command)
     return code == 0, output
 
 
-def validate_requirement_sources(repo_root: Path, source_manifest_path: Path) -> Tuple[bool, str]:
+def validate_requirement_sources(
+    repo_root: Path,
+    source_manifest_path: Path,
+    strict: bool,
+) -> Tuple[bool, str]:
     script_path = repo_root / "scripts" / "validate_requirement_sources.py"
     if not script_path.exists():
         return False, f"requirement source 校验脚本不存在: {script_path}"
@@ -426,6 +436,8 @@ def validate_requirement_sources(repo_root: Path, source_manifest_path: Path) ->
         "--input",
         str(source_manifest_path),
     ]
+    if strict:
+        command.append("--strict")
     code, output = run_subprocess(command)
     return code == 0, output
 
@@ -658,14 +670,34 @@ def run_quality_report(
     return code == 0, output
 
 
-def read_existing_quality_report(quality_report_path: Path) -> Tuple[bool, str]:
+def read_existing_quality_report(
+    quality_report_path: Path,
+    source_paths: dict[str, Path],
+) -> Tuple[bool, str]:
     if not quality_report_path.exists():
         return False, f"quality_report.json 不存在: {quality_report_path}"
     try:
-        read_json(quality_report_path)
+        report = read_json(quality_report_path)
     except Exception as exc:
         return False, f"quality_report.json 读取失败: {exc}"
-    return True, f"只读模式：使用既有 quality_report.json，不刷新文件: {quality_report_path}"
+    fingerprints = report.get("source_artifacts")
+    if not isinstance(fingerprints, dict):
+        return False, "quality_report.json 缺少 source_artifacts，无法证明报告与当前产物一致；请使用 --write-report 刷新"
+    mismatches: list[str] = []
+    for key, path in source_paths.items():
+        record = fingerprints.get(key)
+        if not isinstance(record, dict):
+            mismatches.append(f"{key}: missing fingerprint")
+            continue
+        if not path.exists():
+            mismatches.append(f"{key}: source missing")
+            continue
+        actual = hashlib.sha256(path.read_bytes()).hexdigest()
+        if record.get("sha256") != actual:
+            mismatches.append(f"{key}: sha256 changed")
+    if mismatches:
+        return False, "quality_report.json 已过期，请使用 --write-report 刷新：\n- " + "\n- ".join(mismatches)
+    return True, f"只读模式：quality_report.json 与当前主产物指纹一致: {quality_report_path}"
 
 
 def resolve_quality_gate_config(manifest_data: dict, work_item_id: str) -> dict:
@@ -877,9 +909,9 @@ def main() -> int:
     )
     parser.add_argument(
         "--work-item-level",
-        choices=["S", "M", "L"],
-        default="M",
-        help="工作项复杂度级别；S strict 不强制 acceptance_examples，M/L strict 强制 acceptance_examples；L strict 额外强制 verification_responsibility_map/test_design_matrix 并要求 case_plan 追溯到 responsibility",
+        choices=sorted(VALID_WORK_ITEM_LEVELS),
+        default=None,
+        help="显式覆盖 manifest.json 中的工作项复杂度级别；未指定时读取 manifest，缺失回退 M",
     )
     parser.add_argument(
         "--check-element-notation",
@@ -909,6 +941,7 @@ def main() -> int:
         return 1
 
     structured_prd_path = work_item_root / "structured_prd" / "structured_prd.json"
+    requirement_summary_path = work_item_root / "inputs" / "requirement_summary.md"
     source_manifest_path = work_item_root / "inputs" / "source_manifest.json"
     testability_gate_path = work_item_root / "acceptance" / "testability_gate.json"
     acceptance_examples_path = work_item_root / "acceptance" / "acceptance_examples.json"
@@ -938,6 +971,10 @@ def main() -> int:
         manifest_data = read_json(manifest_path) if manifest_path.exists() else {}
     except Exception:
         manifest_data = {}
+    work_item_level, work_item_level_source = resolve_work_item_level(
+        manifest_data,
+        args.work_item_level,
+    )
     element_notation_config = manifest_data.get("testcase_element_notation") if isinstance(manifest_data, dict) else None
     element_notation_enabled = args.check_element_notation or (
         isinstance(element_notation_config, dict) and bool(element_notation_config.get("enabled", False))
@@ -996,11 +1033,14 @@ def main() -> int:
     print(f"工作项 ID: {work_item_id}")
     print(f"工作项目录: {work_item_root}")
     print(f"Schema: {schema_path}")
-    print(f"工作项级别: {args.work_item_level}")
-    requires_acceptance_examples = args.strict and args.work_item_level in {"M", "L"}
-    requires_responsibility_map = args.strict and args.work_item_level == "L"
-    requires_test_design_matrix = args.strict and args.work_item_level == "L"
-    level_policy = resolve_level_policy(args.work_item_level, args.strict)
+    print(f"工作项级别: {work_item_level}")
+    print(f"工作项级别来源: {work_item_level_source}")
+    if args.work_item_level and manifest_data.get("work_item_level") != work_item_level:
+        print(f"- CLI 覆盖 manifest 工作项级别: {manifest_data.get('work_item_level', '(missing)')} -> {work_item_level}")
+    requires_acceptance_examples = args.strict and work_item_level in {"M", "L"}
+    requires_responsibility_map = args.strict and work_item_level == "L"
+    requires_test_design_matrix = args.strict and work_item_level == "L"
+    level_policy = resolve_level_policy(work_item_level, args.strict)
     print(f"Strict: {args.strict}")
     print(f"Level required design artifacts: {', '.join(level_policy['required_design_artifacts']) or '(none)'}")
     print(f"Case plan requires examples: {level_policy['case_plan_requires_examples']}")
@@ -1013,7 +1053,8 @@ def main() -> int:
     print_section("File Existence Check")
     checks = [
         ("image_evidence", image_evidence_path, image_evidence_path is not None),
-        ("source_manifest", source_manifest_path, source_manifest_path.exists()),
+        ("requirement_summary", requirement_summary_path, args.strict or requirement_summary_path.exists()),
+        ("source_manifest", source_manifest_path, args.strict or source_manifest_path.exists()),
         ("evidence", evidence_path, not args.skip_traceability),
         ("coverage_matrix", coverage_matrix_path, coverage_matrix_path.exists()),
         ("structured_prd", structured_prd_path, not args.skip_structured_prd),
@@ -1023,7 +1064,7 @@ def main() -> int:
         ("test_design_matrix", test_design_matrix_path, requires_test_design_matrix),
         ("design_feedback", design_feedback_path, design_feedback_path.exists()),
         ("case_plan", case_plan_path, args.strict),
-        ("testpoints", testpoints_path, testpoints_path.exists()),
+        ("testpoints", testpoints_path, args.strict or testpoints_path.exists()),
         ("testcase_bundle", testcase_bundle_path, testcase_bundle_path.exists()),
         ("dev_self_testcases", dev_self_testcases_path, dev_self_testcases_path.exists()),
         ("traceability_primary", coverage_first_traceability_path, (not args.skip_traceability and effective_retention == "minimal") or coverage_first_traceability_path.exists()),
@@ -1056,6 +1097,25 @@ def main() -> int:
     if not args.skip_manifest:
         print_section("Manifest Validation")
         ok, errors = validate_manifest(manifest_path)
+        manifest_level = str(manifest_data.get("work_item_level", "")).strip().upper()
+        if manifest_level and manifest_level not in {"S", "M", "L"}:
+            errors.append(f"manifest.json.work_item_level 非法: {manifest_level}")
+            ok = False
+        if args.strict and not manifest_level:
+            errors.append("strict 主流程要求 manifest.json 持久化 work_item_level")
+            ok = False
+        pipeline_policy = manifest_data.get("pipeline_policy")
+        if args.strict:
+            if not isinstance(pipeline_policy, dict):
+                errors.append("strict 主流程要求 manifest.json.pipeline_policy")
+                ok = False
+            else:
+                if pipeline_policy.get("requirement_intake_required") is not True:
+                    errors.append("pipeline_policy.requirement_intake_required 必须为 true")
+                    ok = False
+                if pipeline_policy.get("testpoints_required") is not True:
+                    errors.append("pipeline_policy.testpoints_required 必须为 true")
+                    ok = False
         if ok:
             print("✅ manifest.json 校验通过")
             summary.append("Manifest: PASS")
@@ -1068,7 +1128,7 @@ def main() -> int:
 
     if source_manifest_path.exists():
         print_section("Requirement Source Manifest Validation")
-        ok, output = validate_requirement_sources(repo_root, source_manifest_path)
+        ok, output = validate_requirement_sources(repo_root, source_manifest_path, strict=args.strict)
         print(output if output else "(无输出)")
         summary.append(f"Requirement Sources: {'PASS' if ok else 'FAIL'}")
         if not ok:
@@ -1286,6 +1346,7 @@ def main() -> int:
             testpoints_path,
             case_plan_path,
             testability_gate_path,
+            strict=args.strict,
         )
         print(output if output else "(无输出)")
         summary.append(f"Testpoints: {'PASS' if ok else 'FAIL'}")
@@ -1314,7 +1375,15 @@ def main() -> int:
         if args.write_report:
             ok, output = run_quality_report(repo_root, project_code, work_item_id)
         else:
-            ok, output = read_existing_quality_report(quality_report_path)
+            ok, output = read_existing_quality_report(
+                quality_report_path,
+                {
+                    "structured_prd": structured_prd_path,
+                    "coverage_matrix": coverage_matrix_path,
+                    "testcases": testcase_path,
+                    "coverage_first_traceability": coverage_first_traceability_path,
+                },
+            )
         print(output if output else "(无输出)")
         report = {}
         if quality_report_path.exists():

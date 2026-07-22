@@ -60,7 +60,11 @@ def write_artifacts(artifacts: dict[str, str]) -> list[Path]:
     return written
 
 
-def validate_bundle(cleanup_targets: list[str], artifacts: dict[str, str]) -> list[str]:
+def validate_bundle(
+    cleanup_targets: list[str],
+    artifacts: dict[str, str],
+    work_item_level: str | None = None,
+) -> list[str]:
     errors: list[str] = []
     cleanup_set = set(cleanup_targets)
     artifact_set = set(artifacts)
@@ -71,9 +75,12 @@ def validate_bundle(cleanup_targets: list[str], artifacts: dict[str, str]) -> li
         errors.append("artifacts 不能为空")
 
     required_groups = [
+        ["inputs/requirement_summary.md"],
+        ["inputs/source_manifest.json"],
         ["evidence/evidence_inventory.json"],
         ["structured_prd/structured_prd.json"],
         ["traceability/traceability_matrix.json"],
+        ["testcases/case_plan.json"],
         ["testcases/testcases_main.md", "testcases/testcases.md"],
         ["reviews/review_record.md"],
     ]
@@ -81,11 +88,33 @@ def validate_bundle(cleanup_targets: list[str], artifacts: dict[str, str]) -> li
         if not has_artifact_with_suffix(artifact_set, suffixes):
             errors.append(f"artifacts 缺少必要产物: {' / '.join(suffixes)}")
 
+    level = str(work_item_level or "").strip().upper()
+    level_required_groups = [
+        ["acceptance/testability_gate.json"],
+        ["testcases/case_plan.json"],
+    ]
+    if level in {"M", "L"}:
+        level_required_groups.append(["acceptance/acceptance_examples.json"])
+    if level == "L":
+        level_required_groups.extend(
+            [
+                ["design/verification_responsibility_map.json"],
+                ["design/test_design_matrix.json"],
+            ]
+        )
+    for suffixes in level_required_groups:
+        if not has_artifact_with_suffix(artifact_set, suffixes):
+            errors.append(
+                f"{level or 'default'} 档 bundle 缺少设计层产物: {' / '.join(suffixes)}"
+            )
+
     derived_suffixes = {
         "feishu_ready.md",
         "structured_prd/structured_prd.md",
         "traceability/coverage_first_traceability.json",
         "traceability/traceability_adapter.json",
+        "testcases/testpoints.md",
+        "testcases/testpoints.json",
     }
     missing_artifacts = sorted(
         path
@@ -112,12 +141,20 @@ def run_command(command: list[str]) -> tuple[bool, str]:
 
 
 def run_post_write_normalizers(item_root: Path) -> tuple[bool, str]:
+    manifest = read_json(item_root / "manifest.json")
+    project_code = str(manifest.get("project_code", "")).strip()
+    work_item_id = str(manifest.get("work_item_id", "")).strip()
     structured_prd_md_path = item_root / "structured_prd" / "structured_prd.md"
     image_evidence_path = item_root / "image_evidence" / "image_evidence_inventory.json"
     structured_prd_path = item_root / "structured_prd" / "structured_prd.json"
     traceability_path = item_root / "traceability" / "traceability_matrix.json"
     main_testcases_path = item_root / "testcases" / "testcases_main.md"
     compat_testcases_path = item_root / "testcases" / "testcases.md"
+    case_plan_path = item_root / "testcases" / "case_plan.json"
+    testability_gate_path = item_root / "acceptance" / "testability_gate.json"
+    testpoints_json_path = item_root / "testcases" / "testpoints.json"
+    testpoints_md_path = item_root / "testcases" / "testpoints.md"
+    testcase_bundle_path = item_root / "testcases" / "testcase_bundle.json"
     dev_self_testcases_path = item_root / "testcases" / "dev_self_testcases.md"
     coverage_first_traceability_path = item_root / "traceability" / "coverage_first_traceability.json"
     traceability_adapter_path = item_root / "traceability" / "traceability_adapter.json"
@@ -158,7 +195,6 @@ def run_post_write_normalizers(item_root: Path) -> tuple[bool, str]:
                 ],
             ]
         )
-
     if structured_prd_path.exists():
         commands.append(
             [
@@ -177,6 +213,37 @@ def run_post_write_normalizers(item_root: Path) -> tuple[bool, str]:
         main_testcases_path.write_text(compat_testcases_path.read_text(encoding="utf-8"), encoding="utf-8")
 
     testcase_source_path = main_testcases_path if main_testcases_path.exists() else compat_testcases_path
+    if case_plan_path.exists() and testcase_source_path.exists():
+        commands.extend(
+            [
+                [
+                    sys.executable,
+                    str(ROOT / "skills" / "case-generation" / "scripts" / "generate_testpoints_view.py"),
+                    "--project-code",
+                    project_code,
+                    "--work-item-id",
+                    work_item_id,
+                    "--case-plan",
+                    str(case_plan_path),
+                    "--testcases",
+                    str(testcase_source_path),
+                    "--json-output",
+                    str(testpoints_json_path),
+                    "--md-output",
+                    str(testpoints_md_path),
+                ],
+                [
+                    sys.executable,
+                    str(ROOT / "skills" / "case-generation" / "scripts" / "validate_testpoints_view.py"),
+                    "--input",
+                    str(testpoints_json_path),
+                    "--case-plan",
+                    str(case_plan_path),
+                    "--testability-gate",
+                    str(testability_gate_path),
+                ],
+            ]
+        )
     if testcase_source_path.exists():
         commands.append(
             [
@@ -186,6 +253,36 @@ def run_post_write_normalizers(item_root: Path) -> tuple[bool, str]:
                 str(testcase_source_path),
                 "--output",
                 str(dev_self_testcases_path),
+            ]
+        )
+        commands.extend(
+            [
+                [
+                    sys.executable,
+                    str(ROOT / "scripts" / "build_testcase_bundle.py"),
+                    "--project-code",
+                    project_code,
+                    "--work-item-id",
+                    work_item_id,
+                    "--testcases",
+                    str(testcase_source_path),
+                    "--output",
+                    str(testcase_bundle_path),
+                ],
+                [
+                    sys.executable,
+                    str(ROOT / "scripts" / "validate_testcase_bundle.py"),
+                    "--input",
+                    str(testcase_bundle_path),
+                    "--testcases",
+                    str(testcase_source_path),
+                    "--case-plan",
+                    str(case_plan_path),
+                    "--project-code",
+                    project_code,
+                    "--work-item-id",
+                    work_item_id,
+                ],
             ]
         )
     coverage_matrix_path = item_root / "coverage" / "coverage_matrix.json"
@@ -226,6 +323,16 @@ def run_post_write_normalizers(item_root: Path) -> tuple[bool, str]:
                 ],
             ]
         )
+        commands.append(
+            [
+                sys.executable,
+                str(ROOT / "scripts" / "review_and_score_testcases.py"),
+                "--project-code",
+                project_code,
+                "--work-item-id",
+                work_item_id,
+            ]
+        )
 
     if not commands:
         return True, "缺少可执行的后处理输入，跳过 post_write_normalizers"
@@ -247,6 +354,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--skip-export", action="store_true", help="跳过 feishu 导出")
     parser.add_argument("--skip-validate", action="store_true", help="跳过 validate_work_item")
     parser.add_argument("--skip-code-reviews", action="store_true", help="执行 validate_work_item 时跳过代码评审产物校验")
+    parser.add_argument("--strict", action="store_true", help="执行严格工作项校验")
     return parser.parse_args()
 
 
@@ -267,12 +375,13 @@ def main() -> int:
     bundle = read_json(bundle_path)
     cleanup_targets = bundle.get("cleanup_targets", [])
     artifacts = bundle.get("artifacts", {})
+    work_item_level = str(bundle.get("work_item_level", "")).strip().upper()
 
     if not isinstance(cleanup_targets, list) or not isinstance(artifacts, dict):
         print("bundle 结构非法：缺少 cleanup_targets 或 artifacts", file=sys.stderr)
         return 1
 
-    bundle_errors = validate_bundle(cleanup_targets, artifacts)
+    bundle_errors = validate_bundle(cleanup_targets, artifacts, work_item_level)
     if bundle_errors:
         print("bundle 校验失败:", file=sys.stderr)
         for error in bundle_errors:
@@ -318,6 +427,10 @@ def main() -> int:
             "--work-item-id",
             work_item_id,
         ]
+        if work_item_level in {"S", "M", "L"}:
+            validate_command.extend(["--work-item-level", work_item_level])
+        if args.strict:
+            validate_command.append("--strict")
         if args.skip_code_reviews:
             validate_command.append("--skip-code-reviews")
         ok, output = run_command(validate_command)

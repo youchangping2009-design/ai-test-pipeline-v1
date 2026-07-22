@@ -124,6 +124,20 @@ def main() -> int:
 
     update_scope_status(scope_path, "code_review_completed", "代码评审已完成，可执行工作项级统一校验。")
 
+    ok, output = run_command(
+        [
+            sys.executable,
+            str(ROOT / "scripts" / "build_design_feedback_from_code_reviews.py"),
+            "--project-code",
+            project_code,
+            "--work-item-id",
+            work_item_id,
+        ]
+    )
+    print(output)
+    if not ok:
+        return 1
+
     if not args.skip_validate:
         ok, output = run_command(
             [

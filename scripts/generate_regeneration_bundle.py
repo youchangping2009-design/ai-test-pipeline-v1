@@ -18,9 +18,12 @@ from runtime_context import resolve_runtime_context
 
 ROOT = Path(__file__).resolve().parents[1]
 REQUIRED_ARTIFACTS = [
+    "inputs/requirement_summary.md",
+    "inputs/source_manifest.json",
     "evidence/evidence_inventory.json",
     "structured_prd/structured_prd.json",
     "traceability/traceability_matrix.json",
+    "testcases/case_plan.json",
     "testcases/testcases_main.md",
     "testcases/testcases.md",
     "reviews/review_record.md",
@@ -271,7 +274,11 @@ def validate_or_exit(bundle: dict) -> None:
     artifacts = bundle.get("artifacts", {})
     if not isinstance(cleanup_targets, list) or not isinstance(artifacts, dict):
         raise SystemExit("bundle 结构非法：cleanup_targets 必须是数组，artifacts 必须是对象")
-    errors = validate_bundle(cleanup_targets, artifacts)
+    errors = validate_bundle(
+        cleanup_targets,
+        artifacts,
+        str(bundle.get("work_item_level", "")).strip().upper() or None,
+    )
     if errors:
         raise SystemExit("bundle 校验失败:\n- " + "\n- ".join(errors))
 
@@ -331,6 +338,8 @@ def main() -> int:
         bundle = call_command_provider(item_root, run_manifest, args.generator_command)
     else:
         bundle = call_openai_provider(item_root, run_manifest, args.model)
+    bundle["work_item_level"] = run_manifest.get("work_item_level", "M")
+    validate_or_exit(bundle)
 
     output_path = Path(args.output).resolve() if args.output else default_bundle_path(item_root)
     write_json(output_path, bundle)

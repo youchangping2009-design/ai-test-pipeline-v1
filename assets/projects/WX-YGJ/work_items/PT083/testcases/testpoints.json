@@ -4,7 +4,8 @@
   "truth_source": "testcases/case_plan.json",
   "projection_only": true,
   "generated_from": [
-    "testcases/case_plan.json"
+    "testcases/case_plan.json",
+    "testcases/testcases_main.md"
   ],
   "testpoints": [
     {
@@ -19,10 +20,10 @@
       "source_responsibility_ids": [
         "VR-001"
       ],
-      "page_name": "",
-      "section_name": "",
-      "module_name": "",
-      "feature_name": "",
+      "page_name": "云挂机购买页",
+      "section_name": "顶部tab与宣传图区域",
+      "module_name": "云挂机购买页展示",
+      "feature_name": "双tab宣传图",
       "test_dimension": "ui_display",
       "test_point": "验证常规版和全新版均展示宣传图区域",
       "assertion": "常规版tab和全新版tab均展示宣传图区域且读取后台宣传图片配置",
@@ -46,10 +47,10 @@
       "source_responsibility_ids": [
         "VR-002"
       ],
-      "page_name": "",
-      "section_name": "",
-      "module_name": "",
-      "feature_name": "",
+      "page_name": "云手机商品管理页",
+      "section_name": "编辑宣传内容",
+      "module_name": "云手机商品管理后台",
+      "feature_name": "宣传图片提示",
       "test_dimension": "prompt_display",
       "test_point": "验证宣传图片建议尺寸提示展示",
       "assertion": "宣传图片字段展示1008*160建议尺寸提示，不产生保存失败或禁止上传断言",
@@ -76,10 +77,10 @@
       "source_responsibility_ids": [
         "VR-003"
       ],
-      "page_name": "",
-      "section_name": "",
-      "module_name": "",
-      "feature_name": "",
+      "page_name": "云挂机购买页",
+      "section_name": "顶部tab与宣传图区域",
+      "module_name": "云挂机购买页展示",
+      "feature_name": "宣传专区",
       "test_dimension": "cross_surface_linkage",
       "test_point": "验证宣传口号和性能参数配置后C端换行展示",
       "assertion": "后台配置宣传口号和性能参数后，C端宣传专区展示并在超过单行时换行",
@@ -105,10 +106,10 @@
       "source_responsibility_ids": [
         "VR-004"
       ],
-      "page_name": "",
-      "section_name": "",
-      "module_name": "",
-      "feature_name": "",
+      "page_name": "云挂机购买页",
+      "section_name": "顶部tab与宣传图区域",
+      "module_name": "云挂机购买页展示",
+      "feature_name": "特价专区",
       "test_dimension": "cross_surface_linkage",
       "test_point": "验证特价专区空配置隐藏和有配置横排展示",
       "assertion": "无特殊区商品时不展示特价专区，有生效特殊区商品时展示特价专区标题、横排卡片、首屏2个半卡片且最多展示4个商品",
@@ -131,10 +132,10 @@
       "source_responsibility_ids": [
         "VR-005"
       ],
-      "page_name": "",
-      "section_name": "",
-      "module_name": "",
-      "feature_name": "",
+      "page_name": "云挂机购买页",
+      "section_name": "顶部tab与宣传图区域",
+      "module_name": "云挂机购买页展示",
+      "feature_name": "限时购买",
       "test_dimension": "ui_display",
       "test_point": "验证普通区更名为限时购买并竖排展示",
       "assertion": "普通区商品列表标题展示为限时购买，商品卡片按竖排展示",
@@ -158,10 +159,10 @@
       "source_responsibility_ids": [
         "VR-006"
       ],
-      "page_name": "",
-      "section_name": "",
-      "module_name": "",
-      "feature_name": "",
+      "page_name": "云手机商品管理页",
+      "section_name": "添加云手机商品",
+      "module_name": "云手机商品管理后台",
+      "feature_name": "服务时长",
       "test_dimension": "field_rule",
       "test_point": "验证服务时长边界和非法组合保存失败",
       "assertion": "0天0时、371天或24时不可保存，370天23时作为合法边界通过校验",
@@ -185,10 +186,10 @@
       "source_responsibility_ids": [
         "VR-007"
       ],
-      "page_name": "",
-      "section_name": "",
-      "module_name": "",
-      "feature_name": "",
+      "page_name": "云手机商品管理页",
+      "section_name": "添加云手机商品",
+      "module_name": "云手机商品管理后台",
+      "feature_name": "商品区",
       "test_dimension": "save_block",
       "test_point": "验证特殊区配置超过4个时保存失败",
       "assertion": "超过4个生效特殊区商品时系统阻止保存并提示精确文案",
@@ -213,10 +214,10 @@
       "source_responsibility_ids": [
         "VR-008"
       ],
-      "page_name": "",
-      "section_name": "",
-      "module_name": "",
-      "feature_name": "",
+      "page_name": "云手机商品管理页",
+      "section_name": "添加云手机商品",
+      "module_name": "云手机商品管理后台",
+      "feature_name": "盒子内排序",
       "test_dimension": "field_rule",
       "test_point": "验证盒子内排序输入边界",
       "assertion": "排序值必须为1到1000正整数，0、1001和非整数不可通过校验",
@@ -242,10 +243,10 @@
       "source_responsibility_ids": [
         "VR-009"
       ],
-      "page_name": "",
-      "section_name": "",
-      "module_name": "",
-      "feature_name": "",
+      "page_name": "云手机商品管理页",
+      "section_name": "添加云手机商品",
+      "module_name": "云手机商品管理后台",
+      "feature_name": "库存预警",
       "test_dimension": "cross_surface_linkage",
       "test_point": "验证库存预警任务触发后C端隐藏商品",
       "assertion": "库存预警任务命中后C端隐藏对应商品",
@@ -269,10 +270,10 @@
       "source_responsibility_ids": [
         "VR-010"
       ],
-      "page_name": "",
-      "section_name": "",
-      "module_name": "",
-      "feature_name": "",
+      "page_name": "云手机商品管理页",
+      "section_name": "编辑宣传内容",
+      "module_name": "云手机商品管理后台",
+      "feature_name": "编辑宣传内容",
       "test_dimension": "save_block",
       "test_point": "验证宣传内容云机类型必须完整且不重复",
       "assertion": "未覆盖所有云机类型或云机类型重复时系统阻止保存并提示精确文案",
@@ -297,10 +298,10 @@
       "source_responsibility_ids": [
         "VR-011"
       ],
-      "page_name": "",
-      "section_name": "",
-      "module_name": "",
-      "feature_name": "",
+      "page_name": "云手机商品管理页",
+      "section_name": "编辑宣传内容",
+      "module_name": "云手机商品管理后台",
+      "feature_name": "宣传图片上传",
       "test_dimension": "field_rule",
       "test_point": "验证宣传图片上传数量格式大小约束",
       "assertion": "宣传图片最多5张，格式限制为gif/jpg/jpeg/png且单文件不超过500k；建议尺寸只做提示",
@@ -324,10 +325,10 @@
       "source_responsibility_ids": [
         "VR-012"
       ],
-      "page_name": "",
-      "section_name": "",
-      "module_name": "",
-      "feature_name": "",
+      "page_name": "云挂机购买页",
+      "section_name": "顶部tab与宣传图区域",
+      "module_name": "云挂机购买页展示",
+      "feature_name": "宣传内容多条展示",
       "test_dimension": "cross_surface_linkage",
       "test_point": "验证宣传内容最多两条且C端全部展示",
       "assertion": "后台最多配置2条宣传内容，达到2条时禁用新增按钮，C端展示全部配置内容",
@@ -350,10 +351,10 @@
       "source_responsibility_ids": [
         "VR-013"
       ],
-      "page_name": "",
-      "section_name": "",
-      "module_name": "",
-      "feature_name": "",
+      "page_name": "云挂机购买页",
+      "section_name": "顶部tab与宣传图区域",
+      "module_name": "云挂机购买页展示",
+      "feature_name": "免费体验领取",
       "test_dimension": "cross_surface_linkage",
       "test_point": "验证0元商品从后台配置到C端免费体验领取链路",
       "assertion": "后台配置0元商品后，C端用户可完成免费体验领取且不进入支付页",
@@ -376,10 +377,10 @@
       "source_responsibility_ids": [
         "VR-013"
       ],
-      "page_name": "",
-      "section_name": "",
-      "module_name": "",
-      "feature_name": "",
+      "page_name": "云挂机免费体验接口",
+      "section_name": "免费体验服务时长",
+      "module_name": "云挂机免费体验服务端",
+      "feature_name": "免费体验时长",
       "test_dimension": "cross_surface_linkage",
       "test_point": "验证免费体验服务时长按天和小时换算",
       "assertion": "0元商品领取后试用时长按duration天数和hour小时共同换算，不能只按小时计算",
@@ -451,10 +452,10 @@
       "source_responsibility_ids": [
         "VR-009"
       ],
-      "page_name": "",
-      "section_name": "",
-      "module_name": "",
-      "feature_name": "",
+      "page_name": "云手机商品管理页",
+      "section_name": "添加云手机商品",
+      "module_name": "云手机商品管理后台",
+      "feature_name": "库存预警",
       "test_dimension": "backend_job",
       "test_point": "验证库存预警命中后阻断云机分配",
       "assertion": "库存小于等于预警值后，用户不能被分配该商品对应云机",
@@ -479,10 +480,10 @@
       "source_responsibility_ids": [
         "VR-009"
       ],
-      "page_name": "",
-      "section_name": "",
-      "module_name": "",
-      "feature_name": "",
+      "page_name": "云手机商品管理页",
+      "section_name": "添加云手机商品",
+      "module_name": "云手机商品管理后台",
+      "feature_name": "库存预警",
       "test_dimension": "backend_job",
       "test_point": "验证库存预警命中后机器人报警通知",
       "assertion": "库存预警任务命中后机器人发送报警并通知到配置的购买数量报警通知人",
@@ -506,10 +507,10 @@
       "source_responsibility_ids": [
         "VR-011"
       ],
-      "page_name": "",
-      "section_name": "",
-      "module_name": "",
-      "feature_name": "",
+      "page_name": "云手机商品管理页",
+      "section_name": "编辑宣传内容",
+      "module_name": "云手机商品管理后台",
+      "feature_name": "宣传图片上传",
       "test_dimension": "field_rule",
       "test_point": "验证宣传图片删除后可重新上传",
       "assertion": "宣传图片支持删除已上传图片并重新上传，重新上传后仍受最多5张限制",
@@ -533,10 +534,10 @@
       "source_responsibility_ids": [
         "VR-008"
       ],
-      "page_name": "",
-      "section_name": "",
-      "module_name": "",
-      "feature_name": "",
+      "page_name": "云手机商品管理页",
+      "section_name": "添加云手机商品",
+      "module_name": "云手机商品管理后台",
+      "feature_name": "盒子内排序",
       "test_dimension": "data_persistence",
       "test_point": "验证盒子内排序值相同时按创建时间倒序",
       "assertion": "多个商品盒子内排序值相同时，列表按创建时间倒序排列",

@@ -2,7 +2,7 @@
 
 Use this contract when creating `assets/projects/<PROJECT_CODE>/work_items/<WORK_ITEM_ID>/inputs/requirement_summary.md`.
 
-When source provenance is available, also create or refresh `assets/projects/<PROJECT_CODE>/work_items/<WORK_ITEM_ID>/inputs/source_manifest.json`.
+As part of the main pipeline, always create or refresh `assets/projects/<PROJECT_CODE>/work_items/<WORK_ITEM_ID>/inputs/source_manifest.json` with every source consumed.
 
 ## Required Sections
 

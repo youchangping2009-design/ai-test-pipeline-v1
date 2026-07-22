@@ -77,7 +77,7 @@ python3 scripts/validate_work_item.py --project-code <PROJECT_CODE> --work-item-
 
 - `testcases_main.md` 是主 testcase 真源
 - `testcases.md` 是兼容镜像
-- `testpoints.md/json` 是从 `case_plan.json` 派生的评审视图，不是真源
+- `testpoints.md/json` 与正式用例同步生成，以 `case_plan.json` 为来源，不是真源
 - `coverage_first_traceability.json` 是主 traceability 真源
 - `traceability_adapter.json` 是兼容层
 

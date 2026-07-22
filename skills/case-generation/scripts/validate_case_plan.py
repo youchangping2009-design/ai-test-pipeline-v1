@@ -146,6 +146,19 @@ def validate_case_plan(
         source_responsibility_ids = [
             str(item).strip() for item in plan.get("source_responsibility_ids", []) if str(item).strip()
         ]
+        source_coverage_ids = [
+            str(item).strip()
+            for item in (
+                [plan.get("source_coverage_id")]
+                + list(plan.get("source_coverage_ids", []) or [])
+            )
+            if str(item or "").strip()
+        ]
+        generated_testcase_ids = [
+            str(item).strip()
+            for item in plan.get("generated_testcase_ids", []) or []
+            if str(item).strip()
+        ]
         title = str(plan.get("title", "")).strip()
         case_type = str(plan.get("case_type", "")).strip()
         priority = str(plan.get("priority", "")).strip()
@@ -165,6 +178,10 @@ def validate_case_plan(
             errors.append(f"{plan_id} 在 M/L strict 下必须填写 source_example_ids")
         if require_responsibilities and should_generate and not source_responsibility_ids:
             errors.append(f"{plan_id} 在 L strict 下必须填写 source_responsibility_ids")
+        if should_generate and not source_coverage_ids and not generated_testcase_ids:
+            errors.append(
+                f"{plan_id} 必须通过 source_coverage_ids 或 generated_testcase_ids 提供可执行生成映射"
+            )
         if case_type not in CASE_TYPES:
             errors.append(f"{plan_id} case_type 非法: {case_type}")
         if priority not in PRIORITIES:

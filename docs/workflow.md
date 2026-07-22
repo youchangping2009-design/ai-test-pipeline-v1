@@ -63,7 +63,7 @@
 1. 初始化项目
 2. 初始化工作项
 3. 放入原始输入资料
-4. （推荐）当输入来源分散时，生成 `inputs/requirement_summary.md`（见 `skills/requirement-summary/`）
+4. 生成主流程输入归一化产物 `inputs/requirement_summary.md` 与 `inputs/source_manifest.json`（见 `skills/requirement-summary/`）
 5. 生成 evidence_inventory
 6. 生成 structured_prd
 7. 生成 testability_gate
@@ -156,7 +156,7 @@
 - 输入材料尽量可追溯
 - 后续 structured_prd 应能够映射回输入来源
 
-当输入来源分散（飞书文档、群聊、截图、公网资料并存）时，建议先使用 `skills/requirement-summary/` 生成 `inputs/requirement_summary.md`，再进入 `structured_prd` 阶段；原始 PRD 已足够规整时可跳过。若需要记录外部来源、访问状态或本地落盘关系，可补充 `inputs/source_manifest.json`；该文件只做来源清单，不替代原始输入。
+所有工作项先使用 `skills/requirement-summary/` 生成 `inputs/requirement_summary.md` 与 `inputs/source_manifest.json`，再进入 `structured_prd` 阶段。即使原始 PRD 已足够规整，也需要形成归一化摘要和来源清单；它们不替代原始输入。
 
 输入清单命令：
 
@@ -296,7 +296,7 @@ testcase 产物路径：
 - 项目级兼容镜像：`testcases/testcases.md`
 - 工作项级主真源：`testcases/testcases_main.md`
 - 工作项级兼容镜像：`testcases/testcases.md`
-- 工作项级测试点评审视图：`testcases/testpoints.md` / `testpoints.json`，由 `case_plan.json` 派生，当前不作为真源
+- 工作项级测试点评审视图：`testcases/testpoints.md` / `testpoints.json`，与正式用例同步生成，以 `case_plan.json` 为来源，当前不作为真源
 - 工作项级结构化投影：`testcases/testcase_bundle.json`，由 `testcases_main.md` 派生，当前不作为真源
 - 工作项级审计产物：`testcases/field_audit.json`
 - 工作项级分组审计产物：`testcases/grouped_audit.json`
@@ -342,13 +342,14 @@ P3 compatibility-only 阶段可生成 `testcases/testcase_bundle.json`：
 
 该 bundle 必须通过 `scripts/validate_testcase_bundle.py` 与 `testcases_main.md` 逐条一致性比对。当前阶段仍以 `testcases_main.md` 为主 testcase 真源。
 
-如需人工先评审测试点，可从 `case_plan.json` 派生 `testcases/testpoints.md` / `testpoints.json`：
+Case Generator 主流程必须从 `case_plan.json` 同步派生 `testcases/testpoints.md` / `testpoints.json`：
 
 ```bash
 /usr/bin/python3 skills/case-generation/scripts/generate_testpoints_view.py \
   --project-code WX-YYPT \
   --work-item-id REQ-001 \
   --case-plan assets/projects/WX-YYPT/work_items/REQ-001/testcases/case_plan.json \
+  --testcases assets/projects/WX-YYPT/work_items/REQ-001/testcases/testcases_main.md \
   --json-output assets/projects/WX-YYPT/work_items/REQ-001/testcases/testpoints.json \
   --md-output assets/projects/WX-YYPT/work_items/REQ-001/testcases/testpoints.md
 ```
@@ -407,7 +408,13 @@ P1-3 后，S/M/L 执行策略固定为：
 - M: 在 S 基础上强制 `acceptance_examples`，并要求 case_plan 追溯到 example。
 - L: 在 M 基础上强制 `verification_responsibility_map` 与 `test_design_matrix`，并要求 case_plan 追溯到 responsibility。
 
+工作项级别持久化在 `manifest.json.work_item_level`。生成、重跑和校验按“命令行显式覆盖 > manifest > 默认 M”解析有效档位；重跑 bundle 必须携带本轮有效档位，避免生成与校验策略不一致。
+
 `run_submission_pipeline.py --stop-at` 支持 `verification_responsibility_map` 和 `test_design_matrix` 停点；L strict 会校验 `test_design_matrix`。
+
+重生成任务包将 testability gate、acceptance examples、test design、case plan 拆为独立任务文件。Bundle post-write 会依次刷新 testpoints、开发自测、testcase bundle、主 traceability、兼容投影和 quality report；quality report 通过主产物 SHA-256 指纹检查是否过期。
+
+若存在活跃 Case Plan 但 `coverage_matrix.entries` 为空，或 Case Plan 无法通过 `source_coverage_ids / generated_testcase_ids` 匹配候选用例，规则生成器必须失败，禁止写出空 `testcases_main.md`。
 
 code review 映证结果不应直接覆盖 testcase。若 CR 发现用例缺口、实现缺口或过期用例，应先写入 `design/design_feedback.json`，再由设计层修订 `testability_gate`、`acceptance_examples`、`verification_responsibility_map`、`test_design_matrix` 或 `case_plan`。
 

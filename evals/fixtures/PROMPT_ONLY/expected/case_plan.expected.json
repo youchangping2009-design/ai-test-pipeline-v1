@@ -7,6 +7,7 @@
       "source_gate_ids": ["TG-001"],
       "source_example_ids": ["AE-001"],
       "source_responsibility_ids": ["VR-001"],
+      "source_coverage_ids": ["COV-PROMPT-001"],
       "generated_testcase_ids": [],
       "title": "验证上传区域建议尺寸和格式提示展示",
       "verification_side": "B端",

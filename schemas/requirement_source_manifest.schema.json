@@ -2,7 +2,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "title": "AI Test Pipeline Requirement Source Manifest",
   "type": "object",
-  "required": ["project_code", "work_item_id", "manifest_type", "sources"],
+  "required": ["project_code", "work_item_id", "manifest_type", "summary_artifact", "sources"],
   "properties": {
     "project_code": { "type": "string" },
     "work_item_id": { "type": "string" },

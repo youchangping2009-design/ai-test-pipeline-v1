@@ -1,0 +1,57 @@
+{
+  "project_code": "WX-YGJ",
+  "work_item_id": "PT083",
+  "manifest_type": "requirement_source_manifest",
+  "summary_artifact": "inputs/requirement_summary.md",
+  "sources": [
+    {
+      "source_id": "SRC-001",
+      "source_type": "image",
+      "location": "inputs/images/PT083-01_副本.png",
+      "status": "available",
+      "local_artifact": "inputs/images/PT083-01_副本.png",
+      "notes": "需求背景、目标及购买页改版说明"
+    },
+    {
+      "source_id": "SRC-002",
+      "source_type": "image",
+      "location": "inputs/images/PT083-02_副本.png",
+      "status": "available",
+      "local_artifact": "inputs/images/PT083-02_副本.png",
+      "notes": "购买页展示和专区规则"
+    },
+    {
+      "source_id": "SRC-003",
+      "source_type": "image",
+      "location": "inputs/images/PT083-03-01_副本.png",
+      "status": "available",
+      "local_artifact": "inputs/images/PT083-03-01_副本.png",
+      "notes": "云手机商品管理与添加商品配置"
+    },
+    {
+      "source_id": "SRC-004",
+      "source_type": "image",
+      "location": "inputs/images/PT083-03-02_副本.png",
+      "status": "available",
+      "local_artifact": "inputs/images/PT083-03-02_副本.png",
+      "notes": "商品字段、库存预警和排序规则"
+    },
+    {
+      "source_id": "SRC-005",
+      "source_type": "image",
+      "location": "inputs/images/PT083-03-03_副本.png",
+      "status": "available",
+      "local_artifact": "inputs/images/PT083-03-03_副本.png",
+      "notes": "编辑宣传内容和图片上传规则"
+    },
+    {
+      "source_id": "SRC-006",
+      "source_type": "image",
+      "location": "inputs/images/PT083-04_副本.png",
+      "status": "available",
+      "local_artifact": "inputs/images/PT083-04_副本.png",
+      "notes": "云机 SDK 和画面尺寸约束"
+    }
+  ],
+  "unresolved_sources": []
+}

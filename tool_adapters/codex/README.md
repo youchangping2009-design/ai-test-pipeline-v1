@@ -64,7 +64,7 @@ code review 映证结果应反馈到 `design/` 层，不直接覆盖正式 testc
 
 ```bash
 /usr/bin/python3 scripts/create_work_item.py --project-code WX-YYPT --work-item-id REQ-001
-# 多源输入时可选：skills/requirement-summary/ → inputs/requirement_summary.md
+# 主流程先执行：skills/requirement-summary/ → inputs/requirement_summary.md + source_manifest.json
 /usr/bin/python3 scripts/prepare_regeneration_run.py --project-code WX-YYPT --work-item-id REQ-001
 /usr/bin/python3 scripts/validate_work_item.py --project-code WX-YYPT --work-item-id REQ-001
 ```
@@ -92,7 +92,7 @@ Codex 可能提供：
 
 - `testcases_main.md` 是主 testcase 真源
 - `testcases.md` 是兼容镜像
-- `testpoints.md/json` 是从 `case_plan.json` 派生的评审视图，不是真源
+- `testpoints.md/json` 与正式用例同步生成，以 `case_plan.json` 为来源，不是真源
 - `coverage_first_traceability.json` 是主 traceability 真源
 - `traceability_adapter.json` 是兼容层
 

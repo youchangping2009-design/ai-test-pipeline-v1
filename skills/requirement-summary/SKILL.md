@@ -17,13 +17,15 @@ This skill is for the current `ai-test-pipeline-v1` project environment. It stop
 
 When `inputs/requirement_summary.md` exists, `prd-structuring` should treat it as the preferred consolidated input over scattered raw files.
 
-When external links, Feishu/Lark material, prototype links, screenshots, or public docs are used, also create or refresh:
+As part of the main pipeline, always create or refresh:
 
 ```text
 assets/projects/<PROJECT_CODE>/work_items/<WORK_ITEM_ID>/inputs/source_manifest.json
 ```
 
 `source_manifest.json` records where each source came from and whether it was available, pending auth, failed, or skipped. It is an input provenance aid, not a replacement for raw `inputs/` files.
+
+The reasoning stage consumes both files: confirmed requirement sections become explicit reasoning rules, and source manifest entries become provenance notes. Image evidence remains optional for text-only requirements.
 
 ## Required Startup
 
@@ -81,7 +83,7 @@ If an external document is a JavaScript app, extract its embedded data or use br
 4. Fetch public official/vendor docs when the user asks for public practice or when the external platform behavior is important to implementation/testing.
 5. Synthesize a development-and-testing oriented summary, not a marketing recap.
 6. Write or refresh `inputs/requirement_summary.md` with the structure in `references/output-contract.md`.
-7. Write or refresh `inputs/source_manifest.json` when source provenance is available.
+7. Write or refresh `inputs/source_manifest.json` with every source actually consumed in this run.
 8. Update root `PROGRESS.md` with a concise record: sources read, output path, validation command, and scope boundary.
 9. Run at least:
 
@@ -107,7 +109,7 @@ Read `references/output-contract.md` before writing the Markdown. The document m
 Before final response:
 
 - Confirm `inputs/requirement_summary.md` exists and is non-empty.
-- If `inputs/source_manifest.json` exists, confirm `scripts/validate_requirement_sources.py --input <source_manifest.json>` passes.
+- Confirm `scripts/validate_requirement_sources.py --input <source_manifest.json> --strict` passes.
 - Confirm `PROGRESS.md` was updated.
 - Report validation result.
 - Mention any unreadable sources or remaining confirmation gaps.

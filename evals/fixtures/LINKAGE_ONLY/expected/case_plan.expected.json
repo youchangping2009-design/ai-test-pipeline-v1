@@ -7,6 +7,7 @@
       "source_gate_ids": ["TG-001"],
       "source_example_ids": ["AE-001"],
       "source_responsibility_ids": ["VR-001"],
+      "source_coverage_ids": ["COV-LINKAGE-001"],
       "generated_testcase_ids": [],
       "title": "验证免费体验商品从后台配置到C端领取链路",
       "verification_side": "B端+C端",

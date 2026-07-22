@@ -1,7 +1,8 @@
 {
-  "generated_at": "2026-04-29T15:39:20",
+  "generated_at": "2026-07-22T10:40:57",
   "total_cases": 18,
   "total_coverage_entries": 0,
+  "coverage_empty_with_cases": true,
   "rule_coverage_rate": 1.0,
   "atomic_case_rate": 0.6667,
   "boundary_coverage_rate": 1.0,
@@ -16,6 +17,9 @@
   "false_traceability_rate_primary": 0.0,
   "false_traceability_rate_legacy": 0.0,
   "traceability_metric_source": "coverage_first_traceability",
+  "field_audit_item_count": 0,
+  "grouped_audit_group_count": 0,
+  "audit_artifacts_consumed": true,
   "quality_gate": {
     "enabled": false,
     "mode": "soft",
@@ -31,5 +35,29 @@
     "warnings": [],
     "failures": []
   },
-  "unresolved_issues": []
+  "unresolved_issues": [
+    "存在正式 testcase，但 coverage_matrix.entries 为空；当前工作项不能通过规则生成器确定性重建。"
+  ],
+  "source_artifacts": {
+    "structured_prd": {
+      "path": "assets/projects/WX-YGJ/work_items/PT083/structured_prd/structured_prd.json",
+      "sha256": "b01ac95c7d9b26aac8ca9c568675f55fddb5aba28e6cf7e56dabeacfe9e6b1ad",
+      "size_bytes": 85826
+    },
+    "coverage_matrix": {
+      "path": "assets/projects/WX-YGJ/work_items/PT083/coverage/coverage_matrix.json",
+      "sha256": "5e7e0126c7a973e7135313ceea695d854984f95dd711c515acaa941d3f8418ec",
+      "size_bytes": 225
+    },
+    "testcases": {
+      "path": "assets/projects/WX-YGJ/work_items/PT083/testcases/testcases_main.md",
+      "sha256": "ddd192a0c946a677b8776e81c2411da159fd9125195d8f67429c369242c68e11",
+      "size_bytes": 14204
+    },
+    "coverage_first_traceability": {
+      "path": "assets/projects/WX-YGJ/work_items/PT083/traceability/coverage_first_traceability.json",
+      "sha256": "55fa73391be95aa382b9b38fa39249388116f6125fd0bd8c051c24d6bcd911de",
+      "size_bytes": 363
+    }
+  }
 }

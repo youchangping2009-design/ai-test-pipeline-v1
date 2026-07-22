@@ -336,3 +336,25 @@ Reason:
 
 Impact:
 `requirement_summary.md` 和 `source_manifest.json` 只增强 inputs 前置归一化；`testpoints.*` 只从 `case_plan.json` 派生并保持 `projection_only=true`。`case_plan.json` 仍是正式用例前的计划真源，`testcases/testcases_main.md` 仍是主 testcase 真源，`coverage_first_traceability.json` 仍是主 traceability 真源。
+
+## 2026-07-21 - Main Pipeline Intake, Testpoints And Persisted Level
+
+Decision:
+需求接入归一化与 testpoints 从可选视图提升为正式主流程阶段。所有工作项持久化 `manifest.json.work_item_level`；有效档位按“CLI 覆盖 > manifest > 默认 M”解析，并由重跑 bundle 传递给最终校验。
+
+Reason:
+可选需求摘要会导致 structured_prd 直接消费分散输入；按需 testpoints 会导致 Case Plan 与人工评审视图不同步；仅靠命令行指定 S/M/L 容易出现生成和校验档位不一致。
+
+Impact:
+新工作项初始化即包含 requirement summary、source manifest、testpoints 占位和主流程策略。strict 要求需求归一化真实有效、testpoints 覆盖 Case Plan；用例生成和 bundle 后处理会同步刷新 testpoints。`case_plan.json` 与 `testcases_main.md` 的真源地位不变。
+
+## 2026-07-22 - Pipeline Consumer Closure
+
+Decision:
+修复主流程产物消费断点：reasoning 显式读取 requirement summary/source manifest 且支持纯文本；测试设计任务独立拆分并按 S/M/L 强制 bundle 产物；post-write 自动刷新 testcase bundle、审计评分和 quality report；已确认 CR findings 可转换为 design feedback；质量报告使用主产物指纹防止读取旧报告。
+
+Reason:
+此前部分产物只存在于 Skill/任务说明或 validator 中，确定性脚本未读取；部分兼容投影和质量报告也可能在重跑后保持旧版本。
+
+Impact:
+Case Plan 必须提供 coverage 或稳定 testcase 映射；存在活跃 Case Plan 但 coverage 为空或无候选匹配时，生成器硬失败，禁止空结果覆盖正式用例。PT083 当前 coverage 为空，因此保留既有正式用例作为真源，规则生成器不会静默替换。

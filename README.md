@@ -134,7 +134,7 @@ AI 测试流程仓，用于沉淀：
 - 仓库定义流程，不定义模型
 - `testcases/testcases_main.md` 是主 testcase 真源
 - `testcases/testcases.md` 是兼容镜像
-- `testcases/testpoints.md` / `testpoints.json` 是从 `case_plan.json` 派生的评审视图，不是真源
+- `testcases/testpoints.md` / `testpoints.json` 与正式用例在主流程同步生成，以 `case_plan.json` 为来源，不是真源
 - `traceability/coverage_first_traceability.json` 是主 traceability 真源
 - `traceability/traceability_adapter.json` 是兼容层
 - `traceability/traceability_matrix.json` 仅保留 legacy 对照角色
@@ -173,7 +173,7 @@ AI 测试流程仓，用于沉淀：
 
 1. 初始化项目
 2. 初始化工作项
-3. 放入原始输入材料；多源输入可先整理为 `inputs/requirement_summary.md`，并用 `inputs/source_manifest.json` 记录来源清单
+3. 放入原始输入材料，并生成主流程产物 `inputs/requirement_summary.md` 与 `inputs/source_manifest.json`
 4. 若输入主要是截图，先将原始图片放入工作项 `inputs/images/`，再生成并校验 `image_evidence_inventory.json`
 5. 生成并完善 structured_prd
 6. 生成并完善 testcases
@@ -261,7 +261,7 @@ AI 测试流程仓，用于沉淀：
 - `structured_prd/structured_prd.md` 是结构化 PRD 的 authoring 真源
 - `structured_prd/structured_prd.json` 是从 Markdown 编译出的机器投影
 - `testcases/testcases_main.md` 是主 testcase 真源，`testcases/testcases.md` 仅保留兼容镜像
-- `testcases/testpoints.md` / `testpoints.json` 是从 `case_plan.json` 派生的人工评审视图
+- `testcases/testpoints.md` / `testpoints.json` 与 `testcases_main.md` 同步生成，是以 `case_plan.json` 为来源的人工评审视图
 - `traceability/coverage_first_traceability.json` 是主 traceability 真源
 - `traceability/traceability_adapter.json` 是旧消费方兼容层
 - `traceability/traceability_matrix.json` 仅保留 legacy 对照角色

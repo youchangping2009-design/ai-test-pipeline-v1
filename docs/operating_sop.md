@@ -32,7 +32,7 @@
 
 1. 新项目接入
 2. 项目下新增一个需求
-3. 多源输入时整理 `inputs/requirement_summary.md`
+3. 生成主流程需求归一化产物 `inputs/requirement_summary.md` 与 `inputs/source_manifest.json`
 4. 对某个工作项生成 structured_prd
 5. 对某个工作项生成 testcase
 6. 对某个工作项进行 review
@@ -112,11 +112,13 @@
 
 ---
 
-## 五、需求整理 SOP（推荐前置）
+## 五、需求整理 SOP（主流程前置）
 
-当工作项输入来自飞书文档、群聊、截图、公网资料等多源材料时，建议先执行 `skills/requirement-summary/`，产出：
+所有工作项在进入 structured_prd 前必须执行 `skills/requirement-summary/`，产出：
 
 `assets/projects/<PROJECT_CODE>/work_items/<WORK_ITEM_ID>/inputs/requirement_summary.md`
+
+`assets/projects/<PROJECT_CODE>/work_items/<WORK_ITEM_ID>/inputs/source_manifest.json`
 
 输入清单：
 
@@ -129,8 +131,8 @@
 原则：
 
 - 只归一化输入，不生成 `structured_prd`、设计层或正式 testcase
-- 原始 PRD 已足够规整时可跳过
-- 存在 `requirement_summary.md` 时，`prd-structuring` 应优先读取该文件
+- 原始 PRD 已足够规整时仍需形成摘要和来源清单
+- `prd-structuring` 应优先读取 `requirement_summary.md`，并结合原始资料核对
 - 如需记录飞书、原型、截图、公开文档等来源，补充 `inputs/source_manifest.json`；该清单只记录来源与访问状态，不替代原始输入
 
 输出契约见 `skills/requirement-summary/references/output-contract.md`。
@@ -269,7 +271,7 @@
 
 - `testcases/testcases_main.md`
 - `testcases/testcases.md`（兼容镜像）
-- `testcases/testpoints.md` / `testpoints.json`（可选评审视图，由 `case_plan.json` 派生）
+- `testcases/testpoints.md` / `testpoints.json`（主流程评审视图，与正式用例同步生成）
 - `testcases/testcase_bundle.json`（可选结构化投影，由 `testcases_main.md` 派生）
 
 要求：
@@ -326,7 +328,7 @@
 
 - 初始化模板可以仅包含表头
 - 正式 review 前必须补齐真实用例
-- `testpoints.md/json` 当前只是 case_plan 的评审视图，不允许替代 `case_plan` 或 `testcases_main.md`
+- `testpoints.md/json` 必须与正式用例同步生成，以 case_plan 为来源；不允许替代 `case_plan` 或 `testcases_main.md`
 - `testcase_bundle.json` 当前只是 compatibility-only 投影，不允许反向覆盖 `testcases_main.md`
 - 非 strict 下元素标注问题只 warning；strict 且显式启用时，明显未标注问题会失败
 - 工作项也可在 `manifest.json` 中配置 `testcase_element_notation.enabled=true` 启用同一检查
@@ -571,9 +573,15 @@ M/L strict 下还会强制验收示例：
 - M: 常规需求，使用 `testability_gate -> acceptance_examples -> case_plan -> testcases`
 - L: 跨端链路、API兜底或风险责任明显的复杂需求，使用 `testability_gate -> acceptance_examples -> verification_responsibility_map -> test_design_matrix -> case_plan -> testcases`
 
+初始化工作项时应将级别写入 `manifest.json.work_item_level`。日常生成和校验不传参数时读取 manifest；需要临时调整时显式传 `--work-item-level`，优先级为“CLI 覆盖 > manifest > 默认 M”。
+
 L strict 下，`test_design_matrix.items` 不能为空，矩阵项必须引用存在的 gate/example/responsibility/case_plan，且生成正式用例的 case_plan 必须被矩阵覆盖。
 
 code review 映证发现的用例缺口、代码实现缺口、过期用例或待确认项，应先写入 `design/design_feedback.json`。`design_feedback` 的目标层只能是测试设计决策层产物，不允许把映证反馈直接覆盖到 `testcases_main.md`。
+
+标准代码评审报告中的 `## Findings` 表在人工 confirmation 为 `confirmed` 后，可通过 `scripts/build_design_feedback_from_code_reviews.py` 转成 design feedback；仍需设计负责人确认后应用。
+
+`reviews/quality_report.json` 会记录 structured PRD、coverage、主用例和主 traceability 的 SHA-256 指纹。默认只读校验发现指纹变化时，执行 `validate_work_item.py --write-report` 刷新报告后再放行。
 
 校验项目：
 
@@ -605,8 +613,6 @@ code review 映证发现的用例缺口、代码实现缺口、过期用例或�
 - `.generation/latest`
 - `.generation/archive`
 - `testcases/testcases.md`
-- `testcases/testpoints.md`
-- `testcases/testpoints.json`
 - `testcases/testcase_bundle.json`
 - `testcases/field_audit.json`
 - `testcases/grouped_audit.json`

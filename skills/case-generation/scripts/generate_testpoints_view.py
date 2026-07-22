@@ -5,9 +5,15 @@ from __future__ import annotations
 
 import argparse
 import json
+import sys
 from pathlib import Path
 from typing import Any
 
+REPO_ROOT = Path(__file__).resolve().parents[3]
+if str(REPO_ROOT) not in sys.path:
+    sys.path.insert(0, str(REPO_ROOT))
+
+from scripts.testcase_markdown_utils import parse_testcase_document
 
 DIMENSION_BY_CASE_TYPE = {
     "field_constraint": "field_rule",
@@ -36,11 +42,33 @@ def as_list(value: Any) -> list[str]:
     return [str(item).strip() for item in value if str(item).strip()]
 
 
-def build_testpoints(project_code: str, work_item_id: str, case_plan_path: Path) -> dict[str, Any]:
+def load_testcase_context(testcase_path: Path | None) -> dict[str, dict[str, str]]:
+    if testcase_path is None or not testcase_path.exists():
+        return {}
+    parsed = parse_testcase_document(testcase_path.read_text(encoding="utf-8"), strict=True)
+    return {
+        str(row.get("用例编号", "")).strip(): {
+            "page_name": str(row.get("__page_name", "")).strip(),
+            "section_name": str(row.get("__section_name", "")).strip(),
+            "module_name": str(row.get("所属模块", "")).strip(),
+            "feature_name": str(row.get("所属功能点", "")).strip(),
+        }
+        for row in parsed.get("rows", [])
+        if str(row.get("用例编号", "")).strip()
+    }
+
+
+def build_testpoints(
+    project_code: str,
+    work_item_id: str,
+    case_plan_path: Path,
+    testcase_path: Path | None = None,
+) -> dict[str, Any]:
     payload = read_json(case_plan_path)
     plans = payload.get("case_plans", [])
     if not isinstance(plans, list):
         raise ValueError("case_plan.case_plans must be an array")
+    testcase_context = load_testcase_context(testcase_path)
 
     testpoints: list[dict[str, Any]] = []
     for index, plan in enumerate(plans, start=1):
@@ -52,6 +80,11 @@ def build_testpoints(project_code: str, work_item_id: str, case_plan_path: Path)
         case_type = str(plan.get("case_type", "")).strip()
         assertion = str(plan.get("assertion", "")).strip()
         title = str(plan.get("title", "")).strip()
+        generated_testcase_ids = as_list(plan.get("generated_testcase_ids"))
+        context = next(
+            (testcase_context[case_id] for case_id in generated_testcase_ids if case_id in testcase_context),
+            {},
+        )
         testpoints.append(
             {
                 "testpoint_id": f"TP-{index:03d}",
@@ -59,17 +92,17 @@ def build_testpoints(project_code: str, work_item_id: str, case_plan_path: Path)
                 "source_gate_ids": as_list(plan.get("source_gate_ids")),
                 "source_example_ids": as_list(plan.get("source_example_ids")),
                 "source_responsibility_ids": as_list(plan.get("source_responsibility_ids")),
-                "page_name": str(plan.get("page_name", "")).strip(),
-                "section_name": str(plan.get("section_name", "")).strip(),
-                "module_name": str(plan.get("module_name", plan.get("module", ""))).strip(),
-                "feature_name": str(plan.get("feature_name", plan.get("feature", ""))).strip(),
+                "page_name": str(plan.get("page_name", "")).strip() or context.get("page_name", ""),
+                "section_name": str(plan.get("section_name", "")).strip() or context.get("section_name", ""),
+                "module_name": str(plan.get("module_name", plan.get("module", ""))).strip() or context.get("module_name", ""),
+                "feature_name": str(plan.get("feature_name", plan.get("feature", ""))).strip() or context.get("feature_name", ""),
                 "test_dimension": DIMENSION_BY_CASE_TYPE.get(case_type, case_type or "unspecified"),
                 "test_point": title or assertion,
                 "assertion": assertion,
                 "priority": str(plan.get("priority", "")).strip(),
                 "validation_path": str(plan.get("validation_path", "")).strip(),
                 "should_generate_case": bool(plan.get("should_generate_case")),
-                "generated_testcase_ids": as_list(plan.get("generated_testcase_ids")),
+                "generated_testcase_ids": generated_testcase_ids,
             }
         )
 
@@ -78,7 +111,10 @@ def build_testpoints(project_code: str, work_item_id: str, case_plan_path: Path)
         "work_item_id": work_item_id,
         "truth_source": "testcases/case_plan.json",
         "projection_only": True,
-        "generated_from": ["testcases/case_plan.json"],
+        "generated_from": [
+            "testcases/case_plan.json",
+            *(["testcases/testcases_main.md"] if testcase_path is not None else []),
+        ],
         "testpoints": testpoints,
     }
 
@@ -128,6 +164,7 @@ def main() -> int:
     parser.add_argument("--project-code", required=True)
     parser.add_argument("--work-item-id", required=True)
     parser.add_argument("--case-plan", required=True)
+    parser.add_argument("--testcases", required=False)
     parser.add_argument("--json-output", required=True)
     parser.add_argument("--md-output", required=True)
     args = parser.parse_args()
@@ -136,6 +173,7 @@ def main() -> int:
         args.project_code.strip().upper(),
         args.work_item_id.strip().upper(),
         Path(args.case_plan).resolve(),
+        Path(args.testcases).resolve() if args.testcases else None,
     )
     json_output = Path(args.json_output).resolve()
     md_output = Path(args.md_output).resolve()

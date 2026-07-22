@@ -4,6 +4,7 @@
 from __future__ import annotations
 
 import argparse
+import hashlib
 import json
 import re
 import sys
@@ -79,6 +80,18 @@ def read_json(path: Path) -> dict[str, Any]:
 def write_json(path: Path, payload: Any) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(json.dumps(payload, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+
+
+def artifact_fingerprint(path: Path) -> dict[str, Any]:
+    try:
+        display_path = str(path.relative_to(ROOT))
+    except ValueError:
+        display_path = str(path)
+    return {
+        "path": display_path,
+        "sha256": hashlib.sha256(path.read_bytes()).hexdigest(),
+        "size_bytes": path.stat().st_size,
+    }
 
 
 def resolve_quality_gate_config(root: Path, project_code: str, work_item_id: str) -> dict[str, Any]:
@@ -347,6 +360,8 @@ def build_quality_report(
     false_traceability_rate_legacy: float,
     traceability_metric_source: str,
     invalid_traceability_records_legacy: list[dict[str, Any]],
+    field_audit: dict[str, Any],
+    grouped_audit: dict[str, Any],
 ) -> dict[str, Any]:
     coverage_entries = coverage_matrix.get("entries", [])
     coverage_ids_in_cases = {
@@ -391,11 +406,17 @@ def build_quality_report(
         unresolved.append("主门禁未能读取 coverage-first traceability 真源，请优先补齐 coverage_first_traceability.json。")
     if generalized_cases:
         unresolved.append(f"仍有 {len(generalized_cases)} 条用例标题偏泛化。")
+    coverage_empty_with_cases = bool(rows) and not coverage_entries
+    if coverage_empty_with_cases:
+        unresolved.append(
+            "存在正式 testcase，但 coverage_matrix.entries 为空；当前工作项不能通过规则生成器确定性重建。"
+        )
 
     return {
         "generated_at": datetime.now().isoformat(timespec="seconds"),
         "total_cases": len(rows),
         "total_coverage_entries": len(coverage_entries),
+        "coverage_empty_with_cases": coverage_empty_with_cases,
         "rule_coverage_rate": round(len(covered_rule_entries) / len(total_rule_entries), 4) if total_rule_entries else 1.0,
         "atomic_case_rate": round(len(atomic_cases) / len(rows), 4) if rows else 0.0,
         "boundary_coverage_rate": round(len(covered_boundary_entries) / len(boundary_entries), 4) if boundary_entries else 1.0,
@@ -410,6 +431,9 @@ def build_quality_report(
         "false_traceability_rate_primary": round(false_traceability_rate_primary, 4),
         "false_traceability_rate_legacy": round(false_traceability_rate_legacy, 4),
         "traceability_metric_source": traceability_metric_source,
+        "field_audit_item_count": int(field_audit.get("item_count", 0) or 0),
+        "grouped_audit_group_count": int(grouped_audit.get("group_count", 0) or 0),
+        "audit_artifacts_consumed": bool(field_audit or grouped_audit),
         "quality_gate": quality_gate,
         "unresolved_issues": unresolved,
     }
@@ -553,6 +577,8 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--traceability", required=False, help="traceability_matrix.json 路径")
     parser.add_argument("--coverage-first-traceability", required=False, help="coverage_first_traceability.json 路径")
     parser.add_argument("--duplicate-report", required=False, help="duplicate_case_report.json 路径")
+    parser.add_argument("--field-audit", required=False, help="field_audit.json 路径")
+    parser.add_argument("--grouped-audit", required=False, help="grouped_audit.json 路径")
     parser.add_argument("--output-dir", required=False, help="输出目录")
     return parser.parse_args()
 
@@ -563,10 +589,20 @@ def main() -> int:
         root = resolve_work_item_root(normalize_code(args.project_code), normalize_code(args.work_item_id))
         structured_prd_path = Path(args.structured_prd).resolve() if args.structured_prd else root / "structured_prd" / "structured_prd.json"
         coverage_matrix_path = Path(args.coverage_matrix).resolve() if args.coverage_matrix else root / "coverage" / "coverage_matrix.json"
-        testcase_path = Path(args.testcases).resolve() if args.testcases else root / "testcases" / "testcases.md"
+        testcase_path = (
+            Path(args.testcases).resolve()
+            if args.testcases
+            else (
+                root / "testcases" / "testcases_main.md"
+                if (root / "testcases" / "testcases_main.md").exists()
+                else root / "testcases" / "testcases.md"
+            )
+        )
         traceability_path = Path(args.traceability).resolve() if args.traceability else root / "traceability" / "traceability_matrix.json"
         coverage_first_traceability_path = Path(args.coverage_first_traceability).resolve() if args.coverage_first_traceability else root / "traceability" / "coverage_first_traceability.json"
         duplicate_report_path = Path(args.duplicate_report).resolve() if args.duplicate_report else root / "reviews" / "duplicate_case_report.json"
+        field_audit_path = Path(args.field_audit).resolve() if args.field_audit else root / "testcases" / "field_audit.json"
+        grouped_audit_path = Path(args.grouped_audit).resolve() if args.grouped_audit else root / "testcases" / "grouped_audit.json"
         output_dir = Path(args.output_dir).resolve() if args.output_dir else root / "reviews"
     else:
         if not (args.structured_prd and args.coverage_matrix and args.testcases and args.traceability and args.output_dir):
@@ -577,6 +613,8 @@ def main() -> int:
         traceability_path = Path(args.traceability).resolve()
         coverage_first_traceability_path = Path(args.coverage_first_traceability).resolve() if args.coverage_first_traceability else traceability_path.parent / "coverage_first_traceability.json"
         duplicate_report_path = Path(args.duplicate_report).resolve() if args.duplicate_report else Path(args.output_dir).resolve() / "duplicate_case_report.json"
+        field_audit_path = Path(args.field_audit).resolve() if args.field_audit else testcase_path.parent / "field_audit.json"
+        grouped_audit_path = Path(args.grouped_audit).resolve() if args.grouped_audit else testcase_path.parent / "grouped_audit.json"
         output_dir = Path(args.output_dir).resolve()
 
     structured_prd = read_json(structured_prd_path)
@@ -585,6 +623,8 @@ def main() -> int:
     rows = load_testcase_rows(testcase_path)
     testcase_ids = {row.get("用例编号", "").strip() for row in rows if row.get("用例编号", "").strip()}
     duplicate_report = load_duplicate_report(duplicate_report_path)
+    field_audit = load_duplicate_report(field_audit_path)
+    grouped_audit = load_duplicate_report(grouped_audit_path)
     duplicate_metrics = compute_duplicate_metrics(duplicate_report)
     quality_gate_config = resolve_quality_gate_config(root if args.project_code and args.work_item_id else output_dir.parent, normalize_code(args.project_code) if args.project_code else "", normalize_code(args.work_item_id) if args.work_item_id else "")
 
@@ -616,7 +656,17 @@ def main() -> int:
         false_traceability_rate_legacy,
         traceability_metric_source,
         invalid_traceability_records_legacy,
+        field_audit,
+        grouped_audit,
     )
+    quality_report["source_artifacts"] = {
+        "structured_prd": artifact_fingerprint(structured_prd_path),
+        "coverage_matrix": artifact_fingerprint(coverage_matrix_path),
+        "testcases": artifact_fingerprint(testcase_path),
+        "coverage_first_traceability": artifact_fingerprint(
+            coverage_first_traceability_path
+        ),
+    }
 
     write_json(output_dir / "missing_rules.json", missing_fidelity_points)
     write_json(output_dir / "missing_fidelity_points.json", missing_fidelity_points)
