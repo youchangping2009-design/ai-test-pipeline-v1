@@ -100,4 +100,4 @@ Ad-hoc stage validator co-location completed on 2026-07-27: Requirement Sources�
 
 Ad-hoc lightweight project shell completed on 2026-07-27: 项目根已收敛为 project manifest、`inputs/common`、indexes、reports、knowledge 和 work_items；新增项目视图刷新与项目校验入口，移除 `validate_outputs.py` 和 WX-YGJ 项目级空占位产物。PT083 工作项真源与路径保持不变。
 
-Ad-hoc host-neutral core cleanup completed on 2026-07-27: AGENTS、自驱动协议、Roadmap 和 repair 模板已改为通用 Agent 表述；任务包不再硬引用 Cursor adapter；三份宿主 README 已对齐；删除无引用的 Codex agent YAML。核心 runtime 仅接受显式 `ATP_HOST_ADAPTER`，不自动探测任何宿主。
+Ad-hoc host-neutral core cleanup completed on 2026-07-27: AGENTS、自驱动协议、Roadmap 和 repair 模板已改为通用 Agent 表述；任务包不再硬引用 Cursor adapter；三份宿主 README 已对齐；删除 Codex agent YAML 与 runtime bridge。所有宿主统一使用显式 `ATP_*` 运行时配置，核心不自动探测任何宿主。

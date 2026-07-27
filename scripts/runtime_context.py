@@ -147,5 +147,5 @@ def resolve_runtime_context(
         api_key_source=api_key_source,
         base_url=base_url,
         base_url_source=base_url_source,
-        adapter=_string(adapter_payload.get("adapter")) or adapter,
+        adapter=_string(adapter_payload.get("adapter")),
     )

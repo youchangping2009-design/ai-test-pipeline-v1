@@ -390,4 +390,4 @@ Reason:
 AGENTS 和自驱动协议曾以 Codex 为默认主语，任务包还只引用 Cursor adapter，造成“仓库定义流程但实际偏向特定宿主”的冲突。
 
 Impact:
-三份 adapter README 使用统一结构；删除无代码依赖的 Codex agent YAML；Codex runtime bridge 仅在显式 `ATP_HOST_ADAPTER=codex` 时启用。核心 prompts、skills、schemas 和生成任务包均不绑定宿主。
+三份 adapter README 使用统一结构；删除无代码依赖的 Codex agent YAML 与 runtime bridge。所有宿主统一使用 `ATP_MODEL / ATP_API_KEY / ATP_BASE_URL / ATP_RUNTIME_CONTEXT_FILE` 等显式运行时配置。核心 prompts、skills、schemas 和生成任务包均不绑定宿主。

@@ -30,27 +30,23 @@ python3 scripts/validate_work_item.py \
 
 ## Codex 专属适配
 
-如需让兼容 HTTP provider 从 Codex 本地配置解析运行时参数，显式设置：
+Codex 使用当前会话提供的模型、工具和项目指令。仓库不读取 Codex 私有配置或会话文件，也没有提交 Codex 专属运行时桥接脚本。
+
+如需使用兼容 HTTP provider，和其他宿主一样显式提供通用运行时配置：
 
 ```bash
-export ATP_HOST_ADAPTER=codex
+export ATP_MODEL=<MODEL>
+export ATP_API_KEY=<API_KEY>
+export ATP_BASE_URL=<BASE_URL>
 ```
-
-核心脚本随后按统一 adapter 协议加载：
-
-```text
-tool_adapters/codex/runtime_context.py
-```
-
-未设置 `ATP_HOST_ADAPTER` 时，仓库不会自动探测或默认绑定 Codex。
 
 ## 适配边界
 
 Codex adapter 可以处理：
 
-- 当前宿主配置读取
-- 运行时模型、endpoint 和凭证解析
-- 当前会话与本地执行器衔接
+- 当前会话上下文和工具能力
+- Codex 私有项目指令
+- 宿主侧运行时配置
 
 不得处理：
 
