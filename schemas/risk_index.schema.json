@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Project Risk Index",
+  "type": "object",
+  "required": ["project_code", "index_type", "generated_at", "items"],
+  "properties": {
+    "project_code": { "type": "string" },
+    "index_type": { "type": "string", "const": "risk" },
+    "generated_at": { "type": "string" },
+    "items": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["risk_id", "work_item_id", "source_type", "summary", "status", "source_path"],
+        "properties": {
+          "risk_id": { "type": "string" },
+          "work_item_id": { "type": "string" },
+          "source_type": { "type": "string" },
+          "summary": { "type": "string" },
+          "status": { "type": "string" },
+          "source_path": { "type": "string" }
+        },
+        "additionalProperties": true
+      }
+    }
+  },
+  "additionalProperties": false
+}

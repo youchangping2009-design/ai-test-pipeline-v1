@@ -4,7 +4,7 @@
 
 这个仓库定义的是流程、协议、校验口径和产物真源，不定义你必须使用哪个模型、哪个 provider、哪个宿主工具。
 
-无论你在 Codex、Cursor、Claude 还是其他本地工具中工作，都先看这份文件，再进入对应适配说明。
+无论使用哪一种本地或远程 AI 宿主工具，都先看这份文件，再按需进入对应适配说明。
 
 ## 先记住 4 条
 
@@ -153,6 +153,27 @@
 
 ```bash
 /usr/bin/python3 scripts/init_project.py --project-code WX-YYPT
+```
+
+项目根采用轻量壳结构：
+
+```text
+README.md
+project_manifest.json
+inputs/common/
+indexes/
+reports/
+knowledge/
+work_items/
+```
+
+正式测试资产只保存在 `work_items/<WORK_ITEM_ID>/`。
+
+项目级视图从工作项真源派生：
+
+```bash
+/usr/bin/python3 scripts/refresh_project_views.py --project-code WX-YYPT
+/usr/bin/python3 scripts/validate_project.py --project-code WX-YYPT --strict
 ```
 
 ### 2. 初始化工作项

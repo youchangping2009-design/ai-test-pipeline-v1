@@ -1,10 +1,10 @@
-# Codex Autonomous Execution
+# Autonomous Agent Execution
 
-本文档定义 Codex 在本仓库中的自驱动执行协议。目标是让 Codex 通过仓库内的队列、决策记录、验收命令和阻塞模板推进升级，而不是依赖用户在外部反复搬运上下文。
+本文档定义任意 AI Agent 在本仓库中的自驱动执行协议。目标是让当前 Agent 通过仓库内的队列、决策记录、验收命令和阻塞模板推进升级，而不是依赖用户在不同宿主间反复搬运上下文。
 
 ## 启动顺序
 
-每次进入仓库后，Codex 必须先读取：
+每次进入仓库后，当前 Agent 必须先读取：
 
 1. `START_HERE.md`
 2. `WORKFLOW_CONTRACT.md`
@@ -57,6 +57,7 @@
 - PT083 非 strict 应通过。
 - PT083 strict 应通过。
 - PT083 eval 应通过。
+- WX-YGJ 轻量项目壳 strict 应通过。
 
 如果任务修改了特定 validator、schema 或 eval fixture，还应额外运行对应脚本的局部校验。
 
@@ -70,7 +71,7 @@
 
 ## 如何处理失败
 
-校验失败后，Codex 可以自动 repair，但最多 2 轮。
+校验失败后，当前 Agent 可以自动 repair，但最多 2 轮。
 
 每轮 repair 必须满足：
 

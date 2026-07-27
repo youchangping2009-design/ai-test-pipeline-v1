@@ -44,7 +44,7 @@ AI 测试流程仓，用于沉淀：
 
 ## 目录说明
 
-- `.cursor/`：Cursor 宿主适配资产，不是流程真源
+- 宿主私有目录（当前为 `.cursor/rules/`）：编辑器适配资产，不是流程真源
 - `tool_adapters/`：不同宿主工具的最小差异说明
 - `skills/`：按流程阶段沉淀能力
 - `prompts/`：标准提示词
@@ -58,7 +58,7 @@ AI 测试流程仓，用于沉淀：
 当前仓库推荐按“两层资产 + 一层适配”组织：
 
 1. 项目层
-用于沉淀项目公共信息与长期资产，目录形如：
+用于沉淀项目元数据、公共输入、派生索引、质量汇总和可复用知识；不保存正式测试资产真源。目录形如：
 
 `assets/projects/<PROJECT_CODE>/`
 
@@ -68,7 +68,7 @@ AI 测试流程仓，用于沉淀：
 `assets/projects/<PROJECT_CODE>/work_items/<WORK_ITEM_ID>/`
 
 3. 宿主适配层
-用于承接 Codex / Cursor / Claude 等宿主差异，但不重写流程真源，目录形如：
+用于承接不同 AI 宿主的最小差异，但不重写流程真源，目录形如：
 
 `tool_adapters/<HOST>/`
 
@@ -96,25 +96,24 @@ AI 测试流程仓，用于沉淀：
 
 初始化后会创建：
 
-- `assets/projects/WX-YYPT/inputs/`
-- `assets/projects/WX-YYPT/evidence/`
-- `assets/projects/WX-YYPT/structured_prd/`
-- `assets/projects/WX-YYPT/traceability/`
-- `assets/projects/WX-YYPT/testcases/`
-- `assets/projects/WX-YYPT/reviews/`
+- `assets/projects/WX-YYPT/inputs/common/`
+- `assets/projects/WX-YYPT/work_items/`
+- `assets/projects/WX-YYPT/indexes/`
+- `assets/projects/WX-YYPT/reports/`
+- `assets/projects/WX-YYPT/knowledge/`
 
 并生成基础占位文件：
 
 - `README.md`
-- `inputs/README.md`
-- `evidence/evidence_inventory.json`
-- `structured_prd/structured_prd.json`
-- `traceability/coverage_first_traceability.json`（主真源）
-- `traceability/traceability_adapter.json`（兼容层）
-- `traceability/traceability_matrix.json`（legacy 对照）
-- `testcases/testcases_main.md`（主真源）
-- `testcases/testcases.md`（兼容镜像）
-- `reviews/review_record.md`
+- `project_manifest.json`
+- `inputs/common/README.md`
+- `indexes/work_item_index.json`
+- `indexes/testcase_index.json`
+- `indexes/risk_index.json`
+- `reports/project_quality_summary.md` / `.json`
+- `knowledge/reusable_rules.json`
+- `knowledge/golden_examples.json`
+- `knowledge/defect_patterns.json`
 
 ## 工作项初始化
 
@@ -170,52 +169,44 @@ AI 测试流程仓，用于沉淀：
 - `traceability/traceability_matrix.json` 仅保留 legacy 对照角色
 - `feishu_ready.md` 是面向飞书同步的派生产物，不是业务真源
 
-仓库当前提供 4 层校验入口：
+仓库当前提供工作项阶段校验、工作项总门禁和项目壳校验：
 
 1. `structured_prd` 校验
 
 ```bash
 /usr/bin/python3 skills/prd-structuring/scripts/validate_structured_prd.py \
-  --input assets/projects/WX-YYPT/structured_prd/structured_prd.json
+  --input assets/projects/WX-YYPT/work_items/REQ-001/structured_prd/structured_prd.json
 ```
 
 2. testcase 校验
 
 ```bash
 /usr/bin/python3 skills/case-generation/scripts/testcase_lint.py \
-  --input assets/projects/WX-YYPT/testcases/testcases_main.md
+  --input assets/projects/WX-YYPT/work_items/REQ-001/testcases/testcases_main.md
 ```
 
 3. review gate 校验
 
 ```bash
 /usr/bin/python3 skills/review-gate/scripts/review_gate.py \
-  --structured-prd assets/projects/WX-YYPT/structured_prd/structured_prd.json \
-  --testcases assets/projects/WX-YYPT/testcases/testcases_main.md \
+  --structured-prd assets/projects/WX-YYPT/work_items/REQ-001/structured_prd/structured_prd.json \
+  --testcases assets/projects/WX-YYPT/work_items/REQ-001/testcases/testcases_main.md \
   --checklist skills/review-gate/checklists/manual_review_checklist.md
 ```
 
-4. 项目级统一校验
-
-```bash
-/usr/bin/python3 scripts/validate_outputs.py --project-code WX-YYPT
-```
-
-也支持显式传入路径：
-
-```bash
-/usr/bin/python3 scripts/validate_outputs.py \
-  --structured-prd assets/projects/WX-YYPT/structured_prd/demo.json \
-  --testcases assets/projects/WX-YYPT/testcases/demo.md \
-  --checklist skills/review-gate/checklists/manual_review_checklist.md
-```
-
-5. 工作项级统一校验
+4. 工作项级统一校验
 
 ```bash
 /usr/bin/python3 scripts/validate_work_item.py \
   --project-code WX-YYPT \
   --work-item-id REQ-001
+```
+
+5. 项目索引刷新与轻量项目壳校验
+
+```bash
+/usr/bin/python3 scripts/refresh_project_views.py --project-code WX-YYPT
+/usr/bin/python3 scripts/validate_project.py --project-code WX-YYPT --strict
 ```
 
 6. 生成工作项重跑任务包
@@ -340,7 +331,11 @@ AI 测试流程仓，用于沉淀：
 校验整个项目：
 
 ```bash
-/usr/bin/python3 scripts/validate_outputs.py --project-code WX-YYPT
+/usr/bin/python3 scripts/refresh_project_views.py --project-code WX-YYPT
+/usr/bin/python3 scripts/validate_project.py \
+  --project-code WX-YYPT \
+  --strict \
+  --validate-work-items
 ```
 
 ## 代码评审也是流水线环节

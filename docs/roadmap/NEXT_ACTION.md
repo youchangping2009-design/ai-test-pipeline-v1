@@ -5,7 +5,7 @@ task_id: P3-001
 title: testcase_bundle.json compatibility-only projection
 status: done
 priority: P3
-owner: Codex
+owner: autonomous_agent
 ```
 
 ## Goal
@@ -95,3 +95,9 @@ Ad-hoc requirement source intake and testpoints projection completed on 2026-07-
 Ad-hoc main-pipeline intake, synchronized testpoints and persisted work-item level completed on 2026-07-21: `requirement_summary.md` / `source_manifest.json` 已提升为 strict 主流程输入阶段，`testpoints.*` 已与正式 testcase 同轮生成并由 bundle 后处理自动刷新；`manifest.json.work_item_level` 成为长期档位配置，CLI 仅做本轮覆盖且有效档位会传递到最终校验。PT083 已登记为 L 档并补齐真实需求摘要、来源清单和同步测试点。
 
 Ad-hoc pipeline consumer closure completed on 2026-07-22: reasoning 已消费 requirement summary/source manifest 并支持纯文本需求；任务包已拆出 testability、acceptance、test design、case plan 阶段；L bundle 强制完整设计层；post-write 自动刷新 testpoints、dev self、testcase bundle、traceability 和 quality report；quality report 新增主产物指纹；CR findings 可生成 design feedback。PT083 strict 与总基线通过；其 coverage_matrix 当前为空，规则生成器现会硬失败以防空结果覆盖既有 18 条正式用例。
+
+Ad-hoc stage validator co-location completed on 2026-07-27: Requirement Sources、Reasoning Pack、Coverage Matrix 单阶段 validator 已迁入 `skills/<skill>/scripts/`，并新增 reasoning-analysis 与 coverage-planning Skill。任务包、统一校验和 Skill 文档已改用新路径；PT083 验证通过后已删除旧 Requirement 根入口，Reasoning/Coverage 继续保留兼容 wrapper。
+
+Ad-hoc lightweight project shell completed on 2026-07-27: 项目根已收敛为 project manifest、`inputs/common`、indexes、reports、knowledge 和 work_items；新增项目视图刷新与项目校验入口，移除 `validate_outputs.py` 和 WX-YGJ 项目级空占位产物。PT083 工作项真源与路径保持不变。
+
+Ad-hoc host-neutral core cleanup completed on 2026-07-27: AGENTS、自驱动协议、Roadmap 和 repair 模板已改为通用 Agent 表述；任务包不再硬引用 Cursor adapter；三份宿主 README 已对齐；删除无引用的 Codex agent YAML。核心 runtime 仅接受显式 `ATP_HOST_ADAPTER`，不自动探测任何宿主。

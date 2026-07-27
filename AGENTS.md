@@ -1,12 +1,12 @@
 # AGENTS
 
-## Codex Autonomous Execution Protocol
+## Autonomous Agent Execution Protocol
 
-Codex 在本仓库中工作时，必须优先遵守本协议。本协议用于让 Codex 通过仓库内的规则、队列、下一步任务和验收命令自驱动推进，不依赖用户在 ChatGPT 与 Codex 之间搬运上下文。
+任何 AI Agent 在本仓库中工作时，都必须优先遵守本协议。本协议用于让当前 Agent 通过仓库内的规则、队列、下一步任务和验收命令自驱动推进，不依赖用户在不同宿主工具或会话之间搬运上下文。
 
 ### Startup Read Order
 
-每次开始任务前，Codex 必须先读取：
+每次开始任务前，当前 Agent 必须先读取：
 
 1. `START_HERE.md`
 2. `WORKFLOW_CONTRACT.md`
@@ -57,7 +57,7 @@ Codex 在本仓库中工作时，必须优先遵守本协议。本协议用于�
 
 ### Completion Record
 
-完成任务后，Codex 必须：
+完成任务后，当前 Agent 必须：
 
 1. 更新 `docs/roadmap/NEXT_ACTION.md` 的任务状态或下一步建议。
 2. 如产生新的关键决策，更新 `docs/roadmap/DECISION_LOG.md`。
@@ -118,6 +118,7 @@ Codex 在本仓库中工作时，必须优先遵守本协议。本协议用于�
 22. `reasoning_pack` 必须显式消费 `requirement_summary.md` 与 `source_manifest.json`；纯文本需求不得因缺少 image evidence 被阻塞。
 23. `should_generate_case=true` 的 Case Plan 必须提供 `source_coverage_ids` 或稳定的 `generated_testcase_ids`，否则不得进入正式用例生成。
 24. bundle 后处理必须刷新 testcase bundle、testpoints、开发自测、traceability 与 quality report；旧质量报告指纹与当前主产物不一致时必须失败。
+25. 正式测试资产只存在于 `work_items/<WORK_ITEM_ID>/`；项目根只保留公共输入、派生索引、质量汇总和人工确认知识，项目级视图不得反写工作项。
 
 # Case Generation Rules
 

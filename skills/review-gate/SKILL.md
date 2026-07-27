@@ -36,7 +36,6 @@
 
 - `review_gate.py`
 - `validate_work_item.py`
-- `validate_outputs.py`
 
 ### 2. 评审沉淀
 
@@ -62,8 +61,8 @@
 
 相关统一入口：
 
-- `scripts/validate_outputs.py`
 - `scripts/validate_work_item.py`
+- `scripts/validate_project.py`（项目壳、索引和汇总）
 
 ---
 

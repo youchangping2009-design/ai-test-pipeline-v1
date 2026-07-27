@@ -355,6 +355,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--skip-validate", action="store_true", help="跳过 validate_work_item")
     parser.add_argument("--skip-code-reviews", action="store_true", help="执行 validate_work_item 时跳过代码评审产物校验")
     parser.add_argument("--strict", action="store_true", help="执行严格工作项校验")
+    parser.add_argument("--skip-project-refresh", action="store_true", help="跳过项目索引与质量汇总刷新")
     return parser.parse_args()
 
 
@@ -438,6 +439,27 @@ def main() -> int:
         print(output)
         if not ok:
             return 1
+
+        project_manifest = (
+            ROOT
+            / "assets"
+            / "projects"
+            / project_code
+            / "project_manifest.json"
+        )
+        if not args.skip_project_refresh and project_manifest.exists():
+            ok, output = run_command(
+                [
+                    sys.executable,
+                    str(ROOT / "scripts" / "refresh_project_views.py"),
+                    "--project-code",
+                    project_code,
+                ]
+            )
+            print("\n[refresh_project_views]")
+            print(output)
+            if not ok:
+                return 1
 
     return 0
 

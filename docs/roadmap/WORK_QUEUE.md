@@ -1,13 +1,13 @@
 # Work Queue
 
-本文件是 Codex 自驱动任务队列。状态可取：
+本文件是仓库内任意 AI Agent 共用的自驱动任务队列。状态可取：
 
 - `todo`
 - `in_progress`
 - `done`
 - `blocked`
 
-Codex 每次应先读取 `NEXT_ACTION.md`。当 NEXT_ACTION 为空、已完成或阻塞时，从本文件选择最高优先级 `todo` 任务。
+当前 Agent 每次应先读取 `NEXT_ACTION.md`。当 NEXT_ACTION 为空、已完成或阻塞时，从本文件选择最高优先级 `todo` 任务。
 
 | Priority | Task ID | Status | Title | Scope | Exit Criteria |
 |---|---|---|---|---|---|

@@ -24,17 +24,18 @@
 
 ### 1. 项目层
 
-用于承载项目公共信息与长期沉淀资产：
+用于承载轻量项目壳，不保存正式测试资产真源：
 
 `assets/projects/<PROJECT_CODE>/`
 
 典型内容包括：
 
 - 项目 README
-- 公共输入材料
-- 项目级 structured_prd
-- 项目级 testcase
-- 项目级 reviews
+- `project_manifest.json`
+- `inputs/common/` 公共输入
+- `indexes/` 工作项、用例和风险索引
+- `reports/` 项目质量汇总
+- `knowledge/` 人工确认的复用知识
 
 ---
 
@@ -95,10 +96,12 @@
 
 初始化后会创建：
 
-- `assets/projects/WX-YYPT/inputs/`
-- `assets/projects/WX-YYPT/structured_prd/`
-- `assets/projects/WX-YYPT/testcases/`
-- `assets/projects/WX-YYPT/reviews/`
+- `assets/projects/WX-YYPT/project_manifest.json`
+- `assets/projects/WX-YYPT/inputs/common/`
+- `assets/projects/WX-YYPT/work_items/`
+- `assets/projects/WX-YYPT/indexes/`
+- `assets/projects/WX-YYPT/reports/`
+- `assets/projects/WX-YYPT/knowledge/`
 
 适用场景：
 
@@ -139,7 +142,7 @@
 
 原始输入建议统一放入：
 
-- 项目级输入：`assets/projects/<PROJECT_CODE>/inputs/`
+- 项目级公共输入：`assets/projects/<PROJECT_CODE>/inputs/common/`
 - 工作项级输入：`assets/projects/<PROJECT_CODE>/work_items/<WORK_ITEM_ID>/inputs/`
 
 可放入的内容包括：
@@ -205,12 +208,10 @@ evidence 负责沉淀：
 
 ## 七、structured_prd 生成流程
 
-structured_prd 产物路径：
+structured_prd 正式产物只存在于工作项：
 
-- 项目级 Markdown 真源：`structured_prd/structured_prd.md`
-- 项目级机器投影：`structured_prd/structured_prd.json`
-- 工作项级 Markdown 真源：`structured_prd/structured_prd.md`
-- 工作项级机器投影：`structured_prd/structured_prd.json`
+- Markdown 真源：`work_items/<WORK_ITEM_ID>/structured_prd/structured_prd.md`
+- 机器投影：`work_items/<WORK_ITEM_ID>/structured_prd/structured_prd.json`
 
 真源约定：
 
@@ -293,7 +294,6 @@ testcase 产物路径：
 
 - 工作项级用例计划真源：`testcases/case_plan.json`
 - 工作项级用例计划 Markdown：`testcases/case_plan.md`
-- 项目级兼容镜像：`testcases/testcases.md`
 - 工作项级主真源：`testcases/testcases_main.md`
 - 工作项级兼容镜像：`testcases/testcases.md`
 - 工作项级测试点评审视图：`testcases/testpoints.md` / `testpoints.json`，与正式用例同步生成，以 `case_plan.json` 为来源，当前不作为真源
@@ -430,10 +430,9 @@ code review 映证结果不应直接覆盖 testcase。若 CR 发现用例缺口�
 
 ## 十、Review 流程
 
-review 相关资产路径：
+review 正式资产路径：
 
-- 项目级：`reviews/review_record.md`
-- 工作项级：`reviews/review_record.md`
+- 工作项级：`work_items/<WORK_ITEM_ID>/reviews/review_record.md`
 
 评审时可使用：
 
@@ -457,7 +456,7 @@ review 相关资产路径：
 
 ```bash
 /usr/bin/python3 skills/prd-structuring/scripts/validate_structured_prd.py \
-  --input assets/projects/WX-YYPT/structured_prd/structured_prd.json
+  --input assets/projects/WX-YYPT/work_items/REQ-001/structured_prd/structured_prd.json
 ```
 
 ---
@@ -466,7 +465,7 @@ review 相关资产路径：
 
 ```bash
 /usr/bin/python3 skills/case-generation/scripts/testcase_lint.py \
-  --input assets/projects/WX-YYPT/testcases/testcases_main.md
+  --input assets/projects/WX-YYPT/work_items/REQ-001/testcases/testcases_main.md
 ```
 
 ---
@@ -475,20 +474,14 @@ review 相关资产路径：
 
 ```bash
 /usr/bin/python3 skills/review-gate/scripts/review_gate.py \
-  --structured-prd assets/projects/WX-YYPT/structured_prd/structured_prd.json \
-  --testcases assets/projects/WX-YYPT/testcases/testcases_main.md \
+  --structured-prd assets/projects/WX-YYPT/work_items/REQ-001/structured_prd/structured_prd.json \
+  --testcases assets/projects/WX-YYPT/work_items/REQ-001/testcases/testcases_main.md \
   --checklist skills/review-gate/checklists/manual_review_checklist.md
 ```
 
 ---
 
-### 4. 项目 / 工作项统一校验
-
-项目级：
-
-```bash
-/usr/bin/python3 scripts/validate_outputs.py --project-code WX-YYPT
-```
+### 4. 工作项门禁与项目视图校验
 
 工作项级：
 
@@ -496,6 +489,13 @@ review 相关资产路径：
 /usr/bin/python3 scripts/validate_work_item.py \
   --project-code WX-YYPT \
   --work-item-id REQ-001
+```
+
+项目级：
+
+```bash
+/usr/bin/python3 scripts/refresh_project_views.py --project-code WX-YYPT
+/usr/bin/python3 scripts/validate_project.py --project-code WX-YYPT --strict
 ```
 
 ---
@@ -613,7 +613,7 @@ review 相关资产路径：
 9. 运行 `validate_work_item.py`
 10. 如失败，根据 summary 修订后重跑
 
-当工作项达到稳定状态后，再根据需要沉淀到项目级资产。
+当工作项达到稳定状态后，刷新项目索引和质量汇总；不得复制正式产物到项目根。
 
 ## 十五、代码评审阶段
 

@@ -11,7 +11,7 @@ testcase_lint.py
 
 推荐用法：
 python skills/case-generation/scripts/testcase_lint.py \
-  --input assets/projects/WX-YYPT/testcases/demo.md
+  --input assets/projects/WX-YYPT/work_items/REQ-001/testcases/testcases_main.md
 """
 
 from __future__ import annotations

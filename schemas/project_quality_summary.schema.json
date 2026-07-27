@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Project Quality Summary",
+  "type": "object",
+  "required": [
+    "project_code",
+    "generated_at",
+    "work_item_count",
+    "ready_work_item_count",
+    "incomplete_work_item_count",
+    "testcase_count",
+    "open_risk_count",
+    "stale_quality_report_count",
+    "priority_counts"
+  ],
+  "properties": {
+    "project_code": { "type": "string" },
+    "generated_at": { "type": "string" },
+    "work_item_count": { "type": "integer", "minimum": 0 },
+    "ready_work_item_count": { "type": "integer", "minimum": 0 },
+    "incomplete_work_item_count": { "type": "integer", "minimum": 0 },
+    "testcase_count": { "type": "integer", "minimum": 0 },
+    "open_risk_count": { "type": "integer", "minimum": 0 },
+    "stale_quality_report_count": { "type": "integer", "minimum": 0 },
+    "priority_counts": {
+      "type": "object",
+      "additionalProperties": { "type": "integer", "minimum": 0 }
+    }
+  },
+  "additionalProperties": true
+}

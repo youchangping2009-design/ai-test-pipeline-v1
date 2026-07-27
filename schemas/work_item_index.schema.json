@@ -1,0 +1,44 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Work Item Index",
+  "type": "object",
+  "required": ["project_code", "index_type", "generated_at", "items"],
+  "properties": {
+    "project_code": { "type": "string" },
+    "index_type": { "type": "string", "const": "work_item" },
+    "generated_at": { "type": "string" },
+    "items": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "work_item_id",
+          "title",
+          "status",
+          "work_item_level",
+          "manifest_path",
+          "manifest_sha256",
+          "artifact_status",
+          "testcase_count",
+          "quality_report_status"
+        ],
+        "properties": {
+          "work_item_id": { "type": "string" },
+          "title": { "type": "string" },
+          "status": { "type": "string" },
+          "work_item_level": { "type": "string", "enum": ["S", "M", "L"] },
+          "manifest_path": { "type": "string" },
+          "manifest_sha256": { "type": "string" },
+          "artifact_status": { "type": "string", "enum": ["ready", "incomplete"] },
+          "testcase_count": { "type": "integer", "minimum": 0 },
+          "quality_report_status": {
+            "type": "string",
+            "enum": ["current", "stale", "missing"]
+          }
+        },
+        "additionalProperties": true
+      }
+    }
+  },
+  "additionalProperties": false
+}

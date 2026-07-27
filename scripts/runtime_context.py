@@ -46,12 +46,7 @@ def _read_runtime_context_file(path: Path) -> dict:
 
 
 def _detect_host_adapter(env: Mapping[str, str]) -> str | None:
-    explicit = _string(env.get("ATP_HOST_ADAPTER"))
-    if explicit:
-        return explicit
-    if _string(env.get("CODEX_THREAD_ID")) or _string(env.get("CODEX_HOME")):
-        return "codex"
-    return None
+    return _string(env.get("ATP_HOST_ADAPTER"))
 
 
 def _load_adapter_values(adapter: str | None, env: Mapping[str, str]) -> dict[str, str | None]:
@@ -132,7 +127,7 @@ def resolve_runtime_context(
         or _string(runtime_file_payload.get("base_url"))
         or compatibility_base_url
         or _string(adapter_payload.get("base_url"))
-        or "https://api.openai.com/v1"
+        or ""
     )
     if runtime_base_url:
         base_url_source = "env.ATP_BASE_URL"
@@ -143,7 +138,7 @@ def resolve_runtime_context(
     elif _string(adapter_payload.get("base_url")):
         base_url_source = _string(adapter_payload.get("base_url_source")) or "adapter.base_url"
     else:
-        base_url_source = "default_endpoint"
+        base_url_source = "unset"
 
     return ModelRuntimeConfig(
         model=model,

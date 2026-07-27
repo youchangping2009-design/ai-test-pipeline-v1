@@ -256,8 +256,33 @@ def main() -> int:
         manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
         work_item_level, level_source = resolve_work_item_level(manifest, args.work_item_level)
     else:
-        work_item_level = args.work_item_level or DEFAULT_WORK_ITEM_LEVEL
-        level_source = "cli" if args.work_item_level else "default"
+        project_manifest_path = (
+            ROOT
+            / "assets"
+            / "projects"
+            / project_code
+            / "project_manifest.json"
+        )
+        project_default_level = ""
+        if project_manifest_path.exists():
+            project_manifest = json.loads(
+                project_manifest_path.read_text(encoding="utf-8")
+            )
+            project_default_level = str(
+                project_manifest.get("default_work_item_level", "")
+            ).strip().upper()
+        work_item_level = (
+            args.work_item_level
+            or project_default_level
+            or DEFAULT_WORK_ITEM_LEVEL
+        )
+        level_source = (
+            "cli"
+            if args.work_item_level
+            else "project_manifest"
+            if project_default_level
+            else "default"
+        )
         ensure_work_item(
             project_code,
             work_item_id,

@@ -16,7 +16,7 @@ except ImportError:  # pragma: no cover
     jsonschema = None
 
 
-ROOT = Path(__file__).resolve().parents[1]
+ROOT = Path(__file__).resolve().parents[3]
 METADATA_FIELD_NAMES = {
     "creator_name",
     "creator",
@@ -61,7 +61,9 @@ def entry_text(entry: dict[str, Any]) -> str:
 def is_metadata_entry(entry: dict[str, Any]) -> bool:
     field_name = str(entry.get("field_name", "")).strip()
     title = str(entry.get("title", "")).strip()
-    return field_name in METADATA_FIELD_NAMES or any(keyword in title for keyword in METADATA_TITLE_KEYWORDS)
+    return field_name in METADATA_FIELD_NAMES or any(
+        keyword in title for keyword in METADATA_TITLE_KEYWORDS
+    )
 
 
 def validate_semantics(data: dict[str, Any]) -> list[str]:
@@ -73,23 +75,39 @@ def validate_semantics(data: dict[str, Any]) -> list[str]:
         text = entry_text(entry)
 
         if coverage_type in {"data_source_filter", "data_source_order"} and coverage_level != "critical":
-            errors.append(f"entries[{index}]: {coverage_type} 必须保持 critical，当前为 {coverage_level}")
+            errors.append(
+                f"entries[{index}]: {coverage_type} 必须保持 critical，当前为 {coverage_level}"
+            )
 
         if is_metadata_entry(entry):
             if coverage_level != "audit_only":
-                errors.append(f"entries[{index}]: 列表元数据字段必须为 audit_only，当前为 {coverage_level}")
+                errors.append(
+                    f"entries[{index}]: 列表元数据字段必须为 audit_only，当前为 {coverage_level}"
+                )
             if emit_mode not in {"group_audit", "drop"}:
-                errors.append(f"entries[{index}]: 列表元数据字段不得默认进入 audit_item/main_testcase，当前 emit_mode={emit_mode}")
+                errors.append(
+                    f"entries[{index}]: 列表元数据字段不得默认进入 audit_item/main_testcase，当前 emit_mode={emit_mode}"
+                )
 
         if coverage_type == "field_property" and not is_metadata_entry(entry):
-            if emit_mode == "main_testcase" and not any(keyword in text for keyword in HIGH_PRIORITY_FIDELITY_KEYWORDS):
-                errors.append(f"entries[{index}]: 普通 field_property 不应直接进入 main_testcase")
+            if emit_mode == "main_testcase" and not any(
+                keyword in text for keyword in HIGH_PRIORITY_FIDELITY_KEYWORDS
+            ):
+                errors.append(
+                    f"entries[{index}]: 普通 field_property 不应直接进入 main_testcase"
+                )
 
-        if any(keyword in text for keyword in HIGH_PRIORITY_FIDELITY_KEYWORDS) or re.search(r"(每tab最多\d+条|单tab下[^；，。]*不允许超过\d+条)", text):
+        if any(
+            keyword in text for keyword in HIGH_PRIORITY_FIDELITY_KEYWORDS
+        ) or re.search(r"(每tab最多\d+条|单tab下[^；，。]*不允许超过\d+条)", text):
             if coverage_level != "critical":
-                errors.append(f"entries[{index}]: 高优 fidelity coverage 必须为 critical，当前为 {coverage_level}")
+                errors.append(
+                    f"entries[{index}]: 高优 fidelity coverage 必须为 critical，当前为 {coverage_level}"
+                )
             if emit_mode != "main_testcase":
-                errors.append(f"entries[{index}]: 高优 fidelity coverage 必须为 main_testcase，当前为 {emit_mode}")
+                errors.append(
+                    f"entries[{index}]: 高优 fidelity coverage 必须为 main_testcase，当前为 {emit_mode}"
+                )
     return errors
 
 
@@ -100,7 +118,11 @@ def load_json(path: Path) -> dict[str, Any]:
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="校验 coverage_matrix.json")
     parser.add_argument("--input", required=True, help="coverage_matrix.json 路径")
-    parser.add_argument("--schema", required=False, default=str(ROOT / "schemas" / "coverage_matrix.schema.json"))
+    parser.add_argument(
+        "--schema",
+        required=False,
+        default=str(ROOT / "schemas" / "coverage_matrix.schema.json"),
+    )
     return parser.parse_args()
 
 
@@ -122,7 +144,9 @@ def main() -> int:
 
     errors = []
     validator = jsonschema.Draft7Validator(schema)
-    for error in sorted(validator.iter_errors(data), key=lambda item: list(item.path)):
+    for error in sorted(
+        validator.iter_errors(data), key=lambda item: list(item.path)
+    ):
         path = ".".join(str(part) for part in error.absolute_path) or "<root>"
         errors.append(f"{path}: {error.message}")
 
@@ -131,7 +155,7 @@ def main() -> int:
     if errors:
         print("coverage_matrix 校验失败:", file=sys.stderr)
         for error in errors:
-            print(f"- {error}", file=sys.stderr)
+            print(f"- {error}")
         return 1
 
     level_counter: dict[str, int] = {}

@@ -109,7 +109,7 @@ Read `references/output-contract.md` before writing the Markdown. The document m
 Before final response:
 
 - Confirm `inputs/requirement_summary.md` exists and is non-empty.
-- Confirm `scripts/validate_requirement_sources.py --input <source_manifest.json> --strict` passes.
+- Confirm `skills/requirement-summary/scripts/validate_requirement_sources.py --input <source_manifest.json> --strict` passes.
 - Confirm `PROGRESS.md` was updated.
 - Report validation result.
 - Mention any unreadable sources or remaining confirmation gaps.

@@ -1,0 +1,25 @@
+{
+  "project_code": "WX-YGJ",
+  "index_type": "work_item",
+  "generated_at": "2026-07-27T15:50:01",
+  "items": [
+    {
+      "work_item_id": "PT083",
+      "title": "PT083需求",
+      "status": "initialized",
+      "work_item_level": "L",
+      "manifest_path": "work_items/PT083/manifest.json",
+      "manifest_sha256": "5273233ad9301a36029b3cdb90db8f973bd05fd06257aa656492cf7dc0e3a8b2",
+      "artifact_status": "ready",
+      "missing_artifacts": [],
+      "testcase_count": 18,
+      "open_risk_count": 3,
+      "quality_report_status": "current",
+      "primary_artifacts": {
+        "structured_prd": "work_items/PT083/structured_prd/structured_prd.md",
+        "testcases_main": "work_items/PT083/testcases/testcases_main.md",
+        "traceability_primary": "work_items/PT083/traceability/coverage_first_traceability.json"
+      }
+    }
+  ]
+}

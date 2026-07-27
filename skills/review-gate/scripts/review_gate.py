@@ -28,16 +28,16 @@ review_gate.py
 
 推荐用法：
 python skills/review-gate/scripts/review_gate.py \
-  --structured-prd assets/projects/WX-YYPT/structured_prd/demo.json \
-  --testcases assets/projects/WX-YYPT/testcases/demo.md \
+  --structured-prd assets/projects/WX-YYPT/work_items/REQ-001/structured_prd/structured_prd.json \
+  --testcases assets/projects/WX-YYPT/work_items/REQ-001/testcases/testcases_main.md \
   --checklist skills/review-gate/checklists/manual_review_checklist.md
 
 也可仅校验某一部分：
 python skills/review-gate/scripts/review_gate.py \
-  --structured-prd assets/projects/WX-YYPT/structured_prd/demo.json
+  --structured-prd assets/projects/WX-YYPT/work_items/REQ-001/structured_prd/structured_prd.json
 
 python skills/review-gate/scripts/review_gate.py \
-  --testcases assets/projects/WX-YYPT/testcases/demo.md
+  --testcases assets/projects/WX-YYPT/work_items/REQ-001/testcases/testcases_main.md
 """
 
 from __future__ import annotations

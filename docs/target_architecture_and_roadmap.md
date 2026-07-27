@@ -88,7 +88,7 @@ flowchart TD
 | `scripts/` | 初始化与校验脚本 | 扩展为 pipeline orchestration、render、strict gate、eval 入口 |
 | `hooks/` | 当前缺失 | 新增生命周期 hook 定义、事件配置、适配器脚本 |
 | `docs/` | 架构、SOP、试运行方案 | 增加目标架构、改造路线、CI 接入规范 |
-| `.cursor/` | 规则 / subagents / MCP | 后续用于 agent runtime 接入与角色路由 |
+| `tool_adapters/` 与宿主私有目录 | 规则 / runtime / MCP 适配 | 后续用于不同 agent runtime 接入与角色路由 |
 | `tests/` | 当前缺失 | 新增 regression、fixture、golden set、eval case |
 
 ---
@@ -506,7 +506,7 @@ assets/projects/<PROJECT_CODE>/hooks/
 - `skills/case-generation/scripts/testcase_lint.py`
 - `skills/review-gate/scripts/review_gate.py`
 - `scripts/validate_traceability_assets.py`
-- `scripts/validate_outputs.py`
+- `scripts/validate_project.py`
 - `scripts/validate_work_item.py`
 
 建议新增：
@@ -603,7 +603,7 @@ assets/projects/<PROJECT_CODE>/hooks/
 
 - `testcase_lint.py` 增加 `--strict`
 - `review_gate.py` 增加对 `review_record` 的正式校验
-- `validate_outputs.py` 增加 `--strict`
+- `validate_project.py` 提供轻量项目壳与派生索引 strict 校验
 - `validate_work_item.py` 默认保留宽松模式，但提供严格模式给 CI
 
 ---
@@ -667,7 +667,7 @@ tests/
 - `skills/prd-structuring/scripts/validate_structured_prd.py`
 - `skills/case-generation/scripts/testcase_lint.py`
 - `skills/review-gate/scripts/review_gate.py`
-- `scripts/validate_outputs.py`
+- `scripts/validate_project.py`
 - `scripts/validate_work_item.py`
 - `scripts/init_project.py`
 - `scripts/create_work_item.py`
@@ -679,7 +679,7 @@ tests/
 3. 新增 `schemas/testcase_bundle.schema.json`
 4. `validate_structured_prd.py` 在缺少 `jsonschema` 时直接失败，不允许静默跳过
 5. 持续保持 `review_record` 模板字段命名统一，统一使用“问题清单”
-6. 为 `validate_outputs.py` 与 `validate_work_item.py` 增加 `--strict`
+6. 以 `validate_project.py` 校验项目壳，以 `validate_work_item.py` 校验正式工作项
 7. `testcase_lint.py` 在 strict 模式下禁止空模板通过
 8. `review_gate.py` 正式接入 `review_record` 校验
 
@@ -778,7 +778,7 @@ tests/
 
 改造范围：
 
-- `.cursor/`
+- `tool_adapters/` 与当前宿主私有目录
 - `skills/`
 - `AGENTS.md`
 - `scripts/`

@@ -68,10 +68,6 @@ def build_file_list(paths: Iterable[Path]) -> str:
     return "\n".join(f"- `{rel(path)}`" for path in paths)
 
 
-def existing_paths(*paths: Path) -> list[Path]:
-    return [path for path in paths if path.exists()]
-
-
 def remove_stale_generation_files(generation_dir: Path) -> list[Path]:
     removed: list[Path] = []
     keep = set(CURRENT_TASK_FILES + ["run_manifest.json", "regeneration_bundle.json"])
@@ -102,7 +98,7 @@ def build_requirement_intake_task(
         ROOT / "skills" / "requirement-summary" / "SKILL.md",
         ROOT / "skills" / "requirement-summary" / "references" / "output-contract.md",
         ROOT / "schemas" / "requirement_source_manifest.schema.json",
-        ROOT / "scripts" / "validate_requirement_sources.py",
+        ROOT / "skills" / "requirement-summary" / "scripts" / "validate_requirement_sources.py",
     ]
     content = f"""# Requirement Intake Run
 
@@ -128,7 +124,7 @@ def build_requirement_intake_task(
 - 本阶段不得生成 structured_prd、case_plan 或 testcase
 
 ## 校验命令
-- `python3 scripts/validate_requirement_sources.py --input {rel(item_root / 'inputs' / 'source_manifest.json')} --strict`
+- `python3 skills/requirement-summary/scripts/validate_requirement_sources.py --input {rel(item_root / 'inputs' / 'source_manifest.json')} --strict`
 """
     write_text(generation_dir / "00-requirement-intake.md", content)
 
@@ -148,7 +144,7 @@ def build_reasoning_task(
         ROOT / "prompts" / "prd_reasoning_prompt.md",
         ROOT / "schemas" / "reasoning_pack.schema.json",
         ROOT / "scripts" / "generate_reasoning_pack.py",
-        ROOT / "scripts" / "validate_reasoning_pack.py",
+        ROOT / "skills" / "reasoning-analysis" / "scripts" / "validate_reasoning_pack.py",
     ]
     inputs_list = build_file_list(input_files)
     if image_evidence_path.exists():
@@ -188,7 +184,7 @@ def build_reasoning_task(
 
 ## 校验命令
 - `python3 scripts/generate_reasoning_pack.py --project-code {manifest.get('project_code', '待确认')} --work-item-id {manifest.get('work_item_id', '待确认')}`
-- `python3 scripts/validate_reasoning_pack.py --input {rel(item_root / 'analysis' / 'reasoning_pack.json')} --schema schemas/reasoning_pack.schema.json`
+- `python3 skills/reasoning-analysis/scripts/validate_reasoning_pack.py --input {rel(item_root / 'analysis' / 'reasoning_pack.json')} --schema schemas/reasoning_pack.schema.json`
 """
     write_text(generation_dir / "01-reasoning-analyst.md", content)
 
@@ -221,11 +217,6 @@ def build_structurer_task(
         ROOT / "AGENTS.md",
         ROOT / "WORKFLOW_CONTRACT.md",
     ]
-    references.extend(
-        existing_paths(
-            ROOT / "tool_adapters" / "cursor" / "README.md",
-        )
-    )
     inputs_list = build_file_list(input_files)
     if image_evidence_path.exists():
         inputs_list = inputs_list + f"\n- `{rel(image_evidence_path)}`"
@@ -297,7 +288,7 @@ def build_coverage_planner_task(generation_dir: Path, item_root: Path) -> None:
         ROOT / "docs" / "testcase_signal_policy.md",
         ROOT / "schemas" / "coverage_matrix.schema.json",
         ROOT / "scripts" / "generate_coverage_matrix.py",
-        ROOT / "scripts" / "validate_coverage_matrix.py",
+        ROOT / "skills" / "coverage-planning" / "scripts" / "validate_coverage_matrix.py",
     ]
     content = f"""# Coverage Planner Run
 
@@ -338,7 +329,7 @@ def build_coverage_planner_task(generation_dir: Path, item_root: Path) -> None:
 
 ## 校验命令
 - `python3 scripts/generate_coverage_matrix.py --project-code {item_root.parent.parent.name} --work-item-id {item_root.name}`
-- `python3 scripts/validate_coverage_matrix.py --input {rel(item_root / 'coverage' / 'coverage_matrix.json')} --schema schemas/coverage_matrix.schema.json`
+- `python3 skills/coverage-planning/scripts/validate_coverage_matrix.py --input {rel(item_root / 'coverage' / 'coverage_matrix.json')} --schema schemas/coverage_matrix.schema.json`
 """
     write_text(generation_dir / "03-coverage-planner.md", content)
 
@@ -473,11 +464,6 @@ def build_case_generator_task(generation_dir: Path, item_root: Path) -> None:
         ROOT / "skills" / "numbering-tagging" / "rules" / "tag_rule.yaml",
         ROOT / "skills" / "numbering-tagging" / "rules" / "priority_rule.yaml",
     ]
-    references.extend(
-        existing_paths(
-            ROOT / "tool_adapters" / "cursor" / "README.md",
-        )
-    )
     content = f"""# Case Generator Run
 
 - 角色：`Case Generator`
@@ -869,12 +855,12 @@ def build_run_manifest(
             rel(item_root / "feishu_ready.md"),
         ],
         "validate_commands": [
-            f"python3 scripts/validate_requirement_sources.py --input {rel(item_root / 'inputs' / 'source_manifest.json')} --strict",
+            f"python3 skills/requirement-summary/scripts/validate_requirement_sources.py --input {rel(item_root / 'inputs' / 'source_manifest.json')} --strict",
             f"python3 scripts/generate_reasoning_pack.py --project-code {project_code} --work-item-id {work_item_id}",
-            f"python3 scripts/validate_reasoning_pack.py --input {rel(item_root / 'analysis' / 'reasoning_pack.json')} --schema schemas/reasoning_pack.schema.json",
+            f"python3 skills/reasoning-analysis/scripts/validate_reasoning_pack.py --input {rel(item_root / 'analysis' / 'reasoning_pack.json')} --schema schemas/reasoning_pack.schema.json",
             f"python3 scripts/project_reasoning_to_structured_prd.py --project-code {project_code} --work-item-id {work_item_id}",
             f"python3 scripts/generate_coverage_matrix.py --project-code {project_code} --work-item-id {work_item_id}",
-            f"python3 scripts/validate_coverage_matrix.py --input {rel(item_root / 'coverage' / 'coverage_matrix.json')} --schema schemas/coverage_matrix.schema.json",
+            f"python3 skills/coverage-planning/scripts/validate_coverage_matrix.py --input {rel(item_root / 'coverage' / 'coverage_matrix.json')} --schema schemas/coverage_matrix.schema.json",
             *(
                 [
                     f"python3 scripts/compile_structured_prd_json.py --input {rel(item_root / 'structured_prd' / 'structured_prd.md')} --output {rel(item_root / 'structured_prd' / 'structured_prd.json')}",

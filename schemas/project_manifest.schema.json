@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "AI Test Pipeline Project Manifest",
+  "type": "object",
+  "required": [
+    "project_code",
+    "project_name",
+    "business_line",
+    "created_at",
+    "updated_at",
+    "status",
+    "asset_model",
+    "default_work_item_level",
+    "paths"
+  ],
+  "properties": {
+    "project_code": { "type": "string", "minLength": 1 },
+    "project_name": { "type": "string" },
+    "business_line": { "type": "string" },
+    "created_at": { "type": "string" },
+    "updated_at": { "type": "string" },
+    "status": { "type": "string", "enum": ["active", "archived"] },
+    "asset_model": { "type": "string", "const": "work_item_truth" },
+    "default_work_item_level": { "type": "string", "enum": ["S", "M", "L"] },
+    "paths": {
+      "type": "object",
+      "required": ["inputs_common", "work_items", "indexes", "reports", "knowledge"],
+      "properties": {
+        "inputs_common": { "type": "string" },
+        "work_items": { "type": "string" },
+        "indexes": { "type": "string" },
+        "reports": { "type": "string" },
+        "knowledge": { "type": "string" }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": true
+}

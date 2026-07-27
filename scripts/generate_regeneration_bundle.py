@@ -163,8 +163,9 @@ def call_openai_provider(item_root: Path, run_manifest: dict, model: str | None)
             }
         },
     }
+    provider_base_url = runtime.base_url or "https://api.openai.com/v1"
     request = urllib.request.Request(
-        runtime.base_url.rstrip("/") + "/responses",
+        provider_base_url.rstrip("/") + "/responses",
         data=json.dumps(request_body).encode("utf-8"),
         headers={
             "Authorization": f"Bearer {api_key}",

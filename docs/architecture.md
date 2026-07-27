@@ -52,8 +52,8 @@
 
 主要位置：
 
-- `tool_adapters/cursor/`
-- `.cursor/rules/`（Cursor 宿主适配实现）
+- `tool_adapters/`
+- 宿主私有规则目录（当前为 `.cursor/rules/`）
 - `skills/numbering-tagging/rules/`
 - `skills/review-gate/checklists/`
 
@@ -89,7 +89,7 @@
 - `skills/`
 - `prompts/`
 - `tool_adapters/`
-- `.cursor/subagents/`（Cursor 宿主适配实现）
+- 宿主私有规则目录（当前为 `.cursor/rules/`）
 
 当前能力围绕以下阶段组织：
 
@@ -285,12 +285,13 @@ testcase 同时包含：
 
 用于沉淀：
 
-- 项目级输入
-- 项目级 evidence
-- 项目级 structured_prd
-- 项目级 traceability
-- 项目级 testcase
-- 项目级 review
+- 项目静态元数据 `project_manifest.json`
+- 公共输入 `inputs/common/`
+- 工作项、用例、风险派生索引
+- 项目级质量汇总
+- 人工确认的可复用知识
+
+项目层不保存 evidence、structured PRD、testcase、traceability 或 review 正式真源。
 
 ### 工作项层
 目录：
@@ -338,12 +339,23 @@ testcase 同时包含：
 当前工作项级统一校验会串联：
 
 - `manifest.json`
+- `inputs/requirement_summary.md`
+- `inputs/source_manifest.json`
 - `evidence/evidence_inventory.json`
 - `structured_prd/structured_prd.json`
-- `traceability/traceability_matrix.json`
-- `testcases/testcases.md`
+- `acceptance/` 与 `design/` 决策层
+- `traceability/coverage_first_traceability.json`
+- `testcases/case_plan.json`
+- `testcases/testpoints.json`
+- `testcases/testcases_main.md`
 - `reviews/review_record.md`
+- `reviews/quality_report.json`
 - `review_gate`
+
+项目级使用：
+
+- `scripts/refresh_project_views.py`
+- `scripts/validate_project.py`
 
 ### 4. 导出入口
 
@@ -369,12 +381,11 @@ ai-test-pipeline-v1/
     └── projects/
         └── <PROJECT_CODE>/
             ├── README.md
-            ├── inputs/
-            ├── evidence/
-            ├── structured_prd/
-            ├── traceability/
-            ├── testcases/
-            ├── reviews/
+            ├── project_manifest.json
+            ├── inputs/common/
+            ├── indexes/
+            ├── reports/
+            ├── knowledge/
             └── work_items/
                 └── <WORK_ITEM_ID>/
                     ├── README.md

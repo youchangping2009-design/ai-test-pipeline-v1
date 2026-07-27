@@ -23,7 +23,7 @@
 
 输入材料通常放置于：
 
-- 项目级：`assets/projects/<PROJECT_CODE>/inputs/`
+- 项目级公共资料：`assets/projects/<PROJECT_CODE>/inputs/common/`
 - 工作项级：`assets/projects/<PROJECT_CODE>/work_items/<WORK_ITEM_ID>/inputs/`
 
 ---
@@ -32,10 +32,6 @@
 
 标准输出文件：
 
-- 项目级：`evidence/evidence_inventory.json`
-- 项目级：`structured_prd/structured_prd.md`
-- 项目级：`structured_prd/structured_prd.json`
-- 项目级：为后续 traceability 资产提供可映射结构
 - 工作项级：`evidence/evidence_inventory.json`
 - 工作项级：`structured_prd/structured_prd.md`
 - 工作项级：`structured_prd/structured_prd.json`

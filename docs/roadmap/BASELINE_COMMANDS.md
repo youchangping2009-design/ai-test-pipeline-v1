@@ -42,3 +42,15 @@ PT083 has been regenerated with testability gate, acceptance examples, responsib
 ```
 
 Expected: PASS
+
+### 4. WX-YGJ lightweight project shell
+
+```bash
+/usr/bin/python3 scripts/validate_project.py \
+  --project-code WX-YGJ \
+  --strict \
+  --validate-work-items \
+  --skip-code-reviews
+```
+
+Expected: PASS

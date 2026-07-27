@@ -426,7 +426,13 @@ def validate_requirement_sources(
     source_manifest_path: Path,
     strict: bool,
 ) -> Tuple[bool, str]:
-    script_path = repo_root / "scripts" / "validate_requirement_sources.py"
+    script_path = (
+        repo_root
+        / "skills"
+        / "requirement-summary"
+        / "scripts"
+        / "validate_requirement_sources.py"
+    )
     if not script_path.exists():
         return False, f"requirement source 校验脚本不存在: {script_path}"
 

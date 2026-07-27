@@ -19,6 +19,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import subprocess
 import sys
 from datetime import datetime
 from datetime import timezone
@@ -685,8 +686,8 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument(
         "--work-item-level",
         choices=sorted(VALID_WORK_ITEM_LEVELS),
-        default=DEFAULT_WORK_ITEM_LEVEL,
-        help="工作项复杂度级别，写入 manifest.json；默认 M",
+        default=None,
+        help="工作项复杂度级别；未指定时读取 project_manifest.default_work_item_level，缺失回退 M",
     )
     parser.add_argument("--force", action="store_true", help="允许覆盖已存在文件")
     return parser.parse_args()
@@ -704,14 +705,32 @@ def main() -> int:
 
     title = (args.title or "").strip()
     requirement_version = (args.requirement_version or "").strip()
-    work_item_level = args.work_item_level
-
     repo_root = get_repo_root()
     project_root = repo_root / "assets" / "projects" / project_code
     if not project_root.exists():
         print(
             f"项目目录不存在: {project_root}\n"
             "请先执行 init_project.py 初始化项目。",
+            file=sys.stderr,
+        )
+        return 1
+    project_manifest_path = project_root / "project_manifest.json"
+    if not project_manifest_path.exists():
+        print(
+            f"项目缺少轻量壳 manifest: {project_manifest_path}\n"
+            "请先执行 init_project.py 初始化或迁移项目。",
+            file=sys.stderr,
+        )
+        return 1
+    project_manifest = json.loads(project_manifest_path.read_text(encoding="utf-8"))
+    work_item_level = (
+        args.work_item_level
+        or str(project_manifest.get("default_work_item_level", "")).strip().upper()
+        or DEFAULT_WORK_ITEM_LEVEL
+    )
+    if work_item_level not in VALID_WORK_ITEM_LEVELS:
+        print(
+            f"项目默认 work_item_level 非法: {work_item_level}",
             file=sys.stderr,
         )
         return 1
@@ -1093,6 +1112,24 @@ def main() -> int:
         f" --work-item-level {work_item_level}"
         " --strict"
     )
+
+    if project_manifest_path.exists():
+        result = subprocess.run(
+            [
+                sys.executable,
+                str(repo_root / "scripts" / "refresh_project_views.py"),
+                "--project-code",
+                project_code,
+            ],
+            cwd=repo_root,
+            capture_output=True,
+            text=True,
+            encoding="utf-8",
+        )
+        if result.returncode != 0:
+            print(f"项目视图刷新失败:\n{result.stdout}\n{result.stderr}", file=sys.stderr)
+            return 1
+        print("9. 项目索引与质量汇总已刷新")
 
     return 0
 

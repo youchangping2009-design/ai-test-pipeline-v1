@@ -1,0 +1,14 @@
+{
+  "project_code": "WX-YGJ",
+  "generated_at": "2026-07-27T15:50:01",
+  "work_item_count": 1,
+  "ready_work_item_count": 1,
+  "incomplete_work_item_count": 0,
+  "testcase_count": 18,
+  "open_risk_count": 3,
+  "stale_quality_report_count": 0,
+  "priority_counts": {
+    "P0": 10,
+    "P1": 8
+  }
+}

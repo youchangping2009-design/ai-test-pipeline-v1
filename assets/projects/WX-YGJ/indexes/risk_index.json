@@ -1,0 +1,33 @@
+{
+  "project_code": "WX-YGJ",
+  "index_type": "risk",
+  "generated_at": "2026-07-27T15:50:01",
+  "items": [
+    {
+      "risk_id": "PT083-QUALITY-001",
+      "work_item_id": "PT083",
+      "source_type": "quality_report",
+      "summary": "存在正式 testcase，但 coverage_matrix.entries 为空；当前工作项不能通过规则生成器确定性重建。",
+      "status": "open",
+      "source_path": "work_items/PT083/reviews/quality_report.json"
+    },
+    {
+      "risk_id": "DF-004",
+      "work_item_id": "PT083",
+      "source_type": "design_feedback",
+      "summary": "限时购买标题用例已覆盖但前端实现仍显示超值套餐",
+      "status": "accepted",
+      "severity": "P1",
+      "source_path": "work_items/PT083/design/design_feedback.json"
+    },
+    {
+      "risk_id": "DF-005",
+      "work_item_id": "PT083",
+      "source_type": "design_feedback",
+      "summary": "宣传内容云机类型完整且不重复用例已覆盖但前端缺少提交前校验",
+      "status": "accepted",
+      "severity": "P1",
+      "source_path": "work_items/PT083/design/design_feedback.json"
+    }
+  ]
+}

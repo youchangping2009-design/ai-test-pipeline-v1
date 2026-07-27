@@ -134,7 +134,7 @@ Decision:
 `testcase_bundle.json` 真源迁移已完成评估，但实施被阻塞，等待人工确认。当前仍保持 `testcases/testcases_main.md` 为主 testcase 真源。
 
 Reason:
-切换 testcase 真源会影响 validators、exporters、regeneration bundle、traceability builder 和团队交付习惯；Codex 不应自行切换。
+切换 testcase 真源会影响 validators、exporters、regeneration bundle、traceability builder 和团队交付习惯；任何 Agent 都不应自行切换。
 
 Impact:
 P3-001 暂停实施。推荐下一步由用户确认是否先进入 compatibility-only 阶段。
@@ -358,3 +358,36 @@ Reason:
 
 Impact:
 Case Plan 必须提供 coverage 或稳定 testcase 映射；存在活跃 Case Plan 但 coverage 为空或无候选匹配时，生成器硬失败，禁止空结果覆盖正式用例。PT083 当前 coverage 为空，因此保留既有正式用例作为真源，规则生成器不会静默替换。
+
+## 2026-07-27 - Stage Validator Co-location
+
+Decision:
+单阶段 validator 与所属 Skill 共址；跨阶段映射、兼容投影和工作项总门禁继续保留在根 `scripts/`。Requirement Sources、Reasoning Pack、Coverage Matrix validator 已迁入对应 Skill。PT083 新路径、strict 与总基线通过后，旧 Requirement 根入口已删除；Reasoning/Coverage 暂保留兼容 wrapper。
+
+Reason:
+Validator 分散在根 scripts 和 Skill 目录会模糊阶段职责，也不利于 Skill 独立复用；但直接删除旧入口会破坏历史命令和外部 CI。
+
+Impact:
+仓库内部任务包、统一校验和 Skill 文档统一引用新路径。`scripts/validate_requirement_sources.py` 不再可用；Reasoning/Coverage 的旧根命令仍可用但不承载实现。
+
+## 2026-07-27 - Lightweight Project Shell
+
+Decision:
+项目根切换为轻量壳，只保留 project manifest、公共输入、派生索引、项目质量汇总、人工确认知识和 work_items；正式测试资产真源全部下沉到工作项。删除旧项目级交付目录和 `validate_outputs.py`。
+
+Reason:
+项目级和工作项级同时保存 structured PRD、testcase、traceability、review 会形成双真源；随着工作项增长，复制正式产物也会造成仓库膨胀和状态不一致。
+
+Impact:
+新增 `refresh_project_views.py` 和 `validate_project.py`。项目 indexes/reports 只能从工作项真源再生，不得反写。WX-YGJ 项目级旧目录均为初始化占位，已清理；PT083 路径与正式产物不变。
+
+## 2026-07-27 - Host-Neutral Core
+
+Decision:
+核心协议、Roadmap、repair 模板和运行时上下文保持宿主中立；具体工具名称只允许出现在 `tool_adapters/<host>/`、宿主私有目录或历史审计记录。核心运行时不再根据 Codex 环境变量自动选择 adapter。
+
+Reason:
+AGENTS 和自驱动协议曾以 Codex 为默认主语，任务包还只引用 Cursor adapter，造成“仓库定义流程但实际偏向特定宿主”的冲突。
+
+Impact:
+三份 adapter README 使用统一结构；删除无代码依赖的 Codex agent YAML；Codex runtime bridge 仅在显式 `ATP_HOST_ADAPTER=codex` 时启用。核心 prompts、skills、schemas 和生成任务包均不绑定宿主。

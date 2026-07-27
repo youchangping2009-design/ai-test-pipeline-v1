@@ -1,0 +1,205 @@
+{
+  "project_code": "WX-YGJ",
+  "index_type": "testcase",
+  "generated_at": "2026-07-27T15:50:01",
+  "items": [
+    {
+      "testcase_id": "WX-YGJ-PT083-CLOUDBUY-TAB-MINIAPP-FN-001",
+      "work_item_id": "PT083",
+      "title": "验证[云挂机购买页]常规版和全新版均展示宣传图区域",
+      "priority": "P1",
+      "page_name": "云挂机购买页",
+      "section_name": "顶部tab与宣传图区域",
+      "module_name": "云挂机购买页展示",
+      "feature_name": "双tab宣传图",
+      "source_path": "work_items/PT083/testcases/testcases_main.md"
+    },
+    {
+      "testcase_id": "WX-YGJ-PT083-SPECIAL-MINIAPP-FL-001",
+      "work_item_id": "PT083",
+      "title": "验证[特价专区]空配置隐藏和有配置横排展示",
+      "priority": "P1",
+      "page_name": "云挂机购买页",
+      "section_name": "顶部tab与宣传图区域",
+      "module_name": "云挂机购买页展示",
+      "feature_name": "特价专区",
+      "source_path": "work_items/PT083/testcases/testcases_main.md"
+    },
+    {
+      "testcase_id": "WX-YGJ-PT083-NORMAL-MINIAPP-FN-001",
+      "work_item_id": "PT083",
+      "title": "验证[限时购买]标题和竖排商品展示",
+      "priority": "P1",
+      "page_name": "云挂机购买页",
+      "section_name": "顶部tab与宣传图区域",
+      "module_name": "云挂机购买页展示",
+      "feature_name": "限时购买",
+      "source_path": "work_items/PT083/testcases/testcases_main.md"
+    },
+    {
+      "testcase_id": "WX-YGJ-PT083-PROMO-TEXT-MINIAPP-FL-001",
+      "work_item_id": "PT083",
+      "title": "验证宣传口号和性能参数配置后C端换行展示",
+      "priority": "P1",
+      "page_name": "云挂机购买页",
+      "section_name": "顶部tab与宣传图区域",
+      "module_name": "云挂机购买页展示",
+      "feature_name": "宣传专区",
+      "source_path": "work_items/PT083/testcases/testcases_main.md"
+    },
+    {
+      "testcase_id": "WX-YGJ-PT083-PROMO-GROUP-MINIAPP-FL-001",
+      "work_item_id": "PT083",
+      "title": "验证宣传内容最多两条且C端全部展示",
+      "priority": "P1",
+      "page_name": "云挂机购买页",
+      "section_name": "顶部tab与宣传图区域",
+      "module_name": "云挂机购买页展示",
+      "feature_name": "宣传内容多条展示",
+      "source_path": "work_items/PT083/testcases/testcases_main.md"
+    },
+    {
+      "testcase_id": "WX-YGJ-PT083-FREE-TRIAL-MINIAPP-FL-001",
+      "work_item_id": "PT083",
+      "title": "验证0元商品从后台配置到C端免费体验领取链路",
+      "priority": "P0",
+      "page_name": "云挂机购买页",
+      "section_name": "顶部tab与宣传图区域",
+      "module_name": "云挂机购买页展示",
+      "feature_name": "免费体验领取",
+      "source_path": "work_items/PT083/testcases/testcases_main.md"
+    },
+    {
+      "testcase_id": "WX-YGJ-PT083-FREE-TRIAL-DURATION-API-BD-001",
+      "work_item_id": "PT083",
+      "title": "验证免费体验服务时长按天和小时换算",
+      "priority": "P0",
+      "page_name": "云挂机免费体验接口",
+      "section_name": "免费体验服务时长",
+      "module_name": "云挂机免费体验服务端",
+      "feature_name": "免费体验时长",
+      "source_path": "work_items/PT083/testcases/testcases_main.md"
+    },
+    {
+      "testcase_id": "WX-YGJ-PT083-PROMO-HINT-ADMIN-FN-001",
+      "work_item_id": "PT083",
+      "title": "验证“宣传图片”建议尺寸说明展示",
+      "priority": "P1",
+      "page_name": "云手机商品管理页",
+      "section_name": "编辑宣传内容",
+      "module_name": "云手机商品管理后台",
+      "feature_name": "宣传图片提示",
+      "source_path": "work_items/PT083/testcases/testcases_main.md"
+    },
+    {
+      "testcase_id": "WX-YGJ-PT083-PROMO-CLOUDTYPE-ADMIN-AB-001",
+      "work_item_id": "PT083",
+      "title": "验证宣传内容云机类型必须完整且不重复",
+      "priority": "P0",
+      "page_name": "云手机商品管理页",
+      "section_name": "编辑宣传内容",
+      "module_name": "云手机商品管理后台",
+      "feature_name": "编辑宣传内容",
+      "source_path": "work_items/PT083/testcases/testcases_main.md"
+    },
+    {
+      "testcase_id": "WX-YGJ-PT083-PROMO-IMAGE-ADMIN-BD-001",
+      "work_item_id": "PT083",
+      "title": "验证宣传图片上传数量格式大小约束",
+      "priority": "P0",
+      "page_name": "云手机商品管理页",
+      "section_name": "编辑宣传内容",
+      "module_name": "云手机商品管理后台",
+      "feature_name": "宣传图片上传",
+      "source_path": "work_items/PT083/testcases/testcases_main.md"
+    },
+    {
+      "testcase_id": "WX-YGJ-PT083-PROMO-IMAGE-ADMIN-FN-001",
+      "work_item_id": "PT083",
+      "title": "验证宣传图片删除后可重新上传",
+      "priority": "P1",
+      "page_name": "云手机商品管理页",
+      "section_name": "编辑宣传内容",
+      "module_name": "云手机商品管理后台",
+      "feature_name": "宣传图片上传",
+      "source_path": "work_items/PT083/testcases/testcases_main.md"
+    },
+    {
+      "testcase_id": "WX-YGJ-PT083-DURATION-ADMIN-BD-001",
+      "work_item_id": "PT083",
+      "title": "验证服务时长边界和非法组合保存失败",
+      "priority": "P0",
+      "page_name": "云手机商品管理页",
+      "section_name": "添加云手机商品",
+      "module_name": "云手机商品管理后台",
+      "feature_name": "服务时长",
+      "source_path": "work_items/PT083/testcases/testcases_main.md"
+    },
+    {
+      "testcase_id": "WX-YGJ-PT083-SPECIAL-ADMIN-AB-001",
+      "work_item_id": "PT083",
+      "title": "验证特殊区配置超过4个时保存失败",
+      "priority": "P0",
+      "page_name": "云手机商品管理页",
+      "section_name": "添加云手机商品",
+      "module_name": "云手机商品管理后台",
+      "feature_name": "商品区",
+      "source_path": "work_items/PT083/testcases/testcases_main.md"
+    },
+    {
+      "testcase_id": "WX-YGJ-PT083-SORT-ADMIN-DV-001",
+      "work_item_id": "PT083",
+      "title": "验证盒子内排序输入边界",
+      "priority": "P0",
+      "page_name": "云手机商品管理页",
+      "section_name": "添加云手机商品",
+      "module_name": "云手机商品管理后台",
+      "feature_name": "盒子内排序",
+      "source_path": "work_items/PT083/testcases/testcases_main.md"
+    },
+    {
+      "testcase_id": "WX-YGJ-PT083-SORT-ADMIN-DV-002",
+      "work_item_id": "PT083",
+      "title": "验证盒子内排序值相同时按创建时间倒序",
+      "priority": "P1",
+      "page_name": "云手机商品管理页",
+      "section_name": "添加云手机商品",
+      "module_name": "云手机商品管理后台",
+      "feature_name": "盒子内排序",
+      "source_path": "work_items/PT083/testcases/testcases_main.md"
+    },
+    {
+      "testcase_id": "WX-YGJ-PT083-INVENTORY-JOB-FL-001",
+      "work_item_id": "PT083",
+      "title": "验证库存预警任务触发后C端隐藏商品",
+      "priority": "P0",
+      "page_name": "云手机商品管理页",
+      "section_name": "添加云手机商品",
+      "module_name": "云手机商品管理后台",
+      "feature_name": "库存预警",
+      "source_path": "work_items/PT083/testcases/testcases_main.md"
+    },
+    {
+      "testcase_id": "WX-YGJ-PT083-INVENTORY-ALLOC-API-AB-001",
+      "work_item_id": "PT083",
+      "title": "验证库存预警命中后阻断云机分配",
+      "priority": "P0",
+      "page_name": "云手机商品管理页",
+      "section_name": "添加云手机商品",
+      "module_name": "云手机商品管理后台",
+      "feature_name": "库存预警",
+      "source_path": "work_items/PT083/testcases/testcases_main.md"
+    },
+    {
+      "testcase_id": "WX-YGJ-PT083-INVENTORY-ALERT-JOB-FL-001",
+      "work_item_id": "PT083",
+      "title": "验证库存预警命中后机器人报警通知",
+      "priority": "P0",
+      "page_name": "云手机商品管理页",
+      "section_name": "添加云手机商品",
+      "module_name": "云手机商品管理后台",
+      "feature_name": "库存预警",
+      "source_path": "work_items/PT083/testcases/testcases_main.md"
+    }
+  ]
+}

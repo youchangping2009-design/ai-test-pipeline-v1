@@ -367,12 +367,13 @@
 
 ## 十、统一校验 SOP
 
-### 1. 项目级统一校验
+### 1. 项目级视图刷新与轻量壳校验
 
-适用于项目整体资产校验：
+项目级不保存正式测试资产。先从工作项真源刷新索引和质量汇总，再校验项目壳：
 
 ```bash
-/usr/bin/python3 scripts/validate_outputs.py --project-code WX-YYPT
+/usr/bin/python3 scripts/refresh_project_views.py --project-code WX-YYPT
+/usr/bin/python3 scripts/validate_project.py --project-code WX-YYPT --strict
 ```
 
 ---
@@ -391,7 +392,7 @@
 
 - `manifest.json`
 - `structured_prd/structured_prd.json`
-- `testcases/testcases.md`
+- `testcases/testcases_main.md`
 - `reviews/review_record.md`
 - `manual_review_checklist.md`
 
@@ -427,7 +428,11 @@
 ### 项目级
 
 ```bash
-/usr/bin/python3 scripts/validate_outputs.py --project-code WX-YYPT
+/usr/bin/python3 scripts/refresh_project_views.py --project-code WX-YYPT
+/usr/bin/python3 scripts/validate_project.py \
+  --project-code WX-YYPT \
+  --strict \
+  --validate-work-items
 ```
 
 ### 工作项级
@@ -586,7 +591,8 @@ code review 映证发现的用例缺口、代码实现缺口、过期用例或�
 校验项目：
 
 ```bash
-/usr/bin/python3 scripts/validate_outputs.py --project-code WX-YYPT
+/usr/bin/python3 scripts/refresh_project_views.py --project-code WX-YYPT
+/usr/bin/python3 scripts/validate_project.py --project-code WX-YYPT --strict
 ```
 
 ## 十、产物清理 SOP

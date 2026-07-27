@@ -67,7 +67,7 @@
 
 统一输入目录：
 
-- 项目级：`assets/projects/<PROJECT_CODE>/inputs/`
+- 项目级公共输入：`assets/projects/<PROJECT_CODE>/inputs/common/`
 - 工作项级：`assets/projects/<PROJECT_CODE>/work_items/<WORK_ITEM_ID>/inputs/`
 
 图片输入建议：
@@ -85,6 +85,12 @@
 - 不允许只保留最终结果而丢失可追溯中间层
 - 正式主流程必须先产出 `inputs/requirement_summary.md`，见 `skills/requirement-summary/`
 - `inputs/source_manifest.json` 必须记录实际消费的需求来源、外部链接、本地材料和访问状态；它是来源清单，不替代原始输入或 `requirement_summary.md`
+
+项目资产模型：
+
+- 项目根只保留 `project_manifest.json`、公共输入、派生索引、质量汇总、知识和 `work_items/`
+- 正式 evidence、structured PRD、测试设计、testcase、traceability 与 review 只存在于工作项
+- 项目级 indexes/reports 必须从工作项真源再生，不得反写工作项
 
 ## 4. 产物契约
 
@@ -236,6 +242,12 @@ minimal 下可清理：
 
 若脚本存在历史兼容参数，例如 `provider=openai|command|existing`，应视为兼容实现入口，而不是正式流程真源。
 
+Validator 目录规则：
+
+- 只校验单个 Skill 阶段产物的 validator 放在 `skills/<skill>/scripts/`。
+- 跨阶段映射、兼容投影、工作项聚合门禁保留在根 `scripts/`。
+- 已公开使用的旧根目录命令可保留轻量兼容 wrapper，但仓库内部新引用必须使用 Skill 路径。
+
 ## 8. Prompt 契约
 
 `prompts/` 必须满足：
@@ -315,6 +327,7 @@ structured_prd -> testability_gate -> acceptance_examples -> verification_respon
 - 解释如何执行仓库流程角色
 - 遵循当前真源口径
 - 不把旧兼容层误写成主真源
+- 阶段内部 validator 与 Skill 共址；Reasoning Analysis、Coverage Planning 等正式阶段必须拥有对应 Skill 入口
 
 ## 10. 宿主适配契约
 

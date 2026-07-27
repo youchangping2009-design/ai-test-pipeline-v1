@@ -79,6 +79,19 @@ def main() -> int:
             ],
             expected_pass=True,
         ),
+        BaselineCommand(
+            name="WX-YGJ lightweight project shell should pass",
+            command=[
+                PYTHON,
+                "scripts/validate_project.py",
+                "--project-code",
+                "WX-YGJ",
+                "--strict",
+                "--validate-work-items",
+                "--skip-code-reviews",
+            ],
+            expected_pass=True,
+        ),
     ]
 
     failures: list[str] = []

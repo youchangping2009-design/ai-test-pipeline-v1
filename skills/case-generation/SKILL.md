@@ -29,7 +29,6 @@
 
 标准输出文件：
 
-- 项目级兼容镜像：`testcases/testcases.md`
 - 工作项级测试点评审视图：`testcases/testpoints.md` / `testpoints.json`（与正式用例同步生成，以 `case_plan.json` 为来源，不是真源）
 - 工作项级主真源：`testcases/testcases_main.md`
 - 工作项级兼容镜像：`testcases/testcases.md`
