@@ -65,17 +65,19 @@
 2. 初始化工作项
 3. 放入原始输入资料
 4. 生成主流程输入归一化产物 `inputs/requirement_summary.md` 与 `inputs/source_manifest.json`（见 `skills/requirement-summary/`）
-5. 生成 evidence_inventory
-6. 生成 structured_prd
-7. 生成 testability_gate
-8. 生成 acceptance_examples / verification_responsibility_map（按工作项复杂度启用）
-9. 生成 case_plan
-10. 从 case_plan 派生 testcase
-11. 生成 traceability
-12. 执行 review
-13. 如有 code review 映证反馈，先写入 `design/design_feedback.json`
-14. 执行统一质量门
-15. 修订后再次校验
+5. Requirement Sources 机器校验通过后，在同一 Harness run 中完成人工审批并 `resume`
+6. 生成 evidence_inventory
+7. 生成 structured_prd
+8. 生成 testability_gate
+9. 生成 acceptance_examples / verification_responsibility_map（按工作项复杂度启用）
+10. 生成 case_plan；本阶段不依赖未来 testcase
+11. 从 case_plan 同轮派生 testpoints 与 testcase；本阶段不依赖未刷新的 Bundle
+12. 刷新并校验 testcase Bundle
+13. 生成 traceability
+14. 执行 review
+15. 如有 code review 映证反馈，先写入 `design/design_feedback.json`
+16. 执行统一质量门
+17. 修订后再次校验
 
 正式 testcase 的步骤和预期结果应使用统一元素标注。页面 / Tab 使用 `[]`，按钮 / 操作入口使用 `【】`，弹窗 / 抽屉 / 面板使用 `《》`，字段 / 列表列使用 `“”`，枚举值 / 输入值使用 `{}`，状态 / 结果使用 `<>`，提示语 / Toast 使用 `「」`，接口 / 参数使用反引号。完整规范见 `rules/testcase_element_notation.md`。
 
@@ -615,14 +617,15 @@ review 正式资产路径：
 
 1. `init_project.py` 初始化项目
 2. `create_work_item.py` 初始化工作项
-3. 优先使用 `run_submission_pipeline.py` 自动落输入并执行到代码映证前
-4. 若需要底层控制，再手动执行 `prepare_regeneration_run.py`
-5. 使用 `generate_regeneration_bundle.py` 生成 bundle
-6. 使用 `execute_regeneration_bundle.py` 执行 bundle
-7. 完成前端代码 CR，并人工确认 `frontend_confirmation.json`
-8. 完成后端代码 CR，并人工确认 `backend_confirmation.json`
-9. 运行 `validate_work_item.py`
-10. 如失败，根据 summary 修订后重跑
+3. 使用 `run_work_item_pipeline.py start` 创建单个可恢复 run
+4. Requirement Intake 进入 `waiting_approval` 后，通过正式 approval CLI 审核，再以同一 `run_id` 执行 `resume`
+5. 按阶段生成正式资产；Case Plan 不依赖未来 testcase，Testcases 不依赖未刷新的 Bundle
+6. 在 Traceability 前刷新并校验 Bundle
+7. 有代码分支时完成前后端 CR 与人工确认；无代码 M 档可在工作项 strict 中显式使用 `--skip-code-reviews`
+8. 运行 `validate_work_item.py --strict`
+9. 如失败，根据诊断最小修订后重跑
+
+`run_submission_pipeline.py`、`generate_regeneration_bundle.py` 与 `execute_regeneration_bundle.py` 继续作为旧流程兼容入口，不是当前受控 Harness 的运行状态真源。
 
 当工作项达到稳定状态后，刷新项目索引和质量汇总；不得复制正式产物到项目根。
 
@@ -647,9 +650,9 @@ review 正式资产路径：
 - 分页、默认值、补齐逻辑
 - 接口字段、缺省返回、共享契约
 
-## 十六、测试提交流水线入口
+## 十六、旧测试提交流水线兼容入口
 
-推荐测试直接使用：
+旧消费方仍可使用：
 
 ```bash
 /usr/bin/python3 scripts/run_submission_pipeline.py \
@@ -671,3 +674,5 @@ review 正式资产路径：
 - `--backend-code-dir`
 
 再次执行同一脚本即可把工作项推进到 `READY_FOR_CODE_REVIEW`。
+
+该入口不提供 Requirement Approval 的 run-local 状态机、checkpoint 与审计语义。新工作项应优先使用 `run_work_item_pipeline.py`；当前 Harness 尚无 Review `not_applicable` disposition，不得把待评审模板当作 Review 已完成。

@@ -8,12 +8,11 @@
 
 1. `START_HERE.md`
 2. `WORKFLOW_CONTRACT.md`
-3. `AGENTS.md`
-4. `docs/roadmap/NEXT_ACTION.md`
-5. `docs/roadmap/WORK_QUEUE.md`
-6. `docs/roadmap/DECISION_LOG.md`
+3. `docs/roadmap/NEXT_ACTION.md`
+4. `docs/roadmap/WORK_QUEUE.md`
+5. `docs/roadmap/DECISION_LOG.md`
 
-如果这些文件之间冲突，以 `WORKFLOW_CONTRACT.md` 的流程契约和 `docs/roadmap/DECISION_LOG.md` 的最新决策为准。
+`AGENTS.md` 是上述启动顺序的约束来源，应在进入仓库时已由 Agent 环境加载；若需人工复核协议原文，再单独读取。文件之间冲突时，以 `WORKFLOW_CONTRACT.md` 的流程契约和 `docs/roadmap/DECISION_LOG.md` 的最新决策为准。
 
 ## 如何选择任务
 
@@ -52,11 +51,12 @@
 /usr/bin/python3 scripts/run_quality_baseline.py
 ```
 
-该脚本会执行当前 P0.5 基线：
+该脚本会执行当前 5 项质量基线：
 
+- 全量 Harness 单元测试应通过。
 - PT083 非 strict 应通过。
 - PT083 strict 应通过。
-- PT083 eval 应通过。
+- regression tier 应通过。
 - WX-YGJ 轻量项目壳 strict 应通过。
 
 如果任务修改了特定 validator、schema 或 eval fixture，还应额外运行对应脚本的局部校验。

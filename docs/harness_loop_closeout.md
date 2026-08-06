@@ -32,7 +32,7 @@
 以下能力不属于 P4-009，后续如有明确收益再进入新任务：
 
 - 多机或网络文件系统上的分布式锁。
-- evidence/flow/testcase reviewer 的并行 subagent 调度。
+- 跨进程或分布式 Reviewer 调度；当前仅支持单机 Case Reviewer 子阶段的三路线程并发。
 - 长期 memory；强约束知识仍只进入 rule、skill、checklist、schema 或 eval。
 - 自动代码评审和外部系统回写。
 
@@ -43,6 +43,7 @@
 - Agent Loop 与四角色 Runtime 不支持从中间 model turn 续跑；multi-role 崩溃 run 先用 `recover-roles` 安全取消，事务/审批走各自恢复入口，再以新 run 重跑。
 - 本地锁以 PID 活性和唯一 token 保护单机工作项并发；不承诺跨主机互斥。
 - `inputs/requirement_approval.json` 是长期人工凭证，不属于 `.generation` 派生物；cleanup 和 controlled generation 都不能删除、发布或伪造它。CI 只校验 receipt，不执行批准。
+- 无代码 M 档可用 `validate_work_item.py --strict --skip-code-reviews` 完成工作项门禁；Harness run 当前仍无可审计的 Review `not_applicable` disposition，不得用待评审模板推进 Review checkpoint。
 
 ## Requirement approval 操作
 

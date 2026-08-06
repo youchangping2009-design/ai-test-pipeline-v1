@@ -318,7 +318,19 @@ Requirement Approval 使用同一 Harness run 完成：
   --work-item-id REQ-001
 ```
 
-测试提交流水线入口：
+当前受控 Harness 入口：
+
+```bash
+/usr/bin/python3 scripts/run_work_item_pipeline.py start \
+  --project-code WX-YYPT \
+  --work-item-id REQ-001 \
+  --strict \
+  --stop-at strict_gate
+```
+
+Requirement Intake 进入 `waiting_approval` 后，使用正式 `approve-requirement` / `reject-requirement` CLI 处理，再以同一 `run_id` 执行 `resume`。Case Plan 阶段不依赖未来 testcase；Testcases 阶段不依赖未刷新的 Bundle；Bundle 在 Traceability 前刷新并校验。
+
+旧测试提交流水线兼容入口：
 
 ```bash
 /usr/bin/python3 scripts/run_submission_pipeline.py \
@@ -331,6 +343,7 @@ Requirement Approval 使用同一 Harness run 完成：
 
 说明：
 
+- `run_submission_pipeline.py` 是旧流程兼容入口，不提供 Harness 的 run-local approval/checkpoint/audit 状态
 - 测试只需提供需求文件或补充资料
 - 脚本会自动落到 `inputs/`
 - 自动创建或维护工作项

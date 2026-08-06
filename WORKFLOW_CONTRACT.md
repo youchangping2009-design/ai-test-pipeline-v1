@@ -109,6 +109,7 @@
 - `testcases/testcases_main.md` 是主 testcase 真源
 - `testcases/testcases.md` 是兼容镜像，可按需再生
 - `testcases/testcase_bundle.json` 是 compatibility-only 结构化投影，由 `testcases_main.md` 派生，不反写真源，可按需再生
+- Case Plan 阶段不得读取未来 `testcases_main.md` 作为前置输入；Testcases 阶段不得读取尚未刷新的 Bundle 作为前置输入；Bundle 必须在 Traceability 前刷新并校验
 - `testcases/testpoints.md` / `testpoints.json` 与 `testcases_main.md` 在 Case Generator 主流程同步生成；它以 `case_plan.json` 为来源，可引用主用例补充上下文，但不反写 `case_plan` 或替代 `testcases_main.md`
 - `testcases/field_audit.json` 是 audit item 派生产物，可按需再生或清理
 - `testcases/grouped_audit.json` 是 grouped audit 派生产物，可按需再生或清理
@@ -241,6 +242,7 @@ Harness 运行层只管理阶段顺序、checkpoint、事件、诊断和停止�
 - 阶段命令必须来自 `scripts/harness/stage_registry.py` 白名单，不允许透传任意 shell
 - 首版只执行只读 Validator 和 artifact checkpoint，不调用模型、不执行生成器
 - 恢复时仅复用输入指纹未变化的成功 checkpoint；指纹变化会使该阶段及下游失效
+- 同一业务执行应复用一个 run 并通过 `resume` 推进 checkpoint，不为每个阶段创建新 run
 - Requirement approval required 时，requirement intake checkpoint 使用正式 canonical approval binding（run、summary、source manifest、raw inputs、requirement version），不把 manifest 的运行期/派生字段纳入审批有效性
 - `resume` 不得绕过 pending/rejected receipt；canonical binding 漂移必须使 requirement intake 及下游 checkpoint 失效并重新请求人工审批，旧完整-manifest checkpoint 可在 approved receipt 仍匹配时仅规范化指纹
 - `approve-requirement / reject-requirement` 必须显式接收 reviewer 和 note；重复同一决议幂等，冲突决议失败；`recover-requirement-approval` 只补全已持久化 receipt 对应的 event/state，不伪造 reviewer

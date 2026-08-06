@@ -594,8 +594,10 @@ python3 scripts/validate_work_item.py \
 flowchart TD
     P[轻量项目壳] --> W[初始化工作项]
     W --> RI[Requirement Intake]
-    RI --> R[Reasoning Pack]
-    RI --> IE[Image Evidence 可选]
+    RI --> RA{Requirement Approval}
+    RA -->|pending/rejected| WAIT[等待人工处理]
+    RA -->|approved| R[Reasoning Pack]
+    RA -->|approved| IE[Image Evidence 可选]
     IE --> R
     R --> SP[Structured PRD]
     SP --> COV[Coverage Matrix]
@@ -608,7 +610,8 @@ flowchart TD
     CP --> TP[Testpoints]
     CP --> TC[Testcases Main]
     COV --> TC
-    TC --> TR[Coverage-first Traceability]
+    TC --> BUNDLE[Testcase Bundle 刷新]
+    BUNDLE --> TR[Coverage-first Traceability]
     TR --> RV[Review + Quality Report]
     RV --> CR[Code Review 可选]
     CR --> DF[Design Feedback]
@@ -739,6 +742,9 @@ inputs/source_manifest.json
 - 区分确认需求、推断、风险和待确认问题
 - `source_manifest` 记录实际消费来源及访问状态
 - 本阶段不得生成 structured PRD、Case Plan 或 Testcase
+- Requirement Sources 机器校验通过后必须进入正式人工审批门；新工作项默认停在 `waiting_approval`
+- approval receipt 绑定 summary、source manifest、raw inputs fingerprint、requirement version 和当前 run；manifest 的运行期/派生字段不参与 canonical binding
+- 审批后继续使用同一 `run_id` 执行 `resume`，不得为每个阶段新建 run
 
 校验：
 
@@ -1118,7 +1124,7 @@ Testcase 控制：
 
 ## 16. 阶段 12：派生产物刷新
 
-Bundle 写入后固定执行：
+正式 Testcase 与 Testpoints 同轮生成后，后处理固定执行：
 
 ```text
 Structured PRD 编译/渲染
@@ -1398,8 +1404,12 @@ PT083 当前为迁移后的 M 档正式样本：82 条 Coverage、62 条 Gate、
 
 当前保护策略：
 
-- 继续保留 18 条正式用例真源
+- Case Plan 阶段只校验计划及上游设计资产，不依赖未来 `testcases_main.md`
+- Testcases 阶段只校验正式用例、分组、Testpoints 和 Case Plan 反向映射，不依赖尚未刷新的 Bundle
+- Bundle 必须在 Traceability 前完成刷新和一致性校验
 - 规则生成器遇到空 Coverage 或无 CasePlan 映射时硬失败
 - 未经人工评审不得使用候选用例覆盖正式用例
-- 该事项记录在 `docs/roadmap/HUMAN_ACTION_REQUIRED.md`
+- M 档无代码 strict 可显式使用 `--skip-code-reviews`；当前 Harness run 尚无可审计的 Review `not_applicable` disposition
+
+当前仓库只保留 PT083 作为正式项目样本。全量 97 项单元测试与质量基线 5/5 是本轮文档复核时的稳定验收口径；具体 fixture 检查数等易变指标以 `evals/eval_suite.json` 和实际命令输出为准。
 

@@ -7,6 +7,9 @@
 - 这是历史路线文档，保留了部分阶段性旧口径
 - 当前正式流程口径以 `START_HERE.md` 与 `WORKFLOW_CONTRACT.md` 为准
 - 文中若出现 `testcases.md` 或 `traceability_matrix.json` 的单一真源表述，应按历史阶段口径理解
+- “当前短板”“建议新增”“当前进展”等措辞均是对应日期的历史快照，不代表 2026-08-06 迁移后的现状
+
+当前已落地状态：仓库只保留 PT083 M 档正式项目样本；Requirement Summary 有正式 receipt/CLI/canonical binding 人工门；Harness 支持单 run resume；Case Plan 与 Testcases 阶段已消除对未来 testcase/未刷新 Bundle 的越界依赖，Bundle 在 Traceability 前校验。无代码 M 档工作项 strict 可显式 `--skip-code-reviews`，但 Harness run 尚无 Review `not_applicable` disposition。
 
 目标不是一次性把仓库重写成复杂 Agent 平台，而是按业界成熟实践，先补齐可信执行层，再补齐编排层，最后补齐规模化能力。
 

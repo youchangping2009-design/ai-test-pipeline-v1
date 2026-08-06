@@ -294,7 +294,7 @@
 - `testcases/testcases_main.md`
 - `testcases/testcases.md`（兼容镜像）
 - `testcases/testpoints.md` / `testpoints.json`（主流程评审视图，与正式用例同步生成）
-- `testcases/testcase_bundle.json`（可选结构化投影，由 `testcases_main.md` 派生）
+- `testcases/testcase_bundle.json`（兼容结构化投影，由 `testcases_main.md` 派生，并在 Traceability 前刷新）
 
 要求：
 
@@ -352,6 +352,7 @@
 - 正式 review 前必须补齐真实用例
 - `testpoints.md/json` 必须与正式用例同步生成，以 case_plan 为来源；不允许替代 `case_plan` 或 `testcases_main.md`
 - `testcase_bundle.json` 当前只是 compatibility-only 投影，不允许反向覆盖 `testcases_main.md`
+- Case Plan 阶段不得依赖未来 testcase；Testcases 阶段不得依赖未刷新的 Bundle；Bundle 一致性校验在 Traceability 前执行
 - 非 strict 下元素标注问题只 warning；strict 且显式启用时，明显未标注问题会失败
 - 工作项也可在 `manifest.json` 中配置 `testcase_element_notation.enabled=true` 启用同一检查
 
@@ -407,7 +408,8 @@
 ```bash
 /usr/bin/python3 scripts/validate_work_item.py \
   --project-code WX-YYPT \
-  --work-item-id REQ-001
+  --work-item-id REQ-001 \
+  --strict
 ```
 
 该脚本会检查：
@@ -684,9 +686,9 @@ code review 映证发现的用例缺口、代码实现缺口、过期用例或�
   --retention minimal
 ```
 
-## 十一、测试提交自动入口
+## 十一、旧测试提交兼容入口
 
-推荐测试使用单一入口命令：
+旧消费方仍可使用：
 
 ```bash
 /usr/bin/python3 scripts/run_submission_pipeline.py \
@@ -717,6 +719,8 @@ code review 映证发现的用例缺口、代码实现缺口、过期用例或�
 ```
 
 此时工作项会进入 `READY_FOR_CODE_REVIEW` 状态。
+
+新工作项应优先使用 `run_work_item_pipeline.py start / resume` 保持单 run checkpoint、Requirement Approval 和审计语义。`run_submission_pipeline.py` 不替代 Harness run 状态；无代码 M 档最终 strict 可显式使用 `--skip-code-reviews`，但当前 Harness 尚无 Review `not_applicable` disposition。
 
 ## 十二、代码评审与人工确认
 

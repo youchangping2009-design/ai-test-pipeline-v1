@@ -6,7 +6,7 @@
 
 无论使用哪一种本地或远程 AI 宿主工具，都先看这份文件，再按需进入对应适配说明。
 
-## 先记住 4 条
+## 先记住 7 条
 
 1. 仓库定义流程，不定义模型。
 2. 当前宿主工具决定当前会话模型；仓库只消费运行时上下文。
@@ -312,6 +312,8 @@ work_items/
 ```
 
 拒绝使用 `reject-requirement`。若进程在 receipt 已写、event/state 尚未完成时退出，使用 `recover-requirement-approval` 幂等补全。摘要、source manifest、原始输入或需求版本变化后，旧批准立即失效并重新进入 `waiting_approval`；仅修改 manifest 的运行期/派生字段不会撤销批准。CLI 必须显式传 reviewer；CI 环境不能执行批准。
+
+阶段推进继续复用同一 `run_id`：Case Plan 阶段不依赖未来 `testcases_main.md`，Testcases 阶段不依赖未刷新的 Bundle；`testcase_bundle.json` 必须在 Traceability 前刷新并校验。无代码 M 档可在工作项 strict 使用 `--skip-code-reviews`，但当前 Harness run 尚无 Review `not_applicable` disposition。
 
 运行状态、阶段日志、事件流与诊断写入 `.generation/runs/<RUN_ID>/`。这些是过程产物，不是真源；当前模型循环、自动 repair、Hook 与分阶段提交仍不在此入口中。
 
