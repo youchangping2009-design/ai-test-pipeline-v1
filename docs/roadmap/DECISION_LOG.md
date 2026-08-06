@@ -611,3 +611,14 @@ Harness run、日志和事件是可清理过程产物，直接把 PT086 run/stri
 
 Impact:
 当前 CI、golden live strict、CLI 示例、默认 closeout 和项目索引统一指向 PT083 M 档。本文及 Roadmap 中早于本决策的 PT083 L 档和 PT084/PT085/PT086 对比均视为历史基准，不再代表当前目录或默认命令；历史数字不机械改写。
+
+## 2026-08-06 - Safe Cleanup And Current Documentation Boundary
+
+Decision:
+高置信安全清理只允许根工作树空 `FETCH_HEAD`、四个空且无引用的 `.cursor/subagents/*.md`、根 `.generation/evals/*-latest.json`；不得触碰 `.git/FETCH_HEAD`、兼容性待确认项或其他评测数据。当前运行文档统一以 PT083 M 档、正式 Requirement Approval、单 run resume 和阶段隔离为现行口径。
+
+Reason:
+根运行产物可重建，但 `.git/FETCH_HEAD` 属于 Git 内部状态；Case Plan 依赖未来 testcase、Testcases 依赖未刷新 Bundle 都会造成阶段越界。历史 PT084/PT085/PT086 数字仍有决策追溯价值，不应为消除搜索命中而改写。
+
+Impact:
+Case Plan 阶段只消费上游设计资产，Testcases 阶段不消费未刷新 Bundle，Bundle 在 Traceability 前刷新校验。无代码 M 档工作项 strict 可显式 `--skip-code-reviews`，但 Harness run 尚无 Review `not_applicable` disposition。执行本轮复核时三类授权候选均已不存在，因此未重复删除；`.git/FETCH_HEAD` 保持原状。

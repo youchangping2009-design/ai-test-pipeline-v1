@@ -32,7 +32,7 @@
 ```
 
 - `smoke`：3 个快速代表 fixture，适合本地高频反馈。
-- `regression`：全部 6 个 fixture、56 个可量化检查，适合每个 PR。
+- `regression`：全部 6 个 fixture、57 个可量化检查，适合每个 PR。
 - `golden`：regression + 全量单元测试 + PT083 M strict，并与提交到仓库的 fixture 指纹和指标 baseline 比较。
 
 `ELEMENT_NOTATION` 与 `CASE_GROUPING` 各包含一个预期失败的负向检查。负向样例若意外通过，整个 tier 失败。

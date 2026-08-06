@@ -1,8 +1,8 @@
 # Next Action
 
 ```yaml
-task_id: PT083-SAMPLE-MIGRATION-AUDIT
-title: Migrate PT086 Benchmark To PT083
+task_id: SAFE-CLEANUP-DOC-AUDIT
+title: Clean Safe Artifacts And Audit Current Docs
 status: completed
 priority: ad-hoc
 owner: autonomous_agent
@@ -10,19 +10,18 @@ owner: autonomous_agent
 
 ## Goal
 
-将已批准的 PT086 M 档基准合法迁移为新的 PT083 正式项目样本，删除旧 PT083/PT084/PT085/PT086 目录口径，刷新当前运行依赖并完成全仓审计。
+执行用户确认的高置信安全候选清理，并按当前 PT083 M 档、Requirement Approval、单 run resume 和阶段边界复核主文档。
 
 ## Scope
 
-- 正式终结并清理旧 PT086 Harness 过程历史，迁移正式测试资产并重新生成派生投影。
-- 使用正式 approval CLI 由 `ycp` 重新批准迁移后的 PT083 内容绑定。
-- 更新 CI、fixture、默认样本、主文档和项目派生视图到当前 PT083 M 档口径。
-- 保留 PT084/PT085/PT086 比较数字为历史基准，不机械改写历史事实。
-- 运行工作项 strict、run audit、项目 strict、全量测试和完整质量基线。
+- 仅处理根 `FETCH_HEAD`、四个空 `.cursor/subagents/*.md` 和根 `.generation/evals/*-latest.json`。
+- 复核主 README、架构/流程/SOP、Harness closeout、Roadmap、Skills 与 CI 说明。
+- 保留 PT084/PT085/PT086 和旧 PT083 数量作为显式历史事实，不改写历史决策。
+- 运行链接/CLI 契约、相关测试、全量测试、编译、diff 和完整质量基线。
 
 ## Out Of Scope
 
-- 不伪造 Approval、Review、Code Review request、人工 confirmation 或 Harness Strict Gate 状态。
+- 不删除中高风险或兼容性待确认候选。
 - 不修改业务代码、不提交 Git、不降低任何既有 gate。
 
 ## Validation
@@ -33,16 +32,16 @@ owner: autonomous_agent
   --work-item-level M --retention minimal \
   --skip-code-reviews --strict
 
+/usr/bin/python3 -m unittest discover -s tests -p 'test_*.py'
 /usr/bin/python3 scripts/run_quality_baseline.py
 ```
 
-## Current Migration Evidence
+## Current Audit Evidence
 
-- 旧 `RUN-PT086-REQ-20260806` 已使用正式 CLI 取消、audit 通过后按 minimal retention 清理；过程历史不作为业务真源迁移。
-- 新 `RUN-PT083-MIGRATION-20260806` 已由正式 CLI 批准，reviewer 为 `ycp`，note 记录用户迁移授权，三类绑定值匹配。
-- Bundle/Testpoints均75条、开发自测25条、Coverage-First/Adapter均37条；37个main Coverage全部映射，invalid=0、false traceability=0。
-- 迁移中按两轮最小 repair 修复 Harness 边界：approved run 合法 cancel 后 audit 应通过；minimal retention 删除 legacy traceability 后，质量评分与 regeneration bundle 均继续消费 coverage-first 主追溯，不再无条件调用 legacy slim。
-- 全量 97 个单元测试、PT083 M 档 strict、WX-YGJ project strict、run audit、regression/golden eval、`git diff --check`、Python 编译检查与完整质量基线均通过；golden baseline 已按迁移后的 PT083 fixture 正式刷新并复验 matched。
+- 执行复核时三类授权候选均已不存在，因此本轮没有再次删除文件；`.git/FETCH_HEAD` 仍存在且为空，未被删除。
+- 当前运行依赖、CI 和 eval 中无 PT084/PT085/PT086 引用；剩余命中仅在历史 Roadmap/Decision/Progress 或 PT083 输入溯源说明中。
+- 主文档已明确正式 Requirement Approval receipt/CLI/canonical binding、同一 run resume、Case Plan/Testcases 阶段边界、Bundle 在 Traceability 前刷新，以及无代码 M strict 与 Harness Review N/A 限制。
+- 全量验证结果记录在本轮 `PROGRESS.md`；当前稳定验收口径为 97 项单元测试和质量基线 5/5。
 
 ## Historical Benchmark Context
 

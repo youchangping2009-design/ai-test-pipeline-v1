@@ -1,6 +1,14 @@
 # Progress
 
-## 2026-08-06 - PT083 Sample Migration In Progress
+## 2026-08-06 - Safe Cleanup And Documentation Audit
+
+- 用户授权范围内的根 `FETCH_HEAD`、四个空 `.cursor/subagents/*.md` 和根 `.generation/evals/*-latest.json` 在执行复核时均已不存在，本轮未重复删除；已单独确认 `.git/FETCH_HEAD` 仍存在且为空，未触碰 Git 内部文件。
+- 已复核主 README、架构/流程/SOP、Harness closeout、Roadmap、Skills 和 CI 说明，并最小更新当前入口：PT083 是唯一正式项目样本；Requirement Approval 绑定 summary/source/raw/version/run，manifest 运行期变化不失效；同一 run 通过 resume 推进。
+- 已明确阶段边界：Case Plan 不依赖未来 testcase，Testcases 不依赖未刷新 Bundle，Bundle 在 Traceability 前刷新校验；无代码 M strict 可 `--skip-code-reviews`，但 Harness run 尚无 Review `not_applicable` disposition。
+- PT084/PT085/PT086 在当前运行依赖、CI 和 eval 中无命中；历史 Roadmap/Decision/Progress 与 PT083 来源溯源中的命中保留并分类为历史事实。
+- 验证：Markdown 本地链接、文档 CLI 参数、Requirement Approval/阶段边界 34 项相关测试、全量 97 项单元测试、Python compileall、`git diff --check` 与质量基线 5/5 均通过；regression 实测为 6/6 fixture、57 checks、2 expected failures。基线生成的 `.generation/evals/regression-latest.json` 已按授权范围删除。
+
+## 2026-08-06 - PT083 Sample Migration Completed
 
 - 用户已明确授权删除旧 PT083/PT084/PT085，并将已批准 PT086 迁移为新的 PT083 M 档项目样本；不涉及业务代码，不提交 Git，不降低 strict。
 - 旧 PT086 run 已先正式取消并通过 audit，再按 minimal retention 清理；当前 PT083 使用新的 `RUN-PT083-MIGRATION-20260806` 和正式 approval CLI 重新批准，reviewer 为 `ycp`。

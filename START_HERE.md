@@ -497,7 +497,7 @@ Hook 配置固定在 `config/harness_hooks.json`。配置只能引用仓库内�
 ```
 
 - `smoke`：3 个快速代表 fixture，用于本地高频反馈。
-- `regression`：全部 6 个 fixture 和 56 个规则/Validator 检查，用于 PR 门禁。
+- `regression`：全部 6 个 fixture 和 57 个规则/Validator 检查，用于 PR 门禁。
 - `golden`：在 regression 基础上执行全量 Harness 单元测试和 PT083 M strict，并对比 `evals/baselines/golden.json`。
 
 报告默认写入 `.generation/evals/<TIER>-latest.json`，包含逐 fixture 耗时、检查数、预期失败数、内容指纹、命令结果和 baseline 差异。任何 fixture/命令失败、负向样例意外通过、指标变化、fixture 指纹漂移或 baseline 缺失都会使门禁非零退出。
