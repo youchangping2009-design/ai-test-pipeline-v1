@@ -77,11 +77,31 @@ AI 测试流程仓，用于沉淀：
 1. 初始化项目
 2. 初始化工作项
 3. 放入原始输入材料，并生成主流程产物 `inputs/requirement_summary.md` 与 `inputs/source_manifest.json`
-4. 若输入主要是截图，先将原始图片放入工作项 `inputs/images/`，再生成并校验 `image_evidence_inventory.json`
-5. 生成并完善 structured_prd
-6. 生成并完善 testcases
-7. 补充 review 记录
-8. 执行统一校验
+4. Requirement Sources 机器校验通过后，由人工通过 Harness 审核需求归一化内容；新工作项会停在 `waiting_approval`
+5. 若输入主要是截图，先将原始图片放入工作项 `inputs/images/`，再生成并校验 `image_evidence_inventory.json`
+6. 生成 reasoning、structured PRD 与 coverage
+7. 按 S/M/L 档位生成测试设计决策层和 Case Plan
+8. 同轮生成 testpoints 与正式 testcase，再刷新 Bundle、coverage-first traceability 和质量报告
+9. 补充 review；无代码分支的 M 档样本使用显式 `--skip-code-reviews`，不得伪造代码评审
+10. 执行统一 strict 校验
+
+Requirement Approval 使用同一 Harness run 完成：
+
+```bash
+/usr/bin/python3 scripts/run_work_item_pipeline.py approve-requirement \
+  --project-code <PROJECT_CODE> \
+  --work-item-id <WORK_ITEM_ID> \
+  --run-id <RUN_ID> \
+  --reviewed-by <REVIEWER> \
+  --note "<NOTE>"
+
+/usr/bin/python3 scripts/run_work_item_pipeline.py resume \
+  --project-code <PROJECT_CODE> \
+  --work-item-id <WORK_ITEM_ID> \
+  --run-id <RUN_ID>
+```
+
+拒绝使用 `reject-requirement`；若 receipt 已写但 event/state 未完成，使用 `recover-requirement-approval`。摘要、来源清单、原始输入或需求版本漂移会使旧批准失效；manifest 的运行期/派生字段不属于 canonical approval binding。
 
 ## 项目初始化
 
@@ -356,4 +376,5 @@ AI 测试流程仓，用于沉淀：
 
 - 代码评审只做映证，不修改业务代码
 - 代码评审只新增 CR 产物，不修改历史产出物
-- 两个 confirmation 都人工确认后，工作项级统一校验才会通过
+- 有代码分支时，两个 confirmation 都人工确认后，完整代码映证门禁才会通过
+- 无代码分支时可显式使用 `--skip-code-reviews`；当前 Harness 尚无可审计的 Review `not_applicable` disposition，不得用待评审模板伪装 Review 已完成

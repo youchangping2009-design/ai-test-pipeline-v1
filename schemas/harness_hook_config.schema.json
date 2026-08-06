@@ -1,0 +1,68 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "AI Test Pipeline Harness Hook Configuration",
+  "type": "object",
+  "required": ["schema_version", "hooks"],
+  "properties": {
+    "schema_version": { "type": "string", "const": "1.0.0" },
+    "hooks": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "hook_id",
+          "enabled",
+          "event",
+          "stages",
+          "handler",
+          "failure_policy",
+          "timeout_seconds",
+          "max_output_chars"
+        ],
+        "properties": {
+          "hook_id": {
+            "type": "string",
+            "pattern": "[A-Za-z0-9][A-Za-z0-9._-]{0,63}"
+          },
+          "enabled": { "type": "boolean" },
+          "event": {
+            "type": "string",
+            "enum": [
+              "pre_stage",
+              "post_stage",
+              "fail_stage",
+              "approval_requested",
+              "approval_resolved",
+              "repair_requested"
+            ]
+          },
+          "stages": {
+            "type": "array",
+            "minItems": 1,
+            "items": { "type": "string", "minLength": 1 }
+          },
+          "handler": {
+            "type": "string",
+            "pattern": "scripts/hooks/[A-Za-z0-9_./-]+\\.py"
+          },
+          "failure_policy": {
+            "type": "string",
+            "enum": ["warn", "fail_run"]
+          },
+          "timeout_seconds": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 30
+          },
+          "max_output_chars": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 65536
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false
+}

@@ -22,6 +22,18 @@
 | P2 | P2-001 | done | repair loop | 增加有限 repair loop | 最多 2 轮 repair，不降低规则强度 |
 | P2 | P2-002 | done | eval fixture expansion | 扩展 eval 到多项目样例 | eval 能覆盖更多需求形态 |
 | P3 | P3-001 | done | testcase_bundle.json compatibility-only projection | 新增 testcase_bundle.json 派生投影，不切换真源 | bundle 可从 testcases_main.md 生成并校验一致 |
+| P4 | P4-001 | done | Harness contracts and deterministic orchestrator | 新增运行契约、checkpoint、start/status/resume/cancel 与只读阶段校验 | 可恢复且幂等，不修改正式测试资产，现有 strict 与基线不回退 |
+| P4 | P4-002 | done | Harness structured diagnostics | 将 Validator 失败归一化为可路由 Diagnostic，并保留每次尝试历史 | strict 失败具备 code、责任 stage、path、severity、repair_hint |
+| P4 | P4-003 | done | Restricted Case Plan agent loop | 模型只通过白名单 Action 操作 staging，校验后显式审批并 hash 提交 | 最多 8 turn/2 repair，默认不提交，正式真源受并发保护 |
+| P4 | P4-004 | done | Harness governance and observability | 增加预算、用量、终态摘要、审批拒绝和 run replay audit | 超预算必停，run 可审计，审批生命周期完整 |
+| P4 | P4-005 | done | Restricted Hook Dispatcher | 增加 pre/post/fail/approval/repair Hook、可信脚本边界、失败策略和审计 | Hook 不开放任意 shell，不改变 Validator 结论，可按策略阻塞编排 |
+| P4 | P4-006 | done | Controlled full-pipeline generation | 将既有生成器按阶段接入 staging、校验、审批与原子提交 | 单工作项可一条命令生成到 strict，失败可恢复且不留下半提交真源 |
+| P4 | P4-007 | done | Tiered eval and regression gate | 增加 smoke/regression/golden 三档、量化差异与 CI 入口 | 关键规则和 Harness 回归可自动拦截 |
+| P4 | P4-008 | done | Multi-role restricted Agent Runtime | 将 PRD Structurer、Case Generator、Reviewer、Formatter 接入受限 Action Runtime | 四角色可调度，仍受 Schema、staging、预算和审批约束 |
+| P4 | P4-009 | done | Harness-Loop end-to-end closeout | 完成故障恢复、并发、审计、清理和代表性工作项验收 | 目标架构清单关闭，无未记录缺口 |
+| P4 | P4-010 | done | Case Plan commit recovery | 为审批提交增加 journal、崩溃恢复与关联审计 | approval、run state、事务与正式 Case Plan 在崩溃后可确定性恢复 |
+| P5 | P5-001 | done | Parallel Reviewer Runtime | 在 Case Reviewer 阶段以 opt-in 方式并行运行 evidence、flow、testcase 三路只读 Reviewer | 3/3 barrier 后确定性聚合，默认兼容路径不变 |
+| P5 | P5-002 | done | Multi-role crash recovery | 为崩溃遗留的 multi_role run 增加安全终态化入口 | 不复用部分 Reviewer 结果，不绕过 3/3，恢复后可审计和清理 |
 
 ## Selection Rules
 

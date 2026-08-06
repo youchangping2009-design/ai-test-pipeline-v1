@@ -114,12 +114,13 @@ def build_readme(
         "## 建议流程\n\n"
         "1. 将该需求原始资料放入 `inputs/`\n"
         "2. 生成 `inputs/requirement_summary.md` 与 `inputs/source_manifest.json`\n"
-        "3. 若输入主要是截图，产出 `image_evidence/image_evidence_inventory.json`\n"
-        "4. 生成 `analysis/analysis_report.md` 与 `analysis/reasoning_pack.json`\n"
-        "5. 生成 structured_prd、测试设计决策层与 `case_plan`\n"
-        "6. 同步生成 `testpoints.md/json` 与 `testcases_main.md`\n"
-        "7. 生成 traceability、review 和导出产物\n"
-        "8. 使用 `scripts/validate_work_item.py --strict` 执行工作项级统一校验\n"
+        "3. 通过 Harness 人工审批并生成 `inputs/requirement_approval.json`\n"
+        "4. 若输入主要是截图，产出 `image_evidence/image_evidence_inventory.json`\n"
+        "5. 生成 `analysis/analysis_report.md` 与 `analysis/reasoning_pack.json`\n"
+        "6. 生成 structured_prd、测试设计决策层与 `case_plan`\n"
+        "7. 同步生成 `testpoints.md/json` 与 `testcases_main.md`\n"
+        "8. 生成 traceability、review 和导出产物\n"
+        "9. 使用 `scripts/validate_work_item.py --strict` 执行工作项级统一校验\n"
     )
 
 
@@ -140,6 +141,7 @@ def build_manifest(
         "status": "initialized",
         "pipeline_policy": {
             "requirement_intake_required": True,
+            "requirement_approval_required": True,
             "testpoints_required": True,
         },
         "quality_gate": {
@@ -158,6 +160,7 @@ def build_manifest(
             "inputs": "inputs/",
             "requirement_summary": "inputs/requirement_summary.md",
             "source_manifest": "inputs/source_manifest.json",
+            "requirement_approval": "inputs/requirement_approval.json",
             "image_evidence": "image_evidence/image_evidence_inventory.json",
             "analysis": {
                 "analysis_report": "analysis/analysis_report.md",
@@ -1099,13 +1102,14 @@ def main() -> int:
     print(f"1. 将本次需求原始资料放入 {inputs_dir}")
     print(f"   - 图片原件优先放入 {input_images_dir}")
     print(f"2. 生成 {inputs_dir / 'requirement_summary.md'} 与 {inputs_dir / 'source_manifest.json'}")
-    print(f"3. 若输入主要是截图，补全 {image_evidence_dir / 'image_evidence_inventory.json'}")
-    print(f"4. 生成 reasoning、structured_prd、coverage 与测试设计决策层")
-    print(f"5. 补全 {testcases_dir / 'case_plan.json'}")
-    print(f"6. 同步生成 {testcases_dir / 'testpoints.md'}、{testcases_dir / 'testpoints.json'} 与 {testcases_dir / 'testcases_main.md'}")
-    print(f"7. 生成 traceability、review、code review 与导出产物")
+    print(f"3. 通过 Harness 人工审批并生成 {inputs_dir / 'requirement_approval.json'}")
+    print(f"4. 若输入主要是截图，补全 {image_evidence_dir / 'image_evidence_inventory.json'}")
+    print(f"5. 生成 reasoning、structured_prd、coverage 与测试设计决策层")
+    print(f"6. 补全 {testcases_dir / 'case_plan.json'}")
+    print(f"7. 同步生成 {testcases_dir / 'testpoints.md'}、{testcases_dir / 'testpoints.json'} 与 {testcases_dir / 'testcases_main.md'}")
+    print(f"8. 生成 traceability、review、code review 与导出产物")
     print(
-        "8. 执行工作项级校验："
+        "9. 执行工作项级校验："
         f" /usr/bin/python3 {repo_root / 'scripts' / 'validate_work_item.py'}"
         f" --project-code {project_code}"
         f" --work-item-id {work_item_id}"
@@ -1129,7 +1133,7 @@ def main() -> int:
         if result.returncode != 0:
             print(f"项目视图刷新失败:\n{result.stdout}\n{result.stderr}", file=sys.stderr)
             return 1
-        print("9. 项目索引与质量汇总已刷新")
+        print("10. 项目索引与质量汇总已刷新")
 
     return 0
 

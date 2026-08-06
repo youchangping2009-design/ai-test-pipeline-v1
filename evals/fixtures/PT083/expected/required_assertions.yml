@@ -1,95 +1,100 @@
 required_assertions:
-  - id: sdk_720_skipped
+  - id: sdk_version_needs_confirmation
     artifact: testability_gate.expected.json
-    selector: items[source_rule_id=R-SDK-720]
+    selector: items[source_rule_id=TECH-001]
     field: decision
-    in: skip_case
-    reason: SDK / 720*1280 技术背景必须被跳过或标记为不可直接测试
-  - id: sdk_720_not_directly_testable
+    in: needs_confirmation
+    reason: SDK目标版本未明确时不得生成正式业务验收
+  - id: historical_metrics_out_of_scope
     artifact: testability_gate.expected.json
-    selector: items[source_rule_id=R-SDK-720]
+    selector: items[source_rule_id=TECH-006]
     field: testability
-    in: not_directly_testable
-    reason: SDK / 720*1280 技术背景必须被 skip_case 或 not_directly_testable 处理
-  - id: promo_size_soft_prompt
+    in: out_of_scope
+    reason: 活动复盘历史指标不进入本期正式业务验收
+  - id: promo_size_soft_prompt_primary
     artifact: testability_gate.expected.json
-    selector: items[source_rule_id=R-PROMO-SIZE-HINT]
+    selector: items[source_rule_id=FR-盒子管理后台-编辑宣传内容-宣传内容编辑表单-02]
     field: classification
     in: soft_prompt
-    reason: 宣传图片格式/尺寸提示必须归类为 soft_prompt
-  - id: special_area_write_side
-    artifact: responsibility_map.expected.json
-    selector: responsibilities[source_rule_id=R-SPECIAL-MAX-4]
-    field: primary_verification_side
-    in: B端写侧
-    reason: 特殊区最多4个必须优先落到 B端写侧
-  - id: promo_size_display_responsibility
-    artifact: responsibility_map.expected.json
-    selector: responsibilities[source_rule_id=R-PROMO-SIZE-HINT]
-    field: primary_verification_side
-    in: B端页面展示
-    reason: 宣传图片提示必须落在页面展示责任，不应进入写侧强拦截
-  - id: free_trial_consumer_required
-    artifact: responsibility_map.expected.json
-    selector: responsibilities[source_rule_id=R-FREE-TRIAL-LINK]
-    field: consumer_verification_required
-    in: true
-    reason: 0元商品 / 免费体验必须要求 C端消费链路验证
-  - id: goods_region_api_guard_required
-    artifact: responsibility_map.expected.json
-    selector: responsibilities[source_rule_id=R-GOODS-REGION-ILLEGAL]
-    field: api_guard_required
-    in: true
-    reason: goodsRegion 非法枚举必须进入 API 兜底或风险加固建议
-  - id: goods_region_risk_note_required
-    artifact: responsibility_map.expected.json
-    selector: responsibilities[source_rule_id=R-GOODS-REGION-ILLEGAL]
-    field: risk_note_required
-    in: true
-    reason: goodsRegion 非法枚举必须保留风险项，而非主验收
-  - id: special_area_save_block
+    reason: 宣传图片建议尺寸必须保持 soft_prompt
+  - id: promo_size_soft_prompt_table
+    artifact: testability_gate.expected.json
+    selector: items[source_rule_id=FR-盒子管理后台-编辑宣传内容-宣传内容字段说明表-02]
+    field: classification
+    in: soft_prompt
+    reason: 字段说明表中的建议尺寸同样不得升级为硬拦截
+  - id: promo_size_partially_testable
+    artifact: testability_gate.expected.json
+    selector: items[source_rule_id=FR-盒子管理后台-编辑宣传内容-宣传内容编辑表单-02]
+    field: testability
+    in: partially_testable
+    reason: 建议尺寸只验证提示展示
+  - id: sdk_risk_note_only
+    artifact: testability_gate.expected.json
+    selector: items[source_rule_id=RISK-001]
+    field: decision
+    in: risk_note_only
+    reason: 无验收阈值的SDK风险只进入风险说明
+  - id: unknown_dialog_risk_note_only
+    artifact: testability_gate.expected.json
+    selector: items[source_rule_id=RISK-005]
+    field: decision
+    in: risk_note_only
+    reason: 未展开弹窗不得脑补正式业务用例
+  - id: promo_prompt_display
     artifact: case_plan.expected.json
-    selector: case_plans[source_gate_ids~TG-003]
+    selector: case_plans[source_gate_ids~TG-033]
     field: case_type
-    in: save_block
-    reason: 特殊区最多4个必须生成 save_block 类计划
-  - id: free_trial_linkage
+    in: prompt_display
+    reason: soft prompt 只能生成提示展示计划
+  - id: promo_prompt_product_acceptance
     artifact: case_plan.expected.json
-    selector: case_plans[source_gate_ids~TG-004]
+    selector: case_plans[source_gate_ids~TG-033]
+    field: validation_path
+    in: product_acceptance
+    reason: 提示展示是页面验收，不是风险/API兜底
+  - id: inventory_linkage
+    artifact: case_plan.expected.json
+    selector: case_plans[source_gate_ids~TG-015]
     field: case_type
     in: linkage
-    reason: 0元商品 / 免费体验必须存在 linkage 类 case_plan
-  - id: goods_region_risk_note
+    reason: 库存阈值必须覆盖B端、服务端与C端联动
+  - id: generated_fields_linkage
     artifact: case_plan.expected.json
-    selector: case_plans[source_gate_ids~TG-005]
-    field: validation_path
-    in: risk_note,api_guard
-    reason: goodsRegion 非法枚举不能进入 product_acceptance 主验收
-  - id: special_area_hard_block_acceptance
+    selector: case_plans[source_gate_ids~TG-027]
+    field: case_type
+    in: linkage
+    reason: 配置及系统生成字段必须覆盖跨端一致性
+  - id: promo_soft_display_acceptance
     artifact: acceptance_examples.expected.json
-    selector: examples[source_gate_ids~TG-003]
-    field: oracle_strength
-    in: hard_block
-    reason: 特殊区最多4个必须存在 hard_block acceptance example
-  - id: promo_size_soft_display_acceptance
-    artifact: acceptance_examples.expected.json
-    selector: examples[source_gate_ids~TG-002]
+    selector: examples[source_gate_ids~TG-033]
     field: oracle_strength
     in: soft_display
-    reason: 宣传图片提示必须存在 soft_display acceptance example
-  - id: free_trial_business_acceptance
+    reason: 建议尺寸验收只能是 soft_display
+  - id: promo_table_soft_display_acceptance
     artifact: acceptance_examples.expected.json
-    selector: examples[source_gate_ids~TG-004]
+    selector: examples[source_gate_ids~TG-037]
+    field: oracle_strength
+    in: soft_display
+    reason: 字段说明表中的提示仍只能是 soft_display
+  - id: inventory_business_acceptance
+    artifact: acceptance_examples.expected.json
+    selector: examples[source_gate_ids~TG-015]
     field: oracle_strength
     in: business_behavior,linkage
-    reason: 0元商品 / 免费体验必须存在 business_behavior 或 linkage acceptance example
+    reason: 库存联动必须存在可观察业务验收
   - id: no_sdk_acceptance
     artifact: acceptance_examples.expected.json
-    selector: examples[source_gate_ids~TG-001]
+    selector: examples[source_gate_ids~TG-041]
     absent: true
-    reason: SDK / 720*1280 不能存在 acceptance example
-  - id: no_goods_region_acceptance
+    reason: 未明确SDK目标版本不能生成 acceptance example
+  - id: no_risk_acceptance
     artifact: acceptance_examples.expected.json
-    selector: examples[source_gate_ids~TG-005]
+    selector: examples[source_gate_ids~TG-058]
     absent: true
-    reason: goodsRegion 非法枚举不能存在 product_acceptance acceptance example
+    reason: risk_note_only 不得进入 acceptance example
+  - id: no_risk_case_plan
+    artifact: case_plan.expected.json
+    selector: case_plans[source_gate_ids~TG-058]
+    absent: true
+    reason: risk_note_only 不得进入 product acceptance Case Plan

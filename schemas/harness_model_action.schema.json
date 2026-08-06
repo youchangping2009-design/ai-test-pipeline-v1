@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "AI Test Pipeline Harness Model Action",
+  "type": "object",
+  "required": ["action_id", "action_type", "stage_id", "arguments", "expected_outcome"],
+  "properties": {
+    "action_id": { "type": "string", "minLength": 1 },
+    "action_type": {
+      "type": "string",
+      "enum": [
+        "read_artifact",
+        "search_inputs",
+        "propose_artifacts",
+        "run_stage_validation",
+        "commit_stage",
+        "request_approval",
+        "finish_stage"
+      ]
+    },
+    "stage_id": { "type": "string", "pattern": "^[a-z][a-z0-9_]*$" },
+    "arguments": { "type": "object" },
+    "expected_outcome": { "type": "string", "minLength": 1 }
+  },
+  "additionalProperties": false
+}

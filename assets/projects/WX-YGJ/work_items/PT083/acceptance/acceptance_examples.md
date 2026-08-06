@@ -1,3 +1,79 @@
 # Acceptance Examples
 
-PT083 regenerated acceptance examples. Machine truth source: `acceptance_examples.json`.
+| example_id | source_gate_ids | title | given | when | then | verification_side | oracle_strength | confidence | inference_basis |
+|---|---|---|---|---|---|---|---|---|---|
+| AE-001 | TG-001 | 约束判定：promotion_slogan; value_constraint | 后台管理员已进入对应配置页面，其他必需基础数据均合法。 | 按边界、必填或格式规则操作“promotion_slogan; value_constraint”所涉及字段。 | 系统按来源规则判定并明确反馈：promotion_slogan; value_constraint。 | B端写侧 | hard_block | confirmed |  |
+| AE-002 | TG-002 | 约束判定：performance_parameters; value_constraint | 后台管理员已进入对应配置页面，其他必需基础数据均合法。 | 按边界、必填或格式规则操作“performance_parameters; value_constraint”所涉及字段。 | 系统按来源规则判定并明确反馈：performance_parameters; value_constraint。 | B端写侧 | hard_block | confirmed |  |
+| AE-003 | TG-003 | 读侧展示：后台未配置特殊区商品时隐藏 | 对应后台配置、商品或页面数据已准备完成。 | 用户打开对应页面或查看对应板块。 | 页面可直接观察到来源规则所述结果：后台未配置特殊区商品时隐藏。 | C端读侧 | display_only | confirmed |  |
+| AE-004 | TG-004 | 读侧展示：最多展示4个商品 | 对应后台配置、商品或页面数据已准备完成。 | 用户打开对应页面或查看对应板块。 | 页面可直接观察到来源规则所述结果：最多展示4个商品。 | C端读侧 | display_only | confirmed |  |
+| AE-005 | TG-005 | 业务结果：original_price; value_constraint | 执行该业务规则所需的合法前置数据已准备完成。 | 用户或管理员完成来源规则对应的操作。 | 最终业务状态与来源规则一致：original_price; value_constraint。 | B端写侧 | business_behavior | confirmed |  |
+| AE-006 | TG-006 | 业务结果：current_price; value_constraint | 执行该业务规则所需的合法前置数据已准备完成。 | 用户或管理员完成来源规则对应的操作。 | 最终业务状态与来源规则一致：current_price; value_constraint。 | B端写侧 | business_behavior | confirmed |  |
+| AE-007 | TG-007 | 业务结果：service_duration; value_constraint | 执行该业务规则所需的合法前置数据已准备完成。 | 用户或管理员完成来源规则对应的操作。 | 最终业务状态与来源规则一致：service_duration; value_constraint。 | B端写侧 | business_behavior | confirmed |  |
+| AE-008 | TG-008 | 业务结果：in_box_sort_order; value_constraint; integer_only=True | 执行该业务规则所需的合法前置数据已准备完成。 | 用户或管理员完成来源规则对应的操作。 | 最终业务状态与来源规则一致：in_box_sort_order; value_constraint; integer_only=True。 | B端写侧 | business_behavior | confirmed |  |
+| AE-009 | TG-009 | 业务结果：inventory_warning_threshold; value_constraint; integer_only=True | 执行该业务规则所需的合法前置数据已准备完成。 | 用户或管理员完成来源规则对应的操作。 | 最终业务状态与来源规则一致：inventory_warning_threshold; value_constraint; integer_only=True。 | B端写侧 | business_behavior | confirmed |  |
+| AE-010 | TG-010 | 业务结果：purchase_alert_recipient; data_source_constraint; data_source=盒子后台管理员列表 | 执行该业务规则所需的合法前置数据已准备完成。 | 用户或管理员完成来源规则对应的操作。 | 最终业务状态与来源规则一致：purchase_alert_recipient; data_source_constraint; data_source=盒子后台管理员列表。 | B端写侧 | business_behavior | confirmed |  |
+| AE-011 | TG-011 | 约束判定：天数最大370，小时最大23，所有项不可同时为0，后端以秒为单位 | 后台管理员已进入对应配置页面，其他必需基础数据均合法。 | 按边界、必填或格式规则操作“天数最大370，小时最大23，所有项不可同时为0，后端以秒为单位”所涉及字段。 | 系统按来源规则判定并明确反馈：天数最大370，小时最大23，所有项不可同时为0，后端以秒为单位。 | B端写侧 | hard_block | confirmed |  |
+| AE-012 | TG-012 | 约束判定：特殊区商品数量必须小于等于4，超过4个时不可保存 | 后台管理员已进入对应配置页面，其他必需基础数据均合法。 | 按边界、必填或格式规则操作“特殊区商品数量必须小于等于4，超过4个时不可保存”所涉及字段。 | 系统按来源规则判定并明确反馈：特殊区商品数量必须小于等于4，超过4个时不可保存。 | B端写侧 | hard_block | confirmed |  |
+| AE-013 | TG-013 | 约束判定：正整数，上限1000；相同排序值按创建时间倒序排列 | 后台管理员已进入对应配置页面，其他必需基础数据均合法。 | 按边界、必填或格式规则操作“正整数，上限1000；相同排序值按创建时间倒序排列”所涉及字段。 | 系统按来源规则判定并明确反馈：正整数，上限1000；相同排序值按创建时间倒序排列。 | B端写侧 | hard_block | confirmed |  |
+| AE-014 | TG-014 | 后台任务：正整数，上限200；按固定频率校验库存是否小于等于配置数量 | 库存、通知对象及后台任务运行条件已准备完成。 | 服务端执行库存检查或报警任务。 | 任务结果和可观察通知符合来源规则：正整数，上限200；按固定频率校验库存是否小于等于配置数量。 | 服务端任务与C端读侧 | backend_job | confirmed |  |
+| AE-015 | TG-015 | 跨端联动：库存小于等于预警值时，C端隐藏商品、不分配云机并发送库存不足通知 | B端配置、服务端数据和C端商品状态均已准备。 | 触发来源规则对应的配置保存、库存变化或数据生成。 | B端、服务端与C端的可观察结果保持一致：库存小于等于预警值时，C端隐藏商品、不分配云机并发送库存不足通知。 | B端写侧与C端读侧 | linkage | confirmed |  |
+| AE-016 | TG-016 | 约束判定：已有功能，数值限制大于0.00 | 后台管理员已进入对应配置页面，其他必需基础数据均合法。 | 按边界、必填或格式规则操作“已有功能，数值限制大于0.00”所涉及字段。 | 系统按来源规则判定并明确反馈：已有功能，数值限制大于0.00。 | B端写侧 | hard_block | confirmed |  |
+| AE-017 | TG-017 | 约束判定：已有功能，数值限制大于0.00 | 后台管理员已进入对应配置页面，其他必需基础数据均合法。 | 按边界、必填或格式规则操作“已有功能，数值限制大于0.00”所涉及字段。 | 系统按来源规则判定并明确反馈：已有功能，数值限制大于0.00。 | B端写侧 | hard_block | confirmed |  |
+| AE-018 | TG-018 | 约束判定：数字选择器，必填；天最大370、时最大23，所有项不可同时为0，后端以秒为单位 | 后台管理员已进入对应配置页面，其他必需基础数据均合法。 | 按边界、必填或格式规则操作“数字选择器，必填；天最大370、时最大23，所有项不可同时为0，后端以秒为单位”所涉及字段。 | 系统按来源规则判定并明确反馈：数字选择器，必填；天最大370、时最大23，所有项不可同时为0，后端以秒为单位。 | B端写侧 | hard_block | confirmed |  |
+| AE-019 | TG-019 | 约束判定：下拉单选，必填，content：特殊区、普通区；特殊区商品数量小于等于4 | 后台管理员已进入对应配置页面，其他必需基础数据均合法。 | 按边界、必填或格式规则操作“下拉单选，必填，content：特殊区、普通区；特殊区商品数量小于等于4”所涉及字段。 | 系统按来源规则判定并明确反馈：下拉单选，必填，content：特殊区、普通区；特殊区商品数量小于等于4。 | B端写侧 | hard_block | confirmed |  |
+| AE-020 | TG-020 | 约束判定：数字框，必填，正整数，上限1000；相同值按创建时间倒序 | 后台管理员已进入对应配置页面，其他必需基础数据均合法。 | 按边界、必填或格式规则操作“数字框，必填，正整数，上限1000；相同值按创建时间倒序”所涉及字段。 | 系统按来源规则判定并明确反馈：数字框，必填，正整数，上限1000；相同值按创建时间倒序。 | B端写侧 | hard_block | confirmed |  |
+| AE-021 | TG-021 | 读侧展示：已有功能，增加未配置提示；服务时长结束后C端不再展示 | 对应后台配置、商品或页面数据已准备完成。 | 用户打开对应页面或查看对应板块。 | 页面可直接观察到来源规则所述结果：已有功能，增加未配置提示；服务时长结束后C端不再展示。 | C端读侧 | display_only | confirmed |  |
+| AE-022 | TG-022 | 约束判定：数字框，非必填，正整数，上限200；按固定频率校验库存 | 后台管理员已进入对应配置页面，其他必需基础数据均合法。 | 按边界、必填或格式规则操作“数字框，非必填，正整数，上限200；按固定频率校验库存”所涉及字段。 | 系统按来源规则判定并明确反馈：数字框，非必填，正整数，上限200；按固定频率校验库存。 | B端写侧 | hard_block | confirmed |  |
+| AE-023 | TG-023 | 约束判定：下拉单选，必填，content：盒子后台管理员列表 | 后台管理员已进入对应配置页面，其他必需基础数据均合法。 | 按边界、必填或格式规则操作“下拉单选，必填，content：盒子后台管理员列表”所涉及字段。 | 系统按来源规则判定并明确反馈：下拉单选，必填，content：盒子后台管理员列表。 | B端写侧 | hard_block | confirmed |  |
+| AE-024 | TG-024 | 后台任务：云手机相关报警 | 库存、通知对象及后台任务运行条件已准备完成。 | 服务端执行库存检查或报警任务。 | 任务结果和可观察通知符合来源规则：云手机相关报警。 | 服务端任务与C端读侧 | backend_job | confirmed |  |
+| AE-025 | TG-025 | 读侧展示：【云挂机库存不足通知】 | 对应后台配置、商品或页面数据已准备完成。 | 用户打开对应页面或查看对应板块。 | 页面可直接观察到来源规则所述结果：【云挂机库存不足通知】。 | C端读侧 | display_only | confirmed |  |
+| AE-026 | TG-026 | 读侧展示：玩心盒子后台_云挂机_云手机商品管理 | 对应后台配置、商品或页面数据已准备完成。 | 用户打开对应页面或查看对应板块。 | 页面可直接观察到来源规则所述结果：玩心盒子后台_云挂机_云手机商品管理。 | C端读侧 | display_only | confirmed |  |
+| AE-027 | TG-027 | 跨端联动：配置ID、商品名称、云机类型、云机服务时长、通知时间、通知人由配置或系统生成 | B端配置、服务端数据和C端商品状态均已准备。 | 触发来源规则对应的配置保存、库存变化或数据生成。 | B端、服务端与C端的可观察结果保持一致：配置ID、商品名称、云机类型、云机服务时长、通知时间、通知人由配置或系统生成。 | B端写侧与C端读侧 | linkage | confirmed |  |
+| AE-028 | TG-028 | 业务结果：cloud_machine_type; data_source_constraint; data_source=盒子现有云机类型 | 执行该业务规则所需的合法前置数据已准备完成。 | 用户或管理员完成来源规则对应的操作。 | 最终业务状态与来源规则一致：cloud_machine_type; data_source_constraint; data_source=盒子现有云机类型。 | B端写侧 | business_behavior | confirmed |  |
+| AE-029 | TG-029 | 业务结果：promotion_image; value_constraint | 执行该业务规则所需的合法前置数据已准备完成。 | 用户或管理员完成来源规则对应的操作。 | 最终业务状态与来源规则一致：promotion_image; value_constraint。 | B端写侧 | business_behavior | confirmed |  |
+| AE-030 | TG-030 | 业务结果：promotion_slogan; value_constraint | 执行该业务规则所需的合法前置数据已准备完成。 | 用户或管理员完成来源规则对应的操作。 | 最终业务状态与来源规则一致：promotion_slogan; value_constraint。 | B端写侧 | business_behavior | confirmed |  |
+| AE-031 | TG-031 | 业务结果：performance_parameters; value_constraint | 执行该业务规则所需的合法前置数据已准备完成。 | 用户或管理员完成来源规则对应的操作。 | 最终业务状态与来源规则一致：performance_parameters; value_constraint。 | B端写侧 | business_behavior | confirmed |  |
+| AE-032 | TG-032 | 约束判定：保存前校验所有云机类型均已配置且不存在重复 | 后台管理员已进入对应配置页面，其他必需基础数据均合法。 | 按边界、必填或格式规则操作“保存前校验所有云机类型均已配置且不存在重复”所涉及字段。 | 系统按来源规则判定并明确反馈：保存前校验所有云机类型均已配置且不存在重复。 | B端写侧 | hard_block | confirmed |  |
+| AE-033 | TG-033 | 提示展示：最多上传5张，支持gif/jpg/jpeg/png，单张最大500K，建议尺寸1008*160 | 管理员已进入宣传内容配置区域。 | 查看上传控件旁的格式、大小和尺寸说明。 | 页面展示来源中的建议或提示文案：最多上传5张，支持gif/jpg/jpeg/png，单张最大500K，建议尺寸1008*160；建议内容不作为提交结果判定。 | B端写侧 | soft_display | confirmed |  |
+| AE-034 | TG-034 | 约束判定：文本长度20个字符；C端超过一行换行展示 | 后台管理员已进入对应配置页面，其他必需基础数据均合法。 | 按边界、必填或格式规则操作“文本长度20个字符；C端超过一行换行展示”所涉及字段。 | 系统按来源规则判定并明确反馈：文本长度20个字符；C端超过一行换行展示。 | B端写侧 | hard_block | confirmed |  |
+| AE-035 | TG-035 | 约束判定：文本长度20个字符；C端超过一行换行展示 | 后台管理员已进入对应配置页面，其他必需基础数据均合法。 | 按边界、必填或格式规则操作“文本长度20个字符；C端超过一行换行展示”所涉及字段。 | 系统按来源规则判定并明确反馈：文本长度20个字符；C端超过一行换行展示。 | B端写侧 | hard_block | confirmed |  |
+| AE-036 | TG-036 | 约束判定：下拉列表框，必填，默认为空，可编辑；单选，content为盒子现有云机类型 | 后台管理员已进入对应配置页面，其他必需基础数据均合法。 | 按边界、必填或格式规则操作“下拉列表框，必填，默认为空，可编辑；单选，content为盒子现有云机类型”所涉及字段。 | 系统按来源规则判定并明确反馈：下拉列表框，必填，默认为空，可编辑；单选，content为盒子现有云机类型。 | B端写侧 | hard_block | confirmed |  |
+| AE-037 | TG-037 | 提示展示：图片按钮，必传，最多5张；支持gif/jpg/jpeg/png，最大500K，建议尺寸1008*160；支持拖拽和删除 | 管理员已进入宣传内容配置区域。 | 查看上传控件旁的格式、大小和尺寸说明。 | 页面展示来源中的建议或提示文案：图片按钮，必传，最多5张；支持gif/jpg/jpeg/png，最大500K，建议尺寸1008*160；支持拖拽和删除；建议内容不作为提交结果判定。 | B端写侧 | soft_display | confirmed |  |
+| AE-038 | TG-038 | 约束判定：文本框，必填，20个字符；C端超过一行换行展示 | 后台管理员已进入对应配置页面，其他必需基础数据均合法。 | 按边界、必填或格式规则操作“文本框，必填，20个字符；C端超过一行换行展示”所涉及字段。 | 系统按来源规则判定并明确反馈：文本框，必填，20个字符；C端超过一行换行展示。 | B端写侧 | hard_block | confirmed |  |
+| AE-039 | TG-039 | 约束判定：文本框，必填，20个字符；C端超过一行换行展示 | 后台管理员已进入对应配置页面，其他必需基础数据均合法。 | 按边界、必填或格式规则操作“文本框，必填，20个字符；C端超过一行换行展示”所涉及字段。 | 系统按来源规则判定并明确反馈：文本框，必填，20个字符；C端超过一行换行展示。 | B端写侧 | hard_block | confirmed |  |
+| AE-040 | TG-040 | 约束判定：点击增加一条宣传配置，最多额外新增1块；达到2条时禁用按钮 | 后台管理员已进入对应配置页面，其他必需基础数据均合法。 | 按边界、必填或格式规则操作“点击增加一条宣传配置，最多额外新增1块；达到2条时禁用按钮”所涉及字段。 | 系统按来源规则判定并明确反馈：点击增加一条宣传配置，最多额外新增1块；达到2条时禁用按钮。 | B端写侧 | hard_block | confirmed |  |
+| AE-041 | TG-049 | 业务结果：全新版和常规版两个Tab均可见、可切换并展示对应内容 | 执行该业务规则所需的合法前置数据已准备完成。 | 用户或管理员完成来源规则对应的操作。 | 最终业务状态与来源规则一致：全新版和常规版两个Tab均可见、可切换并展示对应内容。 | B端写侧 | business_behavior | confirmed |  |
+| AE-042 | TG-050 | 业务结果：后台未配置特殊区商品时，C端隐藏整个特价专区 | 执行该业务规则所需的合法前置数据已准备完成。 | 用户或管理员完成来源规则对应的操作。 | 最终业务状态与来源规则一致：后台未配置特殊区商品时，C端隐藏整个特价专区。 | B端写侧 | business_behavior | confirmed |  |
+| AE-043 | TG-051 | 业务结果：库存不足时同步隐藏商品、停止分配云机并发送告警 | 执行该业务规则所需的合法前置数据已准备完成。 | 用户或管理员完成来源规则对应的操作。 | 最终业务状态与来源规则一致：库存不足时同步隐藏商品、停止分配云机并发送告警。 | B端写侧 | business_behavior | confirmed |  |
+| AE-044 | TG-052 | 业务结果：所有云机类型均需配置宣传内容且云机类型不可重复 | 执行该业务规则所需的合法前置数据已准备完成。 | 用户或管理员完成来源规则对应的操作。 | 最终业务状态与来源规则一致：所有云机类型均需配置宣传内容且云机类型不可重复。 | B端写侧 | business_behavior | confirmed |  |
+| AE-045 | TG-001 | 约束判定：promotion_slogan; value_constraint（场景2） | 后台管理员已进入对应配置页面，其他必需基础数据均合法。 | 按边界、必填或格式规则操作“promotion_slogan; value_constraint”所涉及字段。 | 系统按来源规则判定并明确反馈：promotion_slogan; value_constraint。 | B端写侧 | hard_block | confirmed |  |
+| AE-046 | TG-002 | 约束判定：performance_parameters; value_constraint（场景3） | 后台管理员已进入对应配置页面，其他必需基础数据均合法。 | 按边界、必填或格式规则操作“performance_parameters; value_constraint”所涉及字段。 | 系统按来源规则判定并明确反馈：performance_parameters; value_constraint。 | B端写侧 | hard_block | confirmed |  |
+| AE-047 | TG-003 | 约束判定：后台未配置特殊区商品时隐藏（场景4） | 后台管理员已进入对应配置页面，其他必需基础数据均合法。 | 按边界、必填或格式规则操作“后台未配置特殊区商品时隐藏”所涉及字段。 | 系统按来源规则判定并明确反馈：后台未配置特殊区商品时隐藏。 | B端写侧 | hard_block | confirmed |  |
+| AE-048 | TG-001 | 读侧展示：promotion_slogan; value_constraint（场景2） | 对应后台配置、商品或页面数据已准备完成。 | 用户打开对应页面或查看对应板块。 | 页面可直接观察到来源规则所述结果：promotion_slogan; value_constraint。 | C端读侧 | display_only | confirmed |  |
+| AE-049 | TG-002 | 读侧展示：performance_parameters; value_constraint（场景3） | 对应后台配置、商品或页面数据已准备完成。 | 用户打开对应页面或查看对应板块。 | 页面可直接观察到来源规则所述结果：performance_parameters; value_constraint。 | C端读侧 | display_only | confirmed |  |
+| AE-050 | TG-003 | 读侧展示：后台未配置特殊区商品时隐藏（场景4） | 对应后台配置、商品或页面数据已准备完成。 | 用户打开对应页面或查看对应板块。 | 页面可直接观察到来源规则所述结果：后台未配置特殊区商品时隐藏。 | C端读侧 | display_only | confirmed |  |
+| AE-051 | TG-004 | 读侧展示：最多展示4个商品（场景5） | 对应后台配置、商品或页面数据已准备完成。 | 用户打开对应页面或查看对应板块。 | 页面可直接观察到来源规则所述结果：最多展示4个商品。 | C端读侧 | display_only | confirmed |  |
+| AE-052 | TG-011 | 读侧展示：天数最大370，小时最大23，所有项不可同时为0，后端以秒为单位（场景6） | 对应后台配置、商品或页面数据已准备完成。 | 用户打开对应页面或查看对应板块。 | 页面可直接观察到来源规则所述结果：天数最大370，小时最大23，所有项不可同时为0，后端以秒为单位。 | C端读侧 | display_only | confirmed |  |
+| AE-053 | TG-012 | 读侧展示：特殊区商品数量必须小于等于4，超过4个时不可保存（场景7） | 对应后台配置、商品或页面数据已准备完成。 | 用户打开对应页面或查看对应板块。 | 页面可直接观察到来源规则所述结果：特殊区商品数量必须小于等于4，超过4个时不可保存。 | C端读侧 | display_only | confirmed |  |
+| AE-054 | TG-013 | 读侧展示：正整数，上限1000；相同排序值按创建时间倒序排列（场景8） | 对应后台配置、商品或页面数据已准备完成。 | 用户打开对应页面或查看对应板块。 | 页面可直接观察到来源规则所述结果：正整数，上限1000；相同排序值按创建时间倒序排列。 | C端读侧 | display_only | confirmed |  |
+| AE-055 | TG-016 | 读侧展示：已有功能，数值限制大于0.00（场景9） | 对应后台配置、商品或页面数据已准备完成。 | 用户打开对应页面或查看对应板块。 | 页面可直接观察到来源规则所述结果：已有功能，数值限制大于0.00。 | C端读侧 | display_only | confirmed |  |
+| AE-056 | TG-017 | 读侧展示：已有功能，数值限制大于0.00（场景10） | 对应后台配置、商品或页面数据已准备完成。 | 用户打开对应页面或查看对应板块。 | 页面可直接观察到来源规则所述结果：已有功能，数值限制大于0.00。 | C端读侧 | display_only | confirmed |  |
+| AE-057 | TG-018 | 读侧展示：数字选择器，必填；天最大370、时最大23，所有项不可同时为0，后端以秒为单位（场景11） | 对应后台配置、商品或页面数据已准备完成。 | 用户打开对应页面或查看对应板块。 | 页面可直接观察到来源规则所述结果：数字选择器，必填；天最大370、时最大23，所有项不可同时为0，后端以秒为单位。 | C端读侧 | display_only | confirmed |  |
+| AE-058 | TG-005 | 业务结果：original_price; value_constraint（场景2） | 执行该业务规则所需的合法前置数据已准备完成。 | 用户或管理员完成来源规则对应的操作。 | 最终业务状态与来源规则一致：original_price; value_constraint。 | B端写侧 | business_behavior | confirmed |  |
+| AE-059 | TG-006 | 业务结果：current_price; value_constraint（场景2） | 执行该业务规则所需的合法前置数据已准备完成。 | 用户或管理员完成来源规则对应的操作。 | 最终业务状态与来源规则一致：current_price; value_constraint。 | B端写侧 | business_behavior | confirmed |  |
+| AE-060 | TG-007 | 业务结果：service_duration; value_constraint（场景2） | 执行该业务规则所需的合法前置数据已准备完成。 | 用户或管理员完成来源规则对应的操作。 | 最终业务状态与来源规则一致：service_duration; value_constraint。 | B端写侧 | business_behavior | confirmed |  |
+| AE-061 | TG-008 | 业务结果：in_box_sort_order; value_constraint; integer_only=True（场景2） | 执行该业务规则所需的合法前置数据已准备完成。 | 用户或管理员完成来源规则对应的操作。 | 最终业务状态与来源规则一致：in_box_sort_order; value_constraint; integer_only=True。 | B端写侧 | business_behavior | confirmed |  |
+| AE-062 | TG-009 | 业务结果：inventory_warning_threshold; value_constraint; integer_only=True（场景2） | 执行该业务规则所需的合法前置数据已准备完成。 | 用户或管理员完成来源规则对应的操作。 | 最终业务状态与来源规则一致：inventory_warning_threshold; value_constraint; integer_only=True。 | B端写侧 | business_behavior | confirmed |  |
+| AE-063 | TG-010 | 业务结果：purchase_alert_recipient; data_source_constraint; data_source=盒子后台管理员列表（场景2） | 执行该业务规则所需的合法前置数据已准备完成。 | 用户或管理员完成来源规则对应的操作。 | 最终业务状态与来源规则一致：purchase_alert_recipient; data_source_constraint; data_source=盒子后台管理员列表。 | B端写侧 | business_behavior | confirmed |  |
+| AE-064 | TG-028 | 业务结果：cloud_machine_type; data_source_constraint; data_source=盒子现有云机类型（场景2） | 执行该业务规则所需的合法前置数据已准备完成。 | 用户或管理员完成来源规则对应的操作。 | 最终业务状态与来源规则一致：cloud_machine_type; data_source_constraint; data_source=盒子现有云机类型。 | B端写侧 | business_behavior | confirmed |  |
+| AE-065 | TG-029 | 业务结果：promotion_image; value_constraint（场景2） | 执行该业务规则所需的合法前置数据已准备完成。 | 用户或管理员完成来源规则对应的操作。 | 最终业务状态与来源规则一致：promotion_image; value_constraint。 | B端写侧 | business_behavior | confirmed |  |
+| AE-066 | TG-030 | 业务结果：promotion_slogan; value_constraint（场景2） | 执行该业务规则所需的合法前置数据已准备完成。 | 用户或管理员完成来源规则对应的操作。 | 最终业务状态与来源规则一致：promotion_slogan; value_constraint。 | B端写侧 | business_behavior | confirmed |  |
+| AE-067 | TG-031 | 业务结果：performance_parameters; value_constraint（场景2） | 执行该业务规则所需的合法前置数据已准备完成。 | 用户或管理员完成来源规则对应的操作。 | 最终业务状态与来源规则一致：performance_parameters; value_constraint。 | C端读侧 | business_behavior | confirmed |  |
+| AE-068 | TG-049 | 业务结果：全新版和常规版两个Tab均可见、可切换并展示对应内容（场景2） | 执行该业务规则所需的合法前置数据已准备完成。 | 用户或管理员完成来源规则对应的操作。 | 最终业务状态与来源规则一致：全新版和常规版两个Tab均可见、可切换并展示对应内容。 | C端读侧 | business_behavior | confirmed |  |
+| AE-069 | TG-050 | 业务结果：后台未配置特殊区商品时，C端隐藏整个特价专区（场景2） | 执行该业务规则所需的合法前置数据已准备完成。 | 用户或管理员完成来源规则对应的操作。 | 最终业务状态与来源规则一致：后台未配置特殊区商品时，C端隐藏整个特价专区。 | C端读侧 | business_behavior | confirmed |  |
+| AE-070 | TG-051 | 业务结果：库存不足时同步隐藏商品、停止分配云机并发送告警（场景2） | 执行该业务规则所需的合法前置数据已准备完成。 | 用户或管理员完成来源规则对应的操作。 | 最终业务状态与来源规则一致：库存不足时同步隐藏商品、停止分配云机并发送告警。 | B端写侧与列表读侧 | business_behavior | confirmed |  |
+| AE-071 | TG-052 | 业务结果：所有云机类型均需配置宣传内容且云机类型不可重复（场景2） | 执行该业务规则所需的合法前置数据已准备完成。 | 用户或管理员完成来源规则对应的操作。 | 最终业务状态与来源规则一致：所有云机类型均需配置宣传内容且云机类型不可重复。 | 服务端通知侧 | business_behavior | confirmed |  |
+| AE-072 | TG-015 | 跨端联动：库存小于等于预警值时，C端隐藏商品、不分配云机并发送库存不足通知（场景2） | B端配置、服务端数据和C端商品状态均已准备。 | 触发来源规则对应的配置保存、库存变化或数据生成。 | B端、服务端与C端的可观察结果保持一致：库存小于等于预警值时，C端隐藏商品、不分配云机并发送库存不足通知。 | B端列表与C端读侧 | linkage | confirmed |  |
+| AE-073 | TG-015 | 跨端联动：库存小于等于预警值时，C端隐藏商品、不分配云机并发送库存不足通知（场景3） | B端配置、服务端数据和C端商品状态均已准备。 | 触发来源规则对应的配置保存、库存变化或数据生成。 | B端、服务端与C端的可观察结果保持一致：库存小于等于预警值时，C端隐藏商品、不分配云机并发送库存不足通知。 | 服务端与C端读侧 | linkage | confirmed |  |
+| AE-074 | TG-027 | 跨端联动：配置ID、商品名称、云机类型、云机服务时长、通知时间、通知人由配置或系统生成（场景2） | B端配置、服务端数据和C端商品状态均已准备。 | 触发来源规则对应的配置保存、库存变化或数据生成。 | B端、服务端与C端的可观察结果保持一致：配置ID、商品名称、云机类型、云机服务时长、通知时间、通知人由配置或系统生成。 | B端写侧与服务端 | linkage | confirmed |  |
+| AE-075 | TG-033 | 提示展示：最多上传5张，支持gif/jpg/jpeg/png，单张最大500K，建议尺寸1008*160（场景2） | 管理员已进入宣传内容配置区域。 | 查看上传控件旁的格式、大小和尺寸说明。 | 页面展示来源中的建议或提示文案：最多上传5张，支持gif/jpg/jpeg/png，单张最大500K，建议尺寸1008*160；建议内容不作为提交结果判定。 | B端写侧 | soft_display | confirmed |  |

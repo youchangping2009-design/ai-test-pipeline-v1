@@ -1,0 +1,56 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "AI Test Pipeline Parallel Review Bundle",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "run_id",
+    "reviewer_order",
+    "barrier",
+    "findings",
+    "conflicts",
+    "bundle_hash"
+  ],
+  "properties": {
+    "schema_version": { "type": "string", "const": "1.0.0" },
+    "run_id": { "type": "string", "minLength": 1 },
+    "reviewer_order": {
+      "type": "array",
+      "minItems": 3,
+      "items": { "type": "string", "enum": ["evidence", "flow", "testcase"] }
+    },
+    "barrier": {
+      "type": "object",
+      "required": ["required", "succeeded", "passed"],
+      "properties": {
+        "required": { "type": "integer", "const": 3 },
+        "succeeded": { "type": "integer", "const": 3 },
+        "passed": { "type": "boolean", "const": true }
+      },
+      "additionalProperties": false
+    },
+    "findings": {
+      "type": "array",
+      "items": { "type": "object" }
+    },
+    "conflicts": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["dedupe_key", "kept_finding_id", "conflicting_finding_ids"],
+        "properties": {
+          "dedupe_key": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+          "kept_finding_id": { "type": "string", "minLength": 1 },
+          "conflicting_finding_ids": {
+            "type": "array",
+            "minItems": 1,
+            "items": { "type": "string", "minLength": 1 }
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "bundle_hash": { "type": "string", "pattern": "^[a-f0-9]{64}$" }
+  },
+  "additionalProperties": false
+}

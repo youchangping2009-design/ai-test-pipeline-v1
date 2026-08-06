@@ -57,9 +57,9 @@
 
 - 项目目录是否创建成功
 - `README.md` 是否生成
-- `structured_prd/structured_prd.json` 是否生成
-- `testcases/testcases_main.md` 是否生成
-- `reviews/review_record.md` 是否生成
+- `project_manifest.json` 是否生成
+- `inputs/common/`、`indexes/`、`reports/`、`knowledge/` 与 `work_items/` 是否生成
+- 项目根不得出现正式 structured PRD、testcase、traceability 或 review 真源
 
 ---
 
@@ -136,6 +136,28 @@
 - 如需记录飞书、原型、截图、公开文档等来源，补充 `inputs/source_manifest.json`；该清单只记录来源与访问状态，不替代原始输入
 
 输出契约见 `skills/requirement-summary/references/output-contract.md`。
+
+---
+
+### 步骤 3：人工审核 Requirement Summary
+
+新工作项默认启用 `pipeline_policy.requirement_approval_required=true`。Requirement Sources 机器校验通过后，Harness run 会停在 `waiting_approval`；人工核对摘要、来源清单和原始输入后执行：
+
+```bash
+/usr/bin/python3 scripts/run_work_item_pipeline.py approve-requirement \
+  --project-code <PROJECT_CODE> \
+  --work-item-id <WORK_ITEM_ID> \
+  --run-id <RUN_ID> \
+  --reviewed-by <REVIEWER> \
+  --note "<NOTE>"
+
+/usr/bin/python3 scripts/run_work_item_pipeline.py resume \
+  --project-code <PROJECT_CODE> \
+  --work-item-id <WORK_ITEM_ID> \
+  --run-id <RUN_ID>
+```
+
+拒绝使用 `reject-requirement`。若 receipt 已持久化但 event/state 尚未完成，使用 `recover-requirement-approval` 幂等恢复。`requirement_summary.md`、`source_manifest.json`、原始输入或需求版本变化会使旧批准失效；仅修改 manifest 运行期/派生字段不会撤销批准。CI 只能校验 receipt，不能执行人工批准。
 
 ---
 
@@ -552,6 +574,8 @@ strict 正向样例：
 - 正式 testcase 必须显式引用 `case_plan_id`，推荐在备注中写 `来源 CasePlan：CP-xxx`
 - strict 会阻止空模板、弱产物、无来源用例和引用不存在 case_plan 的用例
 - PT083 eval 包含 forbidden patterns 与 required assertions 两类检查
+- 当前 PT083 是 M 档无代码样本，strict 命令必须显式使用 `--skip-code-reviews`
+- 当前 Harness 尚无 Review `not_applicable` disposition；不得把待评审模板当成 Review 已完成
 
 M/L strict 下还会强制验收示例：
 

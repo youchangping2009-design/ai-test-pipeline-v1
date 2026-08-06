@@ -1,0 +1,19 @@
+{
+  "schema_version": "1.0.0",
+  "suite_version": "1.0.0",
+  "tier": "golden",
+  "metrics": {
+    "fixture_count": 6,
+    "check_count": 57,
+    "expected_failure_checks": 2,
+    "command_count": 2
+  },
+  "fixture_fingerprints": {
+    "PT083": "86969dc6322ee5ead13f9ea1c909abf4f77d0463d41e487c6c71379b460e0d75",
+    "PROMPT_ONLY": "6c011826cb22a92a58c2e71c22d778defc4b69f9661ebec1c792b3a61d493fe6",
+    "LINKAGE_ONLY": "c2b084d606f4a7847f66cec6ecf39bc01004b743fd1e9d1437f50b2cb6ef1e5e",
+    "RISK_API_ONLY": "30f7a6881e784bdcf76c6ab23c461a1ad7155e5afed3d317c0ef1e91c8f96932",
+    "ELEMENT_NOTATION": "8319426dc9b4a9f6a406f57f052baf896ff581c50e16020cc796541ff2a946ce",
+    "CASE_GROUPING": "7ff0abf165d9de0e14270e92698e7ad3c06d076720362b69052af8e96da589a4"
+  }
+}

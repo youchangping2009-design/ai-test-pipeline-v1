@@ -2,8 +2,8 @@
   "stage": "backend_code_review",
   "review_type": "backend_code",
   "manual_confirmation_required": true,
-  "confirmation_status": "confirmed",
-  "confirmed_by": "xin",
-  "confirmed_at": "2026-04-28T12:19:01+0800",
-  "confirmation_note": "已确认后端代码评审结论、历史风险、降级项、忽略项与用例补充状态。"
+  "confirmation_status": "pending",
+  "confirmed_by": "",
+  "confirmed_at": "",
+  "confirmation_note": ""
 }

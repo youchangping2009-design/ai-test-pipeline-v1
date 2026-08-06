@@ -1,19 +1,19 @@
 {
   "project_code": "WX-YGJ",
   "index_type": "work_item",
-  "generated_at": "2026-07-27T15:50:01",
+  "generated_at": "2026-08-06T18:23:48",
   "items": [
     {
       "work_item_id": "PT083",
-      "title": "PT083需求",
+      "title": "云挂机免费体验",
       "status": "initialized",
-      "work_item_level": "L",
+      "work_item_level": "M",
       "manifest_path": "work_items/PT083/manifest.json",
-      "manifest_sha256": "5273233ad9301a36029b3cdb90db8f973bd05fd06257aa656492cf7dc0e3a8b2",
+      "manifest_sha256": "2e9b7050ec2b61fc214a481cdc4edde199fde329b8ef3fc851037f8a08b1abcb",
       "artifact_status": "ready",
       "missing_artifacts": [],
-      "testcase_count": 18,
-      "open_risk_count": 3,
+      "testcase_count": 75,
+      "open_risk_count": 0,
       "quality_report_status": "current",
       "primary_artifacts": {
         "structured_prd": "work_items/PT083/structured_prd/structured_prd.md",

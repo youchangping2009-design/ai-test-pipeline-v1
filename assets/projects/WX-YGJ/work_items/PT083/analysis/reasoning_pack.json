@@ -1,68 +1,3453 @@
 {
   "project_code": "WX-YGJ",
   "work_item_id": "PT083",
-  "summary": "PT083 需求围绕云挂机购买页改版、云手机商品后台配置升级和云机技术约束展开，需同时覆盖前台展示、后台字段规则和技术限制。",
-  "requirement_clusters": [
+  "generated_at": "2026-08-06T16:53:15",
+  "generated_from": [
+    "assets/projects/WX-YGJ/work_items/PT083/manifest.json",
+    "assets/projects/WX-YGJ/work_items/PT083/inputs/requirement_summary.md",
+    "assets/projects/WX-YGJ/work_items/PT083/inputs/source_manifest.json",
+    "assets/projects/WX-YGJ/work_items/PT083/image_evidence/image_evidence_inventory.json"
+  ],
+  "requirement_summary": {
+    "title": "PT083 云挂机免费体验3需求整理",
+    "summary_text": "通过免费体验云机提升新增用户的云挂机覆盖率。背景材料称日新增盒子用户引入率约 17%，云挂机前三日覆盖率约 3%～4%；两轮 MVP 约覆盖 100 名新用户，破冰率从约 3% 提升到约 10%，其中约 60% 后续购买周卡及以上商品。 更新云机 SDK，改善画面模糊、卡顿问题。 将云机画面尺寸固定调整为 `720*1280`，以支持用户同时使用脚本。 改版 C 端《云挂机购买页》，在{全新版}和{常规版}两个 Tab 下增加宣传位、宣传区和特价专区，并保留普通商品区。 扩展 B 端[云手机商品管理]，增加商品区、盒子内排序、库存预警及购买数量报警通知人等配置，并新增《编辑宣传内容》能力。 PT083 原图与 PT084/PT085 原图逐张同哈希，图片本身未显示新增、删除或变更；该同源关系已由用户确认为迁移前历史基准，当前需求语义不变。",
+    "primary_pages": [
+      "需求介绍",
+      "云挂机购买页",
+      "盒子管理后台-云手机商品管理",
+      "盒子管理后台-云手机商品管理-添加",
+      "盒子管理后台-编辑宣传内容",
+      "云机技术调整结论"
+    ],
+    "primary_user_surfaces": [
+      "云机免费体验背景",
+      "云机质量及尺寸问题",
+      "需求目的",
+      "版本Tab",
+      "宣传图占位",
+      "宣传区",
+      "特价专区",
+      "普通商品列表",
+      "云手机商品类型筛选",
+      "商品列表",
+      "操作区",
+      "商品编辑弹窗",
+      "商品顺序编辑弹窗",
+      "商品添加表单",
+      "商品区与库存规则说明表",
+      "宣传内容编辑表单",
+      "宣传内容字段说明表",
+      "SDK与画面尺寸调整"
+    ],
+    "source_notes": [
+      "归一化需求来源：assets/projects/WX-YGJ/work_items/PT083/inputs/requirement_summary.md",
+      "SRC-001: inputs/images/PT083-01_副本.png (available)",
+      "SRC-002: inputs/images/PT083-02_副本.png (available)",
+      "SRC-003: inputs/images/PT083-03-01_副本.png (available)",
+      "SRC-004: inputs/images/PT083-03-02_副本.png (available)",
+      "SRC-005: inputs/images/PT083-03-03_副本.png (available)",
+      "SRC-006: inputs/images/PT083-04_副本.png (available)"
+    ]
+  },
+  "explicit_rules": [
     {
-      "cluster_id": "CLUSTER-001",
-      "title": "云挂机购买页展示改版",
-      "source_files": [
-        "inputs/images/PT083-02_副本.png"
+      "id": "ER-001",
+      "title": "需求整理-explicit_rule",
+      "statement": "通过免费体验云机提升新增用户的云挂机覆盖率。背景材料称日新增盒子用户引入率约 17%，云挂机前三日覆盖率约 3%～4%；两轮 MVP 约覆盖 100 名新用户，破冰率从约 3% 提升到约 10%，其中约 60% 后续购买周卡及以上商品。",
+      "confidence": 0.99,
+      "reasoning_notes": [
+        "来自主流程 requirement_summary.md 的确认需求。"
       ],
-      "rules": [
-        "常规版tab和全新版tab都需要展示改版后的宣传图区域。",
-        "宣传图建议尺寸1008*160，来源于后台编辑宣传内容。",
-        "宣传专区展示宣传口号和性能参数，后台单行20字符，C端超一行换行。",
-        "特价专区未配置时隐藏，横排展示，首屏2个半，最多4个商品。",
-        "原商品列表更名为限时购买，竖排展示，数量逻辑保持原逻辑。"
+      "must_preserve_terms": [],
+      "source_refs": [
+        {
+          "source_type": "input_markdown",
+          "path": "assets/projects/WX-YGJ/work_items/PT083/inputs/requirement_summary.md",
+          "excerpt": "通过免费体验云机提升新增用户的云挂机覆盖率。背景材料称日新增盒子用户引入率约 17%，云挂机前三日覆盖率约 3%～4%；两轮 MVP 约覆盖 100 名新用户，破冰率从约 3% 提升到约 10%，其中约 60% 后续购买周卡及以上商品。"
+        }
       ]
     },
     {
-      "cluster_id": "CLUSTER-002",
-      "title": "云手机商品管理字段规则",
-      "source_files": [
-        "inputs/images/PT083-03-01_副本.png",
-        "inputs/images/PT083-03-02_副本.png"
+      "id": "ER-002",
+      "title": "需求整理-explicit_rule",
+      "statement": "更新云机 SDK，改善画面模糊、卡顿问题。",
+      "confidence": 0.99,
+      "reasoning_notes": [
+        "来自主流程 requirement_summary.md 的确认需求。"
       ],
-      "rules": [
-        "添加按钮进入商品配置界面。",
-        "编辑宣传图按钮更名为编辑宣传内容。",
-        "新增商品区字段，content为特殊区/普通区。",
-        "服务时长前项最大370、后项最大23、不可同时为0。",
-        "特殊区生效商品数量不得超过4个。",
-        "盒子内排序数值上限1000，排序相同按创建时间倒序。",
-        "库存预警值每20分钟校验库存，失败时隐藏商品并触发通知。",
-        "购买数量报警通知人来源于盒子后台管理员列表。"
+      "must_preserve_terms": [],
+      "source_refs": [
+        {
+          "source_type": "input_markdown",
+          "path": "assets/projects/WX-YGJ/work_items/PT083/inputs/requirement_summary.md",
+          "excerpt": "更新云机 SDK，改善画面模糊、卡顿问题。"
+        }
       ]
     },
     {
-      "cluster_id": "CLUSTER-003",
-      "title": "宣传内容配置规则",
-      "source_files": [
-        "inputs/images/PT083-03-03_副本.png"
+      "id": "ER-003",
+      "title": "需求整理-explicit_rule",
+      "statement": "将云机画面尺寸固定调整为 `720*1280`，以支持用户同时使用脚本。",
+      "confidence": 0.99,
+      "reasoning_notes": [
+        "来自主流程 requirement_summary.md 的确认需求。"
       ],
-      "rules": [
-        "所有云机类型都需要配置宣传内容，且云机类型不重复。",
-        "宣传图片最多上传5张，支持gif/jpg/jpeg/png，单文件不超过500k，建议尺寸1008*160。",
-        "宣传口号和性能参数长度20个字符，C端超一行换行。",
-        "点击新增后最多形成2条宣传内容配置。"
+      "must_preserve_terms": [],
+      "source_refs": [
+        {
+          "source_type": "input_markdown",
+          "path": "assets/projects/WX-YGJ/work_items/PT083/inputs/requirement_summary.md",
+          "excerpt": "将云机画面尺寸固定调整为 `720*1280`，以支持用户同时使用脚本。"
+        }
       ]
     },
     {
-      "cluster_id": "CLUSTER-004",
-      "title": "云机技术约束",
-      "source_files": [
-        "inputs/images/PT083-01_副本.png",
-        "inputs/images/PT083-04_副本.png"
+      "id": "ER-004",
+      "title": "需求整理-explicit_rule",
+      "statement": "改版 C 端《云挂机购买页》，在{全新版}和{常规版}两个 Tab 下增加宣传位、宣传区和特价专区，并保留普通商品区。",
+      "confidence": 0.99,
+      "reasoning_notes": [
+        "来自主流程 requirement_summary.md 的确认需求。"
       ],
-      "rules": [
-        "更新云机SDK。",
-        "云机画面尺寸固定为720*1280。"
+      "must_preserve_terms": [],
+      "source_refs": [
+        {
+          "source_type": "input_markdown",
+          "path": "assets/projects/WX-YGJ/work_items/PT083/inputs/requirement_summary.md",
+          "excerpt": "改版 C 端《云挂机购买页》，在{全新版}和{常规版}两个 Tab 下增加宣传位、宣传区和特价专区，并保留普通商品区。"
+        }
+      ]
+    },
+    {
+      "id": "ER-005",
+      "title": "需求整理-order_rule",
+      "statement": "扩展 B 端[云手机商品管理]，增加商品区、盒子内排序、库存预警及购买数量报警通知人等配置，并新增《编辑宣传内容》能力。",
+      "confidence": 0.99,
+      "reasoning_notes": [
+        "来自主流程 requirement_summary.md 的确认需求。"
+      ],
+      "must_preserve_terms": [],
+      "source_refs": [
+        {
+          "source_type": "input_markdown",
+          "path": "assets/projects/WX-YGJ/work_items/PT083/inputs/requirement_summary.md",
+          "excerpt": "扩展 B 端[云手机商品管理]，增加商品区、盒子内排序、库存预警及购买数量报警通知人等配置，并新增《编辑宣传内容》能力。"
+        }
+      ]
+    },
+    {
+      "id": "ER-006",
+      "title": "需求整理-explicit_rule",
+      "statement": "PT083 原图与 PT084/PT085 原图逐张同哈希，图片本身未显示新增、删除或变更；该同源关系已由用户确认为迁移前历史基准，当前需求语义不变。",
+      "confidence": 0.99,
+      "reasoning_notes": [
+        "来自主流程 requirement_summary.md 的确认需求。"
+      ],
+      "must_preserve_terms": [],
+      "source_refs": [
+        {
+          "source_type": "input_markdown",
+          "path": "assets/projects/WX-YGJ/work_items/PT083/inputs/requirement_summary.md",
+          "excerpt": "PT083 原图与 PT084/PT085 原图逐张同哈希，图片本身未显示新增、删除或变更；该同源关系已由用户确认为迁移前历史基准，当前需求语义不变。"
+        }
+      ]
+    },
+    {
+      "id": "ER-007",
+      "title": "需求整理-explicit_rule",
+      "statement": "### C 端《云挂机购买页》",
+      "confidence": 0.99,
+      "reasoning_notes": [
+        "来自主流程 requirement_summary.md 的确认需求。"
+      ],
+      "must_preserve_terms": [],
+      "source_refs": [
+        {
+          "source_type": "input_markdown",
+          "path": "assets/projects/WX-YGJ/work_items/PT083/inputs/requirement_summary.md",
+          "excerpt": "### C 端《云挂机购买页》"
+        }
+      ]
+    },
+    {
+      "id": "ER-008",
+      "title": "需求整理-explicit_rule",
+      "statement": "{全新版}和{常规版}两个 Tab 均应用本次区域改版。",
+      "confidence": 0.99,
+      "reasoning_notes": [
+        "来自主流程 requirement_summary.md 的确认需求。"
+      ],
+      "must_preserve_terms": [],
+      "source_refs": [
+        {
+          "source_type": "input_markdown",
+          "path": "assets/projects/WX-YGJ/work_items/PT083/inputs/requirement_summary.md",
+          "excerpt": "{全新版}和{常规版}两个 Tab 均应用本次区域改版。"
+        }
+      ]
+    },
+    {
+      "id": "ER-009",
+      "title": "需求整理-explicit_rule",
+      "statement": "宣传位：建议尺寸 `1008*160`；图片来源为 B 端《编辑宣传内容》的“宣传图片”；需保证首屏普通区商品列表能够展示两个及以上商品。",
+      "confidence": 0.99,
+      "reasoning_notes": [
+        "来自主流程 requirement_summary.md 的确认需求。"
+      ],
+      "must_preserve_terms": [],
+      "source_refs": [
+        {
+          "source_type": "input_markdown",
+          "path": "assets/projects/WX-YGJ/work_items/PT083/inputs/requirement_summary.md",
+          "excerpt": "宣传位：建议尺寸 `1008*160`；图片来源为 B 端《编辑宣传内容》的“宣传图片”；需保证首屏普通区商品列表能够展示两个及以上商品。"
+        }
+      ]
+    },
+    {
+      "id": "ER-010",
+      "title": "需求整理-conditional_visibility",
+      "statement": "宣传区：展示“宣传口号”和“性能参数”，数据来自 B 端对应字段；B 端均限制 20 个字符，C 端超过一行时换行展示。",
+      "confidence": 0.99,
+      "reasoning_notes": [
+        "来自主流程 requirement_summary.md 的确认需求。"
+      ],
+      "must_preserve_terms": [],
+      "source_refs": [
+        {
+          "source_type": "input_markdown",
+          "path": "assets/projects/WX-YGJ/work_items/PT083/inputs/requirement_summary.md",
+          "excerpt": "宣传区：展示“宣传口号”和“性能参数”，数据来自 B 端对应字段；B 端均限制 20 个字符，C 端超过一行时换行展示。"
+        }
+      ]
+    },
+    {
+      "id": "ER-011",
+      "title": "需求整理-conditional_visibility",
+      "statement": "特价专区：区域名称为“特价专区”；展示现价、原价、商品名称、商品标签类型；B 端配置时展示、未配置时隐藏；横向展示，首屏展示 2.5 个商品，最多展示 4 个商品。",
+      "confidence": 0.99,
+      "reasoning_notes": [
+        "来自主流程 requirement_summary.md 的确认需求。"
+      ],
+      "must_preserve_terms": [],
+      "source_refs": [
+        {
+          "source_type": "input_markdown",
+          "path": "assets/projects/WX-YGJ/work_items/PT083/inputs/requirement_summary.md",
+          "excerpt": "特价专区：区域名称为“特价专区”；展示现价、原价、商品名称、商品标签类型；B 端配置时展示、未配置时隐藏；横向展示，首屏展示 2.5 个商品，最多展示 4 个商品。"
+        }
+      ]
+    },
+    {
+      "id": "ER-012",
+      "title": "需求整理-conditional_visibility",
+      "statement": "普通商品区：区域名称为“限时购买”；保留原商品列表和原有数量展示逻辑，采用纵向展示；展示现价、原价、商品名称、商品标签类型。",
+      "confidence": 0.99,
+      "reasoning_notes": [
+        "来自主流程 requirement_summary.md 的确认需求。"
+      ],
+      "must_preserve_terms": [],
+      "source_refs": [
+        {
+          "source_type": "input_markdown",
+          "path": "assets/projects/WX-YGJ/work_items/PT083/inputs/requirement_summary.md",
+          "excerpt": "普通商品区：区域名称为“限时购买”；保留原商品列表和原有数量展示逻辑，采用纵向展示；展示现价、原价、商品名称、商品标签类型。"
+        }
+      ]
+    },
+    {
+      "id": "ER-013",
+      "title": "需求整理-explicit_rule",
+      "statement": "### B 端[云手机商品管理]",
+      "confidence": 0.99,
+      "reasoning_notes": [
+        "来自主流程 requirement_summary.md 的确认需求。"
+      ],
+      "must_preserve_terms": [],
+      "source_refs": [
+        {
+          "source_type": "input_markdown",
+          "path": "assets/projects/WX-YGJ/work_items/PT083/inputs/requirement_summary.md",
+          "excerpt": "### B 端[云手机商品管理]"
+        }
+      ]
+    },
+    {
+      "id": "ER-014",
+      "title": "需求整理-explicit_rule",
+      "statement": "列表提供【编辑商品顺序】、【添加】和【编辑宣传内容】入口。",
+      "confidence": 0.99,
+      "reasoning_notes": [
+        "来自主流程 requirement_summary.md 的确认需求。"
+      ],
+      "must_preserve_terms": [],
+      "source_refs": [
+        {
+          "source_type": "input_markdown",
+          "path": "assets/projects/WX-YGJ/work_items/PT083/inputs/requirement_summary.md",
+          "excerpt": "列表提供【编辑商品顺序】、【添加】和【编辑宣传内容】入口。"
+        }
+      ]
+    },
+    {
+      "id": "ER-015",
+      "title": "需求整理-order_rule",
+      "statement": "商品配置新增或明确“商品区”“盒子内排序”“库存预警值”“购买数量报警通知人”等字段。",
+      "confidence": 0.99,
+      "reasoning_notes": [
+        "来自主流程 requirement_summary.md 的确认需求。"
+      ],
+      "must_preserve_terms": [],
+      "source_refs": [
+        {
+          "source_type": "input_markdown",
+          "path": "assets/projects/WX-YGJ/work_items/PT083/inputs/requirement_summary.md",
+          "excerpt": "商品配置新增或明确“商品区”“盒子内排序”“库存预警值”“购买数量报警通知人”等字段。"
+        }
+      ]
+    },
+    {
+      "id": "ER-016",
+      "title": "需求整理-field_requirement",
+      "statement": "《添加》表单截图中带必填标识的字段包括：“云手机商品类型”“云机类型”“商品名称”“原价（元）”“现价（元）”“服务时长”“商品区”“盒子内排序”“购买数量报警通知人”。“库存预警值”未显示必填标识，按非必填记录。",
+      "confidence": 0.99,
+      "reasoning_notes": [
+        "来自主流程 requirement_summary.md 的确认需求。"
+      ],
+      "must_preserve_terms": [],
+      "source_refs": [
+        {
+          "source_type": "input_markdown",
+          "path": "assets/projects/WX-YGJ/work_items/PT083/inputs/requirement_summary.md",
+          "excerpt": "《添加》表单截图中带必填标识的字段包括：“云手机商品类型”“云机类型”“商品名称”“原价（元）”“现价（元）”“服务时长”“商品区”“盒子内排序”“购买数量报警通知人”。“库存预警值”未显示必填标识，按非必填记录。"
+        }
+      ]
+    },
+    {
+      "id": "ER-017",
+      "title": "需求整理-explicit_rule",
+      "statement": "“原价（元）”“现价（元）”：沿用已有能力，数值限制为大于 0。",
+      "confidence": 0.99,
+      "reasoning_notes": [
+        "来自主流程 requirement_summary.md 的确认需求。"
+      ],
+      "must_preserve_terms": [],
+      "source_refs": [
+        {
+          "source_type": "input_markdown",
+          "path": "assets/projects/WX-YGJ/work_items/PT083/inputs/requirement_summary.md",
+          "excerpt": "“原价（元）”“现价（元）”：沿用已有能力，数值限制为大于 0。"
+        }
+      ]
+    },
+    {
+      "id": "ER-018",
+      "title": "需求整理-explicit_rule",
+      "statement": "“服务时长”：数字选择器，单位包含天、时；后端以秒为单位，天数最大值 370、小时最大值 23，所有输入不能同时为 0。",
+      "confidence": 0.99,
+      "reasoning_notes": [
+        "来自主流程 requirement_summary.md 的确认需求。"
+      ],
+      "must_preserve_terms": [],
+      "source_refs": [
+        {
+          "source_type": "input_markdown",
+          "path": "assets/projects/WX-YGJ/work_items/PT083/inputs/requirement_summary.md",
+          "excerpt": "“服务时长”：数字选择器，单位包含天、时；后端以秒为单位，天数最大值 370、小时最大值 23，所有输入不能同时为 0。"
+        }
+      ]
+    },
+    {
+      "id": "ER-019",
+      "title": "需求整理-conditional_visibility",
+      "statement": "“商品区”：单选下拉，选项为{特殊区}/{普通区}。特殊区最多配置 4 个商品；超限时不可保存，并提示「特殊区只能展示4个商品，当前字段的配置数量已超过4个，请关闭之前的商品或调整配置」。",
+      "confidence": 0.99,
+      "reasoning_notes": [
+        "来自主流程 requirement_summary.md 的确认需求。"
+      ],
+      "must_preserve_terms": [],
+      "source_refs": [
+        {
+          "source_type": "input_markdown",
+          "path": "assets/projects/WX-YGJ/work_items/PT083/inputs/requirement_summary.md",
+          "excerpt": "“商品区”：单选下拉，选项为{特殊区}/{普通区}。特殊区最多配置 4 个商品；超限时不可保存，并提示「特殊区只能展示4个商品，当前字段的配置数量已超过4个，请关闭之前的商品或调整配置」。"
+        }
+      ]
+    },
+    {
+      "id": "ER-020",
+      "title": "需求整理-data_source_rule",
+      "statement": "“盒子内排序”：正整数，最大值 1000；排序值相同时按创建时间倒序排列。",
+      "confidence": 0.99,
+      "reasoning_notes": [
+        "来自主流程 requirement_summary.md 的确认需求。"
+      ],
+      "must_preserve_terms": [],
+      "source_refs": [
+        {
+          "source_type": "input_markdown",
+          "path": "assets/projects/WX-YGJ/work_items/PT083/inputs/requirement_summary.md",
+          "excerpt": "“盒子内排序”：正整数，最大值 1000；排序值相同时按创建时间倒序排列。"
+        }
+      ]
+    },
+    {
+      "id": "ER-021",
+      "title": "需求整理-conditional_visibility",
+      "statement": "“商品展示时间”：沿用已有能力；未配置时提示“未配置，云挂机商品则长期展示”。截图还要求服务时长结束后 C 端不再展示内容，准确口径待确认。",
+      "confidence": 0.99,
+      "reasoning_notes": [
+        "来自主流程 requirement_summary.md 的确认需求。"
+      ],
+      "must_preserve_terms": [],
+      "source_refs": [
+        {
+          "source_type": "input_markdown",
+          "path": "assets/projects/WX-YGJ/work_items/PT083/inputs/requirement_summary.md",
+          "excerpt": "“商品展示时间”：沿用已有能力；未配置时提示“未配置，云挂机商品则长期展示”。截图还要求服务时长结束后 C 端不再展示内容，准确口径待确认。"
+        }
+      ]
+    },
+    {
+      "id": "ER-022",
+      "title": "需求整理-conditional_visibility",
+      "statement": "“库存预警值”：正整数，最大值 200；系统按固定频率校验云机库存是否小于等于配置值。库存充足时 C 端正常展示并分配云机；库存不足时 C 端隐藏商品且不分配云机，同时通知管理员大仓。",
+      "confidence": 0.99,
+      "reasoning_notes": [
+        "来自主流程 requirement_summary.md 的确认需求。"
+      ],
+      "must_preserve_terms": [],
+      "source_refs": [
+        {
+          "source_type": "input_markdown",
+          "path": "assets/projects/WX-YGJ/work_items/PT083/inputs/requirement_summary.md",
+          "excerpt": "“库存预警值”：正整数，最大值 200；系统按固定频率校验云机库存是否小于等于配置值。库存充足时 C 端正常展示并分配云机；库存不足时 C 端隐藏商品且不分配云机，同时通知管理员大仓。"
+        }
+      ]
+    },
+    {
+      "id": "ER-023",
+      "title": "需求整理-explicit_rule",
+      "statement": "“购买数量报警通知人”：单选下拉，候选内容为盒子后台管理员列表。",
+      "confidence": 0.99,
+      "reasoning_notes": [
+        "来自主流程 requirement_summary.md 的确认需求。"
+      ],
+      "must_preserve_terms": [],
+      "source_refs": [
+        {
+          "source_type": "input_markdown",
+          "path": "assets/projects/WX-YGJ/work_items/PT083/inputs/requirement_summary.md",
+          "excerpt": "“购买数量报警通知人”：单选下拉，候选内容为盒子后台管理员列表。"
+        }
+      ]
+    },
+    {
+      "id": "ER-024",
+      "title": "需求整理-explicit_rule",
+      "statement": "库存不足告警发往“云手机相关报警”群；正式环境模板标题为「【云挂机库存不足通知】」，内容包含功能模块、配置 ID、商品名称、云机类型、云机服务时长、通知时间和通知人。",
+      "confidence": 0.99,
+      "reasoning_notes": [
+        "来自主流程 requirement_summary.md 的确认需求。"
+      ],
+      "must_preserve_terms": [],
+      "source_refs": [
+        {
+          "source_type": "input_markdown",
+          "path": "assets/projects/WX-YGJ/work_items/PT083/inputs/requirement_summary.md",
+          "excerpt": "库存不足告警发往“云手机相关报警”群；正式环境模板标题为「【云挂机库存不足通知】」，内容包含功能模块、配置 ID、商品名称、云机类型、云机服务时长、通知时间和通知人。"
+        }
+      ]
+    },
+    {
+      "id": "ER-025",
+      "title": "需求整理-explicit_rule",
+      "statement": "### B 端《编辑宣传内容》",
+      "confidence": 0.99,
+      "reasoning_notes": [
+        "来自主流程 requirement_summary.md 的确认需求。"
+      ],
+      "must_preserve_terms": [],
+      "source_refs": [
+        {
+          "source_type": "input_markdown",
+          "path": "assets/projects/WX-YGJ/work_items/PT083/inputs/requirement_summary.md",
+          "excerpt": "### B 端《编辑宣传内容》"
+        }
+      ]
+    },
+    {
+      "id": "ER-026",
+      "title": "需求整理-field_requirement",
+      "statement": "“云机类型”：必填、单选下拉，选项为盒子现有云机类型（截图列出{全新版}/{常规版}）。保存前需保证所有云机类型均已配置且没有重复；失败时不可保存，并提示「所有云机类型都需要配置宣传内容，且云机类型不重复」。",
+      "confidence": 0.99,
+      "reasoning_notes": [
+        "来自主流程 requirement_summary.md 的确认需求。"
+      ],
+      "must_preserve_terms": [],
+      "source_refs": [
+        {
+          "source_type": "input_markdown",
+          "path": "assets/projects/WX-YGJ/work_items/PT083/inputs/requirement_summary.md",
+          "excerpt": "“云机类型”：必填、单选下拉，选项为盒子现有云机类型（截图列出{全新版}/{常规版}）。保存前需保证所有云机类型均已配置且没有重复；失败时不可保存，并提示「所有云机类型都需要配置宣传内容，且云机类型不重复」。"
+        }
+      ]
+    },
+    {
+      "id": "ER-027",
+      "title": "需求整理-order_rule",
+      "statement": "“宣传图片”：必传；单条配置最多上传 5 张，支持拖拽排序；支持 `gif/jpg/jpeg/png`，单张最大 500 KB，建议尺寸 `1008*160`；鼠标悬停时可删除图片。",
+      "confidence": 0.99,
+      "reasoning_notes": [
+        "来自主流程 requirement_summary.md 的确认需求。"
+      ],
+      "must_preserve_terms": [],
+      "source_refs": [
+        {
+          "source_type": "input_markdown",
+          "path": "assets/projects/WX-YGJ/work_items/PT083/inputs/requirement_summary.md",
+          "excerpt": "“宣传图片”：必传；单条配置最多上传 5 张，支持拖拽排序；支持 `gif/jpg/jpeg/png`，单张最大 500 KB，建议尺寸 `1008*160`；鼠标悬停时可删除图片。"
+        }
+      ]
+    },
+    {
+      "id": "ER-028",
+      "title": "需求整理-field_requirement",
+      "statement": "“宣传口号”“性能参数”：必填文本框，最多 20 个字符；C 端超过一行时换行展示。",
+      "confidence": 0.99,
+      "reasoning_notes": [
+        "来自主流程 requirement_summary.md 的确认需求。"
+      ],
+      "must_preserve_terms": [],
+      "source_refs": [
+        {
+          "source_type": "input_markdown",
+          "path": "assets/projects/WX-YGJ/work_items/PT083/inputs/requirement_summary.md",
+          "excerpt": "“宣传口号”“性能参数”：必填文本框，最多 20 个字符；C 端超过一行时换行展示。"
+        }
+      ]
+    },
+    {
+      "id": "ER-029",
+      "title": "需求整理-conditional_visibility",
+      "statement": "【新增】用于增加一块由云机类型、宣传图片、宣传口号和性能参数组成的配置。截图说明最多额外新增 1 块，配置达到 2 条时禁用按钮；新增内容在 C 端全屏展示。",
+      "confidence": 0.99,
+      "reasoning_notes": [
+        "来自主流程 requirement_summary.md 的确认需求。"
+      ],
+      "must_preserve_terms": [],
+      "source_refs": [
+        {
+          "source_type": "input_markdown",
+          "path": "assets/projects/WX-YGJ/work_items/PT083/inputs/requirement_summary.md",
+          "excerpt": "【新增】用于增加一块由云机类型、宣传图片、宣传口号和性能参数组成的配置。截图说明最多额外新增 1 块，配置达到 2 条时禁用按钮；新增内容在 C 端全屏展示。"
+        }
+      ]
+    },
+    {
+      "id": "ER-030",
+      "title": "需求整理-explicit_rule",
+      "statement": "用户已通过正式审批确认 PT083 复用迁移前历史基准图片且需求语义不变，可按当前流程执行 evidence 及下游阶段。",
+      "confidence": 0.99,
+      "reasoning_notes": [
+        "来自主流程 requirement_summary.md 的确认需求。"
+      ],
+      "must_preserve_terms": [],
+      "source_refs": [
+        {
+          "source_type": "input_markdown",
+          "path": "assets/projects/WX-YGJ/work_items/PT083/inputs/requirement_summary.md",
+          "excerpt": "用户已通过正式审批确认 PT083 复用迁移前历史基准图片且需求语义不变，可按当前流程执行 evidence 及下游阶段。"
+        }
+      ]
+    },
+    {
+      "id": "ER-031",
+      "title": "需求整理-explicit_rule",
+      "statement": "对{全新版}/{常规版}分别核对 B 端宣传配置到 C 端宣传位、宣传口号和性能参数的映射。",
+      "confidence": 0.99,
+      "reasoning_notes": [
+        "来自主流程 requirement_summary.md 的确认需求。"
+      ],
+      "must_preserve_terms": [],
+      "source_refs": [
+        {
+          "source_type": "input_markdown",
+          "path": "assets/projects/WX-YGJ/work_items/PT083/inputs/requirement_summary.md",
+          "excerpt": "对{全新版}/{常规版}分别核对 B 端宣传配置到 C 端宣传位、宣传口号和性能参数的映射。"
+        }
+      ]
+    },
+    {
+      "id": "ER-032",
+      "title": "需求整理-order_rule",
+      "statement": "覆盖宣传图片格式、大小、建议尺寸、数量、拖拽排序、删除和文案 20 字符边界；建议尺寸只作为提示，不自动升级为上传或保存阻断。",
+      "confidence": 0.99,
+      "reasoning_notes": [
+        "来自主流程 requirement_summary.md 的确认需求。"
+      ],
+      "must_preserve_terms": [],
+      "source_refs": [
+        {
+          "source_type": "input_markdown",
+          "path": "assets/projects/WX-YGJ/work_items/PT083/inputs/requirement_summary.md",
+          "excerpt": "覆盖宣传图片格式、大小、建议尺寸、数量、拖拽排序、删除和文案 20 字符边界；建议尺寸只作为提示，不自动升级为上传或保存阻断。"
+        }
+      ]
+    },
+    {
+      "id": "ER-033",
+      "title": "需求整理-explicit_rule",
+      "statement": "验证宣传内容覆盖全部云机类型且类型不重复；缺失或重复时按准确提示阻止保存。",
+      "confidence": 0.99,
+      "reasoning_notes": [
+        "来自主流程 requirement_summary.md 的确认需求。"
+      ],
+      "must_preserve_terms": [],
+      "source_refs": [
+        {
+          "source_type": "input_markdown",
+          "path": "assets/projects/WX-YGJ/work_items/PT083/inputs/requirement_summary.md",
+          "excerpt": "验证宣传内容覆盖全部云机类型且类型不重复；缺失或重复时按准确提示阻止保存。"
+        }
+      ]
+    },
+    {
+      "id": "ER-034",
+      "title": "需求整理-conditional_visibility",
+      "statement": "验证特殊区未配置时隐藏、配置后展示，首屏 2.5 个、最多 4 个；第 5 个商品配置按明确提示阻止保存。",
+      "confidence": 0.99,
+      "reasoning_notes": [
+        "来自主流程 requirement_summary.md 的确认需求。"
+      ],
+      "must_preserve_terms": [],
+      "source_refs": [
+        {
+          "source_type": "input_markdown",
+          "path": "assets/projects/WX-YGJ/work_items/PT083/inputs/requirement_summary.md",
+          "excerpt": "验证特殊区未配置时隐藏、配置后展示，首屏 2.5 个、最多 4 个；第 5 个商品配置按明确提示阻止保存。"
+        }
+      ]
+    },
+    {
+      "id": "ER-035",
+      "title": "需求整理-conditional_visibility",
+      "statement": "验证普通区名称、纵向布局、展示字段及首屏可见两个及以上商品，同时回归“其余逻辑不变”。",
+      "confidence": 0.99,
+      "reasoning_notes": [
+        "来自主流程 requirement_summary.md 的确认需求。"
+      ],
+      "must_preserve_terms": [],
+      "source_refs": [
+        {
+          "source_type": "input_markdown",
+          "path": "assets/projects/WX-YGJ/work_items/PT083/inputs/requirement_summary.md",
+          "excerpt": "验证普通区名称、纵向布局、展示字段及首屏可见两个及以上商品，同时回归“其余逻辑不变”。"
+        }
+      ]
+    },
+    {
+      "id": "ER-036",
+      "title": "需求整理-field_requirement",
+      "statement": "验证价格、服务时长、商品区、盒子内排序、库存预警值的有效值、边界值和异常值；只对图片明确带必填标识的字段考虑必填拦截。",
+      "confidence": 0.99,
+      "reasoning_notes": [
+        "来自主流程 requirement_summary.md 的确认需求。"
+      ],
+      "must_preserve_terms": [],
+      "source_refs": [
+        {
+          "source_type": "input_markdown",
+          "path": "assets/projects/WX-YGJ/work_items/PT083/inputs/requirement_summary.md",
+          "excerpt": "验证价格、服务时长、商品区、盒子内排序、库存预警值的有效值、边界值和异常值；只对图片明确带必填标识的字段考虑必填拦截。"
+        }
+      ]
+    },
+    {
+      "id": "ER-037",
+      "title": "需求整理-data_source_rule",
+      "statement": "验证相同“盒子内排序”值时按创建时间倒序排列。",
+      "confidence": 0.99,
+      "reasoning_notes": [
+        "来自主流程 requirement_summary.md 的确认需求。"
+      ],
+      "must_preserve_terms": [],
+      "source_refs": [
+        {
+          "source_type": "input_markdown",
+          "path": "assets/projects/WX-YGJ/work_items/PT083/inputs/requirement_summary.md",
+          "excerpt": "验证相同“盒子内排序”值时按创建时间倒序排列。"
+        }
+      ]
+    },
+    {
+      "id": "ER-038",
+      "title": "需求整理-conditional_visibility",
+      "statement": "验证库存高于、等于和低于阈值时的 C 端展示/隐藏、云机分配/不分配及告警联动。",
+      "confidence": 0.99,
+      "reasoning_notes": [
+        "来自主流程 requirement_summary.md 的确认需求。"
+      ],
+      "must_preserve_terms": [],
+      "source_refs": [
+        {
+          "source_type": "input_markdown",
+          "path": "assets/projects/WX-YGJ/work_items/PT083/inputs/requirement_summary.md",
+          "excerpt": "验证库存高于、等于和低于阈值时的 C 端展示/隐藏、云机分配/不分配及告警联动。"
+        }
+      ]
+    },
+    {
+      "id": "ER-039",
+      "title": "需求整理-explicit_rule",
+      "statement": "验证 SDK 更新后的画面模糊、卡顿改善，`720*1280` 画面显示及脚本接入；需补充量化标准和兼容清单后才能形成稳定判定口径。",
+      "confidence": 0.99,
+      "reasoning_notes": [
+        "来自主流程 requirement_summary.md 的确认需求。"
+      ],
+      "must_preserve_terms": [],
+      "source_refs": [
+        {
+          "source_type": "input_markdown",
+          "path": "assets/projects/WX-YGJ/work_items/PT083/inputs/requirement_summary.md",
+          "excerpt": "验证 SDK 更新后的画面模糊、卡顿改善，`720*1280` 画面显示及脚本接入；需补充量化标准和兼容清单后才能形成稳定判定口径。"
+        }
+      ]
+    },
+    {
+      "id": "ER-040",
+      "title": "需求整理-order_rule",
+      "statement": "已确认的 B 端配置数据包括宣传图片、宣传口号、性能参数、商品区、盒子内排序、库存预警值和购买数量报警通知人。",
+      "confidence": 0.99,
+      "reasoning_notes": [
+        "来自主流程 requirement_summary.md 的确认需求。"
+      ],
+      "must_preserve_terms": [],
+      "source_refs": [
+        {
+          "source_type": "input_markdown",
+          "path": "assets/projects/WX-YGJ/work_items/PT083/inputs/requirement_summary.md",
+          "excerpt": "已确认的 B 端配置数据包括宣传图片、宣传口号、性能参数、商品区、盒子内排序、库存预警值和购买数量报警通知人。"
+        }
+      ]
+    },
+    {
+      "id": "ER-041",
+      "title": "需求整理-explicit_rule",
+      "statement": "已确认的 C 端商品展示字段包括现价、原价、商品名称和商品标签类型。",
+      "confidence": 0.99,
+      "reasoning_notes": [
+        "来自主流程 requirement_summary.md 的确认需求。"
+      ],
+      "must_preserve_terms": [],
+      "source_refs": [
+        {
+          "source_type": "input_markdown",
+          "path": "assets/projects/WX-YGJ/work_items/PT083/inputs/requirement_summary.md",
+          "excerpt": "已确认的 C 端商品展示字段包括现价、原价、商品名称和商品标签类型。"
+        }
+      ]
+    },
+    {
+      "id": "ER-042",
+      "title": "需求整理-explicit_rule",
+      "statement": "服务时长后端以秒为单位；输入未提供接口名称、请求/响应字段或换算舍入规则。",
+      "confidence": 0.99,
+      "reasoning_notes": [
+        "来自主流程 requirement_summary.md 的确认需求。"
+      ],
+      "must_preserve_terms": [],
+      "source_refs": [
+        {
+          "source_type": "input_markdown",
+          "path": "assets/projects/WX-YGJ/work_items/PT083/inputs/requirement_summary.md",
+          "excerpt": "服务时长后端以秒为单位；输入未提供接口名称、请求/响应字段或换算舍入规则。"
+        }
+      ]
+    },
+    {
+      "id": "ER-043",
+      "title": "需求整理-explicit_rule",
+      "statement": "输入未描述新增或调整埋点。",
+      "confidence": 0.99,
+      "reasoning_notes": [
+        "来自主流程 requirement_summary.md 的确认需求。"
+      ],
+      "must_preserve_terms": [],
+      "source_refs": [
+        {
+          "source_type": "input_markdown",
+          "path": "assets/projects/WX-YGJ/work_items/PT083/inputs/requirement_summary.md",
+          "excerpt": "输入未描述新增或调整埋点。"
+        }
+      ]
+    },
+    {
+      "id": "ER-044",
+      "title": "需求整理-explicit_rule",
+      "statement": "库存校验频率在图片中无法稳定辨认，本轮不将其写成确定规则。",
+      "confidence": 0.99,
+      "reasoning_notes": [
+        "来自主流程 requirement_summary.md 的确认需求。"
+      ],
+      "must_preserve_terms": [],
+      "source_refs": [
+        {
+          "source_type": "input_markdown",
+          "path": "assets/projects/WX-YGJ/work_items/PT083/inputs/requirement_summary.md",
+          "excerpt": "库存校验频率在图片中无法稳定辨认，本轮不将其写成确定规则。"
+        }
+      ]
+    },
+    {
+      "id": "ER-045",
+      "title": "需求介绍-云机免费体验背景-explicit_rule",
+      "statement": "图片只展示活动复盘链接名称，没有可访问URL或正文",
+      "confidence": 0.94,
+      "reasoning_notes": [
+        "来自 image_evidence 的页面/板块规则抽取。"
+      ],
+      "must_preserve_terms": [],
+      "source_refs": [
+        {
+          "source_type": "image_section",
+          "path": "inputs/images/PT083-01_副本.png",
+          "excerpt": "图片只展示活动复盘链接名称，没有可访问URL或正文",
+          "page_name": "需求介绍",
+          "section_name": "云机免费体验背景"
+        }
+      ]
+    },
+    {
+      "id": "ER-046",
+      "title": "需求介绍-云机免费体验背景-explicit_rule",
+      "statement": "背景数据没有定义免费体验资格、时长、次数或活动周期",
+      "confidence": 0.94,
+      "reasoning_notes": [
+        "来自 image_evidence 的页面/板块规则抽取。"
+      ],
+      "must_preserve_terms": [],
+      "source_refs": [
+        {
+          "source_type": "image_section",
+          "path": "inputs/images/PT083-01_副本.png",
+          "excerpt": "背景数据没有定义免费体验资格、时长、次数或活动周期",
+          "page_name": "需求介绍",
+          "section_name": "云机免费体验背景"
+        }
+      ]
+    },
+    {
+      "id": "ER-047",
+      "title": "需求介绍-云机质量及尺寸问题-explicit_rule",
+      "statement": "图片明确描述画面模糊和卡顿不流畅",
+      "confidence": 0.95,
+      "reasoning_notes": [
+        "来自 image_evidence 的页面/板块规则抽取。"
+      ],
+      "must_preserve_terms": [],
+      "source_refs": [
+        {
+          "source_type": "image_section",
+          "path": "inputs/images/PT083-01_副本.png",
+          "excerpt": "图片明确描述画面模糊和卡顿不流畅",
+          "page_name": "需求介绍",
+          "section_name": "云机质量及尺寸问题"
+        }
+      ]
+    },
+    {
+      "id": "ER-048",
+      "title": "需求介绍-云机质量及尺寸问题-explicit_rule",
+      "statement": "图片将镜像和SDK版本过旧列为定位原因",
+      "confidence": 0.95,
+      "reasoning_notes": [
+        "来自 image_evidence 的页面/板块规则抽取。"
+      ],
+      "must_preserve_terms": [],
+      "source_refs": [
+        {
+          "source_type": "image_section",
+          "path": "inputs/images/PT083-01_副本.png",
+          "excerpt": "图片将镜像和SDK版本过旧列为定位原因",
+          "page_name": "需求介绍",
+          "section_name": "云机质量及尺寸问题"
+        }
+      ]
+    },
+    {
+      "id": "ER-049",
+      "title": "需求介绍-云机质量及尺寸问题-explicit_rule",
+      "statement": "图片没有提供SDK目标版本、脚本类型或画质量化验收标准",
+      "confidence": 0.95,
+      "reasoning_notes": [
+        "来自 image_evidence 的页面/板块规则抽取。"
+      ],
+      "must_preserve_terms": [],
+      "source_refs": [
+        {
+          "source_type": "image_section",
+          "path": "inputs/images/PT083-01_副本.png",
+          "excerpt": "图片没有提供SDK目标版本、脚本类型或画质量化验收标准",
+          "page_name": "需求介绍",
+          "section_name": "云机质量及尺寸问题"
+        }
+      ]
+    },
+    {
+      "id": "ER-050",
+      "title": "需求介绍-需求目的-explicit_rule",
+      "statement": "免费体验目标为提升云机覆盖率",
+      "confidence": 0.99,
+      "reasoning_notes": [
+        "来自 image_evidence 的页面/板块规则抽取。"
+      ],
+      "must_preserve_terms": [],
+      "source_refs": [
+        {
+          "source_type": "image_section",
+          "path": "inputs/images/PT083-01_副本.png",
+          "excerpt": "免费体验目标为提升云机覆盖率",
+          "page_name": "需求介绍",
+          "section_name": "需求目的"
+        }
+      ]
+    },
+    {
+      "id": "ER-051",
+      "title": "需求介绍-需求目的-explicit_rule",
+      "statement": "更新SDK目标为改善画面模糊和卡顿",
+      "confidence": 0.99,
+      "reasoning_notes": [
+        "来自 image_evidence 的页面/板块规则抽取。"
+      ],
+      "must_preserve_terms": [],
+      "source_refs": [
+        {
+          "source_type": "image_section",
+          "path": "inputs/images/PT083-01_副本.png",
+          "excerpt": "更新SDK目标为改善画面模糊和卡顿",
+          "page_name": "需求介绍",
+          "section_name": "需求目的"
+        }
+      ]
+    },
+    {
+      "id": "ER-052",
+      "title": "需求介绍-需求目的-explicit_rule",
+      "statement": "画面尺寸固定为720*1280以支持脚本接入",
+      "confidence": 0.99,
+      "reasoning_notes": [
+        "来自 image_evidence 的页面/板块规则抽取。"
+      ],
+      "must_preserve_terms": [],
+      "source_refs": [
+        {
+          "source_type": "image_section",
+          "path": "inputs/images/PT083-01_副本.png",
+          "excerpt": "画面尺寸固定为720*1280以支持脚本接入",
+          "page_name": "需求介绍",
+          "section_name": "需求目的"
+        }
+      ]
+    },
+    {
+      "id": "ER-053",
+      "title": "云挂机购买页-版本Tab-explicit_rule",
+      "statement": "本图所有区域改动同时适用于全新版Tab和常规版Tab",
+      "confidence": 0.99,
+      "reasoning_notes": [
+        "来自 image_evidence 的页面/板块规则抽取。"
+      ],
+      "must_preserve_terms": [],
+      "source_refs": [
+        {
+          "source_type": "image_section",
+          "path": "inputs/images/PT083-02_副本.png",
+          "excerpt": "本图所有区域改动同时适用于全新版Tab和常规版Tab",
+          "page_name": "云挂机购买页",
+          "section_name": "版本Tab"
+        }
+      ]
+    },
+    {
+      "id": "ER-054",
+      "title": "云挂机购买页-宣传图占位-explicit_rule",
+      "statement": "宣传图建议尺寸为1008*160",
+      "confidence": 0.98,
+      "reasoning_notes": [
+        "来自 image_evidence 的页面/板块规则抽取。"
+      ],
+      "must_preserve_terms": [],
+      "source_refs": [
+        {
+          "source_type": "image_section",
+          "path": "inputs/images/PT083-02_副本.png",
+          "excerpt": "宣传图建议尺寸为1008*160",
+          "page_name": "云挂机购买页",
+          "section_name": "宣传图占位"
+        }
+      ]
+    },
+    {
+      "id": "ER-055",
+      "title": "云挂机购买页-宣传图占位-explicit_rule",
+      "statement": "宣传图来自后台编辑宣传内容中的宣传图片",
+      "confidence": 0.98,
+      "reasoning_notes": [
+        "来自 image_evidence 的页面/板块规则抽取。"
+      ],
+      "must_preserve_terms": [],
+      "source_refs": [
+        {
+          "source_type": "image_section",
+          "path": "inputs/images/PT083-02_副本.png",
+          "excerpt": "宣传图来自后台编辑宣传内容中的宣传图片",
+          "page_name": "云挂机购买页",
+          "section_name": "宣传图占位"
+        }
+      ]
+    },
+    {
+      "id": "ER-056",
+      "title": "云挂机购买页-宣传图占位-explicit_rule",
+      "statement": "首屏普通区商品列表需展示两个及以上商品",
+      "confidence": 0.98,
+      "reasoning_notes": [
+        "来自 image_evidence 的页面/板块规则抽取。"
+      ],
+      "must_preserve_terms": [],
+      "source_refs": [
+        {
+          "source_type": "image_section",
+          "path": "inputs/images/PT083-02_副本.png",
+          "excerpt": "首屏普通区商品列表需展示两个及以上商品",
+          "page_name": "云挂机购买页",
+          "section_name": "宣传图占位"
+        }
+      ]
+    },
+    {
+      "id": "ER-057",
+      "title": "云挂机购买页-宣传区-explicit_rule",
+      "statement": "宣传区展示宣传口号和性能参数",
+      "confidence": 0.98,
+      "reasoning_notes": [
+        "来自 image_evidence 的页面/板块规则抽取。"
+      ],
+      "must_preserve_terms": [],
+      "source_refs": [
+        {
+          "source_type": "image_section",
+          "path": "inputs/images/PT083-02_副本.png",
+          "excerpt": "宣传区展示宣传口号和性能参数",
+          "page_name": "云挂机购买页",
+          "section_name": "宣传区"
+        }
+      ]
+    },
+    {
+      "id": "ER-058",
+      "title": "云挂机购买页-宣传区-explicit_rule",
+      "statement": "两个字段来自后台编辑宣传内容",
+      "confidence": 0.98,
+      "reasoning_notes": [
+        "来自 image_evidence 的页面/板块规则抽取。"
+      ],
+      "must_preserve_terms": [],
+      "source_refs": [
+        {
+          "source_type": "image_section",
+          "path": "inputs/images/PT083-02_副本.png",
+          "excerpt": "两个字段来自后台编辑宣传内容",
+          "page_name": "云挂机购买页",
+          "section_name": "宣传区"
+        }
+      ]
+    },
+    {
+      "id": "ER-059",
+      "title": "云挂机购买页-宣传区-explicit_rule",
+      "statement": "后台每项可配置20个字符",
+      "confidence": 0.98,
+      "reasoning_notes": [
+        "来自 image_evidence 的页面/板块规则抽取。"
+      ],
+      "must_preserve_terms": [],
+      "source_refs": [
+        {
+          "source_type": "image_section",
+          "path": "inputs/images/PT083-02_副本.png",
+          "excerpt": "后台每项可配置20个字符",
+          "page_name": "云挂机购买页",
+          "section_name": "宣传区"
+        }
+      ]
+    },
+    {
+      "id": "ER-060",
+      "title": "云挂机购买页-宣传区-conditional_visibility",
+      "statement": "C端超过一行时换行展示",
+      "confidence": 0.98,
+      "reasoning_notes": [
+        "来自 image_evidence 的页面/板块规则抽取。"
+      ],
+      "must_preserve_terms": [],
+      "source_refs": [
+        {
+          "source_type": "image_section",
+          "path": "inputs/images/PT083-02_副本.png",
+          "excerpt": "C端超过一行时换行展示",
+          "page_name": "云挂机购买页",
+          "section_name": "宣传区"
+        }
+      ]
+    },
+    {
+      "id": "ER-061",
+      "title": "云挂机购买页-特价专区-explicit_rule",
+      "statement": "后台未配置特殊区商品时隐藏特价专区",
+      "confidence": 0.99,
+      "reasoning_notes": [
+        "来自 image_evidence 的页面/板块规则抽取。"
+      ],
+      "must_preserve_terms": [],
+      "source_refs": [
+        {
+          "source_type": "image_section",
+          "path": "inputs/images/PT083-02_副本.png",
+          "excerpt": "后台未配置特殊区商品时隐藏特价专区",
+          "page_name": "云挂机购买页",
+          "section_name": "特价专区"
+        }
+      ]
+    },
+    {
+      "id": "ER-062",
+      "title": "云挂机购买页-特价专区-explicit_rule",
+      "statement": "展示现价、原价、商品名称、商品标签类型",
+      "confidence": 0.99,
+      "reasoning_notes": [
+        "来自 image_evidence 的页面/板块规则抽取。"
+      ],
+      "must_preserve_terms": [],
+      "source_refs": [
+        {
+          "source_type": "image_section",
+          "path": "inputs/images/PT083-02_副本.png",
+          "excerpt": "展示现价、原价、商品名称、商品标签类型",
+          "page_name": "云挂机购买页",
+          "section_name": "特价专区"
+        }
+      ]
+    },
+    {
+      "id": "ER-063",
+      "title": "云挂机购买页-特价专区-explicit_rule",
+      "statement": "横向首屏展示2.5个，最多展示4个商品",
+      "confidence": 0.99,
+      "reasoning_notes": [
+        "来自 image_evidence 的页面/板块规则抽取。"
+      ],
+      "must_preserve_terms": [],
+      "source_refs": [
+        {
+          "source_type": "image_section",
+          "path": "inputs/images/PT083-02_副本.png",
+          "excerpt": "横向首屏展示2.5个，最多展示4个商品",
+          "page_name": "云挂机购买页",
+          "section_name": "特价专区"
+        }
+      ]
+    },
+    {
+      "id": "ER-064",
+      "title": "云挂机购买页-特价专区-explicit_rule",
+      "statement": "最多展示4个商品",
+      "confidence": 0.99,
+      "reasoning_notes": [
+        "来自 image_evidence 的页面/板块规则抽取。"
+      ],
+      "must_preserve_terms": [],
+      "source_refs": [
+        {
+          "source_type": "image_section",
+          "path": "inputs/images/PT083-02_副本.png",
+          "excerpt": "最多展示4个商品",
+          "page_name": "云挂机购买页",
+          "section_name": "特价专区"
+        }
+      ]
+    },
+    {
+      "id": "ER-065",
+      "title": "云挂机购买页-普通商品列表-explicit_rule",
+      "statement": "区域名称为限时购买",
+      "confidence": 0.98,
+      "reasoning_notes": [
+        "来自 image_evidence 的页面/板块规则抽取。"
+      ],
+      "must_preserve_terms": [],
+      "source_refs": [
+        {
+          "source_type": "image_section",
+          "path": "inputs/images/PT083-02_副本.png",
+          "excerpt": "区域名称为限时购买",
+          "page_name": "云挂机购买页",
+          "section_name": "普通商品列表"
+        }
+      ]
+    },
+    {
+      "id": "ER-066",
+      "title": "云挂机购买页-普通商品列表-explicit_rule",
+      "statement": "纵向展示，商品数量沿用之前逻辑",
+      "confidence": 0.98,
+      "reasoning_notes": [
+        "来自 image_evidence 的页面/板块规则抽取。"
+      ],
+      "must_preserve_terms": [],
+      "source_refs": [
+        {
+          "source_type": "image_section",
+          "path": "inputs/images/PT083-02_副本.png",
+          "excerpt": "纵向展示，商品数量沿用之前逻辑",
+          "page_name": "云挂机购买页",
+          "section_name": "普通商品列表"
+        }
+      ]
+    },
+    {
+      "id": "ER-067",
+      "title": "云挂机购买页-普通商品列表-explicit_rule",
+      "statement": "展示现价、原价、商品名称、商品标签类型",
+      "confidence": 0.98,
+      "reasoning_notes": [
+        "来自 image_evidence 的页面/板块规则抽取。"
+      ],
+      "must_preserve_terms": [],
+      "source_refs": [
+        {
+          "source_type": "image_section",
+          "path": "inputs/images/PT083-02_副本.png",
+          "excerpt": "展示现价、原价、商品名称、商品标签类型",
+          "page_name": "云挂机购买页",
+          "section_name": "普通商品列表"
+        }
+      ]
+    },
+    {
+      "id": "ER-068",
+      "title": "云挂机购买页-普通商品列表-explicit_rule",
+      "statement": "其余逻辑不变",
+      "confidence": 0.98,
+      "reasoning_notes": [
+        "来自 image_evidence 的页面/板块规则抽取。"
+      ],
+      "must_preserve_terms": [],
+      "source_refs": [
+        {
+          "source_type": "image_section",
+          "path": "inputs/images/PT083-02_副本.png",
+          "excerpt": "其余逻辑不变",
+          "page_name": "云挂机购买页",
+          "section_name": "普通商品列表"
+        }
+      ]
+    },
+    {
+      "id": "ER-069",
+      "title": "盒子管理后台-云手机商品管理-商品列表-explicit_rule",
+      "statement": "示例行多数单元格显示未配置",
+      "confidence": 0.97,
+      "reasoning_notes": [
+        "来自 image_evidence 的页面/板块规则抽取。"
+      ],
+      "must_preserve_terms": [],
+      "source_refs": [
+        {
+          "source_type": "image_section",
+          "path": "inputs/images/PT083-03-01_副本.png",
+          "excerpt": "示例行多数单元格显示未配置",
+          "page_name": "盒子管理后台-云手机商品管理",
+          "section_name": "商品列表"
+        }
+      ]
+    },
+    {
+      "id": "ER-070",
+      "title": "盒子管理后台-云手机商品管理-商品列表-explicit_rule",
+      "statement": "单天服务价格显示系统生成",
+      "confidence": 0.97,
+      "reasoning_notes": [
+        "来自 image_evidence 的页面/板块规则抽取。"
+      ],
+      "must_preserve_terms": [],
+      "source_refs": [
+        {
+          "source_type": "image_section",
+          "path": "inputs/images/PT083-03-01_副本.png",
+          "excerpt": "单天服务价格显示系统生成",
+          "page_name": "盒子管理后台-云手机商品管理",
+          "section_name": "商品列表"
+        }
+      ]
+    },
+    {
+      "id": "ER-071",
+      "title": "盒子管理后台-云手机商品管理-操作区-explicit_rule",
+      "statement": "点击添加展示商品配置界面",
+      "confidence": 0.98,
+      "reasoning_notes": [
+        "来自 image_evidence 的页面/板块规则抽取。"
+      ],
+      "must_preserve_terms": [],
+      "source_refs": [
+        {
+          "source_type": "image_section",
+          "path": "inputs/images/PT083-03-01_副本.png",
+          "excerpt": "点击添加展示商品配置界面",
+          "page_name": "盒子管理后台-云手机商品管理",
+          "section_name": "操作区"
+        }
+      ]
+    },
+    {
+      "id": "ER-072",
+      "title": "盒子管理后台-云手机商品管理-操作区-explicit_rule",
+      "statement": "原编辑宣传图按钮更名为编辑宣传内容",
+      "confidence": 0.98,
+      "reasoning_notes": [
+        "来自 image_evidence 的页面/板块规则抽取。"
+      ],
+      "must_preserve_terms": [],
+      "source_refs": [
+        {
+          "source_type": "image_section",
+          "path": "inputs/images/PT083-03-01_副本.png",
+          "excerpt": "原编辑宣传图按钮更名为编辑宣传内容",
+          "page_name": "盒子管理后台-云手机商品管理",
+          "section_name": "操作区"
+        }
+      ]
+    },
+    {
+      "id": "ER-073",
+      "title": "盒子管理后台-云手机商品管理-操作区-explicit_rule",
+      "statement": "点击编辑宣传内容展示宣传配置界面",
+      "confidence": 0.98,
+      "reasoning_notes": [
+        "来自 image_evidence 的页面/板块规则抽取。"
+      ],
+      "must_preserve_terms": [],
+      "source_refs": [
+        {
+          "source_type": "image_section",
+          "path": "inputs/images/PT083-03-01_副本.png",
+          "excerpt": "点击编辑宣传内容展示宣传配置界面",
+          "page_name": "盒子管理后台-云手机商品管理",
+          "section_name": "操作区"
+        }
+      ]
+    },
+    {
+      "id": "ER-074",
+      "title": "盒子管理后台-云手机商品管理-操作区-data_source_rule",
+      "statement": "列表增加商品区字段且数据来源于配置",
+      "confidence": 0.98,
+      "reasoning_notes": [
+        "来自 image_evidence 的页面/板块规则抽取。"
+      ],
+      "must_preserve_terms": [],
+      "source_refs": [
+        {
+          "source_type": "image_section",
+          "path": "inputs/images/PT083-03-01_副本.png",
+          "excerpt": "列表增加商品区字段且数据来源于配置",
+          "page_name": "盒子管理后台-云手机商品管理",
+          "section_name": "操作区"
+        }
+      ]
+    },
+    {
+      "id": "ER-075",
+      "title": "盒子管理后台-云手机商品管理-商品编辑弹窗-explicit_rule",
+      "statement": "只能确认编辑入口存在，不能确认编辑字段与添加表单完全同构",
+      "confidence": 0.42,
+      "reasoning_notes": [
+        "来自 image_evidence 的页面/板块规则抽取。"
+      ],
+      "must_preserve_terms": [],
+      "source_refs": [
+        {
+          "source_type": "image_section",
+          "path": "inputs/images/PT083-03-01_副本.png",
+          "excerpt": "只能确认编辑入口存在，不能确认编辑字段与添加表单完全同构",
+          "page_name": "盒子管理后台-云手机商品管理",
+          "section_name": "商品编辑弹窗"
+        }
+      ]
+    },
+    {
+      "id": "ER-076",
+      "title": "盒子管理后台-云手机商品管理-商品顺序编辑弹窗-order_rule",
+      "statement": "只能确认排序入口，排序对象、交互和保存规则待确认",
+      "confidence": 0.45,
+      "reasoning_notes": [
+        "来自 image_evidence 的页面/板块规则抽取。"
+      ],
+      "must_preserve_terms": [],
+      "source_refs": [
+        {
+          "source_type": "image_section",
+          "path": "inputs/images/PT083-03-01_副本.png",
+          "excerpt": "只能确认排序入口，排序对象、交互和保存规则待确认",
+          "page_name": "盒子管理后台-云手机商品管理",
+          "section_name": "商品顺序编辑弹窗"
+        }
+      ]
+    },
+    {
+      "id": "ER-077",
+      "title": "盒子管理后台-云手机商品管理-添加-商品添加表单-field_requirement",
+      "statement": "仅将图片明确带红色星号的字段记录为必填",
+      "confidence": 0.95,
+      "reasoning_notes": [
+        "来自 image_evidence 的页面/板块规则抽取。"
+      ],
+      "must_preserve_terms": [],
+      "source_refs": [
+        {
+          "source_type": "image_section",
+          "path": "inputs/images/PT083-03-02_副本.png",
+          "excerpt": "仅将图片明确带红色星号的字段记录为必填",
+          "page_name": "盒子管理后台-云手机商品管理-添加",
+          "section_name": "商品添加表单"
+        }
+      ]
+    },
+    {
+      "id": "ER-078",
+      "title": "盒子管理后台-云手机商品管理-添加-商品添加表单-explicit_rule",
+      "statement": "原价和现价沿用已有能力且数值限制大于0.00",
+      "confidence": 0.95,
+      "reasoning_notes": [
+        "来自 image_evidence 的页面/板块规则抽取。"
+      ],
+      "must_preserve_terms": [],
+      "source_refs": [
+        {
+          "source_type": "image_section",
+          "path": "inputs/images/PT083-03-02_副本.png",
+          "excerpt": "原价和现价沿用已有能力且数值限制大于0.00",
+          "page_name": "盒子管理后台-云手机商品管理-添加",
+          "section_name": "商品添加表单"
+        }
+      ]
+    },
+    {
+      "id": "ER-079",
+      "title": "盒子管理后台-云手机商品管理-添加-商品添加表单-default_rule",
+      "statement": "状态可选开启或关闭，默认值未说明",
+      "confidence": 0.95,
+      "reasoning_notes": [
+        "来自 image_evidence 的页面/板块规则抽取。"
+      ],
+      "must_preserve_terms": [],
+      "source_refs": [
+        {
+          "source_type": "image_section",
+          "path": "inputs/images/PT083-03-02_副本.png",
+          "excerpt": "状态可选开启或关闭，默认值未说明",
+          "page_name": "盒子管理后台-云手机商品管理-添加",
+          "section_name": "商品添加表单"
+        }
+      ]
+    },
+    {
+      "id": "ER-080",
+      "title": "盒子管理后台-云手机商品管理-添加-商品添加表单-explicit_rule",
+      "statement": "天数最大370，小时最大23，所有项不可同时为0，后端以秒为单位",
+      "confidence": 0.95,
+      "reasoning_notes": [
+        "来自 image_evidence 的页面/板块规则抽取。"
+      ],
+      "must_preserve_terms": [],
+      "source_refs": [
+        {
+          "source_type": "image_section",
+          "path": "inputs/images/PT083-03-02_副本.png",
+          "excerpt": "天数最大370，小时最大23，所有项不可同时为0，后端以秒为单位",
+          "page_name": "盒子管理后台-云手机商品管理-添加",
+          "section_name": "商品添加表单"
+        }
+      ]
+    },
+    {
+      "id": "ER-081",
+      "title": "盒子管理后台-云手机商品管理-添加-商品添加表单-explicit_rule",
+      "statement": "特殊区商品数量必须小于等于4，超过4个时不可保存",
+      "confidence": 0.95,
+      "reasoning_notes": [
+        "来自 image_evidence 的页面/板块规则抽取。"
+      ],
+      "must_preserve_terms": [],
+      "source_refs": [
+        {
+          "source_type": "image_section",
+          "path": "inputs/images/PT083-03-02_副本.png",
+          "excerpt": "特殊区商品数量必须小于等于4，超过4个时不可保存",
+          "page_name": "盒子管理后台-云手机商品管理-添加",
+          "section_name": "商品添加表单"
+        }
+      ]
+    },
+    {
+      "id": "ER-082",
+      "title": "盒子管理后台-云手机商品管理-添加-商品添加表单-data_source_rule",
+      "statement": "正整数，上限1000；相同排序值按创建时间倒序排列",
+      "confidence": 0.95,
+      "reasoning_notes": [
+        "来自 image_evidence 的页面/板块规则抽取。"
+      ],
+      "must_preserve_terms": [],
+      "source_refs": [
+        {
+          "source_type": "image_section",
+          "path": "inputs/images/PT083-03-02_副本.png",
+          "excerpt": "正整数，上限1000；相同排序值按创建时间倒序排列",
+          "page_name": "盒子管理后台-云手机商品管理-添加",
+          "section_name": "商品添加表单"
+        }
+      ]
+    },
+    {
+      "id": "ER-083",
+      "title": "盒子管理后台-云手机商品管理-添加-商品添加表单-explicit_rule",
+      "statement": "正整数，上限200；按固定频率校验库存是否小于等于配置数量",
+      "confidence": 0.95,
+      "reasoning_notes": [
+        "来自 image_evidence 的页面/板块规则抽取。"
+      ],
+      "must_preserve_terms": [],
+      "source_refs": [
+        {
+          "source_type": "image_section",
+          "path": "inputs/images/PT083-03-02_副本.png",
+          "excerpt": "正整数，上限200；按固定频率校验库存是否小于等于配置数量",
+          "page_name": "盒子管理后台-云手机商品管理-添加",
+          "section_name": "商品添加表单"
+        }
+      ]
+    },
+    {
+      "id": "ER-084",
+      "title": "盒子管理后台-云手机商品管理-添加-商品区与库存规则说明表-conditional_visibility",
+      "statement": "库存充足时C端正常展示并分配云机",
+      "confidence": 0.86,
+      "reasoning_notes": [
+        "来自 image_evidence 的页面/板块规则抽取。"
+      ],
+      "must_preserve_terms": [],
+      "source_refs": [
+        {
+          "source_type": "image_section",
+          "path": "inputs/images/PT083-03-02_副本.png",
+          "excerpt": "库存充足时C端正常展示并分配云机",
+          "page_name": "盒子管理后台-云手机商品管理-添加",
+          "section_name": "商品区与库存规则说明表"
+        }
+      ]
+    },
+    {
+      "id": "ER-085",
+      "title": "盒子管理后台-云手机商品管理-添加-商品区与库存规则说明表-explicit_rule",
+      "statement": "库存不足时C端隐藏商品、不分配云机并通知管理员",
+      "confidence": 0.86,
+      "reasoning_notes": [
+        "来自 image_evidence 的页面/板块规则抽取。"
+      ],
+      "must_preserve_terms": [],
+      "source_refs": [
+        {
+          "source_type": "image_section",
+          "path": "inputs/images/PT083-03-02_副本.png",
+          "excerpt": "库存不足时C端隐藏商品、不分配云机并通知管理员",
+          "page_name": "盒子管理后台-云手机商品管理-添加",
+          "section_name": "商品区与库存规则说明表"
+        }
+      ]
+    },
+    {
+      "id": "ER-086",
+      "title": "盒子管理后台-云手机商品管理-添加-商品区与库存规则说明表-explicit_rule",
+      "statement": "库存小于等于预警值时，C端隐藏商品、不分配云机并发送库存不足通知",
+      "confidence": 0.86,
+      "reasoning_notes": [
+        "来自 image_evidence 的页面/板块规则抽取。"
+      ],
+      "must_preserve_terms": [],
+      "source_refs": [
+        {
+          "source_type": "image_section",
+          "path": "inputs/images/PT083-03-02_副本.png",
+          "excerpt": "库存小于等于预警值时，C端隐藏商品、不分配云机并发送库存不足通知",
+          "page_name": "盒子管理后台-云手机商品管理-添加",
+          "section_name": "商品区与库存规则说明表"
+        }
+      ]
+    },
+    {
+      "id": "ER-087",
+      "title": "盒子管理后台-编辑宣传内容-宣传内容编辑表单-field_requirement",
+      "statement": "云机类型、宣传图片、宣传口号和性能参数均带必填标识",
+      "confidence": 0.96,
+      "reasoning_notes": [
+        "来自 image_evidence 的页面/板块规则抽取。"
+      ],
+      "must_preserve_terms": [],
+      "source_refs": [
+        {
+          "source_type": "image_section",
+          "path": "inputs/images/PT083-03-03_副本.png",
+          "excerpt": "云机类型、宣传图片、宣传口号和性能参数均带必填标识",
+          "page_name": "盒子管理后台-编辑宣传内容",
+          "section_name": "宣传内容编辑表单"
+        }
+      ]
+    },
+    {
+      "id": "ER-088",
+      "title": "盒子管理后台-编辑宣传内容-宣传内容编辑表单-explicit_rule",
+      "statement": "最多额外新增1块内容，达到2条配置时禁用新增按钮",
+      "confidence": 0.96,
+      "reasoning_notes": [
+        "来自 image_evidence 的页面/板块规则抽取。"
+      ],
+      "must_preserve_terms": [],
+      "source_refs": [
+        {
+          "source_type": "image_section",
+          "path": "inputs/images/PT083-03-03_副本.png",
+          "excerpt": "最多额外新增1块内容，达到2条配置时禁用新增按钮",
+          "page_name": "盒子管理后台-编辑宣传内容",
+          "section_name": "宣传内容编辑表单"
+        }
+      ]
+    },
+    {
+      "id": "ER-089",
+      "title": "盒子管理后台-编辑宣传内容-宣传内容编辑表单-explicit_rule",
+      "statement": "新增内容在C端全屏展示",
+      "confidence": 0.96,
+      "reasoning_notes": [
+        "来自 image_evidence 的页面/板块规则抽取。"
+      ],
+      "must_preserve_terms": [],
+      "source_refs": [
+        {
+          "source_type": "image_section",
+          "path": "inputs/images/PT083-03-03_副本.png",
+          "excerpt": "新增内容在C端全屏展示",
+          "page_name": "盒子管理后台-编辑宣传内容",
+          "section_name": "宣传内容编辑表单"
+        }
+      ]
+    },
+    {
+      "id": "ER-090",
+      "title": "盒子管理后台-编辑宣传内容-宣传内容编辑表单-explicit_rule",
+      "statement": "保存前校验所有云机类型均已配置且不存在重复",
+      "confidence": 0.96,
+      "reasoning_notes": [
+        "来自 image_evidence 的页面/板块规则抽取。"
+      ],
+      "must_preserve_terms": [],
+      "source_refs": [
+        {
+          "source_type": "image_section",
+          "path": "inputs/images/PT083-03-03_副本.png",
+          "excerpt": "保存前校验所有云机类型均已配置且不存在重复",
+          "page_name": "盒子管理后台-编辑宣传内容",
+          "section_name": "宣传内容编辑表单"
+        }
+      ]
+    },
+    {
+      "id": "ER-091",
+      "title": "盒子管理后台-编辑宣传内容-宣传内容编辑表单-explicit_rule",
+      "statement": "最多上传5张，支持gif/jpg/jpeg/png，单张最大500K，建议尺寸1008*160",
+      "confidence": 0.96,
+      "reasoning_notes": [
+        "来自 image_evidence 的页面/板块规则抽取。"
+      ],
+      "must_preserve_terms": [],
+      "source_refs": [
+        {
+          "source_type": "image_section",
+          "path": "inputs/images/PT083-03-03_副本.png",
+          "excerpt": "最多上传5张，支持gif/jpg/jpeg/png，单张最大500K，建议尺寸1008*160",
+          "page_name": "盒子管理后台-编辑宣传内容",
+          "section_name": "宣传内容编辑表单"
+        }
+      ]
+    },
+    {
+      "id": "ER-092",
+      "title": "盒子管理后台-编辑宣传内容-宣传内容编辑表单-explicit_rule",
+      "statement": "文本长度20个字符；C端超过一行换行展示",
+      "confidence": 0.96,
+      "reasoning_notes": [
+        "来自 image_evidence 的页面/板块规则抽取。"
+      ],
+      "must_preserve_terms": [],
+      "source_refs": [
+        {
+          "source_type": "image_section",
+          "path": "inputs/images/PT083-03-03_副本.png",
+          "excerpt": "文本长度20个字符；C端超过一行换行展示",
+          "page_name": "盒子管理后台-编辑宣传内容",
+          "section_name": "宣传内容编辑表单"
+        }
+      ]
+    },
+    {
+      "id": "ER-093",
+      "title": "云机技术调整结论-SDK与画面尺寸调整-explicit_rule",
+      "statement": "更新云机SDK",
+      "confidence": 0.99,
+      "reasoning_notes": [
+        "来自 image_evidence 的页面/板块规则抽取。"
+      ],
+      "must_preserve_terms": [],
+      "source_refs": [
+        {
+          "source_type": "image_section",
+          "path": "inputs/images/PT083-04_副本.png",
+          "excerpt": "更新云机SDK",
+          "page_name": "云机技术调整结论",
+          "section_name": "SDK与画面尺寸调整"
+        }
+      ]
+    },
+    {
+      "id": "ER-094",
+      "title": "云机技术调整结论-SDK与画面尺寸调整-explicit_rule",
+      "statement": "画面尺寸调整为720*1280",
+      "confidence": 0.99,
+      "reasoning_notes": [
+        "来自 image_evidence 的页面/板块规则抽取。"
+      ],
+      "must_preserve_terms": [],
+      "source_refs": [
+        {
+          "source_type": "image_section",
+          "path": "inputs/images/PT083-04_副本.png",
+          "excerpt": "画面尺寸调整为720*1280",
+          "page_name": "云机技术调整结论",
+          "section_name": "SDK与画面尺寸调整"
+        }
       ]
     }
   ],
-  "open_questions": [
-    "商品标签类型、展示用户、用户可购买次数的精确配置规则待补充。",
-    "编辑商品顺序按钮的具体配置弹窗未提供截图。"
+  "implicit_rules": [
+    {
+      "id": "IR-001",
+      "title": "后台配置与云挂机购买页保持同源映射",
+      "statement": "云手机商品管理中的商品区、排序、商品信息和库存配置，以及编辑宣传内容中的图片、口号、性能参数和云机类型，共同决定云挂机购买页对应版本Tab的展示结果；后续结构化必须保留B端配置到C端展示的关联。",
+      "confidence": 0.95,
+      "reasoning_notes": [
+        "该关联由云挂机购买页的数据来源说明、商品管理配置和编辑宣传内容字段共同证明。",
+        "用户已确认PT083与PT084/PT085同图且无需求增量，但本条仅依据PT083当前输入独立推导。"
+      ],
+      "must_preserve_terms": [
+        "云挂机购买页",
+        "云手机商品管理",
+        "编辑宣传内容",
+        "全新版",
+        "常规版"
+      ],
+      "source_refs": [
+        {
+          "source_type": "image_evidence",
+          "path": "inputs/images/PT083-02_副本.png",
+          "excerpt": "宣传图、宣传区、特价专区和普通商品列表的数据来源均指向后台配置",
+          "page_name": "云挂机购买页"
+        },
+        {
+          "source_type": "image_evidence",
+          "path": "inputs/images/PT083-03-02_副本.png",
+          "excerpt": "商品区、排序、库存和商品字段由云手机商品管理配置",
+          "page_name": "盒子管理后台-云手机商品管理-添加"
+        },
+        {
+          "source_type": "image_evidence",
+          "path": "inputs/images/PT083-03-03_副本.png",
+          "excerpt": "宣传图片、宣传口号、性能参数和云机类型由编辑宣传内容配置",
+          "page_name": "盒子管理后台-编辑宣传内容"
+        }
+      ]
+    }
+  ],
+  "field_constraints": [
+    {
+      "constraint_id": "FC-001",
+      "page_name": "需求介绍",
+      "section_name": "云机质量及尺寸问题",
+      "field_name": "cloud_machine_resolution",
+      "display_name": "云机画面尺寸",
+      "control_type": "display_text",
+      "data_type": "string",
+      "constraint_summary": "控件=display_text；非必填；默认值=720*1280",
+      "normalized_constraints": {
+        "required": false,
+        "default_value": "720*1280"
+      },
+      "raw_rule_texts": [],
+      "confidence": 0.95,
+      "source_refs": [
+        {
+          "source_type": "image_section",
+          "path": "inputs/images/PT083-01_副本.png",
+          "excerpt": "云机画面尺寸",
+          "page_name": "需求介绍",
+          "section_name": "云机质量及尺寸问题",
+          "field_name": "cloud_machine_resolution"
+        }
+      ]
+    },
+    {
+      "constraint_id": "FC-002",
+      "page_name": "云挂机购买页",
+      "section_name": "宣传图占位",
+      "field_name": "promotion_image",
+      "display_name": "宣传图片",
+      "control_type": "display_text",
+      "data_type": "image",
+      "constraint_summary": "控件=display_text；非必填；宣传图来自后台编辑宣传内容中的宣传图片",
+      "normalized_constraints": {
+        "required": false
+      },
+      "raw_rule_texts": [
+        "宣传图来自后台编辑宣传内容中的宣传图片"
+      ],
+      "confidence": 0.98,
+      "source_refs": [
+        {
+          "source_type": "image_section",
+          "path": "inputs/images/PT083-02_副本.png",
+          "excerpt": "宣传图片",
+          "page_name": "云挂机购买页",
+          "section_name": "宣传图占位",
+          "field_name": "promotion_image"
+        }
+      ]
+    },
+    {
+      "constraint_id": "FC-003",
+      "page_name": "云挂机购买页",
+      "section_name": "宣传区",
+      "field_name": "promotion_slogan",
+      "display_name": "宣传口号",
+      "control_type": "display_text",
+      "data_type": "string",
+      "constraint_summary": "控件=display_text；非必填；宣传区展示宣传口号和性能参数",
+      "normalized_constraints": {
+        "required": false
+      },
+      "raw_rule_texts": [
+        "宣传区展示宣传口号和性能参数"
+      ],
+      "confidence": 0.98,
+      "source_refs": [
+        {
+          "source_type": "image_section",
+          "path": "inputs/images/PT083-02_副本.png",
+          "excerpt": "宣传口号",
+          "page_name": "云挂机购买页",
+          "section_name": "宣传区",
+          "field_name": "promotion_slogan"
+        }
+      ]
+    },
+    {
+      "constraint_id": "FC-004",
+      "page_name": "云挂机购买页",
+      "section_name": "宣传区",
+      "field_name": "performance_parameters",
+      "display_name": "性能参数",
+      "control_type": "display_text",
+      "data_type": "string",
+      "constraint_summary": "控件=display_text；非必填；宣传区展示宣传口号和性能参数",
+      "normalized_constraints": {
+        "required": false
+      },
+      "raw_rule_texts": [
+        "宣传区展示宣传口号和性能参数"
+      ],
+      "confidence": 0.98,
+      "source_refs": [
+        {
+          "source_type": "image_section",
+          "path": "inputs/images/PT083-02_副本.png",
+          "excerpt": "性能参数",
+          "page_name": "云挂机购买页",
+          "section_name": "宣传区",
+          "field_name": "performance_parameters"
+        }
+      ]
+    },
+    {
+      "constraint_id": "FC-005",
+      "page_name": "云挂机购买页",
+      "section_name": "特价专区",
+      "field_name": "special_product_list",
+      "display_name": "特殊区商品列表",
+      "control_type": "display_text",
+      "data_type": "array",
+      "constraint_summary": "控件=display_text；非必填",
+      "normalized_constraints": {
+        "required": false
+      },
+      "raw_rule_texts": [],
+      "confidence": 0.99,
+      "source_refs": [
+        {
+          "source_type": "image_section",
+          "path": "inputs/images/PT083-02_副本.png",
+          "excerpt": "特殊区商品列表",
+          "page_name": "云挂机购买页",
+          "section_name": "特价专区",
+          "field_name": "special_product_list"
+        }
+      ]
+    },
+    {
+      "constraint_id": "FC-006",
+      "page_name": "云挂机购买页",
+      "section_name": "普通商品列表",
+      "field_name": "regular_product_list",
+      "display_name": "普通区商品列表",
+      "control_type": "display_text",
+      "data_type": "array",
+      "constraint_summary": "控件=display_text；非必填",
+      "normalized_constraints": {
+        "required": false
+      },
+      "raw_rule_texts": [],
+      "confidence": 0.98,
+      "source_refs": [
+        {
+          "source_type": "image_section",
+          "path": "inputs/images/PT083-02_副本.png",
+          "excerpt": "普通区商品列表",
+          "page_name": "云挂机购买页",
+          "section_name": "普通商品列表",
+          "field_name": "regular_product_list"
+        }
+      ]
+    },
+    {
+      "constraint_id": "FC-007",
+      "page_name": "盒子管理后台-云手机商品管理",
+      "section_name": "云手机商品类型筛选",
+      "field_name": "cloud_phone_product_type",
+      "display_name": "云手机商品类型",
+      "control_type": "select_single",
+      "data_type": "enum",
+      "constraint_summary": "控件=select_single；非必填；默认值=玩心盒子；枚举=玩心盒子",
+      "normalized_constraints": {
+        "required": false,
+        "default_value": "玩心盒子",
+        "enum_values": [
+          "玩心盒子"
+        ]
+      },
+      "raw_rule_texts": [],
+      "confidence": 0.83,
+      "source_refs": [
+        {
+          "source_type": "image_section",
+          "path": "inputs/images/PT083-03-01_副本.png",
+          "excerpt": "云手机商品类型",
+          "page_name": "盒子管理后台-云手机商品管理",
+          "section_name": "云手机商品类型筛选",
+          "field_name": "cloud_phone_product_type"
+        }
+      ]
+    },
+    {
+      "constraint_id": "FC-008",
+      "page_name": "盒子管理后台-云手机商品管理",
+      "section_name": "商品编辑弹窗",
+      "field_name": "product_edit_fields",
+      "display_name": "商品编辑字段集合",
+      "control_type": "other",
+      "data_type": "other",
+      "constraint_summary": "控件=other；非必填",
+      "normalized_constraints": {
+        "required": false
+      },
+      "raw_rule_texts": [],
+      "confidence": 0.42,
+      "source_refs": [
+        {
+          "source_type": "image_section",
+          "path": "inputs/images/PT083-03-01_副本.png",
+          "excerpt": "商品编辑字段集合",
+          "page_name": "盒子管理后台-云手机商品管理",
+          "section_name": "商品编辑弹窗",
+          "field_name": "product_edit_fields"
+        }
+      ]
+    },
+    {
+      "constraint_id": "FC-009",
+      "page_name": "盒子管理后台-云手机商品管理-添加",
+      "section_name": "商品添加表单",
+      "field_name": "cloud_phone_product_type",
+      "display_name": "云手机商品类型",
+      "control_type": "select_single",
+      "data_type": "enum",
+      "constraint_summary": "控件=select_single；必填",
+      "normalized_constraints": {
+        "required": true
+      },
+      "raw_rule_texts": [],
+      "confidence": 0.95,
+      "source_refs": [
+        {
+          "source_type": "image_section",
+          "path": "inputs/images/PT083-03-02_副本.png",
+          "excerpt": "云手机商品类型",
+          "page_name": "盒子管理后台-云手机商品管理-添加",
+          "section_name": "商品添加表单",
+          "field_name": "cloud_phone_product_type"
+        }
+      ]
+    },
+    {
+      "constraint_id": "FC-010",
+      "page_name": "盒子管理后台-云手机商品管理-添加",
+      "section_name": "商品添加表单",
+      "field_name": "cloud_machine_type",
+      "display_name": "云机类型",
+      "control_type": "select_single",
+      "data_type": "enum",
+      "constraint_summary": "控件=select_single；必填",
+      "normalized_constraints": {
+        "required": true
+      },
+      "raw_rule_texts": [],
+      "confidence": 0.95,
+      "source_refs": [
+        {
+          "source_type": "image_section",
+          "path": "inputs/images/PT083-03-02_副本.png",
+          "excerpt": "云机类型",
+          "page_name": "盒子管理后台-云手机商品管理-添加",
+          "section_name": "商品添加表单",
+          "field_name": "cloud_machine_type"
+        }
+      ]
+    },
+    {
+      "constraint_id": "FC-011",
+      "page_name": "盒子管理后台-云手机商品管理-添加",
+      "section_name": "商品添加表单",
+      "field_name": "product_name",
+      "display_name": "商品名称",
+      "control_type": "text_input",
+      "data_type": "string",
+      "constraint_summary": "控件=text_input；必填",
+      "normalized_constraints": {
+        "required": true
+      },
+      "raw_rule_texts": [],
+      "confidence": 0.95,
+      "source_refs": [
+        {
+          "source_type": "image_section",
+          "path": "inputs/images/PT083-03-02_副本.png",
+          "excerpt": "商品名称",
+          "page_name": "盒子管理后台-云手机商品管理-添加",
+          "section_name": "商品添加表单",
+          "field_name": "product_name"
+        }
+      ]
+    },
+    {
+      "constraint_id": "FC-012",
+      "page_name": "盒子管理后台-云手机商品管理-添加",
+      "section_name": "商品添加表单",
+      "field_name": "original_price",
+      "display_name": "原价（元）",
+      "control_type": "number_input",
+      "data_type": "float",
+      "constraint_summary": "控件=number_input；必填",
+      "normalized_constraints": {
+        "required": true
+      },
+      "raw_rule_texts": [],
+      "confidence": 0.95,
+      "source_refs": [
+        {
+          "source_type": "image_section",
+          "path": "inputs/images/PT083-03-02_副本.png",
+          "excerpt": "原价（元）",
+          "page_name": "盒子管理后台-云手机商品管理-添加",
+          "section_name": "商品添加表单",
+          "field_name": "original_price"
+        }
+      ]
+    },
+    {
+      "constraint_id": "FC-013",
+      "page_name": "盒子管理后台-云手机商品管理-添加",
+      "section_name": "商品添加表单",
+      "field_name": "current_price",
+      "display_name": "现价（元）",
+      "control_type": "number_input",
+      "data_type": "float",
+      "constraint_summary": "控件=number_input；必填",
+      "normalized_constraints": {
+        "required": true
+      },
+      "raw_rule_texts": [],
+      "confidence": 0.95,
+      "source_refs": [
+        {
+          "source_type": "image_section",
+          "path": "inputs/images/PT083-03-02_副本.png",
+          "excerpt": "现价（元）",
+          "page_name": "盒子管理后台-云手机商品管理-添加",
+          "section_name": "商品添加表单",
+          "field_name": "current_price"
+        }
+      ]
+    },
+    {
+      "constraint_id": "FC-014",
+      "page_name": "盒子管理后台-云手机商品管理-添加",
+      "section_name": "商品添加表单",
+      "field_name": "service_duration",
+      "display_name": "服务时长",
+      "control_type": "number_input_pair",
+      "data_type": "other",
+      "constraint_summary": "控件=number_input_pair；必填",
+      "normalized_constraints": {
+        "required": true
+      },
+      "raw_rule_texts": [],
+      "confidence": 0.95,
+      "source_refs": [
+        {
+          "source_type": "image_section",
+          "path": "inputs/images/PT083-03-02_副本.png",
+          "excerpt": "服务时长",
+          "page_name": "盒子管理后台-云手机商品管理-添加",
+          "section_name": "商品添加表单",
+          "field_name": "service_duration"
+        }
+      ]
+    },
+    {
+      "constraint_id": "FC-015",
+      "page_name": "盒子管理后台-云手机商品管理-添加",
+      "section_name": "商品添加表单",
+      "field_name": "product_region",
+      "display_name": "商品区",
+      "control_type": "select_single",
+      "data_type": "enum",
+      "constraint_summary": "控件=select_single；必填；枚举=特殊区、普通区",
+      "normalized_constraints": {
+        "required": true,
+        "enum_values": [
+          "特殊区",
+          "普通区"
+        ]
+      },
+      "raw_rule_texts": [],
+      "confidence": 0.95,
+      "source_refs": [
+        {
+          "source_type": "image_section",
+          "path": "inputs/images/PT083-03-02_副本.png",
+          "excerpt": "商品区",
+          "page_name": "盒子管理后台-云手机商品管理-添加",
+          "section_name": "商品添加表单",
+          "field_name": "product_region"
+        }
+      ]
+    },
+    {
+      "constraint_id": "FC-016",
+      "page_name": "盒子管理后台-云手机商品管理-添加",
+      "section_name": "商品添加表单",
+      "field_name": "in_box_sort_order",
+      "display_name": "盒子内排序",
+      "control_type": "number_input",
+      "data_type": "integer",
+      "constraint_summary": "控件=number_input；必填",
+      "normalized_constraints": {
+        "required": true
+      },
+      "raw_rule_texts": [],
+      "confidence": 0.95,
+      "source_refs": [
+        {
+          "source_type": "image_section",
+          "path": "inputs/images/PT083-03-02_副本.png",
+          "excerpt": "盒子内排序",
+          "page_name": "盒子管理后台-云手机商品管理-添加",
+          "section_name": "商品添加表单",
+          "field_name": "in_box_sort_order"
+        }
+      ]
+    },
+    {
+      "constraint_id": "FC-017",
+      "page_name": "盒子管理后台-云手机商品管理-添加",
+      "section_name": "商品添加表单",
+      "field_name": "product_tag_type",
+      "display_name": "商品标签类型",
+      "control_type": "select_single",
+      "data_type": "enum",
+      "constraint_summary": "控件=select_single；非必填",
+      "normalized_constraints": {
+        "required": false
+      },
+      "raw_rule_texts": [],
+      "confidence": 0.95,
+      "source_refs": [
+        {
+          "source_type": "image_section",
+          "path": "inputs/images/PT083-03-02_副本.png",
+          "excerpt": "商品标签类型",
+          "page_name": "盒子管理后台-云手机商品管理-添加",
+          "section_name": "商品添加表单",
+          "field_name": "product_tag_type"
+        }
+      ]
+    },
+    {
+      "constraint_id": "FC-018",
+      "page_name": "盒子管理后台-云手机商品管理-添加",
+      "section_name": "商品添加表单",
+      "field_name": "display_users",
+      "display_name": "展示用户",
+      "control_type": "select_single",
+      "data_type": "enum",
+      "constraint_summary": "控件=select_single；非必填",
+      "normalized_constraints": {
+        "required": false
+      },
+      "raw_rule_texts": [],
+      "confidence": 0.95,
+      "source_refs": [
+        {
+          "source_type": "image_section",
+          "path": "inputs/images/PT083-03-02_副本.png",
+          "excerpt": "展示用户",
+          "page_name": "盒子管理后台-云手机商品管理-添加",
+          "section_name": "商品添加表单",
+          "field_name": "display_users"
+        }
+      ]
+    },
+    {
+      "constraint_id": "FC-019",
+      "page_name": "盒子管理后台-云手机商品管理-添加",
+      "section_name": "商品添加表单",
+      "field_name": "user_purchase_limit",
+      "display_name": "用户可购买次数",
+      "control_type": "number_input",
+      "data_type": "integer",
+      "constraint_summary": "控件=number_input；非必填",
+      "normalized_constraints": {
+        "required": false
+      },
+      "raw_rule_texts": [],
+      "confidence": 0.95,
+      "source_refs": [
+        {
+          "source_type": "image_section",
+          "path": "inputs/images/PT083-03-02_副本.png",
+          "excerpt": "用户可购买次数",
+          "page_name": "盒子管理后台-云手机商品管理-添加",
+          "section_name": "商品添加表单",
+          "field_name": "user_purchase_limit"
+        }
+      ]
+    },
+    {
+      "constraint_id": "FC-020",
+      "page_name": "盒子管理后台-云手机商品管理-添加",
+      "section_name": "商品添加表单",
+      "field_name": "product_display_time",
+      "display_name": "商品展示时间",
+      "control_type": "text_input",
+      "data_type": "datetime",
+      "constraint_summary": "控件=text_input；非必填",
+      "normalized_constraints": {
+        "required": false
+      },
+      "raw_rule_texts": [],
+      "confidence": 0.95,
+      "source_refs": [
+        {
+          "source_type": "image_section",
+          "path": "inputs/images/PT083-03-02_副本.png",
+          "excerpt": "商品展示时间",
+          "page_name": "盒子管理后台-云手机商品管理-添加",
+          "section_name": "商品添加表单",
+          "field_name": "product_display_time"
+        }
+      ]
+    },
+    {
+      "constraint_id": "FC-021",
+      "page_name": "盒子管理后台-云手机商品管理-添加",
+      "section_name": "商品添加表单",
+      "field_name": "inventory_warning_threshold",
+      "display_name": "库存预警值",
+      "control_type": "number_input",
+      "data_type": "integer",
+      "constraint_summary": "控件=number_input；非必填",
+      "normalized_constraints": {
+        "required": false
+      },
+      "raw_rule_texts": [],
+      "confidence": 0.95,
+      "source_refs": [
+        {
+          "source_type": "image_section",
+          "path": "inputs/images/PT083-03-02_副本.png",
+          "excerpt": "库存预警值",
+          "page_name": "盒子管理后台-云手机商品管理-添加",
+          "section_name": "商品添加表单",
+          "field_name": "inventory_warning_threshold"
+        }
+      ]
+    },
+    {
+      "constraint_id": "FC-022",
+      "page_name": "盒子管理后台-云手机商品管理-添加",
+      "section_name": "商品添加表单",
+      "field_name": "purchase_alert_recipient",
+      "display_name": "购买数量报警通知人",
+      "control_type": "select_single",
+      "data_type": "enum",
+      "constraint_summary": "控件=select_single；必填",
+      "normalized_constraints": {
+        "required": true
+      },
+      "raw_rule_texts": [],
+      "confidence": 0.95,
+      "source_refs": [
+        {
+          "source_type": "image_section",
+          "path": "inputs/images/PT083-03-02_副本.png",
+          "excerpt": "购买数量报警通知人",
+          "page_name": "盒子管理后台-云手机商品管理-添加",
+          "section_name": "商品添加表单",
+          "field_name": "purchase_alert_recipient"
+        }
+      ]
+    },
+    {
+      "constraint_id": "FC-023",
+      "page_name": "盒子管理后台-云手机商品管理-添加",
+      "section_name": "商品添加表单",
+      "field_name": "status",
+      "display_name": "状态",
+      "control_type": "radio",
+      "data_type": "enum",
+      "constraint_summary": "控件=radio；非必填；枚举=开启、关闭；状态可选开启或关闭，默认值未说明",
+      "normalized_constraints": {
+        "required": false,
+        "enum_values": [
+          "开启",
+          "关闭"
+        ]
+      },
+      "raw_rule_texts": [
+        "状态可选开启或关闭，默认值未说明"
+      ],
+      "confidence": 0.95,
+      "source_refs": [
+        {
+          "source_type": "image_section",
+          "path": "inputs/images/PT083-03-02_副本.png",
+          "excerpt": "状态",
+          "page_name": "盒子管理后台-云手机商品管理-添加",
+          "section_name": "商品添加表单",
+          "field_name": "status"
+        }
+      ]
+    },
+    {
+      "constraint_id": "FC-024",
+      "page_name": "盒子管理后台-编辑宣传内容",
+      "section_name": "宣传内容编辑表单",
+      "field_name": "cloud_machine_type",
+      "display_name": "云机类型",
+      "control_type": "select_single",
+      "data_type": "enum",
+      "constraint_summary": "控件=select_single；必填；枚举=全新版、常规版；云机类型、宣传图片、宣传口号和性能参数均带必填标识；保存前校验所有云机类型均已配置且不存在重复",
+      "normalized_constraints": {
+        "required": true,
+        "enum_values": [
+          "全新版",
+          "常规版"
+        ]
+      },
+      "raw_rule_texts": [
+        "云机类型、宣传图片、宣传口号和性能参数均带必填标识",
+        "保存前校验所有云机类型均已配置且不存在重复"
+      ],
+      "confidence": 0.96,
+      "source_refs": [
+        {
+          "source_type": "image_section",
+          "path": "inputs/images/PT083-03-03_副本.png",
+          "excerpt": "云机类型",
+          "page_name": "盒子管理后台-编辑宣传内容",
+          "section_name": "宣传内容编辑表单",
+          "field_name": "cloud_machine_type"
+        }
+      ]
+    },
+    {
+      "constraint_id": "FC-025",
+      "page_name": "盒子管理后台-编辑宣传内容",
+      "section_name": "宣传内容编辑表单",
+      "field_name": "promotion_image",
+      "display_name": "宣传图片",
+      "control_type": "upload_image",
+      "data_type": "image",
+      "constraint_summary": "控件=upload_image；必填；云机类型、宣传图片、宣传口号和性能参数均带必填标识",
+      "normalized_constraints": {
+        "required": true
+      },
+      "raw_rule_texts": [
+        "云机类型、宣传图片、宣传口号和性能参数均带必填标识"
+      ],
+      "confidence": 0.96,
+      "source_refs": [
+        {
+          "source_type": "image_section",
+          "path": "inputs/images/PT083-03-03_副本.png",
+          "excerpt": "宣传图片",
+          "page_name": "盒子管理后台-编辑宣传内容",
+          "section_name": "宣传内容编辑表单",
+          "field_name": "promotion_image"
+        }
+      ]
+    },
+    {
+      "constraint_id": "FC-026",
+      "page_name": "盒子管理后台-编辑宣传内容",
+      "section_name": "宣传内容编辑表单",
+      "field_name": "promotion_slogan",
+      "display_name": "宣传口号",
+      "control_type": "text_input",
+      "data_type": "string",
+      "constraint_summary": "控件=text_input；必填；云机类型、宣传图片、宣传口号和性能参数均带必填标识",
+      "normalized_constraints": {
+        "required": true
+      },
+      "raw_rule_texts": [
+        "云机类型、宣传图片、宣传口号和性能参数均带必填标识"
+      ],
+      "confidence": 0.96,
+      "source_refs": [
+        {
+          "source_type": "image_section",
+          "path": "inputs/images/PT083-03-03_副本.png",
+          "excerpt": "宣传口号",
+          "page_name": "盒子管理后台-编辑宣传内容",
+          "section_name": "宣传内容编辑表单",
+          "field_name": "promotion_slogan"
+        }
+      ]
+    },
+    {
+      "constraint_id": "FC-027",
+      "page_name": "盒子管理后台-编辑宣传内容",
+      "section_name": "宣传内容编辑表单",
+      "field_name": "performance_parameters",
+      "display_name": "性能参数",
+      "control_type": "text_input",
+      "data_type": "string",
+      "constraint_summary": "控件=text_input；必填；云机类型、宣传图片、宣传口号和性能参数均带必填标识",
+      "normalized_constraints": {
+        "required": true
+      },
+      "raw_rule_texts": [
+        "云机类型、宣传图片、宣传口号和性能参数均带必填标识"
+      ],
+      "confidence": 0.96,
+      "source_refs": [
+        {
+          "source_type": "image_section",
+          "path": "inputs/images/PT083-03-03_副本.png",
+          "excerpt": "性能参数",
+          "page_name": "盒子管理后台-编辑宣传内容",
+          "section_name": "宣传内容编辑表单",
+          "field_name": "performance_parameters"
+        }
+      ]
+    },
+    {
+      "constraint_id": "FC-028",
+      "page_name": "云机技术调整结论",
+      "section_name": "SDK与画面尺寸调整",
+      "field_name": "cloud_machine_resolution",
+      "display_name": "云机画面尺寸",
+      "control_type": "display_text",
+      "data_type": "string",
+      "constraint_summary": "控件=display_text；非必填；默认值=720*1280",
+      "normalized_constraints": {
+        "required": false,
+        "default_value": "720*1280"
+      },
+      "raw_rule_texts": [],
+      "confidence": 0.99,
+      "source_refs": [
+        {
+          "source_type": "image_section",
+          "path": "inputs/images/PT083-04_副本.png",
+          "excerpt": "云机画面尺寸",
+          "page_name": "云机技术调整结论",
+          "section_name": "SDK与画面尺寸调整",
+          "field_name": "cloud_machine_resolution"
+        }
+      ]
+    }
+  ],
+  "data_source_rules": [
+    {
+      "rule_id": "DS-001",
+      "title": "盒子管理后台-云手机商品管理-操作区-数据来源/排序规则",
+      "page_name": "盒子管理后台-云手机商品管理",
+      "section_name": "操作区",
+      "field_name": "",
+      "statement": "列表增加商品区字段且数据来源于配置",
+      "data_source": "配置",
+      "filters": [],
+      "order_by": [],
+      "confidence": 0.98,
+      "source_refs": [
+        {
+          "source_type": "image_section",
+          "path": "inputs/images/PT083-03-01_副本.png",
+          "excerpt": "列表增加商品区字段且数据来源于配置",
+          "page_name": "盒子管理后台-云手机商品管理",
+          "section_name": "操作区"
+        }
+      ]
+    },
+    {
+      "rule_id": "DS-002",
+      "title": "盒子管理后台-云手机商品管理-添加-商品添加表单-数据来源/排序规则",
+      "page_name": "盒子管理后台-云手机商品管理-添加",
+      "section_name": "商品添加表单",
+      "field_name": "",
+      "statement": "正整数，上限1000；相同排序值按创建时间倒序排列",
+      "data_source": "",
+      "filters": [],
+      "order_by": [
+        "创建时间倒序"
+      ],
+      "confidence": 0.95,
+      "source_refs": [
+        {
+          "source_type": "image_section",
+          "path": "inputs/images/PT083-03-02_副本.png",
+          "excerpt": "正整数，上限1000；相同排序值按创建时间倒序排列",
+          "page_name": "盒子管理后台-云手机商品管理-添加",
+          "section_name": "商品添加表单"
+        }
+      ]
+    }
+  ],
+  "business_risks": [
+    {
+      "risk_id": "RISK-001",
+      "title": "SDK更新缺少可判定验收口径",
+      "risk_statement": "需求要求更新云机SDK以改善画面模糊和卡顿，但未提供目标版本、帧率、延迟、码率、丢帧或主观评分阈值，当前无法形成稳定的通过或失败判定。",
+      "severity": "high",
+      "impact_scope": [
+        "云机SDK",
+        "画质",
+        "流畅度",
+        "发布与回滚"
+      ],
+      "source_refs": [
+        {
+          "source_type": "image_section",
+          "path": "inputs/images/PT083-01_副本.png",
+          "excerpt": "更新SDK版本改善云机画质模糊、卡顿",
+          "page_name": "需求介绍",
+          "section_name": "需求目的"
+        }
+      ]
+    },
+    {
+      "risk_id": "RISK-002",
+      "title": "720*1280技术语义和适配边界不明确",
+      "risk_statement": "需求明确画面尺寸调整为720*1280，但未说明其是云机系统分辨率、渲染分辨率还是客户端展示容器，也未说明旋转、缩放、触控映射和终端适配边界。",
+      "severity": "high",
+      "impact_scope": [
+        "云机画面",
+        "脚本接入",
+        "终端适配",
+        "触控映射"
+      ],
+      "source_refs": [
+        {
+          "source_type": "image_section",
+          "path": "inputs/images/PT083-04_副本.png",
+          "excerpt": "画面尺寸调整为720*1280",
+          "page_name": "云机技术调整结论",
+          "section_name": "SDK与画面尺寸调整",
+          "field_name": "cloud_machine_resolution"
+        }
+      ]
+    },
+    {
+      "risk_id": "RISK-003",
+      "title": "库存判断与告警链路存在口径风险",
+      "risk_statement": "库存阈值会同时影响C端商品隐藏、云机停止分配和管理员告警，但校验频率文字模糊，且未说明并发下单、缓存延迟、重复告警和恢复展示口径。",
+      "severity": "high",
+      "impact_scope": [
+        "库存预警值",
+        "C端商品展示",
+        "云机分配",
+        "管理员告警"
+      ],
+      "source_refs": [
+        {
+          "source_type": "image_table",
+          "path": "inputs/images/PT083-03-02_副本.png",
+          "excerpt": "库存不足时C端隐藏商品、不分配云机并发送库存不足通知；具体校验频率待确认",
+          "page_name": "盒子管理后台-云手机商品管理-添加",
+          "section_name": "商品区与库存规则说明表",
+          "field_name": "inventory_warning_threshold"
+        }
+      ]
+    },
+    {
+      "risk_id": "RISK-004",
+      "title": "特殊区容量与C端展示必须保持一致",
+      "risk_statement": "B端特殊区最多配置4个商品，C端特价专区也最多展示4个商品；若保存校验、状态口径或C端消费不同步，可能出现可保存但不展示或超量展示。",
+      "severity": "medium",
+      "impact_scope": [
+        "商品区",
+        "特价专区",
+        "保存校验",
+        "C端展示"
+      ],
+      "source_refs": [
+        {
+          "source_type": "image_field_rule",
+          "path": "inputs/images/PT083-03-02_副本.png",
+          "excerpt": "特殊区商品数量必须小于等于4；超过4个时不可保存",
+          "page_name": "盒子管理后台-云手机商品管理-添加",
+          "section_name": "商品添加表单",
+          "field_name": "product_region"
+        },
+        {
+          "source_type": "image_section",
+          "path": "inputs/images/PT083-02_副本.png",
+          "excerpt": "特价专区最多展示4个商品",
+          "page_name": "云挂机购买页",
+          "section_name": "特价专区"
+        }
+      ]
+    },
+    {
+      "risk_id": "RISK-005",
+      "title": "未展开控件和枚举可能导致规则误投影",
+      "risk_statement": "商品编辑弹窗、商品顺序编辑弹窗、多个下拉字段完整枚举与默认值均未展示，后续结构化若直接按添加表单或当前选中值推断，会形成错误字段和硬校验。",
+      "severity": "medium",
+      "impact_scope": [
+        "商品编辑",
+        "商品排序",
+        "下拉枚举",
+        "默认值"
+      ],
+      "source_refs": [
+        {
+          "source_type": "image_section",
+          "path": "inputs/images/PT083-03-01_副本.png",
+          "excerpt": "编辑界面和排序弹窗未展示",
+          "page_name": "盒子管理后台-云手机商品管理",
+          "section_name": "商品编辑弹窗"
+        },
+        {
+          "source_type": "image_section",
+          "path": "inputs/images/PT083-03-02_副本.png",
+          "excerpt": "既有字段完整枚举、默认值和部分数据源未展示",
+          "page_name": "盒子管理后台-云手机商品管理-添加",
+          "section_name": "商品添加表单"
+        }
+      ]
+    }
+  ],
+  "edge_cases": [
+    {
+      "edge_case_id": "EC-001",
+      "title": "服务时长天数和小时边界",
+      "scenario": "分别覆盖天数0、370、371，小时0、23、24，以及天和小时同时为0；只接受图片明确范围内且不同时为0的值。",
+      "priority": "P0",
+      "related_field": "service_duration",
+      "source_refs": [
+        {
+          "source_type": "image_field_rule",
+          "path": "inputs/images/PT083-03-02_副本.png",
+          "excerpt": "天最大370，时最大23，所有项不可同时为0",
+          "page_name": "盒子管理后台-云手机商品管理-添加",
+          "section_name": "商品添加表单",
+          "field_name": "service_duration"
+        }
+      ]
+    },
+    {
+      "edge_case_id": "EC-002",
+      "title": "特殊区商品数量边界",
+      "scenario": "覆盖特殊区商品数量0、4、5，确认第5个商品触发图片指定提示且不可保存。",
+      "priority": "P0",
+      "related_field": "product_region",
+      "source_refs": [
+        {
+          "source_type": "image_field_rule",
+          "path": "inputs/images/PT083-03-02_副本.png",
+          "excerpt": "特殊区只能展示4个商品，当前字段的配置数量已超过4个，请关闭之前的商品或调整配置",
+          "page_name": "盒子管理后台-云手机商品管理-添加",
+          "section_name": "商品添加表单",
+          "field_name": "product_region"
+        }
+      ]
+    },
+    {
+      "edge_case_id": "EC-003",
+      "title": "盒子内排序数值与同值排序",
+      "scenario": "覆盖排序值1、1000、1001，并验证相同排序值按创建时间倒序；未展示的排序弹窗规则不在本项推断。",
+      "priority": "P1",
+      "related_field": "in_box_sort_order",
+      "source_refs": [
+        {
+          "source_type": "image_field_rule",
+          "path": "inputs/images/PT083-03-02_副本.png",
+          "excerpt": "正整数，上限1000；相同值按创建时间倒序",
+          "page_name": "盒子管理后台-云手机商品管理-添加",
+          "section_name": "商品添加表单",
+          "field_name": "in_box_sort_order"
+        }
+      ]
+    },
+    {
+      "edge_case_id": "EC-004",
+      "title": "库存阈值和实际库存临界关系",
+      "scenario": "覆盖库存预警值1、200、201，并分别验证实际库存高于、等于和低于阈值时的展示、分配和告警；执行频率保持待确认。",
+      "priority": "P0",
+      "related_field": "inventory_warning_threshold",
+      "source_refs": [
+        {
+          "source_type": "image_table",
+          "path": "inputs/images/PT083-03-02_副本.png",
+          "excerpt": "库存预警值正整数上限200；库存小于等于配置数量时隐藏商品、不分配云机并告警",
+          "page_name": "盒子管理后台-云手机商品管理-添加",
+          "section_name": "商品区与库存规则说明表",
+          "field_name": "inventory_warning_threshold"
+        }
+      ]
+    },
+    {
+      "edge_case_id": "EC-005",
+      "title": "宣传文案20字符边界",
+      "scenario": "宣传口号和性能参数分别覆盖19、20、21个字符，并验证C端超过一行时换行展示。",
+      "priority": "P1",
+      "related_field": "promotion_slogan",
+      "source_refs": [
+        {
+          "source_type": "image_table",
+          "path": "inputs/images/PT083-03-03_副本.png",
+          "excerpt": "宣传口号和性能参数长度20个字符，C端超过一行换行",
+          "page_name": "盒子管理后台-编辑宣传内容",
+          "section_name": "宣传内容字段说明表",
+          "field_name": "promotion_slogan"
+        }
+      ]
+    },
+    {
+      "edge_case_id": "EC-006",
+      "title": "宣传图片数量大小和格式边界",
+      "scenario": "覆盖5张和6张图片、500KB和超过500KB、支持与不支持格式；1008*160在图片中为建议尺寸，不升级为强制拦截。",
+      "priority": "P1",
+      "related_field": "promotion_image",
+      "source_refs": [
+        {
+          "source_type": "image_field_rule",
+          "path": "inputs/images/PT083-03-03_副本.png",
+          "excerpt": "最多5张；支持gif/jpg/jpeg/png，最大500K，建议尺寸1008*160",
+          "page_name": "盒子管理后台-编辑宣传内容",
+          "section_name": "宣传内容编辑表单",
+          "field_name": "promotion_image"
+        }
+      ]
+    },
+    {
+      "edge_case_id": "EC-007",
+      "title": "宣传内容配置条数边界",
+      "scenario": "覆盖1条、2条和尝试新增第3条配置；达到2条时新增按钮应禁用，但两条是否分别对应全新版和常规版仍需结合云机类型完整性规则确认。",
+      "priority": "P1",
+      "related_field": "promotion_content",
+      "source_refs": [
+        {
+          "source_type": "image_table",
+          "path": "inputs/images/PT083-03-03_副本.png",
+          "excerpt": "最多额外新增1块，内容达到2条时禁用新增按钮",
+          "page_name": "盒子管理后台-编辑宣传内容",
+          "section_name": "宣传内容字段说明表",
+          "field_name": "promotion_content"
+        }
+      ]
+    }
+  ],
+  "ambiguities": [
+    {
+      "ambiguity_id": "AMB-001",
+      "title": "需求介绍-云机免费体验背景 待确认",
+      "description": "两份活动复盘正文不可访问，免费体验业务规则未展开。",
+      "status": "open",
+      "suggested_resolution": "补充产品说明或在下一轮结构化前人工确认。",
+      "source_refs": [
+        {
+          "source_type": "image_section",
+          "path": "inputs/images/PT083-01_副本.png",
+          "excerpt": "两份活动复盘正文不可访问，免费体验业务规则未展开。",
+          "page_name": "需求介绍",
+          "section_name": "云机免费体验背景"
+        }
+      ]
+    },
+    {
+      "ambiguity_id": "AMB-002",
+      "title": "需求介绍-云机质量及尺寸问题 待确认",
+      "description": "720*1280技术层级、脚本接入方式和画质阈值未说明。",
+      "status": "open",
+      "suggested_resolution": "补充产品说明或在下一轮结构化前人工确认。",
+      "source_refs": [
+        {
+          "source_type": "image_section",
+          "path": "inputs/images/PT083-01_副本.png",
+          "excerpt": "720*1280技术层级、脚本接入方式和画质阈值未说明。",
+          "page_name": "需求介绍",
+          "section_name": "云机质量及尺寸问题"
+        }
+      ]
+    },
+    {
+      "ambiguity_id": "AMB-003",
+      "title": "云挂机购买页-宣传图占位 待确认",
+      "description": "轮播交互和默认图规则未说明。",
+      "status": "open",
+      "suggested_resolution": "补充产品说明或在下一轮结构化前人工确认。",
+      "source_refs": [
+        {
+          "source_type": "image_section",
+          "path": "inputs/images/PT083-02_副本.png",
+          "excerpt": "轮播交互和默认图规则未说明。",
+          "page_name": "云挂机购买页",
+          "section_name": "宣传图占位"
+        }
+      ]
+    },
+    {
+      "ambiguity_id": "AMB-004",
+      "title": "云挂机购买页-普通商品列表 待确认",
+      "description": "原有商品数量和其他既有逻辑未定义。",
+      "status": "open",
+      "suggested_resolution": "补充产品说明或在下一轮结构化前人工确认。",
+      "source_refs": [
+        {
+          "source_type": "image_section",
+          "path": "inputs/images/PT083-02_副本.png",
+          "excerpt": "原有商品数量和其他既有逻辑未定义。",
+          "page_name": "云挂机购买页",
+          "section_name": "普通商品列表"
+        }
+      ]
+    },
+    {
+      "ambiguity_id": "AMB-005",
+      "title": "盒子管理后台-云手机商品管理-云手机商品类型筛选 待确认",
+      "description": "无法确认完整枚举和真实默认值。",
+      "status": "open",
+      "suggested_resolution": "补充产品说明或在下一轮结构化前人工确认。",
+      "source_refs": [
+        {
+          "source_type": "image_section",
+          "path": "inputs/images/PT083-03-01_副本.png",
+          "excerpt": "无法确认完整枚举和真实默认值。",
+          "page_name": "盒子管理后台-云手机商品管理",
+          "section_name": "云手机商品类型筛选"
+        }
+      ]
+    },
+    {
+      "ambiguity_id": "AMB-006",
+      "title": "盒子管理后台-云手机商品管理-商品编辑弹窗 待确认",
+      "description": "图片仅显示编辑入口。",
+      "status": "open",
+      "suggested_resolution": "补充产品说明或在下一轮结构化前人工确认。",
+      "source_refs": [
+        {
+          "source_type": "image_section",
+          "path": "inputs/images/PT083-03-01_副本.png",
+          "excerpt": "图片仅显示编辑入口。",
+          "page_name": "盒子管理后台-云手机商品管理",
+          "section_name": "商品编辑弹窗"
+        }
+      ]
+    },
+    {
+      "ambiguity_id": "AMB-007",
+      "title": "盒子管理后台-云手机商品管理-商品顺序编辑弹窗 待确认",
+      "description": "排序弹窗未展开。",
+      "status": "open",
+      "suggested_resolution": "补充产品说明或在下一轮结构化前人工确认。",
+      "source_refs": [
+        {
+          "source_type": "image_section",
+          "path": "inputs/images/PT083-03-01_副本.png",
+          "excerpt": "排序弹窗未展开。",
+          "page_name": "盒子管理后台-云手机商品管理",
+          "section_name": "商品顺序编辑弹窗"
+        }
+      ]
+    },
+    {
+      "ambiguity_id": "AMB-008",
+      "title": "盒子管理后台-云手机商品管理-添加-商品添加表单 待确认",
+      "description": "既有字段完整枚举、默认值、数据源和商品展示时间控件未展开。",
+      "status": "open",
+      "suggested_resolution": "补充产品说明或在下一轮结构化前人工确认。",
+      "source_refs": [
+        {
+          "source_type": "image_section",
+          "path": "inputs/images/PT083-03-02_副本.png",
+          "excerpt": "既有字段完整枚举、默认值、数据源和商品展示时间控件未展开。",
+          "page_name": "盒子管理后台-云手机商品管理-添加",
+          "section_name": "商品添加表单"
+        }
+      ]
+    },
+    {
+      "ambiguity_id": "AMB-009",
+      "title": "盒子管理后台-云手机商品管理-添加-商品区与库存规则说明表 待确认",
+      "description": "库存校验频率和商品展示时间部分文字模糊。",
+      "status": "open",
+      "suggested_resolution": "补充产品说明或在下一轮结构化前人工确认。",
+      "source_refs": [
+        {
+          "source_type": "image_section",
+          "path": "inputs/images/PT083-03-02_副本.png",
+          "excerpt": "库存校验频率和商品展示时间部分文字模糊。",
+          "page_name": "盒子管理后台-云手机商品管理-添加",
+          "section_name": "商品区与库存规则说明表"
+        }
+      ]
+    },
+    {
+      "ambiguity_id": "AMB-010",
+      "title": "云机技术调整结论-SDK与画面尺寸调整 待确认",
+      "description": "未提供SDK版本、尺寸技术层级、适配终端或发布策略。",
+      "status": "open",
+      "suggested_resolution": "补充产品说明或在下一轮结构化前人工确认。",
+      "source_refs": [
+        {
+          "source_type": "image_section",
+          "path": "inputs/images/PT083-04_副本.png",
+          "excerpt": "未提供SDK版本、尺寸技术层级、适配终端或发布策略。",
+          "page_name": "云机技术调整结论",
+          "section_name": "SDK与画面尺寸调整"
+        }
+      ]
+    }
+  ],
+  "recommended_test_dimensions": [
+    {
+      "dimension_id": "TD-001",
+      "dimension": "字段必填与默认值",
+      "rationale": "商品添加和宣传内容配置包含多个明确必填字段，同时存在未显示必填标识或默认值的既有字段；只能按图片证据区分，不得将下拉控件自动视为必填。",
+      "priority": "high",
+      "related_reasoning_ids": []
+    },
+    {
+      "dimension_id": "TD-002",
+      "dimension": "特殊区容量与展示联动",
+      "rationale": "特殊区B端配置上限和C端展示上限均为4，且未配置时专区隐藏，需要验证配置、状态和展示结果的一致性。",
+      "priority": "high",
+      "related_reasoning_ids": [
+        "RISK-004"
+      ]
+    },
+    {
+      "dimension_id": "TD-003",
+      "dimension": "排序值与同值排序",
+      "rationale": "盒子内排序为正整数且上限1000，相同排序值按创建时间倒序；编辑商品顺序弹窗未展开，需避免把未知交互并入已确认字段规则。",
+      "priority": "high",
+      "related_reasoning_ids": [
+        "DS-002",
+        "EC-003"
+      ]
+    },
+    {
+      "dimension_id": "TD-004",
+      "dimension": "库存阈值与告警链路",
+      "rationale": "库存阈值同时控制C端商品显示、云机分配和管理员告警，需覆盖阈值临界值并将校验频率、并发和恢复口径保持为待确认。",
+      "priority": "high",
+      "related_reasoning_ids": [
+        "RISK-003",
+        "EC-004"
+      ]
+    },
+    {
+      "dimension_id": "TD-005",
+      "dimension": "宣传内容字段约束",
+      "rationale": "所有云机类型都需配置且不得重复，宣传图片存在数量、格式和大小限制，口号与性能参数存在20字符限制。",
+      "priority": "high",
+      "related_reasoning_ids": [
+        "EC-005",
+        "EC-006",
+        "EC-007"
+      ]
+    },
+    {
+      "dimension_id": "TD-006",
+      "dimension": "后台配置到 C 端展示面投影",
+      "rationale": "宣传图片、宣传口号、性能参数和商品区配置需要分别映射到全新版与常规版Tab，普通区原有逻辑不得被无依据改写。",
+      "priority": "medium",
+      "related_reasoning_ids": [
+        "IR-001"
+      ]
+    },
+    {
+      "dimension_id": "TD-007",
+      "dimension": "SDK、分辨率与脚本兼容性",
+      "rationale": "SDK版本、720*1280技术语义、脚本类型和画质流畅度阈值均未完整定义，应先追踪确认，不能把主观改善目标转成未经确认的硬断言。",
+      "priority": "medium",
+      "related_reasoning_ids": [
+        "RISK-001",
+        "RISK-002"
+      ]
+    }
+  ],
+  "coverage_candidates": [
+    {
+      "candidate_id": "COV-001",
+      "candidate_type": "section",
+      "title": "需求介绍-云机免费体验背景",
+      "scope": "需求介绍 / 云机免费体验背景",
+      "priority": "medium",
+      "rationale": "板块级 reasoning 已具备字段、规则或说明表信息，适合作为后续 structured_prd 与 testcase 的第一承接对象。",
+      "suggested_test_types": [
+        "功能",
+        "边界",
+        "数据校验"
+      ],
+      "source_reasoning_ids": []
+    },
+    {
+      "candidate_id": "COV-002",
+      "candidate_type": "section",
+      "title": "需求介绍-云机质量及尺寸问题",
+      "scope": "需求介绍 / 云机质量及尺寸问题",
+      "priority": "medium",
+      "rationale": "板块级 reasoning 已具备字段、规则或说明表信息，适合作为后续 structured_prd 与 testcase 的第一承接对象。",
+      "suggested_test_types": [
+        "功能",
+        "边界",
+        "数据校验"
+      ],
+      "source_reasoning_ids": []
+    },
+    {
+      "candidate_id": "COV-003",
+      "candidate_type": "section",
+      "title": "需求介绍-需求目的",
+      "scope": "需求介绍 / 需求目的",
+      "priority": "medium",
+      "rationale": "板块级 reasoning 已具备字段、规则或说明表信息，适合作为后续 structured_prd 与 testcase 的第一承接对象。",
+      "suggested_test_types": [
+        "功能",
+        "边界",
+        "数据校验"
+      ],
+      "source_reasoning_ids": []
+    },
+    {
+      "candidate_id": "COV-004",
+      "candidate_type": "section",
+      "title": "云挂机购买页-版本Tab",
+      "scope": "云挂机购买页 / 版本Tab",
+      "priority": "medium",
+      "rationale": "板块级 reasoning 已具备字段、规则或说明表信息，适合作为后续 structured_prd 与 testcase 的第一承接对象。",
+      "suggested_test_types": [
+        "功能",
+        "边界",
+        "数据校验"
+      ],
+      "source_reasoning_ids": []
+    },
+    {
+      "candidate_id": "COV-005",
+      "candidate_type": "section",
+      "title": "云挂机购买页-宣传图占位",
+      "scope": "云挂机购买页 / 宣传图占位",
+      "priority": "medium",
+      "rationale": "板块级 reasoning 已具备字段、规则或说明表信息，适合作为后续 structured_prd 与 testcase 的第一承接对象。",
+      "suggested_test_types": [
+        "功能",
+        "边界",
+        "数据校验"
+      ],
+      "source_reasoning_ids": []
+    },
+    {
+      "candidate_id": "COV-006",
+      "candidate_type": "section",
+      "title": "云挂机购买页-宣传区",
+      "scope": "云挂机购买页 / 宣传区",
+      "priority": "medium",
+      "rationale": "板块级 reasoning 已具备字段、规则或说明表信息，适合作为后续 structured_prd 与 testcase 的第一承接对象。",
+      "suggested_test_types": [
+        "功能",
+        "边界",
+        "数据校验"
+      ],
+      "source_reasoning_ids": []
+    },
+    {
+      "candidate_id": "COV-007",
+      "candidate_type": "section",
+      "title": "云挂机购买页-特价专区",
+      "scope": "云挂机购买页 / 特价专区",
+      "priority": "medium",
+      "rationale": "板块级 reasoning 已具备字段、规则或说明表信息，适合作为后续 structured_prd 与 testcase 的第一承接对象。",
+      "suggested_test_types": [
+        "功能",
+        "边界",
+        "数据校验"
+      ],
+      "source_reasoning_ids": []
+    },
+    {
+      "candidate_id": "COV-008",
+      "candidate_type": "section",
+      "title": "云挂机购买页-普通商品列表",
+      "scope": "云挂机购买页 / 普通商品列表",
+      "priority": "medium",
+      "rationale": "板块级 reasoning 已具备字段、规则或说明表信息，适合作为后续 structured_prd 与 testcase 的第一承接对象。",
+      "suggested_test_types": [
+        "功能",
+        "边界",
+        "数据校验"
+      ],
+      "source_reasoning_ids": []
+    },
+    {
+      "candidate_id": "COV-009",
+      "candidate_type": "section",
+      "title": "盒子管理后台-云手机商品管理-云手机商品类型筛选",
+      "scope": "盒子管理后台-云手机商品管理 / 云手机商品类型筛选",
+      "priority": "medium",
+      "rationale": "板块级 reasoning 已具备字段、规则或说明表信息，适合作为后续 structured_prd 与 testcase 的第一承接对象。",
+      "suggested_test_types": [
+        "功能",
+        "边界",
+        "数据校验"
+      ],
+      "source_reasoning_ids": []
+    },
+    {
+      "candidate_id": "COV-010",
+      "candidate_type": "section",
+      "title": "盒子管理后台-云手机商品管理-商品列表",
+      "scope": "盒子管理后台-云手机商品管理 / 商品列表",
+      "priority": "medium",
+      "rationale": "板块级 reasoning 已具备字段、规则或说明表信息，适合作为后续 structured_prd 与 testcase 的第一承接对象。",
+      "suggested_test_types": [
+        "功能",
+        "边界",
+        "数据校验"
+      ],
+      "source_reasoning_ids": []
+    },
+    {
+      "candidate_id": "COV-011",
+      "candidate_type": "section",
+      "title": "盒子管理后台-云手机商品管理-操作区",
+      "scope": "盒子管理后台-云手机商品管理 / 操作区",
+      "priority": "medium",
+      "rationale": "板块级 reasoning 已具备字段、规则或说明表信息，适合作为后续 structured_prd 与 testcase 的第一承接对象。",
+      "suggested_test_types": [
+        "功能",
+        "边界",
+        "数据校验"
+      ],
+      "source_reasoning_ids": []
+    },
+    {
+      "candidate_id": "COV-012",
+      "candidate_type": "section",
+      "title": "盒子管理后台-云手机商品管理-商品编辑弹窗",
+      "scope": "盒子管理后台-云手机商品管理 / 商品编辑弹窗",
+      "priority": "medium",
+      "rationale": "板块级 reasoning 已具备字段、规则或说明表信息，适合作为后续 structured_prd 与 testcase 的第一承接对象。",
+      "suggested_test_types": [
+        "功能",
+        "边界",
+        "数据校验"
+      ],
+      "source_reasoning_ids": []
+    },
+    {
+      "candidate_id": "COV-013",
+      "candidate_type": "section",
+      "title": "盒子管理后台-云手机商品管理-商品顺序编辑弹窗",
+      "scope": "盒子管理后台-云手机商品管理 / 商品顺序编辑弹窗",
+      "priority": "medium",
+      "rationale": "板块级 reasoning 已具备字段、规则或说明表信息，适合作为后续 structured_prd 与 testcase 的第一承接对象。",
+      "suggested_test_types": [
+        "功能",
+        "边界",
+        "数据校验"
+      ],
+      "source_reasoning_ids": []
+    },
+    {
+      "candidate_id": "COV-014",
+      "candidate_type": "section",
+      "title": "盒子管理后台-云手机商品管理-添加-商品添加表单",
+      "scope": "盒子管理后台-云手机商品管理-添加 / 商品添加表单",
+      "priority": "medium",
+      "rationale": "板块级 reasoning 已具备字段、规则或说明表信息，适合作为后续 structured_prd 与 testcase 的第一承接对象。",
+      "suggested_test_types": [
+        "功能",
+        "边界",
+        "数据校验"
+      ],
+      "source_reasoning_ids": []
+    },
+    {
+      "candidate_id": "COV-015",
+      "candidate_type": "section",
+      "title": "盒子管理后台-云手机商品管理-添加-商品区与库存规则说明表",
+      "scope": "盒子管理后台-云手机商品管理-添加 / 商品区与库存规则说明表",
+      "priority": "medium",
+      "rationale": "板块级 reasoning 已具备字段、规则或说明表信息，适合作为后续 structured_prd 与 testcase 的第一承接对象。",
+      "suggested_test_types": [
+        "功能",
+        "边界",
+        "数据校验"
+      ],
+      "source_reasoning_ids": []
+    },
+    {
+      "candidate_id": "COV-016",
+      "candidate_type": "section",
+      "title": "盒子管理后台-编辑宣传内容-宣传内容编辑表单",
+      "scope": "盒子管理后台-编辑宣传内容 / 宣传内容编辑表单",
+      "priority": "medium",
+      "rationale": "板块级 reasoning 已具备字段、规则或说明表信息，适合作为后续 structured_prd 与 testcase 的第一承接对象。",
+      "suggested_test_types": [
+        "功能",
+        "边界",
+        "数据校验"
+      ],
+      "source_reasoning_ids": []
+    },
+    {
+      "candidate_id": "COV-017",
+      "candidate_type": "section",
+      "title": "盒子管理后台-编辑宣传内容-宣传内容字段说明表",
+      "scope": "盒子管理后台-编辑宣传内容 / 宣传内容字段说明表",
+      "priority": "medium",
+      "rationale": "板块级 reasoning 已具备字段、规则或说明表信息，适合作为后续 structured_prd 与 testcase 的第一承接对象。",
+      "suggested_test_types": [
+        "功能",
+        "边界",
+        "数据校验"
+      ],
+      "source_reasoning_ids": []
+    },
+    {
+      "candidate_id": "COV-018",
+      "candidate_type": "section",
+      "title": "云机技术调整结论-SDK与画面尺寸调整",
+      "scope": "云机技术调整结论 / SDK与画面尺寸调整",
+      "priority": "medium",
+      "rationale": "板块级 reasoning 已具备字段、规则或说明表信息，适合作为后续 structured_prd 与 testcase 的第一承接对象。",
+      "suggested_test_types": [
+        "功能",
+        "边界",
+        "数据校验"
+      ],
+      "source_reasoning_ids": []
+    },
+    {
+      "candidate_id": "COV-019",
+      "candidate_type": "field_group",
+      "title": "需求介绍-云机画面尺寸",
+      "scope": "需求介绍 / 云机质量及尺寸问题 / 云机画面尺寸",
+      "priority": "high",
+      "rationale": "字段级约束已经被 reasoning 显式展开，后续应优先投影到 structured_prd 的 fields/rules。",
+      "suggested_test_types": [
+        "功能",
+        "边界"
+      ],
+      "source_reasoning_ids": [
+        "FC-001"
+      ]
+    },
+    {
+      "candidate_id": "COV-020",
+      "candidate_type": "field_group",
+      "title": "云挂机购买页-宣传图片",
+      "scope": "云挂机购买页 / 宣传图占位 / 宣传图片",
+      "priority": "high",
+      "rationale": "字段级约束已经被 reasoning 显式展开，后续应优先投影到 structured_prd 的 fields/rules。",
+      "suggested_test_types": [
+        "功能",
+        "边界"
+      ],
+      "source_reasoning_ids": [
+        "FC-002"
+      ]
+    },
+    {
+      "candidate_id": "COV-021",
+      "candidate_type": "field_group",
+      "title": "云挂机购买页-宣传口号",
+      "scope": "云挂机购买页 / 宣传区 / 宣传口号",
+      "priority": "high",
+      "rationale": "字段级约束已经被 reasoning 显式展开，后续应优先投影到 structured_prd 的 fields/rules。",
+      "suggested_test_types": [
+        "功能",
+        "边界"
+      ],
+      "source_reasoning_ids": [
+        "FC-003"
+      ]
+    },
+    {
+      "candidate_id": "COV-022",
+      "candidate_type": "field_group",
+      "title": "云挂机购买页-性能参数",
+      "scope": "云挂机购买页 / 宣传区 / 性能参数",
+      "priority": "high",
+      "rationale": "字段级约束已经被 reasoning 显式展开，后续应优先投影到 structured_prd 的 fields/rules。",
+      "suggested_test_types": [
+        "功能",
+        "边界"
+      ],
+      "source_reasoning_ids": [
+        "FC-004"
+      ]
+    },
+    {
+      "candidate_id": "COV-023",
+      "candidate_type": "field_group",
+      "title": "云挂机购买页-特殊区商品列表",
+      "scope": "云挂机购买页 / 特价专区 / 特殊区商品列表",
+      "priority": "high",
+      "rationale": "字段级约束已经被 reasoning 显式展开，后续应优先投影到 structured_prd 的 fields/rules。",
+      "suggested_test_types": [
+        "功能",
+        "边界"
+      ],
+      "source_reasoning_ids": [
+        "FC-005"
+      ]
+    },
+    {
+      "candidate_id": "COV-024",
+      "candidate_type": "field_group",
+      "title": "云挂机购买页-普通区商品列表",
+      "scope": "云挂机购买页 / 普通商品列表 / 普通区商品列表",
+      "priority": "high",
+      "rationale": "字段级约束已经被 reasoning 显式展开，后续应优先投影到 structured_prd 的 fields/rules。",
+      "suggested_test_types": [
+        "功能",
+        "边界"
+      ],
+      "source_reasoning_ids": [
+        "FC-006"
+      ]
+    },
+    {
+      "candidate_id": "COV-025",
+      "candidate_type": "field_group",
+      "title": "盒子管理后台-云手机商品管理-云手机商品类型",
+      "scope": "盒子管理后台-云手机商品管理 / 云手机商品类型筛选 / 云手机商品类型",
+      "priority": "high",
+      "rationale": "字段级约束已经被 reasoning 显式展开，后续应优先投影到 structured_prd 的 fields/rules。",
+      "suggested_test_types": [
+        "功能",
+        "边界"
+      ],
+      "source_reasoning_ids": [
+        "FC-007"
+      ]
+    },
+    {
+      "candidate_id": "COV-026",
+      "candidate_type": "field_group",
+      "title": "盒子管理后台-云手机商品管理-商品编辑字段集合",
+      "scope": "盒子管理后台-云手机商品管理 / 商品编辑弹窗 / 商品编辑字段集合",
+      "priority": "high",
+      "rationale": "字段级约束已经被 reasoning 显式展开，后续应优先投影到 structured_prd 的 fields/rules。",
+      "suggested_test_types": [
+        "功能",
+        "边界"
+      ],
+      "source_reasoning_ids": [
+        "FC-008"
+      ]
+    },
+    {
+      "candidate_id": "COV-027",
+      "candidate_type": "rule_cluster",
+      "title": "盒子管理后台-云手机商品管理-操作区-数据来源/排序规则",
+      "scope": "盒子管理后台-云手机商品管理 / 操作区",
+      "priority": "high",
+      "rationale": "数据来源、过滤、排序规则是最容易在压缩过程中丢失的 AI 推理结果，应单独保留 coverage 入口。",
+      "suggested_test_types": [
+        "数据校验",
+        "流程验证"
+      ],
+      "source_reasoning_ids": [
+        "DS-001"
+      ]
+    },
+    {
+      "candidate_id": "COV-028",
+      "candidate_type": "rule_cluster",
+      "title": "盒子管理后台-云手机商品管理-添加-商品添加表单-数据来源/排序规则",
+      "scope": "盒子管理后台-云手机商品管理-添加 / 商品添加表单",
+      "priority": "high",
+      "rationale": "数据来源、过滤、排序规则是最容易在压缩过程中丢失的 AI 推理结果，应单独保留 coverage 入口。",
+      "suggested_test_types": [
+        "数据校验",
+        "流程验证"
+      ],
+      "source_reasoning_ids": [
+        "DS-002"
+      ]
+    }
   ]
 }

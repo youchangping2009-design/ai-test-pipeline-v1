@@ -1,0 +1,58 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "AI Test Pipeline Harness Approval",
+  "type": "object",
+  "required": [
+    "approval_id",
+    "run_id",
+    "stage_id",
+    "status",
+    "reason",
+    "options",
+    "recommended_option",
+    "affected_truth_sources",
+    "requested_action",
+    "expected_target_hash",
+    "expected_upstream_fingerprint",
+    "candidate_hash",
+    "requested_at",
+    "resolved_at",
+    "resolved_by"
+  ],
+  "properties": {
+    "approval_id": { "type": "string", "minLength": 1 },
+    "run_id": { "type": "string", "minLength": 1 },
+    "stage_id": { "type": "string", "pattern": "^[a-z][a-z0-9_]*$" },
+    "status": { "type": "string", "enum": ["pending", "approved", "rejected", "cancelled"] },
+    "reason": { "type": "string", "minLength": 1 },
+    "options": {
+      "type": "array",
+      "minItems": 2,
+      "items": { "type": "string", "minLength": 1 }
+    },
+    "recommended_option": { "type": "string", "minLength": 1 },
+    "affected_truth_sources": {
+      "type": "array",
+      "items": { "type": "string", "minLength": 1 }
+    },
+    "requested_action": {
+      "type": "string",
+      "enum": [
+        "commit_stage",
+        "manual_decision",
+        "repair_exhausted",
+        "turn_budget_exhausted",
+        "budget_exhausted",
+        "publish_generation"
+      ]
+    },
+    "expected_target_hash": { "type": ["string", "null"] },
+    "expected_upstream_fingerprint": { "type": ["string", "null"] },
+    "candidate_hash": { "type": ["string", "null"] },
+    "requested_at": { "type": "string", "minLength": 1 },
+    "resolved_at": { "type": ["string", "null"] },
+    "resolved_by": { "type": ["string", "null"] },
+    "resolution_note": { "type": ["string", "null"] }
+  },
+  "additionalProperties": false
+}

@@ -33,7 +33,7 @@ Expected: PASS
 
 Expected: PASS
 
-PT083 has been regenerated with testability gate, acceptance examples, responsibility map, test design matrix, case plan, and case_plan_id-backed testcases, so strict validation should now pass.
+PT083 is the current M-level migrated sample with approved requirement intake, testability gate, acceptance examples, case plan, case_plan_id-backed testcases, and current quality fingerprints, so strict validation should pass with code reviews explicitly skipped.
 
 ### 3. PT083 eval
 

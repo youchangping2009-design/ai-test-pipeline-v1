@@ -137,14 +137,25 @@ def evaluate_required_assertions(expected_dir: Path, assertions: list[dict[str, 
 def run_expected_validators(expected_dir: Path) -> list[str]:
     gate_payload = read_json_artifact(expected_dir, "testability_gate.expected.json")
     acceptance_payload = read_json_artifact(expected_dir, "acceptance_examples.expected.json")
+    responsibility_payload = read_json_artifact(
+        expected_dir,
+        "responsibility_map.expected.json",
+    )
     examples = acceptance_payload.get("examples", []) if isinstance(acceptance_payload, dict) else []
     gate_items = gate_payload.get("items", []) if isinstance(gate_payload, dict) else []
+    responsibilities = (
+        responsibility_payload.get("responsibilities", [])
+        if isinstance(responsibility_payload, dict)
+        else []
+    )
     acceptance_required = any(
         isinstance(item, dict) and item.get("decision") == "generate_acceptance_example"
         for item in gate_items
     )
-    commands = [
-        [
+    commands = []
+    if responsibilities:
+        commands.append(
+            [
             sys.executable,
             str(ROOT / "skills" / "test-design" / "scripts" / "validate_responsibility_map.py"),
             "--input",
@@ -153,8 +164,9 @@ def run_expected_validators(expected_dir: Path) -> list[str]:
             str(expected_dir / "testability_gate.expected.json"),
             "--case-plan",
             str(expected_dir / "case_plan.expected.json"),
-        ],
-        [
+            ]
+        )
+    case_plan_command = [
             sys.executable,
             str(ROOT / "skills" / "case-generation" / "scripts" / "validate_case_plan.py"),
             "--input",
@@ -163,12 +175,17 @@ def run_expected_validators(expected_dir: Path) -> list[str]:
             str(expected_dir / "testability_gate.expected.json"),
             "--acceptance-examples",
             str(expected_dir / "acceptance_examples.expected.json"),
-            "--responsibility-map",
-            str(expected_dir / "responsibility_map.expected.json"),
             "--require-examples",
-            "--require-responsibilities",
-        ],
     ]
+    if responsibilities:
+        case_plan_command.extend(
+            [
+                "--responsibility-map",
+                str(expected_dir / "responsibility_map.expected.json"),
+                "--require-responsibilities",
+            ]
+        )
+    commands.append(case_plan_command)
     if examples or acceptance_required:
         commands.insert(
             0,
@@ -190,8 +207,48 @@ def run_expected_validators(expected_dir: Path) -> list[str]:
     return errors
 
 
+def run_element_notation_fixture(fixture_root: Path, fixture: str) -> int:
+    validator = str(
+        ROOT / "skills" / "case-generation" / "scripts" / "testcase_element_lint.py"
+    )
+    positive_path = fixture_root / "positive.testcases.md"
+    negative_path = fixture_root / "negative.testcases.md"
+    if not positive_path.exists() or not negative_path.exists():
+        print(f"❌ eval fixture {fixture} 失败")
+        print("缺少 positive.testcases.md 或 negative.testcases.md")
+        return 1
+
+    positive = subprocess.run(
+        [sys.executable, validator, "--input", str(positive_path), "--strict"],
+        capture_output=True,
+        text=True,
+        encoding="utf-8",
+    )
+    negative = subprocess.run(
+        [sys.executable, validator, "--input", str(negative_path), "--strict"],
+        capture_output=True,
+        text=True,
+        encoding="utf-8",
+    )
+    if positive.returncode != 0 or negative.returncode == 0:
+        print(f"❌ eval fixture {fixture} 失败")
+        if positive.returncode != 0:
+            print("positive.testcases.md 预期通过，但实际失败")
+            print((positive.stdout + "\n" + positive.stderr).strip())
+        if negative.returncode == 0:
+            print("negative.testcases.md 预期失败，但实际通过")
+        return 1
+
+    print(f"✅ eval fixture {fixture} 通过")
+    print("validator: testcase_element_lint --strict")
+    print("negative_element_notation: expected failure observed")
+    return 0
+
+
 def run_fixture(fixture: str) -> int:
     fixture_root = ROOT / "evals" / "fixtures" / fixture
+    if fixture == "ELEMENT_NOTATION":
+        return run_element_notation_fixture(fixture_root, fixture)
     expected_dir = fixture_root / "expected"
     grouping_testcases_path = expected_dir / "testcases.expected.md"
     if grouping_testcases_path.exists():
@@ -289,6 +346,10 @@ def main() -> int:
             and (
                 (path / "expected" / "forbidden_patterns.yml").exists()
                 or (path / "expected" / "testcases.expected.md").exists()
+                or (
+                    (path / "positive.testcases.md").exists()
+                    and (path / "negative.testcases.md").exists()
+                )
             )
         )
         if not fixture_names:

@@ -1,0 +1,45 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "AI Test Pipeline Harness Hook Execution",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "execution_id",
+    "run_id",
+    "hook_id",
+    "event",
+    "stage_id",
+    "handler",
+    "failure_policy",
+    "status",
+    "started_at",
+    "completed_at",
+    "duration_ms",
+    "exit_code",
+    "timed_out",
+    "output",
+    "error"
+  ],
+  "properties": {
+    "schema_version": { "type": "string", "const": "1.0.0" },
+    "execution_id": { "type": "string", "minLength": 1 },
+    "run_id": { "type": "string", "minLength": 1 },
+    "hook_id": { "type": "string", "minLength": 1 },
+    "event": { "type": "string", "minLength": 1 },
+    "stage_id": { "type": ["string", "null"] },
+    "handler": { "type": "string", "minLength": 1 },
+    "failure_policy": { "type": "string", "enum": ["warn", "fail_run"] },
+    "status": {
+      "type": "string",
+      "enum": ["succeeded", "failed", "timed_out"]
+    },
+    "started_at": { "type": "string", "minLength": 1 },
+    "completed_at": { "type": "string", "minLength": 1 },
+    "duration_ms": { "type": "integer", "minimum": 0 },
+    "exit_code": { "type": ["integer", "null"] },
+    "timed_out": { "type": "boolean" },
+    "output": { "type": ["object", "null"] },
+    "error": { "type": ["string", "null"] }
+  },
+  "additionalProperties": false
+}

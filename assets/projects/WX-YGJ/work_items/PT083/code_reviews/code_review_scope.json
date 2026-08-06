@@ -1,23 +1,7 @@
 {
-  "status": "testcase_gap_check_completed",
-  "frontend_code_dirs": [
-    "/Users/xin/WebstormProjects/platform-cloud-admin-front",
-    "/Users/xin/WebstormProjects/platform-box-h5-ios"
-  ],
-  "backend_code_dirs": [
-    "/Users/xin/IdeaProjects/platform-cloud",
-    "/Users/xin/IdeaProjects/platform-cloud-order",
-    "/Users/xin/IdeaProjects/wx-order-center",
-    "/Users/xin/IdeaProjects/platform-box-order-center",
-    "/Users/xin/IdeaProjects/bt-order-center",
-    "/Users/xin/IdeaProjects/platform-cloud-admin"
-  ],
-  "branch": "feature/pt083_cloud",
-  "base_branch": "origin/dev",
-  "frontend_branches": [
-    "feature/PT083云挂机用户体验及SDK迭代/260421/sqt",
-    "feature/PT083云挂机用户体验及SDK迭代/260422/sqt"
-  ],
-  "next_action": "已重新引入前后端代码分支完成 PT083 用例错漏检查；结果沉淀到 code_reviews/testcase_gap_check.* 与 design/design_feedback.*，后续如补用例需先扩展 case_plan，不直接覆盖 testcases_main.md。",
-  "updated_at": "2026-04-28"
+  "status": "awaiting_code_directories",
+  "frontend_code_dirs": [],
+  "backend_code_dirs": [],
+  "next_action": "请补充前端或后端代码目录后进入代码映证流程。",
+  "updated_at": ""
 }

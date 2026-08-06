@@ -50,6 +50,8 @@ from typing import List, Optional, Tuple
 
 from backend_config_utils import has_backend_config_family_pages
 from build_dev_self_testcases import build_dev_self_markdown
+from harness.contracts import ContractError, validate_named
+from harness.requirement_approval import validate_requirement_approval
 from quality_gate_policy import resolve_rollout_source
 from work_item_policy import VALID_WORK_ITEM_LEVELS
 from work_item_policy import resolve_work_item_level
@@ -186,6 +188,10 @@ def validate_manifest(manifest_path: Path) -> Tuple[bool, List[str]]:
         data = read_json(manifest_path)
     except Exception as exc:
         return False, [f"manifest.json 读取失败: {exc}"]
+    try:
+        validate_named(data, "work_item_manifest.schema.json")
+    except ContractError as exc:
+        errors.append(f"manifest.json Schema 校验失败: {exc}")
 
     required_fields = [
         "project_code",
@@ -1131,6 +1137,24 @@ def main() -> int:
             for err in errors:
                 print(err)
             summary.append(f"Manifest: FAIL ({len(errors)} 个问题)")
+
+    if args.strict:
+        print_section("Requirement Approval Validation")
+        approval_errors = validate_requirement_approval(
+            work_item_root,
+            manifest_data,
+        )
+        if approval_errors:
+            overall_pass = False
+            print("❌ requirement approval 校验失败")
+            for error in approval_errors:
+                print(error)
+            summary.append(
+                f"Requirement Approval: FAIL ({len(approval_errors)} 个问题)"
+            )
+        else:
+            print("✅ requirement approval 校验通过或 legacy policy 兼容跳过")
+            summary.append("Requirement Approval: PASS")
 
     if source_manifest_path.exists():
         print_section("Requirement Source Manifest Validation")

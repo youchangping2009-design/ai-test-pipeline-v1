@@ -1,3 +1,4 @@
 # Verification Responsibility Map
 
-PT083 regenerated responsibility map. Machine truth source: `verification_responsibility_map.json`.
+| responsibility_id | source_rule_id | primary_verification_side | primary_verification_method | consumer_verification_required | api_guard_required | risk_note_required | rule_text | reason |
+|---|---|---|---|---|---|---|---|---|

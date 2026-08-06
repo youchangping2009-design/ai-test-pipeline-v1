@@ -1,10 +1,1897 @@
 {
   "project_code": "WX-YGJ",
   "work_item_id": "PT083",
-  "generated_at": "2026-04-18T16:20:00+08:00",
+  "generated_at": "2026-08-06T17:07:33",
   "generated_from": [
     "structured_prd/structured_prd.json",
-    "testcases/testcases_main.md"
+    "analysis/reasoning_pack.json"
   ],
-  "entries": []
+  "entries": [
+    {
+      "coverage_id": "COV-EX-0001",
+      "coverage_type": "field_property",
+      "source_origin": "explicit_rule",
+      "source_type": "structured_field",
+      "title": "云机画面尺寸 字段属性",
+      "page_name": "需求介绍",
+      "section_name": "云机质量及尺寸问题",
+      "module_name": "云机技术与需求背景",
+      "feature_name": "云机质量及尺寸问题",
+      "field_name": "cloud_machine_resolution",
+      "priority": "medium",
+      "rationale": "字段 `云机画面尺寸` 已在 structured_prd 中显式建模，需要基础属性覆盖。",
+      "planned_assertions": [
+        "校验 `云机画面尺寸` 的控件类型、默认值或枚举定义与结构化规则一致。"
+      ],
+      "structured_refs": [
+        "云机技术与需求背景.云机质量及尺寸问题.cloud_machine_resolution"
+      ],
+      "reasoning_refs": [],
+      "coverage_level": "structural",
+      "emit_mode": "audit_item"
+    },
+    {
+      "coverage_id": "COV-EX-0002",
+      "coverage_type": "field_property",
+      "source_origin": "explicit_rule",
+      "source_type": "structured_field",
+      "title": "云机画面尺寸 字段属性",
+      "page_name": "云机技术调整结论",
+      "section_name": "SDK与画面尺寸调整",
+      "module_name": "云机技术与需求背景",
+      "feature_name": "SDK与画面尺寸调整",
+      "field_name": "cloud_machine_resolution",
+      "priority": "medium",
+      "rationale": "字段 `云机画面尺寸` 已在 structured_prd 中显式建模，需要基础属性覆盖。",
+      "planned_assertions": [
+        "校验 `云机画面尺寸` 的控件类型、默认值或枚举定义与结构化规则一致。"
+      ],
+      "structured_refs": [
+        "云机技术与需求背景.SDK与画面尺寸调整.cloud_machine_resolution"
+      ],
+      "reasoning_refs": [],
+      "coverage_level": "structural",
+      "emit_mode": "audit_item"
+    },
+    {
+      "coverage_id": "COV-EX-0003",
+      "coverage_type": "field_property",
+      "source_origin": "explicit_rule",
+      "source_type": "structured_field",
+      "title": "云机版本Tab 字段属性",
+      "page_name": "云挂机购买页",
+      "section_name": "版本Tab",
+      "module_name": "云挂机购买页",
+      "feature_name": "版本Tab",
+      "field_name": "cloud_machine_version",
+      "priority": "medium",
+      "rationale": "字段 `云机版本Tab` 已在 structured_prd 中显式建模，需要基础属性覆盖。",
+      "planned_assertions": [
+        "校验 `云机版本Tab` 的控件类型、默认值或枚举定义与结构化规则一致。"
+      ],
+      "structured_refs": [
+        "云挂机购买页.版本Tab.cloud_machine_version"
+      ],
+      "reasoning_refs": [],
+      "coverage_level": "structural",
+      "emit_mode": "audit_item"
+    },
+    {
+      "coverage_id": "COV-EX-0004",
+      "coverage_type": "field_property",
+      "source_origin": "explicit_rule",
+      "source_type": "structured_field",
+      "title": "宣传图片 字段属性",
+      "page_name": "云挂机购买页",
+      "section_name": "宣传图占位",
+      "module_name": "云挂机购买页",
+      "feature_name": "宣传图占位",
+      "field_name": "promotion_image",
+      "priority": "medium",
+      "rationale": "字段 `宣传图片` 已在 structured_prd 中显式建模，需要基础属性覆盖。",
+      "planned_assertions": [
+        "校验 `宣传图片` 的控件类型、默认值或枚举定义与结构化规则一致。"
+      ],
+      "structured_refs": [
+        "云挂机购买页.宣传图占位.promotion_image"
+      ],
+      "reasoning_refs": [],
+      "coverage_level": "structural",
+      "emit_mode": "audit_item"
+    },
+    {
+      "coverage_id": "COV-EX-0005",
+      "coverage_type": "field_property",
+      "source_origin": "explicit_rule",
+      "source_type": "structured_field",
+      "title": "宣传口号 字段属性",
+      "page_name": "云挂机购买页",
+      "section_name": "宣传区",
+      "module_name": "云挂机购买页",
+      "feature_name": "宣传区",
+      "field_name": "promotion_slogan",
+      "priority": "medium",
+      "rationale": "字段 `宣传口号` 已在 structured_prd 中显式建模，需要基础属性覆盖。",
+      "planned_assertions": [
+        "校验 `宣传口号` 的控件类型、默认值或枚举定义与结构化规则一致。"
+      ],
+      "structured_refs": [
+        "云挂机购买页.宣传区.promotion_slogan"
+      ],
+      "reasoning_refs": [],
+      "coverage_level": "structural",
+      "emit_mode": "audit_item"
+    },
+    {
+      "coverage_id": "COV-EX-0006",
+      "coverage_type": "field_property",
+      "source_origin": "explicit_rule",
+      "source_type": "structured_field",
+      "title": "性能参数 字段属性",
+      "page_name": "云挂机购买页",
+      "section_name": "宣传区",
+      "module_name": "云挂机购买页",
+      "feature_name": "宣传区",
+      "field_name": "performance_parameters",
+      "priority": "medium",
+      "rationale": "字段 `性能参数` 已在 structured_prd 中显式建模，需要基础属性覆盖。",
+      "planned_assertions": [
+        "校验 `性能参数` 的控件类型、默认值或枚举定义与结构化规则一致。"
+      ],
+      "structured_refs": [
+        "云挂机购买页.宣传区.performance_parameters"
+      ],
+      "reasoning_refs": [],
+      "coverage_level": "structural",
+      "emit_mode": "audit_item"
+    },
+    {
+      "coverage_id": "COV-EX-0007",
+      "coverage_type": "field_property",
+      "source_origin": "explicit_rule",
+      "source_type": "structured_field",
+      "title": "特殊区商品列表 字段属性",
+      "page_name": "云挂机购买页",
+      "section_name": "特价专区",
+      "module_name": "云挂机购买页",
+      "feature_name": "特价专区",
+      "field_name": "special_product_list",
+      "priority": "medium",
+      "rationale": "字段 `特殊区商品列表` 已在 structured_prd 中显式建模，需要基础属性覆盖。",
+      "planned_assertions": [
+        "校验 `特殊区商品列表` 的控件类型、默认值或枚举定义与结构化规则一致。"
+      ],
+      "structured_refs": [
+        "云挂机购买页.特价专区.special_product_list"
+      ],
+      "reasoning_refs": [],
+      "coverage_level": "structural",
+      "emit_mode": "audit_item"
+    },
+    {
+      "coverage_id": "COV-EX-0008",
+      "coverage_type": "conditional_visibility",
+      "source_origin": "explicit_rule",
+      "source_type": "structured_rule",
+      "title": "特殊区商品列表 条件展示",
+      "page_name": "云挂机购买页",
+      "section_name": "特价专区",
+      "module_name": "云挂机购买页",
+      "feature_name": "特价专区",
+      "field_name": "special_product_list",
+      "priority": "high",
+      "rationale": "`特殊区商品列表` 已显式落出 `visible_when`。",
+      "planned_assertions": [
+        "仅当 `后台未配置特殊区商品时隐藏` 时展示 `特殊区商品列表`。"
+      ],
+      "structured_refs": [
+        "云挂机购买页.特价专区.special_product_list.visible_when"
+      ],
+      "reasoning_refs": [],
+      "coverage_level": "critical",
+      "emit_mode": "main_testcase"
+    },
+    {
+      "coverage_id": "COV-EX-0009",
+      "coverage_type": "data_source_display",
+      "source_origin": "explicit_rule",
+      "source_type": "structured_field",
+      "title": "特殊区商品列表 数据源展示格式",
+      "page_name": "云挂机购买页",
+      "section_name": "特价专区",
+      "module_name": "云挂机购买页",
+      "feature_name": "特价专区",
+      "field_name": "special_product_list",
+      "priority": "medium",
+      "rationale": "`特殊区商品列表` 的候选项展示格式已在结构层保留。",
+      "planned_assertions": [
+        "`特殊区商品列表` 候选项展示应包含 `商品名称`。"
+      ],
+      "structured_refs": [
+        "云挂机购买页.特价专区.special_product_list.content_values"
+      ],
+      "reasoning_refs": [],
+      "coverage_level": "structural",
+      "emit_mode": "audit_item"
+    },
+    {
+      "coverage_id": "COV-EX-0010",
+      "coverage_type": "field_property",
+      "source_origin": "explicit_rule",
+      "source_type": "structured_field",
+      "title": "普通区商品列表 字段属性",
+      "page_name": "云挂机购买页",
+      "section_name": "普通商品列表",
+      "module_name": "云挂机购买页",
+      "feature_name": "普通商品列表",
+      "field_name": "regular_product_list",
+      "priority": "medium",
+      "rationale": "字段 `普通区商品列表` 已在 structured_prd 中显式建模，需要基础属性覆盖。",
+      "planned_assertions": [
+        "校验 `普通区商品列表` 的控件类型、默认值或枚举定义与结构化规则一致。"
+      ],
+      "structured_refs": [
+        "云挂机购买页.普通商品列表.regular_product_list"
+      ],
+      "reasoning_refs": [],
+      "coverage_level": "structural",
+      "emit_mode": "audit_item"
+    },
+    {
+      "coverage_id": "COV-EX-0011",
+      "coverage_type": "data_source_display",
+      "source_origin": "explicit_rule",
+      "source_type": "structured_field",
+      "title": "普通区商品列表 数据源展示格式",
+      "page_name": "云挂机购买页",
+      "section_name": "普通商品列表",
+      "module_name": "云挂机购买页",
+      "feature_name": "普通商品列表",
+      "field_name": "regular_product_list",
+      "priority": "medium",
+      "rationale": "`普通区商品列表` 的候选项展示格式已在结构层保留。",
+      "planned_assertions": [
+        "`普通区商品列表` 候选项展示应包含 `商品名称`。"
+      ],
+      "structured_refs": [
+        "云挂机购买页.普通商品列表.regular_product_list.content_values"
+      ],
+      "reasoning_refs": [],
+      "coverage_level": "structural",
+      "emit_mode": "audit_item"
+    },
+    {
+      "coverage_id": "COV-EX-0012",
+      "coverage_type": "field_property",
+      "source_origin": "explicit_rule",
+      "source_type": "structured_field",
+      "title": "云手机商品类型 字段属性",
+      "page_name": "盒子管理后台-云手机商品管理",
+      "section_name": "云手机商品类型筛选",
+      "module_name": "云手机商品管理",
+      "feature_name": "云手机商品类型筛选",
+      "field_name": "cloud_phone_product_type",
+      "priority": "medium",
+      "rationale": "字段 `云手机商品类型` 已在 structured_prd 中显式建模，需要基础属性覆盖。",
+      "planned_assertions": [
+        "校验 `云手机商品类型` 的控件类型、默认值或枚举定义与结构化规则一致。"
+      ],
+      "structured_refs": [
+        "云手机商品管理.云手机商品类型筛选.cloud_phone_product_type"
+      ],
+      "reasoning_refs": [],
+      "coverage_level": "structural",
+      "emit_mode": "audit_item"
+    },
+    {
+      "coverage_id": "COV-EX-0013",
+      "coverage_type": "field_property",
+      "source_origin": "explicit_rule",
+      "source_type": "structured_field",
+      "title": "商品列表列 字段属性",
+      "page_name": "盒子管理后台-云手机商品管理",
+      "section_name": "商品列表",
+      "module_name": "云手机商品管理",
+      "feature_name": "商品列表",
+      "field_name": "product_list_columns",
+      "priority": "medium",
+      "rationale": "字段 `商品列表列` 已在 structured_prd 中显式建模，需要基础属性覆盖。",
+      "planned_assertions": [
+        "校验 `商品列表列` 的控件类型、默认值或枚举定义与结构化规则一致。"
+      ],
+      "structured_refs": [
+        "云手机商品管理.商品列表.product_list_columns"
+      ],
+      "reasoning_refs": [],
+      "coverage_level": "structural",
+      "emit_mode": "audit_item"
+    },
+    {
+      "coverage_id": "COV-EX-0014",
+      "coverage_type": "field_property",
+      "source_origin": "explicit_rule",
+      "source_type": "structured_field",
+      "title": "商品编辑字段集合 字段属性",
+      "page_name": "盒子管理后台-云手机商品管理",
+      "section_name": "商品编辑弹窗",
+      "module_name": "云手机商品管理",
+      "feature_name": "商品编辑弹窗",
+      "field_name": "product_edit_fields",
+      "priority": "medium",
+      "rationale": "字段 `商品编辑字段集合` 已在 structured_prd 中显式建模，需要基础属性覆盖。",
+      "planned_assertions": [
+        "校验 `商品编辑字段集合` 的控件类型、默认值或枚举定义与结构化规则一致。"
+      ],
+      "structured_refs": [
+        "云手机商品管理.商品编辑弹窗.product_edit_fields"
+      ],
+      "reasoning_refs": [],
+      "coverage_level": "structural",
+      "emit_mode": "audit_item"
+    },
+    {
+      "coverage_id": "COV-EX-0015",
+      "coverage_type": "field_property",
+      "source_origin": "explicit_rule",
+      "source_type": "structured_field",
+      "title": "云手机商品类型 字段属性",
+      "page_name": "盒子管理后台-云手机商品管理-添加",
+      "section_name": "商品添加表单",
+      "module_name": "云手机商品管理",
+      "feature_name": "商品添加表单",
+      "field_name": "cloud_phone_product_type",
+      "priority": "medium",
+      "rationale": "字段 `云手机商品类型` 已在 structured_prd 中显式建模，需要基础属性覆盖。",
+      "planned_assertions": [
+        "校验 `云手机商品类型` 的控件类型、默认值或枚举定义与结构化规则一致。"
+      ],
+      "structured_refs": [
+        "云手机商品管理.商品添加表单.cloud_phone_product_type"
+      ],
+      "reasoning_refs": [],
+      "coverage_level": "structural",
+      "emit_mode": "audit_item"
+    },
+    {
+      "coverage_id": "COV-EX-0016",
+      "coverage_type": "required",
+      "source_origin": "explicit_rule",
+      "source_type": "structured_field",
+      "title": "云手机商品类型 必填",
+      "page_name": "盒子管理后台-云手机商品管理-添加",
+      "section_name": "商品添加表单",
+      "module_name": "云手机商品管理",
+      "feature_name": "商品添加表单",
+      "field_name": "cloud_phone_product_type",
+      "priority": "high",
+      "rationale": "`云手机商品类型` 为显式必填字段。",
+      "planned_assertions": [
+        "`云手机商品类型` 为空时应阻止提交或保存。"
+      ],
+      "structured_refs": [
+        "云手机商品管理.商品添加表单.cloud_phone_product_type.required"
+      ],
+      "reasoning_refs": [],
+      "coverage_level": "business",
+      "emit_mode": "main_testcase"
+    },
+    {
+      "coverage_id": "COV-EX-0017",
+      "coverage_type": "field_property",
+      "source_origin": "explicit_rule",
+      "source_type": "structured_field",
+      "title": "云机类型 字段属性",
+      "page_name": "盒子管理后台-云手机商品管理-添加",
+      "section_name": "商品添加表单",
+      "module_name": "云手机商品管理",
+      "feature_name": "商品添加表单",
+      "field_name": "cloud_machine_type",
+      "priority": "medium",
+      "rationale": "字段 `云机类型` 已在 structured_prd 中显式建模，需要基础属性覆盖。",
+      "planned_assertions": [
+        "校验 `云机类型` 的控件类型、默认值或枚举定义与结构化规则一致。"
+      ],
+      "structured_refs": [
+        "云手机商品管理.商品添加表单.cloud_machine_type"
+      ],
+      "reasoning_refs": [],
+      "coverage_level": "structural",
+      "emit_mode": "audit_item"
+    },
+    {
+      "coverage_id": "COV-EX-0018",
+      "coverage_type": "required",
+      "source_origin": "explicit_rule",
+      "source_type": "structured_field",
+      "title": "云机类型 必填",
+      "page_name": "盒子管理后台-云手机商品管理-添加",
+      "section_name": "商品添加表单",
+      "module_name": "云手机商品管理",
+      "feature_name": "商品添加表单",
+      "field_name": "cloud_machine_type",
+      "priority": "high",
+      "rationale": "`云机类型` 为显式必填字段。",
+      "planned_assertions": [
+        "`云机类型` 为空时应阻止提交或保存。"
+      ],
+      "structured_refs": [
+        "云手机商品管理.商品添加表单.cloud_machine_type.required"
+      ],
+      "reasoning_refs": [],
+      "coverage_level": "business",
+      "emit_mode": "main_testcase"
+    },
+    {
+      "coverage_id": "COV-EX-0019",
+      "coverage_type": "field_property",
+      "source_origin": "explicit_rule",
+      "source_type": "structured_field",
+      "title": "商品名称 字段属性",
+      "page_name": "盒子管理后台-云手机商品管理-添加",
+      "section_name": "商品添加表单",
+      "module_name": "云手机商品管理",
+      "feature_name": "商品添加表单",
+      "field_name": "product_name",
+      "priority": "medium",
+      "rationale": "字段 `商品名称` 已在 structured_prd 中显式建模，需要基础属性覆盖。",
+      "planned_assertions": [
+        "校验 `商品名称` 的控件类型、默认值或枚举定义与结构化规则一致。"
+      ],
+      "structured_refs": [
+        "云手机商品管理.商品添加表单.product_name"
+      ],
+      "reasoning_refs": [],
+      "coverage_level": "structural",
+      "emit_mode": "audit_item"
+    },
+    {
+      "coverage_id": "COV-EX-0020",
+      "coverage_type": "required",
+      "source_origin": "explicit_rule",
+      "source_type": "structured_field",
+      "title": "商品名称 必填",
+      "page_name": "盒子管理后台-云手机商品管理-添加",
+      "section_name": "商品添加表单",
+      "module_name": "云手机商品管理",
+      "feature_name": "商品添加表单",
+      "field_name": "product_name",
+      "priority": "high",
+      "rationale": "`商品名称` 为显式必填字段。",
+      "planned_assertions": [
+        "`商品名称` 为空时应阻止提交或保存。"
+      ],
+      "structured_refs": [
+        "云手机商品管理.商品添加表单.product_name.required"
+      ],
+      "reasoning_refs": [],
+      "coverage_level": "business",
+      "emit_mode": "main_testcase"
+    },
+    {
+      "coverage_id": "COV-EX-0021",
+      "coverage_type": "field_property",
+      "source_origin": "explicit_rule",
+      "source_type": "structured_field",
+      "title": "原价（元） 字段属性",
+      "page_name": "盒子管理后台-云手机商品管理-添加",
+      "section_name": "商品添加表单",
+      "module_name": "云手机商品管理",
+      "feature_name": "商品添加表单",
+      "field_name": "original_price",
+      "priority": "medium",
+      "rationale": "字段 `原价（元）` 已在 structured_prd 中显式建模，需要基础属性覆盖。",
+      "planned_assertions": [
+        "校验 `原价（元）` 的控件类型、默认值或枚举定义与结构化规则一致。"
+      ],
+      "structured_refs": [
+        "云手机商品管理.商品添加表单.original_price"
+      ],
+      "reasoning_refs": [],
+      "coverage_level": "structural",
+      "emit_mode": "audit_item"
+    },
+    {
+      "coverage_id": "COV-EX-0022",
+      "coverage_type": "required",
+      "source_origin": "explicit_rule",
+      "source_type": "structured_field",
+      "title": "原价（元） 必填",
+      "page_name": "盒子管理后台-云手机商品管理-添加",
+      "section_name": "商品添加表单",
+      "module_name": "云手机商品管理",
+      "feature_name": "商品添加表单",
+      "field_name": "original_price",
+      "priority": "high",
+      "rationale": "`原价（元）` 为显式必填字段。",
+      "planned_assertions": [
+        "`原价（元）` 为空时应阻止提交或保存。"
+      ],
+      "structured_refs": [
+        "云手机商品管理.商品添加表单.original_price.required"
+      ],
+      "reasoning_refs": [],
+      "coverage_level": "business",
+      "emit_mode": "main_testcase"
+    },
+    {
+      "coverage_id": "COV-EX-0023",
+      "coverage_type": "field_property",
+      "source_origin": "explicit_rule",
+      "source_type": "structured_field",
+      "title": "现价（元） 字段属性",
+      "page_name": "盒子管理后台-云手机商品管理-添加",
+      "section_name": "商品添加表单",
+      "module_name": "云手机商品管理",
+      "feature_name": "商品添加表单",
+      "field_name": "current_price",
+      "priority": "medium",
+      "rationale": "字段 `现价（元）` 已在 structured_prd 中显式建模，需要基础属性覆盖。",
+      "planned_assertions": [
+        "校验 `现价（元）` 的控件类型、默认值或枚举定义与结构化规则一致。"
+      ],
+      "structured_refs": [
+        "云手机商品管理.商品添加表单.current_price"
+      ],
+      "reasoning_refs": [],
+      "coverage_level": "structural",
+      "emit_mode": "audit_item"
+    },
+    {
+      "coverage_id": "COV-EX-0024",
+      "coverage_type": "required",
+      "source_origin": "explicit_rule",
+      "source_type": "structured_field",
+      "title": "现价（元） 必填",
+      "page_name": "盒子管理后台-云手机商品管理-添加",
+      "section_name": "商品添加表单",
+      "module_name": "云手机商品管理",
+      "feature_name": "商品添加表单",
+      "field_name": "current_price",
+      "priority": "high",
+      "rationale": "`现价（元）` 为显式必填字段。",
+      "planned_assertions": [
+        "`现价（元）` 为空时应阻止提交或保存。"
+      ],
+      "structured_refs": [
+        "云手机商品管理.商品添加表单.current_price.required"
+      ],
+      "reasoning_refs": [],
+      "coverage_level": "business",
+      "emit_mode": "main_testcase"
+    },
+    {
+      "coverage_id": "COV-EX-0025",
+      "coverage_type": "field_property",
+      "source_origin": "explicit_rule",
+      "source_type": "structured_field",
+      "title": "服务时长 字段属性",
+      "page_name": "盒子管理后台-云手机商品管理-添加",
+      "section_name": "商品添加表单",
+      "module_name": "云手机商品管理",
+      "feature_name": "商品添加表单",
+      "field_name": "service_duration",
+      "priority": "medium",
+      "rationale": "字段 `服务时长` 已在 structured_prd 中显式建模，需要基础属性覆盖。",
+      "planned_assertions": [
+        "校验 `服务时长` 的控件类型、默认值或枚举定义与结构化规则一致。"
+      ],
+      "structured_refs": [
+        "云手机商品管理.商品添加表单.service_duration"
+      ],
+      "reasoning_refs": [],
+      "coverage_level": "structural",
+      "emit_mode": "audit_item"
+    },
+    {
+      "coverage_id": "COV-EX-0026",
+      "coverage_type": "required",
+      "source_origin": "explicit_rule",
+      "source_type": "structured_field",
+      "title": "服务时长 必填",
+      "page_name": "盒子管理后台-云手机商品管理-添加",
+      "section_name": "商品添加表单",
+      "module_name": "云手机商品管理",
+      "feature_name": "商品添加表单",
+      "field_name": "service_duration",
+      "priority": "high",
+      "rationale": "`服务时长` 为显式必填字段。",
+      "planned_assertions": [
+        "`服务时长` 为空时应阻止提交或保存。"
+      ],
+      "structured_refs": [
+        "云手机商品管理.商品添加表单.service_duration.required"
+      ],
+      "reasoning_refs": [],
+      "coverage_level": "business",
+      "emit_mode": "main_testcase"
+    },
+    {
+      "coverage_id": "COV-EX-0027",
+      "coverage_type": "field_property",
+      "source_origin": "explicit_rule",
+      "source_type": "structured_field",
+      "title": "商品区 字段属性",
+      "page_name": "盒子管理后台-云手机商品管理-添加",
+      "section_name": "商品添加表单",
+      "module_name": "云手机商品管理",
+      "feature_name": "商品添加表单",
+      "field_name": "product_region",
+      "priority": "medium",
+      "rationale": "字段 `商品区` 已在 structured_prd 中显式建模，需要基础属性覆盖。",
+      "planned_assertions": [
+        "校验 `商品区` 的控件类型、默认值或枚举定义与结构化规则一致。"
+      ],
+      "structured_refs": [
+        "云手机商品管理.商品添加表单.product_region"
+      ],
+      "reasoning_refs": [],
+      "coverage_level": "structural",
+      "emit_mode": "audit_item"
+    },
+    {
+      "coverage_id": "COV-EX-0028",
+      "coverage_type": "required",
+      "source_origin": "explicit_rule",
+      "source_type": "structured_field",
+      "title": "商品区 必填",
+      "page_name": "盒子管理后台-云手机商品管理-添加",
+      "section_name": "商品添加表单",
+      "module_name": "云手机商品管理",
+      "feature_name": "商品添加表单",
+      "field_name": "product_region",
+      "priority": "high",
+      "rationale": "`商品区` 为显式必填字段。",
+      "planned_assertions": [
+        "`商品区` 为空时应阻止提交或保存。"
+      ],
+      "structured_refs": [
+        "云手机商品管理.商品添加表单.product_region.required"
+      ],
+      "reasoning_refs": [],
+      "coverage_level": "business",
+      "emit_mode": "main_testcase"
+    },
+    {
+      "coverage_id": "COV-EX-0029",
+      "coverage_type": "field_property",
+      "source_origin": "explicit_rule",
+      "source_type": "structured_field",
+      "title": "盒子内排序 字段属性",
+      "page_name": "盒子管理后台-云手机商品管理-添加",
+      "section_name": "商品添加表单",
+      "module_name": "云手机商品管理",
+      "feature_name": "商品添加表单",
+      "field_name": "in_box_sort_order",
+      "priority": "medium",
+      "rationale": "字段 `盒子内排序` 已在 structured_prd 中显式建模，需要基础属性覆盖。",
+      "planned_assertions": [
+        "校验 `盒子内排序` 的控件类型、默认值或枚举定义与结构化规则一致。"
+      ],
+      "structured_refs": [
+        "云手机商品管理.商品添加表单.in_box_sort_order"
+      ],
+      "reasoning_refs": [],
+      "coverage_level": "structural",
+      "emit_mode": "audit_item"
+    },
+    {
+      "coverage_id": "COV-EX-0030",
+      "coverage_type": "required",
+      "source_origin": "explicit_rule",
+      "source_type": "structured_field",
+      "title": "盒子内排序 必填",
+      "page_name": "盒子管理后台-云手机商品管理-添加",
+      "section_name": "商品添加表单",
+      "module_name": "云手机商品管理",
+      "feature_name": "商品添加表单",
+      "field_name": "in_box_sort_order",
+      "priority": "high",
+      "rationale": "`盒子内排序` 为显式必填字段。",
+      "planned_assertions": [
+        "`盒子内排序` 为空时应阻止提交或保存。"
+      ],
+      "structured_refs": [
+        "云手机商品管理.商品添加表单.in_box_sort_order.required"
+      ],
+      "reasoning_refs": [],
+      "coverage_level": "business",
+      "emit_mode": "main_testcase"
+    },
+    {
+      "coverage_id": "COV-EX-0031",
+      "coverage_type": "field_property",
+      "source_origin": "explicit_rule",
+      "source_type": "structured_field",
+      "title": "商品标签类型 字段属性",
+      "page_name": "盒子管理后台-云手机商品管理-添加",
+      "section_name": "商品添加表单",
+      "module_name": "云手机商品管理",
+      "feature_name": "商品添加表单",
+      "field_name": "product_tag_type",
+      "priority": "medium",
+      "rationale": "字段 `商品标签类型` 已在 structured_prd 中显式建模，需要基础属性覆盖。",
+      "planned_assertions": [
+        "校验 `商品标签类型` 的控件类型、默认值或枚举定义与结构化规则一致。"
+      ],
+      "structured_refs": [
+        "云手机商品管理.商品添加表单.product_tag_type"
+      ],
+      "reasoning_refs": [],
+      "coverage_level": "structural",
+      "emit_mode": "audit_item"
+    },
+    {
+      "coverage_id": "COV-EX-0032",
+      "coverage_type": "field_property",
+      "source_origin": "explicit_rule",
+      "source_type": "structured_field",
+      "title": "展示用户 字段属性",
+      "page_name": "盒子管理后台-云手机商品管理-添加",
+      "section_name": "商品添加表单",
+      "module_name": "云手机商品管理",
+      "feature_name": "商品添加表单",
+      "field_name": "display_users",
+      "priority": "medium",
+      "rationale": "字段 `展示用户` 已在 structured_prd 中显式建模，需要基础属性覆盖。",
+      "planned_assertions": [
+        "校验 `展示用户` 的控件类型、默认值或枚举定义与结构化规则一致。"
+      ],
+      "structured_refs": [
+        "云手机商品管理.商品添加表单.display_users"
+      ],
+      "reasoning_refs": [],
+      "coverage_level": "structural",
+      "emit_mode": "audit_item"
+    },
+    {
+      "coverage_id": "COV-EX-0033",
+      "coverage_type": "field_property",
+      "source_origin": "explicit_rule",
+      "source_type": "structured_field",
+      "title": "用户可购买次数 字段属性",
+      "page_name": "盒子管理后台-云手机商品管理-添加",
+      "section_name": "商品添加表单",
+      "module_name": "云手机商品管理",
+      "feature_name": "商品添加表单",
+      "field_name": "user_purchase_limit",
+      "priority": "medium",
+      "rationale": "字段 `用户可购买次数` 已在 structured_prd 中显式建模，需要基础属性覆盖。",
+      "planned_assertions": [
+        "校验 `用户可购买次数` 的控件类型、默认值或枚举定义与结构化规则一致。"
+      ],
+      "structured_refs": [
+        "云手机商品管理.商品添加表单.user_purchase_limit"
+      ],
+      "reasoning_refs": [],
+      "coverage_level": "structural",
+      "emit_mode": "audit_item"
+    },
+    {
+      "coverage_id": "COV-EX-0034",
+      "coverage_type": "field_property",
+      "source_origin": "explicit_rule",
+      "source_type": "structured_field",
+      "title": "商品展示时间 字段属性",
+      "page_name": "盒子管理后台-云手机商品管理-添加",
+      "section_name": "商品添加表单",
+      "module_name": "云手机商品管理",
+      "feature_name": "商品添加表单",
+      "field_name": "product_display_time",
+      "priority": "medium",
+      "rationale": "字段 `商品展示时间` 已在 structured_prd 中显式建模，需要基础属性覆盖。",
+      "planned_assertions": [
+        "校验 `商品展示时间` 的控件类型、默认值或枚举定义与结构化规则一致。"
+      ],
+      "structured_refs": [
+        "云手机商品管理.商品添加表单.product_display_time"
+      ],
+      "reasoning_refs": [],
+      "coverage_level": "structural",
+      "emit_mode": "audit_item"
+    },
+    {
+      "coverage_id": "COV-EX-0035",
+      "coverage_type": "field_property",
+      "source_origin": "explicit_rule",
+      "source_type": "structured_field",
+      "title": "库存预警值 字段属性",
+      "page_name": "盒子管理后台-云手机商品管理-添加",
+      "section_name": "商品添加表单",
+      "module_name": "云手机商品管理",
+      "feature_name": "商品添加表单",
+      "field_name": "inventory_warning_threshold",
+      "priority": "medium",
+      "rationale": "字段 `库存预警值` 已在 structured_prd 中显式建模，需要基础属性覆盖。",
+      "planned_assertions": [
+        "校验 `库存预警值` 的控件类型、默认值或枚举定义与结构化规则一致。"
+      ],
+      "structured_refs": [
+        "云手机商品管理.商品添加表单.inventory_warning_threshold"
+      ],
+      "reasoning_refs": [],
+      "coverage_level": "structural",
+      "emit_mode": "audit_item"
+    },
+    {
+      "coverage_id": "COV-EX-0036",
+      "coverage_type": "field_property",
+      "source_origin": "explicit_rule",
+      "source_type": "structured_field",
+      "title": "购买数量报警通知人 字段属性",
+      "page_name": "盒子管理后台-云手机商品管理-添加",
+      "section_name": "商品添加表单",
+      "module_name": "云手机商品管理",
+      "feature_name": "商品添加表单",
+      "field_name": "purchase_alert_recipient",
+      "priority": "medium",
+      "rationale": "字段 `购买数量报警通知人` 已在 structured_prd 中显式建模，需要基础属性覆盖。",
+      "planned_assertions": [
+        "校验 `购买数量报警通知人` 的控件类型、默认值或枚举定义与结构化规则一致。"
+      ],
+      "structured_refs": [
+        "云手机商品管理.商品添加表单.purchase_alert_recipient"
+      ],
+      "reasoning_refs": [],
+      "coverage_level": "structural",
+      "emit_mode": "audit_item"
+    },
+    {
+      "coverage_id": "COV-EX-0037",
+      "coverage_type": "required",
+      "source_origin": "explicit_rule",
+      "source_type": "structured_field",
+      "title": "购买数量报警通知人 必填",
+      "page_name": "盒子管理后台-云手机商品管理-添加",
+      "section_name": "商品添加表单",
+      "module_name": "云手机商品管理",
+      "feature_name": "商品添加表单",
+      "field_name": "purchase_alert_recipient",
+      "priority": "high",
+      "rationale": "`购买数量报警通知人` 为显式必填字段。",
+      "planned_assertions": [
+        "`购买数量报警通知人` 为空时应阻止提交或保存。"
+      ],
+      "structured_refs": [
+        "云手机商品管理.商品添加表单.purchase_alert_recipient.required"
+      ],
+      "reasoning_refs": [],
+      "coverage_level": "business",
+      "emit_mode": "main_testcase"
+    },
+    {
+      "coverage_id": "COV-EX-0038",
+      "coverage_type": "field_property",
+      "source_origin": "explicit_rule",
+      "source_type": "structured_field",
+      "title": "状态 字段属性",
+      "page_name": "盒子管理后台-云手机商品管理-添加",
+      "section_name": "商品添加表单",
+      "module_name": "云手机商品管理",
+      "feature_name": "商品添加表单",
+      "field_name": "status",
+      "priority": "medium",
+      "rationale": "字段 `状态` 已在 structured_prd 中显式建模，需要基础属性覆盖。",
+      "planned_assertions": [
+        "校验 `状态` 的控件类型、默认值或枚举定义与结构化规则一致。"
+      ],
+      "structured_refs": [
+        "云手机商品管理.商品添加表单.status"
+      ],
+      "reasoning_refs": [],
+      "coverage_level": "structural",
+      "emit_mode": "audit_item"
+    },
+    {
+      "coverage_id": "COV-EX-0039",
+      "coverage_type": "field_property",
+      "source_origin": "explicit_rule",
+      "source_type": "structured_field",
+      "title": "商品配置 字段属性",
+      "page_name": "盒子管理后台-云手机商品管理-添加",
+      "section_name": "商品区与库存规则说明表",
+      "module_name": "云手机商品管理",
+      "feature_name": "商品区与库存规则说明表",
+      "field_name": "product_configuration",
+      "priority": "medium",
+      "rationale": "字段 `商品配置` 已在 structured_prd 中显式建模，需要基础属性覆盖。",
+      "planned_assertions": [
+        "校验 `商品配置` 的控件类型、默认值或枚举定义与结构化规则一致。"
+      ],
+      "structured_refs": [
+        "云手机商品管理.商品区与库存规则说明表.product_configuration"
+      ],
+      "reasoning_refs": [],
+      "coverage_level": "structural",
+      "emit_mode": "audit_item"
+    },
+    {
+      "coverage_id": "COV-EX-0040",
+      "coverage_type": "field_property",
+      "source_origin": "explicit_rule",
+      "source_type": "structured_field",
+      "title": "库存预警值 字段属性",
+      "page_name": "盒子管理后台-云手机商品管理-添加",
+      "section_name": "商品区与库存规则说明表",
+      "module_name": "云手机商品管理",
+      "feature_name": "商品区与库存规则说明表",
+      "field_name": "inventory_warning_threshold",
+      "priority": "medium",
+      "rationale": "字段 `库存预警值` 已在 structured_prd 中显式建模，需要基础属性覆盖。",
+      "planned_assertions": [
+        "校验 `库存预警值` 的控件类型、默认值或枚举定义与结构化规则一致。"
+      ],
+      "structured_refs": [
+        "云手机商品管理.商品区与库存规则说明表.inventory_warning_threshold"
+      ],
+      "reasoning_refs": [],
+      "coverage_level": "structural",
+      "emit_mode": "audit_item"
+    },
+    {
+      "coverage_id": "COV-EX-0041",
+      "coverage_type": "field_property",
+      "source_origin": "explicit_rule",
+      "source_type": "structured_field",
+      "title": "云机类型 字段属性",
+      "page_name": "盒子管理后台-编辑宣传内容",
+      "section_name": "宣传内容编辑表单",
+      "module_name": "宣传内容管理",
+      "feature_name": "宣传内容编辑表单",
+      "field_name": "cloud_machine_type",
+      "priority": "medium",
+      "rationale": "字段 `云机类型` 已在 structured_prd 中显式建模，需要基础属性覆盖。",
+      "planned_assertions": [
+        "校验 `云机类型` 的控件类型、默认值或枚举定义与结构化规则一致。"
+      ],
+      "structured_refs": [
+        "宣传内容管理.宣传内容编辑表单.cloud_machine_type"
+      ],
+      "reasoning_refs": [],
+      "coverage_level": "structural",
+      "emit_mode": "audit_item"
+    },
+    {
+      "coverage_id": "COV-EX-0042",
+      "coverage_type": "required",
+      "source_origin": "explicit_rule",
+      "source_type": "structured_field",
+      "title": "云机类型 必填",
+      "page_name": "盒子管理后台-编辑宣传内容",
+      "section_name": "宣传内容编辑表单",
+      "module_name": "宣传内容管理",
+      "feature_name": "宣传内容编辑表单",
+      "field_name": "cloud_machine_type",
+      "priority": "high",
+      "rationale": "`云机类型` 为显式必填字段。",
+      "planned_assertions": [
+        "`云机类型` 为空时应阻止提交或保存。"
+      ],
+      "structured_refs": [
+        "宣传内容管理.宣传内容编辑表单.cloud_machine_type.required"
+      ],
+      "reasoning_refs": [],
+      "coverage_level": "business",
+      "emit_mode": "main_testcase"
+    },
+    {
+      "coverage_id": "COV-EX-0043",
+      "coverage_type": "field_property",
+      "source_origin": "explicit_rule",
+      "source_type": "structured_field",
+      "title": "宣传图片 字段属性",
+      "page_name": "盒子管理后台-编辑宣传内容",
+      "section_name": "宣传内容编辑表单",
+      "module_name": "宣传内容管理",
+      "feature_name": "宣传内容编辑表单",
+      "field_name": "promotion_image",
+      "priority": "medium",
+      "rationale": "字段 `宣传图片` 已在 structured_prd 中显式建模，需要基础属性覆盖。",
+      "planned_assertions": [
+        "校验 `宣传图片` 的控件类型、默认值或枚举定义与结构化规则一致。"
+      ],
+      "structured_refs": [
+        "宣传内容管理.宣传内容编辑表单.promotion_image"
+      ],
+      "reasoning_refs": [],
+      "coverage_level": "structural",
+      "emit_mode": "audit_item"
+    },
+    {
+      "coverage_id": "COV-EX-0044",
+      "coverage_type": "required",
+      "source_origin": "explicit_rule",
+      "source_type": "structured_field",
+      "title": "宣传图片 必填",
+      "page_name": "盒子管理后台-编辑宣传内容",
+      "section_name": "宣传内容编辑表单",
+      "module_name": "宣传内容管理",
+      "feature_name": "宣传内容编辑表单",
+      "field_name": "promotion_image",
+      "priority": "high",
+      "rationale": "`宣传图片` 为显式必填字段。",
+      "planned_assertions": [
+        "`宣传图片` 为空时应阻止提交或保存。"
+      ],
+      "structured_refs": [
+        "宣传内容管理.宣传内容编辑表单.promotion_image.required"
+      ],
+      "reasoning_refs": [],
+      "coverage_level": "business",
+      "emit_mode": "main_testcase"
+    },
+    {
+      "coverage_id": "COV-EX-0045",
+      "coverage_type": "field_property",
+      "source_origin": "explicit_rule",
+      "source_type": "structured_field",
+      "title": "宣传口号 字段属性",
+      "page_name": "盒子管理后台-编辑宣传内容",
+      "section_name": "宣传内容编辑表单",
+      "module_name": "宣传内容管理",
+      "feature_name": "宣传内容编辑表单",
+      "field_name": "promotion_slogan",
+      "priority": "medium",
+      "rationale": "字段 `宣传口号` 已在 structured_prd 中显式建模，需要基础属性覆盖。",
+      "planned_assertions": [
+        "校验 `宣传口号` 的控件类型、默认值或枚举定义与结构化规则一致。"
+      ],
+      "structured_refs": [
+        "宣传内容管理.宣传内容编辑表单.promotion_slogan"
+      ],
+      "reasoning_refs": [],
+      "coverage_level": "structural",
+      "emit_mode": "audit_item"
+    },
+    {
+      "coverage_id": "COV-EX-0046",
+      "coverage_type": "required",
+      "source_origin": "explicit_rule",
+      "source_type": "structured_field",
+      "title": "宣传口号 必填",
+      "page_name": "盒子管理后台-编辑宣传内容",
+      "section_name": "宣传内容编辑表单",
+      "module_name": "宣传内容管理",
+      "feature_name": "宣传内容编辑表单",
+      "field_name": "promotion_slogan",
+      "priority": "high",
+      "rationale": "`宣传口号` 为显式必填字段。",
+      "planned_assertions": [
+        "`宣传口号` 为空时应阻止提交或保存。"
+      ],
+      "structured_refs": [
+        "宣传内容管理.宣传内容编辑表单.promotion_slogan.required"
+      ],
+      "reasoning_refs": [],
+      "coverage_level": "business",
+      "emit_mode": "main_testcase"
+    },
+    {
+      "coverage_id": "COV-EX-0047",
+      "coverage_type": "field_property",
+      "source_origin": "explicit_rule",
+      "source_type": "structured_field",
+      "title": "性能参数 字段属性",
+      "page_name": "盒子管理后台-编辑宣传内容",
+      "section_name": "宣传内容编辑表单",
+      "module_name": "宣传内容管理",
+      "feature_name": "宣传内容编辑表单",
+      "field_name": "performance_parameters",
+      "priority": "medium",
+      "rationale": "字段 `性能参数` 已在 structured_prd 中显式建模，需要基础属性覆盖。",
+      "planned_assertions": [
+        "校验 `性能参数` 的控件类型、默认值或枚举定义与结构化规则一致。"
+      ],
+      "structured_refs": [
+        "宣传内容管理.宣传内容编辑表单.performance_parameters"
+      ],
+      "reasoning_refs": [],
+      "coverage_level": "structural",
+      "emit_mode": "audit_item"
+    },
+    {
+      "coverage_id": "COV-EX-0048",
+      "coverage_type": "required",
+      "source_origin": "explicit_rule",
+      "source_type": "structured_field",
+      "title": "性能参数 必填",
+      "page_name": "盒子管理后台-编辑宣传内容",
+      "section_name": "宣传内容编辑表单",
+      "module_name": "宣传内容管理",
+      "feature_name": "宣传内容编辑表单",
+      "field_name": "performance_parameters",
+      "priority": "high",
+      "rationale": "`性能参数` 为显式必填字段。",
+      "planned_assertions": [
+        "`性能参数` 为空时应阻止提交或保存。"
+      ],
+      "structured_refs": [
+        "宣传内容管理.宣传内容编辑表单.performance_parameters.required"
+      ],
+      "reasoning_refs": [],
+      "coverage_level": "business",
+      "emit_mode": "main_testcase"
+    },
+    {
+      "coverage_id": "COV-EX-0049",
+      "coverage_type": "field_property",
+      "source_origin": "explicit_rule",
+      "source_type": "structured_field",
+      "title": "宣传内容配置 字段属性",
+      "page_name": "盒子管理后台-编辑宣传内容",
+      "section_name": "宣传内容字段说明表",
+      "module_name": "宣传内容管理",
+      "feature_name": "宣传内容字段说明表",
+      "field_name": "promotion_content",
+      "priority": "medium",
+      "rationale": "字段 `宣传内容配置` 已在 structured_prd 中显式建模，需要基础属性覆盖。",
+      "planned_assertions": [
+        "校验 `宣传内容配置` 的控件类型、默认值或枚举定义与结构化规则一致。"
+      ],
+      "structured_refs": [
+        "宣传内容管理.宣传内容字段说明表.promotion_content"
+      ],
+      "reasoning_refs": [],
+      "coverage_level": "structural",
+      "emit_mode": "audit_item"
+    },
+    {
+      "coverage_id": "COV-EX-0050",
+      "coverage_type": "value_boundary",
+      "coverage_level": "critical",
+      "emit_mode": "main_testcase",
+      "source_origin": "explicit_rule",
+      "source_type": "structured_rule",
+      "title": "宣传口号 边界值",
+      "page_name": "云挂机购买页",
+      "section_name": "宣传区",
+      "module_name": "云挂机购买页",
+      "feature_name": "宣传区",
+      "field_name": "promotion_slogan",
+      "priority": "high",
+      "rationale": "按当前 PT083 来源规则、页面上下文和可观察断言独立归一化；不与同页同字段的基础属性覆盖重复。",
+      "planned_assertions": [
+        "宣传口号分别覆盖19、20、21个字符，超过一行时C端换行展示。"
+      ],
+      "structured_refs": [
+        "云挂机购买页.宣传区.promotion_slogan.rules"
+      ],
+      "reasoning_refs": []
+    },
+    {
+      "coverage_id": "COV-EX-0051",
+      "coverage_type": "value_boundary",
+      "coverage_level": "critical",
+      "emit_mode": "main_testcase",
+      "source_origin": "explicit_rule",
+      "source_type": "structured_rule",
+      "title": "性能参数 边界值",
+      "page_name": "云挂机购买页",
+      "section_name": "宣传区",
+      "module_name": "云挂机购买页",
+      "feature_name": "宣传区",
+      "field_name": "performance_parameters",
+      "priority": "high",
+      "rationale": "按当前 PT083 来源规则、页面上下文和可观察断言独立归一化；不与同页同字段的基础属性覆盖重复。",
+      "planned_assertions": [
+        "性能参数分别覆盖19、20、21个字符，超过一行时C端换行展示。"
+      ],
+      "structured_refs": [
+        "云挂机购买页.宣传区.performance_parameters.rules"
+      ],
+      "reasoning_refs": []
+    },
+    {
+      "coverage_id": "COV-EX-0052",
+      "coverage_type": "value_boundary",
+      "coverage_level": "critical",
+      "emit_mode": "main_testcase",
+      "source_origin": "explicit_rule",
+      "source_type": "structured_rule",
+      "title": "原价（元） 边界值",
+      "page_name": "盒子管理后台-云手机商品管理-添加",
+      "section_name": "商品添加表单",
+      "module_name": "云手机商品管理",
+      "feature_name": "商品添加表单",
+      "field_name": "original_price",
+      "priority": "high",
+      "rationale": "按当前 PT083 来源规则、页面上下文和可观察断言独立归一化；不与同页同字段的基础属性覆盖重复。",
+      "planned_assertions": [
+        "原价必须大于0.00，覆盖0.00与最小合法正数。"
+      ],
+      "structured_refs": [
+        "云手机商品管理.商品添加表单.original_price.rules"
+      ],
+      "reasoning_refs": []
+    },
+    {
+      "coverage_id": "COV-EX-0053",
+      "coverage_type": "value_boundary",
+      "coverage_level": "critical",
+      "emit_mode": "main_testcase",
+      "source_origin": "explicit_rule",
+      "source_type": "structured_rule",
+      "title": "现价（元） 边界值",
+      "page_name": "盒子管理后台-云手机商品管理-添加",
+      "section_name": "商品添加表单",
+      "module_name": "云手机商品管理",
+      "feature_name": "商品添加表单",
+      "field_name": "current_price",
+      "priority": "high",
+      "rationale": "按当前 PT083 来源规则、页面上下文和可观察断言独立归一化；不与同页同字段的基础属性覆盖重复。",
+      "planned_assertions": [
+        "现价必须大于0.00，覆盖0.00与最小合法正数。"
+      ],
+      "structured_refs": [
+        "云手机商品管理.商品添加表单.current_price.rules"
+      ],
+      "reasoning_refs": []
+    },
+    {
+      "coverage_id": "COV-EX-0054",
+      "coverage_type": "value_boundary",
+      "coverage_level": "critical",
+      "emit_mode": "main_testcase",
+      "source_origin": "explicit_rule",
+      "source_type": "structured_rule",
+      "title": "盒子内排序 边界值",
+      "page_name": "盒子管理后台-云手机商品管理-添加",
+      "section_name": "商品添加表单",
+      "module_name": "云手机商品管理",
+      "feature_name": "商品添加表单",
+      "field_name": "in_box_sort_order",
+      "priority": "high",
+      "rationale": "按当前 PT083 来源规则、页面上下文和可观察断言独立归一化；不与同页同字段的基础属性覆盖重复。",
+      "planned_assertions": [
+        "盒子内排序覆盖1、1000、1001且只接受正整数。"
+      ],
+      "structured_refs": [
+        "云手机商品管理.商品添加表单.in_box_sort_order.rules"
+      ],
+      "reasoning_refs": []
+    },
+    {
+      "coverage_id": "COV-EX-0055",
+      "coverage_type": "value_boundary",
+      "coverage_level": "critical",
+      "emit_mode": "main_testcase",
+      "source_origin": "explicit_rule",
+      "source_type": "structured_rule",
+      "title": "库存预警值 边界值",
+      "page_name": "盒子管理后台-云手机商品管理-添加",
+      "section_name": "商品添加表单",
+      "module_name": "云手机商品管理",
+      "feature_name": "商品添加表单",
+      "field_name": "inventory_warning_threshold",
+      "priority": "high",
+      "rationale": "按当前 PT083 来源规则、页面上下文和可观察断言独立归一化；不与同页同字段的基础属性覆盖重复。",
+      "planned_assertions": [
+        "库存预警值覆盖1、200、201且只接受正整数。"
+      ],
+      "structured_refs": [
+        "云手机商品管理.商品添加表单.inventory_warning_threshold.rules"
+      ],
+      "reasoning_refs": []
+    },
+    {
+      "coverage_id": "COV-EX-0056",
+      "coverage_type": "value_boundary",
+      "coverage_level": "critical",
+      "emit_mode": "main_testcase",
+      "source_origin": "explicit_rule",
+      "source_type": "structured_rule",
+      "title": "库存预警值 边界值",
+      "page_name": "盒子管理后台-云手机商品管理-添加",
+      "section_name": "商品区与库存规则说明表",
+      "module_name": "云手机商品管理",
+      "feature_name": "商品区与库存规则说明表",
+      "field_name": "inventory_warning_threshold",
+      "priority": "high",
+      "rationale": "按当前 PT083 来源规则、页面上下文和可观察断言独立归一化；不与同页同字段的基础属性覆盖重复。",
+      "planned_assertions": [
+        "实际库存分别高于、等于和低于预警值时，核对展示、分配与告警结果。"
+      ],
+      "structured_refs": [
+        "云手机商品管理.商品区与库存规则说明表.inventory_warning_threshold.rules"
+      ],
+      "reasoning_refs": []
+    },
+    {
+      "coverage_id": "COV-EX-0057",
+      "coverage_type": "value_boundary",
+      "coverage_level": "critical",
+      "emit_mode": "main_testcase",
+      "source_origin": "explicit_rule",
+      "source_type": "structured_rule",
+      "title": "宣传口号 边界值",
+      "page_name": "盒子管理后台-编辑宣传内容",
+      "section_name": "宣传内容编辑表单",
+      "module_name": "宣传内容管理",
+      "feature_name": "宣传内容编辑表单",
+      "field_name": "promotion_slogan",
+      "priority": "high",
+      "rationale": "按当前 PT083 来源规则、页面上下文和可观察断言独立归一化；不与同页同字段的基础属性覆盖重复。",
+      "planned_assertions": [
+        "后台宣传口号覆盖19、20、21个字符并保持20字符上限。"
+      ],
+      "structured_refs": [
+        "宣传内容管理.宣传内容编辑表单.promotion_slogan.rules"
+      ],
+      "reasoning_refs": []
+    },
+    {
+      "coverage_id": "COV-EX-0058",
+      "coverage_type": "value_boundary",
+      "coverage_level": "critical",
+      "emit_mode": "main_testcase",
+      "source_origin": "explicit_rule",
+      "source_type": "structured_rule",
+      "title": "性能参数 边界值",
+      "page_name": "盒子管理后台-编辑宣传内容",
+      "section_name": "宣传内容编辑表单",
+      "module_name": "宣传内容管理",
+      "feature_name": "宣传内容编辑表单",
+      "field_name": "performance_parameters",
+      "priority": "high",
+      "rationale": "按当前 PT083 来源规则、页面上下文和可观察断言独立归一化；不与同页同字段的基础属性覆盖重复。",
+      "planned_assertions": [
+        "后台性能参数覆盖19、20、21个字符并保持20字符上限。"
+      ],
+      "structured_refs": [
+        "宣传内容管理.宣传内容编辑表单.performance_parameters.rules"
+      ],
+      "reasoning_refs": []
+    },
+    {
+      "coverage_id": "COV-EX-0059",
+      "coverage_type": "value_boundary",
+      "coverage_level": "critical",
+      "emit_mode": "main_testcase",
+      "source_origin": "explicit_rule",
+      "source_type": "structured_field",
+      "title": "服务时长 边界值",
+      "page_name": "盒子管理后台-云手机商品管理-添加",
+      "section_name": "商品添加表单",
+      "module_name": "云手机商品管理",
+      "feature_name": "商品添加表单",
+      "field_name": "service_duration",
+      "priority": "high",
+      "rationale": "按当前 PT083 来源规则、页面上下文和可观察断言独立归一化；不与同页同字段的基础属性覆盖重复。",
+      "planned_assertions": [
+        "服务时长覆盖天0/370/371、小时0/23/24及天和小时同时为0。"
+      ],
+      "structured_refs": [
+        "云手机商品管理.商品添加表单.service_duration.formats"
+      ],
+      "reasoning_refs": []
+    },
+    {
+      "coverage_id": "COV-EX-0060",
+      "coverage_type": "data_source_order",
+      "coverage_level": "critical",
+      "emit_mode": "main_testcase",
+      "source_origin": "explicit_rule",
+      "source_type": "structured_rule",
+      "title": "盒子内排序 数据源排序",
+      "page_name": "盒子管理后台-云手机商品管理-添加",
+      "section_name": "商品添加表单",
+      "module_name": "云手机商品管理",
+      "feature_name": "商品添加表单",
+      "field_name": "in_box_sort_order",
+      "priority": "high",
+      "rationale": "按当前 PT083 来源规则、页面上下文和可观察断言独立归一化；不与同页同字段的基础属性覆盖重复。",
+      "planned_assertions": [
+        "相同盒子内排序值按创建时间倒序展示。"
+      ],
+      "structured_refs": [
+        "云手机商品管理.商品添加表单.in_box_sort_order.order_by"
+      ],
+      "reasoning_refs": []
+    },
+    {
+      "coverage_id": "COV-EX-0061",
+      "coverage_type": "required",
+      "coverage_level": "business",
+      "emit_mode": "main_testcase",
+      "source_origin": "explicit_rule",
+      "source_type": "structured_field",
+      "title": "宣传内容配置 必填",
+      "page_name": "盒子管理后台-编辑宣传内容",
+      "section_name": "宣传内容字段说明表",
+      "module_name": "宣传内容管理",
+      "feature_name": "宣传内容字段说明表",
+      "field_name": "promotion_content",
+      "priority": "high",
+      "rationale": "按当前 PT083 来源规则、页面上下文和可观察断言独立归一化；不与同页同字段的基础属性覆盖重复。",
+      "planned_assertions": [
+        "所有云机类型都需要配置宣传内容，且云机类型不得重复。"
+      ],
+      "structured_refs": [
+        "宣传内容管理.宣传内容字段说明表.promotion_content.required"
+      ],
+      "reasoning_refs": []
+    },
+    {
+      "coverage_id": "COV-EX-0062",
+      "coverage_type": "field_property",
+      "coverage_level": "audit_only",
+      "emit_mode": "audit_item",
+      "source_origin": "explicit_rule",
+      "source_type": "structured_rule",
+      "title": "云机版本Tab 展示与切换审计",
+      "page_name": "云挂机购买页",
+      "section_name": "版本Tab",
+      "module_name": "云挂机购买页",
+      "feature_name": "版本Tab",
+      "field_name": "cloud_machine_version",
+      "priority": "medium",
+      "rationale": "按当前 PT083 来源规则、页面上下文和可观察断言独立归一化；不与同页同字段的基础属性覆盖重复。",
+      "planned_assertions": [
+        "全新版和常规版两个Tab均可见且可切换；该展示上下文不升级为可空提交字段。"
+      ],
+      "structured_refs": [
+        "云挂机购买页.版本Tab.rules"
+      ],
+      "reasoning_refs": []
+    },
+    {
+      "coverage_id": "COV-EX-0063",
+      "coverage_type": "data_source_display",
+      "coverage_level": "structural",
+      "emit_mode": "audit_item",
+      "source_origin": "explicit_rule",
+      "source_type": "structured_field",
+      "title": "商品列表列头 数据源展示格式",
+      "page_name": "盒子管理后台-云手机商品管理",
+      "section_name": "商品列表",
+      "module_name": "云手机商品管理",
+      "feature_name": "商品列表",
+      "field_name": "product_list_columns",
+      "priority": "medium",
+      "rationale": "按当前 PT083 来源规则、页面上下文和可观察断言独立归一化；不与同页同字段的基础属性覆盖重复。",
+      "planned_assertions": [
+        "列表展示图片证据明确的商品、价格、时长、排序、状态及操作列。"
+      ],
+      "structured_refs": [
+        "云手机商品管理.商品列表.product_list_columns.content_values"
+      ],
+      "reasoning_refs": []
+    },
+    {
+      "coverage_id": "COV-EX-0064",
+      "coverage_type": "happy_path_combo",
+      "coverage_level": "business",
+      "emit_mode": "main_testcase",
+      "source_origin": "explicit_rule",
+      "source_type": "coverage_candidate",
+      "title": "首屏2.5个，最多4个",
+      "page_name": "云挂机购买页",
+      "section_name": "特价专区",
+      "module_name": "云挂机购买页",
+      "feature_name": "特价专区",
+      "field_name": "special_product_list",
+      "priority": "high",
+      "rationale": "按当前 PT083 来源规则、页面上下文和可观察断言独立归一化；不与同页同字段的基础属性覆盖重复。",
+      "planned_assertions": [
+        "特价专区横向展示，首屏约2.5个且最多展示4个商品。"
+      ],
+      "structured_refs": [
+        "云挂机购买页.特价专区.special_product_list"
+      ],
+      "reasoning_refs": []
+    },
+    {
+      "coverage_id": "COV-EX-0065",
+      "coverage_type": "happy_path_combo",
+      "coverage_level": "business",
+      "emit_mode": "main_testcase",
+      "source_origin": "explicit_rule",
+      "source_type": "coverage_candidate",
+      "title": "后台未配置时隐藏",
+      "page_name": "云挂机购买页",
+      "section_name": "特价专区",
+      "module_name": "云挂机购买页",
+      "feature_name": "特价专区",
+      "field_name": "special_product_list",
+      "priority": "high",
+      "rationale": "按当前 PT083 来源规则、页面上下文和可观察断言独立归一化；不与同页同字段的基础属性覆盖重复。",
+      "planned_assertions": [
+        "后台未配置特殊区商品时，C端隐藏整个特价专区。"
+      ],
+      "structured_refs": [
+        "云挂机购买页.特价专区.special_product_list"
+      ],
+      "reasoning_refs": []
+    },
+    {
+      "coverage_id": "COV-EX-0066",
+      "coverage_type": "happy_path_combo",
+      "coverage_level": "business",
+      "emit_mode": "main_testcase",
+      "source_origin": "explicit_rule",
+      "source_type": "coverage_candidate",
+      "title": "限时购买",
+      "page_name": "云挂机购买页",
+      "section_name": "普通商品列表",
+      "module_name": "云挂机购买页",
+      "feature_name": "普通商品列表",
+      "field_name": "regular_product_list",
+      "priority": "high",
+      "rationale": "按当前 PT083 来源规则、页面上下文和可观察断言独立归一化；不与同页同字段的基础属性覆盖重复。",
+      "planned_assertions": [
+        "普通商品区按图片展示限时购买文案。"
+      ],
+      "structured_refs": [
+        "云挂机购买页.普通商品列表.regular_product_list"
+      ],
+      "reasoning_refs": []
+    },
+    {
+      "coverage_id": "COV-EX-0067",
+      "coverage_type": "happy_path_combo",
+      "coverage_level": "business",
+      "emit_mode": "main_testcase",
+      "source_origin": "explicit_rule",
+      "source_type": "coverage_candidate",
+      "title": "纵向展示",
+      "page_name": "云挂机购买页",
+      "section_name": "普通商品列表",
+      "module_name": "云挂机购买页",
+      "feature_name": "普通商品列表",
+      "field_name": "regular_product_list",
+      "priority": "high",
+      "rationale": "按当前 PT083 来源规则、页面上下文和可观察断言独立归一化；不与同页同字段的基础属性覆盖重复。",
+      "planned_assertions": [
+        "普通商品列表保持纵向展示。"
+      ],
+      "structured_refs": [
+        "云挂机购买页.普通商品列表.regular_product_list"
+      ],
+      "reasoning_refs": []
+    },
+    {
+      "coverage_id": "COV-EX-0068",
+      "coverage_type": "happy_path_combo",
+      "coverage_level": "audit_only",
+      "emit_mode": "audit_item",
+      "source_origin": "explicit_rule",
+      "source_type": "coverage_candidate",
+      "title": "其余逻辑不变",
+      "page_name": "云挂机购买页",
+      "section_name": "普通商品列表",
+      "module_name": "云挂机购买页",
+      "feature_name": "普通商品列表",
+      "field_name": "regular_product_list",
+      "priority": "medium",
+      "rationale": "按当前 PT083 来源规则、页面上下文和可观察断言独立归一化；不与同页同字段的基础属性覆盖重复。",
+      "planned_assertions": [
+        "仅审计既有普通区逻辑未被本次改版无依据改变。"
+      ],
+      "structured_refs": [
+        "云挂机购买页.普通商品列表.regular_product_list"
+      ],
+      "reasoning_refs": []
+    },
+    {
+      "coverage_id": "COV-EX-0069",
+      "coverage_type": "happy_path_combo",
+      "coverage_level": "business",
+      "emit_mode": "main_testcase",
+      "source_origin": "explicit_rule",
+      "source_type": "coverage_candidate",
+      "title": "最多4个商品",
+      "page_name": "盒子管理后台-云手机商品管理-添加",
+      "section_name": "商品添加表单",
+      "module_name": "云手机商品管理",
+      "feature_name": "商品添加表单",
+      "field_name": "product_region",
+      "priority": "high",
+      "rationale": "按当前 PT083 来源规则、页面上下文和可观察断言独立归一化；不与同页同字段的基础属性覆盖重复。",
+      "planned_assertions": [
+        "特殊区最多配置4个商品。"
+      ],
+      "structured_refs": [
+        "云手机商品管理.商品添加表单.product_region"
+      ],
+      "reasoning_refs": []
+    },
+    {
+      "coverage_id": "COV-EX-0070",
+      "coverage_type": "happy_path_combo",
+      "coverage_level": "business",
+      "emit_mode": "main_testcase",
+      "source_origin": "explicit_rule",
+      "source_type": "coverage_candidate",
+      "title": "特殊区超过4个不可保存",
+      "page_name": "盒子管理后台-云手机商品管理-添加",
+      "section_name": "商品添加表单",
+      "module_name": "云手机商品管理",
+      "feature_name": "商品添加表单",
+      "field_name": "product_region",
+      "priority": "high",
+      "rationale": "按当前 PT083 来源规则、页面上下文和可观察断言独立归一化；不与同页同字段的基础属性覆盖重复。",
+      "planned_assertions": [
+        "配置第5个特殊区商品时展示图片指定提示且不可保存。"
+      ],
+      "structured_refs": [
+        "云手机商品管理.商品添加表单.product_region"
+      ],
+      "reasoning_refs": []
+    },
+    {
+      "coverage_id": "COV-EX-0071",
+      "coverage_type": "happy_path_combo",
+      "coverage_level": "business",
+      "emit_mode": "main_testcase",
+      "source_origin": "explicit_rule",
+      "source_type": "coverage_candidate",
+      "title": "库存小于等于预警值",
+      "page_name": "盒子管理后台-云手机商品管理-添加",
+      "section_name": "商品区与库存规则说明表",
+      "module_name": "云手机商品管理",
+      "feature_name": "商品区与库存规则说明表",
+      "field_name": "inventory_warning_threshold",
+      "priority": "high",
+      "rationale": "按当前 PT083 来源规则、页面上下文和可观察断言独立归一化；不与同页同字段的基础属性覆盖重复。",
+      "planned_assertions": [
+        "实际库存小于等于库存预警值时触发不足状态。"
+      ],
+      "structured_refs": [
+        "云手机商品管理.商品区与库存规则说明表.inventory_warning_threshold"
+      ],
+      "reasoning_refs": []
+    },
+    {
+      "coverage_id": "COV-EX-0072",
+      "coverage_type": "happy_path_combo",
+      "coverage_level": "business",
+      "emit_mode": "main_testcase",
+      "source_origin": "explicit_rule",
+      "source_type": "coverage_candidate",
+      "title": "隐藏商品、不分配云机、发送告警",
+      "page_name": "盒子管理后台-云手机商品管理-添加",
+      "section_name": "商品区与库存规则说明表",
+      "module_name": "云手机商品管理",
+      "feature_name": "商品区与库存规则说明表",
+      "field_name": "inventory_warning_threshold",
+      "priority": "high",
+      "rationale": "按当前 PT083 来源规则、页面上下文和可观察断言独立归一化；不与同页同字段的基础属性覆盖重复。",
+      "planned_assertions": [
+        "库存不足时同时隐藏C端商品、停止分配云机并向通知人发送告警。"
+      ],
+      "structured_refs": [
+        "云手机商品管理.商品区与库存规则说明表.inventory_warning_threshold"
+      ],
+      "reasoning_refs": []
+    },
+    {
+      "coverage_id": "COV-EX-0073",
+      "coverage_type": "happy_path_combo",
+      "coverage_level": "business",
+      "emit_mode": "main_testcase",
+      "source_origin": "explicit_rule",
+      "source_type": "coverage_candidate",
+      "title": "所有云机类型均配置且不重复",
+      "page_name": "盒子管理后台-编辑宣传内容",
+      "section_name": "宣传内容编辑表单",
+      "module_name": "宣传内容管理",
+      "feature_name": "宣传内容编辑表单",
+      "field_name": "cloud_machine_type",
+      "priority": "high",
+      "rationale": "按当前 PT083 来源规则、页面上下文和可观察断言独立归一化；不与同页同字段的基础属性覆盖重复。",
+      "planned_assertions": [
+        "所有云机类型均需配置宣传内容，云机类型不可重复。"
+      ],
+      "structured_refs": [
+        "宣传内容管理.宣传内容编辑表单.cloud_machine_type"
+      ],
+      "reasoning_refs": []
+    },
+    {
+      "coverage_id": "COV-EX-0074",
+      "coverage_type": "happy_path_combo",
+      "coverage_level": "business",
+      "emit_mode": "main_testcase",
+      "source_origin": "explicit_rule",
+      "source_type": "coverage_candidate",
+      "title": "宣传图片最多5张",
+      "page_name": "盒子管理后台-编辑宣传内容",
+      "section_name": "宣传内容编辑表单",
+      "module_name": "宣传内容管理",
+      "feature_name": "宣传内容编辑表单",
+      "field_name": "promotion_image",
+      "priority": "high",
+      "rationale": "按当前 PT083 来源规则、页面上下文和可观察断言独立归一化；不与同页同字段的基础属性覆盖重复。",
+      "planned_assertions": [
+        "宣传图片最多上传5张。"
+      ],
+      "structured_refs": [
+        "宣传内容管理.宣传内容编辑表单.promotion_image"
+      ],
+      "reasoning_refs": []
+    },
+    {
+      "coverage_id": "COV-EX-0075",
+      "coverage_type": "happy_path_combo",
+      "coverage_level": "business",
+      "emit_mode": "main_testcase",
+      "source_origin": "explicit_rule",
+      "source_type": "coverage_candidate",
+      "title": "宣传图片格式与大小",
+      "page_name": "盒子管理后台-编辑宣传内容",
+      "section_name": "宣传内容编辑表单",
+      "module_name": "宣传内容管理",
+      "feature_name": "宣传内容编辑表单",
+      "field_name": "promotion_image",
+      "priority": "high",
+      "rationale": "按当前 PT083 来源规则、页面上下文和可观察断言独立归一化；不与同页同字段的基础属性覆盖重复。",
+      "planned_assertions": [
+        "宣传图片支持gif/jpg/jpeg/png，单张最大500KB。"
+      ],
+      "structured_refs": [
+        "宣传内容管理.宣传内容编辑表单.promotion_image"
+      ],
+      "reasoning_refs": []
+    },
+    {
+      "coverage_id": "COV-EX-0076",
+      "coverage_type": "happy_path_combo",
+      "coverage_level": "audit_only",
+      "emit_mode": "audit_item",
+      "source_origin": "explicit_rule",
+      "source_type": "coverage_candidate",
+      "title": "建议尺寸1008*160",
+      "page_name": "盒子管理后台-编辑宣传内容",
+      "section_name": "宣传内容编辑表单",
+      "module_name": "宣传内容管理",
+      "feature_name": "宣传内容编辑表单",
+      "field_name": "promotion_image",
+      "priority": "medium",
+      "rationale": "按当前 PT083 来源规则、页面上下文和可观察断言独立归一化；不与同页同字段的基础属性覆盖重复。",
+      "planned_assertions": [
+        "仅验证页面提示建议尺寸1008*160，不生成上传或保存阻断。"
+      ],
+      "structured_refs": [
+        "宣传内容管理.宣传内容编辑表单.promotion_image"
+      ],
+      "reasoning_refs": []
+    },
+    {
+      "coverage_id": "COV-EX-0077",
+      "coverage_type": "happy_path_combo",
+      "coverage_level": "audit_only",
+      "emit_mode": "audit_item",
+      "source_origin": "explicit_rule",
+      "source_type": "coverage_candidate",
+      "title": "720*1280技术背景",
+      "page_name": "云机技术调整结论",
+      "section_name": "SDK与画面尺寸调整",
+      "module_name": "云机技术与需求背景",
+      "feature_name": "SDK与画面尺寸调整",
+      "field_name": "cloud_machine_resolution",
+      "priority": "medium",
+      "rationale": "按当前 PT083 来源规则、页面上下文和可观察断言独立归一化；不与同页同字段的基础属性覆盖重复。",
+      "planned_assertions": [
+        "仅审计原始720*1280结论被保留；技术语义与适配边界待确认，不形成硬验收。"
+      ],
+      "structured_refs": [
+        "云机技术与需求背景.SDK与画面尺寸调整.cloud_machine_resolution"
+      ],
+      "reasoning_refs": []
+    },
+    {
+      "coverage_id": "COV-AI-0078",
+      "coverage_type": "happy_path_combo",
+      "coverage_level": "audit_only",
+      "emit_mode": "audit_item",
+      "source_origin": "ai_reasoning",
+      "source_type": "business_risk",
+      "title": "SDK更新验收口径风险",
+      "page_name": "需求介绍",
+      "section_name": "需求目的",
+      "module_name": "云机技术与需求背景",
+      "feature_name": "需求目的",
+      "field_name": "",
+      "priority": "medium",
+      "rationale": "需求要求更新云机SDK以改善画面模糊和卡顿，但未提供目标版本、帧率、延迟、码率、丢帧或主观评分阈值，当前无法形成稳定的通过或失败判定。",
+      "planned_assertions": [
+        "仅保留风险审计与人工确认，不生成产品验收主用例。"
+      ],
+      "structured_refs": [],
+      "reasoning_refs": [
+        "RISK-001"
+      ]
+    },
+    {
+      "coverage_id": "COV-AI-0079",
+      "coverage_type": "happy_path_combo",
+      "coverage_level": "audit_only",
+      "emit_mode": "audit_item",
+      "source_origin": "ai_reasoning",
+      "source_type": "business_risk",
+      "title": "720*1280适配边界风险",
+      "page_name": "云机技术调整结论",
+      "section_name": "SDK与画面尺寸调整",
+      "module_name": "云机技术与需求背景",
+      "feature_name": "SDK与画面尺寸调整",
+      "field_name": "cloud_machine_resolution",
+      "priority": "medium",
+      "rationale": "需求明确画面尺寸调整为720*1280，但未说明其是云机系统分辨率、渲染分辨率还是客户端展示容器，也未说明旋转、缩放、触控映射和终端适配边界。",
+      "planned_assertions": [
+        "仅保留风险审计与人工确认，不生成产品验收主用例。"
+      ],
+      "structured_refs": [],
+      "reasoning_refs": [
+        "RISK-002"
+      ]
+    },
+    {
+      "coverage_id": "COV-AI-0080",
+      "coverage_type": "happy_path_combo",
+      "coverage_level": "audit_only",
+      "emit_mode": "audit_item",
+      "source_origin": "ai_reasoning",
+      "source_type": "business_risk",
+      "title": "库存判断与告警链路风险",
+      "page_name": "盒子管理后台-云手机商品管理-添加",
+      "section_name": "商品区与库存规则说明表",
+      "module_name": "云手机商品管理",
+      "feature_name": "商品区与库存规则说明表",
+      "field_name": "inventory_warning_threshold",
+      "priority": "medium",
+      "rationale": "库存阈值会同时影响C端商品隐藏、云机停止分配和管理员告警，但校验频率文字模糊，且未说明并发下单、缓存延迟、重复告警和恢复展示口径。",
+      "planned_assertions": [
+        "仅保留风险审计与人工确认，不生成产品验收主用例。"
+      ],
+      "structured_refs": [],
+      "reasoning_refs": [
+        "RISK-003"
+      ]
+    },
+    {
+      "coverage_id": "COV-AI-0081",
+      "coverage_type": "happy_path_combo",
+      "coverage_level": "audit_only",
+      "emit_mode": "audit_item",
+      "source_origin": "ai_reasoning",
+      "source_type": "business_risk",
+      "title": "特殊区容量跨端一致性风险",
+      "page_name": "云挂机购买页",
+      "section_name": "特价专区",
+      "module_name": "云挂机购买页",
+      "feature_name": "特价专区",
+      "field_name": "product_region",
+      "priority": "medium",
+      "rationale": "B端特殊区最多配置4个商品，C端特价专区也最多展示4个商品；若保存校验、状态口径或C端消费不同步，可能出现可保存但不展示或超量展示。",
+      "planned_assertions": [
+        "仅保留风险审计与人工确认，不生成产品验收主用例。"
+      ],
+      "structured_refs": [],
+      "reasoning_refs": [
+        "RISK-004"
+      ]
+    },
+    {
+      "coverage_id": "COV-AI-0082",
+      "coverage_type": "happy_path_combo",
+      "coverage_level": "audit_only",
+      "emit_mode": "audit_item",
+      "source_origin": "ai_reasoning",
+      "source_type": "business_risk",
+      "title": "未展开控件与枚举风险",
+      "page_name": "盒子管理后台-云手机商品管理",
+      "section_name": "商品编辑弹窗",
+      "module_name": "云手机商品管理",
+      "feature_name": "商品编辑弹窗",
+      "field_name": "product_edit_fields",
+      "priority": "medium",
+      "rationale": "商品编辑弹窗、商品顺序编辑弹窗、多个下拉字段完整枚举与默认值均未展示，后续结构化若直接按添加表单或当前选中值推断，会形成错误字段和硬校验。",
+      "planned_assertions": [
+        "仅保留风险审计与人工确认，不生成产品验收主用例。"
+      ],
+      "structured_refs": [],
+      "reasoning_refs": [
+        "RISK-005"
+      ]
+    }
+  ]
 }

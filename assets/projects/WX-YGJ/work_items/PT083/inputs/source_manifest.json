@@ -10,7 +10,8 @@
       "location": "inputs/images/PT083-01_副本.png",
       "status": "available",
       "local_artifact": "inputs/images/PT083-01_副本.png",
-      "notes": "需求背景、目标及购买页改版说明"
+      "retrieved_at": "2026-08-06",
+      "notes": "需求背景、云挂机覆盖数据、画质与尺寸问题及目标；与 PT084、PT085 对应图片 SHA-256 相同"
     },
     {
       "source_id": "SRC-002",
@@ -18,7 +19,8 @@
       "location": "inputs/images/PT083-02_副本.png",
       "status": "available",
       "local_artifact": "inputs/images/PT083-02_副本.png",
-      "notes": "购买页展示和专区规则"
+      "retrieved_at": "2026-08-06",
+      "notes": "C 端云挂机购买页宣传位、宣传区、特价专区和普通商品区改版说明；与 PT084、PT085 对应图片 SHA-256 相同"
     },
     {
       "source_id": "SRC-003",
@@ -26,7 +28,8 @@
       "location": "inputs/images/PT083-03-01_副本.png",
       "status": "available",
       "local_artifact": "inputs/images/PT083-03-01_副本.png",
-      "notes": "云手机商品管理与添加商品配置"
+      "retrieved_at": "2026-08-06",
+      "notes": "B 端云手机商品管理列表及添加、编辑宣传内容等入口；与 PT084、PT085 对应图片 SHA-256 相同"
     },
     {
       "source_id": "SRC-004",
@@ -34,7 +37,8 @@
       "location": "inputs/images/PT083-03-02_副本.png",
       "status": "available",
       "local_artifact": "inputs/images/PT083-03-02_副本.png",
-      "notes": "商品字段、库存预警和排序规则"
+      "retrieved_at": "2026-08-06",
+      "notes": "B 端商品添加表单、字段属性、特殊区数量限制、库存预警和告警说明；与 PT084、PT085 对应图片 SHA-256 相同"
     },
     {
       "source_id": "SRC-005",
@@ -42,7 +46,8 @@
       "location": "inputs/images/PT083-03-03_副本.png",
       "status": "available",
       "local_artifact": "inputs/images/PT083-03-03_副本.png",
-      "notes": "编辑宣传内容和图片上传规则"
+      "retrieved_at": "2026-08-06",
+      "notes": "B 端宣传内容配置、图片规则、字符限制和云机类型完整性校验；与 PT084、PT085 对应图片 SHA-256 相同"
     },
     {
       "source_id": "SRC-006",
@@ -50,8 +55,16 @@
       "location": "inputs/images/PT083-04_副本.png",
       "status": "available",
       "local_artifact": "inputs/images/PT083-04_副本.png",
-      "notes": "云机 SDK 和画面尺寸约束"
+      "retrieved_at": "2026-08-06",
+      "notes": "更新云机 SDK 与画面尺寸调整为 720*1280 的结论；与 PT084、PT085 对应图片 SHA-256 相同"
     }
   ],
-  "unresolved_sources": []
+  "unresolved_sources": [
+    {
+      "source_id": "UNRESOLVED-001",
+      "location": "PT083-01_副本.png 中的两份免费领云机活动复盘链接",
+      "status": "failed",
+      "notes": "图片仅显示链接名称，未提供可访问 URL，本轮未读取复盘正文"
+    }
+  ]
 }

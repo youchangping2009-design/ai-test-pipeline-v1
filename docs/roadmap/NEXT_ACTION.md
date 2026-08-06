@@ -1,40 +1,52 @@
 # Next Action
 
 ```yaml
-task_id: P3-001
-title: testcase_bundle.json compatibility-only projection
-status: done
-priority: P3
+task_id: PT083-SAMPLE-MIGRATION-AUDIT
+title: Migrate PT086 Benchmark To PT083
+status: completed
+priority: ad-hoc
 owner: autonomous_agent
 ```
 
 ## Goal
 
-新增 `testcase_bundle.json` 作为从 `testcases_main.md` 派生的 compatibility-only 结构化投影，不切换 testcase 真源。
+将已批准的 PT086 M 档基准合法迁移为新的 PT083 正式项目样本，删除旧 PT083/PT084/PT085/PT086 目录口径，刷新当前运行依赖并完成全仓审计。
 
 ## Scope
 
-- 新增 `testcase_bundle` schema、生成脚本和校验脚本。
-- `validate_work_item.py` 在 bundle 存在时校验它与 `testcases_main.md` 一致。
-- 更新 strict 正向样例的 `testcases/testcase_bundle.json`。
-- 明确当前 `testcases/testcases_main.md` 仍是主 testcase 真源。
+- 正式终结并清理旧 PT086 Harness 过程历史，迁移正式测试资产并重新生成派生投影。
+- 使用正式 approval CLI 由 `ycp` 重新批准迁移后的 PT083 内容绑定。
+- 更新 CI、fixture、默认样本、主文档和项目派生视图到当前 PT083 M 档口径。
+- 保留 PT084/PT085/PT086 比较数字为历史基准，不机械改写历史事实。
+- 运行工作项 strict、run audit、项目 strict、全量测试和完整质量基线。
 
 ## Out Of Scope
 
-- 不切换 testcase 真源。
-- 不改旧导出链路。
-- 不大范围重写 testcase/schema。
-- 不修改业务代码。
+- 不伪造 Approval、Review、Code Review request、人工 confirmation 或 Harness Strict Gate 状态。
+- 不修改业务代码、不提交 Git、不降低任何既有 gate。
 
 ## Validation
 
-至少运行：
-
 ```bash
+/usr/bin/python3 scripts/validate_work_item.py \
+  --project-code WX-YGJ --work-item-id PT083 \
+  --work-item-level M --retention minimal \
+  --skip-code-reviews --strict
+
 /usr/bin/python3 scripts/run_quality_baseline.py
 ```
 
-至少运行总基线，并运行 `validate_testcase_bundle.py` 与 `validate_work_item.py` 正向样例。
+## Current Migration Evidence
+
+- 旧 `RUN-PT086-REQ-20260806` 已使用正式 CLI 取消、audit 通过后按 minimal retention 清理；过程历史不作为业务真源迁移。
+- 新 `RUN-PT083-MIGRATION-20260806` 已由正式 CLI 批准，reviewer 为 `ycp`，note 记录用户迁移授权，三类绑定值匹配。
+- Bundle/Testpoints均75条、开发自测25条、Coverage-First/Adapter均37条；37个main Coverage全部映射，invalid=0、false traceability=0。
+- 迁移中按两轮最小 repair 修复 Harness 边界：approved run 合法 cancel 后 audit 应通过；minimal retention 删除 legacy traceability 后，质量评分与 regeneration bundle 均继续消费 coverage-first 主追溯，不再无条件调用 legacy slim。
+- 全量 97 个单元测试、PT083 M 档 strict、WX-YGJ project strict、run audit、regression/golden eval、`git diff --check`、Python 编译检查与完整质量基线均通过；golden baseline 已按迁移后的 PT083 fixture 正式刷新并复验 matched。
+
+## Historical Benchmark Context
+
+下述 PT084/PT085/PT086 数量、耗时、run 与 validator 比较仅作为 2026-08-06 历史基准，不再表示当前目录、默认样本或可执行命令。当前正式样本统一为 PT083。
 
 ## Completion Notes
 
@@ -101,3 +113,47 @@ Ad-hoc stage validator co-location completed on 2026-07-27: Requirement Sources�
 Ad-hoc lightweight project shell completed on 2026-07-27: 项目根已收敛为 project manifest、`inputs/common`、indexes、reports、knowledge 和 work_items；新增项目视图刷新与项目校验入口，移除 `validate_outputs.py` 和 WX-YGJ 项目级空占位产物。PT083 工作项真源与路径保持不变。
 
 Ad-hoc host-neutral core cleanup completed on 2026-07-27: AGENTS、自驱动协议、Roadmap 和 repair 模板已改为通用 Agent 表述；任务包不再硬引用 Cursor adapter；三份宿主 README 已对齐；删除 Codex agent YAML 与 runtime bridge。所有宿主统一使用显式 `ATP_*` 运行时配置，核心不自动探测任何宿主。
+
+Ad-hoc PT084 requirement intake completed on 2026-08-06: 已逐张检查 `inputs/images/` 下 6 张修正为 PT084 文件名的需求图片，完成 `inputs/requirement_summary.md` 与 `source_manifest.json` 归一化；Requirement Sources strict 和 Harness `requirement_intake` 阶段通过。按单阶段边界未生成下游产物；PT084 全工作项 strict 及总质量基线当前因 image evidence、测试设计、Case Plan、testcase 与 traceability 仍为初始化状态而未通过。建议下一阶段执行图片证据抽取，不修改业务代码。
+
+Ad-hoc PT084 image evidence extraction completed on 2026-08-06: 已基于 6 张本地图片生成 `image_evidence/image_evidence_inventory.json`，逐图承接页面、板块、字段矩阵、说明表、精确规则、置信度和不确定项；Image Evidence Validator 与 Harness strict `evidence` 阶段通过。全工作项 strict 中图片证据本体已通过，当前失败项为尚未执行的 Structured PRD 映射、测试设计、Case Plan、testcase 与 traceability；质量基线 4/5，仅项目级 strict 因 PT084 未完成后续阶段失败。建议下一阶段执行 Reasoning Analysis，不跨入测试设计或用例生成。
+
+Ad-hoc PT084 reasoning analysis completed on 2026-08-06: 正式生成脚本已显式消费 `requirement_summary.md`、`source_manifest.json` 与 `image_evidence_inventory.json`，生成 `analysis/reasoning_pack.json` 和 `analysis_report.md`。首次脚本产物中的非 PT084 通用 banner/瓷片/金刚区推断已在本阶段最小修正，SDK 版本、`720*1280` 语义、库存频率、模糊文案、枚举默认值、活动复盘名称等均保留为 ambiguity/risk。Reasoning Pack Validator 与 Harness strict `reasoning` 阶段通过；全工作项 strict 和质量基线仍仅因 Structured PRD 及后续阶段未执行而失败。建议下一阶段执行 Structured PRD，不跨入测试设计或用例生成。
+
+Ad-hoc PT084 Structured PRD completed on 2026-08-06: 已基于 requirement summary、source manifest、image evidence 和 reasoning pack 编写 `structured_prd.md` authoring 真源，并通过正式编译器生成 `structured_prd.json`。产物保留页面/板块、字段矩阵、对象版规则、数据源、精确提示、说明表、B端到C端映射与主流程；SDK版本、`720*1280`技术语义、库存频率、模糊文案、枚举默认值和活动复盘保持待确认。Markdown/JSON Schema、图片证据映射与 Harness strict `structured_prd` 阶段通过，未发现md->json关键规则丢失。全工作项 strict 和质量基线当前仅因 testability gate 及后续阶段未执行而失败。建议下一阶段执行 Coverage Planning，不跨入测试设计或用例生成。
+
+Ad-hoc PT084 Coverage Planning completed on 2026-08-06: 已按 M 档正式 `coverage` 阶段生成并校验 `coverage/coverage_matrix.json`，共 82 条（38 条 `main_testcase` 候选、44 条 `audit_item`）。自动生成后最小修正了三类错误投放：“其余逻辑不变”因缺少可判定旧逻辑基线转审计，建议尺寸 `1008*160` 保持 soft prompt，技术背景 `720*1280` 不进入正式业务覆盖；5 条 reasoning risk 以 `audit_only/audit_item` 独立保留，不混入 product acceptance。Coverage Validator 与 Harness strict `coverage` 阶段通过，run `RUN-20260806T023139Z` 按预期暂停。全工作项 strict 和质量基线仍因后续 testability gate、acceptance examples、Case Plan、testcase/traceability/review、缺失 code review request 与未刷新质量报告失败。M 档不要求 `verification_responsibility_map`，本轮未生成。建议下一阶段仅执行 Testability Gate。
+
+Ad-hoc PT084 Testability Gate completed on 2026-08-06: 已基于 Structured PRD、Coverage Matrix、reasoning 与来源证据生成 `acceptance/testability_gate.md/json`，共 52 条 gate，完整处理 47 个 Structured PRD 稳定规则并隔离 5 条 business risk。34 条明确/部分可测规则进入后续 acceptance example 候选，10 条未决规则保持 `needs_confirmation`，3 条背景项为 `out_of_scope`，5 条风险仅为 `risk_note_only`；8 条 technical background 未进入正式业务验收，2 条 soft prompt 均未升级为 hard block。Schema、阶段 Validator 与 Harness strict `testability_gate` 通过，run `RUN-20260806T023609Z` 按预期暂停。全工作项 strict 和质量基线仍因 Acceptance Examples、Case Plan、testcase/traceability/review、缺失 code review request 与未刷新质量报告失败。建议下一阶段仅执行 Acceptance Examples；M 档继续跳过 Verification Map。
+
+Ad-hoc PT084 Acceptance Examples completed on 2026-08-06: 已将 Testability Gate 中 34 条 `generate_acceptance_example` 候选按单规则单断言倾向拆分为 64 条具体 Given/When/Then 场景，生成 `acceptance/acceptance_examples.md/json`。所有场景均保留 source gate、source rule、coverage 与来源上下文引用；未纳入 `needs_confirmation`、`out_of_scope`、`risk_note_only` 或 technical background，soft prompt 仅验证建议尺寸提示/展示。Schema、阶段 Validator、排除项守卫与 Harness strict `acceptance_examples` 通过，run `RUN-20260806T024003Z` 按预期暂停。全工作项 strict 和质量基线仍因 Case Plan、testcase/traceability/review、缺失 code review request 与未刷新质量报告失败。M 档按契约跳过 Verification Responsibility Map；建议下一阶段仅执行 Case Plan。
+
+Ad-hoc PT084 Case Plan completed on 2026-08-06: 已基于 64 条 Acceptance Examples 生成 `testcases/case_plan.md/json`，共 64 条原子计划，覆盖4个页面上下文；每条均具备 page/section/module/feature、source gate/example/rule 和稳定 `generated_testcase_ids`。分类为2条 backend_job、18条 field_constraint、5条 linkage、3条 prompt_display、12条 save_block、24条 ui_display；15条P0、46条P1、3条P2。未纳入 needs_confirmation、risk_note_only、technical background 或 out_of_scope，soft prompt 仅进入 prompt_display，所有计划保持 product_acceptance。Schema、独立阶段 Validator（M档 require examples）和生成守卫通过。Harness strict run `RUN-20260806T024251Z` 在 case_plan 阶段失败，唯一原因是当前 stage command 同时校验尚未生成的 `testcases_main.md`；本轮遵守边界未生成 testcase。全工作项 strict/质量基线还受 testpoints、traceability/review、code review request 与质量报告影响。建议下一阶段执行正式 Testcase Generation，并按仓库契约同步生成 testpoints。
+
+Ad-hoc PT084 Testcase Generation completed on 2026-08-06: 已严格执行 Case Plan 的64条 should_generate_case计划，生成64条 `testcases_main.md` 正式用例及兼容镜像 `testcases.md`，并用正式脚本同步生成64条 `testpoints.md/json`；Case Plan 的 generated_testcase_ids 已更新为符合编号规则的正式ID。用例按4个页面、10个“页面+板块”表分组，保留模块/功能点和 CasePlan/Acceptance/规则追溯；testpoints 保持 case_plan 真源。首轮发现1条流程终态表达和4处元素标注问题，第1轮最小修复后 testcase lint、元素标注 strict、分组 strict、Case Plan追溯、testpoints strict和兼容镜像一致性全部通过。Harness strict run `RUN-20260806T024634Z` 中 case_plan、testcase、grouping、testpoints 均通过，仅因初始化 bundle 仍为0条而在 testcases stage 失败；本轮按边界未执行 bundle。全工作项 strict/质量基线当前还受 bundle、traceability/review、code review request 与质量报告影响。建议下一阶段按仓库契约执行 bundle 后处理并同步刷新 traceability/quality 派生产物。
+
+Ad-hoc PT084 Bundle Post-processing executed on 2026-08-06: 已从当前正式主产物刷新64条 testcase bundle、64条 testpoint、15条开发自测、44条 field audit、45条 coverage-first traceability、45条 adapter 及 quality report；未反写 Case Plan 或正式 testcase 业务语义。Bundle、Testpoints、Dev Self 与质量报告四项 SHA-256 指纹校验通过，旧指纹已失效。官方 traceability 生成器初始因 testcase 缺少 coverage 标记产生38条空映射；两轮最小修复后只保留可由正文/CasePlan证明的映射并消除 schema 噪音，仍有11条主 coverage 无对应正式 testcase，主失真率 `0.2444`。Harness strict run `RUN-20260806T025228Z` 在 traceability 失败；全工作项 strict 还受该缺口、缺失前后端 code review request 与 pending 确认影响，质量基线仅项目级第5项因 PT084 strict 失败。已登记 `PT084-COVERAGE-TRACEABILITY` 人工行动。建议下一阶段先回到测试设计决策层补齐这11条 required/boundary coverage 的 Gate/Case Plan/正式 testcase，再重跑 bundle；不得通过伪映射或降低 coverage 分级绕过。
+
+Ad-hoc PT084 Traceability Blocker Repair completed on 2026-08-06: 已逐条核对11个缺口。`COV-EX-0004` 的来源只证明 C 端双 Tab 展示与切换，不存在必填/空值保存语义，故基于证据将其从 main required 修正为 audit item，并同步修正 Structured PRD 的 `cloud_machine_version.required=false`；其余10项均由红色星号、“必传”或正整数边界明确支持，新增 `CP-065..CP-074` 及对应 Gate/Acceptance/Testcase。语义复核另修复旧宽映射掩盖的 `COV-EX-0053`，新增 `CP-075` 验证宣传内容“云机类型”单字段必填。最终 Gate 62、Acceptance/CasePlan/Testcase/Testpoint/Bundle 75、开发自测25、Field Audit45，官方 Coverage-First/Adapter 各46条，主失真率0。Harness strict run `RUN-20260806T030007Z` 到 traceability 全部 succeeded；`validate_work_item --strict --skip-code-reviews` 与质量基线5/5通过。不跳过 code review 的 strict 仅剩前后端 review request 缺失和 confirmation pending，属于后续人工映证阶段。`PT084-COVERAGE-TRACEABILITY` 已从 HUMAN_ACTION_REQUIRED 移入 Resolved；建议下一阶段由人工决定是否启动 code review 映证，不得自动确认或进入发布。
+
+Ad-hoc PT085 Requirement Intake completed on 2026-08-06: 已逐张检查 `inputs/images/` 下 6 张 PT085 图片，生成 `inputs/requirement_summary.md` 与 `source_manifest.json`；Requirement Sources strict 和 Harness `requirement_intake` 阶段通过，run `RUN-20260806T063753Z` 按 `stop_at=requirement_intake` 暂停。6 张图片与 PT084 对应图片 SHA-256 逐张完全一致，当前无法确认是否有意复用及“云挂机免费体验2”的真实增量。下一动作：等待人工审核 requirement_summary，确认或修订来源及增量范围；人工确认前不得 resume run，不得进入 evidence、reasoning、structured_prd 或任何下游阶段。当前 Harness 无 requirement summary 强制 approval 状态，本记录与暂停状态共同作为人工门禁；不得自行写审批通过。本小阶段未重复运行完整质量基线，将在里程碑执行。未修改业务代码，未提交 Git。
+
+Ad-hoc PT085 Image Evidence completed on 2026-08-06: 用户已明确审核 requirement summary 通过，并确认6张图片与PT084完全相同符合预期、PT085无需求增量，仅用于重跑比对近期流程修改；该确认已写入 requirement summary、source manifest 和 PROGRESS，不伪造当前契约不存在的 approval receipt/reviewer 字段。已基于PT085六张原图独立生成并通过 Image Evidence Validator：6 images、18 sections、28 fields、10 field rules、3 rule tables、17 rows、10 needs-confirmation sections，与PT084数量完全一致；页面/section/字段名/规则类型/规则表/行名集合亦完全一致。原始JSON hash因工作项标识、文案压缩及可选OCR/空字段差异而不同，未发现需求语义增删。成功复用 Harness run `RUN-20260806T063753Z`，以 `resume --stop-at evidence` 重新校验变更后的 requirement intake 并完成 evidence checkpoint；run保持paused，reasoning及下游全部pending。本阶段未跑完整质量基线、未修改业务代码、未提交Git。建议下一阶段仅执行 Reasoning Analysis，并继续复用同一run以`resume --stop-at reasoning`推进；不得跨入Structured PRD或更下游阶段。
+
+Ad-hoc PT085 Reasoning Analysis completed on 2026-08-06: 已显式消费 requirement summary、source manifest 与 image evidence，使用当前正式生成器独立生成 `analysis/reasoning_pack.json` 和 `analysis_report.md`，未复制 PT084 reasoning 或读取其下游产物作为生成输入。首次生成虽通过 schema/阶段 Validator，但内容审查发现无来源的 banner/瓷片/金刚区/弹窗通用推理；第1轮最小修复仅修改本阶段产物，替换为云挂机购买页、商品配置、库存、SDK、720*1280和脚本兼容性相关映射、风险、边界与维度，复验通过。最终为94 explicit、1 implicit、28 field constraints、2 data source rules、5 risks、7 edge cases、10 ambiguities、7 dimensions、28 coverage candidates；除explicit rules因PT085图片证据表达更精简而比PT084少18条外，其余数量一致，且页面、展示面、字段、风险、边界、待确认板块和coverage核心语义集合全部一致，无真实需求语义差异。成功复用 `RUN-20260806T063753Z` 并以 `resume --stop-at reasoning` 暂停；本次resume墙钟约0.21秒，只新增1个commands=0的reasoning checkpoint，Harness内部validator=0，累计attempts为requirement_intake 2/evidence 1/reasoning 1。阶段Validator实际执行2次（初验+repair复验）；未跑完整质量基线、未修改业务代码、未提交Git。建议下一阶段仅执行Structured PRD authoring/compile，并继续复用同一run以`resume --stop-at structured_prd`推进；不得跨入Coverage或测试设计。
+
+Ad-hoc PT085 Structured PRD completed on 2026-08-06: 已基于通过审核的requirement summary、source manifest、image evidence与reasoning pack独立编写 `structured_prd/structured_prd.md` authoring真源，并经正式编译器生成JSON，未直接复制PT084派生产物。两轮最小repair分别修正1个schema不支持的rule_type、合并14条字段约束自动派生导致的同义重复，未降低必填、边界、数据源、显隐、排序、提示或风险规则。最终与PT084均为6 pages、18 sections、4 modules、18 features、33 fields、56 compiled rules、3 rule tables/17 rows、3 flows；页面/板块/模块/功能/字段/流程/规则表/行名稳定语义集合一致，SDK、720*1280、库存频率、枚举默认值、未展开弹窗和活动复盘等风险/待确认集合无真实差异。MD→JSON编译、Schema Validator、Image Evidence Mapping均通过；跨阶段backend chain校验因要求尚未生成的testcase输入而未运行。成功复用 `RUN-20260806T063753Z` 并以 `resume --stop-at structured_prd` 暂停，resume墙钟0.186675秒，新增1个structured_prd checkpoint及1个Harness validator command，累计attempts为requirement_intake 2/evidence 1/reasoning 1/structured_prd 1；coverage及下游保持pending。未跑完整质量基线、未改业务代码、未提交Git。建议下一阶段在人工确认后仅执行Coverage Planning，继续复用同一run并使用`resume --stop-at coverage`，不得跨入testability gate。
+
+Ad-hoc PT085 Coverage Planning completed on 2026-08-06: 用户已明确仅requirement summary需要人工审核且该审核已通过，Structured PRD不新增人工门。本轮基于PT085 structured_prd与reasoning pack使用正式生成器独立生成coverage_matrix；初始61条（main25/audit36）虽通过Schema，但与无需求变更事实不符。调查确认当前PT085高优explicit rules未携带生成器识别的fidelity_points，且通用reasoning adapter未承接本工作项5条business risk；第1轮最小修复仅在coverage层补齐同源21条，不复制PT084文件、不修改生成器或Structured PRD、不降低规则。最终PT084/PT085均为82条、main37/audit45，77 explicit+5 AI reasoning，51 structured_field/12 structured_rule/14 coverage_candidate/5 business_risk；coverage type、level及`coverage_type+title+emit_mode`稳定语义集合全部一致。5条risk、720*1280 technical background、建议尺寸1008*160和“其余逻辑不变”均保持audit，未混入product acceptance或升级hard block。Coverage Validator修复前后均通过。成功复用 `RUN-20260806T063753Z` 并以`resume --stop-at coverage`暂停，生成墙钟0.049850秒、resume墙钟0.172713秒，新增1个coverage checkpoint和1个Harness validator command，累计attempts为requirement_intake 2/evidence 1/reasoning 1/structured_prd 1/coverage 1；testability_gate及下游保持pending。未跑完整质量基线、未改业务代码、未提交Git。下一阶段可直接继续Testability Gate并复用同一run以`resume --stop-at testability_gate`，不得跨入acceptance_examples。
+
+Ad-hoc PT085 Testability Gate completed on 2026-08-06: 已显式消费structured_prd、coverage、reasoning、requirement summary、source manifest与image evidence，按Schema和Skill独立authoring `acceptance/testability_gate.md/json`；仓库无自动Gate生成器，未复制PT084派生产物。authoring墙钟149.329010秒。最终62条，与PT084的classification/testability/decision/confidence数量完全一致：19 product_behavior、24 field_constraint、2 backend_job、8 technical_background、2 soft_prompt、2 linkage、5 risk_hardening；35 testable、9 partially_testable、10 needs_confirmation、3 out_of_scope、5 risk_only；44 generate_acceptance_example、10 needs_confirmation、3 out_of_scope、5 risk_note_only。PT085 Structured PRD多1条按未标星字段拆分的显式规则，Gate用该规则承接非必填语义，并由PROMO-RULE-002直接承接宣传配置云机类型必填/完整/唯一，避免重复synthetic Gate；最终稳定业务语义、分类和数量与PT084一致。technical_background全部保持needs_confirmation/out_of_scope，5条risk均为risk_note_only，2条soft_prompt仅partially_testable提示展示；Validator含Structured PRD全规则覆盖检查初验/复验均通过，无repair。成功复用`RUN-20260806T063753Z`并以`resume --stop-at testability_gate`暂停，resume墙钟0.116173秒，新增1个checkpoint和1个Harness validator command，累计attempts为requirement_intake 2/evidence 1/reasoning 1/structured_prd 1/coverage 1/testability_gate 1；acceptance_examples及下游保持pending。未跑完整质量基线、未改业务代码、未提交Git。下一阶段仅执行Acceptance Examples，继续复用同一run并使用`resume --stop-at acceptance_examples`，不得跨入Case Plan。
+
+Ad-hoc PT085 Acceptance Examples completed on 2026-08-06: 已从Testability Gate中44条允许候选独立authoring `acceptance_examples.md/json`，生成75条Given/When/Then，authoring墙钟60.091760秒，未复制PT084产物。与PT084均为75条、覆盖44个允许Gate/44个规则及24类稳定Coverage来源；Oracle数量完全一致（28 business_behavior、15 display_only、22 hard_block、2 backend_job、3 soft_display、5 linkage），verification side和75条confirmed分布亦一致。稳定语义覆盖双版本四区域、特价专区显隐/2.5/4、限时购买纵向布局、特殊区容量与提示、库存联动、宣传配置、服务时长、排序、价格、通知、必填和跨端展示；PT085仅因Gate规则粒度不同，将商品区与状态枚举合并，并在库存边界中同步承接3个未标星字段非必填，不构成需求变化。第1轮修复soft prompt Then中的守卫触发字样并补齐状态Gate，第2轮将重复Coverage引用收敛为10个必填+13个fidelity+1个排序边界；未降低规则。最终Validator和排除守卫通过：无needs_confirmation/out_of_scope/risk_note_only/technical_background来源，soft prompt仅为soft_display。成功复用`RUN-20260806T063753Z`并以`resume --stop-at acceptance_examples`暂停，resume墙钟0.115751秒，新增1个checkpoint和1个Harness validator command，累计attempts为requirement_intake 2/evidence 1/reasoning 1/structured_prd 1/coverage 1/testability_gate 1/acceptance_examples 1；Case Plan及下游保持pending。M档继续跳过Verification Responsibility Map和Test Design Matrix。未跑完整质量基线、未改业务代码、未提交Git。下一阶段仅执行Case Plan，继续复用同一run并使用`resume --stop-at case_plan`。
+
+Ad-hoc PT085 Case Plan authored on 2026-08-06: 已基于75条Acceptance Examples、Gate、Coverage与Structured PRD独立生成`case_plan.md/json`，authoring墙钟41.518023秒，未复制PT084。最终75条均should_generate_case=true，具备page/section/module/feature、单一assertion字段、唯一generated_testcase_ids及source gate/example/rule/coverage；未生成testcase/testpoints。与PT084的75条计划数量、类型（24 ui_display/22 save_block/2 backend_job/3 prompt_display/5 linkage/19 field_constraint）、优先级（47 P1/25 P0/3 P2）、product_acceptance路径、页面与10个页面+板块分布完全一致；PT085按本轮要求做到75/75覆盖映射，PT084为41/75，属于追溯完整度增强而非需求差异。独立Case Plan Validator（不传未来testcase，require-examples）初验通过；比较发现CP-010～015六条宣传计划上下文误归商品添加页，第1轮仅修正页面/板块/模块/功能后复验通过，无第2轮repair。复用`RUN-20260806T063753Z`执行`resume --stop-at case_plan`，resume墙钟0.119109秒；Harness因case_plan阶段硬编码校验未来空模板`testcases_main.md`而失败，新增1个失败validator command、无成功checkpoint，case_plan attempts=1/status=failed，testcases仍pending。未跨阶段生成testcase/testpoints、未绕过Validator或改Harness。下一步需先修复Harness阶段边界：case_plan阶段不应传入未来testcase；修复后可复用同一run恢复case_plan，再单独进入testcases阶段。
+
+Ad-hoc PT085 Testcase Generation authored on 2026-08-06: 已严格从75条Case Plan确定性生成75条`testcases_main.md`与一致的`testcases.md`兼容镜像，并同步生成75条`testpoints.md/json`。正式入口初始仅生成18条，确认Coverage合并路径不能满足一计划一用例后，第1轮仅重建本阶段正式用例，第2轮修复稳定编号、测试类型、元素标注与唯一流程终态；未修改生成器、未复制PT084正文、未降低规则。PT084/PT085的数量、优先级（47 P1/25 P0/3 P2）、类型（35功能/22异常/11边界/6状态流转/1流程验证）及10个页面+板块分布完全一致，正式用例全部反向映射Case Plan并保留Acceptance/Rule/Coverage来源。独立testcase lint、元素标注strict、分组strict、testpoints strict和携testcase的Case Plan Validator全部通过。复用`RUN-20260806T063753Z`执行`resume --stop-at testcases`，resume墙钟0.25秒；Case Plan因正式稳定ID变更重新校验成功并累计attempts=3，Testcase新增5个Validator命令，前4个均通过，但第5个仍越界校验未生成的空`testcase_bundle.json`并以`0 != 75`失败，testcases attempts=1且无checkpoint。traceability/review/strict_gate保持pending，未跨阶段生成bundle。下一步应先将bundle构建/一致性校验后移到独立bundle后处理或后续派生阶段；修复后复用同一run恢复并仅停在testcases，不得通过提前生成bundle绕过边界。
+
+Ad-hoc PT085 Bundle post-processing and Traceability completed on 2026-08-06: 已从当前75条正式主用例刷新75条Bundle/75条Testpoints/25条开发自测、46条Coverage-First与46条Adapter，并刷新质量报告及Structured PRD/Coverage/Testcases/Traceability指纹；未反写Case Plan，其hash保持`1ba738d95790...`。首次Traceability为42条且15条无testcase、失真率0.3571；调查发现主Coverage精确备注缺失，且少量testcase正文未完整执行Case Plan既有边界断言。第1轮只恢复CP-033/040/041/045等已有断言并补精确`来源coverage`，未新增计划、伪造映射或降低规则；最终46条、invalid=0、主失真率0，无第2轮repair。PT084/PT085的Bundle/Testpoint/开发自测/Trace数量和测试类型分布完全一致；PT085 rule coverage 0.8125对PT084 0.7917、atomic 0.7867对0.8133，差异来自更完整Coverage备注与combo标记，边界1.0、数据源0.25、generalized/duplicate/missing fidelity/quality failures均为0。后处理总墙钟0.62秒；原run `RUN-20260806T063753Z` 以`resume --stop-at traceability`成功paused，resume墙钟0.37秒，新增6个Harness Validator命令和2个checkpoint，累计testcases attempts=3、traceability attempts=1；移动后的Bundle Validator与Traceability Validator均通过，review/strict_gate保持pending。当前无blocker；下一阶段如获授权仅进入人工Review，不得直接跨到strict_gate。
+
+Ad-hoc PT085 no-code comparison rerun closed on 2026-08-06: 工作项M strict使用仓库正式支持的`--skip-code-reviews`通过，Code Reviews明确SKIPPED，质量报告指纹及全部正式资产门禁通过；未伪造前后端review request、confirmation或人工评审结论。原run `RUN-20260806T063753Z` 因Harness review阶段没有合法N/A/skip disposition且`review_record.md`仍为“待评审”，保持paused at Traceability，review/strict_gate pending；run audit通过0 error。PT084/PT085正式数量与稳定语义一致：82 Coverage、62 Gate、75 Acceptance/CasePlan/Testcase/Testpoint/Bundle、25开发自测、46 Trace/Adapter、invalid=0、失真率0，类型35功能/22异常/11边界/6状态流转/1流程验证。PT085单run累计15 attempts、13成功checkpoint（9唯一阶段）、24个Harness Validator命令、11次resume，对比PT084 12 runs/66 validators分别减少91.7%和63.6%；该口径不含模型authoring、独立复验和人工等待。已记录模型authoring至少250.938793秒，run创建到Traceability为78分28秒、到audit约83分31秒，最终收口约84～86分钟，不能把Validator减少直接解释为端到端同比收益。最终strict墙钟0.81秒；baseline首轮因边界测试夹具依赖正式Bundle当前状态失败，第1轮仅将测试夹具显式置空后，84项及5/5基线在13.51秒通过。两个阶段越界缺陷均已修复并有回归覆盖。下一项优先实现requirement_summary强制人工approval状态/receipt/CLI门禁，再为Harness review增加可审计`not_applicable + reason`并衔接strict_gate；在此之前继续使用stop-at与人工确认记录，不伪造审批。

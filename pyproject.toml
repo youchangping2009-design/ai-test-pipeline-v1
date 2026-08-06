@@ -4,8 +4,16 @@ version = "0.1.0"
 description = "AI test pipeline repository"
 requires-python = ">=3.10"
 
+[project.scripts]
+ai-test-eval = "scripts.run_eval_suite:main"
+
 [tool.black]
 line-length = 100
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
+
+[tool.ai-test-pipeline.eval]
+smoke = "python scripts/run_eval_suite.py --tier smoke"
+regression = "python scripts/run_eval_suite.py --tier regression"
+golden = "python scripts/run_eval_suite.py --tier golden"

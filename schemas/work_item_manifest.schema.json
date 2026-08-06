@@ -1,0 +1,73 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "AI Test Pipeline Work Item Manifest",
+  "type": "object",
+  "required": [
+    "project_code",
+    "work_item_id",
+    "title",
+    "requirement_version",
+    "created_at",
+    "status",
+    "artifacts"
+  ],
+  "properties": {
+    "project_code": { "type": "string", "minLength": 1 },
+    "work_item_id": { "type": "string", "minLength": 1 },
+    "title": { "type": "string" },
+    "requirement_version": { "type": "string" },
+    "work_item_level": { "type": "string", "enum": ["S", "M", "L"] },
+    "created_at": { "type": "string", "minLength": 1 },
+    "status": { "type": "string", "minLength": 1 },
+    "pipeline_policy": {
+      "type": "object",
+      "properties": {
+        "requirement_intake_required": { "type": "boolean" },
+        "requirement_approval_required": { "type": "boolean" },
+        "testpoints_required": { "type": "boolean" }
+      },
+      "additionalProperties": true
+    },
+    "artifacts": {
+      "type": "object",
+      "required": ["inputs", "structured_prd", "testcases", "reviews"],
+      "properties": {
+        "inputs": { "type": "string", "minLength": 1 },
+        "requirement_summary": { "type": "string", "minLength": 1 },
+        "source_manifest": { "type": "string", "minLength": 1 },
+        "requirement_approval": {
+          "type": "string",
+          "const": "inputs/requirement_approval.json"
+        },
+        "structured_prd": { "type": "string", "minLength": 1 },
+        "testcases": { "type": "string", "minLength": 1 },
+        "reviews": { "type": "string", "minLength": 1 }
+      },
+      "additionalProperties": true
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "pipeline_policy": {
+            "type": "object",
+            "properties": {
+              "requirement_approval_required": { "const": true }
+            },
+            "required": ["requirement_approval_required"]
+          }
+        },
+        "required": ["pipeline_policy"]
+      },
+      "then": {
+        "properties": {
+          "artifacts": {
+            "required": ["requirement_approval"]
+          }
+        }
+      }
+    }
+  ],
+  "additionalProperties": true
+}

@@ -1,12 +1,12 @@
 {
-  "generated_at": "2026-07-22T10:40:57",
-  "total_cases": 18,
-  "total_coverage_entries": 0,
-  "coverage_empty_with_cases": true,
-  "rule_coverage_rate": 1.0,
-  "atomic_case_rate": 0.6667,
+  "generated_at": "2026-08-06T18:14:14",
+  "total_cases": 75,
+  "total_coverage_entries": 82,
+  "coverage_empty_with_cases": false,
+  "rule_coverage_rate": 0.875,
+  "atomic_case_rate": 0.7733,
   "boundary_coverage_rate": 1.0,
-  "data_source_rule_coverage_rate": 1.0,
+  "data_source_rule_coverage_rate": 0.25,
   "generalized_case_count": 0,
   "generalized_case_rate": 0.0,
   "duplicate_case_count": 0,
@@ -19,7 +19,7 @@
   "traceability_metric_source": "coverage_first_traceability",
   "field_audit_item_count": 0,
   "grouped_audit_group_count": 0,
-  "audit_artifacts_consumed": true,
+  "audit_artifacts_consumed": false,
   "quality_gate": {
     "enabled": false,
     "mode": "soft",
@@ -35,29 +35,27 @@
     "warnings": [],
     "failures": []
   },
-  "unresolved_issues": [
-    "存在正式 testcase，但 coverage_matrix.entries 为空；当前工作项不能通过规则生成器确定性重建。"
-  ],
+  "unresolved_issues": [],
   "source_artifacts": {
     "structured_prd": {
       "path": "assets/projects/WX-YGJ/work_items/PT083/structured_prd/structured_prd.json",
-      "sha256": "b01ac95c7d9b26aac8ca9c568675f55fddb5aba28e6cf7e56dabeacfe9e6b1ad",
-      "size_bytes": 85826
+      "sha256": "34e1ee8bc0f5f0f057c1eed20243787eb37631ca31ada5d0a2a019d0d75b9094",
+      "size_bytes": 113258
     },
     "coverage_matrix": {
       "path": "assets/projects/WX-YGJ/work_items/PT083/coverage/coverage_matrix.json",
-      "sha256": "5e7e0126c7a973e7135313ceea695d854984f95dd711c515acaa941d3f8418ec",
-      "size_bytes": 225
+      "sha256": "20399127984e6576a6415bb07b3e7076da262eda0c376e093368f12d2a4bdb08",
+      "size_bytes": 77326
     },
     "testcases": {
       "path": "assets/projects/WX-YGJ/work_items/PT083/testcases/testcases_main.md",
-      "sha256": "ddd192a0c946a677b8776e81c2411da159fd9125195d8f67429c369242c68e11",
-      "size_bytes": 14204
+      "sha256": "981a5ef557beb0a1ae44795ef92e4a26194070c63a48262c6a662ad12b9c3ed3",
+      "size_bytes": 65894
     },
     "coverage_first_traceability": {
       "path": "assets/projects/WX-YGJ/work_items/PT083/traceability/coverage_first_traceability.json",
-      "sha256": "55fa73391be95aa382b9b38fa39249388116f6125fd0bd8c051c24d6bcd911de",
-      "size_bytes": 363
+      "sha256": "70f4db7a0541927bfb73f2ee0ad3749cea19f40170b504f8038dbc4f18464ec8",
+      "size_bytes": 31865
     }
   }
 }

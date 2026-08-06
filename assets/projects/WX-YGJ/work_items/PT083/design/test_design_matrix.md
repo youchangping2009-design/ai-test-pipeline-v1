@@ -1,3 +1,4 @@
 # Test Design Matrix
 
-PT083 regenerated test design matrix. Machine truth source: `test_design_matrix.json`.
+| matrix_id | source_rule_id | gate_id | example_id | responsibility_id | case_plan_id | verification_side | case_type | coverage_focus | assertion | risk_level | note |
+|---|---|---|---|---|---|---|---|---|---|---|---|

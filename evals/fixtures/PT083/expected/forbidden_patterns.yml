@@ -1,31 +1,31 @@
 forbidden_patterns:
-  - id: no_document_goal_case
+  - id: no_sdk_background_case
     artifact: case_plan.expected.json
-    pattern: "需求目标包含"
-    reason: "SDK更新、720*1280 等技术背景不应生成文档校验型用例"
-  - id: no_sdk_720_business_case
+    pattern: "云机SDK目标版本、发布范围和回滚方案"
+    reason: "未明确SDK目标版本的技术背景不应生成正式业务用例"
+  - id: no_historical_metrics_case
     artifact: case_plan.expected.json
-    pattern: "验证云机SDK更新后画面尺寸固定为720*1280"
-    reason: "技术背景不进入正式业务用例"
+    pattern: "MVP历史覆盖、破冰率和后续购买数据"
+    reason: "活动复盘历史指标不进入本期业务用例"
   - id: no_soft_prompt_hard_block
     artifact: case_plan.expected.json
-    pattern: "宣传图片[^\\n]*(上传失败|保存失败|不可保存|阻止保存)"
+    pattern: "建议尺寸1008\\*160[^\\n]*(上传失败|保存失败|不可保存|阻止保存)"
     reason: "问号提示/建议尺寸只生成提示展示，不生成 hard_block"
-  - id: no_special_area_consumer_first
+  - id: no_unknown_dialog_case
     artifact: case_plan.expected.json
-    pattern: "特殊区[^\\n]*C端[^\\n]*最多展示4个"
-    reason: "特殊区最多4个优先由 B端写侧保存拦截承接"
-  - id: no_goods_region_main_acceptance
+    pattern: "商品编辑弹窗和商品顺序编辑弹窗未展开"
+    reason: "未展开交互不得脑补正式业务用例"
+  - id: no_risk_main_acceptance
     artifact: case_plan.expected.json
-    pattern: "goodsRegion[^\\n]*product_acceptance"
-    reason: "goodsRegion 非法枚举直调接口不进入主验收"
+    pattern: "RISK-00[1-5][^\\n]*product_acceptance"
+    reason: "risk_note_only 不得进入主验收"
 required_patterns:
-  - id: has_special_area_write_block
+  - id: has_inventory_linkage
     artifact: case_plan.expected.json
-    pattern: "特殊区配置超过4个时保存失败"
-  - id: has_free_trial_linkage
+    pattern: "库存小于等于预警值时，C端隐藏商品、不分配云机并发送库存不足通知"
+  - id: has_promo_soft_display
     artifact: case_plan.expected.json
-    pattern: "0元商品[^\\n]*C端免费体验领取链路"
-  - id: has_goods_region_risk_note
+    pattern: "提示展示：最多上传5张.*建议尺寸1008[*]160"
+  - id: has_special_area_save_block
     artifact: case_plan.expected.json
-    pattern: "validation_path.*risk_note"
+    pattern: "特殊区商品数量必须小于等于4，超过4个时不可保存"

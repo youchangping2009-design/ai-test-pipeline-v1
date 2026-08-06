@@ -1,0 +1,69 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Requirement Summary Human Approval Receipt",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "approval_id",
+    "status",
+    "reviewed_by",
+    "reviewed_at",
+    "note",
+    "run_id",
+    "requirement_summary_sha256",
+    "source_manifest_sha256",
+    "raw_inputs_fingerprint",
+    "requirement_version"
+  ],
+  "properties": {
+    "schema_version": { "type": "string", "const": "1.0.0" },
+    "approval_id": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]*$"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["pending", "approved", "rejected"]
+    },
+    "reviewed_by": { "type": ["string", "null"] },
+    "reviewed_at": { "type": ["string", "null"] },
+    "note": { "type": ["string", "null"] },
+    "run_id": { "type": "string", "minLength": 1 },
+    "requirement_summary_sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "source_manifest_sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "raw_inputs_fingerprint": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "requirement_version": { "type": "string" }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": { "status": { "const": "pending" } },
+        "required": ["status"]
+      },
+      "then": {
+        "properties": {
+          "reviewed_by": { "type": "null" },
+          "reviewed_at": { "type": "null" },
+          "note": { "type": "null" }
+        }
+      },
+      "else": {
+        "properties": {
+          "reviewed_by": { "type": "string", "minLength": 1 },
+          "reviewed_at": { "type": "string", "minLength": 1 },
+          "note": { "type": "string", "minLength": 1 }
+        }
+      }
+    }
+  ],
+  "additionalProperties": false
+}

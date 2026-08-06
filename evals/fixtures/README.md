@@ -4,7 +4,7 @@
 
 | Fixture | Purpose |
 |---|---|
-| `PT083` | 历史 golden regression，覆盖 technical_background、soft_prompt、写侧/读侧责任、0元链路、goodsRegion API/risk 分池 |
+| `PT083` | 当前 PT083 M 档 golden regression，覆盖 technical_background、soft_prompt、写侧/读侧责任、0元链路、goodsRegion API/risk 分池 |
 | `PROMPT_ONLY` | 提示类需求，只应生成 soft_display / prompt_display |
 | `LINKAGE_ONLY` | 跨端链路需求，必须生成 linkage case_plan |
 | `RISK_API_ONLY` | 风险/API 类需求，应进入 risk_note / api_guard，不进入 product_acceptance 主验收 |
@@ -17,22 +17,28 @@
 /usr/bin/python3 scripts/run_evals.py --fixture PT083
 ```
 
-运行全部 fixture：
+运行全部 fixture（兼容入口）：
 
 ```bash
 /usr/bin/python3 scripts/run_evals.py --all
 ```
 
-元素标注 fixture 当前用于 lint 样例验证，可执行：
+正式分级入口：
 
 ```bash
-/usr/bin/python3 skills/case-generation/scripts/testcase_element_lint.py \
-  --input evals/fixtures/ELEMENT_NOTATION/positive.testcases.md \
-  --strict
-
-/usr/bin/python3 skills/case-generation/scripts/testcase_element_lint.py \
-  --input evals/fixtures/ELEMENT_NOTATION/negative.testcases.md \
-  --strict
+/usr/bin/python3 scripts/run_eval_suite.py --tier smoke
+/usr/bin/python3 scripts/run_eval_suite.py --tier regression
+/usr/bin/python3 scripts/run_eval_suite.py --tier golden
 ```
 
-第二条命令预期失败。
+- `smoke`：3 个快速代表 fixture，适合本地高频反馈。
+- `regression`：全部 6 个 fixture、56 个可量化检查，适合每个 PR。
+- `golden`：regression + 全量单元测试 + PT083 M strict，并与提交到仓库的 fixture 指纹和指标 baseline 比较。
+
+`ELEMENT_NOTATION` 与 `CASE_GROUPING` 各包含一个预期失败的负向检查。负向样例若意外通过，整个 tier 失败。
+
+只有在规则或 fixture 变更已经评审、且本轮全部检查通过时，才可显式刷新 golden baseline：
+
+```bash
+/usr/bin/python3 scripts/run_eval_suite.py --tier golden --update-baseline
+```

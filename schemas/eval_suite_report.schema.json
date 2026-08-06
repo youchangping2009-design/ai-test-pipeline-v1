@@ -1,0 +1,113 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "AI Test Pipeline Eval Suite Report",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "suite_version",
+    "tier",
+    "started_at",
+    "finished_at",
+    "duration_ms",
+    "passed",
+    "metrics",
+    "fixtures",
+    "commands",
+    "baseline"
+  ],
+  "properties": {
+    "schema_version": { "type": "string", "const": "1.0.0" },
+    "suite_version": { "type": "string", "minLength": 1 },
+    "tier": { "type": "string", "enum": ["smoke", "regression", "golden"] },
+    "started_at": { "type": "string", "minLength": 1 },
+    "finished_at": { "type": "string", "minLength": 1 },
+    "duration_ms": { "type": "integer", "minimum": 0 },
+    "passed": { "type": "boolean" },
+    "metrics": {
+      "type": "object",
+      "required": [
+        "fixture_count",
+        "fixture_passed",
+        "fixture_failed",
+        "check_count",
+        "expected_failure_checks",
+        "command_count",
+        "command_passed",
+        "command_failed"
+      ],
+      "properties": {
+        "fixture_count": { "type": "integer", "minimum": 0 },
+        "fixture_passed": { "type": "integer", "minimum": 0 },
+        "fixture_failed": { "type": "integer", "minimum": 0 },
+        "check_count": { "type": "integer", "minimum": 0 },
+        "expected_failure_checks": { "type": "integer", "minimum": 0 },
+        "command_count": { "type": "integer", "minimum": 0 },
+        "command_passed": { "type": "integer", "minimum": 0 },
+        "command_failed": { "type": "integer", "minimum": 0 }
+      },
+      "additionalProperties": false
+    },
+    "fixtures": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "fixture_id",
+          "passed",
+          "duration_ms",
+          "check_count",
+          "expected_failure_checks",
+          "fingerprint",
+          "output_tail"
+        ],
+        "properties": {
+          "fixture_id": { "type": "string", "minLength": 1 },
+          "passed": { "type": "boolean" },
+          "duration_ms": { "type": "integer", "minimum": 0 },
+          "check_count": { "type": "integer", "minimum": 0 },
+          "expected_failure_checks": { "type": "integer", "minimum": 0 },
+          "fingerprint": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+          "output_tail": { "type": "array", "items": { "type": "string" } }
+        },
+        "additionalProperties": false
+      }
+    },
+    "commands": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "command_id",
+          "passed",
+          "expected_exit_code",
+          "actual_exit_code",
+          "duration_ms",
+          "output_tail"
+        ],
+        "properties": {
+          "command_id": { "type": "string", "minLength": 1 },
+          "passed": { "type": "boolean" },
+          "expected_exit_code": { "type": "integer" },
+          "actual_exit_code": { "type": "integer" },
+          "duration_ms": { "type": "integer", "minimum": 0 },
+          "output_tail": { "type": "array", "items": { "type": "string" } }
+        },
+        "additionalProperties": false
+      }
+    },
+    "baseline": {
+      "type": "object",
+      "required": ["status", "path", "differences"],
+      "properties": {
+        "status": {
+          "type": "string",
+          "enum": ["not_requested", "missing", "matched", "mismatched", "updated"]
+        },
+        "path": { "type": ["string", "null"] },
+        "differences": { "type": "array", "items": { "type": "string" } }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

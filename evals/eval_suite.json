@@ -1,0 +1,67 @@
+{
+  "schema_version": "1.0.0",
+  "suite_version": "1.0.0",
+  "tiers": {
+    "smoke": {
+      "fixtures": [
+        "PROMPT_ONLY",
+        "ELEMENT_NOTATION",
+        "CASE_GROUPING"
+      ],
+      "commands": []
+    },
+    "regression": {
+      "fixtures": [
+        "PT083",
+        "PROMPT_ONLY",
+        "LINKAGE_ONLY",
+        "RISK_API_ONLY",
+        "ELEMENT_NOTATION",
+        "CASE_GROUPING"
+      ],
+      "commands": []
+    },
+    "golden": {
+      "fixtures": [
+        "PT083",
+        "PROMPT_ONLY",
+        "LINKAGE_ONLY",
+        "RISK_API_ONLY",
+        "ELEMENT_NOTATION",
+        "CASE_GROUPING"
+      ],
+      "commands": [
+        {
+          "id": "harness_unit_tests",
+          "argv": [
+            "{python}",
+            "-m",
+            "unittest",
+            "discover",
+            "-s",
+            "tests",
+            "-p",
+            "test_*.py"
+          ],
+          "expected_exit_code": 0
+        },
+        {
+          "id": "pt083_live_strict",
+          "argv": [
+            "{python}",
+            "scripts/validate_work_item.py",
+            "--project-code",
+            "WX-YGJ",
+            "--work-item-id",
+            "PT083",
+            "--work-item-level",
+            "M",
+            "--strict",
+            "--skip-code-reviews"
+          ],
+          "expected_exit_code": 0
+        }
+      ]
+    }
+  }
+}

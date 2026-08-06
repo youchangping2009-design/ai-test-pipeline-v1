@@ -1,0 +1,72 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "AI Test Pipeline Multi-role Runtime State",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "run_id",
+    "role_order",
+    "current_role",
+    "roles",
+    "staged_paths",
+    "updated_at"
+  ],
+  "properties": {
+    "schema_version": { "type": "string", "const": "1.0.0" },
+    "run_id": { "type": "string", "minLength": 1 },
+    "role_order": {
+      "type": "array",
+      "minItems": 4,
+      "items": { "type": "string", "minLength": 1 }
+    },
+    "current_role": { "type": ["string", "null"] },
+    "roles": {
+      "type": "array",
+      "minItems": 4,
+      "items": {
+        "type": "object",
+        "required": [
+          "role_id",
+          "stage_id",
+          "skill_path",
+          "status",
+          "turns_used",
+          "repair_rounds_used",
+          "writable_paths",
+          "validated_fingerprint"
+        ],
+        "properties": {
+          "role_id": { "type": "string", "minLength": 1 },
+          "stage_id": { "type": "string", "pattern": "^[a-z][a-z0-9_]*$" },
+          "skill_path": { "type": "string", "minLength": 1 },
+          "status": {
+            "type": "string",
+            "enum": [
+              "pending",
+              "running",
+              "waiting_approval",
+              "succeeded",
+              "failed",
+              "skipped"
+            ]
+          },
+          "turns_used": { "type": "integer", "minimum": 0 },
+          "repair_rounds_used": { "type": "integer", "minimum": 0 },
+          "writable_paths": {
+            "type": "array",
+            "minItems": 1,
+            "items": { "type": "string", "minLength": 1 }
+          },
+          "validated_fingerprint": { "type": ["string", "null"] }
+        },
+        "additionalProperties": false
+      }
+    },
+    "staged_paths": {
+      "type": "array",
+      "items": { "type": "string", "minLength": 1 }
+    },
+    "updated_at": { "type": "string", "minLength": 1 }
+  },
+  "additionalProperties": false
+}

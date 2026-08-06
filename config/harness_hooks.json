@@ -1,0 +1,15 @@
+{
+  "schema_version": "1.0.0",
+  "hooks": [
+    {
+      "hook_id": "strict-gate-stage-summary",
+      "enabled": true,
+      "event": "post_stage",
+      "stages": ["strict_gate"],
+      "handler": "scripts/hooks/record_stage_summary.py",
+      "failure_policy": "warn",
+      "timeout_seconds": 10,
+      "max_output_chars": 4096
+    }
+  ]
+}

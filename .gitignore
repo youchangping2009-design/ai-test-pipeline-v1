@@ -8,3 +8,6 @@ __pycache__/
 tmp/
 .tmp_lark_auth/
 FETCH_HEAD
+assets/projects/*/work_items/*/.generation/runs/
+assets/projects/*/work_items/*/.generation/current_run.json
+.generation/evals/

@@ -1,0 +1,49 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "AI Test Pipeline Multi-role Recovery",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "recovery_id",
+    "run_id",
+    "status",
+    "original_run_status",
+    "original_current_stage",
+    "recovered_by",
+    "reason",
+    "created_at",
+    "updated_at",
+    "recovered_at",
+    "skipped_stages",
+    "preserved_paths",
+    "parallel_review_status"
+  ],
+  "properties": {
+    "schema_version": { "type": "string", "const": "1.0.0" },
+    "recovery_id": { "type": "string", "minLength": 1 },
+    "run_id": { "type": "string", "minLength": 1 },
+    "status": {
+      "type": "string",
+      "enum": ["recovering", "completed"]
+    },
+    "original_run_status": { "type": "string", "const": "running" },
+    "original_current_stage": { "type": ["string", "null"] },
+    "recovered_by": { "type": "string", "minLength": 1 },
+    "reason": { "type": "string", "minLength": 1 },
+    "created_at": { "type": "string", "minLength": 1 },
+    "updated_at": { "type": "string", "minLength": 1 },
+    "recovered_at": { "type": ["string", "null"] },
+    "skipped_stages": {
+      "type": "array",
+      "items": { "type": "string", "minLength": 1 },
+      "uniqueItems": true
+    },
+    "preserved_paths": {
+      "type": "array",
+      "items": { "type": "string", "minLength": 1 },
+      "uniqueItems": true
+    },
+    "parallel_review_status": { "type": ["string", "null"] }
+  },
+  "additionalProperties": false
+}

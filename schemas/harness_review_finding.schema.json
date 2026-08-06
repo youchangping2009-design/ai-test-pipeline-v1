@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "AI Test Pipeline Parallel Review Finding",
+  "type": "object",
+  "required": [
+    "finding_id",
+    "reviewer",
+    "finding_type",
+    "artifact_path",
+    "location",
+    "severity",
+    "message",
+    "suggestion",
+    "trace_ids",
+    "dedupe_key"
+  ],
+  "properties": {
+    "finding_id": { "type": "string", "pattern": "^FND-(EVIDENCE|FLOW|TESTCASE)-[A-F0-9]{12}$" },
+    "reviewer": { "type": "string", "enum": ["evidence", "flow", "testcase"] },
+    "finding_type": { "type": "string", "minLength": 1 },
+    "artifact_path": { "type": "string", "minLength": 1 },
+    "location": { "type": "string", "minLength": 1 },
+    "severity": {
+      "type": "string",
+      "enum": ["critical", "high", "medium", "low", "info"]
+    },
+    "message": { "type": "string", "minLength": 1 },
+    "suggestion": { "type": "string", "minLength": 1 },
+    "trace_ids": {
+      "type": "array",
+      "items": { "type": "string", "minLength": 1 }
+    },
+    "dedupe_key": { "type": "string", "pattern": "^[a-f0-9]{64}$" }
+  },
+  "additionalProperties": false
+}

@@ -79,7 +79,10 @@ def validate_bundle(
         ["inputs/source_manifest.json"],
         ["evidence/evidence_inventory.json"],
         ["structured_prd/structured_prd.json"],
-        ["traceability/traceability_matrix.json"],
+        [
+            "traceability/coverage_first_traceability.json",
+            "traceability/traceability_matrix.json",
+        ],
         ["testcases/case_plan.json"],
         ["testcases/testcases_main.md", "testcases/testcases.md"],
         ["reviews/review_record.md"],
@@ -310,6 +313,10 @@ def run_post_write_normalizers(item_root: Path) -> tuple[bool, str]:
                     "--output",
                     str(traceability_adapter_path),
                 ],
+            ]
+        )
+        if traceability_path.exists():
+            commands.append(
                 [
                     sys.executable,
                     str(ROOT / "scripts" / "slim_legacy_traceability.py"),
@@ -320,9 +327,8 @@ def run_post_write_normalizers(item_root: Path) -> tuple[bool, str]:
                     "--traceability",
                     str(traceability_path),
                     "--write",
-                ],
-            ]
-        )
+                ]
+            )
         commands.append(
             [
                 sys.executable,

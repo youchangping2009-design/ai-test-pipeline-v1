@@ -348,6 +348,20 @@ def load_primary_traceability_metric(path: Path) -> tuple[float | None, str]:
     return float(rate), "coverage_first_traceability"
 
 
+def load_legacy_traceability_metric(
+    path: Path,
+    structured_prd: dict[str, Any],
+    testcase_ids: set[str],
+) -> tuple[float, list[dict[str, Any]]]:
+    if not path.exists():
+        return 0.0, []
+    return compute_false_traceability_rate(
+        structured_prd,
+        read_json(path),
+        testcase_ids,
+    )
+
+
 def build_quality_report(
     coverage_matrix: dict[str, Any],
     rows: list[dict[str, str]],
@@ -619,7 +633,6 @@ def main() -> int:
 
     structured_prd = read_json(structured_prd_path)
     coverage_matrix = read_json(coverage_matrix_path)
-    traceability = read_json(traceability_path)
     rows = load_testcase_rows(testcase_path)
     testcase_ids = {row.get("用例编号", "").strip() for row in rows if row.get("用例编号", "").strip()}
     duplicate_report = load_duplicate_report(duplicate_report_path)
@@ -631,7 +644,14 @@ def main() -> int:
     missing_fidelity_points, fidelity_hit_locations, high_priority_fidelity_missing = build_fidelity_reports(coverage_matrix, rows)
     generalized_cases = build_generalized_cases(rows)
     weak_cases = build_weak_cases(rows)
-    false_traceability_rate_legacy, invalid_traceability_records_legacy = compute_false_traceability_rate(structured_prd, traceability, testcase_ids)
+    (
+        false_traceability_rate_legacy,
+        invalid_traceability_records_legacy,
+    ) = load_legacy_traceability_metric(
+        traceability_path,
+        structured_prd,
+        testcase_ids,
+    )
     primary_traceability_rate, traceability_metric_source = load_primary_traceability_metric(coverage_first_traceability_path)
     false_traceability_rate_primary = primary_traceability_rate if primary_traceability_rate is not None else 0.0
     quality_gate = evaluate_quality_gate(

@@ -171,6 +171,8 @@
 
 输出契约见 `skills/requirement-summary/references/output-contract.md`。
 
+新工作项默认要求人工审核归一化内容。Requirement Sources 校验通过后，Harness run 进入 `waiting_approval`；使用 `approve-requirement` 或 `reject-requirement` 处理当前内容绑定，再用同一个 `run_id` 执行 `resume`。若 receipt 已写但 event/state 未完成，使用 `recover-requirement-approval`。摘要、来源清单、原始输入或需求版本漂移会撤销旧批准；manifest 的运行期/派生字段不属于 canonical binding。
+
 ---
 
 ## 六、Evidence 生成流程
@@ -513,10 +515,19 @@ review 正式资产路径：
 脚本会在工作项目录下生成：
 
 - `.generation/latest/00-preflight.md`
-- `.generation/latest/01-prd-structurer.md`
-- `.generation/latest/02-case-generator.md`
-- `.generation/latest/03-case-reviewer.md`
-- `.generation/latest/04-asset-formatter.md`
+- `.generation/latest/00-requirement-intake.md`
+- `.generation/latest/01-reasoning-analyst.md`
+- `.generation/latest/02-prd-structurer.md`
+- `.generation/latest/03-coverage-planner.md`
+- `.generation/latest/03a-testability-gate.md`
+- `.generation/latest/03b-acceptance-examples.md`
+- `.generation/latest/03c-test-design.md`
+- `.generation/latest/03d-case-plan.md`
+- `.generation/latest/04-case-generator.md`
+- `.generation/latest/05-case-reviewer.md`
+- `.generation/latest/06-asset-formatter.md`
+- `.generation/latest/07-frontend-code-review.md`
+- `.generation/latest/08-backend-code-review.md`
 - `.generation/latest/run_manifest.json`
 
 作用：

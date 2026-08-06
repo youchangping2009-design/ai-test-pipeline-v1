@@ -722,6 +722,24 @@ tests/
 
 - 把现有 4 个角色串成可执行流程
 
+当前进展（2026-08-05）：
+
+- 已完成 P0/P1 基础：Harness 六类运行 Schema、确定性阶段注册、checkpoint、事件流、诊断，以及 `start / status / resume / cancel`
+- 已完成 P2 结构化诊断：Validator 文本归一化、聚合门禁责任路由、稳定兜底及 attempt 历史
+- 已完成 P3 Case Plan 试点：command 模型适配器、白名单 Action、staging、Validator 反馈、8 turn/2 repair、两步审批和 hash 提交
+- 已完成 P4 治理与观测：wall/token/cost 预算、usage envelope、运行指标、审批拒绝、终态摘要与 run replay audit
+- 已完成 P4-005 受限 Hook：pre/post/fail/approval/repair、可信脚本边界、超时/失败策略和 execution audit
+- 已完成 P4-006 受控全链路生成：隔离仓库执行 bundle/normalizer/strict、候选审批、hash 漂移保护、transaction journal 与失败回滚
+- 已完成 P4-007 分级 Eval：smoke/regression/golden、结构化报告、量化检查、负向 fixture、golden 指纹 baseline 与 CI 门禁
+- 已完成 P4-008 四角色受限 Runtime：Structurer、Generator、Reviewer、Formatter 固定顺序、角色读写权限、staging Validator、共享预算和最终发布审批
+- 已完成 P4-009 端到端收口：锁所有权与陈旧锁保护、崩溃恢复临时文件清理、备份完整性预检、安全 retention、Action/Approval 关联审计和统一 closeout 报告
+- 已完成 P4-010 Case Plan commit recovery：单文件提交 journal、未完成替换回滚、committed metadata 幂等完成、恢复 CLI 与关联审计
+- 已完成 P5-002 multi-role crash recovery：崩溃 run 显式终态化、run-local 证据保留、恢复审计与 cleanup 解阻；不开放不可靠的 turn 级续跑
+- 四角色 Runtime 已覆盖 structured PRD、testcase、review 和 formatter；traceability 仍由现有 normalizer 生成，不开放为独立模型写入角色，也未接入 subagent 或自动代码评审
+- PT083 已验证四角色 17 次模型调用、255 token、0.0017 USD fixture 用量记录，审批拒绝后审计通过且正式资产未发布
+- 历史 PT083 基准已验证 L strict 14 阶段 Hook 编排，默认 strict-gate summary Hook 成功且 61 个事件审计通过
+- PT083 已通过 `run_harness_closeout.py`：确定性 Harness、run audit、golden、质量基线全部通过，`.generation` 之外工作项聚合 hash 保持不变
+
 改造范围：
 
 - `scripts/`
@@ -770,6 +788,14 @@ tests/
 - 规则改动前后可量化对比
 - 关键场景回归可被 CI 拦截
 
+当前进展（2026-08-05）：
+
+- `scripts/run_eval_suite.py` 已提供 smoke / regression / golden 三档统一入口
+- regression 覆盖 6 个 fixture、56 个检查；元素标注与分组各保留 1 个 expected-failure 负向检查
+- golden 额外执行全量 Harness 单元测试和当前 PT083 M strict，并绑定 suite/指标/fixture SHA-256 baseline
+- 每轮生成 `eval_suite_report`，量化 fixture、检查、负向检查、命令、耗时和 baseline 差异
+- GitHub Actions 已接入 PR/push 全量 Harness 单元测试 + regression，以及主分支/手工 golden；CI 不自动更新 baseline
+
 ### Phase 5：引入 Agent Runtime 能力
 
 目标：
@@ -797,6 +823,17 @@ tests/
 
 - Agent 编排提升效率，但不破坏 schema 与 gate 的强约束
 - 长期经验沉淀在 skill / checklist / eval 中，而不是只沉淀在历史对话里
+
+当前进展（2026-08-05）：
+
+- 四个核心角色已接入统一 Model Action 协议和固定顺序调度
+- 每个角色持有独立读取范围、精确写入白名单、staging fingerprint 和 Validator
+- 四角色共享预算、Telemetry、Hook、Approval 和 audit，最终发布复用 P4-006 事务
+- 四角色主阶段仍固定顺序；仅 Case Reviewer 子阶段可 opt-in 使用三路并行 Reviewer，默认单 Reviewer 保持兼容
+- P4-009 已关闭本地单工作项 Harness 清单；P5-001 只扩展本地 Reviewer 子阶段，不改变发布事务与正式真源
+- P5-001 已完成 opt-in Parallel Reviewer Runtime：Case Reviewer 可并发运行 evidence、flow、testcase 三路只读 Reviewer，3/3 barrier 后确定性聚合并复用现有 Review Gate
+- 三路共享并发安全预算和 per-reviewer telemetry；Action/findings/events/runtime/bundle hash 可审计，任一路失败只允许进入人工拒绝，不生成聚合 review 或继续 Formatter
+- 并行范围仍限定为单机 Case Reviewer 子阶段；分布式锁、长期 memory、自动代码评审、任意 shell 和 OS 沙箱不在 P5-001 范围
 
 ---
 

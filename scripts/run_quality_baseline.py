@@ -43,6 +43,20 @@ def run_command(item: BaselineCommand) -> tuple[bool, str]:
 def main() -> int:
     commands = [
         BaselineCommand(
+            name="Harness runtime unit tests should pass",
+            command=[
+                PYTHON,
+                "-m",
+                "unittest",
+                "discover",
+                "-s",
+                "tests",
+                "-p",
+                "test_*.py",
+            ],
+            expected_pass=True,
+        ),
+        BaselineCommand(
             name="PT083 non-strict should pass",
             command=[
                 PYTHON,
@@ -70,12 +84,12 @@ def main() -> int:
             expected_pass=True,
         ),
         BaselineCommand(
-            name="PT083 eval should pass",
+            name="Eval regression tier should pass",
             command=[
                 PYTHON,
-                "scripts/run_evals.py",
-                "--fixture",
-                "PT083",
+                "scripts/run_eval_suite.py",
+                "--tier",
+                "regression",
             ],
             expected_pass=True,
         ),

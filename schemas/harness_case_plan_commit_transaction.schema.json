@@ -1,0 +1,52 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "AI Test Pipeline Case Plan Commit Transaction",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "transaction_id",
+    "run_id",
+    "approval_id",
+    "status",
+    "attempt",
+    "created_at",
+    "updated_at",
+    "approved_by",
+    "target_path",
+    "candidate_path",
+    "backup_path",
+    "target_existed",
+    "expected_target_hash",
+    "candidate_hash",
+    "expected_upstream_fingerprint",
+    "applied",
+    "error"
+  ],
+  "properties": {
+    "schema_version": { "type": "string", "const": "1.0.0" },
+    "transaction_id": { "type": "string", "minLength": 1 },
+    "run_id": { "type": "string", "minLength": 1 },
+    "approval_id": { "type": "string", "minLength": 1 },
+    "status": {
+      "type": "string",
+      "enum": ["prepared", "committing", "committed", "rolled_back"]
+    },
+    "attempt": { "type": "integer", "minimum": 1 },
+    "created_at": { "type": "string", "minLength": 1 },
+    "updated_at": { "type": "string", "minLength": 1 },
+    "approved_by": { "type": "string", "minLength": 1 },
+    "target_path": { "type": "string", "const": "testcases/case_plan.json" },
+    "candidate_path": { "type": "string", "minLength": 1 },
+    "backup_path": { "type": ["string", "null"] },
+    "target_existed": { "type": "boolean" },
+    "expected_target_hash": { "type": "string", "minLength": 1 },
+    "candidate_hash": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+    "expected_upstream_fingerprint": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "applied": { "type": "boolean" },
+    "error": { "type": ["string", "null"] }
+  },
+  "additionalProperties": false
+}

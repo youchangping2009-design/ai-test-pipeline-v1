@@ -391,3 +391,223 @@ AGENTS 和自驱动协议曾以 Codex 为默认主语，任务包还只引用 Cu
 
 Impact:
 三份 adapter README 使用统一结构；删除无代码依赖的 Codex agent YAML 与 runtime bridge。所有宿主统一使用 `ATP_MODEL / ATP_API_KEY / ATP_BASE_URL / ATP_RUNTIME_CONTEXT_FILE` 等显式运行时配置。核心 prompts、skills、schemas 和生成任务包均不绑定宿主。
+
+## 2026-08-05 - Harness Contracts And Deterministic Orchestrator
+
+Decision:
+先落地薄领域 Harness 的 P0/P1 基础：用 Run、Stage、Event、Diagnostic、Model Action、Approval 六类 Schema 冻结运行契约，并新增只读的确定性阶段 Orchestrator。首版只允许执行阶段注册表中的 Validator 或 artifact checkpoint，不接模型、不执行生成器、不开放任意 shell。
+
+Reason:
+现有仓库已有强验证 Harness，但缺少可恢复的阶段状态机、运行事件和失败诊断。直接接入模型循环会放大不可恢复写入和权限风险，因此先建立宿主中立、可验证、可暂停恢复的运行底座。
+
+Impact:
+`scripts/run_work_item_pipeline.py` 成为新 Harness 验证入口，支持 `start / status / resume / cancel`；运行过程写入 `.generation/runs/` 并可按 minimal retention 清理。成功 checkpoint 只有在输入指纹未变化时才复用，变化后该阶段及下游失效。最终结论继续由现有 `validate_work_item.py` strict gate 决定，testcase、Case Plan 和 traceability 真源均未切换。PT083 已完成 Case Plan 停止与恢复验证，正式产物未被修改。
+
+## 2026-08-05 - Harness Structured Diagnostics
+
+Decision:
+将 Validator 文本输出归一化为 Harness Diagnostic，并区分“观察失败的阶段”和“负责修复的阶段”。聚合 Strict Gate 输出按稳定关键词路由到对应业务阶段；无法识别的失败使用统一兜底代码。
+
+Reason:
+仅保存退出码和日志路径不足以支持后续自动反馈循环，也无法稳定判断错误应回到 Case Plan、Testcase、Traceability 或其他阶段。诊断层必须先于模型 repair 落地，并且不能改变 Validator 原始结论。
+
+Impact:
+新增 `scripts/harness/diagnostics.py`，Diagnostic 增加 `observed_stage_id / command_index / exit_code`。失败历史按 stage 和 attempt 分文件保存，API Key 与 Authorization 摘要会脱敏。结构化诊断只解释失败，不触发修复、不降低 strict；Harness 单元测试已纳入统一质量基线。
+
+## 2026-08-05 - Restricted Case Plan Agent Loop
+
+Decision:
+以 `testcases/case_plan.json` 作为首个 Agent Loop 垂直切片。模型只能通过 command adapter 返回白名单 Action，候选只写 staging；Harness 运行正式 Case Plan Validator，并将失败 Diagnostic 回注下一 turn。模型请求提交时必须停在 pending approval，禁止同一命令内直接提交。
+
+Reason:
+直接让模型写正式产物无法保证权限、回滚和并发安全；仅在启动时传入宽泛提交开关也无法绑定实际候选。两步审批可以让人工先检查 staging 与 diff，再用 approval ID 和 candidate hash 精确授权。
+
+Impact:
+新增 `agent-case-plan` 与 `approve-case-plan` 两个 Harness 操作。每个 Agent run 最多 8 turn、2 repair；审批绑定 candidate、上游和正式目标 hash，任一漂移拒绝提交。成功提交会备份旧 Case Plan 并记录下游 testcase、traceability、review、strict gate 失效，但不会自动刷新这些资产。PT083 staging 试点通过 Validator 并停在等待审批，正式 Case Plan 未变化。
+
+## 2026-08-05 - Harness Governance And Observability
+
+Decision:
+为 Case Plan Agent Loop 增加可执行的 wall time、模型调用、token 和 cost 预算，并把模型 usage/runtime 作为可选 envelope 接入。配置 token/cost 门禁或 `require_usage` 后，适配器未报告 usage 必须停止，超预算 Action 不得分发。每个 run 生成 telemetry、终态摘要，并支持独立拒绝审批和重放审计。
+
+Reason:
+仅有 turn/repair 上限不能回答一次运行消耗了多少资源，也无法对适配器漏报成本、事件篡改或审批悬挂做治理。预算必须在 Action 分发前生效，观测数据不得由 Harness 猜测，审计必须能够从持久化状态独立复核。
+
+Impact:
+新增 `harness_telemetry`、`harness_audit_report` 契约，以及 `reject-case-plan`、`audit-run` 操作。审计覆盖 run state、连续 Event sequence、Action、Approval、Diagnostic、Telemetry 与终态一致性。PT083 观测试点记录 4 次调用、480 token、0.004 USD fixture cost；pending approval 被显式拒绝后 run 进入 cancelled，两次审计均通过，正式 Case Plan hash 未变化。
+
+## 2026-08-05 - Restricted Harness Hook Dispatcher
+
+Decision:
+Harness Hook 采用仓库内可信脚本模型。配置只允许引用 `scripts/hooks/*.py`，Dispatcher 固定使用当前 Python argv、stdin 结构化事件、清理后的环境、超时与 stdout 上限执行。阶段前/后与 repair Hook 可阻塞编排；失败通知和审批 Hook 只能 warn。
+
+Reason:
+允许配置直接携带命令会重新开放任意 shell，Hook 失败若能覆盖 Validator 或审批结论也会破坏现有强门禁。可信脚本路径加事件级失败策略，可以提供扩展点，同时保持 Validator、审批和业务真源的权威边界。
+
+Impact:
+新增 Hook Config/Execution Schema、`scripts/harness/hook_dispatcher.py`、`scripts/run_hook_dispatcher.py` 与 execution 审计。Orchestrator 接入 pre/post/fail/repair，Case Plan Agent 与 Approval Service 接入 approval requested/resolved。默认 `strict-gate-stage-summary` post-hook 只记录摘要。PT083 L strict 14 阶段完成，Hook 1/1 成功，61 个事件审计通过，正式 Case Plan 未变化。Hook handler 仍是受信任仓库代码，不构成操作系统级沙箱。
+
+## 2026-08-05 - Controlled Full-Pipeline Generation
+
+Decision:
+以现有 regeneration bundle 作为全链路候选交换格式。Harness 先复制仓库到隔离临时目录，在副本中执行 bundle、post normalizer 和 strict；通过后将完整正式资产候选写入 run staging，并用 candidate、目标快照和原始输入 fingerprint 绑定两步审批。正式发布使用 backup、同目录临时替换、transaction journal、发布后 strict 与自动回滚。
+
+Reason:
+现有 `execute_regeneration_bundle.py` 会先写正式资产再校验，失败时可能留下半完成结果，也无法在审批前查看最终 normalizer 产物。隔离副本可以复用全部现有生成和验证逻辑，同时避免为 staging 大规模改写各脚本的硬编码工作项路径。
+
+Impact:
+新增 generation candidate/publish transaction Schema、`ControlledGenerationWorkspace` 与 `ControlledGenerationService`，以及 `generate / approve-generation / reject-generation / recover-generation` CLI。Provider 支持 existing 和可信 command argv，不开放 shell。PT083 existing 与 command 两条链路都在隔离副本通过 L strict并停在审批，随后显式拒绝；两次 audit 均通过，正式 Case Plan/Testcase hash 未变化。多文件发布是带 journal 和恢复机制的逻辑原子事务，不宣称文件系统原生多文件原子性。
+
+## 2026-08-05 - Tiered Eval And Regression Gate
+
+Decision:
+以检查成本和保护强度划分 smoke、regression、golden 三档。Smoke 运行快速代表 fixture；regression 运行全部登记 fixture；golden 在 regression 基础上运行全量 Harness 单元测试与 PT083 L strict，并将 suite version、量化检查数、预期失败数、命令数和逐 fixture SHA-256 与提交到仓库的 baseline 比较。Baseline 只能在全部检查通过后显式更新。
+
+Reason:
+原 `run_evals.py --all` 只有逐 fixture 文本结果，元素标注负向样例未纳入统一入口，也无法区分本地快速反馈、PR 回归和发布级 golden，规则或 fixture 变化更没有可审查的量化差异。分档可控制反馈成本；结构化报告和 hash baseline 可同时捕获 Validator 结果回退、负向样例意外通过、检查数下降与 golden 内容漂移。
+
+Impact:
+新增 `eval_suite_report` Schema、`evals/eval_suite.json`、golden baseline 和 `scripts/run_eval_suite.py`。Regression 当前覆盖 6 个 fixture、56 个检查和 2 个 expected-failure；golden 额外执行 2 个 live 命令。`run_quality_baseline.py` 改为执行 regression，GitHub Actions 在 PR/push 运行全量 Harness 单元测试与 regression，并在主分支/手工触发时运行 golden。Eval 报告写入根 `.generation/evals/`，不修改正式工作项资产；`run_evals.py` 继续兼容旧调用。
+
+## 2026-08-05 - Multi-role Restricted Agent Runtime
+
+Decision:
+将四个核心角色建模为固定顺序的受限 Action 阶段：`prd_structurer -> case_generator -> case_reviewer -> asset_formatter`。每个角色复用同一 Model Action Schema，但拥有独立可读范围、精确可写路径、staging fingerprint 和 Validator。角色交接只发生在候选通过校验后；Formatter 完成后再将累计候选交给受控全链路生成执行隔离 normalizer/strict，并创建 hash 绑定发布审批。
+
+Reason:
+直接把 P3 Case Plan 单文件 Workspace 泛化为任意文件写入会扩大权限，也无法表达 Reviewer 不得改 testcase、Formatter 只能写派生资产等职责边界。让四角色直接依次写正式目录同样会在中间失败时留下半成品。角色专属白名单加 run 内累计 staging，可以保持职责分离；最终复用 P4-006 候选和发布事务，避免建立第二套发布安全模型。
+
+Impact:
+新增 `harness_role_runtime` Schema、`MultiRoleArtifactWorkspace`、`MultiRoleAgentRuntime` 与 `agent-roles / approve-roles / reject-roles` CLI。四角色共享最多每角色 8 turn/2 repair、wall/token/cost 预算、Hook、Telemetry、事件和 audit。Reviewer 仅写 reviews，Formatter 仅写 `feishu_ready.md`，Case Generator 不得修改 Case Plan。后续补强要求 Structurer 同步提交 `structured_prd.md` 与语义一致的 JSON 编译投影，并将 testpoints、Case Plan、testcase 交叉一致性检查前移到 Generator 角色门禁。补强后的 PT083 echo 试点使用 17 次模型调用、255 token、0.0017 USD fixture cost，四个角色 Validator 与隔离 L strict 通过后停在审批；显式拒绝后 audit 通过，正式资产未发布。
+
+## 2026-08-05 - Harness-Loop End-to-End Closeout
+
+Decision:
+本地工作项并发锁改为 PID、唯一 token 和所有权校验；`--force-unlock` 只能移除已确认 PID 不存活的锁。发布恢复在回滚前预检全部备份并清理 transaction 临时文件，缺少任一备份时拒绝部分恢复。minimal retention 在实际删除前检查锁、run 终态、pending approval 和未完成事务，默认把发布备份及 transaction/candidate 元数据归档到 `.generation/backups/`。新增统一 closeout 入口和 Action/Approval/Generation 关联审计。
+
+Reason:
+仅用锁文件存在性无法阻止旧进程退出时误删后继锁；恢复时直接逐文件回滚会在备份缺失时留下新的半恢复状态；直接删除 `.generation/runs` 会同时丢失 pending 决策、事务恢复证据和实际位于 run 内的发布备份。端到端完成还需要一个可重复、结构化且能证明正式资产未变化的统一验收。
+
+Impact:
+新增 `harness_closeout_report` Schema、`scripts/run_harness_closeout.py`、`docs/harness_loop_closeout.md` 和 closeout 专项测试。全量 Harness 测试增至 57 项。PT083 最终 closeout run `RUN-P4009-CLOSEOUT-FINAL-20260805` 的确定性 Harness、run audit、golden 与质量基线全部通过，`.generation` 之外的聚合 hash 前后一致。历史 P4-003 两个悬挂审批已显式拒绝且未提交正式资产。当前锁只承诺单机互斥，多文件事务仍是 journal 驱动的逻辑原子发布；分布式锁、并行 subagent、长期 memory 与自动代码评审留待后续明确立项。
+
+## 2026-08-05 - Case Plan Commit Recovery
+
+Decision:
+Case Plan 单文件审批提交增加独立 transaction journal。提交顺序固定为：备份与 `prepared` → `committing` → 原子替换正式目标 → `committed` journal → approval/run/event metadata。恢复以 committed journal 为分界：`prepared/committing` 回滚到原目标和 pending approval；`committed` 校验正式目标 hash 后幂等完成 metadata。
+
+Reason:
+旧实现先把 approval 写为 approved，再替换正式 Case Plan。进程在两步之间被强杀时会形成 approved approval、waiting run 和未提交目标的分裂状态；普通异常回滚无法覆盖 SIGKILL。单文件 journal 可以保留明确恢复点，并避免为 Case Plan 引入完整多文件发布事务。
+
+Impact:
+新增 `harness_case_plan_commit_transaction` Schema、`recover-case-plan` CLI、cleanup 阻断和 transaction 审计。恢复覆盖 prepared、committing、committed、重复执行、备份缺失、目标漂移、恢复后重试与未恢复前禁止拒绝。PT083 run `RUN-P4010-RECOVERY-20260805` 已演练 prepared transaction 回滚、pending approval 恢复、显式拒绝与 audit 通过，未提交正式 Case Plan。Agent/四角色中间 model turn 续跑仍留作后续任务。
+
+## 2026-08-05 - Parallel Reviewer Runtime
+
+Decision:
+Case Reviewer 增加 opt-in 三路并行 Runtime。`agent-roles --parallel-reviewers` 固定并发 evidence、flow、testcase Reviewer；默认继续使用原单 Reviewer。只有 3/3 succeeded 才能由确定性聚合器生成 run-local review bundle 和 `reviews/review_record.md` staging，再执行现有 Review Gate 并继续 Formatter。
+
+Reason:
+单 Reviewer 无法同时隔离证据追溯、业务流程和 testcase 质量关注点；但让并发线程直接写共享 staging、事件或正式 reviews 会引入竞态和不可重放结果。三线程只缓冲模型 Action、findings 与事件，Coordinator 按固定 Reviewer 顺序串行持久化，可同时获得真实并发和连续确定的 event sequence。
+
+Impact:
+新增 Parallel Reviewer Action/Finding/Runtime/Bundle Schema、三类 Reviewer Skill、并发安全共享预算、稳定 finding ID/dedupe/conflict 聚合、per-reviewer telemetry 与 replay audit。任一路失败、超时、越权、非法 Action、预算不足或 staging 漂移时，不生成聚合 review、不进入 Formatter，仅创建无 continue 选项的 `manual_decision`，由 `reject-roles` 结束。当前能力仅限单机 Case Reviewer 子阶段，不承诺分布式锁、长期 memory、任意 shell、自动代码评审或 OS 沙箱。
+
+## 2026-08-06 - Multi-role Crash Recovery
+
+Decision:
+为异常遗留为 `running` 的 multi-role run 增加 `recover-roles`。恢复只保留 run-local staging、Action、Finding、日志和诊断，把未完成角色标记为 skipped，并将 run 终态化为 cancelled；不续 model turn、不复用部分并行 Reviewer 结果，也不补跑 Reviewer。存在 pending approval 或发布事务时继续使用既有审批/事务恢复入口。
+
+Reason:
+四角色和并行 Reviewer 在进程被强杀时可能来不及写 waiting/terminal state，导致 cleanup 永久阻断。中间 observations 与 barrier 前 Reviewer 结果并未形成可靠 checkpoint，强行续跑会造成上下文、预算和 3/3 barrier 不一致。安全取消并以新 run 重跑是当前最小且可审计的恢复语义。
+
+Impact:
+新增 `harness_multi_role_recovery` Schema、`multi_role_run_recovered` 事件和 `recover-roles` CLI。Audit 会交叉校验 recovery record、事件、run/role 终态、pending approval 与证据路径；cleanup 对 running multi-role run 明确提示恢复入口。PT083 `RUN-P5002-PT083-PARALLEL-CRASH-20260806` 已在前两角色成功后于并行 Reviewer 阶段受控崩溃，恢复保留 partial 证据、跳过 Reviewer/Formatter、取消 run，audit 通过且正式 Case Plan/Testcase hash 未变化。Closeout 指纹明确排除 macOS `.DS_Store` 文件系统元数据，但继续覆盖全部流程正式资产。turn 级续跑不再视为本轮必需项；只有出现明确业务价值时才单独立项评估。
+
+## 2026-08-06 - PT084 Required Coverage Evidence Boundary
+
+Decision:
+字段 `required=true` 只有在来源文字明确“必填/必传”或图片存在必填星号时才能进入 `main_testcase` 的空值保存阻断。PT084 的 C 端“云机版本Tab”仅作为页面展示与切换上下文，不是可为空提交的表单字段，因此 `COV-EX-0004` 保留稳定 ID 但调整为 audit item；商品添加表单的红色星号字段及《编辑宣传内容》的必传字段继续保持 main coverage，并通过独立 Gate/Acceptance/CasePlan/testcase 承接。
+
+Reason:
+旧 Structured PRD 将 C 端 Tab 建模为 `required=true`，自动产生了没有来源动作的“为空阻止保存”coverage；同时把多个 coverage 宽挂到组合用例会在结构校验通过时掩盖真实语义缺口。按来源证据逐字段判定并使用精确 `来源coverage` 标记，才能同时避免降低真实必填规则和制造虚假追溯。
+
+Impact:
+PT084 main coverage 从38调整为37、audit 从44调整为45；补齐11条独立测试链后，官方 Coverage-First 生成器确定性产出46条有效记录，主失真率为0。此决策不修改通用规则强度，不改变 soft prompt、technical background、risk 或 needs_confirmation 的隔离边界。
+
+## 2026-08-06 - Harness Case Plan Stage Boundary
+
+Decision:
+确定性 Harness 的 `case_plan` 阶段只校验 Case Plan 及其当前上游设计产物，不传入尚未生成的 `testcases_main.md`。testcase 到 Case Plan 的反向追溯校验继续使用原 Validator，并在 `testcases` 阶段执行。
+
+Reason:
+PT084 与 PT085 均证明，Case Plan 本体有效时，初始化空 testcase 模板会错误阻断 Case Plan checkpoint。该反向映射只有在正式 testcase 生成后才具备可验证输入，提前执行属于阶段职责越界。
+
+Impact:
+Case Plan 可独立建立 checkpoint；`generated_testcase_ids` 的可执行映射要求仍在 Case Plan Validator 内，正式 testcase 的 Case Plan 引用、非法计划引用和风险/技术背景隔离检查未删除，只后移到 `testcases` 阶段。旧 Validator、兼容投影和 strict gate 保持不变。
+
+## 2026-08-06 - Harness Testcase Bundle Stage Boundary
+
+Decision:
+确定性 Harness 的 `testcases` 阶段只校验正式 testcase、页面板块分组、同步 testpoints 和 Case Plan 反向映射。兼容投影 `testcase_bundle.json` 的一致性校验继续使用原 Validator，并移动到现有阶段模型中的 `traceability` 阶段。
+
+Reason:
+PT084 与 PT085 均证明，正式 testcase/testpoints 已有效生成但 Bundle 后处理尚未执行时，初始化空 Bundle 会以数量不一致错误阻断 Testcase checkpoint。Bundle 是从 `testcases_main.md` 派生的 compatibility-only 投影，不应成为主用例生成阶段的前置条件。
+
+Impact:
+Testcase 可在 Bundle 刷新前独立建立 checkpoint；Bundle 的 testcase 数量、Case Plan 映射、项目/工作项标识和内容一致性检查未删除或降级，只在后处理完成后的首个现有阶段执行。最终 `validate_work_item --strict` 仍保留全部 Bundle 与质量报告指纹门禁。
+
+## 2026-08-06 - No-code Comparison Run Closeout
+
+Decision:
+无代码分支的需求对比重跑使用仓库正式支持的 `validate_work_item --strict --skip-code-reviews` 完成工作项门禁，不创建或伪造前后端 code review request、review 结论或 confirmation。若 Harness `review` 阶段只有文件存在checkpoint且没有显式skip语义，原run停在最后一个真实完成的Traceability checkpoint，不用待评审模板推进到strict_gate。
+
+Reason:
+PT085仅验证同一需求经过流程修改后的产物一致性，没有代码分支或前后端评审输入。`review_record.md` 当前仍明确为“待评审”，而Harness review阶段无Validator、无 `--skip-review`，继续resume会把文件存在错误等同于评审完成。工作项CLI已显式提供 `--skip-code-reviews`，这是当前合法的无代码收口路径。
+
+Impact:
+PT085工作项M strict和质量基线可以完成，但原run `RUN-20260806T063753Z` 合法保持paused at Traceability，review/strict_gate为pending；run audit仍须通过。后续应为Harness增加可审计的review disposition（例如 `not_applicable` + reason），并为requirement_summary人工审核增加正式approval状态；在契约落地前继续以人工确认记录和stop-at约束，不伪造receipt/reviewer。
+
+## 2026-08-06 - Requirement Summary Human Approval Gate
+
+Decision:
+Requirement Sources 机器校验与 evidence 之间新增正式人工门。新工作项默认 `pipeline_policy.requirement_approval_required=true`；通过机器校验后 run/stage 必须进入 `waiting_approval`，只有内容绑定的 `inputs/requirement_approval.json` 为 approved 才能 resume。
+
+Reason:
+PT085 只能依赖 stop-at 和文字记录表达人工确认，pending 状态可被 resume 绕过，也没有 reviewer、内容 hash、原始输入 fingerprint、事件和崩溃恢复证据。正式 receipt 必须先于下游 checkpoint，并复用 Harness state/event/audit，不建立独立发布体系。
+
+Impact:
+Receipt 绑定 requirement summary、source manifest、原始输入聚合 fingerprint、requirement version 和 run。`approve-requirement / reject-requirement` 要求显式 reviewer/note，重复同动作幂等、冲突动作失败；`recover-requirement-approval` 幂等补全 receipt 已写但 event/state 未完成的窗口。任一绑定内容漂移会失效旧批准和下游 checkpoint。旧 manifest 缺字段保持兼容，显式 required 的 strict 硬失败；CI、cleanup 和 controlled generation 不得批准、删除、发布或伪造 receipt。
+
+## 2026-08-06 - Canonical Requirement Approval Checkpoint
+
+Decision:
+`requirement_approval_required=true` 时，Requirement Intake checkpoint 指纹只使用正式 approval binding：run、requirement summary、source manifest、raw inputs fingerprint 与 requirement version。manifest 的运行期、状态、派生路径或质量策略字段不参与审批有效性；历史完整-manifest checkpoint 在 approved receipt 仍匹配时原位规范化。
+
+Reason:
+PT086 证明通用 `fingerprint_files()` 自动加入完整 manifest，会在需求内容未变化时重验 Requirement Intake，并由阶段成功后的无条件 request 撤销有效批准。审批 receipt、strict 与 audit 已经共同定义了更窄且可解释的 canonical binding，checkpoint 必须与该契约一致。
+
+Impact:
+非绑定 manifest 变化不再进入 `waiting_approval`，也不需要 `recover` 或重复人工决议。summary、source manifest、raw input 或 requirement version 漂移仍由 resume guard 先行失效全部 checkpoint 并创建新 pending receipt；新 approval ID 绑定完整 canonical fingerprint，避免来源或版本漂移复用旧 resolved 事件。旧 manifest 缺 policy 字段仍走原通用指纹路径，兼容行为不变。
+
+## 2026-08-06 - PT086 Benchmark Accounting And Trace Cardinality
+
+Decision:
+PT086最终基准按阶段记录authoring/生成、validator、resume/checkpoint与audit纯执行墙钟，人工等待、审批CLI和框架缺陷调试开销分开披露。Coverage-First Traceability以唯一main Coverage为主计数单位；同一Coverage映射多个Testcase不增加覆盖项数量。
+
+Reason:
+PT084的约59分钟、PT085的84–86分钟和PT086的细分纯执行时间并非完全相同口径，直接计算倍数会制造伪精度。PT084/PT085的46条Traceability来自37个唯一main Coverage加9个重复多Testcase映射，PT086的37条一Coverage一记录在`invalid=0`时不能解释为覆盖下降。
+
+Impact:
+run数量与采用相同事件定义的validator command数量可直接比较；耗时只有在人工等待、repair和调试边界一致时才能直接比较。PT086保留1 run、24条Harness validator command、21次stage attempt和10个唯一完成阶段的原始统计；产物稳定性继续以82 Coverage、62 Gate、75 Acceptance/Case/Testcase/Testpoint/Bundle、25开发自测、37个唯一main Coverage及`invalid=0`为准。
+
+## 2026-08-06 - PT083 Current Sample Migration
+
+Decision:
+用户明确授权删除旧 PT083/PT084/PT085，并将已批准 PT086 的需求语义与正式测试资产迁移为当前 PT083 M 档样本。旧 PT086 Harness run 先正式取消并审计，再按 minimal retention 清理；迁移后的 PT083 使用新 run 和正式 approval CLI 重新审批，不搬运或改写旧审批 hash。
+
+Reason:
+Harness run、日志和事件是可清理过程产物，直接把 PT086 run/string 改成 PT083 会伪造执行历史并破坏 approval binding。重新建立 PT083 run 可让 work item、路径、receipt、event 和 audit 保持一致，同时保留 82/62/75/25/37 的正式资产口径。
+
+Impact:
+当前 CI、golden live strict、CLI 示例、默认 closeout 和项目索引统一指向 PT083 M 档。本文及 Roadmap 中早于本决策的 PT083 L 档和 PT084/PT085/PT086 对比均视为历史基准，不再代表当前目录或默认命令；历史数字不机械改写。

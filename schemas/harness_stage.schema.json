@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "AI Test Pipeline Harness Stage",
+  "type": "object",
+  "required": [
+    "stage_id",
+    "order",
+    "kind",
+    "status",
+    "attempts",
+    "required_files",
+    "input_fingerprint",
+    "started_at",
+    "completed_at",
+    "last_exit_code",
+    "log_path"
+  ],
+  "properties": {
+    "stage_id": { "type": "string", "pattern": "^[a-z][a-z0-9_]*$" },
+    "order": { "type": "integer", "minimum": 0 },
+    "kind": { "type": "string", "enum": ["checkpoint", "validation", "gate", "agent", "generation"] },
+    "status": {
+      "type": "string",
+      "enum": ["pending", "running", "waiting_approval", "succeeded", "failed", "skipped"]
+    },
+    "attempts": { "type": "integer", "minimum": 0 },
+    "required_files": {
+      "type": "array",
+      "items": { "type": "string", "minLength": 1 }
+    },
+    "input_fingerprint": { "type": "string" },
+    "started_at": { "type": ["string", "null"] },
+    "completed_at": { "type": ["string", "null"] },
+    "last_exit_code": { "type": ["integer", "null"] },
+    "log_path": { "type": ["string", "null"] }
+  },
+  "additionalProperties": false
+}

@@ -1,0 +1,36 @@
+name: Eval regression gate
+
+on:
+  pull_request:
+  push:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  regression:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.10"
+      - name: Run Harness unit tests
+        run: python -m unittest discover -s tests -p 'test_*.py'
+      - name: Run regression tier
+        run: python scripts/run_eval_suite.py --tier regression
+
+  golden:
+    if: >-
+      github.event_name == 'workflow_dispatch' ||
+      (github.event_name == 'push' &&
+      (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master'))
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.10"
+      - name: Run golden tier
+        run: python scripts/run_eval_suite.py --tier golden
