@@ -10,10 +10,12 @@ Options:
 1. 为Harness review阶段增加可审计的 `not_applicable` 状态、reason和CLI参数，并让strict_gate接受明确N/A；同时提供安全的checkpoint normalize入口或确保命中已成功stop-at时仍暂停。
 2. 保持当前run停在Traceability，使用工作项CLI的 `--skip-code-reviews` 结果作为本次无代码收口证明。
 Recommended option: 短期选2；后续实现1，并同时设计requirement_summary人工审批状态，避免继续依赖PROGRESS记录表达关键人工门。
-Impact if unresolved: 当前 PT083 正式产物与工作项 strict 有效，但 run 无法在不伪造 review 的前提下进入 Harness strict_gate 终态。后续同类无代码重跑仍需保留 paused run 和独立 strict 结果两套状态。
+Impact if unresolved: 当前 PT083 正式产物与工作项 strict 有效，但 run 无法在不伪造 review 的前提下进入 Harness strict_gate 终态。后续同类无代码重跑仍需保留 paused run 和独立 strict 结果两套状态。`RUN-PT083-FULL-20260826` 已于 2026-08-27 停在 Traceability，同样适用本条。
 
 Resolved:
 
+- 2026-08-26 / PT083-FULL-RERUN-APPROVAL：用户确认当前 PT083 requirement summary 与 6 张原图不变，正式 CLI 已以 reviewer `ycp` 批准 `RUN-PT083-FULL-20260826`。同一 run 已完成 evidence 并暂停，reasoning 待下一阶段重跑。
+- 2026-08-21 / PT083-REQUIREMENT-APPROVAL：用户确认 PT083 需求摘要与 6 张原图一致。正式 CLI 已以 reviewer `ycp` 批准 `RUN-PT083-REQ-20260821`；同一 run 已完成 evidence 并暂停，reasoning 仍 pending。
 - 2026-08-06 / PT083-DETERMINISTIC-REGEN：旧 PT083 18 条 L 档样本已按用户授权删除；当前 PT083 为迁移后的 M 档样本，具备 82 条 Coverage、75 条 Case Plan 和 75 条正式用例，原空 Coverage 阻塞不再适用。
 - 以下 PT084/PT085/PT086 项均为迁移前历史基准记录，不再表示当前目录或可执行 run。
 - 2026-08-06 / PT086-PROJECT-VIEW-FINGERPRINT：PT086最终收口已使用正式`refresh_project_views.py --project-code WX-YGJ`刷新项目派生视图；项目strict显示4个工作项全部ready、`stale_quality_report_count=0`，PT086 M strict和完整`run_quality_baseline.py` 5/5（含95项单测）均通过。未手改指纹、未改变业务语义，也未用项目索引刷新伪造Harness Review/Strict Gate。

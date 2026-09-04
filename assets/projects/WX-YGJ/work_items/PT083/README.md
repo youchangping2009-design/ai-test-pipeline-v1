@@ -2,8 +2,8 @@
 
 - 项目编码：WX-YGJ
 - 工作项 ID：PT083
-- 标题：云挂机免费体验3（manifest 元数据当前简写为“云挂机免费体验”）
-- 需求版本：未设置（manifest 当前为空字符串）
+- 标题：待补充
+- 需求版本：待补充
 - 工作项级别：M
 
 ## 目录说明
@@ -26,12 +26,10 @@
 
 1. 将该需求原始资料放入 `inputs/`
 2. 生成 `inputs/requirement_summary.md` 与 `inputs/source_manifest.json`
-3. Requirement Sources 校验后通过 Harness 人工审核；当前 approval receipt 已绑定迁移 run 和内容指纹
+3. 通过 Harness 人工审批并生成 `inputs/requirement_approval.json`
 4. 若输入主要是截图，产出 `image_evidence/image_evidence_inventory.json`
 5. 生成 `analysis/analysis_report.md` 与 `analysis/reasoning_pack.json`
 6. 生成 structured_prd、测试设计决策层与 `case_plan`
 7. 同步生成 `testpoints.md/json` 与 `testcases_main.md`
-8. 生成 Bundle、coverage-first traceability、review 和导出产物
-9. 当前无代码样本使用 `scripts/validate_work_item.py --work-item-level M --skip-code-reviews --strict` 执行统一校验
-
-当前正式样本数量：82 条 Coverage、62 条 Gate、75 条 Acceptance/Case Plan/Testcase/Testpoint/Bundle、25 条开发自测、37 条唯一 main Coverage 追溯，invalid=0。
+8. 生成 traceability、review 和导出产物
+9. 使用 `scripts/validate_work_item.py --strict` 执行工作项级统一校验

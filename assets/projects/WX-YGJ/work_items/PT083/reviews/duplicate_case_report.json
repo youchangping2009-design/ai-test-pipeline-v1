@@ -1,0 +1,332 @@
+{
+  "total_case_drafts_before_merge": 82,
+  "total_case_drafts_after_merge": 73,
+  "reduced_case_count": 9,
+  "merged_group_count": 6,
+  "merged_groups": [
+    {
+      "merge_key": {
+        "page_name": "云挂机购买页",
+        "module_name": "云挂机购买页",
+        "feature_name": "特价专区",
+        "target_field": "special_product_list",
+        "rule_type": "happy_path_combo",
+        "title_signature": "验证特价专区合法组合场景可提交",
+        "expected_signature": "组合条件下所有字段显隐、必填、过滤和排序规则同时成立点击保存后页面不再提示必填、边界或数据源错误保存后返回列表页可见新增配置且字段值与输入一致",
+        "bucket": "normal"
+      },
+      "title": "验证特价专区合法组合场景可提交",
+      "test_type": "功能",
+      "case_count_before": 2,
+      "case_count_after": 1,
+      "coverage_ids": [
+        "COV-EX-0064",
+        "COV-EX-0065"
+      ],
+      "source_origins": [
+        "explicit_rule"
+      ],
+      "reasoning_refs": [],
+      "member_cases": [
+        {
+          "title": "验证特价专区合法组合场景可提交",
+          "coverage_ids": [
+            "COV-EX-0064"
+          ],
+          "source_origins": [
+            "explicit_rule"
+          ],
+          "reasoning_refs": []
+        },
+        {
+          "title": "验证特价专区合法组合场景可提交",
+          "coverage_ids": [
+            "COV-EX-0065"
+          ],
+          "source_origins": [
+            "explicit_rule"
+          ],
+          "reasoning_refs": []
+        }
+      ]
+    },
+    {
+      "merge_key": {
+        "page_name": "云挂机购买页",
+        "module_name": "云挂机购买页",
+        "feature_name": "普通商品列表",
+        "target_field": "regular_product_list",
+        "rule_type": "happy_path_combo",
+        "title_signature": "验证普通商品列表合法组合场景可提交",
+        "expected_signature": "组合条件下所有字段显隐、必填、过滤和排序规则同时成立点击保存后页面不再提示必填、边界或数据源错误保存后返回列表页可见新增配置且字段值与输入一致",
+        "bucket": "normal"
+      },
+      "title": "验证普通商品列表合法组合场景可提交",
+      "test_type": "功能",
+      "case_count_before": 3,
+      "case_count_after": 1,
+      "coverage_ids": [
+        "COV-EX-0066",
+        "COV-EX-0067",
+        "COV-EX-0068"
+      ],
+      "source_origins": [
+        "explicit_rule"
+      ],
+      "reasoning_refs": [],
+      "member_cases": [
+        {
+          "title": "验证普通商品列表合法组合场景可提交",
+          "coverage_ids": [
+            "COV-EX-0066"
+          ],
+          "source_origins": [
+            "explicit_rule"
+          ],
+          "reasoning_refs": []
+        },
+        {
+          "title": "验证普通商品列表合法组合场景可提交",
+          "coverage_ids": [
+            "COV-EX-0067"
+          ],
+          "source_origins": [
+            "explicit_rule"
+          ],
+          "reasoning_refs": []
+        },
+        {
+          "title": "验证普通商品列表合法组合场景可提交",
+          "coverage_ids": [
+            "COV-EX-0068"
+          ],
+          "source_origins": [
+            "explicit_rule"
+          ],
+          "reasoning_refs": []
+        }
+      ]
+    },
+    {
+      "merge_key": {
+        "page_name": "盒子管理后台-云手机商品管理-添加",
+        "module_name": "云手机商品管理",
+        "feature_name": "商品添加表单",
+        "target_field": "product_region",
+        "rule_type": "happy_path_combo",
+        "title_signature": "验证商品添加表单合法组合场景可提交",
+        "expected_signature": "组合条件下所有字段显隐、必填、过滤和排序规则同时成立点击保存后页面不再提示必填、边界或数据源错误保存后返回列表页可见新增配置且字段值与输入一致",
+        "bucket": "normal"
+      },
+      "title": "验证商品添加表单合法组合场景可提交",
+      "test_type": "功能",
+      "case_count_before": 2,
+      "case_count_after": 1,
+      "coverage_ids": [
+        "COV-EX-0069",
+        "COV-EX-0070"
+      ],
+      "source_origins": [
+        "explicit_rule"
+      ],
+      "reasoning_refs": [],
+      "member_cases": [
+        {
+          "title": "验证商品添加表单合法组合场景可提交",
+          "coverage_ids": [
+            "COV-EX-0069"
+          ],
+          "source_origins": [
+            "explicit_rule"
+          ],
+          "reasoning_refs": []
+        },
+        {
+          "title": "验证商品添加表单合法组合场景可提交",
+          "coverage_ids": [
+            "COV-EX-0070"
+          ],
+          "source_origins": [
+            "explicit_rule"
+          ],
+          "reasoning_refs": []
+        }
+      ]
+    },
+    {
+      "merge_key": {
+        "page_name": "盒子管理后台-云手机商品管理-添加",
+        "module_name": "云手机商品管理",
+        "feature_name": "商品区与库存规则说明表",
+        "target_field": "inventory_warning_threshold",
+        "rule_type": "happy_path_combo",
+        "title_signature": "验证商品区与库存规则说明表合法组合场景可提交",
+        "expected_signature": "组合条件下所有字段显隐、必填、过滤和排序规则同时成立点击保存后页面不再提示必填、边界或数据源错误保存后返回列表页可见新增配置且字段值与输入一致",
+        "bucket": "normal"
+      },
+      "title": "验证商品区与库存规则说明表合法组合场景可提交",
+      "test_type": "功能",
+      "case_count_before": 3,
+      "case_count_after": 1,
+      "coverage_ids": [
+        "COV-EX-0071",
+        "COV-EX-0072",
+        "COV-AI-0080"
+      ],
+      "source_origins": [
+        "explicit_rule",
+        "ai_reasoning"
+      ],
+      "reasoning_refs": [
+        "RISK-003"
+      ],
+      "member_cases": [
+        {
+          "title": "验证商品区与库存规则说明表合法组合场景可提交",
+          "coverage_ids": [
+            "COV-EX-0071"
+          ],
+          "source_origins": [
+            "explicit_rule"
+          ],
+          "reasoning_refs": []
+        },
+        {
+          "title": "验证商品区与库存规则说明表合法组合场景可提交",
+          "coverage_ids": [
+            "COV-EX-0072"
+          ],
+          "source_origins": [
+            "explicit_rule"
+          ],
+          "reasoning_refs": []
+        },
+        {
+          "title": "验证商品区与库存规则说明表合法组合场景可提交",
+          "coverage_ids": [
+            "COV-AI-0080"
+          ],
+          "source_origins": [
+            "ai_reasoning"
+          ],
+          "reasoning_refs": [
+            "RISK-003"
+          ]
+        }
+      ]
+    },
+    {
+      "merge_key": {
+        "page_name": "盒子管理后台-编辑宣传内容",
+        "module_name": "宣传内容管理",
+        "feature_name": "宣传内容编辑表单",
+        "target_field": "promotion_image",
+        "rule_type": "happy_path_combo",
+        "title_signature": "验证宣传内容编辑表单合法组合场景可提交",
+        "expected_signature": "组合条件下所有字段显隐、必填、过滤和排序规则同时成立点击保存后页面不再提示必填、边界或数据源错误保存后返回列表页可见新增配置且字段值与输入一致",
+        "bucket": "normal"
+      },
+      "title": "验证宣传内容编辑表单合法组合场景可提交",
+      "test_type": "功能",
+      "case_count_before": 3,
+      "case_count_after": 1,
+      "coverage_ids": [
+        "COV-EX-0074",
+        "COV-EX-0075",
+        "COV-EX-0076"
+      ],
+      "source_origins": [
+        "explicit_rule"
+      ],
+      "reasoning_refs": [],
+      "member_cases": [
+        {
+          "title": "验证宣传内容编辑表单合法组合场景可提交",
+          "coverage_ids": [
+            "COV-EX-0074"
+          ],
+          "source_origins": [
+            "explicit_rule"
+          ],
+          "reasoning_refs": []
+        },
+        {
+          "title": "验证宣传内容编辑表单合法组合场景可提交",
+          "coverage_ids": [
+            "COV-EX-0075"
+          ],
+          "source_origins": [
+            "explicit_rule"
+          ],
+          "reasoning_refs": []
+        },
+        {
+          "title": "验证宣传内容编辑表单合法组合场景可提交",
+          "coverage_ids": [
+            "COV-EX-0076"
+          ],
+          "source_origins": [
+            "explicit_rule"
+          ],
+          "reasoning_refs": []
+        }
+      ]
+    },
+    {
+      "merge_key": {
+        "page_name": "云机技术调整结论",
+        "module_name": "云机技术与需求背景",
+        "feature_name": "SDK与画面尺寸调整",
+        "target_field": "cloud_machine_resolution",
+        "rule_type": "happy_path_combo",
+        "title_signature": "验证SDK与画面尺寸调整合法组合场景可提交",
+        "expected_signature": "组合条件下所有字段显隐、必填、过滤和排序规则同时成立点击保存后页面不再提示必填、边界或数据源错误保存后返回列表页可见新增配置且字段值与输入一致",
+        "bucket": "normal"
+      },
+      "title": "验证SDK与画面尺寸调整合法组合场景可提交",
+      "test_type": "功能",
+      "case_count_before": 2,
+      "case_count_after": 1,
+      "coverage_ids": [
+        "COV-EX-0077",
+        "COV-AI-0079"
+      ],
+      "source_origins": [
+        "explicit_rule",
+        "ai_reasoning"
+      ],
+      "reasoning_refs": [
+        "RISK-002"
+      ],
+      "member_cases": [
+        {
+          "title": "验证SDK与画面尺寸调整合法组合场景可提交",
+          "coverage_ids": [
+            "COV-EX-0077"
+          ],
+          "source_origins": [
+            "explicit_rule"
+          ],
+          "reasoning_refs": []
+        },
+        {
+          "title": "验证SDK与画面尺寸调整合法组合场景可提交",
+          "coverage_ids": [
+            "COV-AI-0079"
+          ],
+          "source_origins": [
+            "ai_reasoning"
+          ],
+          "reasoning_refs": [
+            "RISK-002"
+          ]
+        }
+      ]
+    }
+  ],
+  "total_cases_after_flow_append": 17,
+  "flow_case_count": 0,
+  "residual_duplicate_case_count": 0,
+  "residual_duplicate_group_count": 0,
+  "residual_duplicate_groups": []
+}

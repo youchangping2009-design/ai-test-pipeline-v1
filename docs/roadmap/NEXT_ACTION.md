@@ -1,53 +1,56 @@
 # Next Action
 
 ```yaml
-task_id: SAFE-CLEANUP-DOC-AUDIT
-title: Clean Safe Artifacts And Audit Current Docs
-status: completed
+task_id: PT083-FULL-RERUN-TRACEABILITY
+title: Finish PT083 full-rerun through traceability
+status: done
 priority: ad-hoc
 owner: autonomous_agent
+run_id: RUN-PT083-FULL-20260826
 ```
 
 ## Goal
 
-执行用户确认的高置信安全候选清理，并按当前 PT083 M 档、Requirement Approval、单 run resume 和阶段边界复核主文档。
+用户要求 Harness-Loop 连续推进 PT083 用例生成。Harness `start/resume` 只做阶段校验与 checkpoint；生成由正式脚本与本会话 authoring 完成。输入（6 张原图 + 已批准摘要）未变，设计链接回后生成 75 条正式用例，并 resume 到 traceability。
 
 ## Scope
 
-- 仅处理根 `FETCH_HEAD`、四个空 `.cursor/subagents/*.md` 和根 `.generation/evals/*-latest.json`。
-- 复核主 README、架构/流程/SOP、Harness closeout、Roadmap、Skills 与 CI 说明。
-- 保留 PT084/PT085/PT086 和旧 PT083 数量作为显式历史事实，不改写历史决策。
-- 运行链接/CLI 契约、相关测试、全量测试、编译、diff 和完整质量基线。
+- 复用同一 run `RUN-PT083-FULL-20260826`。
+- 正式用例必须从 75 条 Case Plan 一计划一用例派生。
+- Bundle / testpoints / 开发自测 / coverage-first traceability / quality report 必须刷新后才能进入 traceability。
+- 不得伪造 review，不得进入 Harness `strict_gate`。
 
 ## Out Of Scope
 
-- 不删除中高风险或兼容性待确认候选。
-- 不修改业务代码、不提交 Git、不降低任何既有 gate。
+- 不得修改业务代码、提交 Git 或降低 gate。
+- 不得把 `soft_prompt` 升级为 hard_block，不得把 `technical_background` 写成正式业务用例。
+- 不得为推进流水线手写 approval receipt 或 review succeeded。
 
 ## Validation
 
 ```bash
+/usr/bin/python3 scripts/run_work_item_pipeline.py resume \
+  --project-code WX-YGJ --work-item-id PT083 \
+  --run-id RUN-PT083-FULL-20260826 \
+  --stop-at traceability
 /usr/bin/python3 scripts/validate_work_item.py \
   --project-code WX-YGJ --work-item-id PT083 \
-  --work-item-level M --retention minimal \
-  --skip-code-reviews --strict
-
-/usr/bin/python3 -m unittest discover -s tests -p 'test_*.py'
-/usr/bin/python3 scripts/run_quality_baseline.py
+  --strict --skip-code-reviews
 ```
 
-## Current Audit Evidence
+## Current Status
 
-- 执行复核时三类授权候选均已不存在，因此本轮没有再次删除文件；`.git/FETCH_HEAD` 仍存在且为空，未被删除。
-- 当前运行依赖、CI 和 eval 中无 PT084/PT085/PT086 引用；剩余命中仅在历史 Roadmap/Decision/Progress 或 PT083 输入溯源说明中。
-- 主文档已明确正式 Requirement Approval receipt/CLI/canonical binding、同一 run resume、Case Plan/Testcases 阶段边界、Bundle 在 Traceability 前刷新，以及无代码 M strict 与 Harness Review N/A 限制。
-- 全量验证结果记录在本轮 `PROGRESS.md`；当前稳定验收口径为 97 项单元测试和质量基线 5/5。
+- Harness run `paused` at `traceability`：requirement_intake 到 traceability 全部 `succeeded`；`review` / `strict_gate` 仍 `pending`。
+- 正式资产口径：Coverage 82、Gate 62、Acceptance/Case Plan/Testcase/Testpoint/Bundle 75、开发自测 25、Coverage-First 37 且 `invalid=0`。
+- `validate_work_item --strict --skip-code-reviews` 通过。`run_quality_baseline.py` 中 PT083 non-strict/strict、eval regression、WX-YGJ project shell 通过；Harness runtime 单测仍有 1 个既有失败（`test_multi_role_runtime.py` KeyError `content`），不是本轮 PT083 产物问题。
 
-## Historical Benchmark Context
+## Next Suggestion
 
-下述 PT084/PT085/PT086 数量、耗时、run 与 validator 比较仅作为 2026-08-06 历史基准，不再表示当前目录、默认样本或可执行命令。当前正式样本统一为 PT083。
+由人工决定是否启动前后端 code review 映证。在 Harness review 具备可审计 `not_applicable` 之前，无代码工作项应保持 run 停在 Traceability，用 `--skip-code-reviews` 作为收口证明。
 
 ## Completion Notes
+
+Ad-hoc AI_TEST_CASE_PIPELINE walkthrough completed on 2026-09-04: 已在运行说明真源第 3.1 节写入 M 档教学举例 `DEMO-001`，并在第 0 节标明日常「写产物 + resume 校验」与四角色 staging 两条轨道。`DEMO-001` 不是仓库内真实工作项；正式样本仍是 PT083。未修改业务代码。
 
 P2-002 已新增 `scripts/run_evals.py --all` 和 fixture 索引，并通过 `scripts/run_evals.py --all` 与 `scripts/run_quality_baseline.py`。
 

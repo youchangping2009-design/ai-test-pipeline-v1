@@ -1,13 +1,13 @@
 {
   "schema_version": "1.0.0",
-  "approval_id": "RUN-PT083-MIGRATION-20260806-requirement-241c2b113655549752414d6b",
+  "approval_id": "RUN-PT083-FULL-20260826-requirement-8441625cb4a456e17f8e334d",
   "status": "approved",
   "reviewed_by": "ycp",
-  "reviewed_at": "2026-08-06T10:23:10+00:00",
-  "note": "用户授权将已批准PT086迁移为PT083项目样本，需求语义不变",
-  "run_id": "RUN-PT083-MIGRATION-20260806",
-  "requirement_summary_sha256": "b22b7d9749f6416b3b841c6dbed14501b55d5da44ea6fca18a440d135279ceb8",
-  "source_manifest_sha256": "2e6566e536d081fb28f28ac7489e039e35642de0f83b1d7597846a32c839f7d5",
+  "reviewed_at": "2026-08-26T15:12:30+00:00",
+  "note": "重放既有批准：重建 run 后 summary/source/raw 三类绑定值未变，用户此前已确认当前 requirement summary 与 6 张原图不变",
+  "run_id": "RUN-PT083-FULL-20260826",
+  "requirement_summary_sha256": "b568c52d0fbab4b0c3ab2197648b9eded96b3bfff4f35663fd91dc1e0970c072",
+  "source_manifest_sha256": "5d5f6c8eacb3fe0b6463fd91e1d72ead3b7a778673e0c020e8cb2e9da02a30fa",
   "raw_inputs_fingerprint": "2bf58de90dc5872543ad70c71bc78e7c9231d1f429b53c139b8f2885ce2201f2",
   "requirement_version": ""
 }

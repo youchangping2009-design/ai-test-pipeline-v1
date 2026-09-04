@@ -622,3 +622,26 @@ Reason:
 
 Impact:
 Case Plan 阶段只消费上游设计资产，Testcases 阶段不消费未刷新 Bundle，Bundle 在 Traceability 前刷新校验。无代码 M 档工作项 strict 可显式 `--skip-code-reviews`，但 Harness run 尚无 Review `not_applicable` disposition。执行本轮复核时三类授权候选均已不存在，因此未重复删除；`.git/FETCH_HEAD` 保持原状。
+
+## 2026-08-27 - Harness-Loop Validates, Scripts Generate
+
+Decision:
+当前宿主会话执行 Harness-Loop 时，`start/resume` 只做阶段校验与 checkpoint；各阶段产物由正式生成器或本会话 authoring 写入后，再 `resume --stop-at <stage>`。无 `--provider-command-json` 可信 adapter 时不得调用 `agent-roles`。输入（摘要、原图、binding）未变时，允许接回同一工作项已校验的设计链，但正式用例仍必须满足 75 条 Case Plan 一计划一用例；Coverage 合并生成器产出不足时不得把 17 条合并结果当作交付。无代码工作项在 review 具备 `not_applicable` 前停在 Traceability。
+
+Reason:
+用户要求自动跑完流水线。Harness 本身不生成 Structured PRD / Gate / Case Plan / Testcase；Cursor 会话也接不进 `agent-roles`。PT083 全流程重跑时图片与批准摘要未变，独立 Validator 与 image-evidence mapping 已证明设计链仍匹配当前 evidence。Coverage→testcase 生成器合并路径已知会从 82 条草稿收敛到约 17 条，不能单独满足 strict 追溯。
+
+Impact:
+`RUN-PT083-FULL-20260826` 可连续 resume 到 traceability，工作项 `--strict --skip-code-reviews` 作为无代码收口。后续同类请求按同一分工执行，不再每阶段停问；不得为打通 Harness 终态伪造 review 或降低 gate。
+
+
+## 2026-09-04 - Runbook End-to-End Teaching Walkthrough
+
+Decision:
+`AI_TEST_CASE_PIPELINE.md` 在总体流程图之后新增第 3.1 节教学举例。它演示日常轨道：会话或脚本写入正式产物，Harness `start/resume` 只校验；四角色 `agent-roles` 仍以第 0 节为准。举例使用虚构工作项 `DEMO-001`，不得进入 CI 或项目样本。
+
+Reason:
+第 0 节说明发布控制，第 4–20 节按阶段拆实现，中间缺少一条需求如何走完全程的叙事。不写清两条轨道，读者会把 0.2 的四角色图误当成无 adapter 时的日常跑法。
+
+Impact:
+首次阅读顺序改为：第 0 节快速指南 → 第 3.1 节举例 → 第 4 节起的阶段实现。正式样本、真源和 Strict Gate 口径不变。

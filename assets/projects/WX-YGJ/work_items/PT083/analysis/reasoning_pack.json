@@ -1,7 +1,7 @@
 {
   "project_code": "WX-YGJ",
   "work_item_id": "PT083",
-  "generated_at": "2026-08-06T16:53:15",
+  "generated_at": "2026-08-27T07:44:36",
   "generated_from": [
     "assets/projects/WX-YGJ/work_items/PT083/manifest.json",
     "assets/projects/WX-YGJ/work_items/PT083/inputs/requirement_summary.md",
@@ -9,8 +9,8 @@
     "assets/projects/WX-YGJ/work_items/PT083/image_evidence/image_evidence_inventory.json"
   ],
   "requirement_summary": {
-    "title": "PT083 云挂机免费体验3需求整理",
-    "summary_text": "通过免费体验云机提升新增用户的云挂机覆盖率。背景材料称日新增盒子用户引入率约 17%，云挂机前三日覆盖率约 3%～4%；两轮 MVP 约覆盖 100 名新用户，破冰率从约 3% 提升到约 10%，其中约 60% 后续购买周卡及以上商品。 更新云机 SDK，改善画面模糊、卡顿问题。 将云机画面尺寸固定调整为 `720*1280`，以支持用户同时使用脚本。 改版 C 端《云挂机购买页》，在{全新版}和{常规版}两个 Tab 下增加宣传位、宣传区和特价专区，并保留普通商品区。 扩展 B 端[云手机商品管理]，增加商品区、盒子内排序、库存预警及购买数量报警通知人等配置，并新增《编辑宣传内容》能力。 PT083 原图与 PT084/PT085 原图逐张同哈希，图片本身未显示新增、删除或变更；该同源关系已由用户确认为迁移前历史基准，当前需求语义不变。",
+    "title": "PT083 云挂机免费体验需求整理",
+    "summary_text": "通过免费体验云机提升新增用户的云挂机覆盖率。背景材料称日新增盒子用户引入率约 17%，云挂机前三日覆盖率约 3%～4%；两轮 MVP 约覆盖 100 名新用户，破冰率从约 3% 提升到约 10%，其中约 60% 后续购买周卡及以上商品。 更新云机 SDK，改善画面模糊、卡顿问题。 将云机画面尺寸固定调整为 `720*1280`，以支持用户同时使用脚本。 改版 C 端《云挂机购买页》，在{全新版}和{常规版}两个 Tab 下增加宣传位、宣传区和特价专区，并保留普通商品区。 扩展 B 端[云手机商品管理]，增加商品区、盒子内排序、库存预警及购买数量报警通知人等配置，并将原宣传图入口更名为【编辑宣传内容】。",
     "primary_pages": [
       "需求介绍",
       "云挂机购买页",
@@ -121,7 +121,7 @@
     {
       "id": "ER-005",
       "title": "需求整理-order_rule",
-      "statement": "扩展 B 端[云手机商品管理]，增加商品区、盒子内排序、库存预警及购买数量报警通知人等配置，并新增《编辑宣传内容》能力。",
+      "statement": "扩展 B 端[云手机商品管理]，增加商品区、盒子内排序、库存预警及购买数量报警通知人等配置，并将原宣传图入口更名为【编辑宣传内容】。",
       "confidence": 0.99,
       "reasoning_notes": [
         "来自主流程 requirement_summary.md 的确认需求。"
@@ -131,29 +131,12 @@
         {
           "source_type": "input_markdown",
           "path": "assets/projects/WX-YGJ/work_items/PT083/inputs/requirement_summary.md",
-          "excerpt": "扩展 B 端[云手机商品管理]，增加商品区、盒子内排序、库存预警及购买数量报警通知人等配置，并新增《编辑宣传内容》能力。"
+          "excerpt": "扩展 B 端[云手机商品管理]，增加商品区、盒子内排序、库存预警及购买数量报警通知人等配置，并将原宣传图入口更名为【编辑宣传内容】。"
         }
       ]
     },
     {
       "id": "ER-006",
-      "title": "需求整理-explicit_rule",
-      "statement": "PT083 原图与 PT084/PT085 原图逐张同哈希，图片本身未显示新增、删除或变更；该同源关系已由用户确认为迁移前历史基准，当前需求语义不变。",
-      "confidence": 0.99,
-      "reasoning_notes": [
-        "来自主流程 requirement_summary.md 的确认需求。"
-      ],
-      "must_preserve_terms": [],
-      "source_refs": [
-        {
-          "source_type": "input_markdown",
-          "path": "assets/projects/WX-YGJ/work_items/PT083/inputs/requirement_summary.md",
-          "excerpt": "PT083 原图与 PT084/PT085 原图逐张同哈希，图片本身未显示新增、删除或变更；该同源关系已由用户确认为迁移前历史基准，当前需求语义不变。"
-        }
-      ]
-    },
-    {
-      "id": "ER-007",
       "title": "需求整理-explicit_rule",
       "statement": "### C 端《云挂机购买页》",
       "confidence": 0.99,
@@ -170,7 +153,7 @@
       ]
     },
     {
-      "id": "ER-008",
+      "id": "ER-007",
       "title": "需求整理-explicit_rule",
       "statement": "{全新版}和{常规版}两个 Tab 均应用本次区域改版。",
       "confidence": 0.99,
@@ -187,7 +170,7 @@
       ]
     },
     {
-      "id": "ER-009",
+      "id": "ER-008",
       "title": "需求整理-explicit_rule",
       "statement": "宣传位：建议尺寸 `1008*160`；图片来源为 B 端《编辑宣传内容》的“宣传图片”；需保证首屏普通区商品列表能够展示两个及以上商品。",
       "confidence": 0.99,
@@ -204,7 +187,7 @@
       ]
     },
     {
-      "id": "ER-010",
+      "id": "ER-009",
       "title": "需求整理-conditional_visibility",
       "statement": "宣传区：展示“宣传口号”和“性能参数”，数据来自 B 端对应字段；B 端均限制 20 个字符，C 端超过一行时换行展示。",
       "confidence": 0.99,
@@ -221,7 +204,7 @@
       ]
     },
     {
-      "id": "ER-011",
+      "id": "ER-010",
       "title": "需求整理-conditional_visibility",
       "statement": "特价专区：区域名称为“特价专区”；展示现价、原价、商品名称、商品标签类型；B 端配置时展示、未配置时隐藏；横向展示，首屏展示 2.5 个商品，最多展示 4 个商品。",
       "confidence": 0.99,
@@ -238,7 +221,7 @@
       ]
     },
     {
-      "id": "ER-012",
+      "id": "ER-011",
       "title": "需求整理-conditional_visibility",
       "statement": "普通商品区：区域名称为“限时购买”；保留原商品列表和原有数量展示逻辑，采用纵向展示；展示现价、原价、商品名称、商品标签类型。",
       "confidence": 0.99,
@@ -255,7 +238,7 @@
       ]
     },
     {
-      "id": "ER-013",
+      "id": "ER-012",
       "title": "需求整理-explicit_rule",
       "statement": "### B 端[云手机商品管理]",
       "confidence": 0.99,
@@ -272,9 +255,9 @@
       ]
     },
     {
-      "id": "ER-014",
+      "id": "ER-013",
       "title": "需求整理-explicit_rule",
-      "statement": "列表提供【编辑商品顺序】、【添加】和【编辑宣传内容】入口。",
+      "statement": "列表提供【编辑商品顺序】、【添加】和【编辑宣传内容】入口。点击【添加】展示商品配置界面；原宣传图按钮更名为【编辑宣传内容】，点击后展示宣传配置界面。",
       "confidence": 0.99,
       "reasoning_notes": [
         "来自主流程 requirement_summary.md 的确认需求。"
@@ -284,14 +267,31 @@
         {
           "source_type": "input_markdown",
           "path": "assets/projects/WX-YGJ/work_items/PT083/inputs/requirement_summary.md",
-          "excerpt": "列表提供【编辑商品顺序】、【添加】和【编辑宣传内容】入口。"
+          "excerpt": "列表提供【编辑商品顺序】、【添加】和【编辑宣传内容】入口。点击【添加】展示商品配置界面；原宣传图按钮更名为【编辑宣传内容】，点击后展示宣传配置界面。"
+        }
+      ]
+    },
+    {
+      "id": "ER-014",
+      "title": "需求整理-data_source_rule",
+      "statement": "列表增加“商品区”列，数据来源于商品配置。",
+      "confidence": 0.99,
+      "reasoning_notes": [
+        "来自主流程 requirement_summary.md 的确认需求。"
+      ],
+      "must_preserve_terms": [],
+      "source_refs": [
+        {
+          "source_type": "input_markdown",
+          "path": "assets/projects/WX-YGJ/work_items/PT083/inputs/requirement_summary.md",
+          "excerpt": "列表增加“商品区”列，数据来源于商品配置。"
         }
       ]
     },
     {
       "id": "ER-015",
-      "title": "需求整理-order_rule",
-      "statement": "商品配置新增或明确“商品区”“盒子内排序”“库存预警值”“购买数量报警通知人”等字段。",
+      "title": "需求整理-field_requirement",
+      "statement": "《添加》表单截图中带必填标识的字段包括：“云手机商品类型”“云机类型”“商品名称”“原价（元）”“现价（元）”“服务时长”“商品区”“盒子内排序”“购买数量报警通知人”。“库存预警值”“商品标签类型”“展示用户”“用户可购买次数”“商品展示时间”未显示必填标识，按非必填记录。状态为{开启}/{关闭}。",
       "confidence": 0.99,
       "reasoning_notes": [
         "来自主流程 requirement_summary.md 的确认需求。"
@@ -301,14 +301,14 @@
         {
           "source_type": "input_markdown",
           "path": "assets/projects/WX-YGJ/work_items/PT083/inputs/requirement_summary.md",
-          "excerpt": "商品配置新增或明确“商品区”“盒子内排序”“库存预警值”“购买数量报警通知人”等字段。"
+          "excerpt": "《添加》表单截图中带必填标识的字段包括：“云手机商品类型”“云机类型”“商品名称”“原价（元）”“现价（元）”“服务时长”“商品区”“盒子内排序”“购买数量报警通知人”。“库存预警值”“商品标签类型”“展示用户”“用户可购买次数”“商品展示时间”未显示必填标识，按非必填记录。状态为{开启}/{关闭}。"
         }
       ]
     },
     {
       "id": "ER-016",
-      "title": "需求整理-field_requirement",
-      "statement": "《添加》表单截图中带必填标识的字段包括：“云手机商品类型”“云机类型”“商品名称”“原价（元）”“现价（元）”“服务时长”“商品区”“盒子内排序”“购买数量报警通知人”。“库存预警值”未显示必填标识，按非必填记录。",
+      "title": "需求整理-explicit_rule",
+      "statement": "“原价（元）”“现价（元）”：沿用已有能力，数值限制为大于 0.00。",
       "confidence": 0.99,
       "reasoning_notes": [
         "来自主流程 requirement_summary.md 的确认需求。"
@@ -318,29 +318,12 @@
         {
           "source_type": "input_markdown",
           "path": "assets/projects/WX-YGJ/work_items/PT083/inputs/requirement_summary.md",
-          "excerpt": "《添加》表单截图中带必填标识的字段包括：“云手机商品类型”“云机类型”“商品名称”“原价（元）”“现价（元）”“服务时长”“商品区”“盒子内排序”“购买数量报警通知人”。“库存预警值”未显示必填标识，按非必填记录。"
+          "excerpt": "“原价（元）”“现价（元）”：沿用已有能力，数值限制为大于 0.00。"
         }
       ]
     },
     {
       "id": "ER-017",
-      "title": "需求整理-explicit_rule",
-      "statement": "“原价（元）”“现价（元）”：沿用已有能力，数值限制为大于 0。",
-      "confidence": 0.99,
-      "reasoning_notes": [
-        "来自主流程 requirement_summary.md 的确认需求。"
-      ],
-      "must_preserve_terms": [],
-      "source_refs": [
-        {
-          "source_type": "input_markdown",
-          "path": "assets/projects/WX-YGJ/work_items/PT083/inputs/requirement_summary.md",
-          "excerpt": "“原价（元）”“现价（元）”：沿用已有能力，数值限制为大于 0。"
-        }
-      ]
-    },
-    {
-      "id": "ER-018",
       "title": "需求整理-explicit_rule",
       "statement": "“服务时长”：数字选择器，单位包含天、时；后端以秒为单位，天数最大值 370、小时最大值 23，所有输入不能同时为 0。",
       "confidence": 0.99,
@@ -357,7 +340,7 @@
       ]
     },
     {
-      "id": "ER-019",
+      "id": "ER-018",
       "title": "需求整理-conditional_visibility",
       "statement": "“商品区”：单选下拉，选项为{特殊区}/{普通区}。特殊区最多配置 4 个商品；超限时不可保存，并提示「特殊区只能展示4个商品，当前字段的配置数量已超过4个，请关闭之前的商品或调整配置」。",
       "confidence": 0.99,
@@ -374,7 +357,7 @@
       ]
     },
     {
-      "id": "ER-020",
+      "id": "ER-019",
       "title": "需求整理-data_source_rule",
       "statement": "“盒子内排序”：正整数，最大值 1000；排序值相同时按创建时间倒序排列。",
       "confidence": 0.99,
@@ -391,7 +374,7 @@
       ]
     },
     {
-      "id": "ER-021",
+      "id": "ER-020",
       "title": "需求整理-conditional_visibility",
       "statement": "“商品展示时间”：沿用已有能力；未配置时提示“未配置，云挂机商品则长期展示”。截图还要求服务时长结束后 C 端不再展示内容，准确口径待确认。",
       "confidence": 0.99,
@@ -408,9 +391,9 @@
       ]
     },
     {
-      "id": "ER-022",
+      "id": "ER-021",
       "title": "需求整理-conditional_visibility",
-      "statement": "“库存预警值”：正整数，最大值 200；系统按固定频率校验云机库存是否小于等于配置值。库存充足时 C 端正常展示并分配云机；库存不足时 C 端隐藏商品且不分配云机，同时通知管理员大仓。",
+      "statement": "“库存预警值”：正整数，最大值 200；系统按固定频率校验云机库存是否小于等于配置值。库存充足时 C 端正常展示并分配云机；库存不足时 C 端隐藏商品且不分配云机，同时通知管理员。具体校验频率在图片中无法稳定辨认，不写成确定规则。",
       "confidence": 0.99,
       "reasoning_notes": [
         "来自主流程 requirement_summary.md 的确认需求。"
@@ -420,12 +403,12 @@
         {
           "source_type": "input_markdown",
           "path": "assets/projects/WX-YGJ/work_items/PT083/inputs/requirement_summary.md",
-          "excerpt": "“库存预警值”：正整数，最大值 200；系统按固定频率校验云机库存是否小于等于配置值。库存充足时 C 端正常展示并分配云机；库存不足时 C 端隐藏商品且不分配云机，同时通知管理员大仓。"
+          "excerpt": "“库存预警值”：正整数，最大值 200；系统按固定频率校验云机库存是否小于等于配置值。库存充足时 C 端正常展示并分配云机；库存不足时 C 端隐藏商品且不分配云机，同时通知管理员。具体校验频率在图片中无法稳定辨认，不写成确定规则。"
         }
       ]
     },
     {
-      "id": "ER-023",
+      "id": "ER-022",
       "title": "需求整理-explicit_rule",
       "statement": "“购买数量报警通知人”：单选下拉，候选内容为盒子后台管理员列表。",
       "confidence": 0.99,
@@ -442,7 +425,7 @@
       ]
     },
     {
-      "id": "ER-024",
+      "id": "ER-023",
       "title": "需求整理-explicit_rule",
       "statement": "库存不足告警发往“云手机相关报警”群；正式环境模板标题为「【云挂机库存不足通知】」，内容包含功能模块、配置 ID、商品名称、云机类型、云机服务时长、通知时间和通知人。",
       "confidence": 0.99,
@@ -459,7 +442,7 @@
       ]
     },
     {
-      "id": "ER-025",
+      "id": "ER-024",
       "title": "需求整理-explicit_rule",
       "statement": "### B 端《编辑宣传内容》",
       "confidence": 0.99,
@@ -476,7 +459,7 @@
       ]
     },
     {
-      "id": "ER-026",
+      "id": "ER-025",
       "title": "需求整理-field_requirement",
       "statement": "“云机类型”：必填、单选下拉，选项为盒子现有云机类型（截图列出{全新版}/{常规版}）。保存前需保证所有云机类型均已配置且没有重复；失败时不可保存，并提示「所有云机类型都需要配置宣传内容，且云机类型不重复」。",
       "confidence": 0.99,
@@ -493,9 +476,9 @@
       ]
     },
     {
-      "id": "ER-027",
+      "id": "ER-026",
       "title": "需求整理-order_rule",
-      "statement": "“宣传图片”：必传；单条配置最多上传 5 张，支持拖拽排序；支持 `gif/jpg/jpeg/png`，单张最大 500 KB，建议尺寸 `1008*160`；鼠标悬停时可删除图片。",
+      "statement": "“宣传图片”：必传；单条配置最多上传 5 张，支持拖拽排序和删除后重传；支持 `gif/jpg/jpeg/png`，单张最大 500 KB，建议尺寸 `1008*160`；鼠标悬停时可删除图片。建议尺寸只作为提示，不自动升级为上传或保存阻断。",
       "confidence": 0.99,
       "reasoning_notes": [
         "来自主流程 requirement_summary.md 的确认需求。"
@@ -505,12 +488,12 @@
         {
           "source_type": "input_markdown",
           "path": "assets/projects/WX-YGJ/work_items/PT083/inputs/requirement_summary.md",
-          "excerpt": "“宣传图片”：必传；单条配置最多上传 5 张，支持拖拽排序；支持 `gif/jpg/jpeg/png`，单张最大 500 KB，建议尺寸 `1008*160`；鼠标悬停时可删除图片。"
+          "excerpt": "“宣传图片”：必传；单条配置最多上传 5 张，支持拖拽排序和删除后重传；支持 `gif/jpg/jpeg/png`，单张最大 500 KB，建议尺寸 `1008*160`；鼠标悬停时可删除图片。建议尺寸只作为提示，不自动升级为上传或保存阻断。"
         }
       ]
     },
     {
-      "id": "ER-028",
+      "id": "ER-027",
       "title": "需求整理-field_requirement",
       "statement": "“宣传口号”“性能参数”：必填文本框，最多 20 个字符；C 端超过一行时换行展示。",
       "confidence": 0.99,
@@ -527,7 +510,7 @@
       ]
     },
     {
-      "id": "ER-029",
+      "id": "ER-028",
       "title": "需求整理-conditional_visibility",
       "statement": "【新增】用于增加一块由云机类型、宣传图片、宣传口号和性能参数组成的配置。截图说明最多额外新增 1 块，配置达到 2 条时禁用按钮；新增内容在 C 端全屏展示。",
       "confidence": 0.99,
@@ -544,9 +527,9 @@
       ]
     },
     {
-      "id": "ER-030",
+      "id": "ER-029",
       "title": "需求整理-explicit_rule",
-      "statement": "用户已通过正式审批确认 PT083 复用迁移前历史基准图片且需求语义不变，可按当前流程执行 evidence 及下游阶段。",
+      "statement": "本轮需求摘要尚未获得正式 requirement approval；人工批准前不得进入 evidence 及下游阶段。",
       "confidence": 0.99,
       "reasoning_notes": [
         "来自主流程 requirement_summary.md 的确认需求。"
@@ -556,12 +539,12 @@
         {
           "source_type": "input_markdown",
           "path": "assets/projects/WX-YGJ/work_items/PT083/inputs/requirement_summary.md",
-          "excerpt": "用户已通过正式审批确认 PT083 复用迁移前历史基准图片且需求语义不变，可按当前流程执行 evidence 及下游阶段。"
+          "excerpt": "本轮需求摘要尚未获得正式 requirement approval；人工批准前不得进入 evidence 及下游阶段。"
         }
       ]
     },
     {
-      "id": "ER-031",
+      "id": "ER-030",
       "title": "需求整理-explicit_rule",
       "statement": "对{全新版}/{常规版}分别核对 B 端宣传配置到 C 端宣传位、宣传口号和性能参数的映射。",
       "confidence": 0.99,
@@ -578,7 +561,7 @@
       ]
     },
     {
-      "id": "ER-032",
+      "id": "ER-031",
       "title": "需求整理-order_rule",
       "statement": "覆盖宣传图片格式、大小、建议尺寸、数量、拖拽排序、删除和文案 20 字符边界；建议尺寸只作为提示，不自动升级为上传或保存阻断。",
       "confidence": 0.99,
@@ -595,7 +578,7 @@
       ]
     },
     {
-      "id": "ER-033",
+      "id": "ER-032",
       "title": "需求整理-explicit_rule",
       "statement": "验证宣传内容覆盖全部云机类型且类型不重复；缺失或重复时按准确提示阻止保存。",
       "confidence": 0.99,
@@ -612,7 +595,7 @@
       ]
     },
     {
-      "id": "ER-034",
+      "id": "ER-033",
       "title": "需求整理-conditional_visibility",
       "statement": "验证特殊区未配置时隐藏、配置后展示，首屏 2.5 个、最多 4 个；第 5 个商品配置按明确提示阻止保存。",
       "confidence": 0.99,
@@ -629,7 +612,7 @@
       ]
     },
     {
-      "id": "ER-035",
+      "id": "ER-034",
       "title": "需求整理-conditional_visibility",
       "statement": "验证普通区名称、纵向布局、展示字段及首屏可见两个及以上商品，同时回归“其余逻辑不变”。",
       "confidence": 0.99,
@@ -646,7 +629,7 @@
       ]
     },
     {
-      "id": "ER-036",
+      "id": "ER-035",
       "title": "需求整理-field_requirement",
       "statement": "验证价格、服务时长、商品区、盒子内排序、库存预警值的有效值、边界值和异常值；只对图片明确带必填标识的字段考虑必填拦截。",
       "confidence": 0.99,
@@ -663,7 +646,7 @@
       ]
     },
     {
-      "id": "ER-037",
+      "id": "ER-036",
       "title": "需求整理-data_source_rule",
       "statement": "验证相同“盒子内排序”值时按创建时间倒序排列。",
       "confidence": 0.99,
@@ -680,7 +663,7 @@
       ]
     },
     {
-      "id": "ER-038",
+      "id": "ER-037",
       "title": "需求整理-conditional_visibility",
       "statement": "验证库存高于、等于和低于阈值时的 C 端展示/隐藏、云机分配/不分配及告警联动。",
       "confidence": 0.99,
@@ -697,7 +680,7 @@
       ]
     },
     {
-      "id": "ER-039",
+      "id": "ER-038",
       "title": "需求整理-explicit_rule",
       "statement": "验证 SDK 更新后的画面模糊、卡顿改善，`720*1280` 画面显示及脚本接入；需补充量化标准和兼容清单后才能形成稳定判定口径。",
       "confidence": 0.99,
@@ -714,7 +697,7 @@
       ]
     },
     {
-      "id": "ER-040",
+      "id": "ER-039",
       "title": "需求整理-order_rule",
       "statement": "已确认的 B 端配置数据包括宣传图片、宣传口号、性能参数、商品区、盒子内排序、库存预警值和购买数量报警通知人。",
       "confidence": 0.99,
@@ -731,7 +714,7 @@
       ]
     },
     {
-      "id": "ER-041",
+      "id": "ER-040",
       "title": "需求整理-explicit_rule",
       "statement": "已确认的 C 端商品展示字段包括现价、原价、商品名称和商品标签类型。",
       "confidence": 0.99,
@@ -748,7 +731,7 @@
       ]
     },
     {
-      "id": "ER-042",
+      "id": "ER-041",
       "title": "需求整理-explicit_rule",
       "statement": "服务时长后端以秒为单位；输入未提供接口名称、请求/响应字段或换算舍入规则。",
       "confidence": 0.99,
@@ -765,7 +748,7 @@
       ]
     },
     {
-      "id": "ER-043",
+      "id": "ER-042",
       "title": "需求整理-explicit_rule",
       "statement": "输入未描述新增或调整埋点。",
       "confidence": 0.99,
@@ -782,7 +765,7 @@
       ]
     },
     {
-      "id": "ER-044",
+      "id": "ER-043",
       "title": "需求整理-explicit_rule",
       "statement": "库存校验频率在图片中无法稳定辨认，本轮不将其写成确定规则。",
       "confidence": 0.99,
@@ -799,7 +782,7 @@
       ]
     },
     {
-      "id": "ER-045",
+      "id": "ER-044",
       "title": "需求介绍-云机免费体验背景-explicit_rule",
       "statement": "图片只展示活动复盘链接名称，没有可访问URL或正文",
       "confidence": 0.94,
@@ -818,7 +801,7 @@
       ]
     },
     {
-      "id": "ER-046",
+      "id": "ER-045",
       "title": "需求介绍-云机免费体验背景-explicit_rule",
       "statement": "背景数据没有定义免费体验资格、时长、次数或活动周期",
       "confidence": 0.94,
@@ -837,7 +820,7 @@
       ]
     },
     {
-      "id": "ER-047",
+      "id": "ER-046",
       "title": "需求介绍-云机质量及尺寸问题-explicit_rule",
       "statement": "图片明确描述画面模糊和卡顿不流畅",
       "confidence": 0.95,
@@ -856,7 +839,7 @@
       ]
     },
     {
-      "id": "ER-048",
+      "id": "ER-047",
       "title": "需求介绍-云机质量及尺寸问题-explicit_rule",
       "statement": "图片将镜像和SDK版本过旧列为定位原因",
       "confidence": 0.95,
@@ -875,7 +858,7 @@
       ]
     },
     {
-      "id": "ER-049",
+      "id": "ER-048",
       "title": "需求介绍-云机质量及尺寸问题-explicit_rule",
       "statement": "图片没有提供SDK目标版本、脚本类型或画质量化验收标准",
       "confidence": 0.95,
@@ -894,7 +877,7 @@
       ]
     },
     {
-      "id": "ER-050",
+      "id": "ER-049",
       "title": "需求介绍-需求目的-explicit_rule",
       "statement": "免费体验目标为提升云机覆盖率",
       "confidence": 0.99,
@@ -913,7 +896,7 @@
       ]
     },
     {
-      "id": "ER-051",
+      "id": "ER-050",
       "title": "需求介绍-需求目的-explicit_rule",
       "statement": "更新SDK目标为改善画面模糊和卡顿",
       "confidence": 0.99,
@@ -932,7 +915,7 @@
       ]
     },
     {
-      "id": "ER-052",
+      "id": "ER-051",
       "title": "需求介绍-需求目的-explicit_rule",
       "statement": "画面尺寸固定为720*1280以支持脚本接入",
       "confidence": 0.99,
@@ -951,7 +934,7 @@
       ]
     },
     {
-      "id": "ER-053",
+      "id": "ER-052",
       "title": "云挂机购买页-版本Tab-explicit_rule",
       "statement": "本图所有区域改动同时适用于全新版Tab和常规版Tab",
       "confidence": 0.99,
@@ -970,7 +953,7 @@
       ]
     },
     {
-      "id": "ER-054",
+      "id": "ER-053",
       "title": "云挂机购买页-宣传图占位-explicit_rule",
       "statement": "宣传图建议尺寸为1008*160",
       "confidence": 0.98,
@@ -989,7 +972,7 @@
       ]
     },
     {
-      "id": "ER-055",
+      "id": "ER-054",
       "title": "云挂机购买页-宣传图占位-explicit_rule",
       "statement": "宣传图来自后台编辑宣传内容中的宣传图片",
       "confidence": 0.98,
@@ -1008,7 +991,7 @@
       ]
     },
     {
-      "id": "ER-056",
+      "id": "ER-055",
       "title": "云挂机购买页-宣传图占位-explicit_rule",
       "statement": "首屏普通区商品列表需展示两个及以上商品",
       "confidence": 0.98,
@@ -1027,7 +1010,7 @@
       ]
     },
     {
-      "id": "ER-057",
+      "id": "ER-056",
       "title": "云挂机购买页-宣传区-explicit_rule",
       "statement": "宣传区展示宣传口号和性能参数",
       "confidence": 0.98,
@@ -1046,7 +1029,7 @@
       ]
     },
     {
-      "id": "ER-058",
+      "id": "ER-057",
       "title": "云挂机购买页-宣传区-explicit_rule",
       "statement": "两个字段来自后台编辑宣传内容",
       "confidence": 0.98,
@@ -1065,7 +1048,7 @@
       ]
     },
     {
-      "id": "ER-059",
+      "id": "ER-058",
       "title": "云挂机购买页-宣传区-explicit_rule",
       "statement": "后台每项可配置20个字符",
       "confidence": 0.98,
@@ -1084,7 +1067,7 @@
       ]
     },
     {
-      "id": "ER-060",
+      "id": "ER-059",
       "title": "云挂机购买页-宣传区-conditional_visibility",
       "statement": "C端超过一行时换行展示",
       "confidence": 0.98,
@@ -1103,7 +1086,7 @@
       ]
     },
     {
-      "id": "ER-061",
+      "id": "ER-060",
       "title": "云挂机购买页-特价专区-explicit_rule",
       "statement": "后台未配置特殊区商品时隐藏特价专区",
       "confidence": 0.99,
@@ -1122,7 +1105,7 @@
       ]
     },
     {
-      "id": "ER-062",
+      "id": "ER-061",
       "title": "云挂机购买页-特价专区-explicit_rule",
       "statement": "展示现价、原价、商品名称、商品标签类型",
       "confidence": 0.99,
@@ -1141,7 +1124,7 @@
       ]
     },
     {
-      "id": "ER-063",
+      "id": "ER-062",
       "title": "云挂机购买页-特价专区-explicit_rule",
       "statement": "横向首屏展示2.5个，最多展示4个商品",
       "confidence": 0.99,
@@ -1160,7 +1143,7 @@
       ]
     },
     {
-      "id": "ER-064",
+      "id": "ER-063",
       "title": "云挂机购买页-特价专区-explicit_rule",
       "statement": "最多展示4个商品",
       "confidence": 0.99,
@@ -1179,7 +1162,7 @@
       ]
     },
     {
-      "id": "ER-065",
+      "id": "ER-064",
       "title": "云挂机购买页-普通商品列表-explicit_rule",
       "statement": "区域名称为限时购买",
       "confidence": 0.98,
@@ -1198,7 +1181,7 @@
       ]
     },
     {
-      "id": "ER-066",
+      "id": "ER-065",
       "title": "云挂机购买页-普通商品列表-explicit_rule",
       "statement": "纵向展示，商品数量沿用之前逻辑",
       "confidence": 0.98,
@@ -1217,7 +1200,7 @@
       ]
     },
     {
-      "id": "ER-067",
+      "id": "ER-066",
       "title": "云挂机购买页-普通商品列表-explicit_rule",
       "statement": "展示现价、原价、商品名称、商品标签类型",
       "confidence": 0.98,
@@ -1236,7 +1219,7 @@
       ]
     },
     {
-      "id": "ER-068",
+      "id": "ER-067",
       "title": "云挂机购买页-普通商品列表-explicit_rule",
       "statement": "其余逻辑不变",
       "confidence": 0.98,
@@ -1255,7 +1238,7 @@
       ]
     },
     {
-      "id": "ER-069",
+      "id": "ER-068",
       "title": "盒子管理后台-云手机商品管理-商品列表-explicit_rule",
       "statement": "示例行多数单元格显示未配置",
       "confidence": 0.97,
@@ -1274,7 +1257,7 @@
       ]
     },
     {
-      "id": "ER-070",
+      "id": "ER-069",
       "title": "盒子管理后台-云手机商品管理-商品列表-explicit_rule",
       "statement": "单天服务价格显示系统生成",
       "confidence": 0.97,
@@ -1293,7 +1276,7 @@
       ]
     },
     {
-      "id": "ER-071",
+      "id": "ER-070",
       "title": "盒子管理后台-云手机商品管理-操作区-explicit_rule",
       "statement": "点击添加展示商品配置界面",
       "confidence": 0.98,
@@ -1312,7 +1295,7 @@
       ]
     },
     {
-      "id": "ER-072",
+      "id": "ER-071",
       "title": "盒子管理后台-云手机商品管理-操作区-explicit_rule",
       "statement": "原编辑宣传图按钮更名为编辑宣传内容",
       "confidence": 0.98,
@@ -1331,7 +1314,7 @@
       ]
     },
     {
-      "id": "ER-073",
+      "id": "ER-072",
       "title": "盒子管理后台-云手机商品管理-操作区-explicit_rule",
       "statement": "点击编辑宣传内容展示宣传配置界面",
       "confidence": 0.98,
@@ -1350,7 +1333,7 @@
       ]
     },
     {
-      "id": "ER-074",
+      "id": "ER-073",
       "title": "盒子管理后台-云手机商品管理-操作区-data_source_rule",
       "statement": "列表增加商品区字段且数据来源于配置",
       "confidence": 0.98,
@@ -1369,7 +1352,7 @@
       ]
     },
     {
-      "id": "ER-075",
+      "id": "ER-074",
       "title": "盒子管理后台-云手机商品管理-商品编辑弹窗-explicit_rule",
       "statement": "只能确认编辑入口存在，不能确认编辑字段与添加表单完全同构",
       "confidence": 0.42,
@@ -1388,7 +1371,7 @@
       ]
     },
     {
-      "id": "ER-076",
+      "id": "ER-075",
       "title": "盒子管理后台-云手机商品管理-商品顺序编辑弹窗-order_rule",
       "statement": "只能确认排序入口，排序对象、交互和保存规则待确认",
       "confidence": 0.45,
@@ -1407,7 +1390,7 @@
       ]
     },
     {
-      "id": "ER-077",
+      "id": "ER-076",
       "title": "盒子管理后台-云手机商品管理-添加-商品添加表单-field_requirement",
       "statement": "仅将图片明确带红色星号的字段记录为必填",
       "confidence": 0.95,
@@ -1426,7 +1409,7 @@
       ]
     },
     {
-      "id": "ER-078",
+      "id": "ER-077",
       "title": "盒子管理后台-云手机商品管理-添加-商品添加表单-explicit_rule",
       "statement": "原价和现价沿用已有能力且数值限制大于0.00",
       "confidence": 0.95,
@@ -1445,7 +1428,7 @@
       ]
     },
     {
-      "id": "ER-079",
+      "id": "ER-078",
       "title": "盒子管理后台-云手机商品管理-添加-商品添加表单-default_rule",
       "statement": "状态可选开启或关闭，默认值未说明",
       "confidence": 0.95,
@@ -1464,7 +1447,7 @@
       ]
     },
     {
-      "id": "ER-080",
+      "id": "ER-079",
       "title": "盒子管理后台-云手机商品管理-添加-商品添加表单-explicit_rule",
       "statement": "天数最大370，小时最大23，所有项不可同时为0，后端以秒为单位",
       "confidence": 0.95,
@@ -1483,7 +1466,7 @@
       ]
     },
     {
-      "id": "ER-081",
+      "id": "ER-080",
       "title": "盒子管理后台-云手机商品管理-添加-商品添加表单-explicit_rule",
       "statement": "特殊区商品数量必须小于等于4，超过4个时不可保存",
       "confidence": 0.95,
@@ -1502,7 +1485,7 @@
       ]
     },
     {
-      "id": "ER-082",
+      "id": "ER-081",
       "title": "盒子管理后台-云手机商品管理-添加-商品添加表单-data_source_rule",
       "statement": "正整数，上限1000；相同排序值按创建时间倒序排列",
       "confidence": 0.95,
@@ -1521,7 +1504,7 @@
       ]
     },
     {
-      "id": "ER-083",
+      "id": "ER-082",
       "title": "盒子管理后台-云手机商品管理-添加-商品添加表单-explicit_rule",
       "statement": "正整数，上限200；按固定频率校验库存是否小于等于配置数量",
       "confidence": 0.95,
@@ -1540,7 +1523,7 @@
       ]
     },
     {
-      "id": "ER-084",
+      "id": "ER-083",
       "title": "盒子管理后台-云手机商品管理-添加-商品区与库存规则说明表-conditional_visibility",
       "statement": "库存充足时C端正常展示并分配云机",
       "confidence": 0.86,
@@ -1559,7 +1542,7 @@
       ]
     },
     {
-      "id": "ER-085",
+      "id": "ER-084",
       "title": "盒子管理后台-云手机商品管理-添加-商品区与库存规则说明表-explicit_rule",
       "statement": "库存不足时C端隐藏商品、不分配云机并通知管理员",
       "confidence": 0.86,
@@ -1578,7 +1561,7 @@
       ]
     },
     {
-      "id": "ER-086",
+      "id": "ER-085",
       "title": "盒子管理后台-云手机商品管理-添加-商品区与库存规则说明表-explicit_rule",
       "statement": "库存小于等于预警值时，C端隐藏商品、不分配云机并发送库存不足通知",
       "confidence": 0.86,
@@ -1597,7 +1580,7 @@
       ]
     },
     {
-      "id": "ER-087",
+      "id": "ER-086",
       "title": "盒子管理后台-编辑宣传内容-宣传内容编辑表单-field_requirement",
       "statement": "云机类型、宣传图片、宣传口号和性能参数均带必填标识",
       "confidence": 0.96,
@@ -1616,7 +1599,7 @@
       ]
     },
     {
-      "id": "ER-088",
+      "id": "ER-087",
       "title": "盒子管理后台-编辑宣传内容-宣传内容编辑表单-explicit_rule",
       "statement": "最多额外新增1块内容，达到2条配置时禁用新增按钮",
       "confidence": 0.96,
@@ -1635,7 +1618,7 @@
       ]
     },
     {
-      "id": "ER-089",
+      "id": "ER-088",
       "title": "盒子管理后台-编辑宣传内容-宣传内容编辑表单-explicit_rule",
       "statement": "新增内容在C端全屏展示",
       "confidence": 0.96,
@@ -1654,7 +1637,7 @@
       ]
     },
     {
-      "id": "ER-090",
+      "id": "ER-089",
       "title": "盒子管理后台-编辑宣传内容-宣传内容编辑表单-explicit_rule",
       "statement": "保存前校验所有云机类型均已配置且不存在重复",
       "confidence": 0.96,
@@ -1673,7 +1656,7 @@
       ]
     },
     {
-      "id": "ER-091",
+      "id": "ER-090",
       "title": "盒子管理后台-编辑宣传内容-宣传内容编辑表单-explicit_rule",
       "statement": "最多上传5张，支持gif/jpg/jpeg/png，单张最大500K，建议尺寸1008*160",
       "confidence": 0.96,
@@ -1692,7 +1675,7 @@
       ]
     },
     {
-      "id": "ER-092",
+      "id": "ER-091",
       "title": "盒子管理后台-编辑宣传内容-宣传内容编辑表单-explicit_rule",
       "statement": "文本长度20个字符；C端超过一行换行展示",
       "confidence": 0.96,
@@ -1711,7 +1694,7 @@
       ]
     },
     {
-      "id": "ER-093",
+      "id": "ER-092",
       "title": "云机技术调整结论-SDK与画面尺寸调整-explicit_rule",
       "statement": "更新云机SDK",
       "confidence": 0.99,
@@ -1730,7 +1713,7 @@
       ]
     },
     {
-      "id": "ER-094",
+      "id": "ER-093",
       "title": "云机技术调整结论-SDK与画面尺寸调整-explicit_rule",
       "statement": "画面尺寸调整为720*1280",
       "confidence": 0.99,
@@ -1757,7 +1740,7 @@
       "confidence": 0.95,
       "reasoning_notes": [
         "该关联由云挂机购买页的数据来源说明、商品管理配置和编辑宣传内容字段共同证明。",
-        "用户已确认PT083与PT084/PT085同图且无需求增量，但本条仅依据PT083当前输入独立推导。"
+        "本条仅依据当前 PT083 requirement summary 与 6 张原图推导，不引入无关首页分发配置。"
       ],
       "must_preserve_terms": [
         "云挂机购买页",
@@ -2601,8 +2584,7 @@
       "impact_scope": [
         "云机画面",
         "脚本接入",
-        "终端适配",
-        "触控映射"
+        "终端适配"
       ],
       "source_refs": [
         {
@@ -2610,8 +2592,7 @@
           "path": "inputs/images/PT083-04_副本.png",
           "excerpt": "画面尺寸调整为720*1280",
           "page_name": "云机技术调整结论",
-          "section_name": "SDK与画面尺寸调整",
-          "field_name": "cloud_machine_resolution"
+          "section_name": "SDK与画面尺寸调整"
         }
       ]
     },
@@ -2624,13 +2605,13 @@
         "库存预警值",
         "C端商品展示",
         "云机分配",
-        "管理员告警"
+        "告警通知"
       ],
       "source_refs": [
         {
           "source_type": "image_table",
           "path": "inputs/images/PT083-03-02_副本.png",
-          "excerpt": "库存不足时C端隐藏商品、不分配云机并发送库存不足通知；具体校验频率待确认",
+          "excerpt": "库存小于等于预警值时，C端隐藏商品、不分配云机并发送库存不足通知",
           "page_name": "盒子管理后台-云手机商品管理-添加",
           "section_name": "商品区与库存规则说明表",
           "field_name": "inventory_warning_threshold"
@@ -2641,28 +2622,20 @@
       "risk_id": "RISK-004",
       "title": "特殊区容量与C端展示必须保持一致",
       "risk_statement": "B端特殊区最多配置4个商品，C端特价专区也最多展示4个商品；若保存校验、状态口径或C端消费不同步，可能出现可保存但不展示或超量展示。",
-      "severity": "medium",
+      "severity": "high",
       "impact_scope": [
         "商品区",
         "特价专区",
-        "保存校验",
-        "C端展示"
+        "C端购买页"
       ],
       "source_refs": [
         {
           "source_type": "image_field_rule",
           "path": "inputs/images/PT083-03-02_副本.png",
-          "excerpt": "特殊区商品数量必须小于等于4；超过4个时不可保存",
+          "excerpt": "特殊区只能展示4个商品，当前字段的配置数量已超过4个，请关闭之前的商品或调整配置",
           "page_name": "盒子管理后台-云手机商品管理-添加",
           "section_name": "商品添加表单",
           "field_name": "product_region"
-        },
-        {
-          "source_type": "image_section",
-          "path": "inputs/images/PT083-02_副本.png",
-          "excerpt": "特价专区最多展示4个商品",
-          "page_name": "云挂机购买页",
-          "section_name": "特价专区"
         }
       ]
     },
@@ -2672,25 +2645,17 @@
       "risk_statement": "商品编辑弹窗、商品顺序编辑弹窗、多个下拉字段完整枚举与默认值均未展示，后续结构化若直接按添加表单或当前选中值推断，会形成错误字段和硬校验。",
       "severity": "medium",
       "impact_scope": [
-        "商品编辑",
-        "商品排序",
-        "下拉枚举",
-        "默认值"
+        "商品编辑弹窗",
+        "商品顺序编辑弹窗",
+        "未展开下拉字段"
       ],
       "source_refs": [
         {
           "source_type": "image_section",
           "path": "inputs/images/PT083-03-01_副本.png",
-          "excerpt": "编辑界面和排序弹窗未展示",
+          "excerpt": "图片仅显示编辑入口",
           "page_name": "盒子管理后台-云手机商品管理",
           "section_name": "商品编辑弹窗"
-        },
-        {
-          "source_type": "image_section",
-          "path": "inputs/images/PT083-03-02_副本.png",
-          "excerpt": "既有字段完整枚举、默认值和部分数据源未展示",
-          "page_name": "盒子管理后台-云手机商品管理-添加",
-          "section_name": "商品添加表单"
         }
       ]
     }
@@ -2988,26 +2953,27 @@
     },
     {
       "dimension_id": "TD-002",
-      "dimension": "特殊区容量与展示联动",
+      "dimension": "特殊区容量与显隐",
       "rationale": "特殊区B端配置上限和C端展示上限均为4，且未配置时专区隐藏，需要验证配置、状态和展示结果的一致性。",
       "priority": "high",
       "related_reasoning_ids": [
-        "RISK-004"
+        "RISK-004",
+        "EC-002"
       ]
     },
     {
       "dimension_id": "TD-003",
-      "dimension": "排序值与同值排序",
+      "dimension": "盒子内排序与未展开排序弹窗",
       "rationale": "盒子内排序为正整数且上限1000，相同排序值按创建时间倒序；编辑商品顺序弹窗未展开，需避免把未知交互并入已确认字段规则。",
       "priority": "high",
       "related_reasoning_ids": [
-        "DS-002",
-        "EC-003"
+        "EC-003",
+        "RISK-005"
       ]
     },
     {
       "dimension_id": "TD-004",
-      "dimension": "库存阈值与告警链路",
+      "dimension": "库存阈值联动",
       "rationale": "库存阈值同时控制C端商品显示、云机分配和管理员告警，需覆盖阈值临界值并将校验频率、并发和恢复口径保持为待确认。",
       "priority": "high",
       "related_reasoning_ids": [
@@ -3017,7 +2983,7 @@
     },
     {
       "dimension_id": "TD-005",
-      "dimension": "宣传内容字段约束",
+      "dimension": "宣传内容完整性与素材边界",
       "rationale": "所有云机类型都需配置且不得重复，宣传图片存在数量、格式和大小限制，口号与性能参数存在20字符限制。",
       "priority": "high",
       "related_reasoning_ids": [
@@ -3028,16 +2994,16 @@
     },
     {
       "dimension_id": "TD-006",
-      "dimension": "后台配置到 C 端展示面投影",
+      "dimension": "B端配置到C端购买页映射",
       "rationale": "宣传图片、宣传口号、性能参数和商品区配置需要分别映射到全新版与常规版Tab，普通区原有逻辑不得被无依据改写。",
-      "priority": "medium",
+      "priority": "high",
       "related_reasoning_ids": [
         "IR-001"
       ]
     },
     {
       "dimension_id": "TD-007",
-      "dimension": "SDK、分辨率与脚本兼容性",
+      "dimension": "SDK与分辨率待确认项",
       "rationale": "SDK版本、720*1280技术语义、脚本类型和画质流畅度阈值均未完整定义，应先追踪确认，不能把主观改善目标转成未经确认的硬断言。",
       "priority": "medium",
       "related_reasoning_ids": [

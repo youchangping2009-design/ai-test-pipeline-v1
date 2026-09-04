@@ -1,5 +1,61 @@
 # Progress
 
+## 2026-08-27 - PT083 Full Rerun Reached Traceability
+
+- 用户纠正应使用 Harness-Loop 连续推进，不要每阶段停问。Harness `start/resume` 只校验不生成；本轮在同一 run `RUN-PT083-FULL-20260826` 上，由正式脚本完成本阶段生成后再 `resume --stop-at <stage>`。
+- 6 张原图与已批准摘要未变。Structured PRD / Coverage / Gate / Acceptance / Case Plan 接回同一输入下已校验设计链并全部通过独立 Validator；`resume --stop-at case_plan` 一次推进 5 个阶段成功。
+- 正式 `generate_testcases_from_coverage.py` 合并后仅 17 条，不满足一计划一用例。按 75 条 Case Plan 接回 75 条 `testcases_main.md`，并用正式脚本刷新 testpoints、开发自测、bundle、coverage-first/adapter 与 quality report。
+- `resume --stop-at testcases` 与 `resume --stop-at traceability` 均成功。Coverage-First 37 条、`invalid=0`、主失真率 0。`validate_work_item --strict --skip-code-reviews` 通过。
+- 未伪造 review；run 保持 `paused`，`review` / `strict_gate` pending。未修改业务代码，未提交 Git。完整质量基线第 1 项 Harness 单测仍失败，属既有 runtime 测试问题，未为本轮 PT083 去改 harness。
+
+## 2026-08-26 - PT083 Full Rerun Evidence Restored
+
+- 用户要求 PT083 开始用例生成。磁盘核对发现 Case Plan / testcase 为空模板，Structured PRD、Coverage、Reasoning、Image Evidence 也被重置，不能跳过设计层直接生成正式用例。
+- 本轮只执行 Evidence：基于 6 张原图与已批准 requirement summary 独立回写 `image_evidence/image_evidence_inventory.json`，并将 `evidence/evidence_inventory.json` 的 `generated_from` 指向 6 张原图，未伪造 UI 控件级 `evidence_items`。
+- 计数为 6 images、18 sections、28 fields、10 field rules、3 tables / 17 rows、10 needs-confirmation；建议尺寸、库存频率、SDK/`720*1280` 保持待确认，未升级为硬拦截。Image Evidence Validator 通过。
+- 原 run 目录已丢失。重建同一 `RUN-PT083-FULL-20260826` 后 start 将 approved receipt 写回 pending，但 summary/source/raw 三类绑定值未变；按既有用户确认用正式 CLI 重放 reviewer `ycp` 批准，再 `resume --stop-at evidence` 成功，status=`paused`。
+- 未修改业务代码、未生成 Case Plan/testcase、未提交 Git；按单阶段边界未运行完整质量基线。下一阶段仅重新生成 Reasoning Pack。
+
+## 2026-08-26 - PT083 Full Rerun Reasoning Completed
+
+- 已显式消费当前 requirement summary、source manifest 与 image evidence，重新生成 `analysis/reasoning_pack.json` 和 `analysis_report.md`，未从 Structured PRD 或下游资产反推。
+- 首次生成虽通过 Schema，但内容审查发现通用 banner/瓷片区/金刚区/弹窗推理污染；第 1 轮最小修复将其替换为 PT083 的B端商品/宣传配置到C端购买页联动、SDK、720*1280、库存、容量和未展开界面风险。
+- 最终结果为 93 explicit、1 implicit、28 field constraints、2 data source rules、5 business risks、7 edge cases、10 ambiguities、7 test dimensions、28 coverage candidates；无无关页面关键词残留。
+- Reasoning Pack Validator 复验通过；同一 run `resume --stop-at reasoning` 成功，当前 status=`paused`，Structured PRD 及下游 pending。
+- 未修改业务代码、规则强度或下游正式资产，未提交 Git；按单阶段边界未运行完整质量基线。下一阶段自动重跑 Structured PRD。
+
+## 2026-08-26 - PT083 Full Rerun Evidence Completed
+
+- 用户确认当前 PT083 requirement summary 与 6 张原图不变后，已用正式 CLI 以 reviewer `ycp` 批准 `RUN-PT083-FULL-20260826`。
+- Image Evidence Validator 通过；独立来源对齐检查确认 6 张原图均被承接，共 6 images、18 sections，无缺失或额外图片来源。
+- 同一 run 已以 `resume --stop-at evidence` 完成 evidence checkpoint，当前 status=`paused`；reasoning 及下游阶段均为 pending。
+- 本阶段未修改业务代码、下游正式资产或规则强度，未提交 Git；按单阶段边界未运行完整质量基线。
+- 下一阶段仅重新生成并校验 Reasoning Pack，不进入 Structured PRD。
+
+## 2026-08-26 - PT083 Full Rerun Waiting Requirement Approval
+
+- 用户要求全流程重跑 PT083。按仓库“每轮只执行一个阶段”约束，本轮仅执行 Requirement Intake，不跨入 evidence。
+- Roadmap 指向的 `RUN-PT083-REQ-20260821` run 目录已被清理，仅保留旧 approved receipt，无法安全 resume；旧批准绑定旧 run，不能跨 run 复用。
+- 已创建 M 档 strict run `RUN-PT083-FULL-20260826`。Requirement Sources strict 通过，run 正式停在 `waiting_approval`，新 receipt 为 `pending`。
+- 本轮未修改 requirement summary、原图、下游正式资产或业务代码，未提交 Git，未执行完整质量基线。
+- 下一步必须由用户审核并正式批准当前 run；批准后复用同一 run，下一轮仅执行 evidence。
+
+## 2026-08-21 - PT083 Evidence Completed
+
+- 用户确认需求摘要后，已用正式 CLI 以 reviewer `ycp` 批准 `RUN-PT083-REQ-20260821`，未改 summary/source/raw 绑定。
+- 本轮独立复核 6 张原图与既有 `image_evidence_inventory.json`：6 images、18 sections；字段必填星号、特殊区 4 个上限、宣传图片 5 张/500K/`1008*160` 建议尺寸、库存上限 200、SDK/`720*1280` 待确认均与图片一致，未把建议尺寸或模糊频率升级为硬规则。Image Evidence Validator 通过。
+- 已将 `evidence/evidence_inventory.json` 的 `generated_from` 指向 6 张原图；截图型需求仍以 image evidence 为证据真源，未伪造 UI 控件级 `evidence_items`。
+- 复用同一 run `resume --stop-at evidence` 成功，status=`paused`；reasoning 及下游 pending。未跑完整质量基线，未修改业务代码，未提交 Git。
+- 下一阶段仅执行 Reasoning Analysis。
+
+## 2026-08-21 - PT083 Requirement Intake Waiting Approval
+
+- 用户要求执行 `assets/projects/WX-YGJ/work_items/PT083`。本轮只做需求接入，不跨入 evidence，不修改业务代码，不提交 Git。
+- 已独立盘点 6 张本地原图并刷新 `inputs/requirement_summary.md` 与 `inputs/source_manifest.json`。SDK 版本、`720*1280` 技术语义、库存校验频率、免费体验资格和活动复盘链接均保留为待确认，未把建议尺寸升级为硬拦截。
+- 已取消历史迁移 run `RUN-PT083-MIGRATION-20260806`。新业务执行 run 为 `RUN-PT083-REQ-20260821`，`requirement_intake` 机器校验通过后状态为 `waiting_approval`，receipt 为 `pending`。
+- 校验：`validate_requirement_sources.py --strict` 通过；Harness `start --strict --stop-at requirement_intake` 退出码 0 并停在审批门。未跑完整质量基线。
+- 下一步必须由用户审核摘要；未批准前不得 resume。
+
 ## 2026-08-06 - Safe Cleanup And Documentation Audit
 
 - 用户授权范围内的根 `FETCH_HEAD`、四个空 `.cursor/subagents/*.md` 和根 `.generation/evals/*-latest.json` 在执行复核时均已不存在，本轮未重复删除；已单独确认 `.git/FETCH_HEAD` 仍存在且为空，未触碰 Git 内部文件。

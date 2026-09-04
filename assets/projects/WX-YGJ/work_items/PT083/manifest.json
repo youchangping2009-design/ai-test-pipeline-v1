@@ -1,10 +1,10 @@
 {
   "project_code": "WX-YGJ",
   "work_item_id": "PT083",
-  "title": "云挂机免费体验",
+  "title": "",
   "requirement_version": "",
   "work_item_level": "M",
-  "created_at": "2026-08-06T08:25:59.764371+00:00",
+  "created_at": "2026-08-26T15:00:25.482850+00:00",
   "status": "initialized",
   "pipeline_policy": {
     "requirement_intake_required": true,

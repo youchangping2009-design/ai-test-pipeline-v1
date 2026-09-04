@@ -2,7 +2,7 @@
 
 本文档说明 AI Test Pipeline 从项目初始化、需求接入到测试用例交付的完整实现路径，以及 Harness-Loop 如何通过 staging、Validator、审批、事务、恢复、审计和回归门禁控制整个过程。
 
-本文档是运行说明真源。首次使用建议先阅读本节的快速指南，再按需查阅后续阶段细节。
+本文档是运行说明真源。首次使用建议先阅读本节的快速指南，再用第 3.1 节的端到端举例建立完整心智模型，再按需查阅后续阶段细节。
 
 ## 0. Harness-Loop 快速运行指南
 
@@ -44,6 +44,8 @@ scripts/run_work_item_pipeline.py
 - `approve-*` 才可能修改正式资产，且会再次检查 hash、执行事务 journal 和发布后 strict。
 - `reject-*` 会保留审计记录并取消 run，不修改正式资产。
 
+
+
 ### 0.2 当前推荐主流程
 
 ```mermaid
@@ -62,7 +64,11 @@ flowchart TD
     Transaction --> FormalStrict[正式资产发布后 strict]
 ```
 
+
+
 模型不能直接写工作项正式目录。角色只能通过白名单 Action 读写 run-local staging；Validator 结论高于模型判断。
+
+第 0 节说明 Harness 如何控制写入与发布。第 3.1 节用一条教学需求说明业务阶段如何流转；日常无可信 adapter 时，走「会话或脚本写入正式产物，再 `resume` 校验」轨道，不调用 `agent-roles`。
 
 ### 0.3 对已有工作项做只读校验
 
@@ -119,6 +125,8 @@ RUN_ID=RUN-PT083-VALIDATE-001
 - `run_state.json.status=completed`。
 - 所有必需 stage 为 `succeeded`。
 - `audit_passed=true` 且 `audit_errors=0`。
+
+
 
 ### 0.4 运行完整四角色 Harness
 
@@ -195,6 +203,8 @@ current_stage: asset_formatter
 - `generation_candidate.json` 的目标文件范围合理。
 - approval 中的 candidate、target、upstream hash 未漂移。
 - 候选 diff 不包含意外删除或正式真源切换。
+
+
 
 ### 0.6 批准或拒绝四角色候选
 
@@ -362,6 +372,8 @@ Golden 与质量基线也可独立运行：
 /usr/bin/python3 scripts/run_quality_baseline.py
 ```
 
+
+
 ### 0.11 Run 产物在哪里
 
 每个 run 的过程状态都位于：
@@ -402,9 +414,11 @@ traceability/
 reviews/
 ```
 
+
+
 ### 0.12 日常推荐操作顺序
 
-已有工作项日常检查：
+新工作项从初始化走到交付的叙事说明见第 3.1 节。已有工作项日常检查：
 
 ```text
 1. start --strict --stop-at strict_gate
@@ -434,6 +448,8 @@ Harness 变更后的发布前检查：
 5. closeout
 6. run_quality_baseline.py
 ```
+
+
 
 ## 1. 核心原则
 
@@ -620,11 +636,284 @@ flowchart TD
     EX --> SG[Strict Gate]
 ```
 
+## 3.1 端到端举例：一条需求如何走完全流程
 
+本节是教学举例，不是仓库中的真实工作项。正式样本仍是 `WX-YGJ / PT083`。举例把需求做小，只为看清每一跳；阶段、命令、真源和门禁与现行 M 档契约相同。
 
+本仓库有两条运行轨道，阶段产物相同，写入方式不同：
+
+```text
+日常轨道（本举例，无可信 adapter 时的现行口径）
+-> 会话或正式脚本写入工作项目录
+-> start / resume 只做阶段校验与 checkpoint
+-> 无 --provider-command-json 时不得调用 agent-roles
+
+四角色轨道（第 0 节）
+-> 模型只写 run-local staging
+-> 隔离副本 normalizer + strict
+-> waiting_approval
+-> approve-roles / reject-roles 才可能改正式资产
+```
+
+教学需求：云游戏后台新增「商品名称」。产品提供一段文字和一张原型图：
+
+```text
+「商品名称」为必填，最多 20 个字符。
+宣传图建议尺寸 1008×160。
+技术背景：C 端按 720×1280 适配。
+```
+
+工作项按 M 档执行：比 S 档多 Acceptance Examples，不强制 L 档的 `verification_responsibility_map` 与 `test_design_matrix`。
+
+### 3.1.1 先立项目壳和工作项
+
+```bash
+python3 scripts/init_project.py \
+  --project-code WX-YGJ \
+  --project-name 云挂机 \
+  --business-line 小游戏
+
+python3 scripts/create_work_item.py \
+  --project-code WX-YGJ \
+  --work-item-id DEMO-001 \
+  --work-item-level M \
+  --title 商品名称必填与长度 \
+  --requirement-version v1
+```
+
+此时只有壳。项目根不得出现正式 structured PRD、testcase、traceability 或 review 真源：
+
+```text
+assets/projects/WX-YGJ/
+├── project_manifest.json
+├── inputs/common/
+├── indexes/
+├── reports/
+└── work_items/DEMO-001/
+    ├── manifest.json
+    └── inputs/
+```
+
+`manifest.json` 默认 `requirement_approval_required=true`。需求摘要未经人工批准，不得进入 evidence。
+
+### 3.1.2 先归一化输入，不要直接写用例
+
+原始材料放入：
+
+```text
+work_items/DEMO-001/inputs/
+├── 需求描述.md
+└── images/商品添加页.png
+```
+
+按 `skills/requirement-summary/` 写出主流程输入：
+
+```text
+inputs/requirement_summary.md
+inputs/source_manifest.json
+```
+
+摘要必须区分已确认与待确认，禁止脑补：
+
+```text
+已确认：
+- 「商品名称」必填
+- 最多 20 个字符
+- 宣传图建议尺寸 1008×160
+
+待确认：
+- 超过 20 个字符是截断、禁止输入，还是保存时报错
+- 720×1280 是设计稿尺寸还是技术适配约束
+```
+
+后续阶段消费这两份归一化产物，而不是让每个角色重新解读原始链接和截图。
+
+### 3.1.3 启动 Harness：先只校验需求接入
+
+```bash
+RUN_ID=RUN-DEMO-001
+
+python3 scripts/run_work_item_pipeline.py start \
+  --project-code WX-YGJ \
+  --work-item-id DEMO-001 \
+  --run-id "$RUN_ID" \
+  --work-item-level M \
+  --strict \
+  --stop-at requirement_intake
+```
+
+Harness 创建 `.generation/runs/RUN-DEMO-001/`，运行 Requirement Sources Validator。机器校验通过后停在 `waiting_approval`，不进入图片证据。摘要仍是模板或来源清单为空时，本阶段失败。run 状态、事件和诊断不是业务真源。
+
+### 3.1.4 人工批准需求
+
+```bash
+python3 scripts/run_work_item_pipeline.py approve-requirement \
+  --project-code WX-YGJ \
+  --work-item-id DEMO-001 \
+  --run-id "$RUN_ID" \
+  --reviewed-by <REVIEWER> \
+  --note "确认必填和20字来自PRD；720*1280保持待确认"
+```
+
+`inputs/requirement_approval.json` 绑定摘要、来源清单、原始输入指纹、需求版本和当前 run。事后把「必填」改成「选填」会使旧批准失效，`resume` 必须重新批准。仅修改 manifest 运行期字段不会撤销批准。CI 不能代替人工批准。
+
+### 3.1.5 图片证据：只记录看见的东西
+
+先写出 `image_evidence/image_evidence_inventory.json`，再校验：
+
+```bash
+python3 scripts/run_work_item_pipeline.py resume \
+  --project-code WX-YGJ \
+  --work-item-id DEMO-001 \
+  --run-id "$RUN_ID" \
+  --stop-at evidence
+```
+
+本例应记录：页面为商品添加页，板块为基础信息，「商品名称」旁有红色 `*`，文案写明建议尺寸 1008×160，超长行为在图上不可见。没有必填星号或等价文字时，不得生成「为空不可提交」。纯文本需求没有图片时，不被本阶段阻塞。
+
+### 3.1.6 Reasoning：先拆规则和风险
+
+`resume --stop-at reasoning` 前写入 `analysis/reasoning_pack.json` 与 `analysis_report.md`。本例拆分：
+
+```text
+explicit              「商品名称」必填                 -> 可进入正式用例
+explicit              最多 20 个字符                   -> 可进入；超长行为待确认
+soft_prompt           建议尺寸 1008×160                -> 只能做提示展示
+technical_background  720×1280                         -> 不得生成业务用例
+ambiguity             第 21 个字符如何表现             -> 保持待确认
+```
+
+本阶段必须显式消费 requirement summary、source manifest 与图片证据，不得从已有 Structured PRD 反推。
+
+### 3.1.7 Structured PRD：写成可编译结构
+
+PRD Structurer 编写 `structured_prd/structured_prd.md`，再经正式编译器生成 `structured_prd.json`。商品名称应保留页面、板块、必填和长度；建议尺寸保持 `soft_prompt`；720×1280 保持 `technical_background`。
+
+Markdown 是 authoring 真源，JSON 是机器投影。只改 JSON 不改 Markdown，编译一致性会失败。`resume --stop-at structured_prd` 只校验本阶段，不得顺手写 Coverage。
+
+### 3.1.8 Coverage：决定测什么、不测什么
+
+`coverage/coverage_matrix.json` 对本例的分流：
+
+```text
+COV-001  名称为空时不能保存          -> main_testcase
+COV-002  名称 20 字可保存            -> main_testcase
+COV-003  第 21 字如何表现            -> 仍待确认则 audit / 不进正式主链
+COV-004  非建议尺寸要有提示          -> soft / audit，不进 hard_block
+COV-005  720×1280 适配               -> audit，不进产品验收
+```
+
+没有可判定旧基线的「其余逻辑不变」不得进入主验收。
+
+### 3.1.9 Testability Gate：给每条规则分流
+
+`acceptance/testability_gate.json` 对本例的结论：
+
+```text
+TG-001  名称为空不可保存     testable                 -> 生成验收示例
+TG-002  20 字可保存          testable                 -> 生成验收示例
+TG-003  第 21 字行为         needs_confirmation       -> 不生成正式用例
+TG-004  建议尺寸提示         partially_testable       -> 只允许提示展示
+TG-005  720×1280             out_of_scope / technical -> 不进业务验收
+```
+
+Gate 不写用例，只决定后面准不准写。
+
+### 3.1.10 Acceptance Examples：先写可判定场景
+
+M 档强制本阶段。S 档可跳过。`AE-001` 验证空值保存失败；`AE-004` 只能验证页面展示建议尺寸，不得写成「系统阻止保存」。`resume --stop-at acceptance_examples` 会拒绝来自 `needs_confirmation`、`out_of_scope`、`technical_background` 或 `risk_note_only` 的验收示例。
+
+### 3.1.11 Case Plan：正式用例前的最后决策
+
+准备生成的验收示例变成计划：
+
+```text
+CP-001  商品名称为空阻止保存    save_block        -> TC-DEMO-001
+CP-002  商品名称 20 字可保存    field_constraint  -> TC-DEMO-002
+CP-004  非建议尺寸展示提示      prompt_display    -> TC-DEMO-004
+```
+
+`CP-003` 因 Gate 为 `needs_confirmation`，`should_generate_case=false`，不进入正式用例。每条计划必须具备 `page_name` / `section_name`、`source_gate_ids` / `source_example_ids`、稳定 `generated_testcase_ids` 和单一 assertion。
+
+`case_plan` 阶段只校验计划及上游设计资产，不读取尚未生成的 `testcases_main.md`。
+
+### 3.1.12 Testpoints 与正式 Testcase
+
+Case Generator 只执行 `should_generate_case=true` 的计划，本例 3 条，并同步生成 `testpoints.md/json`。`testcases_main.md` 按「页面 + 板块」分表，备注必须写 `来源 CasePlan：CP-xxx`。标题禁止「验证商品名称配置正确」；步骤和预期使用元素标注与可观察结果。
+
+`resume --stop-at testcases` 校验 lint、分组、testpoints 和 Case Plan 反向引用，不依赖尚未刷新的 `testcase_bundle.json`。3 条计划只产出 1 条合并用例时必须失败。
+
+### 3.1.13 刷新派生物后再做 Traceability
+
+从 `testcases_main.md` 重建 bundle、开发自测、审计产物、coverage-first traceability 与 quality report 后：
+
+```bash
+python3 scripts/run_work_item_pipeline.py resume \
+  --project-code WX-YGJ \
+  --work-item-id DEMO-001 \
+  --run-id "$RUN_ID" \
+  --stop-at traceability
+```
+
+`COV-001` 必须真实落到验证空值的正式用例。备注里写了 coverage ID、正文却只测长度，属于失真映射。`720×1280` 与「第 21 字待确认」不得进入主追溯的正式用例。
+
+### 3.1.14 Review 只点评，不改用例
+
+Case Reviewer 可在 `reviews/review_record.md` 记录「CP-003 仍待确认，提测前需产品答复超长行为」，不得直接向 `testcases_main.md` 追加用例。代码映证结论写入 `design/design_feedback.json`，目标层只能是测试设计决策层。
+
+本例无前后端分支时，工作项 strict 可显式 `--skip-code-reviews`。Harness run 尚无 Review `not_applicable` disposition，原 run 应停在最后一个真实完成的 Traceability checkpoint，不得用待评审模板推进 Review。
+
+### 3.1.15 Strict Gate 与项目汇总
+
+```bash
+python3 scripts/validate_work_item.py \
+  --project-code WX-YGJ \
+  --work-item-id DEMO-001 \
+  --strict \
+  --skip-code-reviews
+
+python3 scripts/refresh_project_views.py --project-code WX-YGJ
+```
+
+Strict 聚合检查摘要与批准、设计层闭环、Case Plan 追溯、页面板块分组、Bundle 一致性、质量报告指纹，以及 soft_prompt / technical_background / risk 隔离。任一失败则退出码非 0。项目级 indexes/reports 只保存摘要和源路径，不复制正式用例。
+
+### 3.1.16 写错时会被谁拦住
+
+若模型把建议尺寸写成「上传非 1008×160 图片后阻止保存」：
+
+```text
+soft_prompt 只能进入 prompt_display
+-> Case Plan 与 testcase 不一致
+-> lint / Case Plan Validator 失败
+-> Diagnostic 指回设计层
+-> 最多 2 轮最小 repair
+-> 仍失败则写入 HUMAN_ACTION_REQUIRED.md
+```
+
+走四角色轨道时，这些改动只在 staging；没有 `approve-roles` 不会覆盖正式目录。正式用例已改但未刷新 quality report 时，Strict Gate 会因主产物指纹过期失败。
+
+### 3.1.17 本举例要记住的流转
+
+```text
+原始材料
+-> 归一化摘要 + 来源清单
+-> 内容绑定的人工批准
+-> 图片证据 / Reasoning
+-> Structured PRD
+-> Coverage / Gate / Acceptance
+-> Case Plan
+-> Testpoints + testcases_main.md
+-> 派生物刷新 + Traceability
+-> Review
+-> validate_work_item --strict
+```
+
+AI 负责填写每一阶段的候选内容。Harness 负责停在正确的阶段并记录指纹。Validator 负责决定该阶段算不算数。模型不能自行宣布交付。
 
 
 ## 4. 阶段 0：轻量项目壳
+
+以下各阶段是实现口径。完整叙事流转见第 3.1 节。
 
 入口：
 
@@ -1411,5 +1700,4 @@ PT083 当前为迁移后的 M 档正式样本：82 条 Coverage、62 条 Gate、
 - 未经人工评审不得使用候选用例覆盖正式用例
 - M 档无代码 strict 可显式使用 `--skip-code-reviews`；当前 Harness run 尚无可审计的 Review `not_applicable` disposition
 
-当前仓库只保留 PT083 作为正式项目样本。全量 97 项单元测试与质量基线 5/5 是本轮文档复核时的稳定验收口径；具体 fixture 检查数等易变指标以 `evals/eval_suite.json` 和实际命令输出为准。
-
+当前仓库只保留 PT083 作为正式项目样本。第 3.1 节的 `DEMO-001` 仅用于教学，不得当作仓库内真实工作项或 CI 样本。全量 97 项单元测试与质量基线 5/5 是本轮文档复核时的稳定验收口径；具体 fixture 检查数等易变指标以 `evals/eval_suite.json` 和实际命令输出为准。

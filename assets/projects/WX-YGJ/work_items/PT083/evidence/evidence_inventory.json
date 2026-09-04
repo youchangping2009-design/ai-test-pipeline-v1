@@ -1,6 +1,13 @@
 {
   "project_code": "WX-YGJ",
   "work_item_id": "PT083",
-  "generated_from": [],
+  "generated_from": [
+    "inputs/images/PT083-01_副本.png",
+    "inputs/images/PT083-02_副本.png",
+    "inputs/images/PT083-03-01_副本.png",
+    "inputs/images/PT083-03-02_副本.png",
+    "inputs/images/PT083-03-03_副本.png",
+    "inputs/images/PT083-04_副本.png"
+  ],
   "evidence_items": []
 }

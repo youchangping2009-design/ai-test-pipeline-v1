@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-06T18:14:14",
+  "generated_at": "2026-08-27T07:49:51",
   "total_cases": 75,
   "total_coverage_entries": 82,
   "coverage_empty_with_cases": false,
@@ -17,9 +17,9 @@
   "false_traceability_rate_primary": 0.0,
   "false_traceability_rate_legacy": 0.0,
   "traceability_metric_source": "coverage_first_traceability",
-  "field_audit_item_count": 0,
+  "field_audit_item_count": 45,
   "grouped_audit_group_count": 0,
-  "audit_artifacts_consumed": false,
+  "audit_artifacts_consumed": true,
   "quality_gate": {
     "enabled": false,
     "mode": "soft",
@@ -54,7 +54,7 @@
     },
     "coverage_first_traceability": {
       "path": "assets/projects/WX-YGJ/work_items/PT083/traceability/coverage_first_traceability.json",
-      "sha256": "70f4db7a0541927bfb73f2ee0ad3749cea19f40170b504f8038dbc4f18464ec8",
+      "sha256": "9acca556ba7e0e2e8b3a7bffc2ef00e6f41ce4d6e26f66c3110ca8f46147c5ed",
       "size_bytes": 31865
     }
   }
