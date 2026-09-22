@@ -359,6 +359,24 @@
                   "low"
                 ]
               },
+              "source_scope": {
+                "type": "string",
+                "enum": [
+                  "primary_requirement",
+                  "context_only",
+                  "oracle_only"
+                ],
+                "default": "primary_requirement"
+              },
+              "atomic_assertions": {
+                "type": "array",
+                "minItems": 2,
+                "items": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "uniqueItems": true
+              },
               "applies_to": {
                 "type": "string"
               },

@@ -1,0 +1,712 @@
+{
+  "project_code": "OSS-BLIND-R3",
+  "work_item_id": "SUPABASE-50569",
+  "grounding_contract_version": "1.0",
+  "generated_at": "2026-09-21T19:32:52",
+  "generated_from": [
+    "assets/projects/OSS-BLIND-R3/work_items/SUPABASE-50569/manifest.json",
+    "assets/projects/OSS-BLIND-R3/work_items/SUPABASE-50569/inputs/requirement_summary.md",
+    "assets/projects/OSS-BLIND-R3/work_items/SUPABASE-50569/inputs/source_manifest.json",
+    "assets/projects/OSS-BLIND-R3/work_items/SUPABASE-50569/image_evidence/image_evidence_inventory.json"
+  ],
+  "requirement_summary": {
+    "title": "SUPABASE-50569 MFA 恢复码登录需求整理",
+    "summary_text": "启用 MFA 且拥有恢复码的用户，在登录后进入 MFA 验证页时，可以选择使用恢复码完成身份验证。有效恢复码登录成功后应消耗该恢复码；功能配置关闭时入口不可见，直接访问恢复码登录页应返回 MFA 验证页。",
+    "primary_pages": [],
+    "primary_user_surfaces": [],
+    "source_notes": [
+      "归一化需求来源：assets/projects/OSS-BLIND-R3/work_items/SUPABASE-50569/inputs/requirement_summary.md",
+      "SRC-001: https://github.com/supabase/supabase/pull/50569 (available)",
+      "SRC-002: inputs/public_source_snapshot.md (available)"
+    ]
+  },
+  "explicit_rules": [
+    {
+      "id": "ER-001",
+      "title": "需求整理-explicit_rule",
+      "statement": "启用 MFA 且拥有恢复码的用户，在登录后进入 MFA 验证页时，可以选择使用恢复码完成身份验证。有效恢复码登录成功后应消耗该恢复码；功能配置关闭时入口不可见，直接访问恢复码登录页应返回 MFA 验证页。",
+      "confidence": 0.99,
+      "reasoning_notes": [
+        "来自主流程 requirement_summary.md 的确认需求。"
+      ],
+      "must_preserve_terms": [],
+      "source_refs": [
+        {
+          "source_type": "input_markdown",
+          "path": "assets/projects/OSS-BLIND-R3/work_items/SUPABASE-50569/inputs/requirement_summary.md",
+          "excerpt": "启用 MFA 且拥有恢复码的用户，在登录后进入 MFA 验证页时，可以选择使用恢复码完成身份验证。有效恢复码登录成功后应消耗该恢复码；功能配置关闭时入口不可见，直接访问恢复码登录页应返回 MFA 验证页。"
+        }
+      ]
+    },
+    {
+      "id": "ER-002",
+      "title": "需求整理-explicit_rule",
+      "statement": "MFA 验证页在功能开启且账户具备恢复码时提供【使用恢复码验证】入口。",
+      "confidence": 0.99,
+      "reasoning_notes": [
+        "来自主流程 requirement_summary.md 的确认需求。"
+      ],
+      "must_preserve_terms": [],
+      "source_refs": [
+        {
+          "source_type": "input_markdown",
+          "path": "assets/projects/OSS-BLIND-R3/work_items/SUPABASE-50569/inputs/requirement_summary.md",
+          "excerpt": "MFA 验证页在功能开启且账户具备恢复码时提供【使用恢复码验证】入口。"
+        }
+      ]
+    },
+    {
+      "id": "ER-003",
+      "title": "需求整理-explicit_rule",
+      "statement": "入口打开独立恢复码认证页面。",
+      "confidence": 0.99,
+      "reasoning_notes": [
+        "来自主流程 requirement_summary.md 的确认需求。"
+      ],
+      "must_preserve_terms": [],
+      "source_refs": [
+        {
+          "source_type": "input_markdown",
+          "path": "assets/projects/OSS-BLIND-R3/work_items/SUPABASE-50569/inputs/requirement_summary.md",
+          "excerpt": "入口打开独立恢复码认证页面。"
+        }
+      ]
+    },
+    {
+      "id": "ER-004",
+      "title": "需求整理-explicit_rule",
+      "statement": "提交有效且未使用的恢复码后建立已完成 MFA 的登录会话。",
+      "confidence": 0.99,
+      "reasoning_notes": [
+        "来自主流程 requirement_summary.md 的确认需求。"
+      ],
+      "must_preserve_terms": [],
+      "source_refs": [
+        {
+          "source_type": "input_markdown",
+          "path": "assets/projects/OSS-BLIND-R3/work_items/SUPABASE-50569/inputs/requirement_summary.md",
+          "excerpt": "提交有效且未使用的恢复码后建立已完成 MFA 的登录会话。"
+        }
+      ]
+    },
+    {
+      "id": "ER-005",
+      "title": "需求整理-explicit_rule",
+      "statement": "成功使用的恢复码从可用集合中移除，不可重复使用。",
+      "confidence": 0.99,
+      "reasoning_notes": [
+        "来自主流程 requirement_summary.md 的确认需求。"
+      ],
+      "must_preserve_terms": [],
+      "source_refs": [
+        {
+          "source_type": "input_markdown",
+          "path": "assets/projects/OSS-BLIND-R3/work_items/SUPABASE-50569/inputs/requirement_summary.md",
+          "excerpt": "成功使用的恢复码从可用集合中移除，不可重复使用。"
+        }
+      ]
+    },
+    {
+      "id": "ER-006",
+      "title": "需求整理-explicit_rule",
+      "statement": "功能关闭时隐藏入口；直接访问恢复码页面重定向回 MFA 验证页。",
+      "confidence": 0.99,
+      "reasoning_notes": [
+        "来自主流程 requirement_summary.md 的确认需求。"
+      ],
+      "must_preserve_terms": [],
+      "source_refs": [
+        {
+          "source_type": "input_markdown",
+          "path": "assets/projects/OSS-BLIND-R3/work_items/SUPABASE-50569/inputs/requirement_summary.md",
+          "excerpt": "功能关闭时隐藏入口；直接访问恢复码页面重定向回 MFA 验证页。"
+        }
+      ]
+    },
+    {
+      "id": "ER-007",
+      "title": "需求整理-explicit_rule",
+      "statement": "有恢复码且开关开启时入口可见并可进入恢复码页面。",
+      "confidence": 0.99,
+      "reasoning_notes": [
+        "来自主流程 requirement_summary.md 的确认需求。"
+      ],
+      "must_preserve_terms": [],
+      "source_refs": [
+        {
+          "source_type": "input_markdown",
+          "path": "assets/projects/OSS-BLIND-R3/work_items/SUPABASE-50569/inputs/requirement_summary.md",
+          "excerpt": "有恢复码且开关开启时入口可见并可进入恢复码页面。"
+        }
+      ]
+    },
+    {
+      "id": "ER-008",
+      "title": "需求整理-explicit_rule",
+      "statement": "有效恢复码成功登录，账户安全页可用恢复码数量减少 1。",
+      "confidence": 0.99,
+      "reasoning_notes": [
+        "来自主流程 requirement_summary.md 的确认需求。"
+      ],
+      "must_preserve_terms": [],
+      "source_refs": [
+        {
+          "source_type": "input_markdown",
+          "path": "assets/projects/OSS-BLIND-R3/work_items/SUPABASE-50569/inputs/requirement_summary.md",
+          "excerpt": "有效恢复码成功登录，账户安全页可用恢复码数量减少 1。"
+        }
+      ]
+    },
+    {
+      "id": "ER-009",
+      "title": "需求整理-explicit_rule",
+      "statement": "已使用恢复码再次提交不能再次登录。",
+      "confidence": 0.99,
+      "reasoning_notes": [
+        "来自主流程 requirement_summary.md 的确认需求。"
+      ],
+      "must_preserve_terms": [],
+      "source_refs": [
+        {
+          "source_type": "input_markdown",
+          "path": "assets/projects/OSS-BLIND-R3/work_items/SUPABASE-50569/inputs/requirement_summary.md",
+          "excerpt": "已使用恢复码再次提交不能再次登录。"
+        }
+      ]
+    },
+    {
+      "id": "ER-010",
+      "title": "需求整理-explicit_rule",
+      "statement": "无效、空值或格式不正确的恢复码不得建立登录会话；具体错误文案待确认。",
+      "confidence": 0.99,
+      "reasoning_notes": [
+        "来自主流程 requirement_summary.md 的确认需求。"
+      ],
+      "must_preserve_terms": [],
+      "source_refs": [
+        {
+          "source_type": "input_markdown",
+          "path": "assets/projects/OSS-BLIND-R3/work_items/SUPABASE-50569/inputs/requirement_summary.md",
+          "excerpt": "无效、空值或格式不正确的恢复码不得建立登录会话；具体错误文案待确认。"
+        }
+      ]
+    },
+    {
+      "id": "ER-011",
+      "title": "需求整理-explicit_rule",
+      "statement": "开关关闭时入口不可见，直接 URL 访问返回 MFA 验证页。",
+      "confidence": 0.99,
+      "reasoning_notes": [
+        "来自主流程 requirement_summary.md 的确认需求。"
+      ],
+      "must_preserve_terms": [],
+      "source_refs": [
+        {
+          "source_type": "input_markdown",
+          "path": "assets/projects/OSS-BLIND-R3/work_items/SUPABASE-50569/inputs/requirement_summary.md",
+          "excerpt": "开关关闭时入口不可见，直接 URL 访问返回 MFA 验证页。"
+        }
+      ]
+    },
+    {
+      "id": "ER-012",
+      "title": "需求整理-explicit_rule",
+      "statement": "普通 MFA 验证路径在功能开启和关闭时均不回退。",
+      "confidence": 0.99,
+      "reasoning_notes": [
+        "来自主流程 requirement_summary.md 的确认需求。"
+      ],
+      "must_preserve_terms": [],
+      "source_refs": [
+        {
+          "source_type": "input_markdown",
+          "path": "assets/projects/OSS-BLIND-R3/work_items/SUPABASE-50569/inputs/requirement_summary.md",
+          "excerpt": "普通 MFA 验证路径在功能开启和关闭时均不回退。"
+        }
+      ]
+    },
+    {
+      "id": "ER-013",
+      "title": "需求整理-explicit_rule",
+      "statement": "配置开关：`enableAuthRecoveryCodes`。",
+      "confidence": 0.99,
+      "reasoning_notes": [
+        "来自主流程 requirement_summary.md 的确认需求。"
+      ],
+      "must_preserve_terms": [],
+      "source_refs": [
+        {
+          "source_type": "input_markdown",
+          "path": "assets/projects/OSS-BLIND-R3/work_items/SUPABASE-50569/inputs/requirement_summary.md",
+          "excerpt": "配置开关：`enableAuthRecoveryCodes`。"
+        }
+      ]
+    },
+    {
+      "id": "ER-014",
+      "title": "需求整理-explicit_rule",
+      "statement": "关键状态：MFA challenge、恢复码可用集合、恢复码使用状态、已认证会话。",
+      "confidence": 0.99,
+      "reasoning_notes": [
+        "来自主流程 requirement_summary.md 的确认需求。"
+      ],
+      "must_preserve_terms": [],
+      "source_refs": [
+        {
+          "source_type": "input_markdown",
+          "path": "assets/projects/OSS-BLIND-R3/work_items/SUPABASE-50569/inputs/requirement_summary.md",
+          "excerpt": "关键状态：MFA challenge、恢复码可用集合、恢复码使用状态、已认证会话。"
+        }
+      ]
+    },
+    {
+      "id": "ER-015",
+      "title": "需求整理-explicit_rule",
+      "statement": "来源未声明新增埋点、接口字段或错误码。",
+      "confidence": 0.99,
+      "reasoning_notes": [
+        "来自主流程 requirement_summary.md 的确认需求。"
+      ],
+      "must_preserve_terms": [],
+      "source_refs": [
+        {
+          "source_type": "input_markdown",
+          "path": "assets/projects/OSS-BLIND-R3/work_items/SUPABASE-50569/inputs/requirement_summary.md",
+          "excerpt": "来源未声明新增埋点、接口字段或错误码。"
+        }
+      ]
+    }
+  ],
+  "implicit_rules": [],
+  "field_constraints": [],
+  "data_source_rules": [],
+  "business_risks": [
+    {
+      "risk_id": "RISK-001",
+      "title": "恢复码是一次性安全凭证",
+      "risk_statement": "恢复码是一次性安全凭证，成功认证与消费必须保持原子性，避免并发重复使用。",
+      "severity": "high",
+      "impact_scope": [],
+      "source_refs": [
+        {
+          "source_type": "input_markdown",
+          "path": "assets/projects/OSS-BLIND-R3/work_items/SUPABASE-50569/inputs/requirement_summary.md",
+          "excerpt": "恢复码是一次性安全凭证，成功认证与消费必须保持原子性，避免并发重复使用。"
+        }
+      ]
+    },
+    {
+      "risk_id": "RISK-002",
+      "title": "页面路由守卫不能仅隐藏入口",
+      "risk_statement": "页面路由守卫不能仅隐藏入口，还必须阻止直接 URL 绕过配置。",
+      "severity": "medium",
+      "impact_scope": [],
+      "source_refs": [
+        {
+          "source_type": "input_markdown",
+          "path": "assets/projects/OSS-BLIND-R3/work_items/SUPABASE-50569/inputs/requirement_summary.md",
+          "excerpt": "页面路由守卫不能仅隐藏入口，还必须阻止直接 URL 绕过配置。"
+        }
+      ]
+    },
+    {
+      "risk_id": "RISK-003",
+      "title": "检查恢复码可用性期间的加载或失败状态可能影响入口展示",
+      "risk_statement": "检查恢复码可用性期间的加载或失败状态可能影响入口展示，但来源未定义具体交互。",
+      "severity": "medium",
+      "impact_scope": [],
+      "source_refs": [
+        {
+          "source_type": "input_markdown",
+          "path": "assets/projects/OSS-BLIND-R3/work_items/SUPABASE-50569/inputs/requirement_summary.md",
+          "excerpt": "检查恢复码可用性期间的加载或失败状态可能影响入口展示，但来源未定义具体交互。"
+        }
+      ]
+    },
+    {
+      "risk_id": "RISK-004",
+      "title": "恢复码内容不得出现在日志、URL 或客户端错误上报中",
+      "risk_statement": "恢复码内容不得出现在日志、URL 或客户端错误上报中。",
+      "severity": "high",
+      "impact_scope": [],
+      "source_refs": [
+        {
+          "source_type": "input_markdown",
+          "path": "assets/projects/OSS-BLIND-R3/work_items/SUPABASE-50569/inputs/requirement_summary.md",
+          "excerpt": "恢复码内容不得出现在日志、URL 或客户端错误上报中。"
+        }
+      ]
+    }
+  ],
+  "edge_cases": [
+    {
+      "edge_case_id": "EC-001",
+      "title": "无效、空值或格式不正确的恢复码不得建立登录会话",
+      "scenario": "无效、空值或格式不正确的恢复码不得建立登录会话；具体错误文案待确认。",
+      "priority": "P1",
+      "source_refs": [
+        {
+          "source_type": "input_markdown",
+          "path": "assets/projects/OSS-BLIND-R3/work_items/SUPABASE-50569/inputs/requirement_summary.md",
+          "excerpt": "无效、空值或格式不正确的恢复码不得建立登录会话；具体错误文案待确认。"
+        }
+      ]
+    }
+  ],
+  "ambiguities": [
+    {
+      "ambiguity_id": "AMB-001",
+      "title": "恢复码的正式格式、大小写和空白处理规则是什么",
+      "description": "恢复码的正式格式、大小写和空白处理规则是什么？",
+      "status": "open",
+      "suggested_resolution": "在进入正式测试设计前由需求方确认；未确认时保持显式缺失，不推断为强规则。",
+      "source_refs": [
+        {
+          "source_type": "input_markdown",
+          "path": "assets/projects/OSS-BLIND-R3/work_items/SUPABASE-50569/inputs/requirement_summary.md",
+          "excerpt": "恢复码的正式格式、大小写和空白处理规则是什么？"
+        }
+      ]
+    },
+    {
+      "ambiguity_id": "AMB-002",
+      "title": "无效、已使用和服务异常分别展示什么错误",
+      "description": "无效、已使用和服务异常分别展示什么错误？",
+      "status": "open",
+      "suggested_resolution": "在进入正式测试设计前由需求方确认；未确认时保持显式缺失，不推断为强规则。",
+      "source_refs": [
+        {
+          "source_type": "input_markdown",
+          "path": "assets/projects/OSS-BLIND-R3/work_items/SUPABASE-50569/inputs/requirement_summary.md",
+          "excerpt": "无效、已使用和服务异常分别展示什么错误？"
+        }
+      ]
+    },
+    {
+      "ambiguity_id": "AMB-003",
+      "title": "多个并发请求使用同一恢复码时的最终状态与审计要求是什么",
+      "description": "多个并发请求使用同一恢复码时的最终状态与审计要求是什么？",
+      "status": "open",
+      "suggested_resolution": "在进入正式测试设计前由需求方确认；未确认时保持显式缺失，不推断为强规则。",
+      "source_refs": [
+        {
+          "source_type": "input_markdown",
+          "path": "assets/projects/OSS-BLIND-R3/work_items/SUPABASE-50569/inputs/requirement_summary.md",
+          "excerpt": "多个并发请求使用同一恢复码时的最终状态与审计要求是什么？"
+        }
+      ]
+    },
+    {
+      "ambiguity_id": "AMB-004",
+      "title": "没有可用恢复码但配置开启时",
+      "description": "没有可用恢复码但配置开启时，入口和直接 URL 的正式行为是什么？",
+      "status": "open",
+      "suggested_resolution": "在进入正式测试设计前由需求方确认；未确认时保持显式缺失，不推断为强规则。",
+      "source_refs": [
+        {
+          "source_type": "input_markdown",
+          "path": "assets/projects/OSS-BLIND-R3/work_items/SUPABASE-50569/inputs/requirement_summary.md",
+          "excerpt": "没有可用恢复码但配置开启时，入口和直接 URL 的正式行为是什么？"
+        }
+      ]
+    }
+  ],
+  "recommended_test_dimensions": [
+    {
+      "dimension_id": "TD-001",
+      "dimension": "显式规则逐条验证",
+      "rationale": "需求摘要已给出可追溯规则，后续设计应保持单规则单断言并验证成功与失败结果。",
+      "priority": "high",
+      "related_reasoning_ids": [
+        "ER-001",
+        "ER-002",
+        "ER-003",
+        "ER-004",
+        "ER-005",
+        "ER-006",
+        "ER-007",
+        "ER-008"
+      ]
+    },
+    {
+      "dimension_id": "TD-002",
+      "dimension": "异常与失败处理",
+      "rationale": "需求包含明确拒绝或失败语义，需要验证失败状态、错误反馈及副作用隔离。",
+      "priority": "high",
+      "related_reasoning_ids": [
+        "ER-010",
+        "ER-015"
+      ]
+    },
+    {
+      "dimension_id": "TD-003",
+      "dimension": "数据一致性与状态保留",
+      "rationale": "需求涉及关系或状态保留，应核对操作前后数据集合而非只看接口成功。",
+      "priority": "high",
+      "related_reasoning_ids": [
+        "ER-005",
+        "ER-014"
+      ]
+    },
+    {
+      "dimension_id": "TD-004",
+      "dimension": "输入类型与边界",
+      "rationale": "输入的类型、边界值和协议格式会影响判断结果，需要覆盖合法、非法及临界输入。",
+      "priority": "high",
+      "related_reasoning_ids": [
+        "ER-011"
+      ]
+    },
+    {
+      "dimension_id": "TD-005",
+      "dimension": "风险与非功能约束",
+      "rationale": "需求摘要已明确兼容性、性能或一致性风险，需与产品验收规则分层承接。",
+      "priority": "medium",
+      "related_reasoning_ids": [
+        "RISK-001",
+        "RISK-002",
+        "RISK-003",
+        "RISK-004"
+      ]
+    },
+    {
+      "dimension_id": "TD-006",
+      "dimension": "未决项追踪",
+      "rationale": "摘要存在尚未确认的输入或验收口径，后续不得将其自动升级为强制规则。",
+      "priority": "medium",
+      "related_reasoning_ids": [
+        "AMB-001",
+        "AMB-002",
+        "AMB-003",
+        "AMB-004"
+      ]
+    }
+  ],
+  "coverage_candidates": [
+    {
+      "candidate_id": "COV-001",
+      "candidate_type": "rule_cluster",
+      "title": "启用 MFA 且拥有恢复码的用户",
+      "scope": "文本需求规则",
+      "priority": "high",
+      "rationale": "文本需求中的显式规则需要在后续 Structured PRD 与测试设计中保持可追溯。",
+      "suggested_test_types": [
+        "功能",
+        "异常"
+      ],
+      "source_reasoning_ids": [
+        "ER-001"
+      ]
+    },
+    {
+      "candidate_id": "COV-002",
+      "candidate_type": "rule_cluster",
+      "title": "MFA 验证页在功能开启且账户具备恢复码时提供【使用恢复码验证】入口",
+      "scope": "文本需求规则",
+      "priority": "high",
+      "rationale": "文本需求中的显式规则需要在后续 Structured PRD 与测试设计中保持可追溯。",
+      "suggested_test_types": [
+        "功能",
+        "异常"
+      ],
+      "source_reasoning_ids": [
+        "ER-002"
+      ]
+    },
+    {
+      "candidate_id": "COV-003",
+      "candidate_type": "rule_cluster",
+      "title": "入口打开独立恢复码认证页面",
+      "scope": "文本需求规则",
+      "priority": "high",
+      "rationale": "文本需求中的显式规则需要在后续 Structured PRD 与测试设计中保持可追溯。",
+      "suggested_test_types": [
+        "功能",
+        "异常"
+      ],
+      "source_reasoning_ids": [
+        "ER-003"
+      ]
+    },
+    {
+      "candidate_id": "COV-004",
+      "candidate_type": "rule_cluster",
+      "title": "提交有效且未使用的恢复码后建立已完成 MFA 的登录会话",
+      "scope": "文本需求规则",
+      "priority": "high",
+      "rationale": "文本需求中的显式规则需要在后续 Structured PRD 与测试设计中保持可追溯。",
+      "suggested_test_types": [
+        "功能",
+        "异常"
+      ],
+      "source_reasoning_ids": [
+        "ER-004"
+      ]
+    },
+    {
+      "candidate_id": "COV-005",
+      "candidate_type": "rule_cluster",
+      "title": "成功使用的恢复码从可用集合中移除",
+      "scope": "文本需求规则",
+      "priority": "high",
+      "rationale": "文本需求中的显式规则需要在后续 Structured PRD 与测试设计中保持可追溯。",
+      "suggested_test_types": [
+        "功能",
+        "异常"
+      ],
+      "source_reasoning_ids": [
+        "ER-005"
+      ]
+    },
+    {
+      "candidate_id": "COV-006",
+      "candidate_type": "rule_cluster",
+      "title": "功能关闭时隐藏入口",
+      "scope": "文本需求规则",
+      "priority": "high",
+      "rationale": "文本需求中的显式规则需要在后续 Structured PRD 与测试设计中保持可追溯。",
+      "suggested_test_types": [
+        "功能",
+        "异常"
+      ],
+      "source_reasoning_ids": [
+        "ER-006"
+      ]
+    },
+    {
+      "candidate_id": "COV-007",
+      "candidate_type": "rule_cluster",
+      "title": "有恢复码且开关开启时入口可见并可进入恢复码页面",
+      "scope": "文本需求规则",
+      "priority": "high",
+      "rationale": "文本需求中的显式规则需要在后续 Structured PRD 与测试设计中保持可追溯。",
+      "suggested_test_types": [
+        "功能",
+        "异常"
+      ],
+      "source_reasoning_ids": [
+        "ER-007"
+      ]
+    },
+    {
+      "candidate_id": "COV-008",
+      "candidate_type": "rule_cluster",
+      "title": "有效恢复码成功登录",
+      "scope": "文本需求规则",
+      "priority": "high",
+      "rationale": "文本需求中的显式规则需要在后续 Structured PRD 与测试设计中保持可追溯。",
+      "suggested_test_types": [
+        "功能",
+        "异常"
+      ],
+      "source_reasoning_ids": [
+        "ER-008"
+      ]
+    },
+    {
+      "candidate_id": "COV-009",
+      "candidate_type": "rule_cluster",
+      "title": "已使用恢复码再次提交不能再次登录",
+      "scope": "文本需求规则",
+      "priority": "high",
+      "rationale": "文本需求中的显式规则需要在后续 Structured PRD 与测试设计中保持可追溯。",
+      "suggested_test_types": [
+        "功能",
+        "异常"
+      ],
+      "source_reasoning_ids": [
+        "ER-009"
+      ]
+    },
+    {
+      "candidate_id": "COV-010",
+      "candidate_type": "rule_cluster",
+      "title": "无效、空值或格式不正确的恢复码不得建立登录会话",
+      "scope": "文本需求规则",
+      "priority": "high",
+      "rationale": "文本需求中的显式规则需要在后续 Structured PRD 与测试设计中保持可追溯。",
+      "suggested_test_types": [
+        "功能",
+        "异常"
+      ],
+      "source_reasoning_ids": [
+        "ER-010"
+      ]
+    },
+    {
+      "candidate_id": "COV-011",
+      "candidate_type": "rule_cluster",
+      "title": "开关关闭时入口不可见",
+      "scope": "文本需求规则",
+      "priority": "high",
+      "rationale": "文本需求中的显式规则需要在后续 Structured PRD 与测试设计中保持可追溯。",
+      "suggested_test_types": [
+        "功能",
+        "异常"
+      ],
+      "source_reasoning_ids": [
+        "ER-011"
+      ]
+    },
+    {
+      "candidate_id": "COV-012",
+      "candidate_type": "rule_cluster",
+      "title": "普通 MFA 验证路径在功能开启和关闭时均不回退",
+      "scope": "文本需求规则",
+      "priority": "high",
+      "rationale": "文本需求中的显式规则需要在后续 Structured PRD 与测试设计中保持可追溯。",
+      "suggested_test_types": [
+        "功能",
+        "异常"
+      ],
+      "source_reasoning_ids": [
+        "ER-012"
+      ]
+    },
+    {
+      "candidate_id": "COV-013",
+      "candidate_type": "rule_cluster",
+      "title": "配置开关",
+      "scope": "文本需求规则",
+      "priority": "high",
+      "rationale": "文本需求中的显式规则需要在后续 Structured PRD 与测试设计中保持可追溯。",
+      "suggested_test_types": [
+        "功能",
+        "异常"
+      ],
+      "source_reasoning_ids": [
+        "ER-013"
+      ]
+    },
+    {
+      "candidate_id": "COV-014",
+      "candidate_type": "rule_cluster",
+      "title": "关键状态",
+      "scope": "文本需求规则",
+      "priority": "high",
+      "rationale": "文本需求中的显式规则需要在后续 Structured PRD 与测试设计中保持可追溯。",
+      "suggested_test_types": [
+        "功能",
+        "异常"
+      ],
+      "source_reasoning_ids": [
+        "ER-014"
+      ]
+    },
+    {
+      "candidate_id": "COV-015",
+      "candidate_type": "rule_cluster",
+      "title": "来源未声明新增埋点、接口字段或错误码",
+      "scope": "文本需求规则",
+      "priority": "high",
+      "rationale": "文本需求中的显式规则需要在后续 Structured PRD 与测试设计中保持可追溯。",
+      "suggested_test_types": [
+        "功能",
+        "异常"
+      ],
+      "source_reasoning_ids": [
+        "ER-015"
+      ]
+    }
+  ]
+}

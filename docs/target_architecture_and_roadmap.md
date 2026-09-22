@@ -9,7 +9,7 @@
 - 文中若出现 `testcases.md` 或 `traceability_matrix.json` 的单一真源表述，应按历史阶段口径理解
 - “当前短板”“建议新增”“当前进展”等措辞均是对应日期的历史快照，不代表 2026-08-06 迁移后的现状
 
-当前已落地状态：仓库只保留 PT083 M 档正式项目样本；Requirement Summary 有正式 receipt/CLI/canonical binding 人工门；Harness 支持单 run resume；Case Plan 与 Testcases 阶段已消除对未来 testcase/未刷新 Bundle 的越界依赖，Bundle 在 Traceability 前校验。无代码 M 档工作项 strict 可显式 `--skip-code-reviews`，但 Harness run 尚无 Review `not_applicable` disposition。
+当前已落地状态：业务工作项作为样本资产保留，但不作为框架基线的默认依赖；Requirement Summary 有正式 receipt/CLI/canonical binding 人工门；Harness 支持单 run resume；Case Plan 与 Testcases 阶段已消除对未来 testcase/未刷新 Bundle 的越界依赖，Bundle 在 Traceability 前校验。无代码 M 档工作项 strict 可显式 `--skip-code-reviews`，但 Harness run 尚无 Review `not_applicable` disposition。
 
 目标不是一次性把仓库重写成复杂 Agent 平台，而是按业界成熟实践，先补齐可信执行层，再补齐编排层，最后补齐规模化能力。
 
@@ -739,9 +739,9 @@ tests/
 - 已完成 P4-010 Case Plan commit recovery：单文件提交 journal、未完成替换回滚、committed metadata 幂等完成、恢复 CLI 与关联审计
 - 已完成 P5-002 multi-role crash recovery：崩溃 run 显式终态化、run-local 证据保留、恢复审计与 cleanup 解阻；不开放不可靠的 turn 级续跑
 - 四角色 Runtime 已覆盖 structured PRD、testcase、review 和 formatter；traceability 仍由现有 normalizer 生成，不开放为独立模型写入角色，也未接入 subagent 或自动代码评审
-- PT083 已验证四角色 17 次模型调用、255 token、0.0017 USD fixture 用量记录，审批拒绝后审计通过且正式资产未发布
-- 历史 PT083 基准已验证 L strict 14 阶段 Hook 编排，默认 strict-gate summary Hook 成功且 61 个事件审计通过
-- PT083 已通过 `run_harness_closeout.py`：确定性 Harness、run audit、golden、质量基线全部通过，`.generation` 之外工作项聚合 hash 保持不变
+- 早期代表性业务样本已验证四角色模型调用、fixture 用量记录、审批拒绝后的审计，以及正式资产未发布
+- 早期业务样本基准已验证 L strict 14 阶段 Hook 编排，默认 strict-gate summary Hook 成功且事件审计通过
+- 收口验证已覆盖确定性 Harness、run audit、golden、质量基线以及 `.generation` 之外工作项聚合 hash 不变；当前执行必须显式指定工作项
 
 改造范围：
 
@@ -795,7 +795,7 @@ tests/
 
 - `scripts/run_eval_suite.py` 已提供 smoke / regression / golden 三档统一入口
 - regression 覆盖 6 个 fixture、56 个检查；元素标注与分组各保留 1 个 expected-failure 负向检查
-- golden 额外执行全量 Harness 单元测试和当前 PT083 M strict，并绑定 suite/指标/fixture SHA-256 baseline
+- golden 对通用 fixture 运行快照校验并绑定 suite、指标和 fixture SHA-256 baseline；不默认执行任何业务工作项 strict
 - 每轮生成 `eval_suite_report`，量化 fixture、检查、负向检查、命令、耗时和 baseline 差异
 - GitHub Actions 已接入 PR/push 全量 Harness 单元测试 + regression，以及主分支/手工 golden；CI 不自动更新 baseline
 

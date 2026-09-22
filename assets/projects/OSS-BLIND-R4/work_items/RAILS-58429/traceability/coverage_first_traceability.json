@@ -1,0 +1,237 @@
+{
+  "project_code": "OSS-BLIND-R4",
+  "work_item_id": "RAILS-58429",
+  "generated_at": "2026-09-22T12:07:58",
+  "generated_from": [
+    "coverage/coverage_matrix.json",
+    "evidence/evidence_inventory.json",
+    "testcases/testcases_main.md"
+  ],
+  "summary": {
+    "record_count": 10,
+    "invalid_record_count": 0,
+    "false_traceability_rate": 0.0
+  },
+  "records": [
+    {
+      "record_id": "CFT-0001",
+      "rule_id": "RAI-R001",
+      "coverage_id": "COV-EX-0001",
+      "testcase_id": "OSS-BLIND-R4-BROADCASTLOGGER-TAGGED-SERVER-FN-001",
+      "testcase_title": "无 block 的 tagged 返回可继续记录日志的 BroadcastLogger",
+      "source_origin": "explicit_rule",
+      "coverage_level": "business",
+      "emit_mode": "main_testcase",
+      "fidelity_status": "not_applicable",
+      "evidence_ids": [],
+      "reasoning_refs": [],
+      "structured_targets": [
+        {
+          "target_type": "feature",
+          "module_name": "BroadcastLogger tagged",
+          "feature_name": "无 block 标签广播",
+          "field_name": "",
+          "target_name": "无 block 调用 `BroadcastLogger#tagged` 必须返回可继续调用日志方法的 BroadcastLogger，而不是 Array。"
+        }
+      ]
+    },
+    {
+      "record_id": "CFT-0002",
+      "rule_id": "RAI-R002",
+      "coverage_id": "COV-EX-0002",
+      "testcase_id": "OSS-BLIND-R4-BROADCASTLOGGER-TAGGED-SERVER-ST-001",
+      "testcase_title": "无 block 的 tagged 为所有 tagging logger 应用标签",
+      "source_origin": "explicit_rule",
+      "coverage_level": "business",
+      "emit_mode": "main_testcase",
+      "fidelity_status": "not_applicable",
+      "evidence_ids": [],
+      "reasoning_refs": [],
+      "structured_targets": [
+        {
+          "target_type": "feature",
+          "module_name": "BroadcastLogger tagged",
+          "feature_name": "无 block 标签广播",
+          "field_name": "",
+          "target_name": "无 block 返回对象中，所有支持 tagged 的 logger 应应用指定标签。"
+        }
+      ]
+    },
+    {
+      "record_id": "CFT-0003",
+      "rule_id": "RAI-R003",
+      "coverage_id": "COV-EX-0003",
+      "testcase_id": "OSS-BLIND-R4-BROADCASTLOGGER-TAGGED-SERVER-ST-002",
+      "testcase_title": "无 tagged 能力的广播目标仍被保留并接收日志",
+      "source_origin": "explicit_rule",
+      "coverage_level": "business",
+      "emit_mode": "main_testcase",
+      "fidelity_status": "not_applicable",
+      "evidence_ids": [],
+      "reasoning_refs": [],
+      "structured_targets": [
+        {
+          "target_type": "feature",
+          "module_name": "BroadcastLogger tagged",
+          "feature_name": "无 block 标签广播",
+          "field_name": "",
+          "target_name": "不支持 tagged 的广播目标仍必须保留并收到后续日志消息。"
+        }
+      ]
+    },
+    {
+      "record_id": "CFT-0004",
+      "rule_id": "RAI-R004",
+      "coverage_id": "COV-EX-0004",
+      "testcase_id": "OSS-BLIND-R4-BROADCASTLOGGER-TAGGED-SERVER-ST-003",
+      "testcase_title": "有 block 的 tagged 只执行一次用户 block",
+      "source_origin": "explicit_rule",
+      "coverage_level": "business",
+      "emit_mode": "main_testcase",
+      "fidelity_status": "not_applicable",
+      "evidence_ids": [],
+      "reasoning_refs": [],
+      "structured_targets": [
+        {
+          "target_type": "feature",
+          "module_name": "BroadcastLogger tagged",
+          "feature_name": "Block 标签上下文",
+          "field_name": "",
+          "target_name": "用户 block 只执行一次。"
+        }
+      ]
+    },
+    {
+      "record_id": "CFT-0005",
+      "rule_id": "RAI-R004",
+      "coverage_id": "COV-EX-0005",
+      "testcase_id": "OSS-BLIND-R4-BROADCASTLOGGER-TAGGED-SERVER-ST-004",
+      "testcase_title": "有 block 时所有 tagging logger 同时激活标签",
+      "source_origin": "explicit_rule",
+      "coverage_level": "business",
+      "emit_mode": "main_testcase",
+      "fidelity_status": "not_applicable",
+      "evidence_ids": [],
+      "reasoning_refs": [],
+      "structured_targets": [
+        {
+          "target_type": "feature",
+          "module_name": "BroadcastLogger tagged",
+          "feature_name": "Block 标签上下文",
+          "field_name": "",
+          "target_name": "所有支持 tagged 的 logger 在同一次 block 执行期间激活标签。"
+        }
+      ]
+    },
+    {
+      "record_id": "CFT-0006",
+      "rule_id": "RAI-R005",
+      "coverage_id": "COV-EX-0006",
+      "testcase_id": "OSS-BLIND-R4-BROADCASTLOGGER-TAGGED-SERVER-ST-005",
+      "testcase_title": "tagged block 正常结束后清理临时标签",
+      "source_origin": "explicit_rule",
+      "coverage_level": "business",
+      "emit_mode": "main_testcase",
+      "fidelity_status": "not_applicable",
+      "evidence_ids": [],
+      "reasoning_refs": [],
+      "structured_targets": [
+        {
+          "target_type": "feature",
+          "module_name": "BroadcastLogger tagged",
+          "feature_name": "Block 标签上下文",
+          "field_name": "",
+          "target_name": "block 正常结束后清理临时标签。"
+        }
+      ]
+    },
+    {
+      "record_id": "CFT-0007",
+      "rule_id": "RAI-R005",
+      "coverage_id": "COV-EX-0007",
+      "testcase_id": "OSS-BLIND-R4-BROADCASTLOGGER-TAGGED-SERVER-ST-006",
+      "testcase_title": "tagged block 抛出异常后仍清理临时标签",
+      "source_origin": "explicit_rule",
+      "coverage_level": "business",
+      "emit_mode": "main_testcase",
+      "fidelity_status": "not_applicable",
+      "evidence_ids": [],
+      "reasoning_refs": [],
+      "structured_targets": [
+        {
+          "target_type": "feature",
+          "module_name": "BroadcastLogger tagged",
+          "feature_name": "Block 标签上下文",
+          "field_name": "",
+          "target_name": "block 抛出异常后清理临时标签。"
+        }
+      ]
+    },
+    {
+      "record_id": "CFT-0008",
+      "rule_id": "RAI-R005",
+      "coverage_id": "COV-EX-0008",
+      "testcase_id": "OSS-BLIND-R4-BROADCASTLOGGER-TAGGED-SERVER-FN-002",
+      "testcase_title": "tagged block 的异常继续传播给调用方",
+      "source_origin": "explicit_rule",
+      "coverage_level": "business",
+      "emit_mode": "main_testcase",
+      "fidelity_status": "not_applicable",
+      "evidence_ids": [],
+      "reasoning_refs": [],
+      "structured_targets": [
+        {
+          "target_type": "feature",
+          "module_name": "BroadcastLogger tagged",
+          "feature_name": "Block 标签上下文",
+          "field_name": "",
+          "target_name": "block 异常继续传播给调用方。"
+        }
+      ]
+    },
+    {
+      "record_id": "CFT-0009",
+      "rule_id": "RAI-R006",
+      "coverage_id": "COV-EX-0009",
+      "testcase_id": "OSS-BLIND-R4-BROADCASTLOGGER-TAGGED-SERVER-ST-007",
+      "testcase_title": "按是否响应 tagged 决定标签处理参与者",
+      "source_origin": "explicit_rule",
+      "coverage_level": "business",
+      "emit_mode": "main_testcase",
+      "fidelity_status": "not_applicable",
+      "evidence_ids": [],
+      "reasoning_refs": [],
+      "structured_targets": [
+        {
+          "target_type": "feature",
+          "module_name": "BroadcastLogger tagged",
+          "feature_name": "无 block 标签广播",
+          "field_name": "",
+          "target_name": "是否参与标签处理以广播目标是否响应 `tagged` 为能力边界。"
+        }
+      ]
+    },
+    {
+      "record_id": "CFT-0010",
+      "rule_id": "RAI-R007",
+      "coverage_id": "COV-EX-0010",
+      "testcase_id": "OSS-BLIND-R4-BROADCASTLOGGER-TAGGED-SERVER-FL-001",
+      "testcase_title": "单 logger 标签与普通广播行为保持兼容",
+      "source_origin": "explicit_rule",
+      "coverage_level": "business",
+      "emit_mode": "main_testcase",
+      "fidelity_status": "not_applicable",
+      "evidence_ids": [],
+      "reasoning_refs": [],
+      "structured_targets": [
+        {
+          "target_type": "feature",
+          "module_name": "BroadcastLogger tagged",
+          "feature_name": "无 block 标签广播",
+          "field_name": "",
+          "target_name": "单个支持 tagged 的 logger 和既有普通广播行为不得回退。"
+        }
+      ]
+    }
+  ]
+}

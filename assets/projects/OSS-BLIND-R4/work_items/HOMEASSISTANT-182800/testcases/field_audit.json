@@ -1,0 +1,100 @@
+{
+  "generated_at": "2026-09-22T12:00:56",
+  "project_code": "OSS-BLIND-R4",
+  "work_item_id": "HOMEASSISTANT-182800",
+  "item_count": 4,
+  "items": [
+    {
+      "coverage_id": "COV-AI-0007",
+      "coverage_type": "happy_path_combo",
+      "coverage_level": "audit_only",
+      "emit_mode": "audit_item",
+      "source_origin": "ai_reasoning",
+      "source_type": "business_risk",
+      "page_name": "",
+      "section_name": "",
+      "module_name": "",
+      "feature_name": "",
+      "field_name": "",
+      "title": "标签版本、扩展头、padding 或异常标签可能影响合并兼容性。",
+      "priority": "medium",
+      "planned_assertions": [
+        "审计并确认：标签版本、扩展头、padding 或异常标签可能影响合并兼容性。"
+      ],
+      "structured_refs": [],
+      "reasoning_refs": [
+        "RISK-001"
+      ],
+      "audit_id": "AUD-ITEM-001"
+    },
+    {
+      "coverage_id": "COV-AI-0008",
+      "coverage_type": "happy_path_combo",
+      "coverage_level": "audit_only",
+      "emit_mode": "audit_item",
+      "source_origin": "ai_reasoning",
+      "source_type": "business_risk",
+      "page_name": "",
+      "section_name": "",
+      "module_name": "",
+      "feature_name": "",
+      "field_name": "",
+      "title": "只验证播放器返回成功可能漏掉静音，应检查实际可解码音频。",
+      "priority": "medium",
+      "planned_assertions": [
+        "审计并确认：只验证播放器返回成功可能漏掉静音，应检查实际可解码音频。"
+      ],
+      "structured_refs": [],
+      "reasoning_refs": [
+        "RISK-002"
+      ],
+      "audit_id": "AUD-ITEM-002"
+    },
+    {
+      "coverage_id": "COV-AI-0009",
+      "coverage_type": "happy_path_combo",
+      "coverage_level": "audit_only",
+      "emit_mode": "audit_item",
+      "source_origin": "ai_reasoning",
+      "source_type": "business_risk",
+      "page_name": "",
+      "section_name": "",
+      "module_name": "",
+      "feature_name": "",
+      "field_name": "",
+      "title": "处理过程若重编码音频会引入不必要的质量与性能回退。",
+      "priority": "medium",
+      "planned_assertions": [
+        "审计并确认：处理过程若重编码音频会引入不必要的质量与性能回退。"
+      ],
+      "structured_refs": [],
+      "reasoning_refs": [
+        "RISK-003"
+      ],
+      "audit_id": "AUD-ITEM-003"
+    },
+    {
+      "coverage_id": "COV-AI-0010",
+      "coverage_type": "happy_path_combo",
+      "coverage_level": "audit_only",
+      "emit_mode": "audit_item",
+      "source_origin": "ai_reasoning",
+      "source_type": "business_risk",
+      "page_name": "",
+      "section_name": "",
+      "module_name": "",
+      "feature_name": "",
+      "field_name": "",
+      "title": "对未带标签输入的兼容路径也可能被标签定位逻辑影响。",
+      "priority": "medium",
+      "planned_assertions": [
+        "审计并确认：对未带标签输入的兼容路径也可能被标签定位逻辑影响。"
+      ],
+      "structured_refs": [],
+      "reasoning_refs": [
+        "RISK-004"
+      ],
+      "audit_id": "AUD-ITEM-004"
+    }
+  ]
+}

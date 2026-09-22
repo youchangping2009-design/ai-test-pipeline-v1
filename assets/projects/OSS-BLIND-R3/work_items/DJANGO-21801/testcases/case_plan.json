@@ -1,0 +1,223 @@
+{
+  "project_code": "OSS-BLIND-R3",
+  "work_item_id": "DJANGO-21801",
+  "generation_mode": "case_plan_direct",
+  "generated_from": [
+    "acceptance/acceptance_examples.json",
+    "acceptance/testability_gate.json",
+    "coverage/coverage_matrix.json",
+    "structured_prd/structured_prd.json"
+  ],
+  "case_plans": [
+    {
+      "case_plan_id": "CP-001",
+      "source_gate_ids": [
+        "TG-001"
+      ],
+      "source_example_ids": [
+        "AE-001"
+      ],
+      "source_responsibility_ids": [],
+      "source_rule_ids": [
+        "DJG-R001"
+      ],
+      "source_coverage_ids": [
+        "COV-EX-0001"
+      ],
+      "generated_testcase_ids": [
+        "OSS-BLIND-R3-DJANGOMIG-INDEXSCHEMA-SERVER-DV-001"
+      ],
+      "page_name": "Django Migration 执行入口",
+      "section_name": "索引变更与数据库状态",
+      "module_name": "MySQL 索引迁移",
+      "feature_name": "删除普通索引并保留唯一约束",
+      "title": "模型变更仅移除字段普通索引声明",
+      "verification_side": "服务端 Django 模型与迁移层",
+      "case_type": "data_persistence",
+      "priority": "P0",
+      "assertion": "模型变更仅包含关闭“字段普通索引设置”；命名 `UniqueConstraint` 的定义保持不变。",
+      "validation_path": "product_acceptance",
+      "should_generate_case": true
+    },
+    {
+      "case_plan_id": "CP-002",
+      "source_gate_ids": [
+        "TG-002"
+      ],
+      "source_example_ids": [
+        "AE-002"
+      ],
+      "source_responsibility_ids": [],
+      "source_rule_ids": [
+        "DJG-R002"
+      ],
+      "source_coverage_ids": [
+        "COV-EX-0002"
+      ],
+      "generated_testcase_ids": [
+        "OSS-BLIND-R3-DJANGOMIG-INDEXSCHEMA-SERVER-ST-001"
+      ],
+      "page_name": "Django Migration 执行入口",
+      "section_name": "索引变更与数据库状态",
+      "module_name": "MySQL 索引迁移",
+      "feature_name": "删除普通索引并保留唯一约束",
+      "title": "迁移删除目标排除命名唯一约束",
+      "verification_side": "服务端 Django 迁移与数据库层",
+      "case_type": "backend_job",
+      "priority": "P0",
+      "assertion": "待删除目标是普通非唯一索引；仍存在于 `Meta.constraints` 的命名唯一约束不属于删除目标。",
+      "validation_path": "product_acceptance",
+      "should_generate_case": true
+    },
+    {
+      "case_plan_id": "CP-003",
+      "source_gate_ids": [
+        "TG-003"
+      ],
+      "source_example_ids": [
+        "AE-003"
+      ],
+      "source_responsibility_ids": [],
+      "source_rule_ids": [
+        "DJG-R003"
+      ],
+      "source_coverage_ids": [
+        "COV-EX-0003"
+      ],
+      "generated_testcase_ids": [
+        "OSS-BLIND-R3-DJANGOMIG-INDEXSCHEMA-SERVER-DV-002"
+      ],
+      "page_name": "Django Migration 执行入口",
+      "section_name": "索引变更与数据库状态",
+      "module_name": "MySQL 索引迁移",
+      "feature_name": "删除普通索引并保留唯一约束",
+      "title": "迁移后普通非唯一索引被删除",
+      "verification_side": "服务端 MySQL Schema 层",
+      "case_type": "data_persistence",
+      "priority": "P0",
+      "assertion": "数据库 introspection 结果中目标字段的普通非唯一索引不存在。",
+      "validation_path": "product_acceptance",
+      "should_generate_case": true
+    },
+    {
+      "case_plan_id": "CP-004",
+      "source_gate_ids": [
+        "TG-003"
+      ],
+      "source_example_ids": [
+        "AE-004"
+      ],
+      "source_responsibility_ids": [],
+      "source_rule_ids": [
+        "DJG-R003"
+      ],
+      "source_coverage_ids": [
+        "COV-EX-0004"
+      ],
+      "generated_testcase_ids": [
+        "OSS-BLIND-R3-DJANGOMIG-INDEXSCHEMA-SERVER-DV-003"
+      ],
+      "page_name": "Django Migration 执行入口",
+      "section_name": "索引变更与数据库状态",
+      "module_name": "MySQL 索引迁移",
+      "feature_name": "删除普通索引并保留唯一约束",
+      "title": "迁移后命名唯一约束保持存在",
+      "verification_side": "服务端 MySQL Schema 层",
+      "case_type": "data_persistence",
+      "priority": "P0",
+      "assertion": "命名唯一约束仍存在；该约束对应的数据库唯一索引仍存在。",
+      "validation_path": "product_acceptance",
+      "should_generate_case": true
+    },
+    {
+      "case_plan_id": "CP-005",
+      "source_gate_ids": [
+        "TG-004"
+      ],
+      "source_example_ids": [
+        "AE-005"
+      ],
+      "source_responsibility_ids": [],
+      "source_rule_ids": [
+        "DJG-R004"
+      ],
+      "source_coverage_ids": [
+        "COV-EX-0005"
+      ],
+      "generated_testcase_ids": [
+        "OSS-BLIND-R3-DJANGOMIG-INDEXSCHEMA-SERVER-ST-002"
+      ],
+      "page_name": "Django Migration 执行入口",
+      "section_name": "索引变更与数据库状态",
+      "module_name": "MySQL 索引迁移",
+      "feature_name": "删除普通索引并保留唯一约束",
+      "title": "迁移 SQL 只删除普通非唯一索引",
+      "verification_side": "服务端 Django 迁移 SQL 层",
+      "case_type": "backend_job",
+      "priority": "P0",
+      "assertion": "SQL 包含删除普通非唯一索引的语句；SQL 不包含删除命名唯一约束的语句。",
+      "validation_path": "product_acceptance",
+      "should_generate_case": true
+    },
+    {
+      "case_plan_id": "CP-006",
+      "source_gate_ids": [
+        "TG-005"
+      ],
+      "source_example_ids": [
+        "AE-006"
+      ],
+      "source_responsibility_ids": [],
+      "source_rule_ids": [
+        "DJG-R005"
+      ],
+      "source_coverage_ids": [
+        "COV-EX-0006"
+      ],
+      "generated_testcase_ids": [
+        "OSS-BLIND-R3-DJANGOMIG-INDEXSCHEMA-SERVER-FL-001"
+      ],
+      "page_name": "Django Migration 执行入口",
+      "section_name": "索引变更与数据库状态",
+      "module_name": "MySQL 索引迁移",
+      "feature_name": "删除普通索引并保留唯一约束",
+      "title": "迁移后重复写入仍受唯一性保护",
+      "verification_side": "服务端 MySQL 数据行为层",
+      "case_type": "linkage",
+      "priority": "P0",
+      "assertion": "迁移后命名唯一约束保持生效；数据库拒绝重复值写入，表中不产生重复记录。",
+      "validation_path": "product_acceptance",
+      "should_generate_case": true
+    },
+    {
+      "case_plan_id": "CP-007",
+      "source_gate_ids": [
+        "TG-006"
+      ],
+      "source_example_ids": [
+        "AE-007"
+      ],
+      "source_responsibility_ids": [],
+      "source_rule_ids": [
+        "DJG-R006"
+      ],
+      "source_coverage_ids": [
+        "COV-EX-0007"
+      ],
+      "generated_testcase_ids": [
+        "OSS-BLIND-R3-DJANGOMIG-INDEXSCHEMA-SERVER-DV-004"
+      ],
+      "page_name": "Django Migration 执行入口",
+      "section_name": "索引变更与数据库状态",
+      "module_name": "MySQL 索引迁移",
+      "feature_name": "删除普通索引并保留唯一约束",
+      "title": "迁移前已有合法数据保持不变",
+      "verification_side": "服务端 MySQL 数据层",
+      "case_type": "data_persistence",
+      "priority": "P1",
+      "assertion": "迁移后的记录数量与迁移前一致；各记录的主键和业务字段值与迁移前一致。",
+      "validation_path": "product_acceptance",
+      "should_generate_case": true
+    }
+  ]
+}

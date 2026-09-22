@@ -1,0 +1,11 @@
+{
+  "generated_at": "2026-09-21T11:33:07",
+  "project_code": "FIXTURE",
+  "work_item_id": "FIXTURE-RUNTIME-001",
+  "group_count": 0,
+  "groups_by_type": {
+    "page_level_metadata_audit": [],
+    "module_level_field_property_audit": [],
+    "table_header_audit": []
+  }
+}

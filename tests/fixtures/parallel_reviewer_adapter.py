@@ -81,7 +81,7 @@ def main():
                             "severity": "low",
                             "message": "%s fixture finding" % reviewer,
                             "suggestion": "人工复核 fixture 位置",
-                            "trace_ids": ["PT083"],
+                            "trace_ids": ["FIXTURE-RUNTIME-001"],
                         }
                     ]
                 },

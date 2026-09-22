@@ -1,0 +1,70 @@
+{
+  "generated_at": "2026-09-21T18:24:38",
+  "total_cases": 9,
+  "total_coverage_entries": 26,
+  "coverage_empty_with_cases": false,
+  "rule_coverage_rate": 0.5,
+  "atomic_case_rate": 0.0,
+  "boundary_coverage_rate": 1.0,
+  "data_source_rule_coverage_rate": 1.0,
+  "generalized_case_count": 0,
+  "generalized_case_rate": 0.0,
+  "weak_case_count": 0,
+  "weak_case_rate": 0.0,
+  "semantic_mismatch_count": 0,
+  "duplicate_case_count": 0,
+  "duplicate_case_rate": 0.0,
+  "duplicate_group_count": 0,
+  "duplicate_metric_basis": "residual_after_merge",
+  "missing_fidelity_points": 0,
+  "high_priority_fidelity_missing": 0,
+  "false_traceability_rate": 0.0,
+  "false_traceability_rate_primary": 0.0,
+  "false_traceability_rate_legacy": 0.0,
+  "traceability_metric_source": "coverage_first_traceability",
+  "field_audit_item_count": 17,
+  "grouped_audit_group_count": 0,
+  "audit_artifacts_consumed": true,
+  "quality_gate": {
+    "enabled": false,
+    "mode": "soft",
+    "rollout_source": "new_work_item",
+    "status": "report_only",
+    "thresholds": {
+      "false_traceability_rate_fail": 0.05,
+      "generalized_case_rate_warn": 0.03,
+      "generalized_case_count_warn": 5,
+      "weak_case_rate_warn": 0.03,
+      "weak_case_count_warn": 5,
+      "semantic_mismatch_count_fail": 0,
+      "duplicate_case_rate_warn": 0.005,
+      "duplicate_case_count_warn": 1
+    },
+    "warnings": [],
+    "failures": []
+  },
+  "unresolved_issues": [],
+  "final_near_duplicate_groups": [],
+  "source_artifacts": {
+    "structured_prd": {
+      "path": "assets/projects/OSS-BLIND/work_items/SALEOR-19804/structured_prd/structured_prd.json",
+      "sha256": "48e8f011461af269bdc7fb4c8310a23705fe2bb49341fca634cae360f9addb2c",
+      "size_bytes": 24415
+    },
+    "coverage_matrix": {
+      "path": "assets/projects/OSS-BLIND/work_items/SALEOR-19804/coverage/coverage_matrix.json",
+      "sha256": "eebae20a7c1a76421db31634099ebe3c41ca4efcd6fd08275b275c70a778a910",
+      "size_bytes": 26266
+    },
+    "testcases": {
+      "path": "assets/projects/OSS-BLIND/work_items/SALEOR-19804/testcases/testcases_main.md",
+      "sha256": "a1dc91975f83a76a3a3af06e910507fb5eaa026d9f9614ff1449c88029fdef75",
+      "size_bytes": 6565
+    },
+    "coverage_first_traceability": {
+      "path": "assets/projects/OSS-BLIND/work_items/SALEOR-19804/traceability/coverage_first_traceability.json",
+      "sha256": "e1b35d55b3474f4fb92ddb9330969b5e00e61ca477f48d3260be152d6e6a480f",
+      "size_bytes": 7985
+    }
+  }
+}

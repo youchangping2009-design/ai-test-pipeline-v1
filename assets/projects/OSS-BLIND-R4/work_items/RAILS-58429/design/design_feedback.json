@@ -1,0 +1,28 @@
+{
+  "project_code": "OSS-BLIND-R4",
+  "work_item_id": "RAILS-58429",
+  "feedback_items": [
+    {
+      "feedback_id": "DF-001",
+      "source_review_stage": "manual_review",
+      "source_confirmation_file": "reviews/review_record.md",
+      "source_case_plan_ids": [
+        "CP-003",
+        "CP-004",
+        "CP-009"
+      ],
+      "source_testcase_ids": [
+        "OSS-BLIND-R4-BROADCASTLOGGER-TAGGED-SERVER-ST-002",
+        "OSS-BLIND-R4-BROADCASTLOGGER-TAGGED-SERVER-ST-003",
+        "OSS-BLIND-R4-BROADCASTLOGGER-TAGGED-SERVER-ST-007"
+      ],
+      "feedback_type": "risk_note",
+      "target_layer": "testability_gate",
+      "title": "覆盖零 tagging logger 的 block 边界",
+      "finding": "公开实现的递归 helper 在没有任何 logger 响应 tagged 时仍直接 yield BroadcastLogger；冻结设计仅覆盖 tagging 与非 tagging 混合组合，没有覆盖全不支持 tagged 的 block 形式。",
+      "recommended_action": "先将该能力边界记录为兼容性风险；若确认零 tagging logger 也属于公开 tagged 契约，再补充只 yield 一次且普通广播仍可用的 Case Plan。",
+      "must_not_directly_overwrite_testcase": true,
+      "status": "applied"
+    }
+  ]
+}

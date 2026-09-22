@@ -15,6 +15,7 @@
 - `START_HERE.md`
 - `AGENTS.md`
 - `WORKFLOW_CONTRACT.md`
+- 过程记录：`docs/roadmap/NEXT_ACTION.md`、`WORK_QUEUE.md`、`DECISION_LOG.md`、`HUMAN_ACTION_REQUIRED.md`、根目录 `PROGRESS.md`。流水账只追加到文末。
 
 ---
 
@@ -422,6 +423,12 @@ P1-3 后，S/M/L 执行策略固定为：
 
 code review 映证结果不应直接覆盖 testcase。若 CR 发现用例缺口、实现缺口或过期用例，应先写入 `design/design_feedback.json`，再由设计层修订 `testability_gate`、`acceptance_examples`、`verification_responsibility_map`、`test_design_matrix` 或 `case_plan`。
 
+新工作项应用已接受反馈时，必须先运行 `scripts/manage_feedback_application.py prepare` 冻结目标设计层 hash，完成设计层修改后再运行 `record` 生成 `design/feedback_application.json` 并更新状态；禁止先改文件后倒填 before hash。旧 manifest 未启用 receipt policy 时只报告 legacy compatibility。
+
+Agent 自动执行该流程时使用 `scripts/run_work_item_pipeline.py feedback-action --run-id <RUN_ID> --actor <ACTOR_ID> --provider <PROVIDER_ID> --action-file <ACTION_JSON>`。Action Schema 只允许 prepare、propose 和 record；propose 的路径必须已出现在 prepare 快照中，因此不能借回灌动作修改 `design_feedback.json`、`feedback_application.json` 或 `testcases_main.md`。`run_id/actor/provider` 由受信调用侧注入，不接受模型在 Action payload 内自报。即使外部进程绕过 Runtime 直接改状态，Review 与 strict receipt gate 仍会拒绝无有效凭证的 `applied` 状态。
+
+每个受限动作在 `.generation/feedback_applications/actions/` 分别保存不可覆盖的 intent/result，并把 Harness run、执行主体和 provider 与 Action 一起纳入请求哈希。相同 action ID、请求和执行上下文会直接复用完成结果；任一绑定变化都会拒绝复用。新工作项存在 applied feedback 时必须具备同一 run 内从 prepare、至少一次成功 propose 到唯一 record 的完整日志，可通过 `run_work_item_pipeline.py audit-feedback-actions` 独立重放；Harness `audit-run` 也会统计绑定到该 run 的反馈动作。日志变化会使既有 Review checkpoint 失效。
+
 其中流程类用例应重点体现：
 
 - 完整链路目标
@@ -675,4 +682,4 @@ review 正式资产路径：
 
 再次执行同一脚本即可把工作项推进到 `READY_FOR_CODE_REVIEW`。
 
-该入口不提供 Requirement Approval 的 run-local 状态机、checkpoint 与审计语义。新工作项应优先使用 `run_work_item_pipeline.py`；当前 Harness 尚无 Review `not_applicable` disposition，不得把待评审模板当作 Review 已完成。
+该入口不提供 Requirement Approval 的 run-local 状态机、checkpoint 与审计语义。新工作项应优先使用 `run_work_item_pipeline.py`。明确无代码输入时，应在 Traceability 成功暂停后执行 `mark-review-not-applicable`；恢复 run 后仍会运行 Review 确定性校验，成功后以 `skipped/not_applicable` 留痕并进入 strict gate，不得把待评审模板直接标为评审完成。

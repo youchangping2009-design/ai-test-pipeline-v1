@@ -1,0 +1,377 @@
+{
+  "project_code": "OSS-BLIND",
+  "work_item_id": "APPSMITH-42244",
+  "generated_at": "2026-09-21T18:12:51",
+  "generated_from": [
+    "structured_prd/structured_prd.json",
+    "analysis/reasoning_pack.json"
+  ],
+  "entries": [
+    {
+      "coverage_id": "COV-EX-0001",
+      "coverage_type": "field_property",
+      "source_origin": "explicit_rule",
+      "source_type": "structured_field",
+      "title": "JDBC URL 字段属性",
+      "page_name": "Databricks 数据源配置页",
+      "section_name": "连接配置区",
+      "module_name": "Databricks 数据源连接",
+      "feature_name": "自定义 JDBC URL 连接创建",
+      "field_name": "jdbc_url",
+      "priority": "medium",
+      "rationale": "字段 `JDBC URL` 已在 structured_prd 中显式建模，需要基础属性覆盖。",
+      "planned_assertions": [
+        "校验 `JDBC URL` 的控件类型、默认值或枚举定义与结构化规则一致。"
+      ],
+      "structured_refs": [
+        "Databricks 数据源连接.自定义 JDBC URL 连接创建.jdbc_url"
+      ],
+      "reasoning_refs": [],
+      "coverage_level": "structural",
+      "emit_mode": "audit_item"
+    },
+    {
+      "coverage_id": "COV-EX-0002",
+      "coverage_type": "field_property",
+      "source_origin": "explicit_rule",
+      "source_type": "structured_field",
+      "title": "Token 字段属性",
+      "page_name": "Databricks 数据源配置页",
+      "section_name": "连接配置区",
+      "module_name": "Databricks 数据源连接",
+      "feature_name": "自定义 JDBC URL 连接创建",
+      "field_name": "token",
+      "priority": "medium",
+      "rationale": "字段 `Token` 已在 structured_prd 中显式建模，需要基础属性覆盖。",
+      "planned_assertions": [
+        "校验 `Token` 的控件类型、默认值或枚举定义与结构化规则一致。"
+      ],
+      "structured_refs": [
+        "Databricks 数据源连接.自定义 JDBC URL 连接创建.token"
+      ],
+      "reasoning_refs": [],
+      "coverage_level": "structural",
+      "emit_mode": "audit_item"
+    },
+    {
+      "coverage_id": "COV-EX-0003",
+      "coverage_type": "happy_path_combo",
+      "coverage_level": "business",
+      "emit_mode": "main_testcase",
+      "source_origin": "explicit_rule",
+      "source_scope": "primary_requirement",
+      "source_type": "structured_rule",
+      "title": "Databricks 数据源连接创建",
+      "page_name": "Databricks 数据源配置页",
+      "section_name": "连接配置区",
+      "module_name": "Databricks 数据源连接",
+      "feature_name": "自定义 JDBC URL 连接创建",
+      "field_name": "",
+      "rule_name": "APP-R001",
+      "atomic_assertion_index": null,
+      "priority": "high",
+      "rationale": "该规则来自 Structured PRD 的显式需求规则，必须在 Coverage 中保留。",
+      "planned_assertions": [
+        "在真正创建连接之前检查 JDBC URL 是否属于 Databricks JDBC 协议；非法协议必须返回 The JDBC URL must use the jdbc:databricks:// protocol."
+      ],
+      "structured_refs": [
+        "requirement_info.explicit_rules.APP-R001"
+      ],
+      "reasoning_refs": []
+    },
+    {
+      "coverage_id": "COV-EX-0004",
+      "coverage_type": "happy_path_combo",
+      "coverage_level": "business",
+      "emit_mode": "main_testcase",
+      "source_origin": "explicit_rule",
+      "source_scope": "primary_requirement",
+      "source_type": "structured_rule",
+      "title": "JDBC URL",
+      "page_name": "Databricks 数据源配置页",
+      "section_name": "连接配置区",
+      "module_name": "Databricks 数据源连接",
+      "feature_name": "自定义 JDBC URL 连接创建",
+      "field_name": "",
+      "rule_name": "APP-R002",
+      "atomic_assertion_index": null,
+      "priority": "high",
+      "rationale": "该规则来自 Structured PRD 的显式需求规则，必须在 Coverage 中保留。",
+      "planned_assertions": [
+        "已知合法协议前缀为 jdbc:databricks://；有效且自定义的 Databricks URL 应继续进入连接流程。"
+      ],
+      "structured_refs": [
+        "requirement_info.explicit_rules.APP-R002"
+      ],
+      "reasoning_refs": []
+    },
+    {
+      "coverage_id": "COV-EX-0005",
+      "coverage_type": "happy_path_combo",
+      "coverage_level": "business",
+      "emit_mode": "main_testcase",
+      "source_origin": "explicit_rule",
+      "source_scope": "primary_requirement",
+      "source_type": "structured_rule",
+      "title": "JDBC driver 选择",
+      "page_name": "Databricks 数据源配置页",
+      "section_name": "连接配置区",
+      "module_name": "Databricks 数据源连接",
+      "feature_name": "自定义 JDBC URL 连接创建",
+      "field_name": "",
+      "rule_name": "APP-R003",
+      "atomic_assertion_index": null,
+      "priority": "high",
+      "rationale": "该规则来自 Structured PRD 的显式需求规则，必须在 Coverage 中保留。",
+      "planned_assertions": [
+        "Databricks 连接由明确的 Databricks JDBC driver 处理，非 Databricks URL 被拒绝后不得转交其他已注册 driver。"
+      ],
+      "structured_refs": [
+        "requirement_info.explicit_rules.APP-R003"
+      ],
+      "reasoning_refs": []
+    },
+    {
+      "coverage_id": "COV-EX-0006",
+      "coverage_type": "happy_path_combo",
+      "coverage_level": "business",
+      "emit_mode": "main_testcase",
+      "source_origin": "explicit_rule",
+      "source_scope": "primary_requirement",
+      "source_type": "structured_rule",
+      "title": "Databricks JDBC driver 拒绝 URL 时返回连接创建错误并停止后续连接行为。",
+      "page_name": "Databricks 数据源配置页",
+      "section_name": "连接配置区",
+      "module_name": "Databricks 数据源连接",
+      "feature_name": "自定义 JDBC URL 连接创建",
+      "field_name": "",
+      "rule_name": "APP-R004",
+      "atomic_assertion_index": 1,
+      "priority": "high",
+      "rationale": "该规则来自 Structured PRD 的显式需求规则，必须在 Coverage 中保留。",
+      "planned_assertions": [
+        "Databricks JDBC driver 拒绝 URL 时返回连接创建错误并停止后续连接行为。"
+      ],
+      "structured_refs": [
+        "requirement_info.explicit_rules.APP-R004"
+      ],
+      "reasoning_refs": []
+    },
+    {
+      "coverage_id": "COV-EX-0007",
+      "coverage_type": "happy_path_combo",
+      "coverage_level": "business",
+      "emit_mode": "main_testcase",
+      "source_origin": "explicit_rule",
+      "source_scope": "primary_requirement",
+      "source_type": "structured_rule",
+      "title": "Databricks JDBC driver 返回空连接时返回连接创建错误并停止后续连接行为。",
+      "page_name": "Databricks 数据源配置页",
+      "section_name": "连接配置区",
+      "module_name": "Databricks 数据源连接",
+      "feature_name": "自定义 JDBC URL 连接创建",
+      "field_name": "",
+      "rule_name": "APP-R004",
+      "atomic_assertion_index": 2,
+      "priority": "high",
+      "rationale": "该规则来自 Structured PRD 的显式需求规则，必须在 Coverage 中保留。",
+      "planned_assertions": [
+        "Databricks JDBC driver 返回空连接时返回连接创建错误并停止后续连接行为。"
+      ],
+      "structured_refs": [
+        "requirement_info.explicit_rules.APP-R004"
+      ],
+      "reasoning_refs": []
+    },
+    {
+      "coverage_id": "COV-EX-0008",
+      "coverage_type": "happy_path_combo",
+      "coverage_level": "business",
+      "emit_mode": "main_testcase",
+      "source_origin": "explicit_rule",
+      "source_scope": "primary_requirement",
+      "source_type": "structured_rule",
+      "title": "既有合法 Databricks 配置",
+      "page_name": "Databricks 数据源配置页",
+      "section_name": "连接配置区",
+      "module_name": "Databricks 数据源连接",
+      "feature_name": "自定义 JDBC URL 连接创建",
+      "field_name": "",
+      "rule_name": "APP-R005",
+      "atomic_assertion_index": null,
+      "priority": "high",
+      "rationale": "该规则来自 Structured PRD 的显式需求规则，必须在 Coverage 中保留。",
+      "planned_assertions": [
+        "有效 URL 建立连接时，JDBC 属性 UID 固定为 token，PWD 使用当前 token 值；既有合法配置及安装升级场景行为不变。"
+      ],
+      "structured_refs": [
+        "requirement_info.explicit_rules.APP-R005"
+      ],
+      "reasoning_refs": []
+    },
+    {
+      "coverage_id": "COV-EX-0009",
+      "coverage_type": "happy_path_combo",
+      "coverage_level": "business",
+      "emit_mode": "main_testcase",
+      "source_origin": "explicit_rule",
+      "source_scope": "primary_requirement",
+      "source_type": "structured_rule",
+      "title": "连接创建顺序",
+      "page_name": "Databricks 数据源配置页",
+      "section_name": "连接配置区",
+      "module_name": "Databricks 数据源连接",
+      "feature_name": "自定义 JDBC URL 连接创建",
+      "field_name": "",
+      "rule_name": "APP-R006",
+      "atomic_assertion_index": null,
+      "priority": "high",
+      "rationale": "该规则来自 Structured PRD 的显式需求规则，必须在 Coverage 中保留。",
+      "planned_assertions": [
+        "JDBC URL 校验失败发生在连接创建阶段，不应先对错误目标建立网络连接。"
+      ],
+      "structured_refs": [
+        "requirement_info.explicit_rules.APP-R006"
+      ],
+      "reasoning_refs": []
+    },
+    {
+      "coverage_id": "COV-AI-0010",
+      "coverage_type": "happy_path_combo",
+      "coverage_level": "audit_only",
+      "emit_mode": "audit_item",
+      "source_origin": "ai_reasoning",
+      "source_type": "edge_case",
+      "title": "非 Databricks JDBC URL 被拒绝，且不会被其他已注册 driver 接管。",
+      "page_name": "Databricks 数据源配置页",
+      "section_name": "连接配置区",
+      "module_name": "Databricks 数据源连接",
+      "feature_name": "自定义 JDBC URL 连接创建",
+      "field_name": "",
+      "priority": "medium",
+      "rationale": "该项来自 Reasoning Pack，保留为风险/边界审计，不自动升级为产品验收主用例。",
+      "planned_assertions": [
+        "审计并确认：非 Databricks JDBC URL 被拒绝，且不会被其他已注册 driver 接管。"
+      ],
+      "structured_refs": [],
+      "reasoning_refs": [
+        "EC-001"
+      ]
+    },
+    {
+      "coverage_id": "COV-AI-0011",
+      "coverage_type": "happy_path_combo",
+      "coverage_level": "audit_only",
+      "emit_mode": "audit_item",
+      "source_origin": "ai_reasoning",
+      "source_type": "edge_case",
+      "title": "driver 明确拒绝 URL 或无法返回连接时，系统不得把连接创建判为成功。",
+      "page_name": "Databricks 数据源配置页",
+      "section_name": "连接配置区",
+      "module_name": "Databricks 数据源连接",
+      "feature_name": "自定义 JDBC URL 连接创建",
+      "field_name": "",
+      "priority": "medium",
+      "rationale": "该项来自 Reasoning Pack，保留为风险/边界审计，不自动升级为产品验收主用例。",
+      "planned_assertions": [
+        "审计并确认：driver 明确拒绝 URL 或无法返回连接时，系统不得把连接创建判为成功。"
+      ],
+      "structured_refs": [],
+      "reasoning_refs": [
+        "EC-002"
+      ]
+    },
+    {
+      "coverage_id": "COV-AI-0012",
+      "coverage_type": "happy_path_combo",
+      "coverage_level": "audit_only",
+      "emit_mode": "audit_item",
+      "source_origin": "ai_reasoning",
+      "source_type": "edge_case",
+      "title": "验证失败发生在连接创建阶段，不应先对错误目标建立网络连接。",
+      "page_name": "Databricks 数据源配置页",
+      "section_name": "连接配置区",
+      "module_name": "Databricks 数据源连接",
+      "feature_name": "自定义 JDBC URL 连接创建",
+      "field_name": "",
+      "priority": "medium",
+      "rationale": "该项来自 Reasoning Pack，保留为风险/边界审计，不自动升级为产品验收主用例。",
+      "planned_assertions": [
+        "审计并确认：验证失败发生在连接创建阶段，不应先对错误目标建立网络连接。"
+      ],
+      "structured_refs": [],
+      "reasoning_refs": [
+        "EC-003"
+      ]
+    },
+    {
+      "coverage_id": "COV-AI-0013",
+      "coverage_type": "happy_path_combo",
+      "coverage_level": "audit_only",
+      "emit_mode": "audit_item",
+      "source_origin": "ai_reasoning",
+      "source_type": "business_risk",
+      "title": "仅检查字符串前缀可能遗漏大小写、前后空白、编码或相似协议边界，应由后续设计区分正式验收与风险加固。",
+      "page_name": "Databricks 数据源配置页",
+      "section_name": "连接配置区",
+      "module_name": "Databricks 数据源连接",
+      "feature_name": "自定义 JDBC URL 连接创建",
+      "field_name": "",
+      "priority": "medium",
+      "rationale": "该项来自 Reasoning Pack，保留为风险/边界审计，不自动升级为产品验收主用例。",
+      "planned_assertions": [
+        "审计并确认：仅检查字符串前缀可能遗漏大小写、前后空白、编码或相似协议边界，应由后续设计区分正式验收与风险加固。"
+      ],
+      "structured_refs": [],
+      "reasoning_refs": [
+        "RISK-001"
+      ]
+    },
+    {
+      "coverage_id": "COV-AI-0014",
+      "coverage_type": "happy_path_combo",
+      "coverage_level": "audit_only",
+      "emit_mode": "audit_item",
+      "source_origin": "ai_reasoning",
+      "source_type": "business_risk",
+      "title": "driver 返回空连接、抛出异常和拒绝 URL 的错误口径尚未完全定义。",
+      "page_name": "Databricks 数据源配置页",
+      "section_name": "连接配置区",
+      "module_name": "Databricks 数据源连接",
+      "feature_name": "自定义 JDBC URL 连接创建",
+      "field_name": "",
+      "priority": "medium",
+      "rationale": "该项来自 Reasoning Pack，保留为风险/边界审计，不自动升级为产品验收主用例。",
+      "planned_assertions": [
+        "审计并确认：driver 返回空连接、抛出异常和拒绝 URL 的错误口径尚未完全定义。"
+      ],
+      "structured_refs": [],
+      "reasoning_refs": [
+        "RISK-002"
+      ]
+    },
+    {
+      "coverage_id": "COV-AI-0015",
+      "coverage_type": "happy_path_combo",
+      "coverage_level": "audit_only",
+      "emit_mode": "audit_item",
+      "source_origin": "ai_reasoning",
+      "source_type": "business_risk",
+      "title": "历史非 Databricks URL 配置会从可尝试连接变为明确失败，这是预期行为变化。",
+      "page_name": "Databricks 数据源配置页",
+      "section_name": "连接配置区",
+      "module_name": "Databricks 数据源连接",
+      "feature_name": "自定义 JDBC URL 连接创建",
+      "field_name": "",
+      "priority": "medium",
+      "rationale": "该项来自 Reasoning Pack，保留为风险/边界审计，不自动升级为产品验收主用例。",
+      "planned_assertions": [
+        "审计并确认：历史非 Databricks URL 配置会从可尝试连接变为明确失败，这是预期行为变化。"
+      ],
+      "structured_refs": [],
+      "reasoning_refs": [
+        "RISK-003"
+      ]
+    }
+  ]
+}

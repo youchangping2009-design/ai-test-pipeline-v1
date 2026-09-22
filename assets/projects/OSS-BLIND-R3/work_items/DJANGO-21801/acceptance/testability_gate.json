@@ -1,0 +1,126 @@
+{
+  "project_code": "OSS-BLIND-R3",
+  "work_item_id": "DJANGO-21801",
+  "items": [
+    {
+      "gate_id": "TG-001",
+      "source_rule_id": "DJG-R001",
+      "source_text": "模型变更只移除字段的 db_index=True，不新增、删除或修改 Meta.constraints 中的命名 UniqueConstraint。",
+      "classification": "product_behavior",
+      "testability": "testable",
+      "decision": "generate_acceptance_example",
+      "reason": "模型变更范围可通过迁移前后的模型状态与生成操作直接核对。",
+      "confidence": "confirmed"
+    },
+    {
+      "gate_id": "TG-002",
+      "source_rule_id": "DJG-R002",
+      "source_text": "定位待删除普通索引时，必须排除 Meta.constraints 中仍存在的命名唯一约束。",
+      "classification": "backend_job",
+      "testability": "testable",
+      "decision": "generate_acceptance_example",
+      "reason": "可构造普通索引与命名唯一约束并存的数据库状态，验证迁移选择目标。",
+      "confidence": "confirmed"
+    },
+    {
+      "gate_id": "TG-003",
+      "source_rule_id": "DJG-R003",
+      "source_text": "生成并应用迁移后，字段上的普通非唯一索引被删除，命名唯一约束及其数据库唯一索引仍存在。",
+      "classification": "backend_job",
+      "testability": "testable",
+      "decision": "generate_acceptance_example",
+      "reason": "迁移后的普通索引消失与唯一约束保留可通过数据库 introspection 分别断言。",
+      "confidence": "confirmed"
+    },
+    {
+      "gate_id": "TG-004",
+      "source_rule_id": "DJG-R004",
+      "source_text": "迁移 SQL 只删除普通非唯一索引，不包含删除命名唯一约束的语句。",
+      "classification": "backend_job",
+      "testability": "testable",
+      "decision": "generate_acceptance_example",
+      "reason": "可直接检查生成 SQL 的删除目标和缺失的约束删除语句。",
+      "confidence": "confirmed"
+    },
+    {
+      "gate_id": "TG-005",
+      "source_rule_id": "DJG-R005",
+      "source_text": "应用迁移后写入重复字段值时，数据库仍通过命名唯一约束拒绝该写入。",
+      "classification": "product_behavior",
+      "testability": "testable",
+      "decision": "generate_acceptance_example",
+      "reason": "可在迁移后插入重复值，以数据库拒绝结果验证唯一性仍生效。",
+      "confidence": "confirmed"
+    },
+    {
+      "gate_id": "TG-006",
+      "source_rule_id": "DJG-R006",
+      "source_text": "迁移前已有的合法数据在迁移后保持不变。",
+      "classification": "backend_job",
+      "testability": "testable",
+      "decision": "generate_acceptance_example",
+      "reason": "可在迁移前准备合法数据并在迁移后逐条比对。",
+      "confidence": "confirmed"
+    },
+    {
+      "gate_id": "TG-007",
+      "source_rule_id": "DJG-FR002",
+      "source_text": "迁移后分别检查普通索引消失和命名唯一约束保留。",
+      "classification": "backend_job",
+      "testability": "testable",
+      "decision": "skip_case",
+      "reason": "与 DJG-R003 的两个原子结果重复，由显式规则统一承接。",
+      "confidence": "confirmed"
+    },
+    {
+      "gate_id": "TG-008",
+      "source_rule_id": "DJG-FR003",
+      "source_text": "不得仅以 introspection 结果代替唯一性行为验证。",
+      "classification": "product_behavior",
+      "testability": "testable",
+      "decision": "skip_case",
+      "reason": "与 DJG-R005 的重复值写入行为验证重复。",
+      "confidence": "confirmed"
+    },
+    {
+      "gate_id": "TG-009",
+      "source_rule_id": "DJG-FR004",
+      "source_text": "迁移不得修改或丢失已有合法数据。",
+      "classification": "backend_job",
+      "testability": "testable",
+      "decision": "skip_case",
+      "reason": "与 DJG-R006 的既有数据保持规则重复。",
+      "confidence": "confirmed"
+    },
+    {
+      "gate_id": "TG-010",
+      "source_rule_id": "RISK-001",
+      "source_text": "MySQL 将唯一约束表现为唯一索引，可能导致普通索引查找误命中约束索引。",
+      "classification": "risk_hardening",
+      "testability": "risk_only",
+      "decision": "risk_note_only",
+      "reason": "该项解释缺陷触发机制，正式行为已由 DJG-R002 至 DJG-R005 覆盖。",
+      "confidence": "confirmed"
+    },
+    {
+      "gate_id": "TG-011",
+      "source_rule_id": "RISK-002",
+      "source_text": "不同 Django 维护版本的迁移行为需要分别确认；来源只报告 6.1 和 4.2。",
+      "classification": "risk_hardening",
+      "testability": "risk_only",
+      "decision": "risk_note_only",
+      "reason": "版本矩阵范围未被正式需求定义，仅保留兼容性风险。",
+      "confidence": "confirmed"
+    },
+    {
+      "gate_id": "TG-012",
+      "source_rule_id": "RISK-003",
+      "source_text": "迁移 SQL 正确不等于最终数据库状态正确，需要同时验证 schema 和重复写入行为。",
+      "classification": "risk_hardening",
+      "testability": "risk_only",
+      "decision": "risk_note_only",
+      "reason": "这是测试设计完整性提醒，不单独升级为产品验收规则。",
+      "confidence": "confirmed"
+    }
+  ]
+}

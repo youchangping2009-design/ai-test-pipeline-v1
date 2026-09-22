@@ -1,0 +1,146 @@
+{
+  "generated_at": "2026-09-22T12:00:57",
+  "project_code": "OSS-BLIND-R4",
+  "work_item_id": "RAILS-58429",
+  "item_count": 6,
+  "items": [
+    {
+      "coverage_id": "COV-AI-0011",
+      "coverage_type": "happy_path_combo",
+      "coverage_level": "audit_only",
+      "emit_mode": "audit_item",
+      "source_origin": "ai_reasoning",
+      "source_type": "edge_case",
+      "page_name": "",
+      "section_name": "",
+      "module_name": "",
+      "feature_name": "",
+      "field_name": "",
+      "title": "支持与不支持 tagged 的混合组合：无 block 后所有目标仍收到消息，仅支持者应用标签。",
+      "priority": "medium",
+      "planned_assertions": [
+        "审计并确认：支持与不支持 tagged 的混合组合：无 block 后所有目标仍收到消息，仅支持者应用标签。"
+      ],
+      "structured_refs": [],
+      "reasoning_refs": [
+        "EC-001"
+      ],
+      "audit_id": "AUD-ITEM-001"
+    },
+    {
+      "coverage_id": "COV-AI-0012",
+      "coverage_type": "happy_path_combo",
+      "coverage_level": "audit_only",
+      "emit_mode": "audit_item",
+      "source_origin": "ai_reasoning",
+      "source_type": "edge_case",
+      "page_name": "",
+      "section_name": "",
+      "module_name": "",
+      "feature_name": "",
+      "field_name": "",
+      "title": "block 抛异常时异常继续传播，随后写日志不再携带临时标签。",
+      "priority": "medium",
+      "planned_assertions": [
+        "审计并确认：block 抛异常时异常继续传播，随后写日志不再携带临时标签。"
+      ],
+      "structured_refs": [],
+      "reasoning_refs": [
+        "EC-002"
+      ],
+      "audit_id": "AUD-ITEM-002"
+    },
+    {
+      "coverage_id": "COV-AI-0013",
+      "coverage_type": "happy_path_combo",
+      "coverage_level": "audit_only",
+      "emit_mode": "audit_item",
+      "source_origin": "ai_reasoning",
+      "source_type": "business_risk",
+      "page_name": "",
+      "section_name": "",
+      "module_name": "",
+      "feature_name": "",
+      "field_name": "",
+      "title": "返回对象如果遗漏非 tagging logger，会造成静默日志丢失。",
+      "priority": "medium",
+      "planned_assertions": [
+        "审计并确认：返回对象如果遗漏非 tagging logger，会造成静默日志丢失。"
+      ],
+      "structured_refs": [],
+      "reasoning_refs": [
+        "RISK-001"
+      ],
+      "audit_id": "AUD-ITEM-003"
+    },
+    {
+      "coverage_id": "COV-AI-0014",
+      "coverage_type": "happy_path_combo",
+      "coverage_level": "audit_only",
+      "emit_mode": "audit_item",
+      "source_origin": "ai_reasoning",
+      "source_type": "business_risk",
+      "page_name": "",
+      "section_name": "",
+      "module_name": "",
+      "feature_name": "",
+      "field_name": "",
+      "title": "block 重复执行可能重复业务副作用，属于高风险兼容问题。",
+      "priority": "medium",
+      "planned_assertions": [
+        "审计并确认：block 重复执行可能重复业务副作用，属于高风险兼容问题。"
+      ],
+      "structured_refs": [],
+      "reasoning_refs": [
+        "RISK-002"
+      ],
+      "audit_id": "AUD-ITEM-004"
+    },
+    {
+      "coverage_id": "COV-AI-0015",
+      "coverage_type": "happy_path_combo",
+      "coverage_level": "audit_only",
+      "emit_mode": "audit_item",
+      "source_origin": "ai_reasoning",
+      "source_type": "business_risk",
+      "page_name": "",
+      "section_name": "",
+      "module_name": "",
+      "feature_name": "",
+      "field_name": "",
+      "title": "异常路径清理不完整会把标签泄漏到后续请求或线程。",
+      "priority": "medium",
+      "planned_assertions": [
+        "审计并确认：异常路径清理不完整会把标签泄漏到后续请求或线程。"
+      ],
+      "structured_refs": [],
+      "reasoning_refs": [
+        "RISK-003"
+      ],
+      "audit_id": "AUD-ITEM-005"
+    },
+    {
+      "coverage_id": "COV-AI-0016",
+      "coverage_type": "happy_path_combo",
+      "coverage_level": "audit_only",
+      "emit_mode": "audit_item",
+      "source_origin": "ai_reasoning",
+      "source_type": "business_risk",
+      "page_name": "",
+      "section_name": "",
+      "module_name": "",
+      "feature_name": "",
+      "field_name": "",
+      "title": "嵌套标签、并发日志和不同 logger 返回值可能暴露组合边界。",
+      "priority": "medium",
+      "planned_assertions": [
+        "审计并确认：嵌套标签、并发日志和不同 logger 返回值可能暴露组合边界。"
+      ],
+      "structured_refs": [],
+      "reasoning_refs": [
+        "RISK-004"
+      ],
+      "audit_id": "AUD-ITEM-006"
+    }
+  ]
+}

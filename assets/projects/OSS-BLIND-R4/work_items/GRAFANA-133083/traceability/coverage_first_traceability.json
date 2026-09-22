@@ -1,0 +1,397 @@
+{
+  "project_code": "OSS-BLIND-R4",
+  "work_item_id": "GRAFANA-133083",
+  "generated_at": "2026-09-22T12:59:15",
+  "generated_from": [
+    "coverage/coverage_matrix.json",
+    "evidence/evidence_inventory.json",
+    "testcases/testcases_main.md"
+  ],
+  "summary": {
+    "record_count": 17,
+    "invalid_record_count": 0,
+    "false_traceability_rate": 0.0
+  },
+  "records": [
+    {
+      "record_id": "CFT-0001",
+      "rule_id": "GRA-R001",
+      "coverage_id": "COV-EX-0001",
+      "testcase_id": "OSS-BLIND-R4-APISTORE-SERIALIZER-API-ST-001",
+      "testcase_title": "写入优先使用显式 Serializer",
+      "source_origin": "explicit_rule",
+      "coverage_level": "business",
+      "emit_mode": "main_testcase",
+      "fidelity_status": "not_applicable",
+      "evidence_ids": [],
+      "reasoning_refs": [],
+      "structured_targets": [
+        {
+          "target_type": "feature",
+          "module_name": "APIStore 序列化",
+          "feature_name": "资源序列化选择",
+          "field_name": "",
+          "target_name": "写入使用显式 Serializer。"
+        }
+      ]
+    },
+    {
+      "record_id": "CFT-0002",
+      "rule_id": "GRA-R001",
+      "coverage_id": "COV-EX-0002",
+      "testcase_id": "OSS-BLIND-R4-APISTORE-SERIALIZER-API-ST-002",
+      "testcase_title": "单条读取优先使用显式 Serializer",
+      "source_origin": "explicit_rule",
+      "coverage_level": "business",
+      "emit_mode": "main_testcase",
+      "fidelity_status": "not_applicable",
+      "evidence_ids": [],
+      "reasoning_refs": [],
+      "structured_targets": [
+        {
+          "target_type": "feature",
+          "module_name": "APIStore 序列化",
+          "feature_name": "资源序列化选择",
+          "field_name": "",
+          "target_name": "单条读取使用显式 Serializer。"
+        }
+      ]
+    },
+    {
+      "record_id": "CFT-0003",
+      "rule_id": "GRA-R001",
+      "coverage_id": "COV-EX-0003",
+      "testcase_id": "OSS-BLIND-R4-APISTORE-SERIALIZER-API-ST-003",
+      "testcase_title": "列表读取优先使用显式 Serializer",
+      "source_origin": "explicit_rule",
+      "coverage_level": "business",
+      "emit_mode": "main_testcase",
+      "fidelity_status": "not_applicable",
+      "evidence_ids": [],
+      "reasoning_refs": [],
+      "structured_targets": [
+        {
+          "target_type": "feature",
+          "module_name": "APIStore 序列化",
+          "feature_name": "资源序列化选择",
+          "field_name": "",
+          "target_name": "列表读取使用显式 Serializer。"
+        }
+      ]
+    },
+    {
+      "record_id": "CFT-0004",
+      "rule_id": "GRA-R001",
+      "coverage_id": "COV-EX-0004",
+      "testcase_id": "OSS-BLIND-R4-APISTORE-SERIALIZER-API-ST-004",
+      "testcase_title": "watch 解码优先使用显式 Serializer",
+      "source_origin": "explicit_rule",
+      "coverage_level": "business",
+      "emit_mode": "main_testcase",
+      "fidelity_status": "not_applicable",
+      "evidence_ids": [],
+      "reasoning_refs": [],
+      "structured_targets": [
+        {
+          "target_type": "feature",
+          "module_name": "APIStore 序列化",
+          "feature_name": "资源序列化选择",
+          "field_name": "",
+          "target_name": "watch 解码使用显式 Serializer。"
+        }
+      ]
+    },
+    {
+      "record_id": "CFT-0005",
+      "rule_id": "GRA-R002",
+      "coverage_id": "COV-EX-0005",
+      "testcase_id": "OSS-BLIND-R4-APISTORE-SERIALIZER-API-ST-005",
+      "testcase_title": "默认写入声明 GVK 时使用直接 JSON",
+      "source_origin": "explicit_rule",
+      "coverage_level": "business",
+      "emit_mode": "main_testcase",
+      "fidelity_status": "not_applicable",
+      "evidence_ids": [],
+      "reasoning_refs": [],
+      "structured_targets": [
+        {
+          "target_type": "feature",
+          "module_name": "APIStore 序列化",
+          "feature_name": "资源序列化选择",
+          "field_name": "",
+          "target_name": "声明 GVK 的写入使用直接 JSON。"
+        }
+      ]
+    },
+    {
+      "record_id": "CFT-0006",
+      "rule_id": "GRA-R002",
+      "coverage_id": "COV-EX-0006",
+      "testcase_id": "OSS-BLIND-R4-APISTORE-SERIALIZER-API-ST-006",
+      "testcase_title": "默认写入其他 GVK 时使用 codec",
+      "source_origin": "explicit_rule",
+      "coverage_level": "business",
+      "emit_mode": "main_testcase",
+      "fidelity_status": "not_applicable",
+      "evidence_ids": [],
+      "reasoning_refs": [],
+      "structured_targets": [
+        {
+          "target_type": "feature",
+          "module_name": "APIStore 序列化",
+          "feature_name": "资源序列化选择",
+          "field_name": "",
+          "target_name": "其他 GVK 的写入使用已配置 codec。"
+        }
+      ]
+    },
+    {
+      "record_id": "CFT-0007",
+      "rule_id": "GRA-R003",
+      "coverage_id": "COV-EX-0007",
+      "testcase_id": "OSS-BLIND-R4-APISTORE-SERIALIZER-API-ST-007",
+      "testcase_title": "默认单条读取使用 codec",
+      "source_origin": "explicit_rule",
+      "coverage_level": "business",
+      "emit_mode": "main_testcase",
+      "fidelity_status": "not_applicable",
+      "evidence_ids": [],
+      "reasoning_refs": [],
+      "structured_targets": [
+        {
+          "target_type": "feature",
+          "module_name": "APIStore 序列化",
+          "feature_name": "资源序列化选择",
+          "field_name": "",
+          "target_name": "单条读取使用已配置 codec。"
+        }
+      ]
+    },
+    {
+      "record_id": "CFT-0008",
+      "rule_id": "GRA-R003",
+      "coverage_id": "COV-EX-0008",
+      "testcase_id": "OSS-BLIND-R4-APISTORE-SERIALIZER-API-ST-008",
+      "testcase_title": "默认列表读取使用 codec",
+      "source_origin": "explicit_rule",
+      "coverage_level": "business",
+      "emit_mode": "main_testcase",
+      "fidelity_status": "not_applicable",
+      "evidence_ids": [],
+      "reasoning_refs": [],
+      "structured_targets": [
+        {
+          "target_type": "feature",
+          "module_name": "APIStore 序列化",
+          "feature_name": "资源序列化选择",
+          "field_name": "",
+          "target_name": "列表读取使用已配置 codec。"
+        }
+      ]
+    },
+    {
+      "record_id": "CFT-0009",
+      "rule_id": "GRA-R003",
+      "coverage_id": "COV-EX-0009",
+      "testcase_id": "OSS-BLIND-R4-APISTORE-SERIALIZER-API-ST-009",
+      "testcase_title": "默认 watch 解码使用 codec",
+      "source_origin": "explicit_rule",
+      "coverage_level": "business",
+      "emit_mode": "main_testcase",
+      "fidelity_status": "not_applicable",
+      "evidence_ids": [],
+      "reasoning_refs": [],
+      "structured_targets": [
+        {
+          "target_type": "feature",
+          "module_name": "APIStore 序列化",
+          "feature_name": "资源序列化选择",
+          "field_name": "",
+          "target_name": "watch 解码使用已配置 codec。"
+        }
+      ]
+    },
+    {
+      "record_id": "CFT-0010",
+      "rule_id": "GRA-R004",
+      "coverage_id": "COV-EX-0010",
+      "testcase_id": "OSS-BLIND-R4-APISTORE-SERIALIZER-API-DV-001",
+      "testcase_title": "通用 JSON Serializer 往返保留对象 GVK",
+      "source_origin": "explicit_rule",
+      "coverage_level": "business",
+      "emit_mode": "main_testcase",
+      "fidelity_status": "not_applicable",
+      "evidence_ids": [],
+      "reasoning_refs": [],
+      "structured_targets": [
+        {
+          "target_type": "feature",
+          "module_name": "APIStore 序列化",
+          "feature_name": "资源序列化选择",
+          "field_name": "",
+          "target_name": "datasource 通用 JSON Serializer 往返处理后必须保留对象 GVK。"
+        }
+      ]
+    },
+    {
+      "record_id": "CFT-0011",
+      "rule_id": "GRA-R005",
+      "coverage_id": "COV-EX-0011",
+      "testcase_id": "OSS-BLIND-R4-APISTORE-SERIALIZER-API-FL-001",
+      "testcase_title": "同一 Go 类型的不同 GVK 往返后仍可区分",
+      "source_origin": "explicit_rule",
+      "coverage_level": "business",
+      "emit_mode": "main_testcase",
+      "fidelity_status": "not_applicable",
+      "evidence_ids": [],
+      "reasoning_refs": [],
+      "structured_targets": [
+        {
+          "target_type": "feature",
+          "module_name": "APIStore 序列化",
+          "feature_name": "资源序列化选择",
+          "field_name": "",
+          "target_name": "同一个 Go 类型承载不同 GVK 时，持久化和读回后仍能区分目标 GVK。"
+        }
+      ]
+    },
+    {
+      "record_id": "CFT-0012",
+      "rule_id": "GRA-R006",
+      "coverage_id": "COV-EX-0012",
+      "testcase_id": "OSS-BLIND-R4-APISTORE-SERIALIZER-API-ST-010",
+      "testcase_title": "watch 当前对象解码沿用请求 context",
+      "source_origin": "explicit_rule",
+      "coverage_level": "business",
+      "emit_mode": "main_testcase",
+      "fidelity_status": "not_applicable",
+      "evidence_ids": [],
+      "reasoning_refs": [],
+      "structured_targets": [
+        {
+          "target_type": "feature",
+          "module_name": "APIStore 序列化",
+          "feature_name": "Watch 上下文传播",
+          "field_name": "",
+          "target_name": "当前对象解码沿用原请求 context。"
+        }
+      ]
+    },
+    {
+      "record_id": "CFT-0013",
+      "rule_id": "GRA-R006",
+      "coverage_id": "COV-EX-0013",
+      "testcase_id": "OSS-BLIND-R4-APISTORE-SERIALIZER-API-ST-011",
+      "testcase_title": "watch 历史对象解码沿用请求 context",
+      "source_origin": "explicit_rule",
+      "coverage_level": "business",
+      "emit_mode": "main_testcase",
+      "fidelity_status": "not_applicable",
+      "evidence_ids": [],
+      "reasoning_refs": [],
+      "structured_targets": [
+        {
+          "target_type": "feature",
+          "module_name": "APIStore 序列化",
+          "feature_name": "Watch 上下文传播",
+          "field_name": "",
+          "target_name": "历史对象解码沿用原请求 context。"
+        }
+      ]
+    },
+    {
+      "record_id": "CFT-0014",
+      "rule_id": "GRA-R006",
+      "coverage_id": "COV-EX-0014",
+      "testcase_id": "OSS-BLIND-R4-APISTORE-SERIALIZER-API-ST-012",
+      "testcase_title": "取消 watch 请求会终止相关解码",
+      "source_origin": "explicit_rule",
+      "coverage_level": "business",
+      "emit_mode": "main_testcase",
+      "fidelity_status": "not_applicable",
+      "evidence_ids": [],
+      "reasoning_refs": [],
+      "structured_targets": [
+        {
+          "target_type": "feature",
+          "module_name": "APIStore 序列化",
+          "feature_name": "Watch 上下文传播",
+          "field_name": "",
+          "target_name": "请求取消能够终止相关解码工作。"
+        }
+      ]
+    },
+    {
+      "record_id": "CFT-0015",
+      "rule_id": "ER-002",
+      "coverage_id": "COV-EX-0020",
+      "testcase_id": "OSS-BLIND-R4-APISTORE-SERIALIZER-API-ST-013",
+      "testcase_title": "写入时显式 Serializer 接收原请求 context",
+      "source_origin": "ai_reasoning",
+      "coverage_level": "business",
+      "emit_mode": "main_testcase",
+      "fidelity_status": "not_applicable",
+      "evidence_ids": [],
+      "reasoning_refs": [
+        "ER-002"
+      ],
+      "structured_targets": [
+        {
+          "target_type": "feature",
+          "module_name": "APIStore 序列化",
+          "feature_name": "资源序列化选择",
+          "field_name": "",
+          "target_name": "写入时显式 Serializer 接收原请求 context。"
+        }
+      ]
+    },
+    {
+      "record_id": "CFT-0016",
+      "rule_id": "ER-002",
+      "coverage_id": "COV-EX-0021",
+      "testcase_id": "OSS-BLIND-R4-APISTORE-SERIALIZER-API-ST-014",
+      "testcase_title": "单条读取时显式 Serializer 接收原请求 context",
+      "source_origin": "ai_reasoning",
+      "coverage_level": "business",
+      "emit_mode": "main_testcase",
+      "fidelity_status": "not_applicable",
+      "evidence_ids": [],
+      "reasoning_refs": [
+        "ER-002"
+      ],
+      "structured_targets": [
+        {
+          "target_type": "feature",
+          "module_name": "APIStore 序列化",
+          "feature_name": "资源序列化选择",
+          "field_name": "",
+          "target_name": "单条读取时显式 Serializer 接收原请求 context。"
+        }
+      ]
+    },
+    {
+      "record_id": "CFT-0017",
+      "rule_id": "ER-002",
+      "coverage_id": "COV-EX-0022",
+      "testcase_id": "OSS-BLIND-R4-APISTORE-SERIALIZER-API-ST-015",
+      "testcase_title": "列表读取时显式 Serializer 接收原请求 context",
+      "source_origin": "ai_reasoning",
+      "coverage_level": "business",
+      "emit_mode": "main_testcase",
+      "fidelity_status": "not_applicable",
+      "evidence_ids": [],
+      "reasoning_refs": [
+        "ER-002"
+      ],
+      "structured_targets": [
+        {
+          "target_type": "feature",
+          "module_name": "APIStore 序列化",
+          "feature_name": "资源序列化选择",
+          "field_name": "",
+          "target_name": "列表读取时显式 Serializer 接收原请求 context。"
+        }
+      ]
+    }
+  ]
+}

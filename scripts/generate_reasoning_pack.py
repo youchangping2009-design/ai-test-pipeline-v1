@@ -64,6 +64,38 @@ def unique_strings(values: list[str]) -> list[str]:
     return result
 
 
+def requirement_section_lines(
+    requirement_doc: dict[str, Any], section_prefix: str
+) -> list[str]:
+    sections = requirement_doc.get("sections", {})
+    for title, lines in sections.items():
+        if str(title).startswith(section_prefix):
+            return unique_strings([str(line) for line in lines])
+    return []
+
+
+NON_RULE_SUMMARY_PREFIXES = (
+    "PR 未声明",
+    "关键数据：",
+    "关键契约：",
+    "关键公开 API：",
+    "资源字段：",
+)
+
+
+def is_requirement_rule_line(text: str) -> bool:
+    """Keep descriptive source metadata out of executable requirement rules."""
+    normalized = text.strip()
+    return bool(normalized) and not normalized.startswith(NON_RULE_SUMMARY_PREFIXES)
+
+
+def concise_title(text: str, fallback: str, limit: int = 36) -> str:
+    value = re.split(r"[，。；：?!？！]", text.strip(), maxsplit=1)[0].strip()
+    if not value:
+        return fallback
+    return value if len(value) <= limit else value[:limit].rstrip() + "…"
+
+
 def build_source_ref(
     source_type: str,
     path: str,
@@ -175,7 +207,12 @@ def parse_requirement_summary(path: Path) -> dict[str, Any]:
 
     rule_sections = ("2. 需求结论", "5. 面向研发的需求拆解", "6. 面向测试的验收关注点", "7. 数据 / 埋点 / 接口 / 配置要求")
     rule_lines = unique_strings(
-        [line for section in rule_sections for line in sections.get(section, [])]
+        [
+            line
+            for section in rule_sections
+            for line in sections.get(section, [])
+            if is_requirement_rule_line(line)
+        ]
     )
     return {
         "title": title,
@@ -225,10 +262,14 @@ def infer_rule_terms(text: str) -> list[str]:
     terms.extend(match.group(1) for match in DATE_RE.finditer(text))
     if "关闭、开启" in text:
         terms.extend(["关闭", "开启"])
-    if "无交互、活动中心、链接、展示企微单人单码" in text:
-        terms.extend(["无交互", "活动中心", "链接", "展示企微单人单码"])
-    elif "无交互、活动中心、链接" in text:
-        terms.extend(["无交互", "活动中心", "链接"])
+    for quoted in re.findall(r"[“{]([^”}]{1,40})[”}]", text):
+        terms.append(quoted)
+    enum_match = re.search(r"(?:包括|可选|枚举(?:为)?|类型(?:为)?)[：:]?([^。；]+)", text)
+    if enum_match:
+        terms.extend(
+            part.strip(" `{}[]“”")
+            for part in re.split(r"[、,，/]", enum_match.group(1))
+        )
     range_match = RANGE_RE.search(text)
     if range_match:
         terms.extend([range_match.group(1), range_match.group(2)])
@@ -242,7 +283,7 @@ def infer_rule_terms(text: str) -> list[str]:
 
 
 def classify_rule(text: str) -> str:
-    if "来源于" in text or "状态=发布" in text or "倒序" in text:
+    if "来源于" in text or "状态=" in text or "状态为" in text or "倒序" in text:
         return "data_source_rule"
     if "默认" in text:
         return "default_rule"
@@ -430,12 +471,12 @@ def build_implicit_rules(
     backend_pages = [
         image
         for image in images
-        if "配置页" in str(image.get("page_name", ""))
+        if any(token in str(image.get("page_name", "")) for token in ["配置页", "后台", "管理"])
     ]
     frontend_pages = [
         image
         for image in images
-        if "配置页" not in str(image.get("page_name", ""))
+        if image not in backend_pages
     ]
     section_counter = Counter(
         section.get("section_type", "")
@@ -453,12 +494,21 @@ def build_implicit_rules(
 
     implicit_rules: list[dict[str, Any]] = []
     if section_counter:
-        common_sections = [name for name, count in section_counter.items() if count >= 3]
+        common_sections = [name for name, count in section_counter.items() if count >= 2]
+    else:
+        common_sections = []
+    if common_sections:
+        backend_names = unique_strings(
+            [str(image.get("page_name", "")) for image in backend_pages]
+        )
         implicit_rules.append(
             {
                 "id": "IR-001",
-                "title": "后台配置页共享配置骨架",
-                "statement": "banner、瓷片区、金刚区、弹窗等后台配置页复用同一套筛选区/列表区/操作区/添加弹窗/排序弹窗骨架，后续结构化应优先按统一配置家族建模。",
+                "title": "多个管理页面共享结构骨架",
+                "statement": (
+                    f"{ '、'.join(backend_names[:4]) } 重复出现"
+                    f"{ '、'.join(common_sections) }等板块，后续结构化应保留共享结构及页面差异。"
+                ),
                 "confidence": 0.88,
                 "reasoning_notes": [
                     f"至少 {len(common_sections)} 类 section_type 在多个后台配置页重复出现。"
@@ -468,7 +518,7 @@ def build_implicit_rules(
                     build_source_ref(
                         "image_evidence",
                         str(image.get("source_file", "")),
-                        "重复配置页骨架",
+                        f"重复板块：{'、'.join(common_sections)}",
                         page_name=str(image.get("page_name", "")),
                     )
                     for image in backend_pages[:4]
@@ -478,14 +528,15 @@ def build_implicit_rules(
 
     repeated_fields = [name for name, count in field_counter.items() if count >= 3]
     if repeated_fields:
+        repeated_field_text = "、".join(repeated_fields)
         implicit_rules.append(
             {
                 "id": "IR-002",
                 "title": "字段矩阵复用模式",
-                "statement": "展示类型、X、触达用户类型、跳转类型、选择活动、链接、展示tab、状态形成跨模块复用字段矩阵，后续应保留同构字段的共性规则与差异项。",
+                "statement": f"{repeated_field_text} 在多个管理页面重复出现，后续应保留同构字段的共性规则与差异项。",
                 "confidence": 0.9,
                 "reasoning_notes": [
-                    "多个后台页面共享相同字段矩阵，但条数上限、跳转枚举和说明表枚举存在差异。"
+                    "字段重复计数来自当前 image evidence，不预设具体业务枚举。"
                 ],
                 "must_preserve_terms": repeated_fields,
                 "source_refs": [
@@ -500,15 +551,24 @@ def build_implicit_rules(
             }
         )
 
-    if frontend_pages:
+    if backend_pages and frontend_pages:
+        backend_names = unique_strings(
+            [str(image.get("page_name", "")) for image in backend_pages]
+        )
+        frontend_names = unique_strings(
+            [str(image.get("page_name", "")) for image in frontend_pages]
+        )
         implicit_rules.append(
             {
                 "id": "IR-003",
-                "title": "后台配置驱动 C 端分发与弹窗",
-                "statement": "后台导航、banner、瓷片区、金刚区和弹窗配置共同驱动小程序首页分发页、企微单人单码弹窗页和营销弹窗页的展示结果，后续 traceability 需要显式连接后台配置与 C 端表现。",
+                "title": "管理页面与消费页面存在跨层承接",
+                "statement": (
+                    f"管理侧页面 { '、'.join(backend_names[:4]) } 与消费侧页面"
+                    f" { '、'.join(frontend_names[:4]) } 同时出现，后续 traceability 需要基于明确规则连接写侧配置与读侧表现。"
+                ),
                 "confidence": 0.86,
                 "reasoning_notes": [
-                    "截图 6 和截图 7 显示了 C 端页面与弹窗承接面。"
+                    "管理侧与非管理侧页面名称均来自当前 image evidence。"
                 ],
                 "must_preserve_terms": unique_strings(
                     [str(image.get("page_name", "")) for image in frontend_pages]
@@ -525,12 +585,18 @@ def build_implicit_rules(
             }
         )
 
-    if any("顶部tab" in note for item in screenshot_items for note in item.get("explicit_rules", []) + item.get("notes", [])):
+    tab_notes = [
+        note
+        for item in screenshot_items
+        for note in item.get("explicit_rules", []) + item.get("notes", [])
+        if "顶部tab" in note or "顶部 tab" in note
+    ]
+    if tab_notes:
         implicit_rules.append(
             {
                 "id": "IR-004",
                 "title": "顶部 tab 为统一归属维度",
-                "statement": "首页 banner、瓷片区、金刚区与弹窗均从属于顶部 tab，后续生成 testcase 时不能只测配置保存，还要验证 tab 归属与展示面联动。",
+                "statement": "输入明确多个对象从属于顶部 tab，后续测试设计应同时验证配置行为、tab 归属与对应展示结果。",
                 "confidence": 0.84,
                 "reasoning_notes": [
                     "原始输入中多次出现“从属于顶部tab”的说明。"
@@ -544,7 +610,7 @@ def build_implicit_rules(
                     )
                     for item in screenshot_items
                     for note in item.get("explicit_rules", []) + item.get("notes", [])
-                    if "顶部tab" in note
+                    if "顶部tab" in note or "顶部 tab" in note
                 ],
             }
         )
@@ -663,14 +729,19 @@ def build_field_constraints(
 def extract_filters_and_orders(text: str) -> tuple[list[str], list[str]]:
     filters: list[str] = []
     orders: list[str] = []
-    if "状态=发布" in text:
-        filters.append("状态=发布")
-    if "小程序活动" in text:
-        filters.append("活动中心渠道=小程序活动")
-    if "小程序导航名称列表" in text:
-        filters.append("来源=小程序导航名称列表")
+    for field_name, value in re.findall(
+        r"([A-Za-z_\u4e00-\u9fff]{1,20})\s*=\s*([A-Za-z0-9_\u4e00-\u9fff-]{1,30})",
+        text,
+    ):
+        filters.append(f"{field_name}={value}")
     if "所有开启的导航" in text or "状态为开启的导航" in text:
         filters.append("状态=开启")
+    for field_name, value in re.findall(
+        r"([A-Za-z_\u4e00-\u9fff]{1,20})(?:为|是)([A-Za-z0-9_\u4e00-\u9fff-]{1,30})",
+        text,
+    ):
+        if field_name.endswith("状态") or field_name.endswith("渠道"):
+            filters.append(f"{field_name}={value}")
     if "创建时间倒序" in text or "按活动创建时间倒序" in text or "后台数据按照创建时间倒序排列" in text:
         orders.append("创建时间倒序")
     if "顺位上移" in text:
@@ -703,7 +774,7 @@ def build_data_source_rules(
             if screenshot_item:
                 candidate_texts.extend(screenshot_item.get("explicit_rules", []))
             for text in unique_strings(candidate_texts):
-                if not any(token in text for token in ["来源于", "状态=发布", "倒序", "导航名称列表", "仅展示状态为开启", "所有开启的导航"]):
+                if not any(token in text for token in ["来源于", "状态=", "状态为", "倒序", "仅展示", "所有开启", "顺位", "置于最前"]):
                     continue
                 filters, orders = extract_filters_and_orders(text)
                 key = (page_name, section_name, text)
@@ -713,8 +784,6 @@ def build_data_source_rules(
                 data_source = ""
                 if "来源于" in text:
                     data_source = text.split("来源于", 1)[1].strip("；。 ")
-                elif "导航名称列表" in text:
-                    data_source = "小程序导航名称列表"
                 rules.append(
                     {
                         "rule_id": f"DS-{counter:03d}",
@@ -747,54 +816,77 @@ def build_business_risks(
     data_source_rules: list[dict[str, Any]],
     implicit_rules: list[dict[str, Any]],
     screenshot_items: list[dict[str, Any]],
+    requirement_doc: dict[str, Any],
 ) -> list[dict[str, Any]]:
-    risks: list[dict[str, Any]] = [
-        {
-            "risk_id": "RISK-001",
-            "title": "排序与容量规则容易实现漂移",
-            "risk_statement": "后台列表创建时间倒序、排序弹窗初始顺序、删除/关闭后顺位上移、新增置于最前和单 tab 条数上限同时存在，任何一个环节遗漏都可能导致线上展示顺序异常。",
-            "severity": "high",
-            "impact_scope": ["后台配置页", "排序弹窗", "C端首页分发位"],
-            "source_refs": [
-                rule["source_refs"][0]
-                for rule in data_source_rules
-                if any(token in rule["statement"] for token in ["顺位", "置于最前", "倒序"])
-            ][:4],
-        },
-        {
-            "risk_id": "RISK-002",
-            "title": "状态过滤与展示面联动风险",
-            "risk_statement": "多处规则要求只消费开启状态配置，若后台状态默认值、排序候选过滤或 C 端消费口径不一致，会出现可配置但不可展示或误展示。",
-            "severity": "high",
-            "impact_scope": ["状态字段", "排序候选", "首页分发页", "弹窗"],
-            "source_refs": [
-                item["source_refs"][0]
-                for item in implicit_rules[:1]
-            ]
-            + [
-                constraint["source_refs"][0]
-                for constraint in field_constraints
-                if constraint["field_name"] == "status"
-            ][:3],
-        },
-        {
-            "risk_id": "RISK-003",
-            "title": "触达用户类型枚举跨模块不一致",
-            "risk_statement": "banner、瓷片区、金刚区、弹窗都依赖触达用户类型说明表，但金刚区/弹窗新增了“付费未添加企微用户”等枚举，若共用契约没有区分模块差异，容易出现错误枚举或缺少附加字段。",
-            "severity": "medium",
-            "impact_scope": ["触达用户类型", "充值金额区间", "弹窗引流"],
-            "source_refs": [
-                build_source_ref(
-                    "input_markdown",
-                    item.get("source_path", ""),
-                    note,
-                )
-                for item in screenshot_items
-                for note in item.get("notes", [])
-                if "付费未添加企微用户" in note or "说明表" in note
-            ][:4],
-        },
+    risks: list[dict[str, Any]] = []
+    source_path = str(requirement_doc.get("source_path", ""))
+    high_risk_tokens = ("丢失", "安全", "攻击", "错误", "不一致", "并发", "失控")
+    for text in requirement_section_lines(requirement_doc, "8."):
+        risks.append(
+            {
+                "risk_id": f"RISK-{len(risks) + 1:03d}",
+                "title": concise_title(text, "需求风险"),
+                "risk_statement": text,
+                "severity": "high" if any(token in text for token in high_risk_tokens) else "medium",
+                "impact_scope": [],
+                "source_refs": [build_source_ref("input_markdown", source_path, text)],
+            }
+        )
+
+    ordering_rules = [
+        rule
+        for rule in data_source_rules
+        if any(token in rule["statement"] for token in ["顺位", "置于最前", "倒序"])
     ]
+    if ordering_rules:
+        risks.append(
+            {
+                "risk_id": f"RISK-{len(risks) + 1:03d}",
+                "title": "排序与容量规则容易实现漂移",
+                "risk_statement": "排序、顺位与容量规则同时存在时，任一更新路径遗漏都可能导致最终展示顺序异常。",
+                "severity": "high",
+                "impact_scope": ["排序规则", "容量规则", "展示结果"],
+                "source_refs": [rule["source_refs"][0] for rule in ordering_rules[:4]],
+            }
+        )
+
+    status_constraints = [
+        constraint
+        for constraint in field_constraints
+        if constraint.get("field_name") == "status"
+    ]
+    if status_constraints:
+        risks.append(
+            {
+                "risk_id": f"RISK-{len(risks) + 1:03d}",
+                "title": "状态过滤与消费口径联动风险",
+                "risk_statement": "状态默认值、候选过滤与下游消费口径不一致时，可能出现已配置但未生效或不应展示却被消费。",
+                "severity": "high",
+                "impact_scope": ["状态字段", "候选过滤", "下游消费"],
+                "source_refs": [item["source_refs"][0] for item in status_constraints[:3]],
+            }
+        )
+
+    enum_notes = [
+        (item, note)
+        for item in screenshot_items
+        for note in item.get("notes", [])
+        if "说明表" in note or "枚举" in note
+    ]
+    if enum_notes:
+        risks.append(
+            {
+                "risk_id": f"RISK-{len(risks) + 1:03d}",
+                "title": "说明表枚举跨模块不一致",
+                "risk_statement": "多个模块复用说明表但枚举范围不同时，共用契约可能产生错误枚举或遗漏附加字段。",
+                "severity": "medium",
+                "impact_scope": ["说明表", "枚举", "附加字段"],
+                "source_refs": [
+                    build_source_ref("input_markdown", item.get("source_path", ""), note)
+                    for item, note in enum_notes[:4]
+                ],
+            }
+        )
 
     if any(
         ("两个逻辑页面" in note) or ("两个独立页面" in note) or ("显式拆开" in note)
@@ -803,11 +895,11 @@ def build_business_risks(
     ):
         risks.append(
             {
-                "risk_id": "RISK-004",
+                "risk_id": f"RISK-{len(risks) + 1:03d}",
                 "title": "单张截图承载多逻辑页面导致投影错误",
-                "risk_statement": "截图 6 同时覆盖首页分发页和企微单人单码弹窗页，如果后续只按单页面投影，会把弹窗规则压缩进首页规则，导致 traceability 和 testcase 错位。",
+                "risk_statement": "单个来源同时覆盖多个逻辑页面时，如果后续只按单页面投影，可能导致规则、traceability 和 testcase 错位。",
                 "severity": "medium",
-                "impact_scope": ["首页分发页", "企微单人单码弹窗页"],
+                "impact_scope": ["多逻辑页面来源", "traceability", "testcase"],
                 "source_refs": [
                     build_source_ref(
                         "input_markdown",
@@ -823,7 +915,9 @@ def build_business_risks(
     return risks
 
 
-def build_edge_cases(field_constraints: list[dict[str, Any]]) -> list[dict[str, Any]]:
+def build_edge_cases(
+    field_constraints: list[dict[str, Any]], requirement_doc: dict[str, Any]
+) -> list[dict[str, Any]]:
     cases: list[dict[str, Any]] = []
     counter = 1
     for constraint in field_constraints:
@@ -859,7 +953,7 @@ def build_edge_cases(field_constraints: list[dict[str, Any]]) -> list[dict[str, 
                 {
                     "edge_case_id": f"EC-{counter:03d}",
                     "title": f"{display_name or constraint['page_name']} 条数上限",
-                    "scenario": f"同一 tab 下超过 {normalized['max_count']} 条时需要阻止保存并保留提示。",
+                    "scenario": f"同一业务范围内超过 {normalized['max_count']} 条时需要验证限制行为和可观察反馈。",
                     "priority": "P0",
                     "related_field": constraint["field_name"],
                     "source_refs": constraint["source_refs"],
@@ -878,12 +972,31 @@ def build_edge_cases(field_constraints: list[dict[str, Any]]) -> list[dict[str, 
                 }
             )
             counter += 1
+    source_path = str(requirement_doc.get("source_path", ""))
+    edge_tokens = (
+        "非", "空", "非法", "拒绝", "失败", "异常", "边界", "上限", "下限",
+        "相同", "重叠", "不重叠", "混合", "无权限", "0", "false", "历史",
+    )
+    for text in requirement_section_lines(requirement_doc, "6."):
+        if not any(token in text for token in edge_tokens):
+            continue
+        cases.append(
+            {
+                "edge_case_id": f"EC-{counter:03d}",
+                "title": concise_title(text, "需求边界场景"),
+                "scenario": text,
+                "priority": "P1",
+                "source_refs": [build_source_ref("input_markdown", source_path, text)],
+            }
+        )
+        counter += 1
     return cases[:16]
 
 
 def build_ambiguities(
     image_evidence: dict[str, Any],
     screenshot_items: list[dict[str, Any]],
+    requirement_doc: dict[str, Any],
 ) -> list[dict[str, Any]]:
     ambiguities: list[dict[str, Any]] = []
     counter = 1
@@ -921,7 +1034,7 @@ def build_ambiguities(
                         "title": "单张截图包含两个逻辑页面",
                         "description": note,
                         "status": "mitigated",
-                        "suggested_resolution": "在 reasoning/structured_prd 中拆成首页分发页与企微单人单码弹窗页两个独立页面。",
+                        "suggested_resolution": "在 reasoning/structured_prd 中按来源明确的逻辑页面分别建模，并保留各自来源追溯。",
                         "source_refs": [
                             build_source_ref(
                                 "input_markdown",
@@ -932,69 +1045,80 @@ def build_ambiguities(
                     }
                 )
                 counter += 1
+    source_path = str(requirement_doc.get("source_path", ""))
+    for text in requirement_section_lines(requirement_doc, "9."):
+        ambiguities.append(
+            {
+                "ambiguity_id": f"AMB-{counter:03d}",
+                "title": concise_title(text, "待确认问题"),
+                "description": text,
+                "status": "open",
+                "suggested_resolution": "在进入正式测试设计前由需求方确认；未确认时保持显式缺失，不推断为强规则。",
+                "source_refs": [build_source_ref("input_markdown", source_path, text)],
+            }
+        )
+        counter += 1
     return ambiguities
 
 
 def build_test_dimensions(
+    explicit_rules: list[dict[str, Any]],
     field_constraints: list[dict[str, Any]],
     data_source_rules: list[dict[str, Any]],
     business_risks: list[dict[str, Any]],
     ambiguities: list[dict[str, Any]],
 ) -> list[dict[str, Any]]:
-    dimensions: list[dict[str, Any]] = [
-        {
-            "dimension_id": "TD-001",
-            "dimension": "字段必填与默认值",
-            "rationale": "多个后台配置页依赖相同字段矩阵，字段必填、默认关闭、默认空值是基础高频风险点。",
-            "priority": "high",
-            "related_reasoning_ids": ["IR-002"],
-        },
-        {
-            "dimension_id": "TD-002",
-            "dimension": "条件展示与条件只读",
-            "rationale": "跳转类型、展示类型和活动中心场景会改变字段显隐与编辑性，容易被压缩丢失。",
-            "priority": "high",
-            "related_reasoning_ids": [],
-        },
-        {
-            "dimension_id": "TD-003",
-            "dimension": "数据来源、过滤与排序",
-            "rationale": "候选活动列表、展示 tab 列表、排序弹窗候选和状态过滤共同决定真实消费口径。",
-            "priority": "high",
-            "related_reasoning_ids": [],
-        },
-        {
-            "dimension_id": "TD-004",
-            "dimension": "条数上限与顺位变化",
-            "rationale": business_risks[0]["risk_statement"] if business_risks else "排序/容量规则需要优先覆盖。",
-            "priority": "high",
-            "related_reasoning_ids": [],
-        },
-        {
-            "dimension_id": "TD-005",
-            "dimension": "说明表驱动语义",
-            "rationale": "触达用户类型说明表和充值金额区间属于表驱动规则，不能只保留枚举名。",
-            "priority": "medium",
-            "related_reasoning_ids": [],
-        },
-        {
-            "dimension_id": "TD-006",
-            "dimension": "后台配置到 C 端展示面投影",
-            "rationale": "Phase 1 尚不改 testcase 逻辑，但 reasoning 已明确后台配置与首页/弹窗展示面存在跨层承接关系。",
-            "priority": "medium",
-            "related_reasoning_ids": ["IR-003"],
-        },
-    ]
-    if ambiguities:
+    dimensions: list[dict[str, Any]] = []
+    combined = " ".join(item.get("statement", "") for item in explicit_rules)
+
+    def add(name: str, rationale: str, priority: str, related_ids: list[str]) -> None:
         dimensions.append(
             {
-                "dimension_id": "TD-007",
-                "dimension": "多页面拆分与未决项追踪",
-                "rationale": "存在单张截图承载多个逻辑页面的情况，需要确保后续结构化与 coverage 不串页。",
-                "priority": "medium",
-                "related_reasoning_ids": [],
+                "dimension_id": f"TD-{len(dimensions) + 1:03d}",
+                "dimension": name,
+                "rationale": rationale,
+                "priority": priority,
+                "related_reasoning_ids": related_ids,
             }
         )
+
+    if explicit_rules:
+        add(
+            "显式规则逐条验证",
+            "需求摘要已给出可追溯规则，后续设计应保持单规则单断言并验证成功与失败结果。",
+            "high",
+            [item["id"] for item in explicit_rules[:8]],
+        )
+    def explicit_ids(tokens: list[str]) -> list[str]:
+        return [
+            item["id"]
+            for item in explicit_rules
+            if any(token in item.get("statement", "") for token in tokens)
+        ][:8]
+
+    failure_ids = explicit_ids(["拒绝", "失败", "异常", "非法", "错误", "不得"])
+    if failure_ids:
+        add("异常与失败处理", "需求包含明确拒绝或失败语义，需要验证失败状态、错误反馈及副作用隔离。", "high", failure_ids)
+    compatibility_ids = explicit_ids(["兼容", "既有", "历史", "不应因本次", "不改变"])
+    if compatibility_ids:
+        add("兼容性与回归", "需求要求保留既有合法行为或历史关系，需要同时验证变更路径与未变路径。", "high", compatibility_ids)
+    consistency_ids = explicit_ids(["关系", "保留", "集合", "状态", "一致"])
+    if consistency_ids:
+        add("数据一致性与状态保留", "需求涉及关系或状态保留，应核对操作前后数据集合而非只看接口成功。", "high", consistency_ids)
+    boundary_ids = explicit_ids(["类型", "数值", "0", "false", "边界", "URL"])
+    if field_constraints or boundary_ids:
+        add(
+            "输入类型与边界",
+            "输入的类型、边界值和协议格式会影响判断结果，需要覆盖合法、非法及临界输入。",
+            "high",
+            [item["constraint_id"] for item in field_constraints[:4]] + boundary_ids[:4],
+        )
+    if data_source_rules:
+        add("数据来源、过滤与排序", "数据来源规则容易在结构化过程中丢失，应独立验证过滤、排序和消费口径。", "high", [item["rule_id"] for item in data_source_rules[:6]])
+    if business_risks:
+        add("风险与非功能约束", "需求摘要已明确兼容性、性能或一致性风险，需与产品验收规则分层承接。", "medium", [item["risk_id"] for item in business_risks[:6]])
+    if ambiguities:
+        add("未决项追踪", "摘要存在尚未确认的输入或验收口径，后续不得将其自动升级为强制规则。", "medium", [item["ambiguity_id"] for item in ambiguities[:6]])
     return dimensions
 
 
@@ -1002,6 +1126,7 @@ def build_coverage_candidates(
     image_evidence: dict[str, Any],
     field_constraints: list[dict[str, Any]],
     data_source_rules: list[dict[str, Any]],
+    explicit_rules: list[dict[str, Any]],
 ) -> list[dict[str, Any]]:
     candidates: list[dict[str, Any]] = []
     counter = 1
@@ -1011,6 +1136,30 @@ def build_coverage_candidates(
         page_name = str(image.get("page_name", "")).strip()
         for section in image.get("sections", []):
             section_name = str(section.get("section_name", "")).strip()
+            related_ids = [
+                item["id"]
+                for item in explicit_rules
+                if any(
+                    ref.get("page_name") == page_name
+                    and ref.get("section_name") == section_name
+                    for ref in item.get("source_refs", [])
+                )
+            ]
+            related_ids.extend(
+                item["constraint_id"]
+                for item in field_constraints
+                if item.get("page_name") == page_name
+                and item.get("section_name") == section_name
+            )
+            related_ids.extend(
+                item["rule_id"]
+                for item in data_source_rules
+                if item.get("page_name") == page_name
+                and item.get("section_name") == section_name
+            )
+            related_ids = unique_strings(related_ids)
+            if not related_ids:
+                continue
             key = ("section", page_name, section_name)
             if key in seen:
                 continue
@@ -1024,7 +1173,7 @@ def build_coverage_candidates(
                     "priority": "high" if section_name in {"添加弹窗", "排序弹窗"} else "medium",
                     "rationale": "板块级 reasoning 已具备字段、规则或说明表信息，适合作为后续 structured_prd 与 testcase 的第一承接对象。",
                     "suggested_test_types": ["功能", "边界", "数据校验"],
-                    "source_reasoning_ids": [],
+                    "source_reasoning_ids": related_ids,
                 }
             )
             counter += 1
@@ -1058,6 +1207,21 @@ def build_coverage_candidates(
             }
         )
         counter += 1
+    if not candidates:
+        for rule in explicit_rules[:16]:
+            candidates.append(
+                {
+                    "candidate_id": f"COV-{counter:03d}",
+                    "candidate_type": "rule_cluster",
+                    "title": concise_title(rule.get("statement", ""), rule["id"]),
+                    "scope": "文本需求规则",
+                    "priority": "high",
+                    "rationale": "文本需求中的显式规则需要在后续 Structured PRD 与测试设计中保持可追溯。",
+                    "suggested_test_types": ["功能", "异常"],
+                    "source_reasoning_ids": [rule["id"]],
+                }
+            )
+            counter += 1
     return candidates
 
 
@@ -1186,15 +1350,22 @@ def main() -> int:
     implicit_rules = build_implicit_rules(image_evidence, screenshot_items)
     field_constraints = build_field_constraints(image_evidence, screenshot_items)
     data_source_rules = build_data_source_rules(image_evidence, screenshot_items)
-    business_risks = build_business_risks(field_constraints, data_source_rules, implicit_rules, screenshot_items)
-    edge_cases = build_edge_cases(field_constraints)
-    ambiguities = build_ambiguities(image_evidence, screenshot_items)
-    recommended_test_dimensions = build_test_dimensions(field_constraints, data_source_rules, business_risks, ambiguities)
-    coverage_candidates = build_coverage_candidates(image_evidence, field_constraints, data_source_rules)
+    business_risks = build_business_risks(
+        field_constraints, data_source_rules, implicit_rules, screenshot_items, requirement_doc
+    )
+    edge_cases = build_edge_cases(field_constraints, requirement_doc)
+    ambiguities = build_ambiguities(image_evidence, screenshot_items, requirement_doc)
+    recommended_test_dimensions = build_test_dimensions(
+        explicit_rules, field_constraints, data_source_rules, business_risks, ambiguities
+    )
+    coverage_candidates = build_coverage_candidates(
+        image_evidence, field_constraints, data_source_rules, explicit_rules
+    )
 
     reasoning_pack = {
         "project_code": str(manifest.get("project_code", "")).strip(),
         "work_item_id": str(manifest.get("work_item_id", "")).strip(),
+        "grounding_contract_version": "1.0",
         "generated_at": datetime.now().isoformat(timespec="seconds"),
         "generated_from": unique_strings(
             [

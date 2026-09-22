@@ -1,0 +1,231 @@
+{
+  "project_code": "OSS-BLIND",
+  "work_item_id": "CHATWOOT-15768",
+  "records": [
+    {
+      "record_id": "TRA-0001",
+      "evidence_id": "EVD-UNMAPPED",
+      "coverage_level": "full",
+      "structured_targets": [
+        {
+          "target_type": "feature",
+          "module_name": "会话高级筛选",
+          "feature_name": "自定义属性类型化筛选",
+          "field_name": "",
+          "target_name": "number 自定义属性"
+        }
+      ],
+      "testcase_ids": [
+        "OSS-BLIND-CONVERSATION-FILTER-WEB-FL-001"
+      ],
+      "gap_notes": "adapter_source=coverage_first_traceability; source_record_id=CFT-0001; rule_id=会话高级筛选::自定义属性类型化筛选::happy_path_combo; coverage_id=COV-EX-0006; fidelity_status=not_applicable",
+      "implementation_binding": "shared_contract",
+      "recommended_cr_stage": "dual_code",
+      "manual_confirmation_required": true,
+      "cr_focus_points": [
+        "number 自定义属性",
+        "coverage_id=COV-EX-0006"
+      ]
+    },
+    {
+      "record_id": "TRA-0002",
+      "evidence_id": "EVD-UNMAPPED",
+      "coverage_level": "full",
+      "structured_targets": [
+        {
+          "target_type": "feature",
+          "module_name": "会话高级筛选",
+          "feature_name": "自定义属性类型化筛选",
+          "field_name": "",
+          "target_name": "filter payload values"
+        }
+      ],
+      "testcase_ids": [
+        "OSS-BLIND-CONVERSATION-FILTER-WEB-DV-002"
+      ],
+      "gap_notes": "adapter_source=coverage_first_traceability; source_record_id=CFT-0002; rule_id=会话高级筛选::自定义属性类型化筛选::happy_path_combo; coverage_id=COV-EX-0007; fidelity_status=not_applicable",
+      "implementation_binding": "backend_contract",
+      "recommended_cr_stage": "backend_code",
+      "manual_confirmation_required": true,
+      "cr_focus_points": [
+        "filter payload values",
+        "coverage_id=COV-EX-0007"
+      ]
+    },
+    {
+      "record_id": "TRA-0003",
+      "evidence_id": "EVD-UNMAPPED",
+      "coverage_level": "full",
+      "structured_targets": [
+        {
+          "target_type": "feature",
+          "module_name": "会话高级筛选",
+          "feature_name": "自定义属性类型化筛选",
+          "field_name": "",
+          "target_name": "conversation custom attribute"
+        }
+      ],
+      "testcase_ids": [
+        "OSS-BLIND-CONVERSATION-FILTER-WEB-DV-003"
+      ],
+      "gap_notes": "adapter_source=coverage_first_traceability; source_record_id=CFT-0003; rule_id=会话高级筛选::自定义属性类型化筛选::happy_path_combo; coverage_id=COV-EX-0008; fidelity_status=not_applicable",
+      "implementation_binding": "shared_contract",
+      "recommended_cr_stage": "dual_code",
+      "manual_confirmation_required": true,
+      "cr_focus_points": [
+        "conversation custom attribute",
+        "coverage_id=COV-EX-0008"
+      ]
+    },
+    {
+      "record_id": "TRA-0004",
+      "evidence_id": "EVD-UNMAPPED",
+      "coverage_level": "full",
+      "structured_targets": [
+        {
+          "target_type": "feature",
+          "module_name": "会话高级筛选",
+          "feature_name": "自定义属性类型化筛选",
+          "field_name": "",
+          "target_name": "客户端二次匹配"
+        }
+      ],
+      "testcase_ids": [
+        "OSS-BLIND-CONVERSATION-FILTER-WEB-DV-004"
+      ],
+      "gap_notes": "adapter_source=coverage_first_traceability; source_record_id=CFT-0004; rule_id=会话高级筛选::自定义属性类型化筛选::happy_path_combo; coverage_id=COV-EX-0009; fidelity_status=not_applicable",
+      "implementation_binding": "shared_contract",
+      "recommended_cr_stage": "dual_code",
+      "manual_confirmation_required": true,
+      "cr_focus_points": [
+        "客户端二次匹配",
+        "coverage_id=COV-EX-0009"
+      ]
+    },
+    {
+      "record_id": "TRA-0005",
+      "evidence_id": "EVD-UNMAPPED",
+      "coverage_level": "full",
+      "structured_targets": [
+        {
+          "target_type": "feature",
+          "module_name": "会话高级筛选",
+          "feature_name": "自定义属性类型化筛选",
+          "field_name": "",
+          "target_name": "equal_to 与 not_equal_to"
+        }
+      ],
+      "testcase_ids": [
+        "OSS-BLIND-CONVERSATION-FILTER-WEB-FN-001"
+      ],
+      "gap_notes": "adapter_source=coverage_first_traceability; source_record_id=CFT-0005; rule_id=会话高级筛选::自定义属性类型化筛选::happy_path_combo; coverage_id=COV-EX-0010; fidelity_status=not_applicable",
+      "implementation_binding": "shared_contract",
+      "recommended_cr_stage": "dual_code",
+      "manual_confirmation_required": true,
+      "cr_focus_points": [
+        "equal_to 与 not_equal_to",
+        "coverage_id=COV-EX-0010"
+      ]
+    },
+    {
+      "record_id": "TRA-0006",
+      "evidence_id": "EVD-UNMAPPED",
+      "coverage_level": "full",
+      "structured_targets": [
+        {
+          "target_type": "feature",
+          "module_name": "会话高级筛选",
+          "feature_name": "自定义属性类型化筛选",
+          "field_name": "",
+          "target_name": "既有筛选类型"
+        }
+      ],
+      "testcase_ids": [
+        "OSS-BLIND-CONVERSATION-FILTER-WEB-FN-003"
+      ],
+      "gap_notes": "adapter_source=coverage_first_traceability; source_record_id=CFT-0006; rule_id=会话高级筛选::自定义属性类型化筛选::happy_path_combo; coverage_id=COV-EX-0012; fidelity_status=not_applicable",
+      "implementation_binding": "shared_contract",
+      "recommended_cr_stage": "dual_code",
+      "manual_confirmation_required": true,
+      "cr_focus_points": [
+        "既有筛选类型",
+        "coverage_id=COV-EX-0012"
+      ]
+    },
+    {
+      "record_id": "TRA-0007",
+      "evidence_id": "EVD-UNMAPPED",
+      "coverage_level": "full",
+      "structured_targets": [
+        {
+          "target_type": "feature",
+          "module_name": "会话高级筛选",
+          "feature_name": "自定义属性类型化筛选",
+          "field_name": "",
+          "target_name": "筛选输入为空数组时返回 VALUE_REQUIRED，且不得进入请求序列化。"
+        }
+      ],
+      "testcase_ids": [
+        "OSS-BLIND-CONVERSATION-FILTER-WEB-AB-001"
+      ],
+      "gap_notes": "adapter_source=coverage_first_traceability; source_record_id=CFT-0007; rule_id=会话高级筛选::自定义属性类型化筛选::happy_path_combo; coverage_id=COV-EX-0013; fidelity_status=not_applicable",
+      "implementation_binding": "shared_contract",
+      "recommended_cr_stage": "dual_code",
+      "manual_confirmation_required": true,
+      "cr_focus_points": [
+        "筛选输入为空数组时返回 VALUE_REQUIRED，且不得进入请求序列化。",
+        "coverage_id=COV-EX-0013"
+      ]
+    },
+    {
+      "record_id": "TRA-0008",
+      "evidence_id": "EVD-UNMAPPED",
+      "coverage_level": "full",
+      "structured_targets": [
+        {
+          "target_type": "feature",
+          "module_name": "会话高级筛选",
+          "feature_name": "自定义属性类型化筛选",
+          "field_name": "",
+          "target_name": "筛选输入为空对象时返回 VALUE_REQUIRED，且不得进入请求序列化。"
+        }
+      ],
+      "testcase_ids": [
+        "OSS-BLIND-CONVERSATION-FILTER-WEB-AB-003"
+      ],
+      "gap_notes": "adapter_source=coverage_first_traceability; source_record_id=CFT-0008; rule_id=会话高级筛选::自定义属性类型化筛选::happy_path_combo; coverage_id=COV-EX-0014; fidelity_status=not_applicable",
+      "implementation_binding": "shared_contract",
+      "recommended_cr_stage": "dual_code",
+      "manual_confirmation_required": true,
+      "cr_focus_points": [
+        "筛选输入为空对象时返回 VALUE_REQUIRED，且不得进入请求序列化。",
+        "coverage_id=COV-EX-0014"
+      ]
+    },
+    {
+      "record_id": "TRA-0009",
+      "evidence_id": "EVD-UNMAPPED",
+      "coverage_level": "full",
+      "structured_targets": [
+        {
+          "target_type": "feature",
+          "module_name": "会话高级筛选",
+          "feature_name": "自定义属性类型化筛选",
+          "field_name": "",
+          "target_name": "days_before 日期范围"
+        }
+      ],
+      "testcase_ids": [
+        "OSS-BLIND-CONVERSATION-FILTER-WEB-AB-002"
+      ],
+      "gap_notes": "adapter_source=coverage_first_traceability; source_record_id=CFT-0009; rule_id=会话高级筛选::自定义属性类型化筛选::happy_path_combo; coverage_id=COV-EX-0015; fidelity_status=not_applicable",
+      "implementation_binding": "shared_contract",
+      "recommended_cr_stage": "dual_code",
+      "manual_confirmation_required": true,
+      "cr_focus_points": [
+        "days_before 日期范围",
+        "coverage_id=COV-EX-0015"
+      ]
+    }
+  ]
+}

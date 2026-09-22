@@ -1,0 +1,25 @@
+{
+  "schema_version": "1.1.0",
+  "record_type": "intent",
+  "action_id": "R4-RAI-DF001-PREPARE",
+  "request_sha256": "5e2e0fdadab7261d3c02d9f0420c8827c93a672e00ab3f015cd286f9f215a1f0",
+  "execution_context": {
+    "run_id": "RUN-R4-RAILS-58429",
+    "actor": "codex-agent",
+    "provider": "openai"
+  },
+  "action": {
+    "action_id": "R4-RAI-DF001-PREPARE",
+    "action_type": "prepare_feedback_application",
+    "stage_id": "design_feedback_application",
+    "feedback_id": "DF-001",
+    "arguments": {
+      "targets": [
+        "acceptance/testability_gate.json",
+        "acceptance/testability_gate.md"
+      ]
+    },
+    "expected_outcome": "冻结 Rails DF-001 修改前的 Testability Gate JSON 与 Markdown"
+  },
+  "recorded_at": "2026-09-22T04:46:21.235388+00:00"
+}

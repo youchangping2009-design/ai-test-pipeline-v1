@@ -239,7 +239,11 @@ def parse_args() -> argparse.Namespace:
     )
     parser.add_argument("--strict", action="store_true", help="预留严格质量门开关；正式交付建议配合 validate_work_item.py --strict 使用")
     parser.add_argument("--repair", action="store_true", help="预留 repair loop 开关，本轮仅保留参数")
-    parser.add_argument("--eval-fixture", required=False, help="预留 eval fixture 名称，例如 PT083")
+    parser.add_argument(
+        "--eval-fixture",
+        required=False,
+        help="预留 eval fixture 名称，例如 CONFIGURATION_RULES",
+    )
     return parser.parse_args()
 
 

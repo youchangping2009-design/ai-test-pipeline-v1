@@ -1,0 +1,149 @@
+{
+  "project_code": "OSS-BLIND-R4",
+  "work_item_id": "HOMEASSISTANT-182800",
+  "generated_at": "2026-09-22T12:07:58",
+  "generated_from": [
+    "coverage/coverage_matrix.json",
+    "evidence/evidence_inventory.json",
+    "testcases/testcases_main.md"
+  ],
+  "summary": {
+    "record_count": 6,
+    "invalid_record_count": 0,
+    "false_traceability_rate": 0.0
+  },
+  "records": [
+    {
+      "record_id": "CFT-0001",
+      "rule_id": "HA-R001",
+      "coverage_id": "COV-EX-0001",
+      "testcase_id": "OSS-BLIND-R4-TTSAUDIO-MP3TAG-SERVER-DV-001",
+      "testcase_title": "已有 ID3 的 MP3 更新后只保留一个有效 ID3 头",
+      "source_origin": "explicit_rule",
+      "coverage_level": "business",
+      "emit_mode": "main_testcase",
+      "fidelity_status": "not_applicable",
+      "evidence_ids": [],
+      "reasoning_refs": [],
+      "structured_targets": [
+        {
+          "target_type": "feature",
+          "module_name": "TTS 音频标签",
+          "feature_name": "ID3 标签合并",
+          "field_name": "",
+          "target_name": "已带 ID3 标签的 MP3 写入 Home Assistant 标签后只能保留一个有效 ID3 头。"
+        }
+      ]
+    },
+    {
+      "record_id": "CFT-0002",
+      "rule_id": "HA-R002",
+      "coverage_id": "COV-EX-0002",
+      "testcase_id": "OSS-BLIND-R4-TTSAUDIO-MP3TAG-SERVER-DV-002",
+      "testcase_title": "更新标签后保留原 TSSE 元数据",
+      "source_origin": "explicit_rule",
+      "coverage_level": "business",
+      "emit_mode": "main_testcase",
+      "fidelity_status": "not_applicable",
+      "evidence_ids": [],
+      "reasoning_refs": [],
+      "structured_targets": [
+        {
+          "target_type": "feature",
+          "module_name": "TTS 音频标签",
+          "feature_name": "ID3 标签合并",
+          "field_name": "",
+          "target_name": "更新标签时必须保留输入中的 TSSE 元数据。"
+        }
+      ]
+    },
+    {
+      "record_id": "CFT-0003",
+      "rule_id": "HA-R003",
+      "coverage_id": "COV-EX-0003",
+      "testcase_id": "OSS-BLIND-R4-TTSAUDIO-MP3TAG-SERVER-DV-003",
+      "testcase_title": "标签处理不改变 MP3 音频帧",
+      "source_origin": "explicit_rule",
+      "coverage_level": "business",
+      "emit_mode": "main_testcase",
+      "fidelity_status": "not_applicable",
+      "evidence_ids": [],
+      "reasoning_refs": [],
+      "structured_targets": [
+        {
+          "target_type": "feature",
+          "module_name": "TTS 音频标签",
+          "feature_name": "ID3 标签合并",
+          "field_name": "",
+          "target_name": "标签处理不得改变 MP3 音频帧内容。"
+        }
+      ]
+    },
+    {
+      "record_id": "CFT-0004",
+      "rule_id": "HA-R004",
+      "coverage_id": "COV-EX-0004",
+      "testcase_id": "OSS-BLIND-R4-TTSAUDIO-MP3TAG-SERVER-ST-001",
+      "testcase_title": "磁盘缓存中的已标记 MP3 可严格解码且非静音",
+      "source_origin": "explicit_rule",
+      "coverage_level": "business",
+      "emit_mode": "main_testcase",
+      "fidelity_status": "not_applicable",
+      "evidence_ids": [],
+      "reasoning_refs": [],
+      "structured_targets": [
+        {
+          "target_type": "feature",
+          "module_name": "TTS 音频标签",
+          "feature_name": "缓存音频回放",
+          "field_name": "",
+          "target_name": "缓存文件从内存路径切换为磁盘读取后仍应可被严格解码器正常播放，不能静音。"
+        }
+      ]
+    },
+    {
+      "record_id": "CFT-0005",
+      "rule_id": "HA-R005",
+      "coverage_id": "COV-EX-0005",
+      "testcase_id": "OSS-BLIND-R4-TTSAUDIO-MP3TAG-SERVER-ST-002",
+      "testcase_title": "无 ID3 的 MP3 可添加标签并保持可播放",
+      "source_origin": "explicit_rule",
+      "coverage_level": "business",
+      "emit_mode": "main_testcase",
+      "fidelity_status": "not_applicable",
+      "evidence_ids": [],
+      "reasoning_refs": [],
+      "structured_targets": [
+        {
+          "target_type": "feature",
+          "module_name": "TTS 音频标签",
+          "feature_name": "ID3 标签合并",
+          "field_name": "",
+          "target_name": "未带 ID3 标签的 MP3 仍可添加所需标签并保持可播放。"
+        }
+      ]
+    },
+    {
+      "record_id": "CFT-0006",
+      "rule_id": "HA-R006",
+      "coverage_id": "COV-EX-0006",
+      "testcase_id": "OSS-BLIND-R4-TTSAUDIO-MP3TAG-SERVER-FL-001",
+      "testcase_title": "已带标签音频处理结果不依赖 TTS provider",
+      "source_origin": "explicit_rule",
+      "coverage_level": "business",
+      "emit_mode": "main_testcase",
+      "fidelity_status": "not_applicable",
+      "evidence_ids": [],
+      "reasoning_refs": [],
+      "structured_targets": [
+        {
+          "target_type": "feature",
+          "module_name": "TTS 音频标签",
+          "feature_name": "ID3 标签合并",
+          "field_name": "",
+          "target_name": "已带标签音频的处理结果不应依赖具体 TTS provider。"
+        }
+      ]
+    }
+  ]
+}

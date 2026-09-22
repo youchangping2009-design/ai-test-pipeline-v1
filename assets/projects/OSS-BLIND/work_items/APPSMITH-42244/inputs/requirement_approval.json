@@ -1,0 +1,13 @@
+{
+  "schema_version": "1.0.0",
+  "approval_id": "RUN-APPSMITH-42244-BLIND-20260921-requirement-cfb872b44c0cbb4ee6f82750",
+  "status": "approved",
+  "reviewed_by": "ycp",
+  "reviewed_at": "2026-09-21T06:10:40+00:00",
+  "note": "用户于2026-09-21明确批准本轮公开盲测的三份需求摘要；输入与代码diff/已有测试oracle保持隔离。",
+  "run_id": "RUN-APPSMITH-42244-BLIND-20260921",
+  "requirement_summary_sha256": "d6a20fd1e46a3c17c22fdb182ab009c7c9e91c2c52b1dbfd81fcc22b33934cbf",
+  "source_manifest_sha256": "248aea223071d29525283ea0bdf53d841ae456e8b9fba39d9b33c470d9577958",
+  "raw_inputs_fingerprint": "53c4cea3f0581dfbaf6751c1a2dfa6afc728ddb59c6cadee4523c2e4e4833c13",
+  "requirement_version": "github-pr-42244"
+}

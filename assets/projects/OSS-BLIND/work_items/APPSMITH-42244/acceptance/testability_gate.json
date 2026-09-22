@@ -1,0 +1,146 @@
+{
+  "project_code": "OSS-BLIND",
+  "work_item_id": "APPSMITH-42244",
+  "items": [
+    {
+      "gate_id": "TG-001",
+      "source_rule_id": "APP-R001",
+      "source_text": "在真正创建连接之前检查 JDBC URL 是否属于 Databricks JDBC 协议；非法协议必须返回 The JDBC URL must use the jdbc:databricks:// protocol.",
+      "classification": "product_behavior",
+      "testability": "testable",
+      "decision": "generate_acceptance_example",
+      "reason": "可通过连接调用顺序及错误目标未建立连接直接验证。",
+      "confidence": "confirmed"
+    },
+    {
+      "gate_id": "TG-002",
+      "source_rule_id": "APP-R002",
+      "source_text": "已知合法协议前缀为 jdbc:databricks://；有效且自定义的 Databricks URL 应继续进入连接流程。",
+      "classification": "field_constraint",
+      "testability": "testable",
+      "decision": "generate_acceptance_example",
+      "reason": "合法协议前缀与自定义合法 URL 的兼容结果均可直接构造输入验证。",
+      "confidence": "confirmed"
+    },
+    {
+      "gate_id": "TG-003",
+      "source_rule_id": "APP-R003",
+      "source_text": "Databricks 连接由明确的 Databricks JDBC driver 处理，非 Databricks URL 被拒绝后不得转交其他已注册 driver。",
+      "classification": "product_behavior",
+      "testability": "testable",
+      "decision": "generate_acceptance_example",
+      "reason": "可验证 driver 调用对象以及拒绝后不存在其他 driver 接管行为。",
+      "confidence": "confirmed"
+    },
+    {
+      "gate_id": "TG-004",
+      "source_rule_id": "APP-R004",
+      "source_text": "Databricks driver 拒绝 URL 或未返回连接时，应按失败分支返回连接创建错误并停止后续连接行为，不得判为成功。",
+      "classification": "product_behavior",
+      "testability": "testable",
+      "decision": "generate_acceptance_example",
+      "reason": "driver 拒绝 URL 与返回空连接是两个可独立构造和定位的失败分支，应分别形成原子验收场景。",
+      "confidence": "confirmed"
+    },
+    {
+      "gate_id": "TG-005",
+      "source_rule_id": "APP-R005",
+      "source_text": "有效 URL 建立连接时，JDBC 属性 UID 固定为 token，PWD 使用当前 token 值；既有合法配置及安装升级场景行为不变。",
+      "classification": "product_behavior",
+      "testability": "testable",
+      "decision": "generate_acceptance_example",
+      "reason": "可捕获 JDBC 连接属性，分别断言 UID 固定值、PWD token 值及连接成功结果。",
+      "confidence": "confirmed"
+    },
+    {
+      "gate_id": "TG-006",
+      "source_rule_id": "APP-R006",
+      "source_text": "JDBC URL 校验失败发生在连接创建阶段，不应先对错误目标建立网络连接。",
+      "classification": "product_behavior",
+      "testability": "testable",
+      "decision": "generate_acceptance_example",
+      "reason": "可通过网络调用观测或 driver mock 验证失败前无错误目标连接副作用。",
+      "confidence": "confirmed"
+    },
+    {
+      "gate_id": "TG-007",
+      "source_rule_id": "APP-FR001",
+      "source_text": "先确认 JDBC URL 属于 Databricks JDBC 协议，再尝试建立网络连接。",
+      "classification": "product_behavior",
+      "testability": "testable",
+      "decision": "skip_case",
+      "reason": "与 APP-R001 和 APP-R006 的连接前校验及副作用断言重复，由对应显式规则统一承接。",
+      "confidence": "confirmed"
+    },
+    {
+      "gate_id": "TG-008",
+      "source_rule_id": "APP-FR002",
+      "source_text": "已知合法协议前缀为 jdbc:databricks://。",
+      "classification": "field_constraint",
+      "testability": "testable",
+      "decision": "skip_case",
+      "reason": "与 APP-R002 的协议前缀约束重复。",
+      "confidence": "confirmed"
+    },
+    {
+      "gate_id": "TG-009",
+      "source_rule_id": "APP-FR004",
+      "source_text": "返回连接创建错误，停止后续连接行为，不得判为成功。",
+      "classification": "product_behavior",
+      "testability": "testable",
+      "decision": "skip_case",
+      "reason": "与 APP-R004 的失败关闭规则重复。",
+      "confidence": "confirmed"
+    },
+    {
+      "gate_id": "TG-010",
+      "source_rule_id": "APP-FR005",
+      "source_text": "自定义合法 URL 与既有有效安装、升级场景行为不回退。",
+      "classification": "product_behavior",
+      "testability": "testable",
+      "decision": "skip_case",
+      "reason": "与 APP-R005 的兼容性规则重复。",
+      "confidence": "confirmed"
+    },
+    {
+      "gate_id": "TG-011",
+      "source_rule_id": "APP-FIELD-001",
+      "source_text": "已知合法协议前缀为 jdbc:databricks://，非 Databricks JDBC URL 在连接前被拒绝。",
+      "classification": "field_constraint",
+      "testability": "testable",
+      "decision": "skip_case",
+      "reason": "与 APP-R001、APP-R002 的 URL 校验规则重复，不额外生成同义验收场景。",
+      "confidence": "confirmed"
+    },
+    {
+      "gate_id": "TG-012",
+      "source_rule_id": "RISK-001",
+      "source_text": "仅检查字符串前缀可能遗漏大小写、前后空白、编码或相似协议边界，应由后续设计区分正式验收与风险加固。",
+      "classification": "risk_hardening",
+      "testability": "risk_only",
+      "decision": "risk_note_only",
+      "reason": "边界处理口径尚未确认，仅保留风险，不推断为强制拒绝规则。",
+      "confidence": "confirmed"
+    },
+    {
+      "gate_id": "TG-013",
+      "source_rule_id": "RISK-002",
+      "source_text": "driver 返回空连接、抛出异常和拒绝 URL 的错误口径尚未完全定义。",
+      "classification": "risk_hardening",
+      "testability": "risk_only",
+      "decision": "risk_note_only",
+      "reason": "错误码和文案未定义，仅保留异常口径风险。",
+      "confidence": "confirmed"
+    },
+    {
+      "gate_id": "TG-014",
+      "source_rule_id": "RISK-003",
+      "source_text": "历史非 Databricks URL 配置会从可尝试连接变为明确失败，这是预期行为变化。",
+      "classification": "risk_hardening",
+      "testability": "risk_only",
+      "decision": "risk_note_only",
+      "reason": "该项用于记录历史配置影响，不额外生成独立产品验收。",
+      "confidence": "confirmed"
+    }
+  ]
+}

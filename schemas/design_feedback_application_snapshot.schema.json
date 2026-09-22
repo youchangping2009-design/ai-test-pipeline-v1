@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "AI Test Pipeline Design Feedback Application Snapshot",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "project_code",
+    "work_item_id",
+    "feedback_id",
+    "target_layer",
+    "feedback_fingerprint",
+    "prepared_at",
+    "artifacts"
+  ],
+  "properties": {
+    "schema_version": { "const": "1.0.0" },
+    "project_code": { "type": "string", "minLength": 1 },
+    "work_item_id": { "type": "string", "minLength": 1 },
+    "feedback_id": { "type": "string", "pattern": "^DF-[0-9]{3,}$" },
+    "target_layer": { "type": "string", "minLength": 1 },
+    "feedback_fingerprint": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+    "prepared_at": { "type": "string", "minLength": 1 },
+    "artifacts": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["path", "before_sha256"],
+        "properties": {
+          "path": { "type": "string", "minLength": 1 },
+          "before_sha256": { "type": "string", "pattern": "^[0-9a-f]{64}$" }
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false
+}

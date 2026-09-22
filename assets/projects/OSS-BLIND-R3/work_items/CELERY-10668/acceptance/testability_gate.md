@@ -1,0 +1,18 @@
+# Testability Gate
+
+| gate_id | source_rule_id | classification | testability | decision | confidence | source_text | reason |
+|---|---|---|---|---|---|---|---|
+| TG-001 | CEL-R001 | backend_job | testable | generate_acceptance_example | confirmed | 从其他 Worker 或持久化状态接收撤销记录时，只合并任务 ID，不复用来源主机的 monotonic 时间戳。 | 可构造带远端时间戳的同步与恢复输入，核对本机只接收任务 ID。 |
+| TG-002 | CEL-R002 | backend_job | testable | generate_acceptance_example | confirmed | 接收的撤销任务 ID 从本机收到时开始计算 REVOKE_EXPIRES 有效期，并在有效期后正常过期。 | 可控制接收时刻并观察有效期内保留和期满过期两个状态。 |
+| TG-003 | CEL-R003 | backend_job | testable | generate_acceptance_example | confirmed | 撤销集合达到 maxlen 时，本机刚撤销的任务不得因外部时间戳排序而被错误驱逐；有效期内的已撤销 ETA/countdown 任务不得执行。 | 可在满容量集合中分别验证本机新撤销项保留和 ETA/countdown 任务不执行。 |
+| TG-004 | CEL-R004 | backend_job | testable | generate_acceptance_example | confirmed | hello、mingle 与 --statedb 恢复三条入口必须使用相同的本机重新计时语义。 | 三个入口均可独立注入外部撤销状态并核对本机接收时间。 |
+| TG-005 | CEL-R005 | platform_scope | testable | generate_acceptance_example | confirmed | 新旧 Worker 混合集群双向交换撤销状态时，不得丢失撤销任务 ID。 | 可建立新旧 Worker 双向同步组合并比对两端撤销 ID 集合。 |
+| TG-006 | CEL-R006 | backend_job | testable | generate_acceptance_example | confirmed | now=0、相同时间戳以及 int/string 混合任务 ID 不得触发排序或类型比较异常。 | 三个边界输入均可确定性构造并分别观察集合操作是否异常。 |
+| TG-007 | CEL-FR002 | backend_job | testable | skip_case | confirmed | 有效期内保留，期满后过期。 | 与 CEL-R002 的有效期状态规则重复。 |
+| TG-008 | CEL-FR003 | backend_job | testable | skip_case | confirmed | 不得因不可比较的外部时间戳驱逐本机新撤销项。 | 与 CEL-R003 的容量驱逐断言重复。 |
+| TG-009 | CEL-FR004 | backend_job | testable | skip_case | confirmed | 三个入口使用相同的任务 ID 合并和本机重新计时语义。 | 与 CEL-R004 的 hello、mingle 和 --statedb 规则重复。 |
+| TG-010 | CEL-FR005 | backend_job | testable | skip_case | confirmed | 集合操作不抛出排序或类型比较异常。 | 与 CEL-R006 的排序与类型边界规则重复。 |
+| TG-011 | RISK-001 | risk_hardening | risk_only | risk_note_only | confirmed | 滚动升级期间旧 Worker 与新 Worker 的状态格式兼容是核心风险。 | 正式双向交换行为由 CEL-R005 承接，此处只保留升级风险背景。 |
+| TG-012 | RISK-002 | risk_hardening | risk_only | risk_note_only | confirmed | 重新从接收时间计算有效期会延长部分撤销 ID 的存活时间，但优先保证不错误执行任务。 | 这是已知权衡说明，不增加未定义的最长存活强断言。 |
+| TG-013 | RISK-003 | risk_hardening | risk_only | risk_note_only | confirmed | 高频撤销和满容量条件下才容易暴露驱逐问题，普通小样本可能产生假通过。 | 保留为后续压力与容量设计提示，不推断未定义的性能阈值。 |
+| TG-014 | RISK-004 | risk_hardening | risk_only | risk_note_only | confirmed | 跨主机 monotonic 时钟不可比较，测试不能用墙钟调整替代真实时钟域差异。 | 该项约束测试环境真实性，不额外生成产品行为用例。 |

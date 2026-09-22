@@ -1,0 +1,196 @@
+{
+  "project_code": "OSS-BLIND",
+  "work_item_id": "SALEOR-19804",
+  "items": [
+    {
+      "gate_id": "TG-001",
+      "source_rule_id": "SL-R001",
+      "source_text": "giftCardBulkCreate 复用已有标签时，只能把新礼品卡追加到标签关系，不得移除该标签与历史礼品卡之间的关联。",
+      "classification": "linkage",
+      "testability": "testable",
+      "decision": "generate_acceptance_example",
+      "reason": "可通过连续两批创建前后的标签成员集合直接验证追加而非替换。",
+      "confidence": "confirmed"
+    },
+    {
+      "gate_id": "TG-002",
+      "source_rule_id": "SL-R002",
+      "source_text": "输入新标签时，先创建标签，再把当前批次礼品卡关联到该标签。",
+      "classification": "linkage",
+      "testability": "testable",
+      "decision": "generate_acceptance_example",
+      "reason": "新标签存在性及其当前批次成员关系均可查询验证。",
+      "confidence": "confirmed"
+    },
+    {
+      "gate_id": "TG-003",
+      "source_rule_id": "SL-R003",
+      "source_text": "连续批次使用相同、部分重叠或完全不同的标签集合后，每个标签都应保留其全部正确礼品卡成员。",
+      "classification": "linkage",
+      "testability": "testable",
+      "decision": "generate_acceptance_example",
+      "reason": "三类标签集合可分别执行并逐标签核对最终成员集合。",
+      "confidence": "confirmed"
+    },
+    {
+      "gate_id": "TG-004",
+      "source_rule_id": "SL-R004",
+      "source_text": "新批次每张礼品卡只获得本次输入指定的标签；新旧标签混合输入时，已有关系保留且新关系正确建立。",
+      "classification": "linkage",
+      "testability": "testable",
+      "decision": "generate_acceptance_example",
+      "reason": "可核对当前批次每张礼品卡的标签集合和已有标签历史成员。",
+      "confidence": "confirmed"
+    },
+    {
+      "gate_id": "TG-005",
+      "source_rule_id": "SL-R005",
+      "source_text": "批量创建返回 count 与实际新建数量一致，errors 为空时才视为成功，礼品卡标签结果保持既有接口契约。",
+      "classification": "product_behavior",
+      "testability": "testable",
+      "decision": "generate_acceptance_example",
+      "reason": "GraphQL 响应字段与数据库实际新建记录均可核对。",
+      "confidence": "confirmed"
+    },
+    {
+      "gate_id": "TG-006",
+      "source_rule_id": "SL-R006",
+      "source_text": "关系更新应支持批量数量，不引入与历史礼品卡数量线性失控的额外查询；具体性能阈值待确认。",
+      "classification": "risk_hardening",
+      "testability": "needs_confirmation",
+      "decision": "needs_confirmation",
+      "reason": "可以观测查询数量和耗时，但缺少最大 count、标签数、查询次数及耗时阈值，不能生成确定性验收断言。",
+      "confidence": "confirmed"
+    },
+    {
+      "gate_id": "TG-007",
+      "source_rule_id": "SL-R007",
+      "source_text": "无权限、非法输入、giftCardCreate 与 giftCardUpdate 的既有行为不得因本次修复改变。",
+      "classification": "product_behavior",
+      "testability": "testable",
+      "decision": "generate_acceptance_example",
+      "reason": "权限、非法输入及两个非批量 mutation 均可独立执行回归。",
+      "confidence": "confirmed"
+    },
+    {
+      "gate_id": "TG-008",
+      "source_rule_id": "SL-FR001",
+      "source_text": "不得用当前批次替换已有标签的完整礼品卡成员集合。",
+      "classification": "linkage",
+      "testability": "testable",
+      "decision": "skip_case",
+      "reason": "与 SL-R001 的追加而非替换规则重复。",
+      "confidence": "confirmed"
+    },
+    {
+      "gate_id": "TG-009",
+      "source_rule_id": "SL-FR002",
+      "source_text": "新标签仅建立本次批次所需关系。",
+      "classification": "linkage",
+      "testability": "testable",
+      "decision": "skip_case",
+      "reason": "与 SL-R002、SL-R004 的新标签关系规则重复。",
+      "confidence": "confirmed"
+    },
+    {
+      "gate_id": "TG-010",
+      "source_rule_id": "SL-FR004",
+      "source_text": "第二批复用第一批标签后，第一批礼品卡仍保留该标签。",
+      "classification": "linkage",
+      "testability": "testable",
+      "decision": "skip_case",
+      "reason": "与 SL-R001、SL-R003 的跨批次关系保留规则重复。",
+      "confidence": "confirmed"
+    },
+    {
+      "gate_id": "TG-011",
+      "source_rule_id": "SL-FR005",
+      "source_text": "count 与实际新建数量一致且 errors 为空时才视为成功。",
+      "classification": "product_behavior",
+      "testability": "testable",
+      "decision": "skip_case",
+      "reason": "与 SL-R005 的返回成功判定重复。",
+      "confidence": "confirmed"
+    },
+    {
+      "gate_id": "TG-012",
+      "source_rule_id": "SL-FR006",
+      "source_text": "giftCardCreate、giftCardUpdate 以及既有错误行为不变。",
+      "classification": "product_behavior",
+      "testability": "testable",
+      "decision": "skip_case",
+      "reason": "与 SL-R007 的兼容性回归规则重复。",
+      "confidence": "confirmed"
+    },
+    {
+      "gate_id": "TG-013",
+      "source_rule_id": "SL-FIELD-001",
+      "source_text": "已有标签采用关系追加，新标签创建后关联当前批次，当前批次礼品卡只获得输入指定标签。",
+      "classification": "linkage",
+      "testability": "testable",
+      "decision": "skip_case",
+      "reason": "与 SL-R001、SL-R002、SL-R004 的关系规则重复。",
+      "confidence": "confirmed"
+    },
+    {
+      "gate_id": "TG-014",
+      "source_rule_id": "SL-FIELD-002",
+      "source_text": "返回 count 与实际新建礼品卡数量一致。",
+      "classification": "field_constraint",
+      "testability": "testable",
+      "decision": "skip_case",
+      "reason": "与 SL-R005 的返回数量规则重复。",
+      "confidence": "confirmed"
+    },
+    {
+      "gate_id": "TG-015",
+      "source_rule_id": "RISK-001",
+      "source_text": "关系替换与追加在单批次中可能都表现正常，必须跨批次检查历史关系。",
+      "classification": "risk_hardening",
+      "testability": "risk_only",
+      "decision": "risk_note_only",
+      "reason": "风险本身作为审计记录，跨批次正式行为已由 SL-R001 与 SL-R003 承接。",
+      "confidence": "confirmed"
+    },
+    {
+      "gate_id": "TG-016",
+      "source_rule_id": "RISK-002",
+      "source_text": "大批量礼品卡和高复用标签可能引入查询次数或关系写入性能风险。",
+      "classification": "risk_hardening",
+      "testability": "risk_only",
+      "decision": "risk_note_only",
+      "reason": "缺少可判定性能阈值，仅保留非功能风险。",
+      "confidence": "confirmed"
+    },
+    {
+      "gate_id": "TG-017",
+      "source_rule_id": "RISK-003",
+      "source_text": "并发批量创建复用同一标签时的锁、唯一性和最终成员集合未明确。",
+      "classification": "risk_hardening",
+      "testability": "risk_only",
+      "decision": "risk_note_only",
+      "reason": "并发一致性契约尚未确认，不生成强业务断言。",
+      "confidence": "confirmed"
+    },
+    {
+      "gate_id": "TG-018",
+      "source_rule_id": "RISK-004",
+      "source_text": "修复是前向修复，历史已丢失关系不可从数据库自动推导。",
+      "classification": "risk_hardening",
+      "testability": "risk_only",
+      "decision": "risk_note_only",
+      "reason": "历史数据恢复不在范围，仅记录前向修复边界。",
+      "confidence": "confirmed"
+    },
+    {
+      "gate_id": "TG-019",
+      "source_rule_id": "SL-R008",
+      "source_text": "giftCardBulkCreate 的标签名称按小写归一并去重，大小写变体或重复输入不得创建重复标签记录或重复关系。",
+      "classification": "field_constraint",
+      "testability": "testable",
+      "decision": "generate_acceptance_example",
+      "reason": "可分别核对已有标签大小写变体、新标签重复输入和关系记录数量，三个原子断言均有确定数据 oracle。",
+      "confidence": "confirmed"
+    }
+  ]
+}

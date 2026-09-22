@@ -1,0 +1,403 @@
+{
+  "project_code": "OSS-BLIND-R4",
+  "work_item_id": "KUBERNETES-141831",
+  "generation_mode": "case_plan_direct",
+  "generated_from": [
+    "acceptance/acceptance_examples.json",
+    "acceptance/testability_gate.json",
+    "coverage/coverage_matrix.json",
+    "structured_prd/structured_prd.json"
+  ],
+  "case_plans": [
+    {
+      "case_plan_id": "CP-001",
+      "source_gate_ids": [
+        "TG-001"
+      ],
+      "source_example_ids": [
+        "AE-001"
+      ],
+      "source_responsibility_ids": [],
+      "source_rule_ids": [
+        "K8S-R001"
+      ],
+      "source_coverage_ids": [
+        "COV-EX-0001"
+      ],
+      "generated_testcase_ids": [
+        "OSS-BLIND-R4-DEVICETAINT-WARNING-API-FN-001"
+      ],
+      "page_name": "DeviceTaintRule API",
+      "section_name": "设备选择器告警",
+      "module_name": "DeviceTaintRule Admission Warning",
+      "feature_name": "空选择器判定",
+      "title": "create 空 deviceSelector 返回 Warning",
+      "verification_side": "Kubernetes API Server create Warning 层",
+      "case_type": "prompt_display",
+      "priority": "P0",
+      "assertion": "创建响应包含空 selector Warning。",
+      "validation_path": "product_acceptance",
+      "should_generate_case": true
+    },
+    {
+      "case_plan_id": "CP-002",
+      "source_gate_ids": [
+        "TG-001"
+      ],
+      "source_example_ids": [
+        "AE-002"
+      ],
+      "source_responsibility_ids": [],
+      "source_rule_ids": [
+        "K8S-R001"
+      ],
+      "source_coverage_ids": [
+        "COV-EX-0002"
+      ],
+      "generated_testcase_ids": [
+        "OSS-BLIND-R4-DEVICETAINT-WARNING-API-FN-002"
+      ],
+      "page_name": "DeviceTaintRule API",
+      "section_name": "设备选择器告警",
+      "module_name": "DeviceTaintRule Admission Warning",
+      "feature_name": "空选择器判定",
+      "title": "update 空 deviceSelector 返回 Warning",
+      "verification_side": "Kubernetes API Server update Warning 层",
+      "case_type": "prompt_display",
+      "priority": "P0",
+      "assertion": "更新响应包含空 selector Warning。",
+      "validation_path": "product_acceptance",
+      "should_generate_case": true
+    },
+    {
+      "case_plan_id": "CP-003",
+      "source_gate_ids": [
+        "TG-002"
+      ],
+      "source_example_ids": [
+        "AE-003"
+      ],
+      "source_responsibility_ids": [],
+      "source_rule_ids": [
+        "K8S-R002"
+      ],
+      "source_coverage_ids": [
+        "COV-EX-0003"
+      ],
+      "generated_testcase_ids": [
+        "OSS-BLIND-R4-DEVICETAINT-WARNING-API-FN-003"
+      ],
+      "page_name": "DeviceTaintRule API",
+      "section_name": "设备选择器告警",
+      "module_name": "DeviceTaintRule Admission Warning",
+      "feature_name": "非阻塞警告响应",
+      "title": "空 selector 返回精确警告文本",
+      "verification_side": "Kubernetes API Server Warning 文本层",
+      "case_type": "prompt_display",
+      "priority": "P0",
+      "assertion": "警告文本逐字等于 `spec.deviceSelector: an empty selector matches every device from every driver in the cluster`。",
+      "validation_path": "product_acceptance",
+      "should_generate_case": true
+    },
+    {
+      "case_plan_id": "CP-004",
+      "source_gate_ids": [
+        "TG-003"
+      ],
+      "source_example_ids": [
+        "AE-004"
+      ],
+      "source_responsibility_ids": [],
+      "source_rule_ids": [
+        "K8S-R003"
+      ],
+      "source_coverage_ids": [
+        "COV-EX-0004"
+      ],
+      "generated_testcase_ids": [
+        "OSS-BLIND-R4-DEVICETAINT-WARNING-API-FN-004"
+      ],
+      "page_name": "DeviceTaintRule API",
+      "section_name": "设备选择器告警",
+      "module_name": "DeviceTaintRule Admission Warning",
+      "feature_name": "空选择器判定",
+      "title": "省略 deviceSelector 不返回空 selector Warning",
+      "verification_side": "Kubernetes API Server Warning 判定层",
+      "case_type": "prompt_display",
+      "priority": "P0",
+      "assertion": "响应中不存在空 selector Warning。",
+      "validation_path": "product_acceptance",
+      "should_generate_case": true
+    },
+    {
+      "case_plan_id": "CP-005",
+      "source_gate_ids": [
+        "TG-004"
+      ],
+      "source_example_ids": [
+        "AE-005"
+      ],
+      "source_responsibility_ids": [],
+      "source_rule_ids": [
+        "K8S-R004"
+      ],
+      "source_coverage_ids": [
+        "COV-EX-0005"
+      ],
+      "generated_testcase_ids": [
+        "OSS-BLIND-R4-DEVICETAINT-WARNING-API-FN-005"
+      ],
+      "page_name": "DeviceTaintRule API",
+      "section_name": "设备选择器告警",
+      "module_name": "DeviceTaintRule Admission Warning",
+      "feature_name": "空选择器判定",
+      "title": "selector 指定 driver 时不返回空 selector Warning",
+      "verification_side": "Kubernetes API Server selector 范围判定层",
+      "case_type": "prompt_display",
+      "priority": "P0",
+      "assertion": "响应中不存在空 selector Warning。",
+      "validation_path": "product_acceptance",
+      "should_generate_case": true
+    },
+    {
+      "case_plan_id": "CP-006",
+      "source_gate_ids": [
+        "TG-004"
+      ],
+      "source_example_ids": [
+        "AE-006"
+      ],
+      "source_responsibility_ids": [],
+      "source_rule_ids": [
+        "K8S-R004"
+      ],
+      "source_coverage_ids": [
+        "COV-EX-0006"
+      ],
+      "generated_testcase_ids": [
+        "OSS-BLIND-R4-DEVICETAINT-WARNING-API-FN-006"
+      ],
+      "page_name": "DeviceTaintRule API",
+      "section_name": "设备选择器告警",
+      "module_name": "DeviceTaintRule Admission Warning",
+      "feature_name": "空选择器判定",
+      "title": "selector 指定 pool 时不返回空 selector Warning",
+      "verification_side": "Kubernetes API Server selector 范围判定层",
+      "case_type": "prompt_display",
+      "priority": "P0",
+      "assertion": "响应中不存在空 selector Warning。",
+      "validation_path": "product_acceptance",
+      "should_generate_case": true
+    },
+    {
+      "case_plan_id": "CP-007",
+      "source_gate_ids": [
+        "TG-004"
+      ],
+      "source_example_ids": [
+        "AE-007"
+      ],
+      "source_responsibility_ids": [],
+      "source_rule_ids": [
+        "K8S-R004"
+      ],
+      "source_coverage_ids": [
+        "COV-EX-0007"
+      ],
+      "generated_testcase_ids": [
+        "OSS-BLIND-R4-DEVICETAINT-WARNING-API-FN-007"
+      ],
+      "page_name": "DeviceTaintRule API",
+      "section_name": "设备选择器告警",
+      "module_name": "DeviceTaintRule Admission Warning",
+      "feature_name": "空选择器判定",
+      "title": "selector 指定 device 时不返回空 selector Warning",
+      "verification_side": "Kubernetes API Server selector 范围判定层",
+      "case_type": "prompt_display",
+      "priority": "P0",
+      "assertion": "响应中不存在空 selector Warning。",
+      "validation_path": "product_acceptance",
+      "should_generate_case": true
+    },
+    {
+      "case_plan_id": "CP-008",
+      "source_gate_ids": [
+        "TG-005"
+      ],
+      "source_example_ids": [
+        "AE-008"
+      ],
+      "source_responsibility_ids": [],
+      "source_rule_ids": [
+        "K8S-R005"
+      ],
+      "source_coverage_ids": [
+        "COV-EX-0008"
+      ],
+      "generated_testcase_ids": [
+        "OSS-BLIND-R4-DEVICETAINT-WARNING-API-FL-001"
+      ],
+      "page_name": "DeviceTaintRule API",
+      "section_name": "设备选择器告警",
+      "module_name": "DeviceTaintRule Admission Warning",
+      "feature_name": "非阻塞警告响应",
+      "title": "空 selector Warning 不阻止 create 成功",
+      "verification_side": "Kubernetes API Server create 与持久化层",
+      "case_type": "linkage",
+      "priority": "P0",
+      "assertion": "create 完成后，响应包含空 selector Warning，且服务端可查询到新对象。",
+      "validation_path": "product_acceptance",
+      "should_generate_case": true
+    },
+    {
+      "case_plan_id": "CP-009",
+      "source_gate_ids": [
+        "TG-005"
+      ],
+      "source_example_ids": [
+        "AE-009"
+      ],
+      "source_responsibility_ids": [],
+      "source_rule_ids": [
+        "K8S-R005"
+      ],
+      "source_coverage_ids": [
+        "COV-EX-0009"
+      ],
+      "generated_testcase_ids": [
+        "OSS-BLIND-R4-DEVICETAINT-WARNING-API-FL-002"
+      ],
+      "page_name": "DeviceTaintRule API",
+      "section_name": "设备选择器告警",
+      "module_name": "DeviceTaintRule Admission Warning",
+      "feature_name": "非阻塞警告响应",
+      "title": "空 selector Warning 不阻止 update 成功",
+      "verification_side": "Kubernetes API Server update 与持久化层",
+      "case_type": "linkage",
+      "priority": "P0",
+      "assertion": "update 完成后，响应包含空 selector Warning，且服务端保存了新版本对象。",
+      "validation_path": "product_acceptance",
+      "should_generate_case": true
+    },
+    {
+      "case_plan_id": "CP-010",
+      "source_gate_ids": [
+        "TG-005"
+      ],
+      "source_example_ids": [
+        "AE-010"
+      ],
+      "source_responsibility_ids": [],
+      "source_rule_ids": [
+        "K8S-R005"
+      ],
+      "source_coverage_ids": [
+        "COV-EX-0010"
+      ],
+      "generated_testcase_ids": [
+        "OSS-BLIND-R4-DEVICETAINT-WARNING-API-AB-001"
+      ],
+      "page_name": "DeviceTaintRule API",
+      "section_name": "设备选择器告警",
+      "module_name": "DeviceTaintRule Admission Warning",
+      "feature_name": "非阻塞警告响应",
+      "title": "空 selector Warning 不改变既有校验结果",
+      "verification_side": "Kubernetes API Server validation 与 Warning 层",
+      "case_type": "field_constraint",
+      "priority": "P0",
+      "assertion": "两份请求得到相同的既有校验错误；空 selector 只增加 Warning，不改变校验通过或失败结论。",
+      "validation_path": "product_acceptance",
+      "should_generate_case": true
+    },
+    {
+      "case_plan_id": "CP-011",
+      "source_gate_ids": [
+        "TG-005"
+      ],
+      "source_example_ids": [
+        "AE-011"
+      ],
+      "source_responsibility_ids": [],
+      "source_rule_ids": [
+        "K8S-R005"
+      ],
+      "source_coverage_ids": [
+        "COV-EX-0011"
+      ],
+      "generated_testcase_ids": [
+        "OSS-BLIND-R4-DEVICETAINT-WARNING-API-FL-003"
+      ],
+      "page_name": "DeviceTaintRule API",
+      "section_name": "设备选择器告警",
+      "module_name": "DeviceTaintRule Admission Warning",
+      "feature_name": "非阻塞警告响应",
+      "title": "空 selector Warning 不改变持久化和 taint 执行语义",
+      "verification_side": "Kubernetes 对象持久化与 taint 执行层",
+      "case_type": "linkage",
+      "priority": "P0",
+      "assertion": "持久化与 taint 执行完成后，对象字段与请求一致，且 taint 仍按空 selector 匹配全部设备。",
+      "validation_path": "product_acceptance",
+      "should_generate_case": true
+    },
+    {
+      "case_plan_id": "CP-012",
+      "source_gate_ids": [
+        "TG-006"
+      ],
+      "source_example_ids": [
+        "AE-012"
+      ],
+      "source_responsibility_ids": [],
+      "source_rule_ids": [
+        "K8S-R006"
+      ],
+      "source_coverage_ids": [
+        "COV-EX-0012"
+      ],
+      "generated_testcase_ids": [
+        "OSS-BLIND-R4-DEVICETAINT-WARNING-API-FN-009"
+      ],
+      "page_name": "DeviceTaintRule API",
+      "section_name": "设备选择器告警",
+      "module_name": "DeviceTaintRule Admission Warning",
+      "feature_name": "空选择器判定",
+      "title": "所有 taint effect 下空 selector 均返回相同 Warning",
+      "verification_side": "Kubernetes API Server effect 与 Warning 判定层",
+      "case_type": "prompt_display",
+      "priority": "P0",
+      "assertion": "每种 effect 的响应都包含同一条空 selector Warning；Warning 是否出现不受 effect 取值影响。",
+      "validation_path": "product_acceptance",
+      "should_generate_case": true
+    },
+    {
+      "case_plan_id": "CP-013",
+      "source_gate_ids": [
+        "TG-007"
+      ],
+      "source_example_ids": [
+        "AE-013"
+      ],
+      "source_responsibility_ids": [],
+      "source_rule_ids": [
+        "K8S-R007"
+      ],
+      "source_coverage_ids": [
+        "COV-EX-0013"
+      ],
+      "generated_testcase_ids": [
+        "OSS-BLIND-R4-DEVICETAINT-WARNING-API-FL-004"
+      ],
+      "page_name": "DeviceTaintRule API",
+      "section_name": "设备选择器告警",
+      "module_name": "DeviceTaintRule Admission Warning",
+      "feature_name": "非阻塞警告响应",
+      "title": "warnings-as-errors 返回非零时对象仍已创建",
+      "verification_side": "kubectl 客户端退出码与 API Server 状态层",
+      "case_type": "linkage",
+      "priority": "P1",
+      "assertion": "kubectl 调用完成后因 Warning 返回非零状态，但查询 API Server 时目标对象处于已创建状态。",
+      "validation_path": "product_acceptance",
+      "should_generate_case": true
+    }
+  ]
+}

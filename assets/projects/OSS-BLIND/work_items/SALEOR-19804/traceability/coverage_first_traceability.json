@@ -1,0 +1,215 @@
+{
+  "project_code": "OSS-BLIND",
+  "work_item_id": "SALEOR-19804",
+  "generated_at": "2026-09-21T18:24:38",
+  "generated_from": [
+    "coverage/coverage_matrix.json",
+    "evidence/evidence_inventory.json",
+    "testcases/testcases_main.md"
+  ],
+  "summary": {
+    "record_count": 9,
+    "invalid_record_count": 0,
+    "false_traceability_rate": 0.0
+  },
+  "records": [
+    {
+      "record_id": "CFT-0001",
+      "rule_id": "礼品卡批量创建::批量礼品卡标签关系追加::happy_path_combo",
+      "coverage_id": "COV-EX-0009",
+      "testcase_id": "OSS-BLIND-GIFTCARDBULK-BULKCREATE-API-FL-001",
+      "testcase_title": "复用已有标签时追加新礼品卡并保留历史成员",
+      "source_origin": "explicit_rule",
+      "coverage_level": "business",
+      "emit_mode": "main_testcase",
+      "fidelity_status": "not_applicable",
+      "evidence_ids": [],
+      "reasoning_refs": [],
+      "structured_targets": [
+        {
+          "target_type": "feature",
+          "module_name": "礼品卡批量创建",
+          "feature_name": "批量礼品卡标签关系追加",
+          "field_name": "",
+          "target_name": "已有 GiftCardTag 关系"
+        }
+      ]
+    },
+    {
+      "record_id": "CFT-0002",
+      "rule_id": "礼品卡批量创建::批量礼品卡标签关系追加::happy_path_combo",
+      "coverage_id": "COV-EX-0010",
+      "testcase_id": "OSS-BLIND-GIFTCARDBULK-BULKCREATE-API-FL-002",
+      "testcase_title": "新标签创建后关联当前批次礼品卡",
+      "source_origin": "explicit_rule",
+      "coverage_level": "business",
+      "emit_mode": "main_testcase",
+      "fidelity_status": "not_applicable",
+      "evidence_ids": [],
+      "reasoning_refs": [],
+      "structured_targets": [
+        {
+          "target_type": "feature",
+          "module_name": "礼品卡批量创建",
+          "feature_name": "批量礼品卡标签关系追加",
+          "field_name": "",
+          "target_name": "新 GiftCardTag"
+        }
+      ]
+    },
+    {
+      "record_id": "CFT-0003",
+      "rule_id": "礼品卡批量创建::批量礼品卡标签关系追加::happy_path_combo",
+      "coverage_id": "COV-EX-0011",
+      "testcase_id": "OSS-BLIND-GIFTCARDBULK-BULKCREATE-API-FL-003",
+      "testcase_title": "四个连续批次后标签成员集合等于批次并集",
+      "source_origin": "explicit_rule",
+      "coverage_level": "business",
+      "emit_mode": "main_testcase",
+      "fidelity_status": "not_applicable",
+      "evidence_ids": [],
+      "reasoning_refs": [],
+      "structured_targets": [
+        {
+          "target_type": "feature",
+          "module_name": "礼品卡批量创建",
+          "feature_name": "批量礼品卡标签关系追加",
+          "field_name": "",
+          "target_name": "跨批次标签成员集合"
+        }
+      ]
+    },
+    {
+      "record_id": "CFT-0004",
+      "rule_id": "礼品卡批量创建::批量礼品卡标签关系追加::happy_path_combo",
+      "coverage_id": "COV-EX-0012",
+      "testcase_id": "OSS-BLIND-GIFTCARDBULK-BULKCREATE-API-FL-004",
+      "testcase_title": "新旧标签混合输入只建立指定关系",
+      "source_origin": "explicit_rule",
+      "coverage_level": "business",
+      "emit_mode": "main_testcase",
+      "fidelity_status": "not_applicable",
+      "evidence_ids": [],
+      "reasoning_refs": [],
+      "structured_targets": [
+        {
+          "target_type": "feature",
+          "module_name": "礼品卡批量创建",
+          "feature_name": "批量礼品卡标签关系追加",
+          "field_name": "",
+          "target_name": "当前批次礼品卡标签"
+        }
+      ]
+    },
+    {
+      "record_id": "CFT-0005",
+      "rule_id": "礼品卡批量创建::批量礼品卡标签关系追加::happy_path_combo",
+      "coverage_id": "COV-EX-0013",
+      "testcase_id": "OSS-BLIND-GIFTCARDBULK-BULKCREATE-API-DV-005",
+      "testcase_title": "成功响应数量与实际新建礼品卡一致",
+      "source_origin": "explicit_rule",
+      "coverage_level": "business",
+      "emit_mode": "main_testcase",
+      "fidelity_status": "not_applicable",
+      "evidence_ids": [],
+      "reasoning_refs": [],
+      "structured_targets": [
+        {
+          "target_type": "feature",
+          "module_name": "礼品卡批量创建",
+          "feature_name": "批量礼品卡标签关系追加",
+          "field_name": "",
+          "target_name": "giftCardBulkCreate 返回结果"
+        }
+      ]
+    },
+    {
+      "record_id": "CFT-0006",
+      "rule_id": "礼品卡批量创建::批量礼品卡标签关系追加::happy_path_combo",
+      "coverage_id": "COV-EX-0015",
+      "testcase_id": "OSS-BLIND-GIFTCARDBULK-BULKCREATE-API-PM-001",
+      "testcase_title": "权限、非法输入及非批量礼品卡操作行为不回退",
+      "source_origin": "explicit_rule",
+      "coverage_level": "business",
+      "emit_mode": "main_testcase",
+      "fidelity_status": "not_applicable",
+      "evidence_ids": [],
+      "reasoning_refs": [],
+      "structured_targets": [
+        {
+          "target_type": "feature",
+          "module_name": "礼品卡批量创建",
+          "feature_name": "批量礼品卡标签关系追加",
+          "field_name": "",
+          "target_name": "既有非批量行为与错误行为"
+        }
+      ]
+    },
+    {
+      "record_id": "CFT-0007",
+      "rule_id": "礼品卡批量创建::批量礼品卡标签关系追加::happy_path_combo",
+      "coverage_id": "COV-EX-0016",
+      "testcase_id": "OSS-BLIND-GIFTCARDBULK-BULKCREATE-API-FL-005",
+      "testcase_title": "已有标签大小写变体复用同一小写记录",
+      "source_origin": "explicit_rule",
+      "coverage_level": "business",
+      "emit_mode": "main_testcase",
+      "fidelity_status": "not_applicable",
+      "evidence_ids": [],
+      "reasoning_refs": [],
+      "structured_targets": [
+        {
+          "target_type": "feature",
+          "module_name": "礼品卡批量创建",
+          "feature_name": "批量礼品卡标签关系追加",
+          "field_name": "",
+          "target_name": "输入已有标签的大小写变体时复用同一个小写标签记录，不新建重复标签。"
+        }
+      ]
+    },
+    {
+      "record_id": "CFT-0008",
+      "rule_id": "礼品卡批量创建::批量礼品卡标签关系追加::happy_path_combo",
+      "coverage_id": "COV-EX-0017",
+      "testcase_id": "OSS-BLIND-GIFTCARDBULK-BULKCREATE-API-DV-006",
+      "testcase_title": "重复输入的新标签只创建一条小写记录",
+      "source_origin": "explicit_rule",
+      "coverage_level": "business",
+      "emit_mode": "main_testcase",
+      "fidelity_status": "not_applicable",
+      "evidence_ids": [],
+      "reasoning_refs": [],
+      "structured_targets": [
+        {
+          "target_type": "feature",
+          "module_name": "礼品卡批量创建",
+          "feature_name": "批量礼品卡标签关系追加",
+          "field_name": "",
+          "target_name": "同一请求重复输入同名新标签时只创建一个小写标签记录。"
+        }
+      ]
+    },
+    {
+      "record_id": "CFT-0009",
+      "rule_id": "礼品卡批量创建::批量礼品卡标签关系追加::happy_path_combo",
+      "coverage_id": "COV-EX-0018",
+      "testcase_id": "OSS-BLIND-GIFTCARDBULK-BULKCREATE-API-FL-007",
+      "testcase_title": "大小写变体和重复标签只建立一次礼品卡关系",
+      "source_origin": "explicit_rule",
+      "coverage_level": "business",
+      "emit_mode": "main_testcase",
+      "fidelity_status": "not_applicable",
+      "evidence_ids": [],
+      "reasoning_refs": [],
+      "structured_targets": [
+        {
+          "target_type": "feature",
+          "module_name": "礼品卡批量创建",
+          "feature_name": "批量礼品卡标签关系追加",
+          "field_name": "",
+          "target_name": "大小写变体或重复标签输入只为当前批次礼品卡建立一次对应标签关系。"
+        }
+      ]
+    }
+  ]
+}

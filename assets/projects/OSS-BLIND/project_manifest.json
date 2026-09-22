@@ -1,0 +1,17 @@
+{
+  "project_code": "OSS-BLIND",
+  "project_name": "",
+  "business_line": "",
+  "created_at": "2026-09-21T05:55:36.540427+00:00",
+  "updated_at": "2026-09-21T18:41:14",
+  "status": "active",
+  "asset_model": "work_item_truth",
+  "default_work_item_level": "M",
+  "paths": {
+    "inputs_common": "inputs/common/",
+    "work_items": "work_items/",
+    "indexes": "indexes/",
+    "reports": "reports/",
+    "knowledge": "knowledge/"
+  }
+}

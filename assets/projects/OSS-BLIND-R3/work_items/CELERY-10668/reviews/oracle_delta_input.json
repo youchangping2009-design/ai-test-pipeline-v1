@@ -1,0 +1,30 @@
+{
+  "project_code": "OSS-BLIND-R3",
+  "work_item_id": "CELERY-10668",
+  "oracle": {"source_url": "https://github.com/celery/celery/pull/10668", "head_sha": "c4cde1198a12f6399b2e486c596f15a15afbc8ae"},
+  "assertions": [
+    {"assertion_id": "OA-001", "summary": "外部撤销记录按本机时间重新记时，不复用远端时间戳", "disposition": "covered", "testcase_ids": ["OSS-BLIND-R3-CELERYWORKER-REVOKE-SERVER-DV-001", "OSS-BLIND-R3-CELERYWORKER-REVOKE-SERVER-ST-001"]},
+    {"assertion_id": "OA-002", "summary": "本机有效期控制撤销记录过期", "disposition": "covered", "testcase_ids": ["OSS-BLIND-R3-CELERYWORKER-REVOKE-SERVER-ST-001"]},
+    {"assertion_id": "OA-003", "summary": "容量已满时本机新撤销记录不被远端时间戳挤出", "disposition": "covered", "testcase_ids": ["OSS-BLIND-R3-CELERYWORKER-REVOKE-SERVER-ST-002"]},
+    {"assertion_id": "OA-004", "summary": "有效撤销的 ETA 或 countdown 任务不会执行", "disposition": "covered", "testcase_ids": ["OSS-BLIND-R3-CELERYWORKER-REVOKE-SERVER-ST-003"]},
+    {"assertion_id": "OA-005", "summary": "hello、mingle 与 statedb 三条入口均采用本机时间", "disposition": "covered", "testcase_ids": ["OSS-BLIND-R3-CELERYWORKER-REVOKE-SERVER-ST-004", "OSS-BLIND-R3-CELERYWORKER-REVOKE-SERVER-ST-005", "OSS-BLIND-R3-CELERYWORKER-REVOKE-SERVER-ST-006"]},
+    {"assertion_id": "OA-006", "summary": "新旧 Worker 双向同步后均保留撤销 ID", "disposition": "covered", "testcase_ids": ["OSS-BLIND-R3-CELERYWORKER-REVOKE-SERVER-FL-001"]},
+    {"assertion_id": "OA-007", "summary": "显式 now=0 不被默认当前时间覆盖", "disposition": "covered", "testcase_ids": ["OSS-BLIND-R3-CELERYWORKER-REVOKE-SERVER-BD-001"]},
+    {"assertion_id": "OA-008", "summary": "相同时间戳与混合类型任务 ID 可稳定排序且不触发类型比较异常", "disposition": "covered", "testcase_ids": ["OSS-BLIND-R3-CELERYWORKER-REVOKE-SERVER-BD-002", "OSS-BLIND-R3-CELERYWORKER-REVOKE-SERVER-BD-003"]},
+    {"assertion_id": "OA-009", "oracle_scope": "requirement", "summary": "跨 Worker 同步载荷只发送任务 ID，不传播远端 monotonic 时间戳", "disposition": "covered", "testcase_ids": ["OSS-BLIND-R3-CELERYWORKER-REVOKE-SERVER-ST-004", "OSS-BLIND-R3-CELERYWORKER-REVOKE-SERVER-ST-005", "OSS-BLIND-R3-CELERYWORKER-REVOKE-SERVER-FL-001"]},
+    {"assertion_id": "OA-010", "oracle_scope": "implementation", "summary": "同步载荷中的任务 ID 保持最旧优先顺序", "disposition": "partial", "testcase_ids": ["OSS-BLIND-R3-CELERYWORKER-REVOKE-SERVER-ST-004", "OSS-BLIND-R3-CELERYWORKER-REVOKE-SERVER-ST-005"], "design_feedback_ids": ["DF-001"]}
+  ],
+  "testcase_assessments": [
+    {"testcase_id": "OSS-BLIND-R3-CELERYWORKER-REVOKE-SERVER-DV-001", "disposition": "direct_match"},
+    {"testcase_id": "OSS-BLIND-R3-CELERYWORKER-REVOKE-SERVER-ST-001", "disposition": "direct_match"},
+    {"testcase_id": "OSS-BLIND-R3-CELERYWORKER-REVOKE-SERVER-ST-002", "disposition": "direct_match"},
+    {"testcase_id": "OSS-BLIND-R3-CELERYWORKER-REVOKE-SERVER-ST-003", "disposition": "direct_match"},
+    {"testcase_id": "OSS-BLIND-R3-CELERYWORKER-REVOKE-SERVER-ST-004", "disposition": "direct_match"},
+    {"testcase_id": "OSS-BLIND-R3-CELERYWORKER-REVOKE-SERVER-ST-005", "disposition": "direct_match"},
+    {"testcase_id": "OSS-BLIND-R3-CELERYWORKER-REVOKE-SERVER-ST-006", "disposition": "direct_match"},
+    {"testcase_id": "OSS-BLIND-R3-CELERYWORKER-REVOKE-SERVER-FL-001", "disposition": "direct_match"},
+    {"testcase_id": "OSS-BLIND-R3-CELERYWORKER-REVOKE-SERVER-BD-001", "disposition": "direct_match"},
+    {"testcase_id": "OSS-BLIND-R3-CELERYWORKER-REVOKE-SERVER-BD-002", "disposition": "direct_match"},
+    {"testcase_id": "OSS-BLIND-R3-CELERYWORKER-REVOKE-SERVER-BD-003", "disposition": "direct_match"}
+  ]
+}

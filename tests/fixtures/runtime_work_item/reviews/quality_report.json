@@ -1,0 +1,70 @@
+{
+  "generated_at": "2026-09-21T11:33:08",
+  "total_cases": 44,
+  "total_coverage_entries": 82,
+  "coverage_empty_with_cases": false,
+  "rule_coverage_rate": 0.875,
+  "atomic_case_rate": 0.7045,
+  "boundary_coverage_rate": 1.0,
+  "data_source_rule_coverage_rate": 0.25,
+  "generalized_case_count": 0,
+  "generalized_case_rate": 0.0,
+  "weak_case_count": 0,
+  "weak_case_rate": 0.0,
+  "semantic_mismatch_count": 0,
+  "duplicate_case_count": 0,
+  "duplicate_case_rate": 0.0,
+  "duplicate_group_count": 0,
+  "duplicate_metric_basis": "residual_after_merge",
+  "missing_fidelity_points": 0,
+  "high_priority_fidelity_missing": 0,
+  "false_traceability_rate": 0.0,
+  "false_traceability_rate_primary": 0.0,
+  "false_traceability_rate_legacy": 0.0,
+  "traceability_metric_source": "coverage_first_traceability",
+  "field_audit_item_count": 45,
+  "grouped_audit_group_count": 0,
+  "audit_artifacts_consumed": true,
+  "quality_gate": {
+    "enabled": false,
+    "mode": "soft",
+    "rollout_source": "new_work_item",
+    "status": "report_only",
+    "thresholds": {
+      "false_traceability_rate_fail": 0.05,
+      "generalized_case_rate_warn": 0.03,
+      "generalized_case_count_warn": 5,
+      "weak_case_rate_warn": 0.03,
+      "weak_case_count_warn": 5,
+      "semantic_mismatch_count_fail": 0,
+      "duplicate_case_rate_warn": 0.005,
+      "duplicate_case_count_warn": 1
+    },
+    "warnings": [],
+    "failures": []
+  },
+  "unresolved_issues": [],
+  "final_near_duplicate_groups": [],
+  "source_artifacts": {
+    "structured_prd": {
+      "path": "assets/projects/FIXTURE/work_items/FIXTURE-RUNTIME-001/structured_prd/structured_prd.json",
+      "sha256": "34e1ee8bc0f5f0f057c1eed20243787eb37631ca31ada5d0a2a019d0d75b9094",
+      "size_bytes": 113258
+    },
+    "coverage_matrix": {
+      "path": "assets/projects/FIXTURE/work_items/FIXTURE-RUNTIME-001/coverage/coverage_matrix.json",
+      "sha256": "20399127984e6576a6415bb07b3e7076da262eda0c376e093368f12d2a4bdb08",
+      "size_bytes": 77326
+    },
+    "testcases": {
+      "path": "assets/projects/FIXTURE/work_items/FIXTURE-RUNTIME-001/testcases/testcases_main.md",
+      "sha256": "73aaacf5b7858e8007a22c87e862794eddcfaf33fa6acab4bcb4f61f289fe56f",
+      "size_bytes": 42076
+    },
+    "coverage_first_traceability": {
+      "path": "assets/projects/FIXTURE/work_items/FIXTURE-RUNTIME-001/traceability/coverage_first_traceability.json",
+      "sha256": "974178144b4744491622711157b22937cacca225e36dc196be59ceb49da6b23e",
+      "size_bytes": 33821
+    }
+  }
+}

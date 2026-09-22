@@ -559,12 +559,12 @@
   --strict
 ```
 
-strict 正向样例：
+显式工作项 strict 示例（示例标识需替换为实际值）：
 
 ```bash
 /usr/bin/python3 scripts/validate_work_item.py \
-  --project-code WX-YGJ \
-  --work-item-id PT083 \
+  --project-code DEMO \
+  --work-item-id REQ-001 \
   --skip-code-reviews \
   --strict
 ```
@@ -575,16 +575,31 @@ strict 正向样例：
 - 需要刷新质量报告时显式传 `--write-report`
 - 正式 testcase 必须显式引用 `case_plan_id`，推荐在备注中写 `来源 CasePlan：CP-xxx`
 - strict 会阻止空模板、弱产物、无来源用例和引用不存在 case_plan 的用例
-- PT083 eval 包含 forbidden patterns 与 required assertions 两类检查
-- 当前 PT083 是 M 档无代码样本，strict 命令必须显式使用 `--skip-code-reviews`
-- 当前 Harness 尚无 Review `not_applicable` disposition；不得把待评审模板当成 Review 已完成
+- 通用 eval fixture 包含 forbidden patterns 与 required assertions 两类检查
+- 新工作项不得直接依赖 `--skip-code-reviews` 绕过 Harness Review；明确无代码输入时，必须为具体 run 声明 `not_applicable`
+- N/A 只免除代码评审资产要求，Review 中的 design feedback、回灌凭证、Action journal 和 Oracle 校验仍必须通过
+
+```bash
+/usr/bin/python3 scripts/run_work_item_pipeline.py mark-review-not-applicable \
+  --project-code <PROJECT_CODE> \
+  --work-item-id <WORK_ITEM_ID> \
+  --run-id <RUN_ID> \
+  --declared-by <REVIEWER> \
+  --reason "本工作项未提供业务代码，代码映证不适用"
+
+/usr/bin/python3 scripts/run_work_item_pipeline.py resume \
+  --project-code <PROJECT_CODE> \
+  --work-item-id <WORK_ITEM_ID> \
+  --run-id <RUN_ID> \
+  --stop-at strict_gate
+```
 
 M/L strict 下还会强制验收示例：
 
 ```bash
 /usr/bin/python3 scripts/validate_work_item.py \
-  --project-code WX-YGJ \
-  --work-item-id PT083 \
+  --project-code DEMO \
+  --work-item-id REQ-001 \
   --skip-code-reviews \
   --strict \
   --work-item-level M
@@ -611,6 +626,44 @@ L strict 下，`test_design_matrix.items` 不能为空，矩阵项必须引用�
 code review 映证发现的用例缺口、代码实现缺口、过期用例或待确认项，应先写入 `design/design_feedback.json`。`design_feedback` 的目标层只能是测试设计决策层产物，不允许把映证反馈直接覆盖到 `testcases_main.md`。
 
 标准代码评审报告中的 `## Findings` 表在人工 confirmation 为 `confirmed` 后，可通过 `scripts/build_design_feedback_from_code_reviews.py` 转成 design feedback；仍需设计负责人确认后应用。
+
+反馈状态进入 `accepted` 后，按以下两阶段命令回灌：
+
+```bash
+/usr/bin/python3 scripts/manage_feedback_application.py prepare \
+  --project-code <PROJECT_CODE> --work-item-id <WORK_ITEM_ID> --feedback-id DF-001
+
+# 仅修改 feedback.target_layer 对应的设计层产物
+
+/usr/bin/python3 scripts/manage_feedback_application.py record \
+  --project-code <PROJECT_CODE> --work-item-id <WORK_ITEM_ID> --feedback-id DF-001
+```
+
+`prepare` 将 baseline 写入 `.generation/feedback_applications/`；`record` 校验实际变更后写入 `design/feedback_application.json`，再把 feedback 置为 `applied`。不要先修改目标文件后再执行 prepare，也不要直接填写 before hash。
+
+Agent 自动回灌时不直接执行文件写入，而是依次向受限入口提交三份 Action JSON：
+
+```bash
+/usr/bin/python3 scripts/run_work_item_pipeline.py feedback-action \
+  --project-code <PROJECT_CODE> \
+  --work-item-id <WORK_ITEM_ID> \
+  --run-id <RUN_ID> \
+  --actor <ACTOR_ID> \
+  --provider <PROVIDER_ID> \
+  --action-file <ACTION_JSON>
+```
+
+`action_type` 仅允许 `prepare_feedback_application`、`propose_feedback_design_artifacts`、`record_feedback_application`。设计产物只能通过 propose 写入，且路径必须已被 prepare 冻结；反馈状态只能由 record 更新。
+
+每个动作使用全局不重复的 `action_id`。Runtime 会先确认 `RUN_ID` 存在且属于当前项目/工作项，再将 `run_id`、`actor`、`provider` 与 Action 一起绑定到不可覆盖的 intent/result 和请求哈希；执行失败也会写终态 result，修正后应使用新的 action ID。若进程在 intent 后中断，必须用相同 Action 和相同执行上下文重试。`actor/provider` 是可审计声明，不替代宿主认证。完成后执行：
+
+```bash
+/usr/bin/python3 scripts/run_work_item_pipeline.py audit-feedback-actions \
+  --project-code <PROJECT_CODE> \
+  --work-item-id <WORK_ITEM_ID>
+```
+
+新工作项的 `feedback_action_journal_required=true` 与 `feedback_action_execution_identity_required=true` 会让 Review/strict 同步执行该审计；同一 feedback 的成功动作不得跨 Harness run。历史工作项没有 journal 或仍使用 1.0 journal 时保持 legacy compatibility，不补造身份记录。
 
 `reviews/quality_report.json` 会记录 structured PRD、coverage、主用例和主 traceability 的 SHA-256 指纹。默认只读校验发现指纹变化时，执行 `validate_work_item.py --write-report` 刷新报告后再放行。
 
@@ -720,7 +773,7 @@ code review 映证发现的用例缺口、代码实现缺口、过期用例或�
 
 此时工作项会进入 `READY_FOR_CODE_REVIEW` 状态。
 
-新工作项应优先使用 `run_work_item_pipeline.py start / resume` 保持单 run checkpoint、Requirement Approval 和审计语义。`run_submission_pipeline.py` 不替代 Harness run 状态；无代码 M 档最终 strict 可显式使用 `--skip-code-reviews`，但当前 Harness 尚无 Review `not_applicable` disposition。
+新工作项应优先使用 `run_work_item_pipeline.py start / resume` 保持单 run checkpoint、Requirement Approval 和审计语义。`run_submission_pipeline.py` 不替代 Harness run 状态；无代码工作项必须使用 run-scoped `mark-review-not-applicable`，不得用独立 `--skip-code-reviews` 结果冒充 Harness Review 终态。
 
 ## 十二、代码评审与人工确认
 

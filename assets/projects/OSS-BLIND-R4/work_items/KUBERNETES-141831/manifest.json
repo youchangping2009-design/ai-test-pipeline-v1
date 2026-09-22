@@ -1,0 +1,92 @@
+{
+  "project_code": "OSS-BLIND-R4",
+  "work_item_id": "KUBERNETES-141831",
+  "title": "Warn on empty DeviceTaintRule selector",
+  "requirement_version": "1.0.0",
+  "work_item_level": "M",
+  "created_at": "2026-09-22T02:44:19.481233+00:00",
+  "status": "initialized",
+  "pipeline_policy": {
+    "requirement_intake_required": true,
+    "requirement_approval_required": true,
+    "reasoning_grounding_required": true,
+    "feedback_application_receipt_required": true,
+    "feedback_action_journal_required": true,
+    "feedback_action_execution_identity_required": true,
+    "review_disposition_required": true,
+    "testpoints_required": true
+  },
+  "quality_gate": {
+    "enabled": false,
+    "mode": "soft",
+    "rollout_source": "new_work_item",
+    "thresholds": {
+      "false_traceability_rate_fail": 0.05,
+      "generalized_case_rate_warn": 0.03,
+      "generalized_case_count_warn": 5,
+      "weak_case_rate_warn": 0.03,
+      "weak_case_count_warn": 5,
+      "semantic_mismatch_count_fail": 0,
+      "duplicate_case_rate_warn": 0.005,
+      "duplicate_case_count_warn": 1
+    }
+  },
+  "artifacts": {
+    "inputs": "inputs/",
+    "requirement_summary": "inputs/requirement_summary.md",
+    "source_manifest": "inputs/source_manifest.json",
+    "requirement_approval": "inputs/requirement_approval.json",
+    "image_evidence": "image_evidence/image_evidence_inventory.json",
+    "analysis": {
+      "analysis_report": "analysis/analysis_report.md",
+      "reasoning_pack": "analysis/reasoning_pack.json"
+    },
+    "coverage": "coverage/coverage_matrix.json",
+    "evidence": "evidence/evidence_inventory.json",
+    "structured_prd_markdown": "structured_prd/structured_prd.md",
+    "structured_prd_json": "structured_prd/structured_prd.json",
+    "structured_prd": "structured_prd/structured_prd.json",
+    "testability_gate_markdown": "acceptance/testability_gate.md",
+    "testability_gate_json": "acceptance/testability_gate.json",
+    "acceptance_examples_markdown": "acceptance/acceptance_examples.md",
+    "acceptance_examples_json": "acceptance/acceptance_examples.json",
+    "verification_responsibility_map_markdown": "design/verification_responsibility_map.md",
+    "verification_responsibility_map_json": "design/verification_responsibility_map.json",
+    "test_design_matrix_markdown": "design/test_design_matrix.md",
+    "test_design_matrix_json": "design/test_design_matrix.json",
+    "design_feedback_markdown": "design/design_feedback.md",
+    "design_feedback_json": "design/design_feedback.json",
+    "feedback_application_json": "design/feedback_application.json",
+    "traceability_primary": "traceability/coverage_first_traceability.json",
+    "traceability_adapter": "traceability/traceability_adapter.json",
+    "traceability_legacy": "traceability/traceability_matrix.json",
+    "traceability": "traceability/traceability_matrix.json",
+    "case_plan_markdown": "testcases/case_plan.md",
+    "case_plan_json": "testcases/case_plan.json",
+    "testpoints_markdown": "testcases/testpoints.md",
+    "testpoints_json": "testcases/testpoints.json",
+    "testcases_main": "testcases/testcases_main.md",
+    "testcase_bundle_json": "testcases/testcase_bundle.json",
+    "field_audit": "testcases/field_audit.json",
+    "grouped_audit": "testcases/grouped_audit.json",
+    "testcases": "testcases/testcases.md",
+    "reviews": "reviews/review_record.md",
+    "review_artifacts": {
+      "missing_rules": "reviews/missing_rules.json",
+      "missing_fidelity_points": "reviews/missing_fidelity_points.json",
+      "fidelity_hit_locations": "reviews/fidelity_hit_locations.json",
+      "duplicate_case_report": "reviews/duplicate_case_report.json",
+      "weak_cases": "reviews/weak_cases.json",
+      "generalized_cases": "reviews/generalized_cases.json",
+      "quality_report": "reviews/quality_report.json"
+    },
+    "code_reviews": {
+      "scope": "code_reviews/code_review_scope.json",
+      "request": "code_reviews/code_review_request.md",
+      "frontend_review": "code_reviews/frontend_code_review.md",
+      "frontend_confirmation": "code_reviews/frontend_confirmation.json",
+      "backend_review": "code_reviews/backend_code_review.md",
+      "backend_confirmation": "code_reviews/backend_confirmation.json"
+    }
+  }
+}

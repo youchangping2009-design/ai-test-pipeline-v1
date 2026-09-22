@@ -1,0 +1,13 @@
+{
+  "schema_version": "1.0.0",
+  "approval_id": "RUN-DJANGO-21801-BLIND-R3-20260921-requirement-1f01539f6ab3add4385914be",
+  "status": "approved",
+  "reviewed_by": "user",
+  "reviewed_at": "2026-09-21T11:26:14+00:00",
+  "note": "用户已批准第三轮公开盲测四份需求摘要，允许进入后续盲测阶段",
+  "run_id": "RUN-DJANGO-21801-BLIND-R3-20260921",
+  "requirement_summary_sha256": "6decccaca7f0cfec4dbbd021fb411d99a81dcaaee686e4d41ff7586b17b91f5d",
+  "source_manifest_sha256": "6d5b8df1d3a2fef883335ae15736b9430abae9d74d8991ed56f1fa8f50e3ca8b",
+  "raw_inputs_fingerprint": "2d7779f86febbeedbc257423315b20a66311369a3fde0a6d0b0002dbca320176",
+  "requirement_version": "1.0.0"
+}

@@ -1,0 +1,297 @@
+{
+  "project_info": {
+    "project_code": "OSS-BLIND-R4",
+    "project_name": "Home Assistant",
+    "business_line": "TTS audio caching",
+    "prd_source": "inputs/requirement_summary.md",
+    "prd_version": "github-pr-182800"
+  },
+  "requirement_info": {
+    "requirement_title": "避免缓存 TTS 音频产生重复 ID3 标签",
+    "requirement_background": "部分 TTS provider 返回的 MP3 已包含 ID3/TSSE 元数据，再次写标签会形成两个 ID3 头；内存缓存清理后，严格解码器可能将磁盘文件播放为静音。",
+    "requirement_goal": "对已带 ID3 的 MP3 写入 Home Assistant 标签时维持单一标签结构、保留元数据和音频内容，并保证磁盘缓存回放可用。",
+    "explicit_rules": [
+      {
+        "rule_id": "HA-R001",
+        "rule_text": "已带 ID3 标签的 MP3 写入 Home Assistant 标签后只能保留一个有效 ID3 头。",
+        "rule_type": "data_rule",
+        "priority": "high",
+        "applies_to": "ID3 标签合并",
+        "source_scope": "primary_requirement"
+      },
+      {
+        "rule_id": "HA-R002",
+        "rule_text": "更新标签时必须保留输入中的 TSSE 元数据。",
+        "rule_type": "data_rule",
+        "priority": "high",
+        "applies_to": "ID3 标签合并",
+        "source_scope": "primary_requirement"
+      },
+      {
+        "rule_id": "HA-R003",
+        "rule_text": "标签处理不得改变 MP3 音频帧内容。",
+        "rule_type": "data_rule",
+        "priority": "high",
+        "applies_to": "ID3 标签合并",
+        "source_scope": "primary_requirement"
+      },
+      {
+        "rule_id": "HA-R004",
+        "rule_text": "缓存文件从内存路径切换为磁盘读取后仍应可被严格解码器正常播放，不能静音。",
+        "rule_type": "state_constraint",
+        "priority": "high",
+        "applies_to": "缓存音频回放",
+        "source_scope": "primary_requirement"
+      },
+      {
+        "rule_id": "HA-R005",
+        "rule_text": "未带 ID3 标签的 MP3 仍可添加所需标签并保持可播放。",
+        "rule_type": "fallback_constraint",
+        "priority": "medium",
+        "applies_to": "ID3 标签合并",
+        "source_scope": "primary_requirement"
+      },
+      {
+        "rule_id": "HA-R006",
+        "rule_text": "已带标签音频的处理结果不应依赖具体 TTS provider。",
+        "rule_type": "coverage_constraint",
+        "priority": "high",
+        "applies_to": "ID3 标签合并",
+        "source_scope": "primary_requirement"
+      }
+    ],
+    "scope": {
+      "in_scope": [
+        "已带标签 MP3 的标签写入",
+        "单一 ID3 头",
+        "TSSE 与音频帧保留",
+        "内存清理后的磁盘缓存回放",
+        "不同 TTS provider 的等价输入"
+      ],
+      "out_of_scope": [
+        "重新设计 TTS 缓存策略",
+        "改变音频编码",
+        "修复第三方解码器",
+        "未声明的非 MP3 标签格式"
+      ]
+    }
+  },
+  "pages": [
+    {
+      "page_name": "TTS 音频缓存处理",
+      "page_desc": "TTS 音频从 provider 输入、标签写入、缓存落盘到后续播放的系统观察面。",
+      "sections": [
+        {
+          "section_name": "MP3 标签写入与缓存回放",
+          "section_type": "other",
+          "section_desc": "合并已有 ID3 元数据并验证缓存文件可播放。",
+          "module_name": "TTS 音频标签",
+          "feature_names": [
+            "ID3 标签合并",
+            "缓存音频回放"
+          ],
+          "section_rules": [
+            "输出仅有一个 ID3 头",
+            "保留 TSSE 与音频帧",
+            "无标签输入保持兼容",
+            "磁盘缓存回放不静音"
+          ],
+          "field_refs": [],
+          "field_rule_table_refs": []
+        }
+      ]
+    }
+  ],
+  "modules": [
+    {
+      "module_name": "TTS 音频标签",
+      "module_desc": "处理 TTS MP3 的已有标签、Home Assistant 标签及缓存回放。",
+      "features": [
+        {
+          "feature_name": "ID3 标签合并",
+          "page_name": "TTS 音频缓存处理",
+          "section_name": "MP3 标签写入与缓存回放",
+          "feature_desc": "在不重编码音频的前提下更新或添加标签并保持单一 ID3 结构。",
+          "actors": [
+            "SpeechManager"
+          ],
+          "entry_conditions": [
+            "TTS provider 返回 MP3 音频"
+          ],
+          "rules": [
+            "已有 ID3 时输出只保留一个 ID3 头",
+            "保留已有 TSSE",
+            "音频帧保持不变",
+            "无 ID3 时仍可正常添加标签",
+            "行为不依赖 provider"
+          ],
+          "fields": [],
+          "field_definitions": [],
+          "field_rules": [],
+          "field_rule_tables": [],
+          "visible_elements": [
+            "ID3 头",
+            "TSSE 标签",
+            "Home Assistant 标签",
+            "MP3 音频帧"
+          ],
+          "interactive_entries": [
+            "写入 TTS 标签"
+          ],
+          "abnormal_scenarios": [
+            "输入标签损坏时的处理策略待确认",
+            "非 MP3 输入的处理策略待确认"
+          ],
+          "boundary_scenarios": [
+            "输入没有 ID3 标签",
+            "输入已包含一个 ID3 标签",
+            "重复处理同一文件的幂等性待确认"
+          ],
+          "dependencies": [
+            "SpeechManager",
+            "TTS provider",
+            "MP3/ID3 解析"
+          ]
+        },
+        {
+          "feature_name": "缓存音频回放",
+          "page_name": "TTS 音频缓存处理",
+          "section_name": "MP3 标签写入与缓存回放",
+          "feature_desc": "验证内存缓存清理后从磁盘读取的已标记 MP3 仍可播放。",
+          "actors": [
+            "TTS 播放客户端"
+          ],
+          "entry_conditions": [
+            "已标记 MP3 已写入磁盘缓存",
+            "内存缓存项已清理"
+          ],
+          "rules": [
+            "磁盘文件保持单一 ID3 结构",
+            "严格解码器可解码有效音频而非仅返回成功"
+          ],
+          "fields": [],
+          "field_definitions": [],
+          "field_rules": [],
+          "field_rule_tables": [],
+          "visible_elements": [
+            "磁盘缓存文件",
+            "解码后的音频"
+          ],
+          "interactive_entries": [
+            "首次播放",
+            "缓存清理后再次播放"
+          ],
+          "abnormal_scenarios": [
+            "播放器报告成功但实际输出静音"
+          ],
+          "boundary_scenarios": [
+            "约 300 秒内存清理窗口的触发方式待确认"
+          ],
+          "dependencies": [
+            "TTS 内存缓存",
+            "TTS 磁盘缓存",
+            "严格 MP3 解码器"
+          ]
+        }
+      ]
+    }
+  ],
+  "flows": [
+    {
+      "flow_id": "HA-FLOW-001",
+      "flow_name": "TTS 音频标记并缓存回放",
+      "flow_type": "main_flow",
+      "business_goal": "对已带标签的 TTS MP3 安全写入元数据，并保证落盘后的音频继续可播放。",
+      "trigger": "TTS provider 返回 MP3，SpeechManager 写入标签",
+      "preconditions": [
+        "输入 MP3 可能已含 ID3/TSSE",
+        "TTS 缓存可写入和读取"
+      ],
+      "steps": [
+        {
+          "step_no": 1,
+          "step_name": "处理已有 ID3 标签",
+          "step_type": "data_validation",
+          "module_name": "TTS 音频标签",
+          "feature_name": "ID3 标签合并",
+          "actor": "SpeechManager",
+          "action": "识别已有标签并写入 Home Assistant 所需标签",
+          "input_data": [
+            "已带或未带 ID3 的 MP3"
+          ],
+          "expected_result": "输出只有一个有效 ID3 头，已有 TSSE 保留",
+          "checkpoints": [
+            "ID3 头数量为一",
+            "TSSE 可读取"
+          ],
+          "rule_references": [
+            "HA-R001",
+            "HA-R002",
+            "HA-R005"
+          ],
+          "is_key_checkpoint": true
+        },
+        {
+          "step_no": 2,
+          "step_name": "保存缓存音频",
+          "step_type": "state_change",
+          "module_name": "TTS 音频标签",
+          "feature_name": "ID3 标签合并",
+          "actor": "TTS 缓存",
+          "action": "将标签处理后的 MP3 写入磁盘缓存",
+          "expected_result": "音频帧与输入一致，缓存文件包含单一标签结构",
+          "state_transition": {
+            "from": "provider 音频",
+            "to": "磁盘缓存音频"
+          },
+          "checkpoints": [
+            "音频内容未改变",
+            "缓存文件结构有效"
+          ],
+          "rule_references": [
+            "HA-R001",
+            "HA-R003"
+          ],
+          "is_key_checkpoint": true
+        },
+        {
+          "step_no": 3,
+          "step_name": "从磁盘缓存再次播放",
+          "step_type": "system_response",
+          "module_name": "TTS 音频标签",
+          "feature_name": "缓存音频回放",
+          "actor": "TTS 播放客户端",
+          "action": "在内存缓存清理后读取并解码磁盘文件",
+          "expected_result": "严格解码器输出正常音频，不出现静音",
+          "checkpoints": [
+            "实际音频可解码",
+            "播放内容非静音"
+          ],
+          "rule_references": [
+            "HA-R004"
+          ],
+          "is_key_checkpoint": true
+        }
+      ],
+      "postconditions": [
+        "缓存 MP3 保持单一 ID3 标签且可重复读取"
+      ],
+      "success_criteria": [
+        "ID3 头不重复",
+        "TSSE 与音频帧保留",
+        "磁盘回放不静音",
+        "等价输入不依赖 provider"
+      ],
+      "related_modules": [
+        "TTS 音频标签"
+      ],
+      "priority": "P0",
+      "tags": [
+        "tts",
+        "mp3",
+        "id3",
+        "cache"
+      ]
+    }
+  ]
+}

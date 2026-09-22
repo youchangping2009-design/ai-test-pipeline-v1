@@ -1,0 +1,10 @@
+# 页面：TTS 音频缓存处理
+## 板块：MP3 标签写入与缓存回放
+| 用例编号 | 所属模块 | 所属功能点 | 用例标题 | 前置条件 | 测试步骤 | 预期结果 | 优先级 | 标签 | 测试类型 | 备注 |
+|---|---|---|---|---|---|---|---|---|---|---|
+| OSS-BLIND-R4-TTSAUDIO-MP3TAG-SERVER-DV-001 | TTS 音频标签 | ID3 标签合并 | 已有 ID3 的 MP3 更新后只保留一个有效 ID3 头 | 准备一个已包含有效 ID3 标签和音频帧的 MP3。 | 1. 写入 Home Assistant 所需标签并生成输出文件。 | 1. ID3 解析器读取输出文件时不返回格式错误<br>2. 输出文件中只存在一个有效 ID3 头。 | P0 | AI-API用例,开发必测,测试必测 | 数据校验 | 来源 CasePlan：CP-001；来源 Acceptance：AE-001；来源 Rule：HA-R001；来源coverage：COV-EX-0001 |
+| OSS-BLIND-R4-TTSAUDIO-MP3TAG-SERVER-DV-002 | TTS 音频标签 | ID3 标签合并 | 更新标签后保留原 TSSE 元数据 | 准备一个包含确定 TSSE 值的已标记 MP3。 | 1. 写入或更新 Home Assistant 标签。 | 1. 输出文件中的 TSSE 值与输入文件一致。 | P0 | AI-API用例,开发必测,测试必测 | 数据校验 | 来源 CasePlan：CP-002；来源 Acceptance：AE-002；来源 Rule：HA-R002；来源coverage：COV-EX-0002 |
+| OSS-BLIND-R4-TTSAUDIO-MP3TAG-SERVER-DV-003 | TTS 音频标签 | ID3 标签合并 | 标签处理不改变 MP3 音频帧 | 准备一个音频帧内容和摘要已知的 MP3。 | 1. 写入或更新 Home Assistant 标签。 | 1. 排除标签区域后，输出音频帧内容与输入一致<br>2. 输出音频帧的稳定摘要与输入一致。 | P0 | AI-API用例,开发必测,测试必测 | 数据校验 | 来源 CasePlan：CP-003；来源 Acceptance：AE-003；来源 Rule：HA-R003；来源coverage：COV-EX-0003 |
+| OSS-BLIND-R4-TTSAUDIO-MP3TAG-SERVER-ST-001 | TTS 音频标签 | 缓存音频回放 | 磁盘缓存中的已标记 MP3 可严格解码且非静音 | 已标记 MP3 先由内存路径生成，随后写入磁盘缓存。 | 1. 从磁盘缓存读取文件并交给严格 MP3 解码器。 | 1. 严格 MP3 解码器产生至少一个音频样本<br>2. 解码后的音频样本不是全静音。 | P0 | AI-API用例,开发必测,测试必测 | 状态流转 | 来源 CasePlan：CP-004；来源 Acceptance：AE-004；来源 Rule：HA-R004；来源coverage：COV-EX-0004 |
+| OSS-BLIND-R4-TTSAUDIO-MP3TAG-SERVER-ST-002 | TTS 音频标签 | ID3 标签合并 | 无 ID3 的 MP3 可添加标签并保持可播放 | 准备一个不含 ID3 标签但可正常解码的 MP3。 | 1. 写入 Home Assistant 所需标签并生成输出文件。 | 1. 输出文件包含所需标签<br>2. 输出文件可被严格 MP3 解码器解码并产生非静音音频样本。 | P1 | AI-API用例 | 状态流转 | 来源 CasePlan：CP-005；来源 Acceptance：AE-005；来源 Rule：HA-R005；来源coverage：COV-EX-0005 |
+| OSS-BLIND-R4-TTSAUDIO-MP3TAG-SERVER-FL-001 | TTS 音频标签 | ID3 标签合并 | 已带标签音频处理结果不依赖 TTS provider | 准备来自两个不同 TTS provider、均已带标签且音频有效的 MP3。 | 1. 对两个输入执行相同的 Home Assistant 标签处理。 | 1. 两个 provider 的处理完成后，输出都只包含一个有效 ID3 头，保留各自 TSSE 和音频帧，并可由严格解码器产生至少一个非静音音频样本。 | P0 | AI-API用例,开发必测,测试必测 | 流程验证 | 来源 CasePlan：CP-006；来源 Flow：CP-006；来源 Acceptance：AE-006；来源 Rule：HA-R006；来源coverage：COV-EX-0006 |

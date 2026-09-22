@@ -1,0 +1,15 @@
+{
+  "frozen_at": "2026-09-21T09:42:54Z",
+  "purpose": "pre_oracle_review",
+  "oracle_excluded_from_generation": true,
+  "artifacts": {
+    "inputs/requirement_summary.md": "78a19444774e8e4eb1ca7a04a026a37117c478df4b038294dedb87d3f56b6c79",
+    "structured_prd/structured_prd.json": "7086a622d4df8e8bab35dc76ae806b67d04a3d6ef743cda50be9b6fbd1b41c03",
+    "coverage/coverage_matrix.json": "725d120e6d14084a923d3e98db415d3ee0654c444caa2de705f070ad92eef077",
+    "acceptance/testability_gate.json": "647e4353e6030bfbabf7a9b2ba1eb4e5a71221db5d4453070e7ed96c3e2c5ac9",
+    "acceptance/acceptance_examples.json": "ffcc647533b889619414edaf7e47fa9f13b116639e04811b8b74bff34ef5b72e",
+    "testcases/case_plan.json": "7254878582843cebc35087386c3dfcaf2068acdd5cb4e897ba49908c176239e5",
+    "testcases/testcases_main.md": "85009acf4855be5739d663d88ae5489ba24363827ee2f358aa3a513c0d503ea8",
+    "traceability/coverage_first_traceability.json": "5e8fd56d6cd4cf90b3e8e7d43573b3c8b026940bab59bc26642605f61a59f01f"
+  }
+}

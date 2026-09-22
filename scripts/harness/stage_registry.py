@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import json
 import sys
 from dataclasses import dataclass
 from pathlib import Path
@@ -63,6 +64,36 @@ def _requirement_commands(
     )
     if strict:
         command.append("--strict")
+    return [command]
+
+
+def _reasoning_commands(
+    item_root: Path,
+    _project_code: str,
+    _work_item_id: str,
+    _work_item_level: str,
+    strict: bool,
+) -> list[list[str]]:
+    command = _python(
+        "skills/reasoning-analysis/scripts/validate_reasoning_pack.py",
+        "--input",
+        str(item_root / "analysis" / "reasoning_pack.json"),
+        "--schema",
+        str(ROOT / "schemas" / "reasoning_pack.schema.json"),
+    )
+    grounding_required = False
+    manifest_path = item_root / "manifest.json"
+    if manifest_path.exists():
+        try:
+            manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+            grounding_required = (
+                manifest.get("pipeline_policy", {}).get("reasoning_grounding_required")
+                is True
+            )
+        except (OSError, json.JSONDecodeError):
+            grounding_required = False
+    if strict and grounding_required:
+        command.append("--require-grounding-contract")
     return [command]
 
 
@@ -323,8 +354,54 @@ def _traceability_commands(
     return commands
 
 
+def _review_commands(
+    item_root: Path,
+    _project_code: str,
+    _work_item_id: str,
+    _work_item_level: str,
+    _strict: bool,
+) -> list[list[str]]:
+    commands = [
+        _python(
+            "skills/test-design/scripts/validate_design_feedback.py",
+            "--input",
+            str(item_root / "design" / "design_feedback.json"),
+            "--case-plan",
+            str(item_root / "testcases" / "case_plan.json"),
+        )
+    ]
+    commands.append(
+        _python(
+            "scripts/validate_feedback_application.py",
+            "--item-root",
+            str(item_root),
+        )
+    )
+    commands.append(
+        _python(
+            "scripts/validate_feedback_action_journal.py",
+            "--item-root",
+            str(item_root),
+        )
+    )
+    oracle_files = [
+        item_root / "reviews" / "blind_asset_freeze.json",
+        item_root / "reviews" / "oracle_delta_input.json",
+        item_root / "reviews" / "oracle_delta_score.json",
+    ]
+    if any(path.exists() for path in oracle_files):
+        commands.append(
+            _python(
+                "scripts/validate_oracle_review.py",
+                "--item-root",
+                str(item_root),
+            )
+        )
+    return commands
+
+
 def _strict_gate_commands(
-    _item_root: Path,
+    item_root: Path,
     project_code: str,
     work_item_id: str,
     _work_item_level: str,
@@ -336,13 +413,53 @@ def _strict_gate_commands(
         project_code,
         "--work-item-id",
         work_item_id,
-        "--skip-code-reviews",
         "--retention",
         "auto",
     )
+    manifest: dict = {}
+    try:
+        manifest = json.loads(
+            (item_root / "manifest.json").read_text(encoding="utf-8")
+        )
+    except (OSError, json.JSONDecodeError):
+        pass
+    policy = manifest.get("pipeline_policy", {}) if isinstance(manifest, dict) else {}
+    disposition_required = (
+        isinstance(policy, dict)
+        and policy.get("review_disposition_required") is True
+    )
+    current_run_id = ""
+    try:
+        pointer = json.loads(
+            (item_root / ".generation" / "current_run.json").read_text(
+                encoding="utf-8"
+            )
+        )
+        current_run_id = str(pointer.get("run_id", "")).strip()
+    except (OSError, json.JSONDecodeError):
+        pass
+    disposition_path = (
+        item_root
+        / ".generation"
+        / "runs"
+        / current_run_id
+        / "review_disposition.json"
+    )
+    disposition_check = None
+    if current_run_id and disposition_path.is_file():
+        disposition_check = _python(
+            "scripts/validate_review_disposition.py",
+            "--item-root",
+            str(item_root),
+            "--run-id",
+            current_run_id,
+        )
+        command.append("--skip-code-reviews")
+    elif not disposition_required:
+        command.append("--skip-code-reviews")
     if strict:
         command.append("--strict")
-    return [command]
+    return ([disposition_check] if disposition_check else []) + [command]
 
 
 ALL_LEVELS = frozenset({"S", "M", "L"})
@@ -366,10 +483,10 @@ STAGES = (
     ),
     StageSpec(
         "reasoning",
-        "checkpoint",
+        "validation",
         ALL_LEVELS,
         ("analysis/reasoning_pack.json",),
-        _no_commands,
+        _reasoning_commands,
     ),
     StageSpec(
         "structured_prd",
@@ -439,10 +556,14 @@ STAGES = (
     ),
     StageSpec(
         "review",
-        "checkpoint",
+        "validation",
         ALL_LEVELS,
-        ("reviews/review_record.md", "reviews/quality_report.json"),
-        _no_commands,
+        (
+            "reviews/review_record.md",
+            "reviews/quality_report.json",
+            "design/design_feedback.json",
+        ),
+        _review_commands,
     ),
     StageSpec(
         "strict_gate",
@@ -463,4 +584,3 @@ def resolve_stage_plan(level: str) -> list[StageSpec]:
 
 def stage_ids(level: str) -> list[str]:
     return [stage.stage_id for stage in resolve_stage_plan(level)]
-

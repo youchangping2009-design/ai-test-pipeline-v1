@@ -1,0 +1,1348 @@
+{
+  "project_code": "FIXTURE",
+  "work_item_id": "FIXTURE-RUNTIME-001",
+  "generated_at": "2026-08-06T17:29:01+08:00",
+  "generated_from": [
+    "acceptance/acceptance_examples.json",
+    "acceptance/testability_gate.json",
+    "coverage/coverage_matrix.json",
+    "structured_prd/structured_prd.json"
+  ],
+  "case_plans": [
+    {
+      "case_plan_id": "CP-001",
+      "source_gate_ids": [
+        "TG-001"
+      ],
+      "source_example_ids": [
+        "AE-001",
+        "AE-045",
+        "AE-048"
+      ],
+      "source_responsibility_ids": [],
+      "source_rule_ids": [
+        "OBJ-001"
+      ],
+      "source_coverage_ids": [
+        "COV-EX-0016",
+        "COV-EX-0050"
+      ],
+      "generated_testcase_ids": [
+        "FIXTURE-ADD-FORM-B-FN-001"
+      ],
+      "page_name": "云挂机购买页",
+      "section_name": "宣传区",
+      "module_name": "云挂机购买页",
+      "feature_name": "宣传区",
+      "title": "验证“宣传口号”超过一行时在C端换行展示",
+      "verification_side": "C端读侧",
+      "case_type": "ui_display",
+      "priority": "P0",
+      "assertion": "页面可直接观察到：“宣传口号”超过一行时在C端换行展示。",
+      "validation_path": "product_acceptance",
+      "should_generate_case": true
+    },
+    {
+      "case_plan_id": "CP-002",
+      "source_gate_ids": [
+        "TG-002"
+      ],
+      "source_example_ids": [
+        "AE-002",
+        "AE-046",
+        "AE-049"
+      ],
+      "source_responsibility_ids": [],
+      "source_rule_ids": [
+        "OBJ-002"
+      ],
+      "source_coverage_ids": [
+        "COV-EX-0051"
+      ],
+      "generated_testcase_ids": [
+        "FIXTURE-ADD-FORM-B-FN-002"
+      ],
+      "page_name": "云挂机购买页",
+      "section_name": "宣传区",
+      "module_name": "云挂机购买页",
+      "feature_name": "宣传区",
+      "title": "验证“性能参数”超过一行时在C端换行展示",
+      "verification_side": "C端读侧",
+      "case_type": "ui_display",
+      "priority": "P0",
+      "assertion": "页面可直接观察到：“性能参数”超过一行时在C端换行展示。",
+      "validation_path": "product_acceptance",
+      "should_generate_case": true
+    },
+    {
+      "case_plan_id": "CP-003",
+      "source_gate_ids": [
+        "TG-003"
+      ],
+      "source_example_ids": [
+        "AE-003",
+        "AE-047",
+        "AE-050"
+      ],
+      "source_responsibility_ids": [],
+      "source_rule_ids": [
+        "OBJ-003"
+      ],
+      "source_coverage_ids": [
+        "COV-EX-0008",
+        "COV-EX-0065"
+      ],
+      "generated_testcase_ids": [
+        "FIXTURE-BUY-SALE-C-FN-003"
+      ],
+      "page_name": "云挂机购买页",
+      "section_name": "特价专区",
+      "module_name": "云挂机购买页",
+      "feature_name": "特价专区",
+      "title": "验证“特殊区商品列表”后台未配置特殊区商品时隐藏",
+      "verification_side": "C端读侧",
+      "case_type": "ui_display",
+      "priority": "P1",
+      "assertion": "页面可直接观察到：“特殊区商品列表”后台未配置特殊区商品时隐藏。",
+      "validation_path": "product_acceptance",
+      "should_generate_case": true
+    },
+    {
+      "case_plan_id": "CP-004",
+      "source_gate_ids": [
+        "TG-004"
+      ],
+      "source_example_ids": [
+        "AE-004",
+        "AE-051"
+      ],
+      "source_responsibility_ids": [],
+      "source_rule_ids": [
+        "FR-云挂机购买页-特价专区-01"
+      ],
+      "source_coverage_ids": [
+        "COV-EX-0064",
+        "COV-EX-0069"
+      ],
+      "generated_testcase_ids": [
+        "FIXTURE-BUY-SALE-C-FN-004"
+      ],
+      "page_name": "云挂机购买页",
+      "section_name": "特价专区",
+      "module_name": "云挂机购买页",
+      "feature_name": "特价专区",
+      "title": "验证“特殊区商品列表”最多展示4个商品",
+      "verification_side": "C端读侧",
+      "case_type": "ui_display",
+      "priority": "P1",
+      "assertion": "页面可直接观察到：“特殊区商品列表”最多展示4个商品。",
+      "validation_path": "product_acceptance",
+      "should_generate_case": true
+    },
+    {
+      "case_plan_id": "CP-005",
+      "source_gate_ids": [
+        "TG-005"
+      ],
+      "source_example_ids": [
+        "AE-005",
+        "AE-058"
+      ],
+      "source_responsibility_ids": [],
+      "source_rule_ids": [
+        "OBJ-004"
+      ],
+      "source_coverage_ids": [
+        "COV-EX-0022",
+        "COV-EX-0024",
+        "COV-EX-0052"
+      ],
+      "generated_testcase_ids": [
+        "FIXTURE-BUY-TAB-C-AB-005"
+      ],
+      "page_name": "盒子管理后台-云手机商品管理-添加",
+      "section_name": "商品添加表单",
+      "module_name": "云手机商品管理",
+      "feature_name": "商品添加表单",
+      "title": "验证“原价（元）”必须填写大于{0.00}的数值",
+      "verification_side": "B端写侧",
+      "case_type": "save_block",
+      "priority": "P1",
+      "assertion": "违反“原价（元）”必须填写大于{0.00}的数值时，系统阻止保存并保留原配置。",
+      "validation_path": "product_acceptance",
+      "should_generate_case": true
+    },
+    {
+      "case_plan_id": "CP-006",
+      "source_gate_ids": [
+        "TG-006"
+      ],
+      "source_example_ids": [
+        "AE-006",
+        "AE-059"
+      ],
+      "source_responsibility_ids": [],
+      "source_rule_ids": [
+        "OBJ-005"
+      ],
+      "source_coverage_ids": [
+        "COV-EX-0066",
+        "COV-EX-0068",
+        "COV-EX-0053"
+      ],
+      "generated_testcase_ids": [
+        "FIXTURE-BUY-REG-C-AB-006"
+      ],
+      "page_name": "盒子管理后台-云手机商品管理-添加",
+      "section_name": "商品添加表单",
+      "module_name": "云手机商品管理",
+      "feature_name": "商品添加表单",
+      "title": "验证“现价（元）”必须填写大于{0.00}的数值",
+      "verification_side": "B端写侧",
+      "case_type": "save_block",
+      "priority": "P1",
+      "assertion": "违反“现价（元）”必须填写大于{0.00}的数值时，系统阻止保存并保留原配置。",
+      "validation_path": "product_acceptance",
+      "should_generate_case": true
+    },
+    {
+      "case_plan_id": "CP-007",
+      "source_gate_ids": [
+        "TG-007"
+      ],
+      "source_example_ids": [
+        "AE-007",
+        "AE-060"
+      ],
+      "source_responsibility_ids": [],
+      "source_rule_ids": [
+        "OBJ-006"
+      ],
+      "source_coverage_ids": [
+        "COV-EX-0026",
+        "COV-EX-0059"
+      ],
+      "generated_testcase_ids": [
+        "FIXTURE-BUY-REG-C-AB-007"
+      ],
+      "page_name": "盒子管理后台-云手机商品管理-添加",
+      "section_name": "商品添加表单",
+      "module_name": "云手机商品管理",
+      "feature_name": "商品添加表单",
+      "title": "验证“服务时长”天数最大{370}、小时最大{23}且不能同时为{0}",
+      "verification_side": "B端写侧",
+      "case_type": "save_block",
+      "priority": "P1",
+      "assertion": "违反“服务时长”天数最大{370}、小时最大{23}且不能同时为{0}时，系统阻止保存并保留原配置。",
+      "validation_path": "product_acceptance",
+      "should_generate_case": true
+    },
+    {
+      "case_plan_id": "CP-008",
+      "source_gate_ids": [
+        "TG-008"
+      ],
+      "source_example_ids": [
+        "AE-008",
+        "AE-061"
+      ],
+      "source_responsibility_ids": [],
+      "source_rule_ids": [
+        "OBJ-007"
+      ],
+      "source_coverage_ids": [
+        "COV-EX-0030",
+        "COV-EX-0054"
+      ],
+      "generated_testcase_ids": [
+        "FIXTURE-BUY-REG-C-AB-008"
+      ],
+      "page_name": "盒子管理后台-云手机商品管理-添加",
+      "section_name": "商品添加表单",
+      "module_name": "云手机商品管理",
+      "feature_name": "商品添加表单",
+      "title": "验证“盒子内排序”只能填写不大于{1000}的正整数",
+      "verification_side": "B端写侧",
+      "case_type": "save_block",
+      "priority": "P1",
+      "assertion": "违反“盒子内排序”只能填写不大于{1000}的正整数时，系统阻止保存并保留原配置。",
+      "validation_path": "product_acceptance",
+      "should_generate_case": true
+    },
+    {
+      "case_plan_id": "CP-009",
+      "source_gate_ids": [
+        "TG-009"
+      ],
+      "source_example_ids": [
+        "AE-009",
+        "AE-062"
+      ],
+      "source_responsibility_ids": [],
+      "source_rule_ids": [
+        "OBJ-008"
+      ],
+      "source_coverage_ids": [
+        "COV-EX-0067",
+        "COV-EX-0071",
+        "COV-EX-0055"
+      ],
+      "generated_testcase_ids": [
+        "FIXTURE-BUY-REG-C-AB-009"
+      ],
+      "page_name": "盒子管理后台-云手机商品管理-添加",
+      "section_name": "商品添加表单",
+      "module_name": "云手机商品管理",
+      "feature_name": "商品添加表单",
+      "title": "验证“库存预警值”只能填写不大于{200}的正整数",
+      "verification_side": "B端写侧",
+      "case_type": "save_block",
+      "priority": "P1",
+      "assertion": "违反“库存预警值”只能填写不大于{200}的正整数时，系统阻止保存并保留原配置。",
+      "validation_path": "product_acceptance",
+      "should_generate_case": true
+    },
+    {
+      "case_plan_id": "CP-010",
+      "source_gate_ids": [
+        "TG-010"
+      ],
+      "source_example_ids": [
+        "AE-010",
+        "AE-063"
+      ],
+      "source_responsibility_ids": [],
+      "source_rule_ids": [
+        "OBJ-009"
+      ],
+      "source_coverage_ids": [
+        "COV-AI-0079",
+        "COV-EX-0037"
+      ],
+      "generated_testcase_ids": [
+        "FIXTURE-BUY-REG-C-FN-010"
+      ],
+      "page_name": "盒子管理后台-云手机商品管理-添加",
+      "section_name": "商品添加表单",
+      "module_name": "云手机商品管理",
+      "feature_name": "商品添加表单",
+      "title": "验证“购买数量报警通知人”候选项来自盒子后台管理员列表",
+      "verification_side": "B端写侧",
+      "case_type": "ui_display",
+      "priority": "P1",
+      "assertion": "页面可直接观察到：“购买数量报警通知人”候选项来自盒子后台管理员列表。",
+      "validation_path": "product_acceptance",
+      "should_generate_case": true
+    },
+    {
+      "case_plan_id": "CP-011",
+      "source_gate_ids": [
+        "TG-011"
+      ],
+      "source_example_ids": [
+        "AE-011",
+        "AE-052"
+      ],
+      "source_responsibility_ids": [],
+      "source_rule_ids": [
+        "FR-盒子管理后台-云手机商品管理-添加-商品添加表单-01"
+      ],
+      "source_coverage_ids": [],
+      "generated_testcase_ids": [
+        "FIXTURE-GOODS-OPS-B-AB-011"
+      ],
+      "page_name": "盒子管理后台-云手机商品管理-添加",
+      "section_name": "商品添加表单",
+      "module_name": "云手机商品管理",
+      "feature_name": "商品添加表单",
+      "title": "验证“服务时长”天数最大370，小时最大23，所有项不可同时为0，后端以秒为单位",
+      "verification_side": "B端写侧",
+      "case_type": "save_block",
+      "priority": "P0",
+      "assertion": "违反“服务时长”天数最大370，小时最大23，所有项不可同时为0，后端以秒为单位时，系统阻止保存并保留原配置。",
+      "validation_path": "product_acceptance",
+      "should_generate_case": true
+    },
+    {
+      "case_plan_id": "CP-012",
+      "source_gate_ids": [
+        "TG-012"
+      ],
+      "source_example_ids": [
+        "AE-012",
+        "AE-053"
+      ],
+      "source_responsibility_ids": [],
+      "source_rule_ids": [
+        "FR-盒子管理后台-云手机商品管理-添加-商品添加表单-02"
+      ],
+      "source_coverage_ids": [
+        "COV-EX-0020",
+        "COV-EX-0070"
+      ],
+      "generated_testcase_ids": [
+        "FIXTURE-GOODS-OPS-B-AB-012"
+      ],
+      "page_name": "盒子管理后台-云手机商品管理-添加",
+      "section_name": "商品添加表单",
+      "module_name": "云手机商品管理",
+      "feature_name": "商品添加表单",
+      "title": "验证“商品区”特殊区商品数量必须小于等于4，超过4个时不可保存",
+      "verification_side": "B端写侧",
+      "case_type": "save_block",
+      "priority": "P0",
+      "assertion": "违反“商品区”特殊区商品数量必须小于等于4，超过4个时不可保存时，系统阻止保存并保留原配置。",
+      "validation_path": "product_acceptance",
+      "should_generate_case": true
+    },
+    {
+      "case_plan_id": "CP-013",
+      "source_gate_ids": [
+        "TG-013"
+      ],
+      "source_example_ids": [
+        "AE-013",
+        "AE-054"
+      ],
+      "source_responsibility_ids": [],
+      "source_rule_ids": [
+        "FR-盒子管理后台-云手机商品管理-添加-商品添加表单-03"
+      ],
+      "source_coverage_ids": [],
+      "generated_testcase_ids": [
+        "FIXTURE-ADD-FORM-B-AB-013"
+      ],
+      "page_name": "盒子管理后台-云手机商品管理-添加",
+      "section_name": "商品添加表单",
+      "module_name": "云手机商品管理",
+      "feature_name": "商品添加表单",
+      "title": "验证“盒子内排序”正整数，上限1000；相同排序值按创建时间倒序排列",
+      "verification_side": "B端写侧",
+      "case_type": "save_block",
+      "priority": "P0",
+      "assertion": "违反“盒子内排序”正整数，上限1000；相同排序值按创建时间倒序排列时，系统阻止保存并保留原配置。",
+      "validation_path": "product_acceptance",
+      "should_generate_case": true
+    },
+    {
+      "case_plan_id": "CP-014",
+      "source_gate_ids": [
+        "TG-014"
+      ],
+      "source_example_ids": [
+        "AE-014"
+      ],
+      "source_responsibility_ids": [],
+      "source_rule_ids": [
+        "FR-盒子管理后台-云手机商品管理-添加-商品添加表单-04"
+      ],
+      "source_coverage_ids": [],
+      "generated_testcase_ids": [
+        "FIXTURE-ADD-RULE-SVC-ST-014"
+      ],
+      "page_name": "盒子管理后台-云手机商品管理-添加",
+      "section_name": "商品添加表单",
+      "module_name": "云手机商品管理",
+      "feature_name": "商品添加表单",
+      "title": "验证“库存预警值”正整数，上限200；按固定频率校验库存是否小于等于配置数量",
+      "verification_side": "服务端任务与C端读侧",
+      "case_type": "backend_job",
+      "priority": "P0",
+      "assertion": "后台任务执行后可观察到：“库存预警值”正整数，上限200；按固定频率校验库存是否小于等于配置数量。",
+      "validation_path": "product_acceptance",
+      "should_generate_case": true
+    },
+    {
+      "case_plan_id": "CP-015",
+      "source_gate_ids": [
+        "TG-015"
+      ],
+      "source_example_ids": [
+        "AE-015",
+        "AE-072",
+        "AE-073"
+      ],
+      "source_responsibility_ids": [],
+      "source_rule_ids": [
+        "FR-盒子管理后台-云手机商品管理-添加-商品区与库存规则说明表-01"
+      ],
+      "source_coverage_ids": [
+        "COV-EX-0072"
+      ],
+      "generated_testcase_ids": [
+        "FIXTURE-ADD-RULE-B-FL-015"
+      ],
+      "page_name": "盒子管理后台-云手机商品管理-添加",
+      "section_name": "商品区与库存规则说明表",
+      "module_name": "云手机商品管理",
+      "feature_name": "商品区与库存规则说明表",
+      "title": "验证“库存预警值”库存小于等于预警值时，C端隐藏商品、不分配云机并发送库存不足通知",
+      "verification_side": "B端写侧与C端读侧",
+      "case_type": "linkage",
+      "priority": "P0",
+      "assertion": "触发条件后，各验证端分别出现以下结果：“库存预警值”库存小于等于预警值时，C端隐藏商品、不分配云机并发送库存不足通知。",
+      "validation_path": "product_acceptance",
+      "should_generate_case": true
+    },
+    {
+      "case_plan_id": "CP-016",
+      "source_gate_ids": [
+        "TG-016"
+      ],
+      "source_example_ids": [
+        "AE-016",
+        "AE-055"
+      ],
+      "source_responsibility_ids": [],
+      "source_rule_ids": [
+        "FR-盒子管理后台-云手机商品管理-添加-商品区与库存规则说明表-02"
+      ],
+      "source_coverage_ids": [],
+      "generated_testcase_ids": [
+        "FIXTURE-ADD-FORM-B-AB-016"
+      ],
+      "page_name": "盒子管理后台-云手机商品管理-添加",
+      "section_name": "商品区与库存规则说明表",
+      "module_name": "云手机商品管理",
+      "feature_name": "商品区与库存规则说明表",
+      "title": "验证“现价”已有功能，数值限制大于0.00",
+      "verification_side": "B端写侧",
+      "case_type": "save_block",
+      "priority": "P0",
+      "assertion": "违反“现价”已有功能，数值限制大于0.00时，系统阻止保存并保留原配置。",
+      "validation_path": "product_acceptance",
+      "should_generate_case": true
+    },
+    {
+      "case_plan_id": "CP-017",
+      "source_gate_ids": [
+        "TG-017"
+      ],
+      "source_example_ids": [
+        "AE-017",
+        "AE-056"
+      ],
+      "source_responsibility_ids": [],
+      "source_rule_ids": [
+        "FR-盒子管理后台-云手机商品管理-添加-商品区与库存规则说明表-03"
+      ],
+      "source_coverage_ids": [],
+      "generated_testcase_ids": [
+        "FIXTURE-ADD-FORM-B-AB-017"
+      ],
+      "page_name": "盒子管理后台-云手机商品管理-添加",
+      "section_name": "商品区与库存规则说明表",
+      "module_name": "云手机商品管理",
+      "feature_name": "商品区与库存规则说明表",
+      "title": "验证“原价”已有功能，数值限制大于0.00",
+      "verification_side": "B端写侧",
+      "case_type": "save_block",
+      "priority": "P0",
+      "assertion": "违反“原价”已有功能，数值限制大于0.00时，系统阻止保存并保留原配置。",
+      "validation_path": "product_acceptance",
+      "should_generate_case": true
+    },
+    {
+      "case_plan_id": "CP-018",
+      "source_gate_ids": [
+        "TG-018"
+      ],
+      "source_example_ids": [
+        "AE-018",
+        "AE-057"
+      ],
+      "source_responsibility_ids": [],
+      "source_rule_ids": [
+        "FR-盒子管理后台-云手机商品管理-添加-商品区与库存规则说明表-04"
+      ],
+      "source_coverage_ids": [],
+      "generated_testcase_ids": [
+        "FIXTURE-ADD-FORM-B-AB-018"
+      ],
+      "page_name": "盒子管理后台-云手机商品管理-添加",
+      "section_name": "商品区与库存规则说明表",
+      "module_name": "云手机商品管理",
+      "feature_name": "商品区与库存规则说明表",
+      "title": "验证“服务时长”数字选择器，必填；天最大370、时最大23，所有项不可同时为0，后端以秒为单位",
+      "verification_side": "B端写侧",
+      "case_type": "save_block",
+      "priority": "P0",
+      "assertion": "违反“服务时长”数字选择器，必填；天最大370、时最大23，所有项不可同时为0，后端以秒为单位时，系统阻止保存并保留原配置。",
+      "validation_path": "product_acceptance",
+      "should_generate_case": true
+    },
+    {
+      "case_plan_id": "CP-019",
+      "source_gate_ids": [
+        "TG-019"
+      ],
+      "source_example_ids": [
+        "AE-019"
+      ],
+      "source_responsibility_ids": [],
+      "source_rule_ids": [
+        "FR-盒子管理后台-云手机商品管理-添加-商品区与库存规则说明表-05"
+      ],
+      "source_coverage_ids": [],
+      "generated_testcase_ids": [
+        "FIXTURE-ADD-FORM-B-AB-019"
+      ],
+      "page_name": "盒子管理后台-云手机商品管理-添加",
+      "section_name": "商品区与库存规则说明表",
+      "module_name": "云手机商品管理",
+      "feature_name": "商品区与库存规则说明表",
+      "title": "验证“商品区”下拉单选，必填，content：特殊区、普通区；特殊区商品数量小于等于4",
+      "verification_side": "B端写侧",
+      "case_type": "save_block",
+      "priority": "P0",
+      "assertion": "违反“商品区”下拉单选，必填，content：特殊区、普通区；特殊区商品数量小于等于4时，系统阻止保存并保留原配置。",
+      "validation_path": "product_acceptance",
+      "should_generate_case": true
+    },
+    {
+      "case_plan_id": "CP-020",
+      "source_gate_ids": [
+        "TG-020"
+      ],
+      "source_example_ids": [
+        "AE-020"
+      ],
+      "source_responsibility_ids": [],
+      "source_rule_ids": [
+        "FR-盒子管理后台-云手机商品管理-添加-商品区与库存规则说明表-06"
+      ],
+      "source_coverage_ids": [],
+      "generated_testcase_ids": [
+        "FIXTURE-ADD-FORM-B-AB-020"
+      ],
+      "page_name": "盒子管理后台-云手机商品管理-添加",
+      "section_name": "商品区与库存规则说明表",
+      "module_name": "云手机商品管理",
+      "feature_name": "商品区与库存规则说明表",
+      "title": "验证“盒子内排序”数字框，必填，正整数，上限1000；相同值按创建时间倒序",
+      "verification_side": "B端写侧",
+      "case_type": "save_block",
+      "priority": "P0",
+      "assertion": "违反“盒子内排序”数字框，必填，正整数，上限1000；相同值按创建时间倒序时，系统阻止保存并保留原配置。",
+      "validation_path": "product_acceptance",
+      "should_generate_case": true
+    },
+    {
+      "case_plan_id": "CP-021",
+      "source_gate_ids": [
+        "TG-021"
+      ],
+      "source_example_ids": [
+        "AE-021"
+      ],
+      "source_responsibility_ids": [],
+      "source_rule_ids": [
+        "FR-盒子管理后台-云手机商品管理-添加-商品区与库存规则说明表-07"
+      ],
+      "source_coverage_ids": [],
+      "generated_testcase_ids": [
+        "FIXTURE-ADD-FORM-B-FN-021"
+      ],
+      "page_name": "盒子管理后台-云手机商品管理-添加",
+      "section_name": "商品区与库存规则说明表",
+      "module_name": "云手机商品管理",
+      "feature_name": "商品区与库存规则说明表",
+      "title": "验证“商品展示时间”已有功能，增加未配置状态说明；服务时长结束后C端不再展示",
+      "verification_side": "C端读侧",
+      "case_type": "ui_display",
+      "priority": "P1",
+      "assertion": "页面可直接观察到：“商品展示时间”已有功能，增加未配置状态说明；服务时长结束后C端不再展示。",
+      "validation_path": "product_acceptance",
+      "should_generate_case": true
+    },
+    {
+      "case_plan_id": "CP-022",
+      "source_gate_ids": [
+        "TG-022"
+      ],
+      "source_example_ids": [
+        "AE-022"
+      ],
+      "source_responsibility_ids": [],
+      "source_rule_ids": [
+        "FR-盒子管理后台-云手机商品管理-添加-商品区与库存规则说明表-08"
+      ],
+      "source_coverage_ids": [
+        "COV-EX-0056"
+      ],
+      "generated_testcase_ids": [
+        "FIXTURE-ADD-FORM-B-AB-022"
+      ],
+      "page_name": "盒子管理后台-云手机商品管理-添加",
+      "section_name": "商品区与库存规则说明表",
+      "module_name": "云手机商品管理",
+      "feature_name": "商品区与库存规则说明表",
+      "title": "验证“库存预警值”数字框，非必填，正整数，上限200；按固定频率校验库存",
+      "verification_side": "B端写侧",
+      "case_type": "save_block",
+      "priority": "P0",
+      "assertion": "违反“库存预警值”数字框，非必填，正整数，上限200；按固定频率校验库存时，系统阻止保存并保留原配置。",
+      "validation_path": "product_acceptance",
+      "should_generate_case": true
+    },
+    {
+      "case_plan_id": "CP-023",
+      "source_gate_ids": [
+        "TG-023"
+      ],
+      "source_example_ids": [
+        "AE-023"
+      ],
+      "source_responsibility_ids": [],
+      "source_rule_ids": [
+        "FR-盒子管理后台-云手机商品管理-添加-商品区与库存规则说明表-09"
+      ],
+      "source_coverage_ids": [],
+      "generated_testcase_ids": [
+        "FIXTURE-ADD-FORM-B-AB-023"
+      ],
+      "page_name": "盒子管理后台-云手机商品管理-添加",
+      "section_name": "商品区与库存规则说明表",
+      "module_name": "云手机商品管理",
+      "feature_name": "商品区与库存规则说明表",
+      "title": "验证“购买数量报警通知人”下拉单选，必填，content：盒子后台管理员列表",
+      "verification_side": "B端写侧",
+      "case_type": "save_block",
+      "priority": "P0",
+      "assertion": "违反“购买数量报警通知人”下拉单选，必填，content：盒子后台管理员列表时，系统阻止保存并保留原配置。",
+      "validation_path": "product_acceptance",
+      "should_generate_case": true
+    },
+    {
+      "case_plan_id": "CP-024",
+      "source_gate_ids": [
+        "TG-024"
+      ],
+      "source_example_ids": [
+        "AE-024"
+      ],
+      "source_responsibility_ids": [],
+      "source_rule_ids": [
+        "FR-盒子管理后台-云手机商品管理-添加-商品区与库存规则说明表-10"
+      ],
+      "source_coverage_ids": [],
+      "generated_testcase_ids": [
+        "FIXTURE-ADD-FORM-SVC-ST-024"
+      ],
+      "page_name": "盒子管理后台-云手机商品管理-添加",
+      "section_name": "商品区与库存规则说明表",
+      "module_name": "云手机商品管理",
+      "feature_name": "商品区与库存规则说明表",
+      "title": "验证“通知群”云手机相关报警",
+      "verification_side": "服务端任务与C端读侧",
+      "case_type": "backend_job",
+      "priority": "P0",
+      "assertion": "后台任务执行后可观察到：“通知群”云手机相关报警。",
+      "validation_path": "product_acceptance",
+      "should_generate_case": true
+    },
+    {
+      "case_plan_id": "CP-025",
+      "source_gate_ids": [
+        "TG-025"
+      ],
+      "source_example_ids": [
+        "AE-025"
+      ],
+      "source_responsibility_ids": [],
+      "source_rule_ids": [
+        "FR-盒子管理后台-云手机商品管理-添加-商品区与库存规则说明表-11"
+      ],
+      "source_coverage_ids": [],
+      "generated_testcase_ids": [
+        "FIXTURE-GOODS-LIST-B-FN-025"
+      ],
+      "page_name": "盒子管理后台-云手机商品管理-添加",
+      "section_name": "商品区与库存规则说明表",
+      "module_name": "云手机商品管理",
+      "feature_name": "商品区与库存规则说明表",
+      "title": "验证“正式环境模板标题”【云挂机库存不足通知】",
+      "verification_side": "B端写侧",
+      "case_type": "field_constraint",
+      "priority": "P1",
+      "assertion": "页面可直接观察到：“正式环境模板标题”【云挂机库存不足通知】。",
+      "validation_path": "product_acceptance",
+      "should_generate_case": true
+    },
+    {
+      "case_plan_id": "CP-026",
+      "source_gate_ids": [
+        "TG-026"
+      ],
+      "source_example_ids": [
+        "AE-026"
+      ],
+      "source_responsibility_ids": [],
+      "source_rule_ids": [
+        "FR-盒子管理后台-云手机商品管理-添加-商品区与库存规则说明表-12"
+      ],
+      "source_coverage_ids": [],
+      "generated_testcase_ids": [
+        "FIXTURE-ADD-FORM-B-FN-026"
+      ],
+      "page_name": "盒子管理后台-云手机商品管理-添加",
+      "section_name": "商品区与库存规则说明表",
+      "module_name": "云手机商品管理",
+      "feature_name": "商品区与库存规则说明表",
+      "title": "验证“功能模块”玩心盒子后台_云挂机_云手机商品管理",
+      "verification_side": "B端写侧",
+      "case_type": "field_constraint",
+      "priority": "P1",
+      "assertion": "页面可直接观察到：“功能模块”玩心盒子后台_云挂机_云手机商品管理。",
+      "validation_path": "product_acceptance",
+      "should_generate_case": true
+    },
+    {
+      "case_plan_id": "CP-027",
+      "source_gate_ids": [
+        "TG-027"
+      ],
+      "source_example_ids": [
+        "AE-027",
+        "AE-074"
+      ],
+      "source_responsibility_ids": [],
+      "source_rule_ids": [
+        "FR-盒子管理后台-云手机商品管理-添加-商品区与库存规则说明表-13"
+      ],
+      "source_coverage_ids": [
+        "COV-AI-0078"
+      ],
+      "generated_testcase_ids": [
+        "FIXTURE-ADD-FORM-B-FL-027"
+      ],
+      "page_name": "盒子管理后台-云手机商品管理-添加",
+      "section_name": "商品区与库存规则说明表",
+      "module_name": "云手机商品管理",
+      "feature_name": "商品区与库存规则说明表",
+      "title": "验证“动态字段”配置ID、商品名称、云机类型、云机服务时长、通知时间、通知人由配置或系统生成",
+      "verification_side": "B端写侧与C端读侧",
+      "case_type": "linkage",
+      "priority": "P0",
+      "assertion": "触发条件后，各验证端分别出现以下结果：“动态字段”配置ID、商品名称、云机类型、云机服务时长、通知时间、通知人由配置或系统生成。",
+      "validation_path": "product_acceptance",
+      "should_generate_case": true
+    },
+    {
+      "case_plan_id": "CP-028",
+      "source_gate_ids": [
+        "TG-028"
+      ],
+      "source_example_ids": [
+        "AE-028",
+        "AE-064"
+      ],
+      "source_responsibility_ids": [],
+      "source_rule_ids": [
+        "OBJ-010"
+      ],
+      "source_coverage_ids": [
+        "COV-EX-0073",
+        "COV-EX-0042",
+        "COV-EX-0077"
+      ],
+      "generated_testcase_ids": [
+        "FIXTURE-PROMO-FORM-B-FN-028"
+      ],
+      "page_name": "盒子管理后台-编辑宣传内容",
+      "section_name": "宣传内容编辑表单",
+      "module_name": "宣传内容管理",
+      "feature_name": "宣传内容编辑表单",
+      "title": "验证“云机类型”候选项来自盒子现有云机类型",
+      "verification_side": "B端写侧",
+      "case_type": "ui_display",
+      "priority": "P1",
+      "assertion": "页面可直接观察到：“云机类型”候选项来自盒子现有云机类型。",
+      "validation_path": "product_acceptance",
+      "should_generate_case": true
+    },
+    {
+      "case_plan_id": "CP-029",
+      "source_gate_ids": [
+        "TG-029"
+      ],
+      "source_example_ids": [
+        "AE-029",
+        "AE-065"
+      ],
+      "source_responsibility_ids": [],
+      "source_rule_ids": [
+        "OBJ-011"
+      ],
+      "source_coverage_ids": [
+        "COV-EX-0074",
+        "COV-EX-0076",
+        "COV-EX-0044"
+      ],
+      "generated_testcase_ids": [
+        "FIXTURE-BUY-PIC-C-AB-029"
+      ],
+      "page_name": "盒子管理后台-编辑宣传内容",
+      "section_name": "宣传内容编辑表单",
+      "module_name": "宣传内容管理",
+      "feature_name": "宣传内容编辑表单",
+      "title": "验证“宣传图片”最多5张，单张最大500K，建议尺寸1008*160，支持拖拽和删除",
+      "verification_side": "B端写侧",
+      "case_type": "save_block",
+      "priority": "P1",
+      "assertion": "违反“宣传图片”最多5张，单张最大500K，建议尺寸1008*160，支持拖拽和删除时，系统阻止保存并保留原配置。",
+      "validation_path": "product_acceptance",
+      "should_generate_case": true
+    },
+    {
+      "case_plan_id": "CP-030",
+      "source_gate_ids": [
+        "TG-030"
+      ],
+      "source_example_ids": [
+        "AE-030",
+        "AE-066"
+      ],
+      "source_responsibility_ids": [],
+      "source_rule_ids": [
+        "OBJ-012"
+      ],
+      "source_coverage_ids": [
+        "COV-EX-0028",
+        "COV-EX-0046"
+      ],
+      "generated_testcase_ids": [
+        "FIXTURE-ADD-FORM-B-FN-030"
+      ],
+      "page_name": "盒子管理后台-编辑宣传内容",
+      "section_name": "宣传内容编辑表单",
+      "module_name": "宣传内容管理",
+      "feature_name": "宣传内容编辑表单",
+      "title": "验证“宣传口号”超过一行时在C端换行展示",
+      "verification_side": "C端读侧",
+      "case_type": "ui_display",
+      "priority": "P1",
+      "assertion": "页面可直接观察到：“宣传口号”超过一行时在C端换行展示。",
+      "validation_path": "product_acceptance",
+      "should_generate_case": true
+    },
+    {
+      "case_plan_id": "CP-031",
+      "source_gate_ids": [
+        "TG-031"
+      ],
+      "source_example_ids": [
+        "AE-031",
+        "AE-067"
+      ],
+      "source_responsibility_ids": [],
+      "source_rule_ids": [
+        "OBJ-013"
+      ],
+      "source_coverage_ids": [
+        "COV-EX-0048"
+      ],
+      "generated_testcase_ids": [
+        "FIXTURE-ADD-FORM-B-FN-031"
+      ],
+      "page_name": "盒子管理后台-编辑宣传内容",
+      "section_name": "宣传内容编辑表单",
+      "module_name": "宣传内容管理",
+      "feature_name": "宣传内容编辑表单",
+      "title": "验证“性能参数”超过一行时在C端换行展示",
+      "verification_side": "C端读侧",
+      "case_type": "ui_display",
+      "priority": "P1",
+      "assertion": "页面可直接观察到：“性能参数”超过一行时在C端换行展示。",
+      "validation_path": "product_acceptance",
+      "should_generate_case": true
+    },
+    {
+      "case_plan_id": "CP-032",
+      "source_gate_ids": [
+        "TG-032"
+      ],
+      "source_example_ids": [
+        "AE-032"
+      ],
+      "source_responsibility_ids": [],
+      "source_rule_ids": [
+        "FR-盒子管理后台-编辑宣传内容-宣传内容编辑表单-01"
+      ],
+      "source_coverage_ids": [],
+      "generated_testcase_ids": [
+        "FIXTURE-PROMO-FORM-B-FN-032"
+      ],
+      "page_name": "盒子管理后台-编辑宣传内容",
+      "section_name": "宣传内容编辑表单",
+      "module_name": "宣传内容管理",
+      "feature_name": "宣传内容编辑表单",
+      "title": "验证保存前校验所有“云机类型”均已配置且不存在重复",
+      "verification_side": "B端写侧",
+      "case_type": "field_constraint",
+      "priority": "P0",
+      "assertion": "页面可直接观察到：保存前校验所有“云机类型”均已配置且不存在重复。",
+      "validation_path": "product_acceptance",
+      "should_generate_case": true
+    },
+    {
+      "case_plan_id": "CP-033",
+      "source_gate_ids": [
+        "TG-033"
+      ],
+      "source_example_ids": [
+        "AE-033",
+        "AE-075"
+      ],
+      "source_responsibility_ids": [],
+      "source_rule_ids": [
+        "FR-盒子管理后台-编辑宣传内容-宣传内容编辑表单-02"
+      ],
+      "source_coverage_ids": [
+        "COV-EX-0075"
+      ],
+      "generated_testcase_ids": [
+        "FIXTURE-PROMO-FORM-B-FN-033"
+      ],
+      "page_name": "盒子管理后台-编辑宣传内容",
+      "section_name": "宣传内容编辑表单",
+      "module_name": "宣传内容管理",
+      "feature_name": "宣传内容编辑表单",
+      "title": "验证“宣传图片”最多上传5张，支持gif/jpg/jpeg/png，单张最大500K，建议尺寸1008*160",
+      "verification_side": "B端写侧",
+      "case_type": "prompt_display",
+      "priority": "P2",
+      "assertion": "页面展示与“宣传图片”最多上传5张，支持gif/jpg/jpeg/png，单张最大500K，建议尺寸1008*160对应的说明，其中建议内容不作为提交拦截条件。",
+      "validation_path": "product_acceptance",
+      "should_generate_case": true
+    },
+    {
+      "case_plan_id": "CP-034",
+      "source_gate_ids": [
+        "TG-034"
+      ],
+      "source_example_ids": [
+        "AE-034"
+      ],
+      "source_responsibility_ids": [],
+      "source_rule_ids": [
+        "FR-盒子管理后台-编辑宣传内容-宣传内容编辑表单-03"
+      ],
+      "source_coverage_ids": [
+        "COV-EX-0057"
+      ],
+      "generated_testcase_ids": [
+        "FIXTURE-BUY-PROMO-C-FN-034"
+      ],
+      "page_name": "盒子管理后台-编辑宣传内容",
+      "section_name": "宣传内容编辑表单",
+      "module_name": "宣传内容管理",
+      "feature_name": "宣传内容编辑表单",
+      "title": "验证“宣传口号”文本长度20个字符；C端超过一行换行展示",
+      "verification_side": "C端读侧",
+      "case_type": "ui_display",
+      "priority": "P0",
+      "assertion": "页面可直接观察到：“宣传口号”文本长度20个字符；C端超过一行换行展示。",
+      "validation_path": "product_acceptance",
+      "should_generate_case": true
+    },
+    {
+      "case_plan_id": "CP-035",
+      "source_gate_ids": [
+        "TG-035"
+      ],
+      "source_example_ids": [
+        "AE-035"
+      ],
+      "source_responsibility_ids": [],
+      "source_rule_ids": [
+        "FR-盒子管理后台-编辑宣传内容-宣传内容编辑表单-04"
+      ],
+      "source_coverage_ids": [
+        "COV-EX-0058"
+      ],
+      "generated_testcase_ids": [
+        "FIXTURE-BUY-PROMO-C-FN-035"
+      ],
+      "page_name": "盒子管理后台-编辑宣传内容",
+      "section_name": "宣传内容编辑表单",
+      "module_name": "宣传内容管理",
+      "feature_name": "宣传内容编辑表单",
+      "title": "验证“性能参数”文本长度20个字符；C端超过一行换行展示",
+      "verification_side": "C端读侧",
+      "case_type": "ui_display",
+      "priority": "P0",
+      "assertion": "页面可直接观察到：“性能参数”文本长度20个字符；C端超过一行换行展示。",
+      "validation_path": "product_acceptance",
+      "should_generate_case": true
+    },
+    {
+      "case_plan_id": "CP-036",
+      "source_gate_ids": [
+        "TG-036"
+      ],
+      "source_example_ids": [
+        "AE-036"
+      ],
+      "source_responsibility_ids": [],
+      "source_rule_ids": [
+        "FR-盒子管理后台-编辑宣传内容-宣传内容字段说明表-01"
+      ],
+      "source_coverage_ids": [
+        "COV-EX-0018",
+        "COV-EX-0061"
+      ],
+      "generated_testcase_ids": [
+        "FIXTURE-PROMO-FORM-B-AB-036"
+      ],
+      "page_name": "盒子管理后台-编辑宣传内容",
+      "section_name": "宣传内容字段说明表",
+      "module_name": "宣传内容管理",
+      "feature_name": "宣传内容字段说明表",
+      "title": "验证下拉列表框，必填，默认为空，可编辑；单选，content为盒子现有“云机类型”",
+      "verification_side": "B端写侧",
+      "case_type": "save_block",
+      "priority": "P0",
+      "assertion": "违反下拉列表框，必填，默认为空，可编辑；单选，content为盒子现有“云机类型”时，系统阻止保存并保留原配置。",
+      "validation_path": "product_acceptance",
+      "should_generate_case": true
+    },
+    {
+      "case_plan_id": "CP-037",
+      "source_gate_ids": [
+        "TG-037"
+      ],
+      "source_example_ids": [
+        "AE-037"
+      ],
+      "source_responsibility_ids": [],
+      "source_rule_ids": [
+        "FR-盒子管理后台-编辑宣传内容-宣传内容字段说明表-02"
+      ],
+      "source_coverage_ids": [],
+      "generated_testcase_ids": [
+        "FIXTURE-PROMO-FORM-B-FN-037"
+      ],
+      "page_name": "盒子管理后台-编辑宣传内容",
+      "section_name": "宣传内容字段说明表",
+      "module_name": "宣传内容管理",
+      "feature_name": "宣传内容字段说明表",
+      "title": "验证“宣传图片”图片按钮，必传，最多5张；支持gif/jpg/jpeg/png，最大500K，建议尺寸1008*160；支持拖拽和删除",
+      "verification_side": "B端写侧",
+      "case_type": "prompt_display",
+      "priority": "P2",
+      "assertion": "页面展示与“宣传图片”图片按钮，必传，最多5张；支持gif/jpg/jpeg/png，最大500K，建议尺寸1008*160；支持拖拽和删除对应的说明，其中建议内容不作为提交拦截条件。",
+      "validation_path": "product_acceptance",
+      "should_generate_case": true
+    },
+    {
+      "case_plan_id": "CP-038",
+      "source_gate_ids": [
+        "TG-038"
+      ],
+      "source_example_ids": [
+        "AE-038"
+      ],
+      "source_responsibility_ids": [],
+      "source_rule_ids": [
+        "FR-盒子管理后台-编辑宣传内容-宣传内容字段说明表-03"
+      ],
+      "source_coverage_ids": [],
+      "generated_testcase_ids": [
+        "FIXTURE-BUY-PROMO-C-AB-038"
+      ],
+      "page_name": "盒子管理后台-编辑宣传内容",
+      "section_name": "宣传内容字段说明表",
+      "module_name": "宣传内容管理",
+      "feature_name": "宣传内容字段说明表",
+      "title": "验证“宣传口号”文本框，必填，20个字符；C端超过一行换行展示",
+      "verification_side": "B端写侧",
+      "case_type": "save_block",
+      "priority": "P0",
+      "assertion": "违反“宣传口号”文本框，必填，20个字符；C端超过一行换行展示时，系统阻止保存并保留原配置。",
+      "validation_path": "product_acceptance",
+      "should_generate_case": true
+    },
+    {
+      "case_plan_id": "CP-039",
+      "source_gate_ids": [
+        "TG-039"
+      ],
+      "source_example_ids": [
+        "AE-039"
+      ],
+      "source_responsibility_ids": [],
+      "source_rule_ids": [
+        "FR-盒子管理后台-编辑宣传内容-宣传内容字段说明表-04"
+      ],
+      "source_coverage_ids": [],
+      "generated_testcase_ids": [
+        "FIXTURE-BUY-PROMO-C-AB-039"
+      ],
+      "page_name": "盒子管理后台-编辑宣传内容",
+      "section_name": "宣传内容字段说明表",
+      "module_name": "宣传内容管理",
+      "feature_name": "宣传内容字段说明表",
+      "title": "验证“性能参数”文本框，必填，20个字符；C端超过一行换行展示",
+      "verification_side": "B端写侧",
+      "case_type": "save_block",
+      "priority": "P0",
+      "assertion": "违反“性能参数”文本框，必填，20个字符；C端超过一行换行展示时，系统阻止保存并保留原配置。",
+      "validation_path": "product_acceptance",
+      "should_generate_case": true
+    },
+    {
+      "case_plan_id": "CP-040",
+      "source_gate_ids": [
+        "TG-040"
+      ],
+      "source_example_ids": [
+        "AE-040"
+      ],
+      "source_responsibility_ids": [],
+      "source_rule_ids": [
+        "FR-盒子管理后台-编辑宣传内容-宣传内容字段说明表-05"
+      ],
+      "source_coverage_ids": [],
+      "generated_testcase_ids": [
+        "FIXTURE-ADD-FORM-B-FN-040"
+      ],
+      "page_name": "盒子管理后台-编辑宣传内容",
+      "section_name": "宣传内容字段说明表",
+      "module_name": "宣传内容管理",
+      "feature_name": "宣传内容字段说明表",
+      "title": "验证通过【增加一条】新增宣传配置，最多额外“新增”1块；达到2条时禁用按钮",
+      "verification_side": "B端写侧",
+      "case_type": "field_constraint",
+      "priority": "P1",
+      "assertion": "页面可直接观察到：通过【增加一条】新增宣传配置，最多额外“新增”1块；达到2条时禁用按钮。",
+      "validation_path": "product_acceptance",
+      "should_generate_case": true
+    },
+    {
+      "case_plan_id": "CP-041",
+      "source_gate_ids": [
+        "TG-049"
+      ],
+      "source_example_ids": [
+        "AE-041",
+        "AE-068"
+      ],
+      "source_responsibility_ids": [],
+      "source_rule_ids": [
+        "COV-EX-0050"
+      ],
+      "source_coverage_ids": [
+        "COV-EX-0050"
+      ],
+      "generated_testcase_ids": [
+        "FIXTURE-BUY-TAB-C-FN-041"
+      ],
+      "page_name": "云挂机购买页",
+      "section_name": "宣传区",
+      "module_name": "云挂机购买页",
+      "feature_name": "宣传区",
+      "title": "验证“宣传口号”分别覆盖19、20、21个字符，超过一行时C端换行展示",
+      "verification_side": "C端读侧",
+      "case_type": "ui_display",
+      "priority": "P1",
+      "assertion": "页面可直接观察到：“宣传口号”分别覆盖19、20、21个字符，超过一行时C端换行展示。",
+      "validation_path": "product_acceptance",
+      "should_generate_case": true
+    },
+    {
+      "case_plan_id": "CP-042",
+      "source_gate_ids": [
+        "TG-050"
+      ],
+      "source_example_ids": [
+        "AE-042",
+        "AE-069"
+      ],
+      "source_responsibility_ids": [],
+      "source_rule_ids": [
+        "COV-EX-0060"
+      ],
+      "source_coverage_ids": [
+        "COV-EX-0060"
+      ],
+      "generated_testcase_ids": [
+        "FIXTURE-BUY-SALE-C-FN-042"
+      ],
+      "page_name": "盒子管理后台-云手机商品管理-添加",
+      "section_name": "商品添加表单",
+      "module_name": "云手机商品管理",
+      "feature_name": "商品添加表单",
+      "title": "验证相同“盒子内排序”值按创建时间倒序展示",
+      "verification_side": "B端写侧",
+      "case_type": "ui_display",
+      "priority": "P1",
+      "assertion": "页面可直接观察到：相同“盒子内排序”值按创建时间倒序展示。",
+      "validation_path": "product_acceptance",
+      "should_generate_case": true
+    },
+    {
+      "case_plan_id": "CP-043",
+      "source_gate_ids": [
+        "TG-051"
+      ],
+      "source_example_ids": [
+        "AE-043",
+        "AE-070"
+      ],
+      "source_responsibility_ids": [],
+      "source_rule_ids": [
+        "COV-EX-0067"
+      ],
+      "source_coverage_ids": [
+        "COV-EX-0067"
+      ],
+      "generated_testcase_ids": [
+        "FIXTURE-ADD-FORM-B-FN-043"
+      ],
+      "page_name": "云挂机购买页",
+      "section_name": "普通商品列表",
+      "module_name": "云挂机购买页",
+      "feature_name": "普通商品列表",
+      "title": "验证“普通区商品列表”普通商品列表保持纵向展示",
+      "verification_side": "C端读侧",
+      "case_type": "ui_display",
+      "priority": "P1",
+      "assertion": "页面可直接观察到：“普通区商品列表”普通商品列表保持纵向展示。",
+      "validation_path": "product_acceptance",
+      "should_generate_case": true
+    },
+    {
+      "case_plan_id": "CP-044",
+      "source_gate_ids": [
+        "TG-052"
+      ],
+      "source_example_ids": [
+        "AE-044",
+        "AE-071"
+      ],
+      "source_responsibility_ids": [],
+      "source_rule_ids": [
+        "COV-EX-0070"
+      ],
+      "source_coverage_ids": [
+        "COV-EX-0070"
+      ],
+      "generated_testcase_ids": [
+        "FIXTURE-PROMO-FORM-B-AB-044"
+      ],
+      "page_name": "盒子管理后台-云手机商品管理-添加",
+      "section_name": "商品添加表单",
+      "module_name": "云手机商品管理",
+      "feature_name": "商品添加表单",
+      "title": "验证“商品区”配置第{5}个特殊区商品时不可保存",
+      "verification_side": "B端写侧",
+      "case_type": "save_block",
+      "priority": "P1",
+      "assertion": "违反“商品区”配置第{5}个特殊区商品时不可保存时，系统阻止保存并保留原配置。",
+      "validation_path": "product_acceptance",
+      "should_generate_case": true
+    }
+  ],
+  "generation_mode": "case_plan_direct"
+}

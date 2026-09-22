@@ -78,14 +78,14 @@ flowchart TD
 - 修改了 Schema、Rule、Validator 或 Harness，想检查兼容性。
 - 不需要调用模型或生成新测试用例。
 
-以 PT083 为例：
+以下命令以占位工作项 `DEMO / REQ-001` 为例；执行时必须替换为实际标识：
 
 ```bash
-RUN_ID=RUN-PT083-VALIDATE-001
+RUN_ID=RUN-REQ-001-VALIDATE-001
 
 /usr/bin/python3 scripts/run_work_item_pipeline.py start \
-  --project-code WX-YGJ \
-  --work-item-id PT083 \
+  --project-code DEMO \
+  --work-item-id REQ-001 \
   --run-id "$RUN_ID" \
   --work-item-level M \
   --strict \
@@ -96,8 +96,8 @@ RUN_ID=RUN-PT083-VALIDATE-001
 
 ```bash
 /usr/bin/python3 scripts/run_work_item_pipeline.py status \
-  --project-code WX-YGJ \
-  --work-item-id PT083 \
+  --project-code DEMO \
+  --work-item-id REQ-001 \
   --run-id "$RUN_ID"
 ```
 
@@ -105,8 +105,8 @@ RUN_ID=RUN-PT083-VALIDATE-001
 
 ```bash
 /usr/bin/python3 scripts/run_work_item_pipeline.py resume \
-  --project-code WX-YGJ \
-  --work-item-id PT083 \
+  --project-code DEMO \
+  --work-item-id REQ-001 \
   --run-id "$RUN_ID"
 ```
 
@@ -114,8 +114,8 @@ RUN_ID=RUN-PT083-VALIDATE-001
 
 ```bash
 /usr/bin/python3 scripts/run_work_item_pipeline.py audit-run \
-  --project-code WX-YGJ \
-  --work-item-id PT083 \
+  --project-code DEMO \
+  --work-item-id REQ-001 \
   --run-id "$RUN_ID"
 ```
 
@@ -135,11 +135,11 @@ RUN_ID=RUN-PT083-VALIDATE-001
 生产运行必须提供经过人工信任的模型 adapter。Adapter 通过 stdin 接收结构化 request，通过 stdout 返回一个 Action 或 `{action, usage, runtime}` JSON envelope。
 
 ```bash
-RUN_ID=RUN-PT083-ROLES-001
+RUN_ID=RUN-REQ-001-ROLES-001
 
 /usr/bin/python3 scripts/run_work_item_pipeline.py agent-roles \
-  --project-code WX-YGJ \
-  --work-item-id PT083 \
+  --project-code DEMO \
+  --work-item-id REQ-001 \
   --run-id "$RUN_ID" \
   --work-item-level M \
   --provider-command-json '["/absolute/path/to/trusted-role-adapter"]' \
@@ -212,8 +212,8 @@ current_stage: asset_formatter
 
 ```bash
 /usr/bin/python3 scripts/run_work_item_pipeline.py approve-roles \
-  --project-code WX-YGJ \
-  --work-item-id PT083 \
+  --project-code DEMO \
+  --work-item-id REQ-001 \
   --run-id "$RUN_ID" \
   --approval-id <APPROVAL_ID> \
   --candidate-hash <CANDIDATE_SHA256> \
@@ -224,8 +224,8 @@ current_stage: asset_formatter
 
 ```bash
 /usr/bin/python3 scripts/run_work_item_pipeline.py reject-roles \
-  --project-code WX-YGJ \
-  --work-item-id PT083 \
+  --project-code DEMO \
+  --work-item-id REQ-001 \
   --run-id "$RUN_ID" \
   --approval-id <APPROVAL_ID> \
   --rejected-by <REVIEWER> \
@@ -240,8 +240,8 @@ current_stage: asset_formatter
 
 ```bash
 /usr/bin/python3 scripts/run_work_item_pipeline.py agent-case-plan \
-  --project-code WX-YGJ \
-  --work-item-id PT083 \
+  --project-code DEMO \
+  --work-item-id REQ-001 \
   --run-id <RUN_ID> \
   --work-item-level M \
   --provider-command-json '["/absolute/path/to/trusted-case-plan-adapter"]'
@@ -253,8 +253,8 @@ current_stage: asset_formatter
 
 ```bash
 /usr/bin/python3 scripts/run_work_item_pipeline.py generate \
-  --project-code WX-YGJ \
-  --work-item-id PT083 \
+  --project-code DEMO \
+  --work-item-id REQ-001 \
   --run-id <RUN_ID> \
   --work-item-level M \
   --provider existing
@@ -307,8 +307,8 @@ waiting_approval
 
 ```bash
 /usr/bin/python3 scripts/run_work_item_pipeline.py recover-roles \
-  --project-code WX-YGJ \
-  --work-item-id PT083 \
+  --project-code DEMO \
+  --work-item-id REQ-001 \
   --run-id <RUN_ID> \
   --recovered-by <OPERATOR> \
   --reason "<CRASH_REASON>" \
@@ -322,11 +322,11 @@ waiting_approval
 仓库内 fixture adapter 只用于验证 Harness 协议、并发、预算、审批和审计，不代表真实模型质量。
 
 ```bash
-RUN_ID=RUN-PT083-HARNESS-TEST-001
+RUN_ID=RUN-REQ-001-HARNESS-TEST-001
 
 /usr/bin/python3 scripts/run_work_item_pipeline.py agent-roles \
-  --project-code WX-YGJ \
-  --work-item-id PT083 \
+  --project-code DEMO \
+  --work-item-id REQ-001 \
   --run-id "$RUN_ID" \
   --work-item-level M \
   --provider-command-json \
@@ -344,8 +344,8 @@ RUN_ID=RUN-PT083-HARNESS-TEST-001
 
 ```bash
 /usr/bin/python3 scripts/run_harness_closeout.py \
-  --project-code WX-YGJ \
-  --work-item-id PT083 \
+  --project-code DEMO \
+  --work-item-id REQ-001 \
   --work-item-level M
 ```
 
@@ -444,7 +444,7 @@ Harness 变更后的发布前检查：
 1. 专项单元测试
 2. 全量 unittest
 3. golden eval
-4. PT083 fixture dry-run 并显式拒绝
+4. 通用 fixture dry-run 并显式拒绝
 5. closeout
 6. run_quality_baseline.py
 ```
@@ -638,7 +638,7 @@ flowchart TD
 
 ## 3.1 端到端举例：一条需求如何走完全流程
 
-本节是教学举例，不是仓库中的真实工作项。正式样本仍是 `WX-YGJ / PT083`。举例把需求做小，只为看清每一跳；阶段、命令、真源和门禁与现行 M 档契约相同。
+本节是教学举例，不是仓库中的真实工作项。`DEMO / REQ-001` 仅为占位标识，用来说明每一跳；阶段、命令、真源和门禁与现行 M 档契约相同。
 
 本仓库有两条运行轨道，阶段产物相同，写入方式不同：
 
@@ -669,12 +669,12 @@ flowchart TD
 
 ```bash
 python3 scripts/init_project.py \
-  --project-code WX-YGJ \
+  --project-code DEMO \
   --project-name 云挂机 \
   --business-line 小游戏
 
 python3 scripts/create_work_item.py \
-  --project-code WX-YGJ \
+  --project-code DEMO \
   --work-item-id DEMO-001 \
   --work-item-level M \
   --title 商品名称必填与长度 \
@@ -684,7 +684,7 @@ python3 scripts/create_work_item.py \
 此时只有壳。项目根不得出现正式 structured PRD、testcase、traceability 或 review 真源：
 
 ```text
-assets/projects/WX-YGJ/
+assets/projects/DEMO/
 ├── project_manifest.json
 ├── inputs/common/
 ├── indexes/
@@ -694,7 +694,7 @@ assets/projects/WX-YGJ/
     └── inputs/
 ```
 
-`manifest.json` 默认 `requirement_approval_required=true`。需求摘要未经人工批准，不得进入 evidence。
+`manifest.json` 必须 `requirement_approval_required=true`。需求摘要未经人工批准，不得进入 evidence。不再兼容缺字段或关闭批准门。
 
 ### 3.1.2 先归一化输入，不要直接写用例
 
@@ -734,7 +734,7 @@ inputs/source_manifest.json
 RUN_ID=RUN-DEMO-001
 
 python3 scripts/run_work_item_pipeline.py start \
-  --project-code WX-YGJ \
+  --project-code DEMO \
   --work-item-id DEMO-001 \
   --run-id "$RUN_ID" \
   --work-item-level M \
@@ -748,7 +748,7 @@ Harness 创建 `.generation/runs/RUN-DEMO-001/`，运行 Requirement Sources Val
 
 ```bash
 python3 scripts/run_work_item_pipeline.py approve-requirement \
-  --project-code WX-YGJ \
+  --project-code DEMO \
   --work-item-id DEMO-001 \
   --run-id "$RUN_ID" \
   --reviewed-by <REVIEWER> \
@@ -763,7 +763,7 @@ python3 scripts/run_work_item_pipeline.py approve-requirement \
 
 ```bash
 python3 scripts/run_work_item_pipeline.py resume \
-  --project-code WX-YGJ \
+  --project-code DEMO \
   --work-item-id DEMO-001 \
   --run-id "$RUN_ID" \
   --stop-at evidence
@@ -849,7 +849,7 @@ Case Generator 只执行 `should_generate_case=true` 的计划，本例 3 条，
 
 ```bash
 python3 scripts/run_work_item_pipeline.py resume \
-  --project-code WX-YGJ \
+  --project-code DEMO \
   --work-item-id DEMO-001 \
   --run-id "$RUN_ID" \
   --stop-at traceability
@@ -867,12 +867,12 @@ Case Reviewer 可在 `reviews/review_record.md` 记录「CP-003 仍待确认，�
 
 ```bash
 python3 scripts/validate_work_item.py \
-  --project-code WX-YGJ \
+  --project-code DEMO \
   --work-item-id DEMO-001 \
   --strict \
   --skip-code-reviews
 
-python3 scripts/refresh_project_views.py --project-code WX-YGJ
+python3 scripts/refresh_project_views.py --project-code DEMO
 ```
 
 Strict 聚合检查摘要与批准、设计层闭环、Case Plan 追溯、页面板块分组、Bundle 一致性、质量报告指纹，以及 soft_prompt / technical_background / risk 隔离。任一失败则退出码非 0。项目级 indexes/reports 只保存摘要和源路径，不复制正式用例。
@@ -1689,7 +1689,7 @@ python3 scripts/validate_project.py \
 
 ## 25. 当前已知边界
 
-PT083 当前为迁移后的 M 档正式样本：82 条 Coverage、62 条 Gate、75 条 Acceptance/Case Plan/Testcase/Testpoint/Bundle、25 条开发自测，37 条唯一 main Coverage 追溯且 invalid=0。
+业务样本的数量、覆盖率和 strict 结果只描述该工作项本身，不作为框架质量结论。框架稳定性由通用 fixture、单元测试和 Golden 快照共同验证。
 
 当前保护策略：
 
@@ -1700,4 +1700,4 @@ PT083 当前为迁移后的 M 档正式样本：82 条 Coverage、62 条 Gate、
 - 未经人工评审不得使用候选用例覆盖正式用例
 - M 档无代码 strict 可显式使用 `--skip-code-reviews`；当前 Harness run 尚无可审计的 Review `not_applicable` disposition
 
-当前仓库只保留 PT083 作为正式项目样本。第 3.1 节的 `DEMO-001` 仅用于教学，不得当作仓库内真实工作项或 CI 样本。全量 97 项单元测试与质量基线 5/5 是本轮文档复核时的稳定验收口径；具体 fixture 检查数等易变指标以 `evals/eval_suite.json` 和实际命令输出为准。
+第 3.1 节的示例标识仅用于教学，不得当作仓库内真实工作项或 CI 样本。业务样本也不得成为质量基线的隐式依赖；具体单元测试、fixture 和检查数量等易变指标以 `evals/eval_suite.json` 与实际命令输出为准。

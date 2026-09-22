@@ -1,0 +1,412 @@
+{
+  "project_code": "OSS-BLIND-R3",
+  "work_item_id": "CELERY-10668",
+  "generated_at": "2026-09-21T19:52:27",
+  "generated_from": [
+    "structured_prd/structured_prd.json",
+    "analysis/reasoning_pack.json"
+  ],
+  "entries": [
+    {
+      "coverage_id": "COV-EX-0001",
+      "coverage_type": "happy_path_combo",
+      "coverage_level": "business",
+      "emit_mode": "main_testcase",
+      "source_origin": "explicit_rule",
+      "source_scope": "primary_requirement",
+      "source_type": "structured_rule",
+      "title": "外部撤销状态合并",
+      "page_name": "Celery Worker 撤销状态处理",
+      "section_name": "撤销状态合并与执行保护",
+      "module_name": "Worker 撤销状态",
+      "feature_name": "跨时钟域撤销状态合并",
+      "field_name": "",
+      "rule_name": "CEL-R001",
+      "atomic_assertion_index": null,
+      "priority": "high",
+      "rationale": "该规则来自 Structured PRD 的显式需求规则，必须在 Coverage 中保留。",
+      "planned_assertions": [
+        "从其他 Worker 或持久化状态接收撤销记录时，只合并任务 ID，不复用来源主机的 monotonic 时间戳。"
+      ],
+      "structured_refs": [
+        "requirement_info.explicit_rules.CEL-R001"
+      ],
+      "reasoning_refs": []
+    },
+    {
+      "coverage_id": "COV-EX-0002",
+      "coverage_type": "happy_path_combo",
+      "coverage_level": "business",
+      "emit_mode": "main_testcase",
+      "source_origin": "explicit_rule",
+      "source_scope": "primary_requirement",
+      "source_type": "structured_rule",
+      "title": "撤销有效期",
+      "page_name": "Celery Worker 撤销状态处理",
+      "section_name": "撤销状态合并与执行保护",
+      "module_name": "Worker 撤销状态",
+      "feature_name": "跨时钟域撤销状态合并",
+      "field_name": "",
+      "rule_name": "CEL-R002",
+      "atomic_assertion_index": null,
+      "priority": "high",
+      "rationale": "该规则来自 Structured PRD 的显式需求规则，必须在 Coverage 中保留。",
+      "planned_assertions": [
+        "接收的撤销任务 ID 从本机收到时开始计算 REVOKE_EXPIRES 有效期，并在有效期后正常过期。"
+      ],
+      "structured_refs": [
+        "requirement_info.explicit_rules.CEL-R002"
+      ],
+      "reasoning_refs": []
+    },
+    {
+      "coverage_id": "COV-EX-0003",
+      "coverage_type": "happy_path_combo",
+      "coverage_level": "business",
+      "emit_mode": "main_testcase",
+      "source_origin": "explicit_rule",
+      "source_scope": "primary_requirement",
+      "source_type": "structured_rule",
+      "title": "集合满载后本机新撤销任务仍保留。",
+      "page_name": "Celery Worker 撤销状态处理",
+      "section_name": "撤销状态合并与执行保护",
+      "module_name": "Worker 撤销状态",
+      "feature_name": "跨时钟域撤销状态合并",
+      "field_name": "",
+      "rule_name": "CEL-R003",
+      "atomic_assertion_index": 1,
+      "priority": "high",
+      "rationale": "该规则来自 Structured PRD 的显式需求规则，必须在 Coverage 中保留。",
+      "planned_assertions": [
+        "集合满载后本机新撤销任务仍保留。"
+      ],
+      "structured_refs": [
+        "requirement_info.explicit_rules.CEL-R003"
+      ],
+      "reasoning_refs": []
+    },
+    {
+      "coverage_id": "COV-EX-0004",
+      "coverage_type": "happy_path_combo",
+      "coverage_level": "business",
+      "emit_mode": "main_testcase",
+      "source_origin": "explicit_rule",
+      "source_scope": "primary_requirement",
+      "source_type": "structured_rule",
+      "title": "有效期内已撤销的 ETA/countdown 任务不执行。",
+      "page_name": "Celery Worker 撤销状态处理",
+      "section_name": "撤销状态合并与执行保护",
+      "module_name": "Worker 撤销状态",
+      "feature_name": "跨时钟域撤销状态合并",
+      "field_name": "",
+      "rule_name": "CEL-R003",
+      "atomic_assertion_index": 2,
+      "priority": "high",
+      "rationale": "该规则来自 Structured PRD 的显式需求规则，必须在 Coverage 中保留。",
+      "planned_assertions": [
+        "有效期内已撤销的 ETA/countdown 任务不执行。"
+      ],
+      "structured_refs": [
+        "requirement_info.explicit_rules.CEL-R003"
+      ],
+      "reasoning_refs": []
+    },
+    {
+      "coverage_id": "COV-EX-0005",
+      "coverage_type": "happy_path_combo",
+      "coverage_level": "business",
+      "emit_mode": "main_testcase",
+      "source_origin": "explicit_rule",
+      "source_scope": "primary_requirement",
+      "source_type": "structured_rule",
+      "title": "hello 接收的撤销 ID 使用本机时间。",
+      "page_name": "Celery Worker 撤销状态处理",
+      "section_name": "撤销状态合并与执行保护",
+      "module_name": "Worker 撤销状态",
+      "feature_name": "跨时钟域撤销状态合并",
+      "field_name": "",
+      "rule_name": "CEL-R004",
+      "atomic_assertion_index": 1,
+      "priority": "high",
+      "rationale": "该规则来自 Structured PRD 的显式需求规则，必须在 Coverage 中保留。",
+      "planned_assertions": [
+        "hello 接收的撤销 ID 使用本机时间。"
+      ],
+      "structured_refs": [
+        "requirement_info.explicit_rules.CEL-R004"
+      ],
+      "reasoning_refs": []
+    },
+    {
+      "coverage_id": "COV-EX-0006",
+      "coverage_type": "happy_path_combo",
+      "coverage_level": "business",
+      "emit_mode": "main_testcase",
+      "source_origin": "explicit_rule",
+      "source_scope": "primary_requirement",
+      "source_type": "structured_rule",
+      "title": "mingle 接收的撤销 ID 使用本机时间。",
+      "page_name": "Celery Worker 撤销状态处理",
+      "section_name": "撤销状态合并与执行保护",
+      "module_name": "Worker 撤销状态",
+      "feature_name": "跨时钟域撤销状态合并",
+      "field_name": "",
+      "rule_name": "CEL-R004",
+      "atomic_assertion_index": 2,
+      "priority": "high",
+      "rationale": "该规则来自 Structured PRD 的显式需求规则，必须在 Coverage 中保留。",
+      "planned_assertions": [
+        "mingle 接收的撤销 ID 使用本机时间。"
+      ],
+      "structured_refs": [
+        "requirement_info.explicit_rules.CEL-R004"
+      ],
+      "reasoning_refs": []
+    },
+    {
+      "coverage_id": "COV-EX-0007",
+      "coverage_type": "happy_path_combo",
+      "coverage_level": "business",
+      "emit_mode": "main_testcase",
+      "source_origin": "explicit_rule",
+      "source_scope": "primary_requirement",
+      "source_type": "structured_rule",
+      "title": "--statedb 恢复的撤销 ID 使用本机时间。",
+      "page_name": "Celery Worker 撤销状态处理",
+      "section_name": "撤销状态合并与执行保护",
+      "module_name": "Worker 撤销状态",
+      "feature_name": "跨时钟域撤销状态合并",
+      "field_name": "",
+      "rule_name": "CEL-R004",
+      "atomic_assertion_index": 3,
+      "priority": "high",
+      "rationale": "该规则来自 Structured PRD 的显式需求规则，必须在 Coverage 中保留。",
+      "planned_assertions": [
+        "--statedb 恢复的撤销 ID 使用本机时间。"
+      ],
+      "structured_refs": [
+        "requirement_info.explicit_rules.CEL-R004"
+      ],
+      "reasoning_refs": []
+    },
+    {
+      "coverage_id": "COV-EX-0008",
+      "coverage_type": "happy_path_combo",
+      "coverage_level": "business",
+      "emit_mode": "main_testcase",
+      "source_origin": "explicit_rule",
+      "source_scope": "primary_requirement",
+      "source_type": "structured_rule",
+      "title": "滚动升级兼容",
+      "page_name": "Celery Worker 撤销状态处理",
+      "section_name": "撤销状态合并与执行保护",
+      "module_name": "Worker 撤销状态",
+      "feature_name": "跨时钟域撤销状态合并",
+      "field_name": "",
+      "rule_name": "CEL-R005",
+      "atomic_assertion_index": null,
+      "priority": "high",
+      "rationale": "该规则来自 Structured PRD 的显式需求规则，必须在 Coverage 中保留。",
+      "planned_assertions": [
+        "新旧 Worker 混合集群双向交换撤销状态时，不得丢失撤销任务 ID。"
+      ],
+      "structured_refs": [
+        "requirement_info.explicit_rules.CEL-R005"
+      ],
+      "reasoning_refs": []
+    },
+    {
+      "coverage_id": "COV-EX-0009",
+      "coverage_type": "happy_path_combo",
+      "coverage_level": "business",
+      "emit_mode": "main_testcase",
+      "source_origin": "explicit_rule",
+      "source_scope": "primary_requirement",
+      "source_type": "structured_rule",
+      "title": "now=0 时撤销记录可正常加入和排序。",
+      "page_name": "Celery Worker 撤销状态处理",
+      "section_name": "撤销状态合并与执行保护",
+      "module_name": "Worker 撤销状态",
+      "feature_name": "跨时钟域撤销状态合并",
+      "field_name": "",
+      "rule_name": "CEL-R006",
+      "atomic_assertion_index": 1,
+      "priority": "high",
+      "rationale": "该规则来自 Structured PRD 的显式需求规则，必须在 Coverage 中保留。",
+      "planned_assertions": [
+        "now=0 时撤销记录可正常加入和排序。"
+      ],
+      "structured_refs": [
+        "requirement_info.explicit_rules.CEL-R006"
+      ],
+      "reasoning_refs": []
+    },
+    {
+      "coverage_id": "COV-EX-0010",
+      "coverage_type": "happy_path_combo",
+      "coverage_level": "business",
+      "emit_mode": "main_testcase",
+      "source_origin": "explicit_rule",
+      "source_scope": "primary_requirement",
+      "source_type": "structured_rule",
+      "title": "相同时间戳记录的排序稳定。",
+      "page_name": "Celery Worker 撤销状态处理",
+      "section_name": "撤销状态合并与执行保护",
+      "module_name": "Worker 撤销状态",
+      "feature_name": "跨时钟域撤销状态合并",
+      "field_name": "",
+      "rule_name": "CEL-R006",
+      "atomic_assertion_index": 2,
+      "priority": "high",
+      "rationale": "该规则来自 Structured PRD 的显式需求规则，必须在 Coverage 中保留。",
+      "planned_assertions": [
+        "相同时间戳记录的排序稳定。"
+      ],
+      "structured_refs": [
+        "requirement_info.explicit_rules.CEL-R006"
+      ],
+      "reasoning_refs": []
+    },
+    {
+      "coverage_id": "COV-EX-0011",
+      "coverage_type": "happy_path_combo",
+      "coverage_level": "business",
+      "emit_mode": "main_testcase",
+      "source_origin": "explicit_rule",
+      "source_scope": "primary_requirement",
+      "source_type": "structured_rule",
+      "title": "int/string 混合任务 ID 不触发类型比较异常。",
+      "page_name": "Celery Worker 撤销状态处理",
+      "section_name": "撤销状态合并与执行保护",
+      "module_name": "Worker 撤销状态",
+      "feature_name": "跨时钟域撤销状态合并",
+      "field_name": "",
+      "rule_name": "CEL-R006",
+      "atomic_assertion_index": 3,
+      "priority": "high",
+      "rationale": "该规则来自 Structured PRD 的显式需求规则，必须在 Coverage 中保留。",
+      "planned_assertions": [
+        "int/string 混合任务 ID 不触发类型比较异常。"
+      ],
+      "structured_refs": [
+        "requirement_info.explicit_rules.CEL-R006"
+      ],
+      "reasoning_refs": []
+    },
+    {
+      "coverage_id": "COV-AI-0012",
+      "coverage_type": "happy_path_combo",
+      "coverage_level": "audit_only",
+      "emit_mode": "audit_item",
+      "source_origin": "ai_reasoning",
+      "source_type": "edge_case",
+      "title": "`now=0`、相同时间戳及 int/string 混合 ID 不触发排序或比较异常。",
+      "page_name": "Celery Worker 撤销状态处理",
+      "section_name": "撤销状态合并与执行保护",
+      "module_name": "Worker 撤销状态",
+      "feature_name": "跨时钟域撤销状态合并",
+      "field_name": "",
+      "priority": "medium",
+      "rationale": "该项来自 Reasoning Pack，保留为风险/边界审计，不自动升级为产品验收主用例。",
+      "planned_assertions": [
+        "审计并确认：`now=0`、相同时间戳及 int/string 混合 ID 不触发排序或比较异常。"
+      ],
+      "structured_refs": [],
+      "reasoning_refs": [
+        "EC-001"
+      ]
+    },
+    {
+      "coverage_id": "COV-AI-0013",
+      "coverage_type": "happy_path_combo",
+      "coverage_level": "audit_only",
+      "emit_mode": "audit_item",
+      "source_origin": "ai_reasoning",
+      "source_type": "business_risk",
+      "title": "滚动升级期间旧 Worker 与新 Worker 的状态格式兼容是核心风险。",
+      "page_name": "Celery Worker 撤销状态处理",
+      "section_name": "撤销状态合并与执行保护",
+      "module_name": "Worker 撤销状态",
+      "feature_name": "跨时钟域撤销状态合并",
+      "field_name": "",
+      "priority": "medium",
+      "rationale": "该项来自 Reasoning Pack，保留为风险/边界审计，不自动升级为产品验收主用例。",
+      "planned_assertions": [
+        "审计并确认：滚动升级期间旧 Worker 与新 Worker 的状态格式兼容是核心风险。"
+      ],
+      "structured_refs": [],
+      "reasoning_refs": [
+        "RISK-001"
+      ]
+    },
+    {
+      "coverage_id": "COV-AI-0014",
+      "coverage_type": "happy_path_combo",
+      "coverage_level": "audit_only",
+      "emit_mode": "audit_item",
+      "source_origin": "ai_reasoning",
+      "source_type": "business_risk",
+      "title": "重新从接收时间计算有效期会延长部分撤销 ID 的存活时间，但优先保证不错误执行任务。",
+      "page_name": "Celery Worker 撤销状态处理",
+      "section_name": "撤销状态合并与执行保护",
+      "module_name": "Worker 撤销状态",
+      "feature_name": "跨时钟域撤销状态合并",
+      "field_name": "",
+      "priority": "medium",
+      "rationale": "该项来自 Reasoning Pack，保留为风险/边界审计，不自动升级为产品验收主用例。",
+      "planned_assertions": [
+        "审计并确认：重新从接收时间计算有效期会延长部分撤销 ID 的存活时间，但优先保证不错误执行任务。"
+      ],
+      "structured_refs": [],
+      "reasoning_refs": [
+        "RISK-002"
+      ]
+    },
+    {
+      "coverage_id": "COV-AI-0015",
+      "coverage_type": "happy_path_combo",
+      "coverage_level": "audit_only",
+      "emit_mode": "audit_item",
+      "source_origin": "ai_reasoning",
+      "source_type": "business_risk",
+      "title": "高频撤销和满容量条件下才容易暴露驱逐问题，普通小样本可能产生假通过。",
+      "page_name": "Celery Worker 撤销状态处理",
+      "section_name": "撤销状态合并与执行保护",
+      "module_name": "Worker 撤销状态",
+      "feature_name": "跨时钟域撤销状态合并",
+      "field_name": "",
+      "priority": "medium",
+      "rationale": "该项来自 Reasoning Pack，保留为风险/边界审计，不自动升级为产品验收主用例。",
+      "planned_assertions": [
+        "审计并确认：高频撤销和满容量条件下才容易暴露驱逐问题，普通小样本可能产生假通过。"
+      ],
+      "structured_refs": [],
+      "reasoning_refs": [
+        "RISK-003"
+      ]
+    },
+    {
+      "coverage_id": "COV-AI-0016",
+      "coverage_type": "happy_path_combo",
+      "coverage_level": "audit_only",
+      "emit_mode": "audit_item",
+      "source_origin": "ai_reasoning",
+      "source_type": "business_risk",
+      "title": "跨主机 monotonic 时钟不可比较，测试不能用墙钟调整替代真实时钟域差异。",
+      "page_name": "Celery Worker 撤销状态处理",
+      "section_name": "撤销状态合并与执行保护",
+      "module_name": "Worker 撤销状态",
+      "feature_name": "跨时钟域撤销状态合并",
+      "field_name": "",
+      "priority": "medium",
+      "rationale": "该项来自 Reasoning Pack，保留为风险/边界审计，不自动升级为产品验收主用例。",
+      "planned_assertions": [
+        "审计并确认：跨主机 monotonic 时钟不可比较，测试不能用墙钟调整替代真实时钟域差异。"
+      ],
+      "structured_refs": [],
+      "reasoning_refs": [
+        "RISK-004"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,935 @@
+{
+  "project_code": "FIXTURE",
+  "work_item_id": "FIXTURE-RUNTIME-001",
+  "truth_source": "testcases/testcases_main.md",
+  "projection_only": true,
+  "generated_from": [
+    "testcases/testcases_main.md"
+  ],
+  "cases": [
+    {
+      "testcase_id": "FIXTURE-ADD-FORM-B-FN-001",
+      "page_name": "云挂机购买页",
+      "section_name": "宣传区",
+      "module": "云挂机购买页",
+      "feature": "宣传区",
+      "title": "验证“宣传口号”超过一行时在C端换行展示",
+      "preconditions": "已使用具备配置或查看权限的账号进入[云挂机购买页]，并定位到宣传区",
+      "steps": "1. 准备满足““宣传口号”超过一行时在C端换行展示”的上游配置或数据<br>2. 进入[云挂机购买页]的宣传区<br>3. 观察“宣传口号”对应的页面结果",
+      "expected_results": "1. [云挂机购买页]的宣传区可直接观察到：“宣传口号”超过一行时在C端换行展示",
+      "priority": "P0",
+      "tags": [
+        "AI-UI用例",
+        "开发必测",
+        "测试必测"
+      ],
+      "test_type": "功能",
+      "remark": "来源 CasePlan：CP-001；来源 Acceptance：AE-001；来源 Acceptance：AE-045；来源 Acceptance：AE-048；来源 Rule：OBJ-001；来源coverage：COV-EX-0016；来源coverage：COV-EX-0050",
+      "source_case_plan_ids": [
+        "CP-001"
+      ]
+    },
+    {
+      "testcase_id": "FIXTURE-ADD-FORM-B-FN-002",
+      "page_name": "云挂机购买页",
+      "section_name": "宣传区",
+      "module": "云挂机购买页",
+      "feature": "宣传区",
+      "title": "验证“性能参数”超过一行时在C端换行展示",
+      "preconditions": "已使用具备配置或查看权限的账号进入[云挂机购买页]，并定位到宣传区",
+      "steps": "1. 准备满足““性能参数”超过一行时在C端换行展示”的上游配置或数据<br>2. 进入[云挂机购买页]的宣传区<br>3. 观察“性能参数”对应的页面结果",
+      "expected_results": "1. [云挂机购买页]的宣传区可直接观察到：“性能参数”超过一行时在C端换行展示",
+      "priority": "P0",
+      "tags": [
+        "AI-UI用例",
+        "开发必测",
+        "测试必测"
+      ],
+      "test_type": "功能",
+      "remark": "来源 CasePlan：CP-002；来源 Acceptance：AE-002；来源 Acceptance：AE-046；来源 Acceptance：AE-049；来源 Rule：OBJ-002；来源coverage：COV-EX-0051",
+      "source_case_plan_ids": [
+        "CP-002"
+      ]
+    },
+    {
+      "testcase_id": "FIXTURE-BUY-TAB-C-FN-041",
+      "page_name": "云挂机购买页",
+      "section_name": "宣传区",
+      "module": "云挂机购买页",
+      "feature": "宣传区",
+      "title": "验证“宣传口号”分别覆盖19、20、21个字符，超过一行时C端换行展示",
+      "preconditions": "已使用具备配置或查看权限的账号进入[云挂机购买页]，并定位到宣传区",
+      "steps": "1. 准备满足““宣传口号”分别覆盖19、20、21个字符，超过一行时C端换行展示”的上游配置或数据<br>2. 进入[云挂机购买页]的宣传区<br>3. 观察“宣传口号”对应的页面结果",
+      "expected_results": "1. [云挂机购买页]的宣传区可直接观察到：“宣传口号”分别覆盖19、20、21个字符，超过一行时C端换行展示",
+      "priority": "P1",
+      "tags": [
+        "AI-UI用例"
+      ],
+      "test_type": "功能",
+      "remark": "来源 CasePlan：CP-041；来源 Acceptance：AE-041；来源 Acceptance：AE-068；来源 Rule：COV-EX-0050；来源coverage：COV-EX-0050",
+      "source_case_plan_ids": [
+        "CP-041"
+      ]
+    },
+    {
+      "testcase_id": "FIXTURE-BUY-SALE-C-FN-003",
+      "page_name": "云挂机购买页",
+      "section_name": "特价专区",
+      "module": "云挂机购买页",
+      "feature": "特价专区",
+      "title": "验证“特殊区商品列表”后台未配置特殊区商品时隐藏",
+      "preconditions": "已使用具备配置或查看权限的账号进入[云挂机购买页]，并定位到特价专区",
+      "steps": "1. 准备满足““特殊区商品列表”后台未配置特殊区商品时隐藏”的上游配置或数据<br>2. 进入[云挂机购买页]的特价专区<br>3. 观察“特殊区商品列表”对应的页面结果",
+      "expected_results": "1. [云挂机购买页]的特价专区可直接观察到：“特殊区商品列表”后台未配置特殊区商品时隐藏",
+      "priority": "P1",
+      "tags": [
+        "AI-UI用例"
+      ],
+      "test_type": "功能",
+      "remark": "来源 CasePlan：CP-003；来源 Acceptance：AE-003；来源 Acceptance：AE-047；来源 Acceptance：AE-050；来源 Rule：OBJ-003；来源coverage：COV-EX-0008；来源coverage：COV-EX-0065",
+      "source_case_plan_ids": [
+        "CP-003"
+      ]
+    },
+    {
+      "testcase_id": "FIXTURE-BUY-SALE-C-FN-004",
+      "page_name": "云挂机购买页",
+      "section_name": "特价专区",
+      "module": "云挂机购买页",
+      "feature": "特价专区",
+      "title": "验证“特殊区商品列表”最多展示4个商品",
+      "preconditions": "已使用具备配置或查看权限的账号进入[云挂机购买页]，并定位到特价专区",
+      "steps": "1. 准备满足““特殊区商品列表”最多展示4个商品”的上游配置或数据<br>2. 进入[云挂机购买页]的特价专区<br>3. 观察“特殊区商品列表”对应的页面结果",
+      "expected_results": "1. [云挂机购买页]的特价专区可直接观察到：“特殊区商品列表”最多展示4个商品",
+      "priority": "P1",
+      "tags": [
+        "AI-UI用例"
+      ],
+      "test_type": "功能",
+      "remark": "来源 CasePlan：CP-004；来源 Acceptance：AE-004；来源 Acceptance：AE-051；来源 Rule：FR-云挂机购买页-特价专区-01；来源coverage：COV-EX-0064；来源coverage：COV-EX-0069",
+      "source_case_plan_ids": [
+        "CP-004"
+      ]
+    },
+    {
+      "testcase_id": "FIXTURE-BUY-TAB-C-AB-005",
+      "page_name": "盒子管理后台-云手机商品管理-添加",
+      "section_name": "商品添加表单",
+      "module": "云手机商品管理",
+      "feature": "商品添加表单",
+      "title": "验证“原价（元）”必须填写大于{0.00}的数值",
+      "preconditions": "已使用具备配置或查看权限的账号进入[盒子管理后台-云手机商品管理-添加]，并定位到商品添加表单",
+      "steps": "1. 进入[盒子管理后台-云手机商品管理-添加]的商品添加表单<br>2. 向“原价（元）”输入{0.00}<br>3. 点击【保存】并观察校验反馈",
+      "expected_results": "1. 系统阻止本次保存，原配置不发生变化<br>2. 页面反馈当前输入违反：“原价（元）”必须填写大于{0.00}的数值",
+      "priority": "P1",
+      "tags": [
+        "AI-UI用例"
+      ],
+      "test_type": "异常",
+      "remark": "来源 CasePlan：CP-005；来源 Acceptance：AE-005；来源 Acceptance：AE-058；来源 Rule：OBJ-004；来源coverage：COV-EX-0022；来源coverage：COV-EX-0024；来源coverage：COV-EX-0052",
+      "source_case_plan_ids": [
+        "CP-005"
+      ]
+    },
+    {
+      "testcase_id": "FIXTURE-BUY-REG-C-AB-006",
+      "page_name": "盒子管理后台-云手机商品管理-添加",
+      "section_name": "商品添加表单",
+      "module": "云手机商品管理",
+      "feature": "商品添加表单",
+      "title": "验证“现价（元）”必须填写大于{0.00}的数值",
+      "preconditions": "已使用具备配置或查看权限的账号进入[盒子管理后台-云手机商品管理-添加]，并定位到商品添加表单",
+      "steps": "1. 进入[盒子管理后台-云手机商品管理-添加]的商品添加表单<br>2. 向“现价（元）”输入{0.00}<br>3. 点击【保存】并观察校验反馈",
+      "expected_results": "1. 系统阻止本次保存，原配置不发生变化<br>2. 页面反馈当前输入违反：“现价（元）”必须填写大于{0.00}的数值",
+      "priority": "P1",
+      "tags": [
+        "AI-UI用例"
+      ],
+      "test_type": "异常",
+      "remark": "来源 CasePlan：CP-006；来源 Acceptance：AE-006；来源 Acceptance：AE-059；来源 Rule：OBJ-005；来源coverage：COV-EX-0066；来源coverage：COV-EX-0068；来源coverage：COV-EX-0053",
+      "source_case_plan_ids": [
+        "CP-006"
+      ]
+    },
+    {
+      "testcase_id": "FIXTURE-BUY-REG-C-AB-007",
+      "page_name": "盒子管理后台-云手机商品管理-添加",
+      "section_name": "商品添加表单",
+      "module": "云手机商品管理",
+      "feature": "商品添加表单",
+      "title": "验证“服务时长”天数最大{370}、小时最大{23}且不能同时为{0}",
+      "preconditions": "已使用具备配置或查看权限的账号进入[盒子管理后台-云手机商品管理-添加]，并定位到商品添加表单",
+      "steps": "1. 进入[盒子管理后台-云手机商品管理-添加]的商品添加表单<br>2. 将“服务时长”天数设置为{371}<br>3. 点击【保存】并观察校验反馈",
+      "expected_results": "1. 系统阻止本次保存，原配置不发生变化<br>2. 页面反馈当前输入违反：“服务时长”天数最大{370}、小时最大{23}且不能同时为{0}",
+      "priority": "P1",
+      "tags": [
+        "AI-UI用例"
+      ],
+      "test_type": "异常",
+      "remark": "来源 CasePlan：CP-007；来源 Acceptance：AE-007；来源 Acceptance：AE-060；来源 Rule：OBJ-006；来源coverage：COV-EX-0026；来源coverage：COV-EX-0059",
+      "source_case_plan_ids": [
+        "CP-007"
+      ]
+    },
+    {
+      "testcase_id": "FIXTURE-BUY-REG-C-AB-008",
+      "page_name": "盒子管理后台-云手机商品管理-添加",
+      "section_name": "商品添加表单",
+      "module": "云手机商品管理",
+      "feature": "商品添加表单",
+      "title": "验证“盒子内排序”只能填写不大于{1000}的正整数",
+      "preconditions": "已使用具备配置或查看权限的账号进入[盒子管理后台-云手机商品管理-添加]，并定位到商品添加表单",
+      "steps": "1. 进入[盒子管理后台-云手机商品管理-添加]的商品添加表单<br>2. 向“盒子内排序”输入{1001}<br>3. 点击【保存】并观察校验反馈",
+      "expected_results": "1. 系统阻止本次保存，原配置不发生变化<br>2. 页面反馈当前输入违反：“盒子内排序”只能填写不大于{1000}的正整数",
+      "priority": "P1",
+      "tags": [
+        "AI-UI用例"
+      ],
+      "test_type": "异常",
+      "remark": "来源 CasePlan：CP-008；来源 Acceptance：AE-008；来源 Acceptance：AE-061；来源 Rule：OBJ-007；来源coverage：COV-EX-0030；来源coverage：COV-EX-0054",
+      "source_case_plan_ids": [
+        "CP-008"
+      ]
+    },
+    {
+      "testcase_id": "FIXTURE-BUY-REG-C-AB-009",
+      "page_name": "盒子管理后台-云手机商品管理-添加",
+      "section_name": "商品添加表单",
+      "module": "云手机商品管理",
+      "feature": "商品添加表单",
+      "title": "验证“库存预警值”只能填写不大于{200}的正整数",
+      "preconditions": "已使用具备配置或查看权限的账号进入[盒子管理后台-云手机商品管理-添加]，并定位到商品添加表单",
+      "steps": "1. 进入[盒子管理后台-云手机商品管理-添加]的商品添加表单<br>2. 向“库存预警值”输入{201}<br>3. 点击【保存】并观察校验反馈",
+      "expected_results": "1. 系统阻止本次保存，原配置不发生变化<br>2. 页面反馈当前输入违反：“库存预警值”只能填写不大于{200}的正整数",
+      "priority": "P1",
+      "tags": [
+        "AI-UI用例"
+      ],
+      "test_type": "异常",
+      "remark": "来源 CasePlan：CP-009；来源 Acceptance：AE-009；来源 Acceptance：AE-062；来源 Rule：OBJ-008；来源coverage：COV-EX-0067；来源coverage：COV-EX-0071；来源coverage：COV-EX-0055",
+      "source_case_plan_ids": [
+        "CP-009"
+      ]
+    },
+    {
+      "testcase_id": "FIXTURE-BUY-REG-C-FN-010",
+      "page_name": "盒子管理后台-云手机商品管理-添加",
+      "section_name": "商品添加表单",
+      "module": "云手机商品管理",
+      "feature": "商品添加表单",
+      "title": "验证“购买数量报警通知人”候选项来自盒子后台管理员列表",
+      "preconditions": "已使用具备配置或查看权限的账号进入[盒子管理后台-云手机商品管理-添加]，并定位到商品添加表单",
+      "steps": "1. 准备满足““购买数量报警通知人”候选项来自盒子后台管理员列表”的上游配置或数据<br>2. 进入[盒子管理后台-云手机商品管理-添加]的商品添加表单<br>3. 观察“购买数量报警通知人”对应的页面结果",
+      "expected_results": "1. [盒子管理后台-云手机商品管理-添加]的商品添加表单可直接观察到：“购买数量报警通知人”候选项来自盒子后台管理员列表",
+      "priority": "P1",
+      "tags": [
+        "AI-UI用例"
+      ],
+      "test_type": "功能",
+      "remark": "来源 CasePlan：CP-010；来源 Acceptance：AE-010；来源 Acceptance：AE-063；来源 Rule：OBJ-009；来源coverage：COV-AI-0079；来源coverage：COV-EX-0037",
+      "source_case_plan_ids": [
+        "CP-010"
+      ]
+    },
+    {
+      "testcase_id": "FIXTURE-GOODS-OPS-B-AB-011",
+      "page_name": "盒子管理后台-云手机商品管理-添加",
+      "section_name": "商品添加表单",
+      "module": "云手机商品管理",
+      "feature": "商品添加表单",
+      "title": "验证“服务时长”天数最大370，小时最大23，所有项不可同时为0，后端以秒为单位",
+      "preconditions": "已使用具备配置或查看权限的账号进入[盒子管理后台-云手机商品管理-添加]，并定位到商品添加表单",
+      "steps": "1. 进入[盒子管理后台-云手机商品管理-添加]的商品添加表单<br>2. 按““服务时长”天数最大370，小时最大23，所有项不可同时为0，后端以秒为单位”构造一个违反限制的明确输入<br>3. 点击【保存】并观察校验反馈",
+      "expected_results": "1. 系统阻止本次保存，原配置不发生变化<br>2. 页面反馈当前输入违反：“服务时长”天数最大370，小时最大23，所有项不可同时为0，后端以秒为单位",
+      "priority": "P0",
+      "tags": [
+        "AI-UI用例",
+        "开发必测",
+        "测试必测"
+      ],
+      "test_type": "异常",
+      "remark": "来源 CasePlan：CP-011；来源 Acceptance：AE-011；来源 Acceptance：AE-052；来源 Rule：FR-盒子管理后台-云手机商品管理-添加-商品添加表单-01",
+      "source_case_plan_ids": [
+        "CP-011"
+      ]
+    },
+    {
+      "testcase_id": "FIXTURE-GOODS-OPS-B-AB-012",
+      "page_name": "盒子管理后台-云手机商品管理-添加",
+      "section_name": "商品添加表单",
+      "module": "云手机商品管理",
+      "feature": "商品添加表单",
+      "title": "验证“商品区”特殊区商品数量必须小于等于4，超过4个时不可保存",
+      "preconditions": "已使用具备配置或查看权限的账号进入[盒子管理后台-云手机商品管理-添加]，并定位到商品添加表单",
+      "steps": "1. 进入[盒子管理后台-云手机商品管理-添加]的商品添加表单<br>2. 按““商品区”特殊区商品数量必须小于等于4，超过4个时不可保存”构造一个违反限制的明确输入<br>3. 点击【保存】并观察校验反馈",
+      "expected_results": "1. 系统阻止本次保存，原配置不发生变化<br>2. 页面反馈当前输入违反：“商品区”特殊区商品数量必须小于等于4，超过4个时不可保存",
+      "priority": "P0",
+      "tags": [
+        "AI-UI用例",
+        "开发必测",
+        "测试必测"
+      ],
+      "test_type": "异常",
+      "remark": "来源 CasePlan：CP-012；来源 Acceptance：AE-012；来源 Acceptance：AE-053；来源 Rule：FR-盒子管理后台-云手机商品管理-添加-商品添加表单-02；来源coverage：COV-EX-0020；来源coverage：COV-EX-0070",
+      "source_case_plan_ids": [
+        "CP-012"
+      ]
+    },
+    {
+      "testcase_id": "FIXTURE-ADD-FORM-B-AB-013",
+      "page_name": "盒子管理后台-云手机商品管理-添加",
+      "section_name": "商品添加表单",
+      "module": "云手机商品管理",
+      "feature": "商品添加表单",
+      "title": "验证“盒子内排序”正整数，上限1000；相同排序值按创建时间倒序排列",
+      "preconditions": "已使用具备配置或查看权限的账号进入[盒子管理后台-云手机商品管理-添加]，并定位到商品添加表单",
+      "steps": "1. 进入[盒子管理后台-云手机商品管理-添加]的商品添加表单<br>2. 按““盒子内排序”正整数，上限1000；相同排序值按创建时间倒序排列”构造一个违反限制的明确输入<br>3. 点击【保存】并观察校验反馈",
+      "expected_results": "1. 系统阻止本次保存，原配置不发生变化<br>2. 页面反馈当前输入违反：“盒子内排序”正整数，上限1000；相同排序值按创建时间倒序排列",
+      "priority": "P0",
+      "tags": [
+        "AI-UI用例",
+        "开发必测",
+        "测试必测"
+      ],
+      "test_type": "异常",
+      "remark": "来源 CasePlan：CP-013；来源 Acceptance：AE-013；来源 Acceptance：AE-054；来源 Rule：FR-盒子管理后台-云手机商品管理-添加-商品添加表单-03",
+      "source_case_plan_ids": [
+        "CP-013"
+      ]
+    },
+    {
+      "testcase_id": "FIXTURE-ADD-RULE-SVC-ST-014",
+      "page_name": "盒子管理后台-云手机商品管理-添加",
+      "section_name": "商品添加表单",
+      "module": "云手机商品管理",
+      "feature": "商品添加表单",
+      "title": "验证“库存预警值”正整数，上限200；按固定频率校验库存是否小于等于配置数量",
+      "preconditions": "已使用具备配置或查看权限的账号进入[盒子管理后台-云手机商品管理-添加]，并定位到商品添加表单",
+      "steps": "1. 在[盒子管理后台-云手机商品管理-添加]的商品添加表单配置满足触发条件的数据<br>2. 触发或等待后台任务执行<br>3. 查询任务结果、通知记录及C端状态",
+      "expected_results": "1. 后台任务执行后可观察到：“库存预警值”正整数，上限200；按固定频率校验库存是否小于等于配置数量<br>2. 任务结果、通知记录与C端状态分别可核对",
+      "priority": "P0",
+      "tags": [
+        "AI-UI用例",
+        "开发必测",
+        "测试必测"
+      ],
+      "test_type": "状态流转",
+      "remark": "来源 CasePlan：CP-014；来源 Acceptance：AE-014；来源 Rule：FR-盒子管理后台-云手机商品管理-添加-商品添加表单-04",
+      "source_case_plan_ids": [
+        "CP-014"
+      ]
+    },
+    {
+      "testcase_id": "FIXTURE-BUY-SALE-C-FN-042",
+      "page_name": "盒子管理后台-云手机商品管理-添加",
+      "section_name": "商品添加表单",
+      "module": "云手机商品管理",
+      "feature": "商品添加表单",
+      "title": "验证相同“盒子内排序”值按创建时间倒序展示",
+      "preconditions": "已使用具备配置或查看权限的账号进入[盒子管理后台-云手机商品管理-添加]，并定位到商品添加表单",
+      "steps": "1. 准备满足“相同“盒子内排序”值按创建时间倒序展示”的上游配置或数据<br>2. 进入[盒子管理后台-云手机商品管理-添加]的商品添加表单<br>3. 观察“盒子内排序”对应的页面结果",
+      "expected_results": "1. [盒子管理后台-云手机商品管理-添加]的商品添加表单可直接观察到：相同“盒子内排序”值按创建时间倒序展示",
+      "priority": "P1",
+      "tags": [
+        "AI-UI用例"
+      ],
+      "test_type": "功能",
+      "remark": "来源 CasePlan：CP-042；来源 Acceptance：AE-042；来源 Acceptance：AE-069；来源 Rule：COV-EX-0060；来源coverage：COV-EX-0060",
+      "source_case_plan_ids": [
+        "CP-042"
+      ]
+    },
+    {
+      "testcase_id": "FIXTURE-PROMO-FORM-B-AB-044",
+      "page_name": "盒子管理后台-云手机商品管理-添加",
+      "section_name": "商品添加表单",
+      "module": "云手机商品管理",
+      "feature": "商品添加表单",
+      "title": "验证“商品区”配置第{5}个特殊区商品时不可保存",
+      "preconditions": "已使用具备配置或查看权限的账号进入[盒子管理后台-云手机商品管理-添加]，并定位到商品添加表单",
+      "steps": "1. 进入[盒子管理后台-云手机商品管理-添加]的商品添加表单<br>2. 按““商品区”配置第{5}个特殊区商品时不可保存”构造一个违反限制的明确输入<br>3. 点击【保存】并观察校验反馈",
+      "expected_results": "1. 系统阻止本次保存，原配置不发生变化<br>2. 页面反馈当前输入违反：“商品区”配置第{5}个特殊区商品时不可保存",
+      "priority": "P1",
+      "tags": [
+        "AI-UI用例"
+      ],
+      "test_type": "异常",
+      "remark": "来源 CasePlan：CP-044；来源 Acceptance：AE-044；来源 Acceptance：AE-071；来源 Rule：COV-EX-0070；来源coverage：COV-EX-0070",
+      "source_case_plan_ids": [
+        "CP-044"
+      ]
+    },
+    {
+      "testcase_id": "FIXTURE-ADD-RULE-B-FL-015",
+      "page_name": "盒子管理后台-云手机商品管理-添加",
+      "section_name": "商品区与库存规则说明表",
+      "module": "云手机商品管理",
+      "feature": "商品区与库存规则说明表",
+      "title": "验证“库存预警值”库存小于等于预警值时，C端隐藏商品、不分配云机并发送库存不足通知",
+      "preconditions": "已使用具备配置或查看权限的账号进入[盒子管理后台-云手机商品管理-添加]，并定位到商品区与库存规则说明表",
+      "steps": "1. 在[盒子管理后台-云手机商品管理-添加]的商品区与库存规则说明表准备并保存触发条件<br>2. 触发对应业务动作<br>3. 分别检查B端记录、服务端处理结果和C端展示",
+      "expected_results": "1. 触发后可观察到：“库存预警值”库存小于等于预警值时，C端隐藏商品、不分配云机并发送库存不足通知<br>2. 各验证端最终状态来自同一次配置或业务事件",
+      "priority": "P0",
+      "tags": [
+        "AI-UI用例",
+        "开发必测",
+        "测试必测"
+      ],
+      "test_type": "流程验证",
+      "remark": "来源 CasePlan：CP-015；来源 Flow：CP-015；来源 Acceptance：AE-015；来源 Acceptance：AE-072；来源 Acceptance：AE-073；来源 Rule：FR-盒子管理后台-云手机商品管理-添加-商品区与库存规则说明表-01；来源coverage：COV-EX-0072",
+      "source_case_plan_ids": [
+        "CP-015"
+      ]
+    },
+    {
+      "testcase_id": "FIXTURE-ADD-FORM-B-AB-016",
+      "page_name": "盒子管理后台-云手机商品管理-添加",
+      "section_name": "商品区与库存规则说明表",
+      "module": "云手机商品管理",
+      "feature": "商品区与库存规则说明表",
+      "title": "验证“现价”已有功能，数值限制大于0.00",
+      "preconditions": "已使用具备配置或查看权限的账号进入[盒子管理后台-云手机商品管理-添加]，并定位到商品区与库存规则说明表",
+      "steps": "1. 进入[盒子管理后台-云手机商品管理-添加]的商品区与库存规则说明表<br>2. 按““现价”已有功能，数值限制大于0.00”构造一个违反限制的明确输入<br>3. 点击【保存】并观察校验反馈",
+      "expected_results": "1. 系统阻止本次保存，原配置不发生变化<br>2. 页面反馈当前输入违反：“现价”已有功能，数值限制大于0.00",
+      "priority": "P0",
+      "tags": [
+        "AI-UI用例",
+        "开发必测",
+        "测试必测"
+      ],
+      "test_type": "异常",
+      "remark": "来源 CasePlan：CP-016；来源 Acceptance：AE-016；来源 Acceptance：AE-055；来源 Rule：FR-盒子管理后台-云手机商品管理-添加-商品区与库存规则说明表-02",
+      "source_case_plan_ids": [
+        "CP-016"
+      ]
+    },
+    {
+      "testcase_id": "FIXTURE-ADD-FORM-B-AB-017",
+      "page_name": "盒子管理后台-云手机商品管理-添加",
+      "section_name": "商品区与库存规则说明表",
+      "module": "云手机商品管理",
+      "feature": "商品区与库存规则说明表",
+      "title": "验证“原价”已有功能，数值限制大于0.00",
+      "preconditions": "已使用具备配置或查看权限的账号进入[盒子管理后台-云手机商品管理-添加]，并定位到商品区与库存规则说明表",
+      "steps": "1. 进入[盒子管理后台-云手机商品管理-添加]的商品区与库存规则说明表<br>2. 按““原价”已有功能，数值限制大于0.00”构造一个违反限制的明确输入<br>3. 点击【保存】并观察校验反馈",
+      "expected_results": "1. 系统阻止本次保存，原配置不发生变化<br>2. 页面反馈当前输入违反：“原价”已有功能，数值限制大于0.00",
+      "priority": "P0",
+      "tags": [
+        "AI-UI用例",
+        "开发必测",
+        "测试必测"
+      ],
+      "test_type": "异常",
+      "remark": "来源 CasePlan：CP-017；来源 Acceptance：AE-017；来源 Acceptance：AE-056；来源 Rule：FR-盒子管理后台-云手机商品管理-添加-商品区与库存规则说明表-03",
+      "source_case_plan_ids": [
+        "CP-017"
+      ]
+    },
+    {
+      "testcase_id": "FIXTURE-ADD-FORM-B-AB-018",
+      "page_name": "盒子管理后台-云手机商品管理-添加",
+      "section_name": "商品区与库存规则说明表",
+      "module": "云手机商品管理",
+      "feature": "商品区与库存规则说明表",
+      "title": "验证“服务时长”数字选择器，必填；天最大370、时最大23，所有项不可同时为0，后端以秒为单位",
+      "preconditions": "已使用具备配置或查看权限的账号进入[盒子管理后台-云手机商品管理-添加]，并定位到商品区与库存规则说明表",
+      "steps": "1. 进入[盒子管理后台-云手机商品管理-添加]的商品区与库存规则说明表<br>2. 保持“服务时长”为空<br>3. 点击【保存】并观察校验反馈",
+      "expected_results": "1. 系统阻止本次保存，原配置不发生变化<br>2. 页面反馈当前输入违反：“服务时长”数字选择器，必填；天最大370、时最大23，所有项不可同时为0，后端以秒为单位",
+      "priority": "P0",
+      "tags": [
+        "AI-UI用例",
+        "开发必测",
+        "测试必测"
+      ],
+      "test_type": "异常",
+      "remark": "来源 CasePlan：CP-018；来源 Acceptance：AE-018；来源 Acceptance：AE-057；来源 Rule：FR-盒子管理后台-云手机商品管理-添加-商品区与库存规则说明表-04",
+      "source_case_plan_ids": [
+        "CP-018"
+      ]
+    },
+    {
+      "testcase_id": "FIXTURE-ADD-FORM-B-AB-019",
+      "page_name": "盒子管理后台-云手机商品管理-添加",
+      "section_name": "商品区与库存规则说明表",
+      "module": "云手机商品管理",
+      "feature": "商品区与库存规则说明表",
+      "title": "验证“商品区”下拉单选，必填，content：特殊区、普通区；特殊区商品数量小于等于4",
+      "preconditions": "已使用具备配置或查看权限的账号进入[盒子管理后台-云手机商品管理-添加]，并定位到商品区与库存规则说明表",
+      "steps": "1. 进入[盒子管理后台-云手机商品管理-添加]的商品区与库存规则说明表<br>2. 保持“商品区”为空<br>3. 点击【保存】并观察校验反馈",
+      "expected_results": "1. 系统阻止本次保存，原配置不发生变化<br>2. 页面反馈当前输入违反：“商品区”下拉单选，必填，content：特殊区、普通区；特殊区商品数量小于等于4",
+      "priority": "P0",
+      "tags": [
+        "AI-UI用例",
+        "开发必测",
+        "测试必测"
+      ],
+      "test_type": "异常",
+      "remark": "来源 CasePlan：CP-019；来源 Acceptance：AE-019；来源 Rule：FR-盒子管理后台-云手机商品管理-添加-商品区与库存规则说明表-05",
+      "source_case_plan_ids": [
+        "CP-019"
+      ]
+    },
+    {
+      "testcase_id": "FIXTURE-ADD-FORM-B-AB-020",
+      "page_name": "盒子管理后台-云手机商品管理-添加",
+      "section_name": "商品区与库存规则说明表",
+      "module": "云手机商品管理",
+      "feature": "商品区与库存规则说明表",
+      "title": "验证“盒子内排序”数字框，必填，正整数，上限1000；相同值按创建时间倒序",
+      "preconditions": "已使用具备配置或查看权限的账号进入[盒子管理后台-云手机商品管理-添加]，并定位到商品区与库存规则说明表",
+      "steps": "1. 进入[盒子管理后台-云手机商品管理-添加]的商品区与库存规则说明表<br>2. 保持“盒子内排序”为空<br>3. 点击【保存】并观察校验反馈",
+      "expected_results": "1. 系统阻止本次保存，原配置不发生变化<br>2. 页面反馈当前输入违反：“盒子内排序”数字框，必填，正整数，上限1000；相同值按创建时间倒序",
+      "priority": "P0",
+      "tags": [
+        "AI-UI用例",
+        "开发必测",
+        "测试必测"
+      ],
+      "test_type": "异常",
+      "remark": "来源 CasePlan：CP-020；来源 Acceptance：AE-020；来源 Rule：FR-盒子管理后台-云手机商品管理-添加-商品区与库存规则说明表-06",
+      "source_case_plan_ids": [
+        "CP-020"
+      ]
+    },
+    {
+      "testcase_id": "FIXTURE-ADD-FORM-B-FN-021",
+      "page_name": "盒子管理后台-云手机商品管理-添加",
+      "section_name": "商品区与库存规则说明表",
+      "module": "云手机商品管理",
+      "feature": "商品区与库存规则说明表",
+      "title": "验证“商品展示时间”已有功能，增加未配置状态说明；服务时长结束后C端不再展示",
+      "preconditions": "已使用具备配置或查看权限的账号进入[盒子管理后台-云手机商品管理-添加]，并定位到商品区与库存规则说明表",
+      "steps": "1. 准备满足““商品展示时间”已有功能，增加未配置状态说明；服务时长结束后C端不再展示”的上游配置或数据<br>2. 进入[盒子管理后台-云手机商品管理-添加]的商品区与库存规则说明表<br>3. 观察“商品展示时间”对应的页面结果",
+      "expected_results": "1. [盒子管理后台-云手机商品管理-添加]的商品区与库存规则说明表可直接观察到：“商品展示时间”已有功能，增加未配置状态说明；服务时长结束后C端不再展示",
+      "priority": "P1",
+      "tags": [
+        "AI-UI用例"
+      ],
+      "test_type": "功能",
+      "remark": "来源 CasePlan：CP-021；来源 Acceptance：AE-021；来源 Rule：FR-盒子管理后台-云手机商品管理-添加-商品区与库存规则说明表-07",
+      "source_case_plan_ids": [
+        "CP-021"
+      ]
+    },
+    {
+      "testcase_id": "FIXTURE-ADD-FORM-B-AB-022",
+      "page_name": "盒子管理后台-云手机商品管理-添加",
+      "section_name": "商品区与库存规则说明表",
+      "module": "云手机商品管理",
+      "feature": "商品区与库存规则说明表",
+      "title": "验证“库存预警值”数字框，非必填，正整数，上限200；按固定频率校验库存",
+      "preconditions": "已使用具备配置或查看权限的账号进入[盒子管理后台-云手机商品管理-添加]，并定位到商品区与库存规则说明表",
+      "steps": "1. 进入[盒子管理后台-云手机商品管理-添加]的商品区与库存规则说明表<br>2. 保持“库存预警值”为空<br>3. 点击【保存】并观察校验反馈",
+      "expected_results": "1. 系统阻止本次保存，原配置不发生变化<br>2. 页面反馈当前输入违反：“库存预警值”数字框，非必填，正整数，上限200；按固定频率校验库存",
+      "priority": "P0",
+      "tags": [
+        "AI-UI用例",
+        "开发必测",
+        "测试必测"
+      ],
+      "test_type": "异常",
+      "remark": "来源 CasePlan：CP-022；来源 Acceptance：AE-022；来源 Rule：FR-盒子管理后台-云手机商品管理-添加-商品区与库存规则说明表-08；来源coverage：COV-EX-0056",
+      "source_case_plan_ids": [
+        "CP-022"
+      ]
+    },
+    {
+      "testcase_id": "FIXTURE-ADD-FORM-B-AB-023",
+      "page_name": "盒子管理后台-云手机商品管理-添加",
+      "section_name": "商品区与库存规则说明表",
+      "module": "云手机商品管理",
+      "feature": "商品区与库存规则说明表",
+      "title": "验证“购买数量报警通知人”下拉单选，必填，content：盒子后台管理员列表",
+      "preconditions": "已使用具备配置或查看权限的账号进入[盒子管理后台-云手机商品管理-添加]，并定位到商品区与库存规则说明表",
+      "steps": "1. 进入[盒子管理后台-云手机商品管理-添加]的商品区与库存规则说明表<br>2. 保持“购买数量报警通知人”为空<br>3. 点击【保存】并观察校验反馈",
+      "expected_results": "1. 系统阻止本次保存，原配置不发生变化<br>2. 页面反馈当前输入违反：“购买数量报警通知人”下拉单选，必填，content：盒子后台管理员列表",
+      "priority": "P0",
+      "tags": [
+        "AI-UI用例",
+        "开发必测",
+        "测试必测"
+      ],
+      "test_type": "异常",
+      "remark": "来源 CasePlan：CP-023；来源 Acceptance：AE-023；来源 Rule：FR-盒子管理后台-云手机商品管理-添加-商品区与库存规则说明表-09",
+      "source_case_plan_ids": [
+        "CP-023"
+      ]
+    },
+    {
+      "testcase_id": "FIXTURE-ADD-FORM-SVC-ST-024",
+      "page_name": "盒子管理后台-云手机商品管理-添加",
+      "section_name": "商品区与库存规则说明表",
+      "module": "云手机商品管理",
+      "feature": "商品区与库存规则说明表",
+      "title": "验证“通知群”云手机相关报警",
+      "preconditions": "已使用具备配置或查看权限的账号进入[盒子管理后台-云手机商品管理-添加]，并定位到商品区与库存规则说明表",
+      "steps": "1. 在[盒子管理后台-云手机商品管理-添加]的商品区与库存规则说明表配置满足触发条件的数据<br>2. 触发或等待后台任务执行<br>3. 查询任务结果、通知记录及C端状态",
+      "expected_results": "1. 后台任务执行后可观察到：“通知群”云手机相关报警<br>2. 任务结果、通知记录与C端状态分别可核对",
+      "priority": "P0",
+      "tags": [
+        "AI-UI用例",
+        "开发必测",
+        "测试必测"
+      ],
+      "test_type": "状态流转",
+      "remark": "来源 CasePlan：CP-024；来源 Acceptance：AE-024；来源 Rule：FR-盒子管理后台-云手机商品管理-添加-商品区与库存规则说明表-10",
+      "source_case_plan_ids": [
+        "CP-024"
+      ]
+    },
+    {
+      "testcase_id": "FIXTURE-GOODS-LIST-B-FN-025",
+      "page_name": "盒子管理后台-云手机商品管理-添加",
+      "section_name": "商品区与库存规则说明表",
+      "module": "云手机商品管理",
+      "feature": "商品区与库存规则说明表",
+      "title": "验证“正式环境模板标题”【云挂机库存不足通知】",
+      "preconditions": "已使用具备配置或查看权限的账号进入[盒子管理后台-云手机商品管理-添加]，并定位到商品区与库存规则说明表",
+      "steps": "1. 进入[盒子管理后台-云手机商品管理-添加]的商品区与库存规则说明表<br>2. 按““正式环境模板标题”【云挂机库存不足通知】”准备一个合法值或配置<br>3. 点击【保存】后重新打开该记录",
+      "expected_results": "1. 保存后的页面结果明确体现：“正式环境模板标题”【云挂机库存不足通知】<br>2. 重新打开记录后“正式环境模板标题”仍显示本次保存值",
+      "priority": "P1",
+      "tags": [
+        "AI-UI用例"
+      ],
+      "test_type": "功能",
+      "remark": "来源 CasePlan：CP-025；来源 Acceptance：AE-025；来源 Rule：FR-盒子管理后台-云手机商品管理-添加-商品区与库存规则说明表-11",
+      "source_case_plan_ids": [
+        "CP-025"
+      ]
+    },
+    {
+      "testcase_id": "FIXTURE-ADD-FORM-B-FN-026",
+      "page_name": "盒子管理后台-云手机商品管理-添加",
+      "section_name": "商品区与库存规则说明表",
+      "module": "云手机商品管理",
+      "feature": "商品区与库存规则说明表",
+      "title": "验证“功能模块”玩心盒子后台_云挂机_云手机商品管理",
+      "preconditions": "已使用具备配置或查看权限的账号进入[盒子管理后台-云手机商品管理-添加]，并定位到商品区与库存规则说明表",
+      "steps": "1. 进入[盒子管理后台-云手机商品管理-添加]的商品区与库存规则说明表<br>2. 按““功能模块”玩心盒子后台_云挂机_云手机商品管理”准备一个合法值或配置<br>3. 点击【保存】后重新打开该记录",
+      "expected_results": "1. 保存后的页面结果明确体现：“功能模块”玩心盒子后台_云挂机_云手机商品管理<br>2. 重新打开记录后“功能模块”仍显示本次保存值",
+      "priority": "P1",
+      "tags": [
+        "AI-UI用例"
+      ],
+      "test_type": "功能",
+      "remark": "来源 CasePlan：CP-026；来源 Acceptance：AE-026；来源 Rule：FR-盒子管理后台-云手机商品管理-添加-商品区与库存规则说明表-12",
+      "source_case_plan_ids": [
+        "CP-026"
+      ]
+    },
+    {
+      "testcase_id": "FIXTURE-ADD-FORM-B-FL-027",
+      "page_name": "盒子管理后台-云手机商品管理-添加",
+      "section_name": "商品区与库存规则说明表",
+      "module": "云手机商品管理",
+      "feature": "商品区与库存规则说明表",
+      "title": "验证“动态字段”配置ID、商品名称、云机类型、云机服务时长、通知时间、通知人由配置或系统生成",
+      "preconditions": "已使用具备配置或查看权限的账号进入[盒子管理后台-云手机商品管理-添加]，并定位到商品区与库存规则说明表",
+      "steps": "1. 在[盒子管理后台-云手机商品管理-添加]的商品区与库存规则说明表准备并保存触发条件<br>2. 触发对应业务动作<br>3. 分别检查B端记录、服务端处理结果和C端展示",
+      "expected_results": "1. 触发后可观察到：“动态字段”配置ID、商品名称、云机类型、云机服务时长、通知时间、通知人由配置或系统生成<br>2. 各验证端最终状态来自同一次配置或业务事件",
+      "priority": "P0",
+      "tags": [
+        "AI-UI用例",
+        "开发必测",
+        "测试必测"
+      ],
+      "test_type": "流程验证",
+      "remark": "来源 CasePlan：CP-027；来源 Flow：CP-027；来源 Acceptance：AE-027；来源 Acceptance：AE-074；来源 Rule：FR-盒子管理后台-云手机商品管理-添加-商品区与库存规则说明表-13；来源coverage：COV-AI-0078",
+      "source_case_plan_ids": [
+        "CP-027"
+      ]
+    },
+    {
+      "testcase_id": "FIXTURE-PROMO-FORM-B-FN-028",
+      "page_name": "盒子管理后台-编辑宣传内容",
+      "section_name": "宣传内容编辑表单",
+      "module": "宣传内容管理",
+      "feature": "宣传内容编辑表单",
+      "title": "验证“云机类型”候选项来自盒子现有云机类型",
+      "preconditions": "已使用具备配置或查看权限的账号进入[盒子管理后台-编辑宣传内容]，并定位到宣传内容编辑表单",
+      "steps": "1. 准备满足““云机类型”候选项来自盒子现有云机类型”的上游配置或数据<br>2. 进入[盒子管理后台-编辑宣传内容]的宣传内容编辑表单<br>3. 观察“云机类型”对应的页面结果",
+      "expected_results": "1. [盒子管理后台-编辑宣传内容]的宣传内容编辑表单可直接观察到：“云机类型”候选项来自盒子现有云机类型",
+      "priority": "P1",
+      "tags": [
+        "AI-UI用例"
+      ],
+      "test_type": "功能",
+      "remark": "来源 CasePlan：CP-028；来源 Acceptance：AE-028；来源 Acceptance：AE-064；来源 Rule：OBJ-010；来源coverage：COV-EX-0073；来源coverage：COV-EX-0042；来源coverage：COV-EX-0077",
+      "source_case_plan_ids": [
+        "CP-028"
+      ]
+    },
+    {
+      "testcase_id": "FIXTURE-BUY-PIC-C-AB-029",
+      "page_name": "盒子管理后台-编辑宣传内容",
+      "section_name": "宣传内容编辑表单",
+      "module": "宣传内容管理",
+      "feature": "宣传内容编辑表单",
+      "title": "验证“宣传图片”最多5张，单张最大500K，建议尺寸1008*160，支持拖拽和删除",
+      "preconditions": "已使用具备配置或查看权限的账号进入[盒子管理后台-编辑宣传内容]，并定位到宣传内容编辑表单",
+      "steps": "1. 进入[盒子管理后台-编辑宣传内容]的宣传内容编辑表单<br>2. 按““宣传图片”最多5张，单张最大500K，建议尺寸1008*160，支持拖拽和删除”构造一个违反限制的明确输入<br>3. 点击【保存】并观察校验反馈",
+      "expected_results": "1. 系统阻止本次保存，原配置不发生变化<br>2. 页面反馈当前输入违反：“宣传图片”最多5张，单张最大500K，建议尺寸1008*160，支持拖拽和删除",
+      "priority": "P1",
+      "tags": [
+        "AI-UI用例"
+      ],
+      "test_type": "异常",
+      "remark": "来源 CasePlan：CP-029；来源 Acceptance：AE-029；来源 Acceptance：AE-065；来源 Rule：OBJ-011；来源coverage：COV-EX-0074；来源coverage：COV-EX-0076；来源coverage：COV-EX-0044",
+      "source_case_plan_ids": [
+        "CP-029"
+      ]
+    },
+    {
+      "testcase_id": "FIXTURE-ADD-FORM-B-FN-030",
+      "page_name": "盒子管理后台-编辑宣传内容",
+      "section_name": "宣传内容编辑表单",
+      "module": "宣传内容管理",
+      "feature": "宣传内容编辑表单",
+      "title": "验证“宣传口号”超过一行时在C端换行展示",
+      "preconditions": "已使用具备配置或查看权限的账号进入[盒子管理后台-编辑宣传内容]，并定位到宣传内容编辑表单",
+      "steps": "1. 准备满足““宣传口号”超过一行时在C端换行展示”的上游配置或数据<br>2. 进入[盒子管理后台-编辑宣传内容]的宣传内容编辑表单<br>3. 观察“宣传口号”对应的页面结果",
+      "expected_results": "1. [盒子管理后台-编辑宣传内容]的宣传内容编辑表单可直接观察到：“宣传口号”超过一行时在C端换行展示",
+      "priority": "P1",
+      "tags": [
+        "AI-UI用例"
+      ],
+      "test_type": "功能",
+      "remark": "来源 CasePlan：CP-030；来源 Acceptance：AE-030；来源 Acceptance：AE-066；来源 Rule：OBJ-012；来源coverage：COV-EX-0028；来源coverage：COV-EX-0046",
+      "source_case_plan_ids": [
+        "CP-030"
+      ]
+    },
+    {
+      "testcase_id": "FIXTURE-ADD-FORM-B-FN-031",
+      "page_name": "盒子管理后台-编辑宣传内容",
+      "section_name": "宣传内容编辑表单",
+      "module": "宣传内容管理",
+      "feature": "宣传内容编辑表单",
+      "title": "验证“性能参数”超过一行时在C端换行展示",
+      "preconditions": "已使用具备配置或查看权限的账号进入[盒子管理后台-编辑宣传内容]，并定位到宣传内容编辑表单",
+      "steps": "1. 准备满足““性能参数”超过一行时在C端换行展示”的上游配置或数据<br>2. 进入[盒子管理后台-编辑宣传内容]的宣传内容编辑表单<br>3. 观察“性能参数”对应的页面结果",
+      "expected_results": "1. [盒子管理后台-编辑宣传内容]的宣传内容编辑表单可直接观察到：“性能参数”超过一行时在C端换行展示",
+      "priority": "P1",
+      "tags": [
+        "AI-UI用例"
+      ],
+      "test_type": "功能",
+      "remark": "来源 CasePlan：CP-031；来源 Acceptance：AE-031；来源 Acceptance：AE-067；来源 Rule：OBJ-013；来源coverage：COV-EX-0048",
+      "source_case_plan_ids": [
+        "CP-031"
+      ]
+    },
+    {
+      "testcase_id": "FIXTURE-PROMO-FORM-B-FN-032",
+      "page_name": "盒子管理后台-编辑宣传内容",
+      "section_name": "宣传内容编辑表单",
+      "module": "宣传内容管理",
+      "feature": "宣传内容编辑表单",
+      "title": "验证保存前校验所有“云机类型”均已配置且不存在重复",
+      "preconditions": "已使用具备配置或查看权限的账号进入[盒子管理后台-编辑宣传内容]，并定位到宣传内容编辑表单",
+      "steps": "1. 进入[盒子管理后台-编辑宣传内容]的宣传内容编辑表单<br>2. 按“保存前校验所有“云机类型”均已配置且不存在重复”准备一个合法值或配置<br>3. 点击【保存】后重新打开该记录",
+      "expected_results": "1. 保存后的页面结果明确体现：保存前校验所有“云机类型”均已配置且不存在重复<br>2. 重新打开记录后“云机类型”仍显示本次保存值",
+      "priority": "P0",
+      "tags": [
+        "AI-UI用例",
+        "开发必测",
+        "测试必测"
+      ],
+      "test_type": "功能",
+      "remark": "来源 CasePlan：CP-032；来源 Acceptance：AE-032；来源 Rule：FR-盒子管理后台-编辑宣传内容-宣传内容编辑表单-01",
+      "source_case_plan_ids": [
+        "CP-032"
+      ]
+    },
+    {
+      "testcase_id": "FIXTURE-PROMO-FORM-B-FN-033",
+      "page_name": "盒子管理后台-编辑宣传内容",
+      "section_name": "宣传内容编辑表单",
+      "module": "宣传内容管理",
+      "feature": "宣传内容编辑表单",
+      "title": "验证“宣传图片”最多上传5张，支持gif/jpg/jpeg/png，单张最大500K，建议尺寸1008*160",
+      "preconditions": "已使用具备配置或查看权限的账号进入[盒子管理后台-编辑宣传内容]，并定位到宣传内容编辑表单",
+      "steps": "1. 进入[盒子管理后台-编辑宣传内容]的宣传内容编辑表单<br>2. 定位“宣传图片”控件<br>3. 查看控件旁的数量、格式、大小及建议尺寸说明",
+      "expected_results": "1. 控件旁展示与““宣传图片”最多上传5张，支持gif/jpg/jpeg/png，单张最大500K，建议尺寸1008*160”对应的说明<br>2. 建议尺寸仅作辅助说明，不会单独阻止提交",
+      "priority": "P2",
+      "tags": [
+        "AI-UI用例"
+      ],
+      "test_type": "功能",
+      "remark": "来源 CasePlan：CP-033；来源 Acceptance：AE-033；来源 Acceptance：AE-075；来源 Rule：FR-盒子管理后台-编辑宣传内容-宣传内容编辑表单-02；来源coverage：COV-EX-0075",
+      "source_case_plan_ids": [
+        "CP-033"
+      ]
+    },
+    {
+      "testcase_id": "FIXTURE-BUY-PROMO-C-FN-034",
+      "page_name": "盒子管理后台-编辑宣传内容",
+      "section_name": "宣传内容编辑表单",
+      "module": "宣传内容管理",
+      "feature": "宣传内容编辑表单",
+      "title": "验证“宣传口号”文本长度20个字符；C端超过一行换行展示",
+      "preconditions": "已使用具备配置或查看权限的账号进入[盒子管理后台-编辑宣传内容]，并定位到宣传内容编辑表单",
+      "steps": "1. 准备满足““宣传口号”文本长度20个字符；C端超过一行换行展示”的上游配置或数据<br>2. 进入[盒子管理后台-编辑宣传内容]的宣传内容编辑表单<br>3. 观察“宣传口号”对应的页面结果",
+      "expected_results": "1. [盒子管理后台-编辑宣传内容]的宣传内容编辑表单可直接观察到：“宣传口号”文本长度20个字符；C端超过一行换行展示",
+      "priority": "P0",
+      "tags": [
+        "AI-UI用例",
+        "开发必测",
+        "测试必测"
+      ],
+      "test_type": "功能",
+      "remark": "来源 CasePlan：CP-034；来源 Acceptance：AE-034；来源 Rule：FR-盒子管理后台-编辑宣传内容-宣传内容编辑表单-03；来源coverage：COV-EX-0057",
+      "source_case_plan_ids": [
+        "CP-034"
+      ]
+    },
+    {
+      "testcase_id": "FIXTURE-BUY-PROMO-C-FN-035",
+      "page_name": "盒子管理后台-编辑宣传内容",
+      "section_name": "宣传内容编辑表单",
+      "module": "宣传内容管理",
+      "feature": "宣传内容编辑表单",
+      "title": "验证“性能参数”文本长度20个字符；C端超过一行换行展示",
+      "preconditions": "已使用具备配置或查看权限的账号进入[盒子管理后台-编辑宣传内容]，并定位到宣传内容编辑表单",
+      "steps": "1. 准备满足““性能参数”文本长度20个字符；C端超过一行换行展示”的上游配置或数据<br>2. 进入[盒子管理后台-编辑宣传内容]的宣传内容编辑表单<br>3. 观察“性能参数”对应的页面结果",
+      "expected_results": "1. [盒子管理后台-编辑宣传内容]的宣传内容编辑表单可直接观察到：“性能参数”文本长度20个字符；C端超过一行换行展示",
+      "priority": "P0",
+      "tags": [
+        "AI-UI用例",
+        "开发必测",
+        "测试必测"
+      ],
+      "test_type": "功能",
+      "remark": "来源 CasePlan：CP-035；来源 Acceptance：AE-035；来源 Rule：FR-盒子管理后台-编辑宣传内容-宣传内容编辑表单-04；来源coverage：COV-EX-0058",
+      "source_case_plan_ids": [
+        "CP-035"
+      ]
+    },
+    {
+      "testcase_id": "FIXTURE-PROMO-FORM-B-AB-036",
+      "page_name": "盒子管理后台-编辑宣传内容",
+      "section_name": "宣传内容字段说明表",
+      "module": "宣传内容管理",
+      "feature": "宣传内容字段说明表",
+      "title": "验证下拉列表框，必填，默认为空，可编辑；单选，content为盒子现有“云机类型”",
+      "preconditions": "已使用具备配置或查看权限的账号进入[盒子管理后台-编辑宣传内容]，并定位到宣传内容字段说明表",
+      "steps": "1. 进入[盒子管理后台-编辑宣传内容]的宣传内容字段说明表<br>2. 保持“云机类型”为空<br>3. 点击【保存】并观察校验反馈",
+      "expected_results": "1. 系统阻止本次保存，原配置不发生变化<br>2. 页面反馈当前输入违反：下拉列表框，必填，默认为空，可编辑；单选，content为盒子现有“云机类型”",
+      "priority": "P0",
+      "tags": [
+        "AI-UI用例",
+        "开发必测",
+        "测试必测"
+      ],
+      "test_type": "异常",
+      "remark": "来源 CasePlan：CP-036；来源 Acceptance：AE-036；来源 Rule：FR-盒子管理后台-编辑宣传内容-宣传内容字段说明表-01；来源coverage：COV-EX-0018；来源coverage：COV-EX-0061",
+      "source_case_plan_ids": [
+        "CP-036"
+      ]
+    },
+    {
+      "testcase_id": "FIXTURE-PROMO-FORM-B-FN-037",
+      "page_name": "盒子管理后台-编辑宣传内容",
+      "section_name": "宣传内容字段说明表",
+      "module": "宣传内容管理",
+      "feature": "宣传内容字段说明表",
+      "title": "验证“宣传图片”图片按钮，必传，最多5张；支持gif/jpg/jpeg/png，最大500K，建议尺寸1008*160；支持拖拽和删除",
+      "preconditions": "已使用具备配置或查看权限的账号进入[盒子管理后台-编辑宣传内容]，并定位到宣传内容字段说明表",
+      "steps": "1. 进入[盒子管理后台-编辑宣传内容]的宣传内容字段说明表<br>2. 定位“宣传图片”控件<br>3. 查看控件旁的数量、格式、大小及建议尺寸说明",
+      "expected_results": "1. 控件旁展示与““宣传图片”图片按钮，必传，最多5张；支持gif/jpg/jpeg/png，最大500K，建议尺寸1008*160；支持拖拽和删除”对应的说明<br>2. 建议尺寸仅作辅助说明，不会单独阻止提交",
+      "priority": "P2",
+      "tags": [
+        "AI-UI用例"
+      ],
+      "test_type": "功能",
+      "remark": "来源 CasePlan：CP-037；来源 Acceptance：AE-037；来源 Rule：FR-盒子管理后台-编辑宣传内容-宣传内容字段说明表-02",
+      "source_case_plan_ids": [
+        "CP-037"
+      ]
+    },
+    {
+      "testcase_id": "FIXTURE-BUY-PROMO-C-AB-038",
+      "page_name": "盒子管理后台-编辑宣传内容",
+      "section_name": "宣传内容字段说明表",
+      "module": "宣传内容管理",
+      "feature": "宣传内容字段说明表",
+      "title": "验证“宣传口号”文本框，必填，20个字符；C端超过一行换行展示",
+      "preconditions": "已使用具备配置或查看权限的账号进入[盒子管理后台-编辑宣传内容]，并定位到宣传内容字段说明表",
+      "steps": "1. 进入[盒子管理后台-编辑宣传内容]的宣传内容字段说明表<br>2. 向“宣传口号”输入{21}个字符<br>3. 点击【保存】并观察校验反馈",
+      "expected_results": "1. 系统阻止本次保存，原配置不发生变化<br>2. 页面反馈当前输入违反：“宣传口号”文本框，必填，20个字符；C端超过一行换行展示",
+      "priority": "P0",
+      "tags": [
+        "AI-UI用例",
+        "开发必测",
+        "测试必测"
+      ],
+      "test_type": "异常",
+      "remark": "来源 CasePlan：CP-038；来源 Acceptance：AE-038；来源 Rule：FR-盒子管理后台-编辑宣传内容-宣传内容字段说明表-03",
+      "source_case_plan_ids": [
+        "CP-038"
+      ]
+    },
+    {
+      "testcase_id": "FIXTURE-BUY-PROMO-C-AB-039",
+      "page_name": "盒子管理后台-编辑宣传内容",
+      "section_name": "宣传内容字段说明表",
+      "module": "宣传内容管理",
+      "feature": "宣传内容字段说明表",
+      "title": "验证“性能参数”文本框，必填，20个字符；C端超过一行换行展示",
+      "preconditions": "已使用具备配置或查看权限的账号进入[盒子管理后台-编辑宣传内容]，并定位到宣传内容字段说明表",
+      "steps": "1. 进入[盒子管理后台-编辑宣传内容]的宣传内容字段说明表<br>2. 向“性能参数”输入{21}个字符<br>3. 点击【保存】并观察校验反馈",
+      "expected_results": "1. 系统阻止本次保存，原配置不发生变化<br>2. 页面反馈当前输入违反：“性能参数”文本框，必填，20个字符；C端超过一行换行展示",
+      "priority": "P0",
+      "tags": [
+        "AI-UI用例",
+        "开发必测",
+        "测试必测"
+      ],
+      "test_type": "异常",
+      "remark": "来源 CasePlan：CP-039；来源 Acceptance：AE-039；来源 Rule：FR-盒子管理后台-编辑宣传内容-宣传内容字段说明表-04",
+      "source_case_plan_ids": [
+        "CP-039"
+      ]
+    },
+    {
+      "testcase_id": "FIXTURE-ADD-FORM-B-FN-040",
+      "page_name": "盒子管理后台-编辑宣传内容",
+      "section_name": "宣传内容字段说明表",
+      "module": "宣传内容管理",
+      "feature": "宣传内容字段说明表",
+      "title": "验证通过【增加一条】新增宣传配置，最多额外“新增”1块；达到2条时禁用按钮",
+      "preconditions": "已使用具备配置或查看权限的账号进入[盒子管理后台-编辑宣传内容]，并定位到宣传内容字段说明表",
+      "steps": "1. 进入[盒子管理后台-编辑宣传内容]的宣传内容字段说明表<br>2. 按“通过【增加一条】新增宣传配置，最多额外“新增”1块；达到2条时禁用按钮”准备一个合法值或配置<br>3. 点击【保存】后重新打开该记录",
+      "expected_results": "1. 保存后的页面结果明确体现：通过【增加一条】新增宣传配置，最多额外“新增”1块；达到2条时禁用按钮<br>2. 重新打开记录后“新增”仍显示本次保存值",
+      "priority": "P1",
+      "tags": [
+        "AI-UI用例"
+      ],
+      "test_type": "功能",
+      "remark": "来源 CasePlan：CP-040；来源 Acceptance：AE-040；来源 Rule：FR-盒子管理后台-编辑宣传内容-宣传内容字段说明表-05",
+      "source_case_plan_ids": [
+        "CP-040"
+      ]
+    },
+    {
+      "testcase_id": "FIXTURE-ADD-FORM-B-FN-043",
+      "page_name": "云挂机购买页",
+      "section_name": "普通商品列表",
+      "module": "云挂机购买页",
+      "feature": "普通商品列表",
+      "title": "验证“普通区商品列表”普通商品列表保持纵向展示",
+      "preconditions": "已使用具备配置或查看权限的账号进入[云挂机购买页]，并定位到普通商品列表",
+      "steps": "1. 准备满足““普通区商品列表”普通商品列表保持纵向展示”的上游配置或数据<br>2. 进入[云挂机购买页]的普通商品列表<br>3. 观察“普通区商品列表”对应的页面结果",
+      "expected_results": "1. [云挂机购买页]的普通商品列表可直接观察到：“普通区商品列表”普通商品列表保持纵向展示",
+      "priority": "P1",
+      "tags": [
+        "AI-UI用例"
+      ],
+      "test_type": "功能",
+      "remark": "来源 CasePlan：CP-043；来源 Acceptance：AE-043；来源 Acceptance：AE-070；来源 Rule：COV-EX-0067；来源coverage：COV-EX-0067",
+      "source_case_plan_ids": [
+        "CP-043"
+      ]
+    }
+  ]
+}

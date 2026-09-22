@@ -1,0 +1,79 @@
+{
+  "project_code": "OSS-BLIND-R3",
+  "index_type": "work_item",
+  "generated_at": "2026-09-22T13:33:33",
+  "items": [
+    {
+      "work_item_id": "CELERY-10668",
+      "title": "Preserve revoked tasks across worker clock domains",
+      "status": "initialized",
+      "work_item_level": "M",
+      "manifest_path": "work_items/CELERY-10668/manifest.json",
+      "manifest_sha256": "de4596ad930f36d54f465ef2a92f0c4f4abfa9558cbe82e75ac38f812f6c28b3",
+      "artifact_status": "ready",
+      "missing_artifacts": [],
+      "testcase_count": 11,
+      "open_risk_count": 0,
+      "quality_report_status": "current",
+      "primary_artifacts": {
+        "structured_prd": "work_items/CELERY-10668/structured_prd/structured_prd.md",
+        "testcases_main": "work_items/CELERY-10668/testcases/testcases_main.md",
+        "traceability_primary": "work_items/CELERY-10668/traceability/coverage_first_traceability.json"
+      }
+    },
+    {
+      "work_item_id": "DJANGO-21801",
+      "title": "Preserve UniqueConstraint when removing db_index",
+      "status": "initialized",
+      "work_item_level": "M",
+      "manifest_path": "work_items/DJANGO-21801/manifest.json",
+      "manifest_sha256": "24909369aad8f2fb0830da2612bc5648a5e4f634a42456440680baebd70de66e",
+      "artifact_status": "ready",
+      "missing_artifacts": [],
+      "testcase_count": 7,
+      "open_risk_count": 0,
+      "quality_report_status": "current",
+      "primary_artifacts": {
+        "structured_prd": "work_items/DJANGO-21801/structured_prd/structured_prd.md",
+        "testcases_main": "work_items/DJANGO-21801/testcases/testcases_main.md",
+        "traceability_primary": "work_items/DJANGO-21801/traceability/coverage_first_traceability.json"
+      }
+    },
+    {
+      "work_item_id": "SUPABASE-50569",
+      "title": "Authenticate with MFA recovery codes",
+      "status": "initialized",
+      "work_item_level": "M",
+      "manifest_path": "work_items/SUPABASE-50569/manifest.json",
+      "manifest_sha256": "dc7f783fddc50231de907f7f47ae9737fb727cc7d2c0351a8bd97a8a7cea6b69",
+      "artifact_status": "ready",
+      "missing_artifacts": [],
+      "testcase_count": 11,
+      "open_risk_count": 4,
+      "quality_report_status": "current",
+      "primary_artifacts": {
+        "structured_prd": "work_items/SUPABASE-50569/structured_prd/structured_prd.md",
+        "testcases_main": "work_items/SUPABASE-50569/testcases/testcases_main.md",
+        "traceability_primary": "work_items/SUPABASE-50569/traceability/coverage_first_traceability.json"
+      }
+    },
+    {
+      "work_item_id": "TEMPORAL-11968",
+      "title": "Deduplicate SignalWithStart retry after workflow closes",
+      "status": "initialized",
+      "work_item_level": "M",
+      "manifest_path": "work_items/TEMPORAL-11968/manifest.json",
+      "manifest_sha256": "be98e88c2cb3bc33f940f07c20fe42d50e402c83ebb64d8f4df284052157ac55",
+      "artifact_status": "ready",
+      "missing_artifacts": [],
+      "testcase_count": 8,
+      "open_risk_count": 4,
+      "quality_report_status": "current",
+      "primary_artifacts": {
+        "structured_prd": "work_items/TEMPORAL-11968/structured_prd/structured_prd.md",
+        "testcases_main": "work_items/TEMPORAL-11968/testcases/testcases_main.md",
+        "traceability_primary": "work_items/TEMPORAL-11968/traceability/coverage_first_traceability.json"
+      }
+    }
+  ]
+}

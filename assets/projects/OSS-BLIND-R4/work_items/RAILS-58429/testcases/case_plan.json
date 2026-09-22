@@ -1,0 +1,313 @@
+{
+  "project_code": "OSS-BLIND-R4",
+  "work_item_id": "RAILS-58429",
+  "generation_mode": "case_plan_direct",
+  "generated_from": [
+    "acceptance/acceptance_examples.json",
+    "acceptance/testability_gate.json",
+    "coverage/coverage_matrix.json",
+    "structured_prd/structured_prd.json"
+  ],
+  "case_plans": [
+    {
+      "case_plan_id": "CP-001",
+      "source_gate_ids": [
+        "TG-001"
+      ],
+      "source_example_ids": [
+        "AE-001"
+      ],
+      "source_responsibility_ids": [],
+      "source_rule_ids": [
+        "RAI-R001"
+      ],
+      "source_coverage_ids": [
+        "COV-EX-0001"
+      ],
+      "generated_testcase_ids": [
+        "OSS-BLIND-R4-BROADCASTLOGGER-TAGGED-SERVER-FN-001"
+      ],
+      "page_name": "BroadcastLogger 标签广播",
+      "section_name": "多 Logger 标签上下文",
+      "module_name": "BroadcastLogger tagged",
+      "feature_name": "无 block 标签广播",
+      "title": "无 block 的 tagged 返回可继续记录日志的 BroadcastLogger",
+      "verification_side": "ActiveSupport BroadcastLogger API 层",
+      "case_type": "field_constraint",
+      "priority": "P0",
+      "assertion": "返回值是 BroadcastLogger，而不是 Array；可在返回值上继续调用日志方法。",
+      "validation_path": "product_acceptance",
+      "should_generate_case": true
+    },
+    {
+      "case_plan_id": "CP-002",
+      "source_gate_ids": [
+        "TG-002"
+      ],
+      "source_example_ids": [
+        "AE-002"
+      ],
+      "source_responsibility_ids": [],
+      "source_rule_ids": [
+        "RAI-R002"
+      ],
+      "source_coverage_ids": [
+        "COV-EX-0002"
+      ],
+      "generated_testcase_ids": [
+        "OSS-BLIND-R4-BROADCASTLOGGER-TAGGED-SERVER-ST-001"
+      ],
+      "page_name": "BroadcastLogger 标签广播",
+      "section_name": "多 Logger 标签上下文",
+      "module_name": "BroadcastLogger tagged",
+      "feature_name": "无 block 标签广播",
+      "title": "无 block 的 tagged 为所有 tagging logger 应用标签",
+      "verification_side": "ActiveSupport 多 logger 标签层",
+      "case_type": "backend_job",
+      "priority": "P0",
+      "assertion": "每个支持 `tagged` 的 logger 收到的消息都带有指定标签。",
+      "validation_path": "product_acceptance",
+      "should_generate_case": true
+    },
+    {
+      "case_plan_id": "CP-003",
+      "source_gate_ids": [
+        "TG-003"
+      ],
+      "source_example_ids": [
+        "AE-003"
+      ],
+      "source_responsibility_ids": [],
+      "source_rule_ids": [
+        "RAI-R003"
+      ],
+      "source_coverage_ids": [
+        "COV-EX-0003"
+      ],
+      "generated_testcase_ids": [
+        "OSS-BLIND-R4-BROADCASTLOGGER-TAGGED-SERVER-ST-002"
+      ],
+      "page_name": "BroadcastLogger 标签广播",
+      "section_name": "多 Logger 标签上下文",
+      "module_name": "BroadcastLogger tagged",
+      "feature_name": "无 block 标签广播",
+      "title": "无 tagged 能力的广播目标仍被保留并接收日志",
+      "verification_side": "ActiveSupport 广播目标集合与日志分发层",
+      "case_type": "backend_job",
+      "priority": "P0",
+      "assertion": "不支持 `tagged` 的 logger 仍存在于广播目标中；该 logger 收到后续日志消息。",
+      "validation_path": "product_acceptance",
+      "should_generate_case": true
+    },
+    {
+      "case_plan_id": "CP-004",
+      "source_gate_ids": [
+        "TG-004"
+      ],
+      "source_example_ids": [
+        "AE-004"
+      ],
+      "source_responsibility_ids": [],
+      "source_rule_ids": [
+        "RAI-R004"
+      ],
+      "source_coverage_ids": [
+        "COV-EX-0004"
+      ],
+      "generated_testcase_ids": [
+        "OSS-BLIND-R4-BROADCASTLOGGER-TAGGED-SERVER-ST-003"
+      ],
+      "page_name": "BroadcastLogger 标签广播",
+      "section_name": "多 Logger 标签上下文",
+      "module_name": "BroadcastLogger tagged",
+      "feature_name": "Block 标签上下文",
+      "title": "有 block 的 tagged 只执行一次用户 block",
+      "verification_side": "ActiveSupport tagged block 控制流层",
+      "case_type": "backend_job",
+      "priority": "P0",
+      "assertion": "用户 block 的执行次数等于一次。",
+      "validation_path": "product_acceptance",
+      "should_generate_case": true
+    },
+    {
+      "case_plan_id": "CP-005",
+      "source_gate_ids": [
+        "TG-004"
+      ],
+      "source_example_ids": [
+        "AE-005"
+      ],
+      "source_responsibility_ids": [],
+      "source_rule_ids": [
+        "RAI-R004"
+      ],
+      "source_coverage_ids": [
+        "COV-EX-0005"
+      ],
+      "generated_testcase_ids": [
+        "OSS-BLIND-R4-BROADCASTLOGGER-TAGGED-SERVER-ST-004"
+      ],
+      "page_name": "BroadcastLogger 标签广播",
+      "section_name": "多 Logger 标签上下文",
+      "module_name": "BroadcastLogger tagged",
+      "feature_name": "Block 标签上下文",
+      "title": "有 block 时所有 tagging logger 同时激活标签",
+      "verification_side": "ActiveSupport 多 logger block 标签层",
+      "case_type": "backend_job",
+      "priority": "P0",
+      "assertion": "每个支持 `tagged` 的 logger 在该 block 执行期间收到带指定标签的消息。",
+      "validation_path": "product_acceptance",
+      "should_generate_case": true
+    },
+    {
+      "case_plan_id": "CP-006",
+      "source_gate_ids": [
+        "TG-005"
+      ],
+      "source_example_ids": [
+        "AE-006"
+      ],
+      "source_responsibility_ids": [],
+      "source_rule_ids": [
+        "RAI-R005"
+      ],
+      "source_coverage_ids": [
+        "COV-EX-0006"
+      ],
+      "generated_testcase_ids": [
+        "OSS-BLIND-R4-BROADCASTLOGGER-TAGGED-SERVER-ST-005"
+      ],
+      "page_name": "BroadcastLogger 标签广播",
+      "section_name": "多 Logger 标签上下文",
+      "module_name": "BroadcastLogger tagged",
+      "feature_name": "Block 标签上下文",
+      "title": "tagged block 正常结束后清理临时标签",
+      "verification_side": "ActiveSupport 标签生命周期层",
+      "case_type": "backend_job",
+      "priority": "P0",
+      "assertion": "block 之后的日志不包含该临时标签。",
+      "validation_path": "product_acceptance",
+      "should_generate_case": true
+    },
+    {
+      "case_plan_id": "CP-007",
+      "source_gate_ids": [
+        "TG-005"
+      ],
+      "source_example_ids": [
+        "AE-007"
+      ],
+      "source_responsibility_ids": [],
+      "source_rule_ids": [
+        "RAI-R005"
+      ],
+      "source_coverage_ids": [
+        "COV-EX-0007"
+      ],
+      "generated_testcase_ids": [
+        "OSS-BLIND-R4-BROADCASTLOGGER-TAGGED-SERVER-ST-006"
+      ],
+      "page_name": "BroadcastLogger 标签广播",
+      "section_name": "多 Logger 标签上下文",
+      "module_name": "BroadcastLogger tagged",
+      "feature_name": "Block 标签上下文",
+      "title": "tagged block 抛出异常后仍清理临时标签",
+      "verification_side": "ActiveSupport 异常路径标签生命周期层",
+      "case_type": "backend_job",
+      "priority": "P0",
+      "assertion": "异常之后的日志不包含该临时标签。",
+      "validation_path": "product_acceptance",
+      "should_generate_case": true
+    },
+    {
+      "case_plan_id": "CP-008",
+      "source_gate_ids": [
+        "TG-005"
+      ],
+      "source_example_ids": [
+        "AE-008"
+      ],
+      "source_responsibility_ids": [],
+      "source_rule_ids": [
+        "RAI-R005"
+      ],
+      "source_coverage_ids": [
+        "COV-EX-0008"
+      ],
+      "generated_testcase_ids": [
+        "OSS-BLIND-R4-BROADCASTLOGGER-TAGGED-SERVER-FN-002"
+      ],
+      "page_name": "BroadcastLogger 标签广播",
+      "section_name": "多 Logger 标签上下文",
+      "module_name": "BroadcastLogger tagged",
+      "feature_name": "Block 标签上下文",
+      "title": "tagged block 的异常继续传播给调用方",
+      "verification_side": "ActiveSupport tagged 异常传播层",
+      "case_type": "field_constraint",
+      "priority": "P0",
+      "assertion": "调用方向外收到同一异常类型和消息；异常不被 BroadcastLogger 吞掉或替换。",
+      "validation_path": "product_acceptance",
+      "should_generate_case": true
+    },
+    {
+      "case_plan_id": "CP-009",
+      "source_gate_ids": [
+        "TG-006"
+      ],
+      "source_example_ids": [
+        "AE-009"
+      ],
+      "source_responsibility_ids": [],
+      "source_rule_ids": [
+        "RAI-R006"
+      ],
+      "source_coverage_ids": [
+        "COV-EX-0009"
+      ],
+      "generated_testcase_ids": [
+        "OSS-BLIND-R4-BROADCASTLOGGER-TAGGED-SERVER-ST-007"
+      ],
+      "page_name": "BroadcastLogger 标签广播",
+      "section_name": "多 Logger 标签上下文",
+      "module_name": "BroadcastLogger tagged",
+      "feature_name": "无 block 标签广播",
+      "title": "按是否响应 tagged 决定标签处理参与者",
+      "verification_side": "ActiveSupport logger 能力分流层",
+      "case_type": "backend_job",
+      "priority": "P1",
+      "assertion": "只对响应 `tagged` 的目标调用标签处理；不响应 `tagged` 的目标不接收 `tagged` 调用。",
+      "validation_path": "product_acceptance",
+      "should_generate_case": true
+    },
+    {
+      "case_plan_id": "CP-010",
+      "source_gate_ids": [
+        "TG-007"
+      ],
+      "source_example_ids": [
+        "AE-010"
+      ],
+      "source_responsibility_ids": [],
+      "source_rule_ids": [
+        "RAI-R007"
+      ],
+      "source_coverage_ids": [
+        "COV-EX-0010"
+      ],
+      "generated_testcase_ids": [
+        "OSS-BLIND-R4-BROADCASTLOGGER-TAGGED-SERVER-FL-001"
+      ],
+      "page_name": "BroadcastLogger 标签广播",
+      "section_name": "多 Logger 标签上下文",
+      "module_name": "BroadcastLogger tagged",
+      "feature_name": "无 block 标签广播",
+      "title": "单 logger 标签与普通广播行为保持兼容",
+      "verification_side": "ActiveSupport BroadcastLogger 兼容回归层",
+      "case_type": "linkage",
+      "priority": "P0",
+      "assertion": "两条记录流程完成后，单 logger 收到带指定标签的消息；普通广播中的每个目标仍收到未被改变的消息。",
+      "validation_path": "product_acceptance",
+      "should_generate_case": true
+    }
+  ]
+}

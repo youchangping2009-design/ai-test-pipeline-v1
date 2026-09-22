@@ -20,9 +20,9 @@ P1-2-001 只深化责任划分校验，不切换 testcase 真源，不接入 `te
 
 ```bash
 /usr/bin/python3 skills/test-design/scripts/validate_responsibility_map.py \
-  --input evals/fixtures/PT083/expected/responsibility_map.expected.json \
-  --testability-gate evals/fixtures/PT083/expected/testability_gate.expected.json \
-  --case-plan evals/fixtures/PT083/expected/case_plan.expected.json
+  --input evals/fixtures/LINKAGE_ONLY/expected/responsibility_map.expected.json \
+  --testability-gate evals/fixtures/LINKAGE_ONLY/expected/testability_gate.expected.json \
+  --case-plan evals/fixtures/LINKAGE_ONLY/expected/case_plan.expected.json
 ```
 
 Expected: PASS

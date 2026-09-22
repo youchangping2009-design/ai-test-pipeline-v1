@@ -1,0 +1,303 @@
+{
+  "project_code": "OSS-BLIND-R4",
+  "work_item_id": "KUBERNETES-141831",
+  "generated_at": "2026-09-22T12:07:58",
+  "generated_from": [
+    "coverage/coverage_matrix.json",
+    "evidence/evidence_inventory.json",
+    "testcases/testcases_main.md"
+  ],
+  "summary": {
+    "record_count": 13,
+    "invalid_record_count": 0,
+    "false_traceability_rate": 0.0
+  },
+  "records": [
+    {
+      "record_id": "CFT-0001",
+      "rule_id": "K8S-R001",
+      "coverage_id": "COV-EX-0001",
+      "testcase_id": "OSS-BLIND-R4-DEVICETAINT-WARNING-API-FN-001",
+      "testcase_title": "create 空 deviceSelector 返回 Warning",
+      "source_origin": "explicit_rule",
+      "coverage_level": "business",
+      "emit_mode": "main_testcase",
+      "fidelity_status": "not_applicable",
+      "evidence_ids": [],
+      "reasoning_refs": [],
+      "structured_targets": [
+        {
+          "target_type": "feature",
+          "module_name": "DeviceTaintRule Admission Warning",
+          "feature_name": "空选择器判定",
+          "field_name": "",
+          "target_name": "create 空 selector 返回 Warning。"
+        }
+      ]
+    },
+    {
+      "record_id": "CFT-0002",
+      "rule_id": "K8S-R001",
+      "coverage_id": "COV-EX-0002",
+      "testcase_id": "OSS-BLIND-R4-DEVICETAINT-WARNING-API-FN-002",
+      "testcase_title": "update 空 deviceSelector 返回 Warning",
+      "source_origin": "explicit_rule",
+      "coverage_level": "business",
+      "emit_mode": "main_testcase",
+      "fidelity_status": "not_applicable",
+      "evidence_ids": [],
+      "reasoning_refs": [],
+      "structured_targets": [
+        {
+          "target_type": "feature",
+          "module_name": "DeviceTaintRule Admission Warning",
+          "feature_name": "空选择器判定",
+          "field_name": "",
+          "target_name": "update 空 selector 返回 Warning。"
+        }
+      ]
+    },
+    {
+      "record_id": "CFT-0003",
+      "rule_id": "K8S-R002",
+      "coverage_id": "COV-EX-0003",
+      "testcase_id": "OSS-BLIND-R4-DEVICETAINT-WARNING-API-FN-003",
+      "testcase_title": "空 selector 返回精确警告文本",
+      "source_origin": "explicit_rule",
+      "coverage_level": "business",
+      "emit_mode": "main_testcase",
+      "fidelity_status": "not_applicable",
+      "evidence_ids": [],
+      "reasoning_refs": [],
+      "structured_targets": [
+        {
+          "target_type": "feature",
+          "module_name": "DeviceTaintRule Admission Warning",
+          "feature_name": "非阻塞警告响应",
+          "field_name": "",
+          "target_name": "空 selector 的警告文本必须为 `spec.deviceSelector: an empty selector matches every device from every driver in the cluster`。"
+        }
+      ]
+    },
+    {
+      "record_id": "CFT-0004",
+      "rule_id": "K8S-R003",
+      "coverage_id": "COV-EX-0004",
+      "testcase_id": "OSS-BLIND-R4-DEVICETAINT-WARNING-API-FN-004",
+      "testcase_title": "省略 deviceSelector 不返回空 selector Warning",
+      "source_origin": "explicit_rule",
+      "coverage_level": "business",
+      "emit_mode": "main_testcase",
+      "fidelity_status": "not_applicable",
+      "evidence_ids": [],
+      "reasoning_refs": [],
+      "structured_targets": [
+        {
+          "target_type": "feature",
+          "module_name": "DeviceTaintRule Admission Warning",
+          "feature_name": "空选择器判定",
+          "field_name": "",
+          "target_name": "`spec.deviceSelector` 省略时不得返回空 selector Warning。"
+        }
+      ]
+    },
+    {
+      "record_id": "CFT-0005",
+      "rule_id": "K8S-R004",
+      "coverage_id": "COV-EX-0005",
+      "testcase_id": "OSS-BLIND-R4-DEVICETAINT-WARNING-API-FN-005",
+      "testcase_title": "selector 指定 driver 时不返回空 selector Warning",
+      "source_origin": "explicit_rule",
+      "coverage_level": "business",
+      "emit_mode": "main_testcase",
+      "fidelity_status": "not_applicable",
+      "evidence_ids": [],
+      "reasoning_refs": [],
+      "structured_targets": [
+        {
+          "target_type": "feature",
+          "module_name": "DeviceTaintRule Admission Warning",
+          "feature_name": "空选择器判定",
+          "field_name": "",
+          "target_name": "指定 driver 时不返回空 selector Warning。"
+        }
+      ]
+    },
+    {
+      "record_id": "CFT-0006",
+      "rule_id": "K8S-R004",
+      "coverage_id": "COV-EX-0006",
+      "testcase_id": "OSS-BLIND-R4-DEVICETAINT-WARNING-API-FN-006",
+      "testcase_title": "selector 指定 pool 时不返回空 selector Warning",
+      "source_origin": "explicit_rule",
+      "coverage_level": "business",
+      "emit_mode": "main_testcase",
+      "fidelity_status": "not_applicable",
+      "evidence_ids": [],
+      "reasoning_refs": [],
+      "structured_targets": [
+        {
+          "target_type": "feature",
+          "module_name": "DeviceTaintRule Admission Warning",
+          "feature_name": "空选择器判定",
+          "field_name": "",
+          "target_name": "指定 pool 时不返回空 selector Warning。"
+        }
+      ]
+    },
+    {
+      "record_id": "CFT-0007",
+      "rule_id": "K8S-R004",
+      "coverage_id": "COV-EX-0007",
+      "testcase_id": "OSS-BLIND-R4-DEVICETAINT-WARNING-API-FN-007",
+      "testcase_title": "selector 指定 device 时不返回空 selector Warning",
+      "source_origin": "explicit_rule",
+      "coverage_level": "business",
+      "emit_mode": "main_testcase",
+      "fidelity_status": "not_applicable",
+      "evidence_ids": [],
+      "reasoning_refs": [],
+      "structured_targets": [
+        {
+          "target_type": "feature",
+          "module_name": "DeviceTaintRule Admission Warning",
+          "feature_name": "空选择器判定",
+          "field_name": "",
+          "target_name": "指定 device 时不返回空 selector Warning。"
+        }
+      ]
+    },
+    {
+      "record_id": "CFT-0008",
+      "rule_id": "K8S-R005",
+      "coverage_id": "COV-EX-0008",
+      "testcase_id": "OSS-BLIND-R4-DEVICETAINT-WARNING-API-FL-001",
+      "testcase_title": "空 selector Warning 不阻止 create 成功",
+      "source_origin": "explicit_rule",
+      "coverage_level": "business",
+      "emit_mode": "main_testcase",
+      "fidelity_status": "not_applicable",
+      "evidence_ids": [],
+      "reasoning_refs": [],
+      "structured_targets": [
+        {
+          "target_type": "feature",
+          "module_name": "DeviceTaintRule Admission Warning",
+          "feature_name": "非阻塞警告响应",
+          "field_name": "",
+          "target_name": "告警不阻止 create 成功。"
+        }
+      ]
+    },
+    {
+      "record_id": "CFT-0009",
+      "rule_id": "K8S-R005",
+      "coverage_id": "COV-EX-0009",
+      "testcase_id": "OSS-BLIND-R4-DEVICETAINT-WARNING-API-FL-002",
+      "testcase_title": "空 selector Warning 不阻止 update 成功",
+      "source_origin": "explicit_rule",
+      "coverage_level": "business",
+      "emit_mode": "main_testcase",
+      "fidelity_status": "not_applicable",
+      "evidence_ids": [],
+      "reasoning_refs": [],
+      "structured_targets": [
+        {
+          "target_type": "feature",
+          "module_name": "DeviceTaintRule Admission Warning",
+          "feature_name": "非阻塞警告响应",
+          "field_name": "",
+          "target_name": "告警不阻止 update 成功。"
+        }
+      ]
+    },
+    {
+      "record_id": "CFT-0010",
+      "rule_id": "K8S-R005",
+      "coverage_id": "COV-EX-0010",
+      "testcase_id": "OSS-BLIND-R4-DEVICETAINT-WARNING-API-AB-001",
+      "testcase_title": "空 selector Warning 不改变既有校验结果",
+      "source_origin": "explicit_rule",
+      "coverage_level": "business",
+      "emit_mode": "main_testcase",
+      "fidelity_status": "not_applicable",
+      "evidence_ids": [],
+      "reasoning_refs": [],
+      "structured_targets": [
+        {
+          "target_type": "feature",
+          "module_name": "DeviceTaintRule Admission Warning",
+          "feature_name": "非阻塞警告响应",
+          "field_name": "",
+          "target_name": "告警不改变既有校验结果。"
+        }
+      ]
+    },
+    {
+      "record_id": "CFT-0011",
+      "rule_id": "K8S-R005",
+      "coverage_id": "COV-EX-0011",
+      "testcase_id": "OSS-BLIND-R4-DEVICETAINT-WARNING-API-FL-003",
+      "testcase_title": "空 selector Warning 不改变持久化和 taint 执行语义",
+      "source_origin": "explicit_rule",
+      "coverage_level": "business",
+      "emit_mode": "main_testcase",
+      "fidelity_status": "not_applicable",
+      "evidence_ids": [],
+      "reasoning_refs": [],
+      "structured_targets": [
+        {
+          "target_type": "feature",
+          "module_name": "DeviceTaintRule Admission Warning",
+          "feature_name": "非阻塞警告响应",
+          "field_name": "",
+          "target_name": "告警不改变持久化结果和 taint 执行语义。"
+        }
+      ]
+    },
+    {
+      "record_id": "CFT-0012",
+      "rule_id": "K8S-R006",
+      "coverage_id": "COV-EX-0012",
+      "testcase_id": "OSS-BLIND-R4-DEVICETAINT-WARNING-API-FN-009",
+      "testcase_title": "所有 taint effect 下空 selector 均返回相同 Warning",
+      "source_origin": "explicit_rule",
+      "coverage_level": "business",
+      "emit_mode": "main_testcase",
+      "fidelity_status": "not_applicable",
+      "evidence_ids": [],
+      "reasoning_refs": [],
+      "structured_targets": [
+        {
+          "target_type": "feature",
+          "module_name": "DeviceTaintRule Admission Warning",
+          "feature_name": "空选择器判定",
+          "field_name": "",
+          "target_name": "空 selector 的告警判断不受 taint effect 取值影响，包括既有 `None` 预览取值。"
+        }
+      ]
+    },
+    {
+      "record_id": "CFT-0013",
+      "rule_id": "K8S-R007",
+      "coverage_id": "COV-EX-0013",
+      "testcase_id": "OSS-BLIND-R4-DEVICETAINT-WARNING-API-FL-004",
+      "testcase_title": "warnings-as-errors 返回非零时对象仍已创建",
+      "source_origin": "explicit_rule",
+      "coverage_level": "business",
+      "emit_mode": "main_testcase",
+      "fidelity_status": "not_applicable",
+      "evidence_ids": [],
+      "reasoning_refs": [],
+      "structured_targets": [
+        {
+          "target_type": "feature",
+          "module_name": "DeviceTaintRule Admission Warning",
+          "feature_name": "非阻塞警告响应",
+          "field_name": "",
+          "target_name": "使用 `kubectl --warnings-as-errors` 时客户端可返回非零状态，但服务端对象仍已创建。"
+        }
+      ]
+    }
+  ]
+}

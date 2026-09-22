@@ -1,0 +1,42 @@
+{
+  "project_code": "OSS-BLIND-R3",
+  "work_item_id": "SUPABASE-50569",
+  "feedback_items": [
+    {
+      "feedback_id": "DF-001", "source_review_stage": "manual_review", "source_confirmation_file": "reviews/review_record.md",
+      "source_case_plan_ids": ["CP-002", "CP-003"], "source_testcase_ids": ["OSS-BLIND-R3-RECOVERYAUTH-RECOVERYCODE-WEB-FL-001", "OSS-BLIND-R3-RECOVERYAUTH-RECOVERYCODE-WEB-FL-002"],
+      "feedback_type": "risk_note", "target_layer": "testability_gate",
+      "title": "补齐恢复码页面的 returnTo 导航契约",
+      "finding": "实现从 MFA 页进入时保留查询参数，验证成功后返回原 returnTo；冻结计划只断言进入页面和会话完成。",
+      "recommended_action": "以 oracle_only 导航风险进入 Gate；需求方确认 returnTo 为交付契约后再生成正式 Case Plan。",
+      "must_not_directly_overwrite_testcase": true, "status": "accepted"
+    },
+    {
+      "feedback_id": "DF-002", "source_review_stage": "manual_review", "source_confirmation_file": "reviews/review_record.md",
+      "source_case_plan_ids": ["CP-006", "CP-007", "CP-008"], "source_testcase_ids": ["OSS-BLIND-R3-RECOVERYAUTH-RECOVERYCODE-WEB-AB-002", "OSS-BLIND-R3-RECOVERYAUTH-RECOVERYCODE-WEB-AB-003", "OSS-BLIND-R3-RECOVERYAUTH-RECOVERYCODE-WEB-AB-004"],
+      "feedback_type": "risk_note", "target_layer": "testability_gate",
+      "title": "明确恢复码失败反馈与重试状态",
+      "finding": "冻结用例只断言不能建立会话；实现还提供必填错误、验证失败提示并允许用户重试。",
+      "recommended_action": "继续保留“不得建立会话”的现有主验收；错误展示与重试行为以 oracle_only 风险记录，需求确认后再形成 Acceptance。",
+      "must_not_directly_overwrite_testcase": true, "status": "accepted"
+    },
+    {
+      "feedback_id": "DF-003", "source_review_stage": "manual_review", "source_confirmation_file": "reviews/review_record.md",
+      "source_case_plan_ids": ["CP-010"], "source_testcase_ids": ["OSS-BLIND-R3-RECOVERYAUTH-RECOVERYCODE-WEB-FL-003"],
+      "feedback_type": "implementation_gap", "target_layer": "testability_gate",
+      "title": "功能关闭时直接访问返回目标与批准需求不一致",
+      "finding": "冻结计划固定返回 MFA 验证页，而实现对功能关闭或未登记恢复码统一跳转 getReturnToPath；两者在 returnTo 非 MFA 页时可能不一致。",
+      "recommended_action": "保留 CP-010 的 MFA 验证页预期，将代码跳转行为作为实现问题交给上游修复或明确变更需求；不得按当前实现改写用例。",
+      "must_not_directly_overwrite_testcase": true, "status": "accepted"
+    },
+    {
+      "feedback_id": "DF-004", "source_review_stage": "manual_review", "source_confirmation_file": "reviews/review_record.md",
+      "source_case_plan_ids": ["CP-001", "CP-003", "CP-006"],
+      "feedback_type": "risk_note", "target_layer": "testability_gate",
+      "title": "补充恢复码页面异步与重复提交风险",
+      "finding": "实现包含状态查询加载/失败、验证中防重复提交、粘贴自动提交及密码显隐，冻结设计未评估这些新增交互。",
+      "recommended_action": "先在 Gate 记录异步状态与重复提交风险；产品确认交互契约后再拆成原子 Case Plan。",
+      "must_not_directly_overwrite_testcase": true, "status": "accepted"
+    }
+  ]
+}

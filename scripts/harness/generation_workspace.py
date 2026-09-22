@@ -99,6 +99,24 @@ class ControlledGenerationWorkspace:
                 clone_root,
                 ignore=self._copy_ignore,
             )
+            clone_item = (
+                clone_root
+                / "assets"
+                / "projects"
+                / self.project_code
+                / "work_items"
+                / self.work_item_id
+            )
+            if not clone_item.exists():
+                # Tests and embedders may provide a work item outside the
+                # repository tree. Seed that explicit item into the isolated
+                # repository so validation does not depend on a committed
+                # business sample being present at the same identity.
+                shutil.copytree(
+                    self.item_root,
+                    clone_item,
+                    ignore=self._copy_ignore,
+                )
             clone_bundle = Path(temporary) / "generation_bundle.json"
             atomic_write_json(clone_bundle, bundle)
             command = [
@@ -133,14 +151,6 @@ class ControlledGenerationWorkspace:
                     "隔离候选未通过 normalizer/strict，"
                     f"exit={result.returncode}，日志: {display_path(log_path)}"
                 )
-            clone_item = (
-                clone_root
-                / "assets"
-                / "projects"
-                / self.project_code
-                / "work_items"
-                / self.work_item_id
-            )
             self._copy_candidate(clone_item)
 
         files = self._candidate_file_records()
@@ -491,4 +501,3 @@ class ControlledGenerationWorkspace:
     def _is_publishable(relative: Path) -> bool:
         value = relative.as_posix()
         return value in PUBLISH_FILES or value.startswith(PUBLISH_PREFIXES)
-

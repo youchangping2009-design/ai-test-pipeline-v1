@@ -1,0 +1,640 @@
+{
+  "project_code": "OSS-BLIND",
+  "work_item_id": "SALEOR-19804",
+  "generated_at": "2026-09-21T18:12:52",
+  "generated_from": [
+    "structured_prd/structured_prd.json",
+    "analysis/reasoning_pack.json"
+  ],
+  "entries": [
+    {
+      "coverage_id": "COV-EX-0001",
+      "coverage_type": "field_property",
+      "source_origin": "explicit_rule",
+      "source_type": "structured_field",
+      "title": "创建数量 字段属性",
+      "page_name": "giftCardBulkCreate GraphQL 接口",
+      "section_name": "批量创建请求",
+      "module_name": "礼品卡批量创建",
+      "feature_name": "批量礼品卡标签关系追加",
+      "field_name": "count",
+      "priority": "medium",
+      "rationale": "字段 `创建数量` 已在 structured_prd 中显式建模，需要基础属性覆盖。",
+      "planned_assertions": [
+        "校验 `创建数量` 的控件类型、默认值或枚举定义与结构化规则一致。"
+      ],
+      "structured_refs": [
+        "礼品卡批量创建.批量礼品卡标签关系追加.count"
+      ],
+      "reasoning_refs": [],
+      "coverage_level": "structural",
+      "emit_mode": "audit_item"
+    },
+    {
+      "coverage_id": "COV-EX-0002",
+      "coverage_type": "field_property",
+      "source_origin": "explicit_rule",
+      "source_type": "structured_field",
+      "title": "余额金额 字段属性",
+      "page_name": "giftCardBulkCreate GraphQL 接口",
+      "section_name": "批量创建请求",
+      "module_name": "礼品卡批量创建",
+      "feature_name": "批量礼品卡标签关系追加",
+      "field_name": "balance_amount",
+      "priority": "medium",
+      "rationale": "字段 `余额金额` 已在 structured_prd 中显式建模，需要基础属性覆盖。",
+      "planned_assertions": [
+        "校验 `余额金额` 的控件类型、默认值或枚举定义与结构化规则一致。"
+      ],
+      "structured_refs": [
+        "礼品卡批量创建.批量礼品卡标签关系追加.balance_amount"
+      ],
+      "reasoning_refs": [],
+      "coverage_level": "structural",
+      "emit_mode": "audit_item"
+    },
+    {
+      "coverage_id": "COV-EX-0003",
+      "coverage_type": "field_property",
+      "source_origin": "explicit_rule",
+      "source_type": "structured_field",
+      "title": "余额币种 字段属性",
+      "page_name": "giftCardBulkCreate GraphQL 接口",
+      "section_name": "批量创建请求",
+      "module_name": "礼品卡批量创建",
+      "feature_name": "批量礼品卡标签关系追加",
+      "field_name": "balance_currency",
+      "priority": "medium",
+      "rationale": "字段 `余额币种` 已在 structured_prd 中显式建模，需要基础属性覆盖。",
+      "planned_assertions": [
+        "校验 `余额币种` 的控件类型、默认值或枚举定义与结构化规则一致。"
+      ],
+      "structured_refs": [
+        "礼品卡批量创建.批量礼品卡标签关系追加.balance_currency"
+      ],
+      "reasoning_refs": [],
+      "coverage_level": "structural",
+      "emit_mode": "audit_item"
+    },
+    {
+      "coverage_id": "COV-EX-0004",
+      "coverage_type": "field_property",
+      "source_origin": "explicit_rule",
+      "source_type": "structured_field",
+      "title": "标签集合 字段属性",
+      "page_name": "giftCardBulkCreate GraphQL 接口",
+      "section_name": "批量创建请求",
+      "module_name": "礼品卡批量创建",
+      "feature_name": "批量礼品卡标签关系追加",
+      "field_name": "tags",
+      "priority": "medium",
+      "rationale": "字段 `标签集合` 已在 structured_prd 中显式建模，需要基础属性覆盖。",
+      "planned_assertions": [
+        "校验 `标签集合` 的控件类型、默认值或枚举定义与结构化规则一致。"
+      ],
+      "structured_refs": [
+        "礼品卡批量创建.批量礼品卡标签关系追加.tags"
+      ],
+      "reasoning_refs": [],
+      "coverage_level": "structural",
+      "emit_mode": "audit_item"
+    },
+    {
+      "coverage_id": "COV-EX-0005",
+      "coverage_type": "field_property",
+      "source_origin": "explicit_rule",
+      "source_type": "structured_field",
+      "title": "启用状态 字段属性",
+      "page_name": "giftCardBulkCreate GraphQL 接口",
+      "section_name": "批量创建请求",
+      "module_name": "礼品卡批量创建",
+      "feature_name": "批量礼品卡标签关系追加",
+      "field_name": "is_active",
+      "priority": "medium",
+      "rationale": "字段 `启用状态` 已在 structured_prd 中显式建模，需要基础属性覆盖。",
+      "planned_assertions": [
+        "校验 `启用状态` 的控件类型、默认值或枚举定义与结构化规则一致。"
+      ],
+      "structured_refs": [
+        "礼品卡批量创建.批量礼品卡标签关系追加.is_active"
+      ],
+      "reasoning_refs": [],
+      "coverage_level": "structural",
+      "emit_mode": "audit_item"
+    },
+    {
+      "coverage_id": "COV-EX-0006",
+      "coverage_type": "field_property",
+      "source_origin": "explicit_rule",
+      "source_type": "structured_field",
+      "title": "返回创建数量 字段属性",
+      "page_name": "giftCardBulkCreate GraphQL 接口",
+      "section_name": "批量创建请求",
+      "module_name": "礼品卡批量创建",
+      "feature_name": "批量礼品卡标签关系追加",
+      "field_name": "result_count",
+      "priority": "medium",
+      "rationale": "字段 `返回创建数量` 已在 structured_prd 中显式建模，需要基础属性覆盖。",
+      "planned_assertions": [
+        "校验 `返回创建数量` 的控件类型、默认值或枚举定义与结构化规则一致。"
+      ],
+      "structured_refs": [
+        "礼品卡批量创建.批量礼品卡标签关系追加.result_count"
+      ],
+      "reasoning_refs": [],
+      "coverage_level": "structural",
+      "emit_mode": "audit_item"
+    },
+    {
+      "coverage_id": "COV-EX-0007",
+      "coverage_type": "field_property",
+      "source_origin": "explicit_rule",
+      "source_type": "structured_field",
+      "title": "错误列表 字段属性",
+      "page_name": "giftCardBulkCreate GraphQL 接口",
+      "section_name": "批量创建请求",
+      "module_name": "礼品卡批量创建",
+      "feature_name": "批量礼品卡标签关系追加",
+      "field_name": "errors",
+      "priority": "medium",
+      "rationale": "字段 `错误列表` 已在 structured_prd 中显式建模，需要基础属性覆盖。",
+      "planned_assertions": [
+        "校验 `错误列表` 的控件类型、默认值或枚举定义与结构化规则一致。"
+      ],
+      "structured_refs": [
+        "礼品卡批量创建.批量礼品卡标签关系追加.errors"
+      ],
+      "reasoning_refs": [],
+      "coverage_level": "structural",
+      "emit_mode": "audit_item"
+    },
+    {
+      "coverage_id": "COV-EX-0008",
+      "coverage_type": "field_property",
+      "source_origin": "explicit_rule",
+      "source_type": "structured_field",
+      "title": "礼品卡标签结果 字段属性",
+      "page_name": "giftCardBulkCreate GraphQL 接口",
+      "section_name": "批量创建请求",
+      "module_name": "礼品卡批量创建",
+      "feature_name": "批量礼品卡标签关系追加",
+      "field_name": "gift_card_tags",
+      "priority": "medium",
+      "rationale": "字段 `礼品卡标签结果` 已在 structured_prd 中显式建模，需要基础属性覆盖。",
+      "planned_assertions": [
+        "校验 `礼品卡标签结果` 的控件类型、默认值或枚举定义与结构化规则一致。"
+      ],
+      "structured_refs": [
+        "礼品卡批量创建.批量礼品卡标签关系追加.gift_card_tags"
+      ],
+      "reasoning_refs": [],
+      "coverage_level": "structural",
+      "emit_mode": "audit_item"
+    },
+    {
+      "coverage_id": "COV-EX-0009",
+      "coverage_type": "happy_path_combo",
+      "coverage_level": "business",
+      "emit_mode": "main_testcase",
+      "source_origin": "explicit_rule",
+      "source_scope": "primary_requirement",
+      "source_type": "structured_rule",
+      "title": "已有 GiftCardTag 关系",
+      "page_name": "giftCardBulkCreate GraphQL 接口",
+      "section_name": "批量创建请求",
+      "module_name": "礼品卡批量创建",
+      "feature_name": "批量礼品卡标签关系追加",
+      "field_name": "",
+      "rule_name": "SL-R001",
+      "atomic_assertion_index": null,
+      "priority": "high",
+      "rationale": "该规则来自 Structured PRD 的显式需求规则，必须在 Coverage 中保留。",
+      "planned_assertions": [
+        "giftCardBulkCreate 复用已有标签时，只能把新礼品卡追加到标签关系，不得移除该标签与历史礼品卡之间的关联。",
+        "追加关系，不替换完整成员集合"
+      ],
+      "structured_refs": [
+        "requirement_info.explicit_rules.SL-R001"
+      ],
+      "reasoning_refs": []
+    },
+    {
+      "coverage_id": "COV-EX-0010",
+      "coverage_type": "happy_path_combo",
+      "coverage_level": "business",
+      "emit_mode": "main_testcase",
+      "source_origin": "explicit_rule",
+      "source_scope": "primary_requirement",
+      "source_type": "structured_rule",
+      "title": "新 GiftCardTag",
+      "page_name": "giftCardBulkCreate GraphQL 接口",
+      "section_name": "批量创建请求",
+      "module_name": "礼品卡批量创建",
+      "feature_name": "批量礼品卡标签关系追加",
+      "field_name": "",
+      "rule_name": "SL-R002",
+      "atomic_assertion_index": null,
+      "priority": "high",
+      "rationale": "该规则来自 Structured PRD 的显式需求规则，必须在 Coverage 中保留。",
+      "planned_assertions": [
+        "输入新标签时，先创建标签，再把当前批次礼品卡关联到该标签。"
+      ],
+      "structured_refs": [
+        "requirement_info.explicit_rules.SL-R002"
+      ],
+      "reasoning_refs": []
+    },
+    {
+      "coverage_id": "COV-EX-0011",
+      "coverage_type": "happy_path_combo",
+      "coverage_level": "business",
+      "emit_mode": "main_testcase",
+      "source_origin": "explicit_rule",
+      "source_scope": "primary_requirement",
+      "source_type": "structured_rule",
+      "title": "跨批次标签成员集合",
+      "page_name": "giftCardBulkCreate GraphQL 接口",
+      "section_name": "批量创建请求",
+      "module_name": "礼品卡批量创建",
+      "feature_name": "批量礼品卡标签关系追加",
+      "field_name": "",
+      "rule_name": "SL-R003",
+      "atomic_assertion_index": null,
+      "priority": "high",
+      "rationale": "该规则来自 Structured PRD 的显式需求规则，必须在 Coverage 中保留。",
+      "planned_assertions": [
+        "连续批次使用相同、部分重叠或完全不同的标签集合后，每个标签都应保留其全部正确礼品卡成员。"
+      ],
+      "structured_refs": [
+        "requirement_info.explicit_rules.SL-R003"
+      ],
+      "reasoning_refs": []
+    },
+    {
+      "coverage_id": "COV-EX-0012",
+      "coverage_type": "happy_path_combo",
+      "coverage_level": "business",
+      "emit_mode": "main_testcase",
+      "source_origin": "explicit_rule",
+      "source_scope": "primary_requirement",
+      "source_type": "structured_rule",
+      "title": "当前批次礼品卡标签",
+      "page_name": "giftCardBulkCreate GraphQL 接口",
+      "section_name": "批量创建请求",
+      "module_name": "礼品卡批量创建",
+      "feature_name": "批量礼品卡标签关系追加",
+      "field_name": "",
+      "rule_name": "SL-R004",
+      "atomic_assertion_index": null,
+      "priority": "high",
+      "rationale": "该规则来自 Structured PRD 的显式需求规则，必须在 Coverage 中保留。",
+      "planned_assertions": [
+        "新批次每张礼品卡只获得本次输入指定的标签；新旧标签混合输入时，已有关系保留且新关系正确建立。"
+      ],
+      "structured_refs": [
+        "requirement_info.explicit_rules.SL-R004"
+      ],
+      "reasoning_refs": []
+    },
+    {
+      "coverage_id": "COV-EX-0013",
+      "coverage_type": "happy_path_combo",
+      "coverage_level": "business",
+      "emit_mode": "main_testcase",
+      "source_origin": "explicit_rule",
+      "source_scope": "primary_requirement",
+      "source_type": "structured_rule",
+      "title": "giftCardBulkCreate 返回结果",
+      "page_name": "giftCardBulkCreate GraphQL 接口",
+      "section_name": "批量创建请求",
+      "module_name": "礼品卡批量创建",
+      "feature_name": "批量礼品卡标签关系追加",
+      "field_name": "",
+      "rule_name": "SL-R005",
+      "atomic_assertion_index": null,
+      "priority": "high",
+      "rationale": "该规则来自 Structured PRD 的显式需求规则，必须在 Coverage 中保留。",
+      "planned_assertions": [
+        "批量创建返回 count 与实际新建数量一致，errors 为空时才视为成功，礼品卡标签结果保持既有接口契约。"
+      ],
+      "structured_refs": [
+        "requirement_info.explicit_rules.SL-R005"
+      ],
+      "reasoning_refs": []
+    },
+    {
+      "coverage_id": "COV-EX-0014",
+      "coverage_type": "happy_path_combo",
+      "coverage_level": "audit_only",
+      "emit_mode": "audit_item",
+      "source_origin": "explicit_rule",
+      "source_scope": "primary_requirement",
+      "source_type": "structured_rule",
+      "title": "批量关系写入",
+      "page_name": "giftCardBulkCreate GraphQL 接口",
+      "section_name": "批量创建请求",
+      "module_name": "礼品卡批量创建",
+      "feature_name": "批量礼品卡标签关系追加",
+      "field_name": "",
+      "rule_name": "SL-R006",
+      "atomic_assertion_index": null,
+      "priority": "medium",
+      "rationale": "该规则来自 Structured PRD 的显式需求规则，必须在 Coverage 中保留。",
+      "planned_assertions": [
+        "关系更新应支持批量数量，不引入与历史礼品卡数量线性失控的额外查询；具体性能阈值待确认。"
+      ],
+      "structured_refs": [
+        "requirement_info.explicit_rules.SL-R006"
+      ],
+      "reasoning_refs": []
+    },
+    {
+      "coverage_id": "COV-EX-0015",
+      "coverage_type": "happy_path_combo",
+      "coverage_level": "business",
+      "emit_mode": "main_testcase",
+      "source_origin": "explicit_rule",
+      "source_scope": "primary_requirement",
+      "source_type": "structured_rule",
+      "title": "既有非批量行为与错误行为",
+      "page_name": "giftCardBulkCreate GraphQL 接口",
+      "section_name": "批量创建请求",
+      "module_name": "礼品卡批量创建",
+      "feature_name": "批量礼品卡标签关系追加",
+      "field_name": "",
+      "rule_name": "SL-R007",
+      "atomic_assertion_index": null,
+      "priority": "high",
+      "rationale": "该规则来自 Structured PRD 的显式需求规则，必须在 Coverage 中保留。",
+      "planned_assertions": [
+        "无权限、非法输入、giftCardCreate 与 giftCardUpdate 的既有行为不得因本次修复改变。"
+      ],
+      "structured_refs": [
+        "requirement_info.explicit_rules.SL-R007"
+      ],
+      "reasoning_refs": []
+    },
+    {
+      "coverage_id": "COV-EX-0016",
+      "coverage_type": "happy_path_combo",
+      "coverage_level": "business",
+      "emit_mode": "main_testcase",
+      "source_origin": "explicit_rule",
+      "source_scope": "primary_requirement",
+      "source_type": "structured_rule",
+      "title": "输入已有标签的大小写变体时复用同一个小写标签记录，不新建重复标签。",
+      "page_name": "giftCardBulkCreate GraphQL 接口",
+      "section_name": "批量创建请求",
+      "module_name": "礼品卡批量创建",
+      "feature_name": "批量礼品卡标签关系追加",
+      "field_name": "",
+      "rule_name": "SL-R008",
+      "atomic_assertion_index": 1,
+      "priority": "high",
+      "rationale": "该规则来自 Structured PRD 的显式需求规则，必须在 Coverage 中保留。",
+      "planned_assertions": [
+        "输入已有标签的大小写变体时复用同一个小写标签记录，不新建重复标签。"
+      ],
+      "structured_refs": [
+        "requirement_info.explicit_rules.SL-R008"
+      ],
+      "reasoning_refs": []
+    },
+    {
+      "coverage_id": "COV-EX-0017",
+      "coverage_type": "happy_path_combo",
+      "coverage_level": "business",
+      "emit_mode": "main_testcase",
+      "source_origin": "explicit_rule",
+      "source_scope": "primary_requirement",
+      "source_type": "structured_rule",
+      "title": "同一请求重复输入同名新标签时只创建一个小写标签记录。",
+      "page_name": "giftCardBulkCreate GraphQL 接口",
+      "section_name": "批量创建请求",
+      "module_name": "礼品卡批量创建",
+      "feature_name": "批量礼品卡标签关系追加",
+      "field_name": "",
+      "rule_name": "SL-R008",
+      "atomic_assertion_index": 2,
+      "priority": "high",
+      "rationale": "该规则来自 Structured PRD 的显式需求规则，必须在 Coverage 中保留。",
+      "planned_assertions": [
+        "同一请求重复输入同名新标签时只创建一个小写标签记录。"
+      ],
+      "structured_refs": [
+        "requirement_info.explicit_rules.SL-R008"
+      ],
+      "reasoning_refs": []
+    },
+    {
+      "coverage_id": "COV-EX-0018",
+      "coverage_type": "happy_path_combo",
+      "coverage_level": "business",
+      "emit_mode": "main_testcase",
+      "source_origin": "explicit_rule",
+      "source_scope": "primary_requirement",
+      "source_type": "structured_rule",
+      "title": "大小写变体或重复标签输入只为当前批次礼品卡建立一次对应标签关系。",
+      "page_name": "giftCardBulkCreate GraphQL 接口",
+      "section_name": "批量创建请求",
+      "module_name": "礼品卡批量创建",
+      "feature_name": "批量礼品卡标签关系追加",
+      "field_name": "",
+      "rule_name": "SL-R008",
+      "atomic_assertion_index": 3,
+      "priority": "high",
+      "rationale": "该规则来自 Structured PRD 的显式需求规则，必须在 Coverage 中保留。",
+      "planned_assertions": [
+        "大小写变体或重复标签输入只为当前批次礼品卡建立一次对应标签关系。"
+      ],
+      "structured_refs": [
+        "requirement_info.explicit_rules.SL-R008"
+      ],
+      "reasoning_refs": []
+    },
+    {
+      "coverage_id": "COV-AI-0019",
+      "coverage_type": "happy_path_combo",
+      "coverage_level": "audit_only",
+      "emit_mode": "audit_item",
+      "source_origin": "ai_reasoning",
+      "source_type": "edge_case",
+      "title": "两批标签集合完全相同、部分重叠和完全不重叠时，逐标签核对成员集合。",
+      "page_name": "giftCardBulkCreate GraphQL 接口",
+      "section_name": "批量创建请求",
+      "module_name": "礼品卡批量创建",
+      "feature_name": "批量礼品卡标签关系追加",
+      "field_name": "",
+      "priority": "medium",
+      "rationale": "该项来自 Reasoning Pack，保留为风险/边界审计，不自动升级为产品验收主用例。",
+      "planned_assertions": [
+        "审计并确认：两批标签集合完全相同、部分重叠和完全不重叠时，逐标签核对成员集合。"
+      ],
+      "structured_refs": [],
+      "reasoning_refs": [
+        "EC-001"
+      ]
+    },
+    {
+      "coverage_id": "COV-AI-0020",
+      "coverage_type": "happy_path_combo",
+      "coverage_level": "audit_only",
+      "emit_mode": "audit_item",
+      "source_origin": "ai_reasoning",
+      "source_type": "edge_case",
+      "title": "新标签与已有标签混合输入时，已有关系保留、新关系正确建立。",
+      "page_name": "giftCardBulkCreate GraphQL 接口",
+      "section_name": "批量创建请求",
+      "module_name": "礼品卡批量创建",
+      "feature_name": "批量礼品卡标签关系追加",
+      "field_name": "",
+      "priority": "medium",
+      "rationale": "该项来自 Reasoning Pack，保留为风险/边界审计，不自动升级为产品验收主用例。",
+      "planned_assertions": [
+        "审计并确认：新标签与已有标签混合输入时，已有关系保留、新关系正确建立。"
+      ],
+      "structured_refs": [],
+      "reasoning_refs": [
+        "EC-002"
+      ]
+    },
+    {
+      "coverage_id": "COV-AI-0021",
+      "coverage_type": "happy_path_combo",
+      "coverage_level": "audit_only",
+      "emit_mode": "audit_item",
+      "source_origin": "ai_reasoning",
+      "source_type": "edge_case",
+      "title": "批量创建返回 count 与实际新建数量一致，errors 为空时才视为成功。",
+      "page_name": "giftCardBulkCreate GraphQL 接口",
+      "section_name": "批量创建请求",
+      "module_name": "礼品卡批量创建",
+      "feature_name": "批量礼品卡标签关系追加",
+      "field_name": "",
+      "priority": "medium",
+      "rationale": "该项来自 Reasoning Pack，保留为风险/边界审计，不自动升级为产品验收主用例。",
+      "planned_assertions": [
+        "审计并确认：批量创建返回 count 与实际新建数量一致，errors 为空时才视为成功。"
+      ],
+      "structured_refs": [],
+      "reasoning_refs": [
+        "EC-003"
+      ]
+    },
+    {
+      "coverage_id": "COV-AI-0022",
+      "coverage_type": "happy_path_combo",
+      "coverage_level": "audit_only",
+      "emit_mode": "audit_item",
+      "source_origin": "ai_reasoning",
+      "source_type": "edge_case",
+      "title": "无权限、非法输入和已有非批量 mutation 不应因本次修复改变行为。",
+      "page_name": "giftCardBulkCreate GraphQL 接口",
+      "section_name": "批量创建请求",
+      "module_name": "礼品卡批量创建",
+      "feature_name": "批量礼品卡标签关系追加",
+      "field_name": "",
+      "priority": "medium",
+      "rationale": "该项来自 Reasoning Pack，保留为风险/边界审计，不自动升级为产品验收主用例。",
+      "planned_assertions": [
+        "审计并确认：无权限、非法输入和已有非批量 mutation 不应因本次修复改变行为。"
+      ],
+      "structured_refs": [],
+      "reasoning_refs": [
+        "EC-004"
+      ]
+    },
+    {
+      "coverage_id": "COV-AI-0023",
+      "coverage_type": "happy_path_combo",
+      "coverage_level": "audit_only",
+      "emit_mode": "audit_item",
+      "source_origin": "ai_reasoning",
+      "source_type": "business_risk",
+      "title": "关系替换与追加在单批次中可能都表现正常，必须跨批次检查历史关系。",
+      "page_name": "giftCardBulkCreate GraphQL 接口",
+      "section_name": "批量创建请求",
+      "module_name": "礼品卡批量创建",
+      "feature_name": "批量礼品卡标签关系追加",
+      "field_name": "",
+      "priority": "medium",
+      "rationale": "该项来自 Reasoning Pack，保留为风险/边界审计，不自动升级为产品验收主用例。",
+      "planned_assertions": [
+        "审计并确认：关系替换与追加在单批次中可能都表现正常，必须跨批次检查历史关系。"
+      ],
+      "structured_refs": [],
+      "reasoning_refs": [
+        "RISK-001"
+      ]
+    },
+    {
+      "coverage_id": "COV-AI-0024",
+      "coverage_type": "happy_path_combo",
+      "coverage_level": "audit_only",
+      "emit_mode": "audit_item",
+      "source_origin": "ai_reasoning",
+      "source_type": "business_risk",
+      "title": "大批量礼品卡和高复用标签可能引入查询次数或关系写入性能风险。",
+      "page_name": "giftCardBulkCreate GraphQL 接口",
+      "section_name": "批量创建请求",
+      "module_name": "礼品卡批量创建",
+      "feature_name": "批量礼品卡标签关系追加",
+      "field_name": "",
+      "priority": "medium",
+      "rationale": "该项来自 Reasoning Pack，保留为风险/边界审计，不自动升级为产品验收主用例。",
+      "planned_assertions": [
+        "审计并确认：大批量礼品卡和高复用标签可能引入查询次数或关系写入性能风险。"
+      ],
+      "structured_refs": [],
+      "reasoning_refs": [
+        "RISK-002"
+      ]
+    },
+    {
+      "coverage_id": "COV-AI-0025",
+      "coverage_type": "happy_path_combo",
+      "coverage_level": "audit_only",
+      "emit_mode": "audit_item",
+      "source_origin": "ai_reasoning",
+      "source_type": "business_risk",
+      "title": "并发批量创建复用同一标签时的锁、唯一性和最终成员集合未明确。",
+      "page_name": "giftCardBulkCreate GraphQL 接口",
+      "section_name": "批量创建请求",
+      "module_name": "礼品卡批量创建",
+      "feature_name": "批量礼品卡标签关系追加",
+      "field_name": "",
+      "priority": "medium",
+      "rationale": "该项来自 Reasoning Pack，保留为风险/边界审计，不自动升级为产品验收主用例。",
+      "planned_assertions": [
+        "审计并确认：并发批量创建复用同一标签时的锁、唯一性和最终成员集合未明确。"
+      ],
+      "structured_refs": [],
+      "reasoning_refs": [
+        "RISK-003"
+      ]
+    },
+    {
+      "coverage_id": "COV-AI-0026",
+      "coverage_type": "happy_path_combo",
+      "coverage_level": "audit_only",
+      "emit_mode": "audit_item",
+      "source_origin": "ai_reasoning",
+      "source_type": "business_risk",
+      "title": "修复是前向修复，历史已丢失关系不可从数据库自动推导。",
+      "page_name": "giftCardBulkCreate GraphQL 接口",
+      "section_name": "批量创建请求",
+      "module_name": "礼品卡批量创建",
+      "feature_name": "批量礼品卡标签关系追加",
+      "field_name": "",
+      "priority": "medium",
+      "rationale": "该项来自 Reasoning Pack，保留为风险/边界审计，不自动升级为产品验收主用例。",
+      "planned_assertions": [
+        "审计并确认：修复是前向修复，历史已丢失关系不可从数据库自动推导。"
+      ],
+      "structured_refs": [],
+      "reasoning_refs": [
+        "RISK-004"
+      ]
+    }
+  ]
+}

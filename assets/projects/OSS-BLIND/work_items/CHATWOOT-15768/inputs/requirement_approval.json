@@ -1,0 +1,13 @@
+{
+  "schema_version": "1.0.0",
+  "approval_id": "RUN-CHATWOOT-15768-BLIND-20260921-requirement-7da09293bbfd7784b158e45f",
+  "status": "approved",
+  "reviewed_by": "ycp",
+  "reviewed_at": "2026-09-21T06:10:40+00:00",
+  "note": "用户于2026-09-21明确批准本轮公开盲测的三份需求摘要；输入与代码diff/已有测试oracle保持隔离。",
+  "run_id": "RUN-CHATWOOT-15768-BLIND-20260921",
+  "requirement_summary_sha256": "78a19444774e8e4eb1ca7a04a026a37117c478df4b038294dedb87d3f56b6c79",
+  "source_manifest_sha256": "22a5dd5a5c0f1fa156ecec9ae4641d37472acc5bdfa3d28402999a01c512bac6",
+  "raw_inputs_fingerprint": "e391fde8621ccc8ee2be7dccaebe2d90ed02558fd863a997a9c0e39d0f95ab69",
+  "requirement_version": "github-pr-15768"
+}

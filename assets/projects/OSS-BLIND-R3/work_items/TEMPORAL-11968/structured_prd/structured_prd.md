@@ -1,0 +1,55 @@
+# Structured PRD
+
+## project_info
+```json
+{"project_code":"OSS-BLIND-R3","project_name":"Temporal","business_line":"Workflow 幂等控制","prd_source":"inputs/requirement_summary.md","prd_version":"github-pr-11968"}
+```
+
+## requirement_info
+```json
+{
+  "requirement_title":"Workflow 关闭后 SignalWithStart 重试去重",
+  "requirement_background":"客户端可能在首次 SignalWithStart 已成功但响应不确定时使用相同 request ID 重试；原 Workflow 关闭后仍需识别该启动请求。",
+  "requirement_goal":"相同 request ID 的重试始终返回首次创建的 run，不创建新 run、不重复发送 signal，并提供去重指标。",
+  "explicit_rules":[
+    {"rule_id":"TMP-R001","rule_text":"首次 SignalWithStart 的 request ID 与原始 run 的关联在该 Workflow Execution 关闭后仍可用于去重。","rule_type":"state_constraint","priority":"high","applies_to":"关闭后的请求去重","source_scope":"primary_requirement"},
+    {"rule_id":"TMP-R002","rule_text":"使用相同 namespace、workflow ID 和 request ID 重试 SignalWithStart 时，返回首次请求创建的 run ID。","rule_type":"data_rule","priority":"high","applies_to":"重试响应","source_scope":"primary_requirement"},
+    {"rule_id":"TMP-R003","rule_text":"相同 request ID 的去重命中不得创建新的 Workflow run，也不得再次投递 signal。","rule_type":"state_constraint","priority":"high","applies_to":"去重副作用","source_scope":"primary_requirement","atomic_assertions":["去重命中不创建新的 Workflow run。","去重命中不再次投递 signal。"]},
+    {"rule_id":"TMP-R004","rule_text":"去重命中时 SignalWithStartWorkflowStartDeduped 指标递增，非去重请求不得误计入该指标。","rule_type":"state_constraint","priority":"medium","applies_to":"去重可观测性","source_scope":"primary_requirement","atomic_assertions":["去重命中时 SignalWithStartWorkflowStartDeduped 指标递增。","非去重请求不增加 SignalWithStartWorkflowStartDeduped 指标。"],"fidelity_points":[{"constraint_type":"field_constraint","value":"SignalWithStartWorkflowStartDeduped","must_preserve":true,"forbidden_rewrites":["通用去重指标"]}]},
+    {"rule_id":"TMP-R005","rule_text":"使用不同 request ID 的 SignalWithStart 请求不得被错误识别为首次请求的重复。","rule_type":"data_rule","priority":"high","applies_to":"非重复请求","source_scope":"primary_requirement"},
+    {"rule_id":"TMP-R006","rule_text":"关闭后重试不得改变原已关闭 run 的最终状态。","rule_type":"state_constraint","priority":"high","applies_to":"原 run 最终状态","source_scope":"primary_requirement"}
+  ],
+  "scope":{"in_scope":["相同 request ID 在运行中和关闭后的重试去重","原 run ID 返回","新 run 与重复 signal 抑制","原 run 最终状态保持","去重指标"],"out_of_scope":["不同 request ID 的具体新启动结果","一般 Signal、StartWorkflow 或 Update 去重","request ID 保留期限","跨 namespace 去重","不同关闭类型与历史清理后的未定义行为"]}
+}
+```
+
+## pages
+```json
+[
+  {"page_name":"Temporal Workflow API","page_desc":"调用 SignalWithStart 并观察 run、signal 与指标的服务端接口面。","sections":[{"section_name":"SignalWithStart 去重","section_type":"other","section_desc":"处理首次请求、Workflow 关闭和相同 request ID 重试。","module_name":"SignalWithStart 幂等","feature_names":["关闭后重试去重"],"section_rules":["相同 request ID 返回原 run","不创建新 run","不重复发送 signal","记录去重指标"],"field_refs":[],"field_rule_table_refs":[]}]}
+]
+```
+
+## modules
+```json
+[
+  {"module_name":"SignalWithStart 幂等","module_desc":"维护 SignalWithStart 启动请求与 Workflow run 的去重关联。","features":[{"feature_name":"关闭后重试去重","page_name":"Temporal Workflow API","section_name":"SignalWithStart 去重","feature_desc":"原 Workflow 关闭后仍按相同 request ID 命中首次启动结果并抑制重复副作用。","actors":["Temporal client","Temporal server"],"entry_conditions":["首次 SignalWithStart 已成功创建 run 并处理 signal","原 Workflow 可在重试前关闭","可查询 run 数量、signal 次数和去重指标"],"rules":[
+    {"rule_id":"TMP-FR001","name":"去重关联跨关闭保留","rule_type":"state_constraint","target":"request_id_to_run","condition":"原 Workflow Execution 已关闭","value":"仍可命中首次 run","rule_text":"关闭状态不得使相同 request ID 失去去重关联。"},
+    {"rule_id":"TMP-FR002","name":"返回原 run","rule_type":"state_constraint","target":"response_run_id","condition":"相同 namespace、workflow ID 与 request ID 重试","value":"首次请求创建的 run ID","rule_text":"重试响应不得返回新 run。"},
+    {"rule_id":"TMP-FR003","name":"抑制重复副作用","rule_type":"state_constraint","target":"workflow_and_signal_count","condition":"去重命中","value":"run 数量不增加且 signal 处理次数不增加","rule_text":"需要同时验证 run 与 signal 两类副作用。"},
+    {"rule_id":"TMP-FR004","name":"去重指标","rule_type":"state_constraint","target":"SignalWithStartWorkflowStartDeduped","condition":"去重命中","value":"递增","rule_text":"非去重请求不得误计数。"},
+    {"rule_id":"TMP-FR005","name":"不同 request ID 隔离","rule_type":"value_constraint","field_name":"request_id","condition":"request ID 与首次请求不同","rule_text":"不得命中首次请求的去重结果。"}
+  ],"fields":[{"name":"namespace","display_name":"Namespace","type":"api_parameter","data_type":"string","required":false,"editable":true},{"name":"workflow_id","display_name":"Workflow ID","type":"api_parameter","data_type":"string","required":false,"editable":true},{"name":"request_id","display_name":"Request ID","type":"api_parameter","data_type":"string","required":false,"editable":true},{"name":"signal_name","display_name":"Signal Name","type":"api_parameter","data_type":"string","required":false,"editable":true},{"name":"signal_payload","display_name":"Signal Payload","type":"api_parameter","data_type":"object","required":false,"editable":true}],"field_definitions":[],"field_rules":[],"field_rule_tables":[],"visible_elements":["返回的 run ID","Workflow 历史","signal 处理次数","SignalWithStartWorkflowStartDeduped 指标"],"interactive_entries":["调用 SignalWithStart","查询 Workflow run 与历史"],"abnormal_scenarios":["原 Workflow 关闭后重试并发","相同 request ID 多节点并发重试","不同 request ID 被错误去重"],"boundary_scenarios":["request ID 去重保留期限待确认","不同关闭类型一致性待确认","Workflow 历史清理后行为待确认","指标并发计数口径待确认"],"dependencies":["Temporal Workflow service","Workflow history and metrics"]}]}
+]
+```
+
+## flows
+```json
+[
+  {"flow_id":"TMP-FLOW-001","flow_name":"Workflow 关闭后重试 SignalWithStart","flow_type":"main_flow","business_goal":"在响应不确定重试场景中返回首次 run，并避免重复 Workflow 和 signal 副作用。","trigger":"客户端使用与首次请求相同的 request ID 重试 SignalWithStart","preconditions":["首次请求已创建 run 并处理一次 signal","原 Workflow 已关闭"],"steps":[
+    {"step_no":1,"step_name":"识别重复启动请求","step_type":"data_validation","module_name":"SignalWithStart 幂等","feature_name":"关闭后重试去重","actor":"Temporal server","action":"使用 namespace、workflow ID 和 request ID 查找首次请求关联","input_data":["namespace","workflow_id","request_id"],"expected_result":"原执行关闭后仍命中首次请求的 run","checkpoints":["去重关联可用"],"rule_references":["TMP-R001","TMP-R002"],"is_key_checkpoint":true},
+    {"step_no":2,"step_name":"返回原 run 并抑制副作用","step_type":"system_response","module_name":"SignalWithStart 幂等","feature_name":"关闭后重试去重","actor":"Temporal server","action":"返回首次 run ID，不创建新 run且不投递新 signal","expected_result":"run ID 与首次请求一致，run 数量和 signal 次数不增加，原 run 状态不变","checkpoints":["run ID 一致","无新 run","无重复 signal","原状态保持"],"rule_references":["TMP-R002","TMP-R003","TMP-R006"],"is_key_checkpoint":true},
+    {"step_no":3,"step_name":"记录去重指标","step_type":"state_change","module_name":"SignalWithStart 幂等","feature_name":"关闭后重试去重","actor":"Temporal server","action":"记录 SignalWithStart Workflow start 去重事件","expected_result":"SignalWithStartWorkflowStartDeduped 指标按去重决策递增","checkpoints":["非去重请求不误计数"],"rule_references":["TMP-R004"],"is_key_checkpoint":true}
+  ],"postconditions":["客户端获得首次 run ID","没有新增 Workflow run 或 signal","原 run 最终状态保持"],"success_criteria":["关闭后相同 request ID 仍命中首次 run","run 和 signal 均无重复副作用","去重指标准确","不同 request ID 不被错误去重"],"related_modules":["SignalWithStart 幂等"],"priority":"P0","tags":["signal-with-start","idempotency","closed-workflow"]}
+]
+```

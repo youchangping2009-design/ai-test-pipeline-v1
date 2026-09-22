@@ -1,0 +1,181 @@
+{
+  "project_code": "OSS-BLIND-R3",
+  "work_item_id": "DJANGO-21801",
+  "records": [
+    {
+      "record_id": "TRA-0001",
+      "evidence_id": "EVD-UNMAPPED",
+      "coverage_level": "full",
+      "structured_targets": [
+        {
+          "target_type": "feature",
+          "module_name": "MySQL 索引迁移",
+          "feature_name": "删除普通索引并保留唯一约束",
+          "field_name": "",
+          "target_name": "迁移差异"
+        }
+      ],
+      "testcase_ids": [
+        "OSS-BLIND-R3-DJANGOMIG-INDEXSCHEMA-SERVER-DV-001"
+      ],
+      "gap_notes": "adapter_source=coverage_first_traceability; source_record_id=CFT-0001; rule_id=MySQL 索引迁移::删除普通索引并保留唯一约束::happy_path_combo; coverage_id=COV-EX-0001; fidelity_status=not_applicable",
+      "implementation_binding": "shared_contract",
+      "recommended_cr_stage": "dual_code",
+      "manual_confirmation_required": true,
+      "cr_focus_points": [
+        "迁移差异",
+        "coverage_id=COV-EX-0001"
+      ]
+    },
+    {
+      "record_id": "TRA-0002",
+      "evidence_id": "EVD-UNMAPPED",
+      "coverage_level": "full",
+      "structured_targets": [
+        {
+          "target_type": "feature",
+          "module_name": "MySQL 索引迁移",
+          "feature_name": "删除普通索引并保留唯一约束",
+          "field_name": "",
+          "target_name": "索引选择"
+        }
+      ],
+      "testcase_ids": [
+        "OSS-BLIND-R3-DJANGOMIG-INDEXSCHEMA-SERVER-ST-001"
+      ],
+      "gap_notes": "adapter_source=coverage_first_traceability; source_record_id=CFT-0002; rule_id=MySQL 索引迁移::删除普通索引并保留唯一约束::happy_path_combo; coverage_id=COV-EX-0002; fidelity_status=not_applicable",
+      "implementation_binding": "shared_contract",
+      "recommended_cr_stage": "dual_code",
+      "manual_confirmation_required": true,
+      "cr_focus_points": [
+        "索引选择",
+        "coverage_id=COV-EX-0002"
+      ]
+    },
+    {
+      "record_id": "TRA-0003",
+      "evidence_id": "EVD-UNMAPPED",
+      "coverage_level": "full",
+      "structured_targets": [
+        {
+          "target_type": "feature",
+          "module_name": "MySQL 索引迁移",
+          "feature_name": "删除普通索引并保留唯一约束",
+          "field_name": "",
+          "target_name": "迁移后字段上的普通非唯一索引不存在。"
+        }
+      ],
+      "testcase_ids": [
+        "OSS-BLIND-R3-DJANGOMIG-INDEXSCHEMA-SERVER-DV-002"
+      ],
+      "gap_notes": "adapter_source=coverage_first_traceability; source_record_id=CFT-0003; rule_id=MySQL 索引迁移::删除普通索引并保留唯一约束::happy_path_combo; coverage_id=COV-EX-0003; fidelity_status=not_applicable",
+      "implementation_binding": "shared_contract",
+      "recommended_cr_stage": "dual_code",
+      "manual_confirmation_required": true,
+      "cr_focus_points": [
+        "迁移后字段上的普通非唯一索引不存在。",
+        "coverage_id=COV-EX-0003"
+      ]
+    },
+    {
+      "record_id": "TRA-0004",
+      "evidence_id": "EVD-UNMAPPED",
+      "coverage_level": "full",
+      "structured_targets": [
+        {
+          "target_type": "feature",
+          "module_name": "MySQL 索引迁移",
+          "feature_name": "删除普通索引并保留唯一约束",
+          "field_name": "",
+          "target_name": "迁移后命名唯一约束及其数据库唯一索引仍存在。"
+        }
+      ],
+      "testcase_ids": [
+        "OSS-BLIND-R3-DJANGOMIG-INDEXSCHEMA-SERVER-DV-003"
+      ],
+      "gap_notes": "adapter_source=coverage_first_traceability; source_record_id=CFT-0004; rule_id=MySQL 索引迁移::删除普通索引并保留唯一约束::happy_path_combo; coverage_id=COV-EX-0004; fidelity_status=not_applicable",
+      "implementation_binding": "shared_contract",
+      "recommended_cr_stage": "dual_code",
+      "manual_confirmation_required": true,
+      "cr_focus_points": [
+        "迁移后命名唯一约束及其数据库唯一索引仍存在。",
+        "coverage_id=COV-EX-0004"
+      ]
+    },
+    {
+      "record_id": "TRA-0005",
+      "evidence_id": "EVD-UNMAPPED",
+      "coverage_level": "full",
+      "structured_targets": [
+        {
+          "target_type": "feature",
+          "module_name": "MySQL 索引迁移",
+          "feature_name": "删除普通索引并保留唯一约束",
+          "field_name": "",
+          "target_name": "迁移 SQL"
+        }
+      ],
+      "testcase_ids": [
+        "OSS-BLIND-R3-DJANGOMIG-INDEXSCHEMA-SERVER-ST-002"
+      ],
+      "gap_notes": "adapter_source=coverage_first_traceability; source_record_id=CFT-0005; rule_id=MySQL 索引迁移::删除普通索引并保留唯一约束::happy_path_combo; coverage_id=COV-EX-0005; fidelity_status=not_applicable",
+      "implementation_binding": "shared_contract",
+      "recommended_cr_stage": "dual_code",
+      "manual_confirmation_required": true,
+      "cr_focus_points": [
+        "迁移 SQL",
+        "coverage_id=COV-EX-0005"
+      ]
+    },
+    {
+      "record_id": "TRA-0006",
+      "evidence_id": "EVD-UNMAPPED",
+      "coverage_level": "full",
+      "structured_targets": [
+        {
+          "target_type": "feature",
+          "module_name": "MySQL 索引迁移",
+          "feature_name": "删除普通索引并保留唯一约束",
+          "field_name": "",
+          "target_name": "数据库唯一性"
+        }
+      ],
+      "testcase_ids": [
+        "OSS-BLIND-R3-DJANGOMIG-INDEXSCHEMA-SERVER-FL-001"
+      ],
+      "gap_notes": "adapter_source=coverage_first_traceability; source_record_id=CFT-0006; rule_id=MySQL 索引迁移::删除普通索引并保留唯一约束::happy_path_combo; coverage_id=COV-EX-0006; fidelity_status=not_applicable",
+      "implementation_binding": "shared_contract",
+      "recommended_cr_stage": "dual_code",
+      "manual_confirmation_required": true,
+      "cr_focus_points": [
+        "数据库唯一性",
+        "coverage_id=COV-EX-0006"
+      ]
+    },
+    {
+      "record_id": "TRA-0007",
+      "evidence_id": "EVD-UNMAPPED",
+      "coverage_level": "full",
+      "structured_targets": [
+        {
+          "target_type": "feature",
+          "module_name": "MySQL 索引迁移",
+          "feature_name": "删除普通索引并保留唯一约束",
+          "field_name": "",
+          "target_name": "既有数据"
+        }
+      ],
+      "testcase_ids": [
+        "OSS-BLIND-R3-DJANGOMIG-INDEXSCHEMA-SERVER-DV-004"
+      ],
+      "gap_notes": "adapter_source=coverage_first_traceability; source_record_id=CFT-0007; rule_id=MySQL 索引迁移::删除普通索引并保留唯一约束::happy_path_combo; coverage_id=COV-EX-0007; fidelity_status=not_applicable",
+      "implementation_binding": "shared_contract",
+      "recommended_cr_stage": "dual_code",
+      "manual_confirmation_required": true,
+      "cr_focus_points": [
+        "既有数据",
+        "coverage_id=COV-EX-0007"
+      ]
+    }
+  ]
+}

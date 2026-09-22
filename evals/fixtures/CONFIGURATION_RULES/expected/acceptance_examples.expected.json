@@ -1,0 +1,1865 @@
+{
+  "project_code": "FIXTURE",
+  "work_item_id": "FIXTURE-CONFIG-001",
+  "generated_at": "2026-08-06T17:24:50+08:00",
+  "generated_from": [
+    "acceptance/testability_gate.json",
+    "structured_prd/structured_prd.json",
+    "coverage/coverage_matrix.json",
+    "inputs/source_manifest.json",
+    "image_evidence/image_evidence_inventory.json"
+  ],
+  "examples": [
+    {
+      "example_id": "AE-001",
+      "source_gate_ids": [
+        "TG-001"
+      ],
+      "source_rule_ids": [
+        "OBJ-001"
+      ],
+      "coverage_refs": [
+        "COV-EX-0016",
+        "COV-EX-0050"
+      ],
+      "title": "约束判定：promotion_slogan; value_constraint",
+      "given": [
+        "后台管理员已进入对应配置页面，其他必需基础数据均合法。"
+      ],
+      "when": [
+        "按边界、必填或格式规则操作“promotion_slogan; value_constraint”所涉及字段。"
+      ],
+      "then": [
+        "系统按来源规则判定并明确反馈：promotion_slogan; value_constraint。"
+      ],
+      "verification_side": "B端写侧",
+      "oracle_strength": "hard_block",
+      "confidence": "confirmed",
+      "source_trace": "来源：FIXTURE-CONFIG-001 Testability Gate、Structured PRD、Coverage Matrix与当前图片证据。"
+    },
+    {
+      "example_id": "AE-002",
+      "source_gate_ids": [
+        "TG-002"
+      ],
+      "source_rule_ids": [
+        "OBJ-002"
+      ],
+      "coverage_refs": [],
+      "title": "约束判定：performance_parameters; value_constraint",
+      "given": [
+        "后台管理员已进入对应配置页面，其他必需基础数据均合法。"
+      ],
+      "when": [
+        "按边界、必填或格式规则操作“performance_parameters; value_constraint”所涉及字段。"
+      ],
+      "then": [
+        "系统按来源规则判定并明确反馈：performance_parameters; value_constraint。"
+      ],
+      "verification_side": "B端写侧",
+      "oracle_strength": "hard_block",
+      "confidence": "confirmed",
+      "source_trace": "来源：FIXTURE-CONFIG-001 Testability Gate、Structured PRD、Coverage Matrix与当前图片证据。"
+    },
+    {
+      "example_id": "AE-003",
+      "source_gate_ids": [
+        "TG-003"
+      ],
+      "source_rule_ids": [
+        "OBJ-003"
+      ],
+      "coverage_refs": [],
+      "title": "读侧展示：后台未配置特殊区商品时隐藏",
+      "given": [
+        "对应后台配置、商品或页面数据已准备完成。"
+      ],
+      "when": [
+        "用户打开对应页面或查看对应板块。"
+      ],
+      "then": [
+        "页面可直接观察到来源规则所述结果：后台未配置特殊区商品时隐藏。"
+      ],
+      "verification_side": "C端读侧",
+      "oracle_strength": "display_only",
+      "confidence": "confirmed",
+      "source_trace": "来源：FIXTURE-CONFIG-001 Testability Gate、Structured PRD、Coverage Matrix与当前图片证据。"
+    },
+    {
+      "example_id": "AE-004",
+      "source_gate_ids": [
+        "TG-004"
+      ],
+      "source_rule_ids": [
+        "FR-云挂机购买页-特价专区-01"
+      ],
+      "coverage_refs": [
+        "COV-EX-0064"
+      ],
+      "title": "读侧展示：最多展示4个商品",
+      "given": [
+        "对应后台配置、商品或页面数据已准备完成。"
+      ],
+      "when": [
+        "用户打开对应页面或查看对应板块。"
+      ],
+      "then": [
+        "页面可直接观察到来源规则所述结果：最多展示4个商品。"
+      ],
+      "verification_side": "C端读侧",
+      "oracle_strength": "display_only",
+      "confidence": "confirmed",
+      "source_trace": "来源：FIXTURE-CONFIG-001 Testability Gate、Structured PRD、Coverage Matrix与当前图片证据。"
+    },
+    {
+      "example_id": "AE-005",
+      "source_gate_ids": [
+        "TG-005"
+      ],
+      "source_rule_ids": [
+        "OBJ-004"
+      ],
+      "coverage_refs": [
+        "COV-EX-0022"
+      ],
+      "title": "业务结果：original_price; value_constraint",
+      "given": [
+        "执行该业务规则所需的合法前置数据已准备完成。"
+      ],
+      "when": [
+        "用户或管理员完成来源规则对应的操作。"
+      ],
+      "then": [
+        "最终业务状态与来源规则一致：original_price; value_constraint。"
+      ],
+      "verification_side": "B端写侧",
+      "oracle_strength": "business_behavior",
+      "confidence": "confirmed",
+      "source_trace": "来源：FIXTURE-CONFIG-001 Testability Gate、Structured PRD、Coverage Matrix与当前图片证据。"
+    },
+    {
+      "example_id": "AE-006",
+      "source_gate_ids": [
+        "TG-006"
+      ],
+      "source_rule_ids": [
+        "OBJ-005"
+      ],
+      "coverage_refs": [
+        "COV-EX-0066"
+      ],
+      "title": "业务结果：current_price; value_constraint",
+      "given": [
+        "执行该业务规则所需的合法前置数据已准备完成。"
+      ],
+      "when": [
+        "用户或管理员完成来源规则对应的操作。"
+      ],
+      "then": [
+        "最终业务状态与来源规则一致：current_price; value_constraint。"
+      ],
+      "verification_side": "B端写侧",
+      "oracle_strength": "business_behavior",
+      "confidence": "confirmed",
+      "source_trace": "来源：FIXTURE-CONFIG-001 Testability Gate、Structured PRD、Coverage Matrix与当前图片证据。"
+    },
+    {
+      "example_id": "AE-007",
+      "source_gate_ids": [
+        "TG-007"
+      ],
+      "source_rule_ids": [
+        "OBJ-006"
+      ],
+      "coverage_refs": [
+        "COV-EX-0026"
+      ],
+      "title": "业务结果：service_duration; value_constraint",
+      "given": [
+        "执行该业务规则所需的合法前置数据已准备完成。"
+      ],
+      "when": [
+        "用户或管理员完成来源规则对应的操作。"
+      ],
+      "then": [
+        "最终业务状态与来源规则一致：service_duration; value_constraint。"
+      ],
+      "verification_side": "B端写侧",
+      "oracle_strength": "business_behavior",
+      "confidence": "confirmed",
+      "source_trace": "来源：FIXTURE-CONFIG-001 Testability Gate、Structured PRD、Coverage Matrix与当前图片证据。"
+    },
+    {
+      "example_id": "AE-008",
+      "source_gate_ids": [
+        "TG-008"
+      ],
+      "source_rule_ids": [
+        "OBJ-007"
+      ],
+      "coverage_refs": [
+        "COV-EX-0030"
+      ],
+      "title": "业务结果：in_box_sort_order; value_constraint; integer_only=True",
+      "given": [
+        "执行该业务规则所需的合法前置数据已准备完成。"
+      ],
+      "when": [
+        "用户或管理员完成来源规则对应的操作。"
+      ],
+      "then": [
+        "最终业务状态与来源规则一致：in_box_sort_order; value_constraint; integer_only=True。"
+      ],
+      "verification_side": "B端写侧",
+      "oracle_strength": "business_behavior",
+      "confidence": "confirmed",
+      "source_trace": "来源：FIXTURE-CONFIG-001 Testability Gate、Structured PRD、Coverage Matrix与当前图片证据。"
+    },
+    {
+      "example_id": "AE-009",
+      "source_gate_ids": [
+        "TG-009"
+      ],
+      "source_rule_ids": [
+        "OBJ-008"
+      ],
+      "coverage_refs": [
+        "COV-EX-0067"
+      ],
+      "title": "业务结果：inventory_warning_threshold; value_constraint; integer_only=True",
+      "given": [
+        "执行该业务规则所需的合法前置数据已准备完成。"
+      ],
+      "when": [
+        "用户或管理员完成来源规则对应的操作。"
+      ],
+      "then": [
+        "最终业务状态与来源规则一致：inventory_warning_threshold; value_constraint; integer_only=True。"
+      ],
+      "verification_side": "B端写侧",
+      "oracle_strength": "business_behavior",
+      "confidence": "confirmed",
+      "source_trace": "来源：FIXTURE-CONFIG-001 Testability Gate、Structured PRD、Coverage Matrix与当前图片证据。"
+    },
+    {
+      "example_id": "AE-010",
+      "source_gate_ids": [
+        "TG-010"
+      ],
+      "source_rule_ids": [
+        "OBJ-009"
+      ],
+      "coverage_refs": [
+        "COV-AI-0079",
+        "COV-EX-0037"
+      ],
+      "title": "业务结果：purchase_alert_recipient; data_source_constraint; data_source=盒子后台管理员列表",
+      "given": [
+        "执行该业务规则所需的合法前置数据已准备完成。"
+      ],
+      "when": [
+        "用户或管理员完成来源规则对应的操作。"
+      ],
+      "then": [
+        "最终业务状态与来源规则一致：purchase_alert_recipient; data_source_constraint; data_source=盒子后台管理员列表。"
+      ],
+      "verification_side": "B端写侧",
+      "oracle_strength": "business_behavior",
+      "confidence": "confirmed",
+      "source_trace": "来源：FIXTURE-CONFIG-001 Testability Gate、Structured PRD、Coverage Matrix与当前图片证据。"
+    },
+    {
+      "example_id": "AE-011",
+      "source_gate_ids": [
+        "TG-011"
+      ],
+      "source_rule_ids": [
+        "FR-盒子管理后台-云手机商品管理-添加-商品添加表单-01"
+      ],
+      "coverage_refs": [],
+      "title": "约束判定：天数最大370，小时最大23，所有项不可同时为0，后端以秒为单位",
+      "given": [
+        "后台管理员已进入对应配置页面，其他必需基础数据均合法。"
+      ],
+      "when": [
+        "按边界、必填或格式规则操作“天数最大370，小时最大23，所有项不可同时为0，后端以秒为单位”所涉及字段。"
+      ],
+      "then": [
+        "系统按来源规则判定并明确反馈：天数最大370，小时最大23，所有项不可同时为0，后端以秒为单位。"
+      ],
+      "verification_side": "B端写侧",
+      "oracle_strength": "hard_block",
+      "confidence": "confirmed",
+      "source_trace": "来源：FIXTURE-CONFIG-001 Testability Gate、Structured PRD、Coverage Matrix与当前图片证据。"
+    },
+    {
+      "example_id": "AE-012",
+      "source_gate_ids": [
+        "TG-012"
+      ],
+      "source_rule_ids": [
+        "FR-盒子管理后台-云手机商品管理-添加-商品添加表单-02"
+      ],
+      "coverage_refs": [
+        "COV-EX-0020"
+      ],
+      "title": "约束判定：特殊区商品数量必须小于等于4，超过4个时不可保存",
+      "given": [
+        "后台管理员已进入对应配置页面，其他必需基础数据均合法。"
+      ],
+      "when": [
+        "按边界、必填或格式规则操作“特殊区商品数量必须小于等于4，超过4个时不可保存”所涉及字段。"
+      ],
+      "then": [
+        "系统按来源规则判定并明确反馈：特殊区商品数量必须小于等于4，超过4个时不可保存。"
+      ],
+      "verification_side": "B端写侧",
+      "oracle_strength": "hard_block",
+      "confidence": "confirmed",
+      "source_trace": "来源：FIXTURE-CONFIG-001 Testability Gate、Structured PRD、Coverage Matrix与当前图片证据。"
+    },
+    {
+      "example_id": "AE-013",
+      "source_gate_ids": [
+        "TG-013"
+      ],
+      "source_rule_ids": [
+        "FR-盒子管理后台-云手机商品管理-添加-商品添加表单-03"
+      ],
+      "coverage_refs": [],
+      "title": "约束判定：正整数，上限1000；相同排序值按创建时间倒序排列",
+      "given": [
+        "后台管理员已进入对应配置页面，其他必需基础数据均合法。"
+      ],
+      "when": [
+        "按边界、必填或格式规则操作“正整数，上限1000；相同排序值按创建时间倒序排列”所涉及字段。"
+      ],
+      "then": [
+        "系统按来源规则判定并明确反馈：正整数，上限1000；相同排序值按创建时间倒序排列。"
+      ],
+      "verification_side": "B端写侧",
+      "oracle_strength": "hard_block",
+      "confidence": "confirmed",
+      "source_trace": "来源：FIXTURE-CONFIG-001 Testability Gate、Structured PRD、Coverage Matrix与当前图片证据。"
+    },
+    {
+      "example_id": "AE-014",
+      "source_gate_ids": [
+        "TG-014"
+      ],
+      "source_rule_ids": [
+        "FR-盒子管理后台-云手机商品管理-添加-商品添加表单-04"
+      ],
+      "coverage_refs": [],
+      "title": "后台任务：正整数，上限200；按固定频率校验库存是否小于等于配置数量",
+      "given": [
+        "库存、通知对象及后台任务运行条件已准备完成。"
+      ],
+      "when": [
+        "服务端执行库存检查或报警任务。"
+      ],
+      "then": [
+        "任务结果和可观察通知符合来源规则：正整数，上限200；按固定频率校验库存是否小于等于配置数量。"
+      ],
+      "verification_side": "服务端任务与C端读侧",
+      "oracle_strength": "backend_job",
+      "confidence": "confirmed",
+      "source_trace": "来源：FIXTURE-CONFIG-001 Testability Gate、Structured PRD、Coverage Matrix与当前图片证据。"
+    },
+    {
+      "example_id": "AE-015",
+      "source_gate_ids": [
+        "TG-015"
+      ],
+      "source_rule_ids": [
+        "FR-盒子管理后台-云手机商品管理-添加-商品区与库存规则说明表-01"
+      ],
+      "coverage_refs": [],
+      "title": "跨端联动：库存小于等于预警值时，C端隐藏商品、不分配云机并发送库存不足通知",
+      "given": [
+        "B端配置、服务端数据和C端商品状态均已准备。"
+      ],
+      "when": [
+        "触发来源规则对应的配置保存、库存变化或数据生成。"
+      ],
+      "then": [
+        "B端、服务端与C端的可观察结果保持一致：库存小于等于预警值时，C端隐藏商品、不分配云机并发送库存不足通知。"
+      ],
+      "verification_side": "B端写侧与C端读侧",
+      "oracle_strength": "linkage",
+      "confidence": "confirmed",
+      "source_trace": "来源：FIXTURE-CONFIG-001 Testability Gate、Structured PRD、Coverage Matrix与当前图片证据。"
+    },
+    {
+      "example_id": "AE-016",
+      "source_gate_ids": [
+        "TG-016"
+      ],
+      "source_rule_ids": [
+        "FR-盒子管理后台-云手机商品管理-添加-商品区与库存规则说明表-02"
+      ],
+      "coverage_refs": [],
+      "title": "约束判定：已有功能，数值限制大于0.00",
+      "given": [
+        "后台管理员已进入对应配置页面，其他必需基础数据均合法。"
+      ],
+      "when": [
+        "按边界、必填或格式规则操作“已有功能，数值限制大于0.00”所涉及字段。"
+      ],
+      "then": [
+        "系统按来源规则判定并明确反馈：已有功能，数值限制大于0.00。"
+      ],
+      "verification_side": "B端写侧",
+      "oracle_strength": "hard_block",
+      "confidence": "confirmed",
+      "source_trace": "来源：FIXTURE-CONFIG-001 Testability Gate、Structured PRD、Coverage Matrix与当前图片证据。"
+    },
+    {
+      "example_id": "AE-017",
+      "source_gate_ids": [
+        "TG-017"
+      ],
+      "source_rule_ids": [
+        "FR-盒子管理后台-云手机商品管理-添加-商品区与库存规则说明表-03"
+      ],
+      "coverage_refs": [],
+      "title": "约束判定：已有功能，数值限制大于0.00",
+      "given": [
+        "后台管理员已进入对应配置页面，其他必需基础数据均合法。"
+      ],
+      "when": [
+        "按边界、必填或格式规则操作“已有功能，数值限制大于0.00”所涉及字段。"
+      ],
+      "then": [
+        "系统按来源规则判定并明确反馈：已有功能，数值限制大于0.00。"
+      ],
+      "verification_side": "B端写侧",
+      "oracle_strength": "hard_block",
+      "confidence": "confirmed",
+      "source_trace": "来源：FIXTURE-CONFIG-001 Testability Gate、Structured PRD、Coverage Matrix与当前图片证据。"
+    },
+    {
+      "example_id": "AE-018",
+      "source_gate_ids": [
+        "TG-018"
+      ],
+      "source_rule_ids": [
+        "FR-盒子管理后台-云手机商品管理-添加-商品区与库存规则说明表-04"
+      ],
+      "coverage_refs": [],
+      "title": "约束判定：数字选择器，必填；天最大370、时最大23，所有项不可同时为0，后端以秒为单位",
+      "given": [
+        "后台管理员已进入对应配置页面，其他必需基础数据均合法。"
+      ],
+      "when": [
+        "按边界、必填或格式规则操作“数字选择器，必填；天最大370、时最大23，所有项不可同时为0，后端以秒为单位”所涉及字段。"
+      ],
+      "then": [
+        "系统按来源规则判定并明确反馈：数字选择器，必填；天最大370、时最大23，所有项不可同时为0，后端以秒为单位。"
+      ],
+      "verification_side": "B端写侧",
+      "oracle_strength": "hard_block",
+      "confidence": "confirmed",
+      "source_trace": "来源：FIXTURE-CONFIG-001 Testability Gate、Structured PRD、Coverage Matrix与当前图片证据。"
+    },
+    {
+      "example_id": "AE-019",
+      "source_gate_ids": [
+        "TG-019"
+      ],
+      "source_rule_ids": [
+        "FR-盒子管理后台-云手机商品管理-添加-商品区与库存规则说明表-05"
+      ],
+      "coverage_refs": [],
+      "title": "约束判定：下拉单选，必填，content：特殊区、普通区；特殊区商品数量小于等于4",
+      "given": [
+        "后台管理员已进入对应配置页面，其他必需基础数据均合法。"
+      ],
+      "when": [
+        "按边界、必填或格式规则操作“下拉单选，必填，content：特殊区、普通区；特殊区商品数量小于等于4”所涉及字段。"
+      ],
+      "then": [
+        "系统按来源规则判定并明确反馈：下拉单选，必填，content：特殊区、普通区；特殊区商品数量小于等于4。"
+      ],
+      "verification_side": "B端写侧",
+      "oracle_strength": "hard_block",
+      "confidence": "confirmed",
+      "source_trace": "来源：FIXTURE-CONFIG-001 Testability Gate、Structured PRD、Coverage Matrix与当前图片证据。"
+    },
+    {
+      "example_id": "AE-020",
+      "source_gate_ids": [
+        "TG-020"
+      ],
+      "source_rule_ids": [
+        "FR-盒子管理后台-云手机商品管理-添加-商品区与库存规则说明表-06"
+      ],
+      "coverage_refs": [],
+      "title": "约束判定：数字框，必填，正整数，上限1000；相同值按创建时间倒序",
+      "given": [
+        "后台管理员已进入对应配置页面，其他必需基础数据均合法。"
+      ],
+      "when": [
+        "按边界、必填或格式规则操作“数字框，必填，正整数，上限1000；相同值按创建时间倒序”所涉及字段。"
+      ],
+      "then": [
+        "系统按来源规则判定并明确反馈：数字框，必填，正整数，上限1000；相同值按创建时间倒序。"
+      ],
+      "verification_side": "B端写侧",
+      "oracle_strength": "hard_block",
+      "confidence": "confirmed",
+      "source_trace": "来源：FIXTURE-CONFIG-001 Testability Gate、Structured PRD、Coverage Matrix与当前图片证据。"
+    },
+    {
+      "example_id": "AE-021",
+      "source_gate_ids": [
+        "TG-021"
+      ],
+      "source_rule_ids": [
+        "FR-盒子管理后台-云手机商品管理-添加-商品区与库存规则说明表-07"
+      ],
+      "coverage_refs": [],
+      "title": "读侧展示：已有功能，增加未配置提示；服务时长结束后C端不再展示",
+      "given": [
+        "对应后台配置、商品或页面数据已准备完成。"
+      ],
+      "when": [
+        "用户打开对应页面或查看对应板块。"
+      ],
+      "then": [
+        "页面可直接观察到来源规则所述结果：已有功能，增加未配置提示；服务时长结束后C端不再展示。"
+      ],
+      "verification_side": "C端读侧",
+      "oracle_strength": "display_only",
+      "confidence": "confirmed",
+      "source_trace": "来源：FIXTURE-CONFIG-001 Testability Gate、Structured PRD、Coverage Matrix与当前图片证据。"
+    },
+    {
+      "example_id": "AE-022",
+      "source_gate_ids": [
+        "TG-022"
+      ],
+      "source_rule_ids": [
+        "FR-盒子管理后台-云手机商品管理-添加-商品区与库存规则说明表-08"
+      ],
+      "coverage_refs": [],
+      "title": "约束判定：数字框，非必填，正整数，上限200；按固定频率校验库存",
+      "given": [
+        "后台管理员已进入对应配置页面，其他必需基础数据均合法。"
+      ],
+      "when": [
+        "按边界、必填或格式规则操作“数字框，非必填，正整数，上限200；按固定频率校验库存”所涉及字段。"
+      ],
+      "then": [
+        "系统按来源规则判定并明确反馈：数字框，非必填，正整数，上限200；按固定频率校验库存。"
+      ],
+      "verification_side": "B端写侧",
+      "oracle_strength": "hard_block",
+      "confidence": "confirmed",
+      "source_trace": "来源：FIXTURE-CONFIG-001 Testability Gate、Structured PRD、Coverage Matrix与当前图片证据。"
+    },
+    {
+      "example_id": "AE-023",
+      "source_gate_ids": [
+        "TG-023"
+      ],
+      "source_rule_ids": [
+        "FR-盒子管理后台-云手机商品管理-添加-商品区与库存规则说明表-09"
+      ],
+      "coverage_refs": [],
+      "title": "约束判定：下拉单选，必填，content：盒子后台管理员列表",
+      "given": [
+        "后台管理员已进入对应配置页面，其他必需基础数据均合法。"
+      ],
+      "when": [
+        "按边界、必填或格式规则操作“下拉单选，必填，content：盒子后台管理员列表”所涉及字段。"
+      ],
+      "then": [
+        "系统按来源规则判定并明确反馈：下拉单选，必填，content：盒子后台管理员列表。"
+      ],
+      "verification_side": "B端写侧",
+      "oracle_strength": "hard_block",
+      "confidence": "confirmed",
+      "source_trace": "来源：FIXTURE-CONFIG-001 Testability Gate、Structured PRD、Coverage Matrix与当前图片证据。"
+    },
+    {
+      "example_id": "AE-024",
+      "source_gate_ids": [
+        "TG-024"
+      ],
+      "source_rule_ids": [
+        "FR-盒子管理后台-云手机商品管理-添加-商品区与库存规则说明表-10"
+      ],
+      "coverage_refs": [],
+      "title": "后台任务：云手机相关报警",
+      "given": [
+        "库存、通知对象及后台任务运行条件已准备完成。"
+      ],
+      "when": [
+        "服务端执行库存检查或报警任务。"
+      ],
+      "then": [
+        "任务结果和可观察通知符合来源规则：云手机相关报警。"
+      ],
+      "verification_side": "服务端任务与C端读侧",
+      "oracle_strength": "backend_job",
+      "confidence": "confirmed",
+      "source_trace": "来源：FIXTURE-CONFIG-001 Testability Gate、Structured PRD、Coverage Matrix与当前图片证据。"
+    },
+    {
+      "example_id": "AE-025",
+      "source_gate_ids": [
+        "TG-025"
+      ],
+      "source_rule_ids": [
+        "FR-盒子管理后台-云手机商品管理-添加-商品区与库存规则说明表-11"
+      ],
+      "coverage_refs": [],
+      "title": "读侧展示：【云挂机库存不足通知】",
+      "given": [
+        "对应后台配置、商品或页面数据已准备完成。"
+      ],
+      "when": [
+        "用户打开对应页面或查看对应板块。"
+      ],
+      "then": [
+        "页面可直接观察到来源规则所述结果：【云挂机库存不足通知】。"
+      ],
+      "verification_side": "C端读侧",
+      "oracle_strength": "display_only",
+      "confidence": "confirmed",
+      "source_trace": "来源：FIXTURE-CONFIG-001 Testability Gate、Structured PRD、Coverage Matrix与当前图片证据。"
+    },
+    {
+      "example_id": "AE-026",
+      "source_gate_ids": [
+        "TG-026"
+      ],
+      "source_rule_ids": [
+        "FR-盒子管理后台-云手机商品管理-添加-商品区与库存规则说明表-12"
+      ],
+      "coverage_refs": [],
+      "title": "读侧展示：玩心盒子后台_云挂机_云手机商品管理",
+      "given": [
+        "对应后台配置、商品或页面数据已准备完成。"
+      ],
+      "when": [
+        "用户打开对应页面或查看对应板块。"
+      ],
+      "then": [
+        "页面可直接观察到来源规则所述结果：玩心盒子后台_云挂机_云手机商品管理。"
+      ],
+      "verification_side": "C端读侧",
+      "oracle_strength": "display_only",
+      "confidence": "confirmed",
+      "source_trace": "来源：FIXTURE-CONFIG-001 Testability Gate、Structured PRD、Coverage Matrix与当前图片证据。"
+    },
+    {
+      "example_id": "AE-027",
+      "source_gate_ids": [
+        "TG-027"
+      ],
+      "source_rule_ids": [
+        "FR-盒子管理后台-云手机商品管理-添加-商品区与库存规则说明表-13"
+      ],
+      "coverage_refs": [
+        "COV-AI-0078"
+      ],
+      "title": "跨端联动：配置ID、商品名称、云机类型、云机服务时长、通知时间、通知人由配置或系统生成",
+      "given": [
+        "B端配置、服务端数据和C端商品状态均已准备。"
+      ],
+      "when": [
+        "触发来源规则对应的配置保存、库存变化或数据生成。"
+      ],
+      "then": [
+        "B端、服务端与C端的可观察结果保持一致：配置ID、商品名称、云机类型、云机服务时长、通知时间、通知人由配置或系统生成。"
+      ],
+      "verification_side": "B端写侧与C端读侧",
+      "oracle_strength": "linkage",
+      "confidence": "confirmed",
+      "source_trace": "来源：FIXTURE-CONFIG-001 Testability Gate、Structured PRD、Coverage Matrix与当前图片证据。"
+    },
+    {
+      "example_id": "AE-028",
+      "source_gate_ids": [
+        "TG-028"
+      ],
+      "source_rule_ids": [
+        "OBJ-010"
+      ],
+      "coverage_refs": [
+        "COV-EX-0073",
+        "COV-EX-0042"
+      ],
+      "title": "业务结果：cloud_machine_type; data_source_constraint; data_source=盒子现有云机类型",
+      "given": [
+        "执行该业务规则所需的合法前置数据已准备完成。"
+      ],
+      "when": [
+        "用户或管理员完成来源规则对应的操作。"
+      ],
+      "then": [
+        "最终业务状态与来源规则一致：cloud_machine_type; data_source_constraint; data_source=盒子现有云机类型。"
+      ],
+      "verification_side": "B端写侧",
+      "oracle_strength": "business_behavior",
+      "confidence": "confirmed",
+      "source_trace": "来源：FIXTURE-CONFIG-001 Testability Gate、Structured PRD、Coverage Matrix与当前图片证据。"
+    },
+    {
+      "example_id": "AE-029",
+      "source_gate_ids": [
+        "TG-029"
+      ],
+      "source_rule_ids": [
+        "OBJ-011"
+      ],
+      "coverage_refs": [
+        "COV-EX-0074"
+      ],
+      "title": "业务结果：promotion_image; value_constraint",
+      "given": [
+        "执行该业务规则所需的合法前置数据已准备完成。"
+      ],
+      "when": [
+        "用户或管理员完成来源规则对应的操作。"
+      ],
+      "then": [
+        "最终业务状态与来源规则一致：promotion_image; value_constraint。"
+      ],
+      "verification_side": "B端写侧",
+      "oracle_strength": "business_behavior",
+      "confidence": "confirmed",
+      "source_trace": "来源：FIXTURE-CONFIG-001 Testability Gate、Structured PRD、Coverage Matrix与当前图片证据。"
+    },
+    {
+      "example_id": "AE-030",
+      "source_gate_ids": [
+        "TG-030"
+      ],
+      "source_rule_ids": [
+        "OBJ-012"
+      ],
+      "coverage_refs": [
+        "COV-EX-0028"
+      ],
+      "title": "业务结果：promotion_slogan; value_constraint",
+      "given": [
+        "执行该业务规则所需的合法前置数据已准备完成。"
+      ],
+      "when": [
+        "用户或管理员完成来源规则对应的操作。"
+      ],
+      "then": [
+        "最终业务状态与来源规则一致：promotion_slogan; value_constraint。"
+      ],
+      "verification_side": "B端写侧",
+      "oracle_strength": "business_behavior",
+      "confidence": "confirmed",
+      "source_trace": "来源：FIXTURE-CONFIG-001 Testability Gate、Structured PRD、Coverage Matrix与当前图片证据。"
+    },
+    {
+      "example_id": "AE-031",
+      "source_gate_ids": [
+        "TG-031"
+      ],
+      "source_rule_ids": [
+        "OBJ-013"
+      ],
+      "coverage_refs": [],
+      "title": "业务结果：performance_parameters; value_constraint",
+      "given": [
+        "执行该业务规则所需的合法前置数据已准备完成。"
+      ],
+      "when": [
+        "用户或管理员完成来源规则对应的操作。"
+      ],
+      "then": [
+        "最终业务状态与来源规则一致：performance_parameters; value_constraint。"
+      ],
+      "verification_side": "B端写侧",
+      "oracle_strength": "business_behavior",
+      "confidence": "confirmed",
+      "source_trace": "来源：FIXTURE-CONFIG-001 Testability Gate、Structured PRD、Coverage Matrix与当前图片证据。"
+    },
+    {
+      "example_id": "AE-032",
+      "source_gate_ids": [
+        "TG-032"
+      ],
+      "source_rule_ids": [
+        "FR-盒子管理后台-编辑宣传内容-宣传内容编辑表单-01"
+      ],
+      "coverage_refs": [],
+      "title": "约束判定：保存前校验所有云机类型均已配置且不存在重复",
+      "given": [
+        "后台管理员已进入对应配置页面，其他必需基础数据均合法。"
+      ],
+      "when": [
+        "按边界、必填或格式规则操作“保存前校验所有云机类型均已配置且不存在重复”所涉及字段。"
+      ],
+      "then": [
+        "系统按来源规则判定并明确反馈：保存前校验所有云机类型均已配置且不存在重复。"
+      ],
+      "verification_side": "B端写侧",
+      "oracle_strength": "hard_block",
+      "confidence": "confirmed",
+      "source_trace": "来源：FIXTURE-CONFIG-001 Testability Gate、Structured PRD、Coverage Matrix与当前图片证据。"
+    },
+    {
+      "example_id": "AE-033",
+      "source_gate_ids": [
+        "TG-033"
+      ],
+      "source_rule_ids": [
+        "FR-盒子管理后台-编辑宣传内容-宣传内容编辑表单-02"
+      ],
+      "coverage_refs": [
+        "COV-EX-0075"
+      ],
+      "title": "提示展示：最多上传5张，支持gif/jpg/jpeg/png，单张最大500K，建议尺寸1008*160",
+      "given": [
+        "管理员已进入宣传内容配置区域。"
+      ],
+      "when": [
+        "查看上传控件旁的格式、大小和尺寸说明。"
+      ],
+      "then": [
+        "页面展示来源中的建议或提示文案：最多上传5张，支持gif/jpg/jpeg/png，单张最大500K，建议尺寸1008*160；建议内容不作为提交结果判定。"
+      ],
+      "verification_side": "B端写侧",
+      "oracle_strength": "soft_display",
+      "confidence": "confirmed",
+      "source_trace": "来源：FIXTURE-CONFIG-001 Testability Gate、Structured PRD、Coverage Matrix与当前图片证据。"
+    },
+    {
+      "example_id": "AE-034",
+      "source_gate_ids": [
+        "TG-034"
+      ],
+      "source_rule_ids": [
+        "FR-盒子管理后台-编辑宣传内容-宣传内容编辑表单-03"
+      ],
+      "coverage_refs": [],
+      "title": "约束判定：文本长度20个字符；C端超过一行换行展示",
+      "given": [
+        "后台管理员已进入对应配置页面，其他必需基础数据均合法。"
+      ],
+      "when": [
+        "按边界、必填或格式规则操作“文本长度20个字符；C端超过一行换行展示”所涉及字段。"
+      ],
+      "then": [
+        "系统按来源规则判定并明确反馈：文本长度20个字符；C端超过一行换行展示。"
+      ],
+      "verification_side": "B端写侧",
+      "oracle_strength": "hard_block",
+      "confidence": "confirmed",
+      "source_trace": "来源：FIXTURE-CONFIG-001 Testability Gate、Structured PRD、Coverage Matrix与当前图片证据。"
+    },
+    {
+      "example_id": "AE-035",
+      "source_gate_ids": [
+        "TG-035"
+      ],
+      "source_rule_ids": [
+        "FR-盒子管理后台-编辑宣传内容-宣传内容编辑表单-04"
+      ],
+      "coverage_refs": [],
+      "title": "约束判定：文本长度20个字符；C端超过一行换行展示",
+      "given": [
+        "后台管理员已进入对应配置页面，其他必需基础数据均合法。"
+      ],
+      "when": [
+        "按边界、必填或格式规则操作“文本长度20个字符；C端超过一行换行展示”所涉及字段。"
+      ],
+      "then": [
+        "系统按来源规则判定并明确反馈：文本长度20个字符；C端超过一行换行展示。"
+      ],
+      "verification_side": "B端写侧",
+      "oracle_strength": "hard_block",
+      "confidence": "confirmed",
+      "source_trace": "来源：FIXTURE-CONFIG-001 Testability Gate、Structured PRD、Coverage Matrix与当前图片证据。"
+    },
+    {
+      "example_id": "AE-036",
+      "source_gate_ids": [
+        "TG-036"
+      ],
+      "source_rule_ids": [
+        "FR-盒子管理后台-编辑宣传内容-宣传内容字段说明表-01"
+      ],
+      "coverage_refs": [
+        "COV-EX-0018"
+      ],
+      "title": "约束判定：下拉列表框，必填，默认为空，可编辑；单选，content为盒子现有云机类型",
+      "given": [
+        "后台管理员已进入对应配置页面，其他必需基础数据均合法。"
+      ],
+      "when": [
+        "按边界、必填或格式规则操作“下拉列表框，必填，默认为空，可编辑；单选，content为盒子现有云机类型”所涉及字段。"
+      ],
+      "then": [
+        "系统按来源规则判定并明确反馈：下拉列表框，必填，默认为空，可编辑；单选，content为盒子现有云机类型。"
+      ],
+      "verification_side": "B端写侧",
+      "oracle_strength": "hard_block",
+      "confidence": "confirmed",
+      "source_trace": "来源：FIXTURE-CONFIG-001 Testability Gate、Structured PRD、Coverage Matrix与当前图片证据。"
+    },
+    {
+      "example_id": "AE-037",
+      "source_gate_ids": [
+        "TG-037"
+      ],
+      "source_rule_ids": [
+        "FR-盒子管理后台-编辑宣传内容-宣传内容字段说明表-02"
+      ],
+      "coverage_refs": [],
+      "title": "提示展示：图片按钮，必传，最多5张；支持gif/jpg/jpeg/png，最大500K，建议尺寸1008*160；支持拖拽和删除",
+      "given": [
+        "管理员已进入宣传内容配置区域。"
+      ],
+      "when": [
+        "查看上传控件旁的格式、大小和尺寸说明。"
+      ],
+      "then": [
+        "页面展示来源中的建议或提示文案：图片按钮，必传，最多5张；支持gif/jpg/jpeg/png，最大500K，建议尺寸1008*160；支持拖拽和删除；建议内容不作为提交结果判定。"
+      ],
+      "verification_side": "B端写侧",
+      "oracle_strength": "soft_display",
+      "confidence": "confirmed",
+      "source_trace": "来源：FIXTURE-CONFIG-001 Testability Gate、Structured PRD、Coverage Matrix与当前图片证据。"
+    },
+    {
+      "example_id": "AE-038",
+      "source_gate_ids": [
+        "TG-038"
+      ],
+      "source_rule_ids": [
+        "FR-盒子管理后台-编辑宣传内容-宣传内容字段说明表-03"
+      ],
+      "coverage_refs": [],
+      "title": "约束判定：文本框，必填，20个字符；C端超过一行换行展示",
+      "given": [
+        "后台管理员已进入对应配置页面，其他必需基础数据均合法。"
+      ],
+      "when": [
+        "按边界、必填或格式规则操作“文本框，必填，20个字符；C端超过一行换行展示”所涉及字段。"
+      ],
+      "then": [
+        "系统按来源规则判定并明确反馈：文本框，必填，20个字符；C端超过一行换行展示。"
+      ],
+      "verification_side": "B端写侧",
+      "oracle_strength": "hard_block",
+      "confidence": "confirmed",
+      "source_trace": "来源：FIXTURE-CONFIG-001 Testability Gate、Structured PRD、Coverage Matrix与当前图片证据。"
+    },
+    {
+      "example_id": "AE-039",
+      "source_gate_ids": [
+        "TG-039"
+      ],
+      "source_rule_ids": [
+        "FR-盒子管理后台-编辑宣传内容-宣传内容字段说明表-04"
+      ],
+      "coverage_refs": [],
+      "title": "约束判定：文本框，必填，20个字符；C端超过一行换行展示",
+      "given": [
+        "后台管理员已进入对应配置页面，其他必需基础数据均合法。"
+      ],
+      "when": [
+        "按边界、必填或格式规则操作“文本框，必填，20个字符；C端超过一行换行展示”所涉及字段。"
+      ],
+      "then": [
+        "系统按来源规则判定并明确反馈：文本框，必填，20个字符；C端超过一行换行展示。"
+      ],
+      "verification_side": "B端写侧",
+      "oracle_strength": "hard_block",
+      "confidence": "confirmed",
+      "source_trace": "来源：FIXTURE-CONFIG-001 Testability Gate、Structured PRD、Coverage Matrix与当前图片证据。"
+    },
+    {
+      "example_id": "AE-040",
+      "source_gate_ids": [
+        "TG-040"
+      ],
+      "source_rule_ids": [
+        "FR-盒子管理后台-编辑宣传内容-宣传内容字段说明表-05"
+      ],
+      "coverage_refs": [],
+      "title": "约束判定：点击增加一条宣传配置，最多额外新增1块；达到2条时禁用按钮",
+      "given": [
+        "后台管理员已进入对应配置页面，其他必需基础数据均合法。"
+      ],
+      "when": [
+        "按边界、必填或格式规则操作“点击增加一条宣传配置，最多额外新增1块；达到2条时禁用按钮”所涉及字段。"
+      ],
+      "then": [
+        "系统按来源规则判定并明确反馈：点击增加一条宣传配置，最多额外新增1块；达到2条时禁用按钮。"
+      ],
+      "verification_side": "B端写侧",
+      "oracle_strength": "hard_block",
+      "confidence": "confirmed",
+      "source_trace": "来源：FIXTURE-CONFIG-001 Testability Gate、Structured PRD、Coverage Matrix与当前图片证据。"
+    },
+    {
+      "example_id": "AE-041",
+      "source_gate_ids": [
+        "TG-049"
+      ],
+      "source_rule_ids": [
+        "COV-EX-0050"
+      ],
+      "coverage_refs": [],
+      "title": "业务结果：全新版和常规版两个Tab均可见、可切换并展示对应内容",
+      "given": [
+        "执行该业务规则所需的合法前置数据已准备完成。"
+      ],
+      "when": [
+        "用户或管理员完成来源规则对应的操作。"
+      ],
+      "then": [
+        "最终业务状态与来源规则一致：全新版和常规版两个Tab均可见、可切换并展示对应内容。"
+      ],
+      "verification_side": "B端写侧",
+      "oracle_strength": "business_behavior",
+      "confidence": "confirmed",
+      "source_trace": "来源：FIXTURE-CONFIG-001 Testability Gate、Structured PRD、Coverage Matrix与当前图片证据。"
+    },
+    {
+      "example_id": "AE-042",
+      "source_gate_ids": [
+        "TG-050"
+      ],
+      "source_rule_ids": [
+        "COV-EX-0060"
+      ],
+      "coverage_refs": [
+        "COV-EX-0065"
+      ],
+      "title": "业务结果：后台未配置特殊区商品时，C端隐藏整个特价专区",
+      "given": [
+        "执行该业务规则所需的合法前置数据已准备完成。"
+      ],
+      "when": [
+        "用户或管理员完成来源规则对应的操作。"
+      ],
+      "then": [
+        "最终业务状态与来源规则一致：后台未配置特殊区商品时，C端隐藏整个特价专区。"
+      ],
+      "verification_side": "B端写侧",
+      "oracle_strength": "business_behavior",
+      "confidence": "confirmed",
+      "source_trace": "来源：FIXTURE-CONFIG-001 Testability Gate、Structured PRD、Coverage Matrix与当前图片证据。"
+    },
+    {
+      "example_id": "AE-043",
+      "source_gate_ids": [
+        "TG-051"
+      ],
+      "source_rule_ids": [
+        "COV-EX-0067"
+      ],
+      "coverage_refs": [
+        "COV-EX-0072"
+      ],
+      "title": "业务结果：库存不足时同步隐藏商品、停止分配云机并发送告警",
+      "given": [
+        "执行该业务规则所需的合法前置数据已准备完成。"
+      ],
+      "when": [
+        "用户或管理员完成来源规则对应的操作。"
+      ],
+      "then": [
+        "最终业务状态与来源规则一致：库存不足时同步隐藏商品、停止分配云机并发送告警。"
+      ],
+      "verification_side": "B端写侧",
+      "oracle_strength": "business_behavior",
+      "confidence": "confirmed",
+      "source_trace": "来源：FIXTURE-CONFIG-001 Testability Gate、Structured PRD、Coverage Matrix与当前图片证据。"
+    },
+    {
+      "example_id": "AE-044",
+      "source_gate_ids": [
+        "TG-052"
+      ],
+      "source_rule_ids": [
+        "COV-EX-0070"
+      ],
+      "coverage_refs": [],
+      "title": "业务结果：所有云机类型均需配置宣传内容且云机类型不可重复",
+      "given": [
+        "执行该业务规则所需的合法前置数据已准备完成。"
+      ],
+      "when": [
+        "用户或管理员完成来源规则对应的操作。"
+      ],
+      "then": [
+        "最终业务状态与来源规则一致：所有云机类型均需配置宣传内容且云机类型不可重复。"
+      ],
+      "verification_side": "B端写侧",
+      "oracle_strength": "business_behavior",
+      "confidence": "confirmed",
+      "source_trace": "来源：FIXTURE-CONFIG-001 Testability Gate、Structured PRD、Coverage Matrix与当前图片证据。"
+    },
+    {
+      "example_id": "AE-045",
+      "source_gate_ids": [
+        "TG-001"
+      ],
+      "source_rule_ids": [
+        "OBJ-001"
+      ],
+      "coverage_refs": [],
+      "title": "约束判定：promotion_slogan; value_constraint（场景2）",
+      "given": [
+        "后台管理员已进入对应配置页面，其他必需基础数据均合法。"
+      ],
+      "when": [
+        "按边界、必填或格式规则操作“promotion_slogan; value_constraint”所涉及字段。"
+      ],
+      "then": [
+        "系统按来源规则判定并明确反馈：promotion_slogan; value_constraint。"
+      ],
+      "verification_side": "B端写侧",
+      "oracle_strength": "hard_block",
+      "confidence": "confirmed",
+      "source_trace": "来源：FIXTURE-CONFIG-001 Testability Gate、Structured PRD、Coverage Matrix与当前图片证据。"
+    },
+    {
+      "example_id": "AE-046",
+      "source_gate_ids": [
+        "TG-002"
+      ],
+      "source_rule_ids": [
+        "OBJ-002"
+      ],
+      "coverage_refs": [],
+      "title": "约束判定：performance_parameters; value_constraint（场景3）",
+      "given": [
+        "后台管理员已进入对应配置页面，其他必需基础数据均合法。"
+      ],
+      "when": [
+        "按边界、必填或格式规则操作“performance_parameters; value_constraint”所涉及字段。"
+      ],
+      "then": [
+        "系统按来源规则判定并明确反馈：performance_parameters; value_constraint。"
+      ],
+      "verification_side": "B端写侧",
+      "oracle_strength": "hard_block",
+      "confidence": "confirmed",
+      "source_trace": "来源：FIXTURE-CONFIG-001 Testability Gate、Structured PRD、Coverage Matrix与当前图片证据。"
+    },
+    {
+      "example_id": "AE-047",
+      "source_gate_ids": [
+        "TG-003"
+      ],
+      "source_rule_ids": [
+        "OBJ-003"
+      ],
+      "coverage_refs": [],
+      "title": "约束判定：后台未配置特殊区商品时隐藏（场景4）",
+      "given": [
+        "后台管理员已进入对应配置页面，其他必需基础数据均合法。"
+      ],
+      "when": [
+        "按边界、必填或格式规则操作“后台未配置特殊区商品时隐藏”所涉及字段。"
+      ],
+      "then": [
+        "系统按来源规则判定并明确反馈：后台未配置特殊区商品时隐藏。"
+      ],
+      "verification_side": "B端写侧",
+      "oracle_strength": "hard_block",
+      "confidence": "confirmed",
+      "source_trace": "来源：FIXTURE-CONFIG-001 Testability Gate、Structured PRD、Coverage Matrix与当前图片证据。"
+    },
+    {
+      "example_id": "AE-048",
+      "source_gate_ids": [
+        "TG-001"
+      ],
+      "source_rule_ids": [
+        "OBJ-001"
+      ],
+      "coverage_refs": [],
+      "title": "读侧展示：promotion_slogan; value_constraint（场景2）",
+      "given": [
+        "对应后台配置、商品或页面数据已准备完成。"
+      ],
+      "when": [
+        "用户打开对应页面或查看对应板块。"
+      ],
+      "then": [
+        "页面可直接观察到来源规则所述结果：promotion_slogan; value_constraint。"
+      ],
+      "verification_side": "C端读侧",
+      "oracle_strength": "display_only",
+      "confidence": "confirmed",
+      "source_trace": "来源：FIXTURE-CONFIG-001 Testability Gate、Structured PRD、Coverage Matrix与当前图片证据。"
+    },
+    {
+      "example_id": "AE-049",
+      "source_gate_ids": [
+        "TG-002"
+      ],
+      "source_rule_ids": [
+        "OBJ-002"
+      ],
+      "coverage_refs": [],
+      "title": "读侧展示：performance_parameters; value_constraint（场景3）",
+      "given": [
+        "对应后台配置、商品或页面数据已准备完成。"
+      ],
+      "when": [
+        "用户打开对应页面或查看对应板块。"
+      ],
+      "then": [
+        "页面可直接观察到来源规则所述结果：performance_parameters; value_constraint。"
+      ],
+      "verification_side": "C端读侧",
+      "oracle_strength": "display_only",
+      "confidence": "confirmed",
+      "source_trace": "来源：FIXTURE-CONFIG-001 Testability Gate、Structured PRD、Coverage Matrix与当前图片证据。"
+    },
+    {
+      "example_id": "AE-050",
+      "source_gate_ids": [
+        "TG-003"
+      ],
+      "source_rule_ids": [
+        "OBJ-003"
+      ],
+      "coverage_refs": [],
+      "title": "读侧展示：后台未配置特殊区商品时隐藏（场景4）",
+      "given": [
+        "对应后台配置、商品或页面数据已准备完成。"
+      ],
+      "when": [
+        "用户打开对应页面或查看对应板块。"
+      ],
+      "then": [
+        "页面可直接观察到来源规则所述结果：后台未配置特殊区商品时隐藏。"
+      ],
+      "verification_side": "C端读侧",
+      "oracle_strength": "display_only",
+      "confidence": "confirmed",
+      "source_trace": "来源：FIXTURE-CONFIG-001 Testability Gate、Structured PRD、Coverage Matrix与当前图片证据。"
+    },
+    {
+      "example_id": "AE-051",
+      "source_gate_ids": [
+        "TG-004"
+      ],
+      "source_rule_ids": [
+        "FR-云挂机购买页-特价专区-01"
+      ],
+      "coverage_refs": [
+        "COV-EX-0069"
+      ],
+      "title": "读侧展示：最多展示4个商品（场景5）",
+      "given": [
+        "对应后台配置、商品或页面数据已准备完成。"
+      ],
+      "when": [
+        "用户打开对应页面或查看对应板块。"
+      ],
+      "then": [
+        "页面可直接观察到来源规则所述结果：最多展示4个商品。"
+      ],
+      "verification_side": "C端读侧",
+      "oracle_strength": "display_only",
+      "confidence": "confirmed",
+      "source_trace": "来源：FIXTURE-CONFIG-001 Testability Gate、Structured PRD、Coverage Matrix与当前图片证据。"
+    },
+    {
+      "example_id": "AE-052",
+      "source_gate_ids": [
+        "TG-011"
+      ],
+      "source_rule_ids": [
+        "FR-盒子管理后台-云手机商品管理-添加-商品添加表单-01"
+      ],
+      "coverage_refs": [],
+      "title": "读侧展示：天数最大370，小时最大23，所有项不可同时为0，后端以秒为单位（场景6）",
+      "given": [
+        "对应后台配置、商品或页面数据已准备完成。"
+      ],
+      "when": [
+        "用户打开对应页面或查看对应板块。"
+      ],
+      "then": [
+        "页面可直接观察到来源规则所述结果：天数最大370，小时最大23，所有项不可同时为0，后端以秒为单位。"
+      ],
+      "verification_side": "C端读侧",
+      "oracle_strength": "display_only",
+      "confidence": "confirmed",
+      "source_trace": "来源：FIXTURE-CONFIG-001 Testability Gate、Structured PRD、Coverage Matrix与当前图片证据。"
+    },
+    {
+      "example_id": "AE-053",
+      "source_gate_ids": [
+        "TG-012"
+      ],
+      "source_rule_ids": [
+        "FR-盒子管理后台-云手机商品管理-添加-商品添加表单-02"
+      ],
+      "coverage_refs": [
+        "COV-EX-0070"
+      ],
+      "title": "读侧展示：特殊区商品数量必须小于等于4，超过4个时不可保存（场景7）",
+      "given": [
+        "对应后台配置、商品或页面数据已准备完成。"
+      ],
+      "when": [
+        "用户打开对应页面或查看对应板块。"
+      ],
+      "then": [
+        "页面可直接观察到来源规则所述结果：特殊区商品数量必须小于等于4，超过4个时不可保存。"
+      ],
+      "verification_side": "C端读侧",
+      "oracle_strength": "display_only",
+      "confidence": "confirmed",
+      "source_trace": "来源：FIXTURE-CONFIG-001 Testability Gate、Structured PRD、Coverage Matrix与当前图片证据。"
+    },
+    {
+      "example_id": "AE-054",
+      "source_gate_ids": [
+        "TG-013"
+      ],
+      "source_rule_ids": [
+        "FR-盒子管理后台-云手机商品管理-添加-商品添加表单-03"
+      ],
+      "coverage_refs": [],
+      "title": "读侧展示：正整数，上限1000；相同排序值按创建时间倒序排列（场景8）",
+      "given": [
+        "对应后台配置、商品或页面数据已准备完成。"
+      ],
+      "when": [
+        "用户打开对应页面或查看对应板块。"
+      ],
+      "then": [
+        "页面可直接观察到来源规则所述结果：正整数，上限1000；相同排序值按创建时间倒序排列。"
+      ],
+      "verification_side": "C端读侧",
+      "oracle_strength": "display_only",
+      "confidence": "confirmed",
+      "source_trace": "来源：FIXTURE-CONFIG-001 Testability Gate、Structured PRD、Coverage Matrix与当前图片证据。"
+    },
+    {
+      "example_id": "AE-055",
+      "source_gate_ids": [
+        "TG-016"
+      ],
+      "source_rule_ids": [
+        "FR-盒子管理后台-云手机商品管理-添加-商品区与库存规则说明表-02"
+      ],
+      "coverage_refs": [],
+      "title": "读侧展示：已有功能，数值限制大于0.00（场景9）",
+      "given": [
+        "对应后台配置、商品或页面数据已准备完成。"
+      ],
+      "when": [
+        "用户打开对应页面或查看对应板块。"
+      ],
+      "then": [
+        "页面可直接观察到来源规则所述结果：已有功能，数值限制大于0.00。"
+      ],
+      "verification_side": "C端读侧",
+      "oracle_strength": "display_only",
+      "confidence": "confirmed",
+      "source_trace": "来源：FIXTURE-CONFIG-001 Testability Gate、Structured PRD、Coverage Matrix与当前图片证据。"
+    },
+    {
+      "example_id": "AE-056",
+      "source_gate_ids": [
+        "TG-017"
+      ],
+      "source_rule_ids": [
+        "FR-盒子管理后台-云手机商品管理-添加-商品区与库存规则说明表-03"
+      ],
+      "coverage_refs": [],
+      "title": "读侧展示：已有功能，数值限制大于0.00（场景10）",
+      "given": [
+        "对应后台配置、商品或页面数据已准备完成。"
+      ],
+      "when": [
+        "用户打开对应页面或查看对应板块。"
+      ],
+      "then": [
+        "页面可直接观察到来源规则所述结果：已有功能，数值限制大于0.00。"
+      ],
+      "verification_side": "C端读侧",
+      "oracle_strength": "display_only",
+      "confidence": "confirmed",
+      "source_trace": "来源：FIXTURE-CONFIG-001 Testability Gate、Structured PRD、Coverage Matrix与当前图片证据。"
+    },
+    {
+      "example_id": "AE-057",
+      "source_gate_ids": [
+        "TG-018"
+      ],
+      "source_rule_ids": [
+        "FR-盒子管理后台-云手机商品管理-添加-商品区与库存规则说明表-04"
+      ],
+      "coverage_refs": [],
+      "title": "读侧展示：数字选择器，必填；天最大370、时最大23，所有项不可同时为0，后端以秒为单位（场景11）",
+      "given": [
+        "对应后台配置、商品或页面数据已准备完成。"
+      ],
+      "when": [
+        "用户打开对应页面或查看对应板块。"
+      ],
+      "then": [
+        "页面可直接观察到来源规则所述结果：数字选择器，必填；天最大370、时最大23，所有项不可同时为0，后端以秒为单位。"
+      ],
+      "verification_side": "C端读侧",
+      "oracle_strength": "display_only",
+      "confidence": "confirmed",
+      "source_trace": "来源：FIXTURE-CONFIG-001 Testability Gate、Structured PRD、Coverage Matrix与当前图片证据。"
+    },
+    {
+      "example_id": "AE-058",
+      "source_gate_ids": [
+        "TG-005"
+      ],
+      "source_rule_ids": [
+        "OBJ-004"
+      ],
+      "coverage_refs": [
+        "COV-EX-0024"
+      ],
+      "title": "业务结果：original_price; value_constraint（场景2）",
+      "given": [
+        "执行该业务规则所需的合法前置数据已准备完成。"
+      ],
+      "when": [
+        "用户或管理员完成来源规则对应的操作。"
+      ],
+      "then": [
+        "最终业务状态与来源规则一致：original_price; value_constraint。"
+      ],
+      "verification_side": "B端写侧",
+      "oracle_strength": "business_behavior",
+      "confidence": "confirmed",
+      "source_trace": "来源：FIXTURE-CONFIG-001 Testability Gate、Structured PRD、Coverage Matrix与当前图片证据。"
+    },
+    {
+      "example_id": "AE-059",
+      "source_gate_ids": [
+        "TG-006"
+      ],
+      "source_rule_ids": [
+        "OBJ-005"
+      ],
+      "coverage_refs": [
+        "COV-EX-0068"
+      ],
+      "title": "业务结果：current_price; value_constraint（场景2）",
+      "given": [
+        "执行该业务规则所需的合法前置数据已准备完成。"
+      ],
+      "when": [
+        "用户或管理员完成来源规则对应的操作。"
+      ],
+      "then": [
+        "最终业务状态与来源规则一致：current_price; value_constraint。"
+      ],
+      "verification_side": "B端写侧",
+      "oracle_strength": "business_behavior",
+      "confidence": "confirmed",
+      "source_trace": "来源：FIXTURE-CONFIG-001 Testability Gate、Structured PRD、Coverage Matrix与当前图片证据。"
+    },
+    {
+      "example_id": "AE-060",
+      "source_gate_ids": [
+        "TG-007"
+      ],
+      "source_rule_ids": [
+        "OBJ-006"
+      ],
+      "coverage_refs": [],
+      "title": "业务结果：service_duration; value_constraint（场景2）",
+      "given": [
+        "执行该业务规则所需的合法前置数据已准备完成。"
+      ],
+      "when": [
+        "用户或管理员完成来源规则对应的操作。"
+      ],
+      "then": [
+        "最终业务状态与来源规则一致：service_duration; value_constraint。"
+      ],
+      "verification_side": "B端写侧",
+      "oracle_strength": "business_behavior",
+      "confidence": "confirmed",
+      "source_trace": "来源：FIXTURE-CONFIG-001 Testability Gate、Structured PRD、Coverage Matrix与当前图片证据。"
+    },
+    {
+      "example_id": "AE-061",
+      "source_gate_ids": [
+        "TG-008"
+      ],
+      "source_rule_ids": [
+        "OBJ-007"
+      ],
+      "coverage_refs": [],
+      "title": "业务结果：in_box_sort_order; value_constraint; integer_only=True（场景2）",
+      "given": [
+        "执行该业务规则所需的合法前置数据已准备完成。"
+      ],
+      "when": [
+        "用户或管理员完成来源规则对应的操作。"
+      ],
+      "then": [
+        "最终业务状态与来源规则一致：in_box_sort_order; value_constraint; integer_only=True。"
+      ],
+      "verification_side": "B端写侧",
+      "oracle_strength": "business_behavior",
+      "confidence": "confirmed",
+      "source_trace": "来源：FIXTURE-CONFIG-001 Testability Gate、Structured PRD、Coverage Matrix与当前图片证据。"
+    },
+    {
+      "example_id": "AE-062",
+      "source_gate_ids": [
+        "TG-009"
+      ],
+      "source_rule_ids": [
+        "OBJ-008"
+      ],
+      "coverage_refs": [
+        "COV-EX-0071"
+      ],
+      "title": "业务结果：inventory_warning_threshold; value_constraint; integer_only=True（场景2）",
+      "given": [
+        "执行该业务规则所需的合法前置数据已准备完成。"
+      ],
+      "when": [
+        "用户或管理员完成来源规则对应的操作。"
+      ],
+      "then": [
+        "最终业务状态与来源规则一致：inventory_warning_threshold; value_constraint; integer_only=True。"
+      ],
+      "verification_side": "B端写侧",
+      "oracle_strength": "business_behavior",
+      "confidence": "confirmed",
+      "source_trace": "来源：FIXTURE-CONFIG-001 Testability Gate、Structured PRD、Coverage Matrix与当前图片证据。"
+    },
+    {
+      "example_id": "AE-063",
+      "source_gate_ids": [
+        "TG-010"
+      ],
+      "source_rule_ids": [
+        "OBJ-009"
+      ],
+      "coverage_refs": [],
+      "title": "业务结果：purchase_alert_recipient; data_source_constraint; data_source=盒子后台管理员列表（场景2）",
+      "given": [
+        "执行该业务规则所需的合法前置数据已准备完成。"
+      ],
+      "when": [
+        "用户或管理员完成来源规则对应的操作。"
+      ],
+      "then": [
+        "最终业务状态与来源规则一致：purchase_alert_recipient; data_source_constraint; data_source=盒子后台管理员列表。"
+      ],
+      "verification_side": "B端写侧",
+      "oracle_strength": "business_behavior",
+      "confidence": "confirmed",
+      "source_trace": "来源：FIXTURE-CONFIG-001 Testability Gate、Structured PRD、Coverage Matrix与当前图片证据。"
+    },
+    {
+      "example_id": "AE-064",
+      "source_gate_ids": [
+        "TG-028"
+      ],
+      "source_rule_ids": [
+        "OBJ-010"
+      ],
+      "coverage_refs": [
+        "COV-EX-0077"
+      ],
+      "title": "业务结果：cloud_machine_type; data_source_constraint; data_source=盒子现有云机类型（场景2）",
+      "given": [
+        "执行该业务规则所需的合法前置数据已准备完成。"
+      ],
+      "when": [
+        "用户或管理员完成来源规则对应的操作。"
+      ],
+      "then": [
+        "最终业务状态与来源规则一致：cloud_machine_type; data_source_constraint; data_source=盒子现有云机类型。"
+      ],
+      "verification_side": "B端写侧",
+      "oracle_strength": "business_behavior",
+      "confidence": "confirmed",
+      "source_trace": "来源：FIXTURE-CONFIG-001 Testability Gate、Structured PRD、Coverage Matrix与当前图片证据。"
+    },
+    {
+      "example_id": "AE-065",
+      "source_gate_ids": [
+        "TG-029"
+      ],
+      "source_rule_ids": [
+        "OBJ-011"
+      ],
+      "coverage_refs": [
+        "COV-EX-0076"
+      ],
+      "title": "业务结果：promotion_image; value_constraint（场景2）",
+      "given": [
+        "执行该业务规则所需的合法前置数据已准备完成。"
+      ],
+      "when": [
+        "用户或管理员完成来源规则对应的操作。"
+      ],
+      "then": [
+        "最终业务状态与来源规则一致：promotion_image; value_constraint。"
+      ],
+      "verification_side": "B端写侧",
+      "oracle_strength": "business_behavior",
+      "confidence": "confirmed",
+      "source_trace": "来源：FIXTURE-CONFIG-001 Testability Gate、Structured PRD、Coverage Matrix与当前图片证据。"
+    },
+    {
+      "example_id": "AE-066",
+      "source_gate_ids": [
+        "TG-030"
+      ],
+      "source_rule_ids": [
+        "OBJ-012"
+      ],
+      "coverage_refs": [],
+      "title": "业务结果：promotion_slogan; value_constraint（场景2）",
+      "given": [
+        "执行该业务规则所需的合法前置数据已准备完成。"
+      ],
+      "when": [
+        "用户或管理员完成来源规则对应的操作。"
+      ],
+      "then": [
+        "最终业务状态与来源规则一致：promotion_slogan; value_constraint。"
+      ],
+      "verification_side": "B端写侧",
+      "oracle_strength": "business_behavior",
+      "confidence": "confirmed",
+      "source_trace": "来源：FIXTURE-CONFIG-001 Testability Gate、Structured PRD、Coverage Matrix与当前图片证据。"
+    },
+    {
+      "example_id": "AE-067",
+      "source_gate_ids": [
+        "TG-031"
+      ],
+      "source_rule_ids": [
+        "OBJ-013"
+      ],
+      "coverage_refs": [],
+      "title": "业务结果：performance_parameters; value_constraint（场景2）",
+      "given": [
+        "执行该业务规则所需的合法前置数据已准备完成。"
+      ],
+      "when": [
+        "用户或管理员完成来源规则对应的操作。"
+      ],
+      "then": [
+        "最终业务状态与来源规则一致：performance_parameters; value_constraint。"
+      ],
+      "verification_side": "C端读侧",
+      "oracle_strength": "business_behavior",
+      "confidence": "confirmed",
+      "source_trace": "来源：FIXTURE-CONFIG-001 Testability Gate、Structured PRD、Coverage Matrix与当前图片证据。"
+    },
+    {
+      "example_id": "AE-068",
+      "source_gate_ids": [
+        "TG-049"
+      ],
+      "source_rule_ids": [
+        "COV-EX-0050"
+      ],
+      "coverage_refs": [],
+      "title": "业务结果：全新版和常规版两个Tab均可见、可切换并展示对应内容（场景2）",
+      "given": [
+        "执行该业务规则所需的合法前置数据已准备完成。"
+      ],
+      "when": [
+        "用户或管理员完成来源规则对应的操作。"
+      ],
+      "then": [
+        "最终业务状态与来源规则一致：全新版和常规版两个Tab均可见、可切换并展示对应内容。"
+      ],
+      "verification_side": "C端读侧",
+      "oracle_strength": "business_behavior",
+      "confidence": "confirmed",
+      "source_trace": "来源：FIXTURE-CONFIG-001 Testability Gate、Structured PRD、Coverage Matrix与当前图片证据。"
+    },
+    {
+      "example_id": "AE-069",
+      "source_gate_ids": [
+        "TG-050"
+      ],
+      "source_rule_ids": [
+        "COV-EX-0060"
+      ],
+      "coverage_refs": [],
+      "title": "业务结果：后台未配置特殊区商品时，C端隐藏整个特价专区（场景2）",
+      "given": [
+        "执行该业务规则所需的合法前置数据已准备完成。"
+      ],
+      "when": [
+        "用户或管理员完成来源规则对应的操作。"
+      ],
+      "then": [
+        "最终业务状态与来源规则一致：后台未配置特殊区商品时，C端隐藏整个特价专区。"
+      ],
+      "verification_side": "C端读侧",
+      "oracle_strength": "business_behavior",
+      "confidence": "confirmed",
+      "source_trace": "来源：FIXTURE-CONFIG-001 Testability Gate、Structured PRD、Coverage Matrix与当前图片证据。"
+    },
+    {
+      "example_id": "AE-070",
+      "source_gate_ids": [
+        "TG-051"
+      ],
+      "source_rule_ids": [
+        "COV-EX-0067"
+      ],
+      "coverage_refs": [],
+      "title": "业务结果：库存不足时同步隐藏商品、停止分配云机并发送告警（场景2）",
+      "given": [
+        "执行该业务规则所需的合法前置数据已准备完成。"
+      ],
+      "when": [
+        "用户或管理员完成来源规则对应的操作。"
+      ],
+      "then": [
+        "最终业务状态与来源规则一致：库存不足时同步隐藏商品、停止分配云机并发送告警。"
+      ],
+      "verification_side": "B端写侧与列表读侧",
+      "oracle_strength": "business_behavior",
+      "confidence": "confirmed",
+      "source_trace": "来源：FIXTURE-CONFIG-001 Testability Gate、Structured PRD、Coverage Matrix与当前图片证据。"
+    },
+    {
+      "example_id": "AE-071",
+      "source_gate_ids": [
+        "TG-052"
+      ],
+      "source_rule_ids": [
+        "COV-EX-0070"
+      ],
+      "coverage_refs": [],
+      "title": "业务结果：所有云机类型均需配置宣传内容且云机类型不可重复（场景2）",
+      "given": [
+        "执行该业务规则所需的合法前置数据已准备完成。"
+      ],
+      "when": [
+        "用户或管理员完成来源规则对应的操作。"
+      ],
+      "then": [
+        "最终业务状态与来源规则一致：所有云机类型均需配置宣传内容且云机类型不可重复。"
+      ],
+      "verification_side": "服务端通知侧",
+      "oracle_strength": "business_behavior",
+      "confidence": "confirmed",
+      "source_trace": "来源：FIXTURE-CONFIG-001 Testability Gate、Structured PRD、Coverage Matrix与当前图片证据。"
+    },
+    {
+      "example_id": "AE-072",
+      "source_gate_ids": [
+        "TG-015"
+      ],
+      "source_rule_ids": [
+        "FR-盒子管理后台-云手机商品管理-添加-商品区与库存规则说明表-01"
+      ],
+      "coverage_refs": [],
+      "title": "跨端联动：库存小于等于预警值时，C端隐藏商品、不分配云机并发送库存不足通知（场景2）",
+      "given": [
+        "B端配置、服务端数据和C端商品状态均已准备。"
+      ],
+      "when": [
+        "触发来源规则对应的配置保存、库存变化或数据生成。"
+      ],
+      "then": [
+        "B端、服务端与C端的可观察结果保持一致：库存小于等于预警值时，C端隐藏商品、不分配云机并发送库存不足通知。"
+      ],
+      "verification_side": "B端列表与C端读侧",
+      "oracle_strength": "linkage",
+      "confidence": "confirmed",
+      "source_trace": "来源：FIXTURE-CONFIG-001 Testability Gate、Structured PRD、Coverage Matrix与当前图片证据。"
+    },
+    {
+      "example_id": "AE-073",
+      "source_gate_ids": [
+        "TG-015"
+      ],
+      "source_rule_ids": [
+        "FR-盒子管理后台-云手机商品管理-添加-商品区与库存规则说明表-01"
+      ],
+      "coverage_refs": [],
+      "title": "跨端联动：库存小于等于预警值时，C端隐藏商品、不分配云机并发送库存不足通知（场景3）",
+      "given": [
+        "B端配置、服务端数据和C端商品状态均已准备。"
+      ],
+      "when": [
+        "触发来源规则对应的配置保存、库存变化或数据生成。"
+      ],
+      "then": [
+        "B端、服务端与C端的可观察结果保持一致：库存小于等于预警值时，C端隐藏商品、不分配云机并发送库存不足通知。"
+      ],
+      "verification_side": "服务端与C端读侧",
+      "oracle_strength": "linkage",
+      "confidence": "confirmed",
+      "source_trace": "来源：FIXTURE-CONFIG-001 Testability Gate、Structured PRD、Coverage Matrix与当前图片证据。"
+    },
+    {
+      "example_id": "AE-074",
+      "source_gate_ids": [
+        "TG-027"
+      ],
+      "source_rule_ids": [
+        "FR-盒子管理后台-云手机商品管理-添加-商品区与库存规则说明表-13"
+      ],
+      "coverage_refs": [],
+      "title": "跨端联动：配置ID、商品名称、云机类型、云机服务时长、通知时间、通知人由配置或系统生成（场景2）",
+      "given": [
+        "B端配置、服务端数据和C端商品状态均已准备。"
+      ],
+      "when": [
+        "触发来源规则对应的配置保存、库存变化或数据生成。"
+      ],
+      "then": [
+        "B端、服务端与C端的可观察结果保持一致：配置ID、商品名称、云机类型、云机服务时长、通知时间、通知人由配置或系统生成。"
+      ],
+      "verification_side": "B端写侧与服务端",
+      "oracle_strength": "linkage",
+      "confidence": "confirmed",
+      "source_trace": "来源：FIXTURE-CONFIG-001 Testability Gate、Structured PRD、Coverage Matrix与当前图片证据。"
+    },
+    {
+      "example_id": "AE-075",
+      "source_gate_ids": [
+        "TG-033"
+      ],
+      "source_rule_ids": [
+        "FR-盒子管理后台-编辑宣传内容-宣传内容编辑表单-02"
+      ],
+      "coverage_refs": [],
+      "title": "提示展示：最多上传5张，支持gif/jpg/jpeg/png，单张最大500K，建议尺寸1008*160（场景2）",
+      "given": [
+        "管理员已进入宣传内容配置区域。"
+      ],
+      "when": [
+        "查看上传控件旁的格式、大小和尺寸说明。"
+      ],
+      "then": [
+        "页面展示来源中的建议或提示文案：最多上传5张，支持gif/jpg/jpeg/png，单张最大500K，建议尺寸1008*160；建议内容不作为提交结果判定。"
+      ],
+      "verification_side": "B端写侧",
+      "oracle_strength": "soft_display",
+      "confidence": "confirmed",
+      "source_trace": "来源：FIXTURE-CONFIG-001 Testability Gate、Structured PRD、Coverage Matrix与当前图片证据。"
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "schema_version": "1.1.0",
+  "record_type": "result",
+  "action_id": "R4-GRA-DF002-PREPARE",
+  "request_sha256": "e891c5633f349e3d9a2036a0ba73485321ecf4deef71b78e68ea3b4db3cb11aa",
+  "execution_context": {
+    "run_id": "RUN-R4-GRAFANA-133083",
+    "actor": "codex-agent",
+    "provider": "openai"
+  },
+  "observation": {
+    "ok": true,
+    "action_type": "prepare_feedback_application",
+    "result": {
+      "status": "prepared",
+      "snapshot_path": ".generation/feedback_applications/DF-002.before.json",
+      "target_layer": "testability_gate",
+      "targets": [
+        "acceptance/testability_gate.json"
+      ]
+    }
+  },
+  "recorded_at": "2026-09-22T04:38:24.817427+00:00"
+}

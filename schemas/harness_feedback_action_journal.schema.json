@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "AI Test Pipeline Feedback Action Journal Record",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "record_type",
+    "action_id",
+    "request_sha256",
+    "recorded_at"
+  ],
+  "properties": {
+    "schema_version": { "type": "string", "enum": ["1.0.0", "1.1.0"] },
+    "record_type": { "type": "string", "enum": ["intent", "result"] },
+    "action_id": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$"
+    },
+    "request_sha256": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+    "execution_context": {
+      "type": "object",
+      "required": ["run_id", "actor", "provider"],
+      "properties": {
+        "run_id": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]*$"
+        },
+        "actor": { "type": "string", "minLength": 1 },
+        "provider": { "type": "string", "minLength": 1 }
+      },
+      "additionalProperties": false
+    },
+    "action": { "type": "object" },
+    "observation": { "type": "object" },
+    "recorded_at": { "type": "string", "minLength": 1 }
+  },
+  "additionalProperties": false
+}

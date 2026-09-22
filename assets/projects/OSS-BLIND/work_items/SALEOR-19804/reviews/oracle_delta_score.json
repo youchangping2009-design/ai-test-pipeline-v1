@@ -1,0 +1,154 @@
+{
+  "project_code": "OSS-BLIND",
+  "work_item_id": "SALEOR-19804",
+  "generated_at": "2026-09-22T07:38:31",
+  "metric_scope": "post_generation_oracle_review_only",
+  "oracle": {
+    "source_url": "https://github.com/saleor/saleor/pull/19804",
+    "head_sha": "785e65384379a3ba8bf3d0231dfe6014eedab03a"
+  },
+  "oracle_assertion_count": 6,
+  "assertion_disposition_counts": {
+    "covered": 6,
+    "missing": 0,
+    "partial": 0
+  },
+  "oracle_coverage_rate": 1.0,
+  "oracle_scope_metrics": {
+    "implementation": {
+      "assertion_count": 1,
+      "assertion_disposition_counts": {
+        "covered": 1,
+        "missing": 0,
+        "partial": 0
+      },
+      "coverage_rate": 1.0
+    },
+    "requirement": {
+      "assertion_count": 5,
+      "assertion_disposition_counts": {
+        "covered": 5,
+        "missing": 0,
+        "partial": 0
+      },
+      "coverage_rate": 1.0
+    },
+    "risk": {
+      "assertion_count": 0,
+      "assertion_disposition_counts": {
+        "covered": 0,
+        "missing": 0,
+        "partial": 0
+      },
+      "coverage_rate": null
+    }
+  },
+  "requirement_oracle_coverage_rate": 1.0,
+  "implementation_oracle_coverage_rate": 1.0,
+  "risk_oracle_coverage_rate": null,
+  "testcase_count": 9,
+  "testcase_disposition_counts": {
+    "context_overreach": 0,
+    "direct_match": 8,
+    "requirement_regression": 1
+  },
+  "testcase_relevance_rate": 1.0,
+  "assertions": [
+    {
+      "assertion_id": "OA-001",
+      "summary": "追加当前批次且保留历史标签关系",
+      "disposition": "covered",
+      "testcase_ids": [
+        "OSS-BLIND-GIFTCARDBULK-BULKCREATE-API-FL-001"
+      ],
+      "oracle_scope": "requirement"
+    },
+    {
+      "assertion_id": "OA-002",
+      "summary": "连续批次使用相同标签集合",
+      "disposition": "covered",
+      "testcase_ids": [
+        "OSS-BLIND-GIFTCARDBULK-BULKCREATE-API-FL-003"
+      ],
+      "oracle_scope": "requirement"
+    },
+    {
+      "assertion_id": "OA-003",
+      "summary": "连续批次使用部分重叠标签集合",
+      "disposition": "covered",
+      "testcase_ids": [
+        "OSS-BLIND-GIFTCARDBULK-BULKCREATE-API-FL-003"
+      ],
+      "oracle_scope": "requirement"
+    },
+    {
+      "assertion_id": "OA-004",
+      "summary": "连续批次使用完全不同标签集合",
+      "disposition": "covered",
+      "testcase_ids": [
+        "OSS-BLIND-GIFTCARDBULK-BULKCREATE-API-FL-003"
+      ],
+      "oracle_scope": "requirement"
+    },
+    {
+      "assertion_id": "OA-005",
+      "summary": "标签大小写归一、重复输入去重且仅新增一个规范化标签",
+      "oracle_scope": "implementation",
+      "disposition": "covered",
+      "testcase_ids": [
+        "OSS-BLIND-GIFTCARDBULK-BULKCREATE-API-FL-005",
+        "OSS-BLIND-GIFTCARDBULK-BULKCREATE-API-DV-006",
+        "OSS-BLIND-GIFTCARDBULK-BULKCREATE-API-FL-007"
+      ]
+    },
+    {
+      "assertion_id": "OA-006",
+      "summary": "响应 count、errors 与新卡标签集合正确",
+      "disposition": "covered",
+      "testcase_ids": [
+        "OSS-BLIND-GIFTCARDBULK-BULKCREATE-API-FL-002",
+        "OSS-BLIND-GIFTCARDBULK-BULKCREATE-API-FL-004",
+        "OSS-BLIND-GIFTCARDBULK-BULKCREATE-API-DV-005"
+      ],
+      "oracle_scope": "requirement"
+    }
+  ],
+  "testcase_assessments": [
+    {
+      "testcase_id": "OSS-BLIND-GIFTCARDBULK-BULKCREATE-API-FL-001",
+      "disposition": "direct_match"
+    },
+    {
+      "testcase_id": "OSS-BLIND-GIFTCARDBULK-BULKCREATE-API-FL-002",
+      "disposition": "direct_match"
+    },
+    {
+      "testcase_id": "OSS-BLIND-GIFTCARDBULK-BULKCREATE-API-FL-003",
+      "disposition": "direct_match"
+    },
+    {
+      "testcase_id": "OSS-BLIND-GIFTCARDBULK-BULKCREATE-API-FL-004",
+      "disposition": "direct_match"
+    },
+    {
+      "testcase_id": "OSS-BLIND-GIFTCARDBULK-BULKCREATE-API-DV-005",
+      "disposition": "direct_match"
+    },
+    {
+      "testcase_id": "OSS-BLIND-GIFTCARDBULK-BULKCREATE-API-PM-001",
+      "disposition": "requirement_regression"
+    },
+    {
+      "testcase_id": "OSS-BLIND-GIFTCARDBULK-BULKCREATE-API-FL-005",
+      "disposition": "direct_match"
+    },
+    {
+      "testcase_id": "OSS-BLIND-GIFTCARDBULK-BULKCREATE-API-DV-006",
+      "disposition": "direct_match"
+    },
+    {
+      "testcase_id": "OSS-BLIND-GIFTCARDBULK-BULKCREATE-API-FL-007",
+      "disposition": "direct_match"
+    }
+  ]
+}

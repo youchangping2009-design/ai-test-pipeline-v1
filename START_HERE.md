@@ -93,6 +93,7 @@
 - 输入输出契约
 - 真源与兼容层
 - 统一校验和回归入口
+- 过程文档写哪里：当前任务看 `docs/roadmap/NEXT_ACTION.md`，决策看 `DECISION_LOG.md`，阻塞看 `HUMAN_ACTION_REQUIRED.md`，阶段流水账只追加到根目录 `PROGRESS.md` 文末
 
 ### 平台维护人
 
@@ -135,6 +136,10 @@
 - `design/verification_responsibility_map.md` / `.json` 明确 B端 / C端 / API / 风险责任
 - `design/test_design_matrix.md` / `.json` 是 L 档工作项的测试设计矩阵
 - `design/design_feedback.md` / `.json` 承接 code review 映证反馈，不直接覆盖 testcase
+- 新工作项的 `applied` design feedback 必须由 `design/feedback_application.json` 记录目标设计层与前后 SHA-256；旧 manifest 未启用该策略时按 legacy compatibility 保留，不补造历史哈希
+- 回灌前先运行 `scripts/manage_feedback_application.py prepare` 捕获目标设计层 baseline，修改完成后运行 `record`；工具会拒绝覆盖既有快照、目标层越界、无实际变更和 prepare 后反馈内容漂移
+- Agent 回灌必须走 `scripts/run_work_item_pipeline.py feedback-action`：只开放 prepare、写入已冻结设计产物、record 三个动作；状态迁移只能由 record 完成，不能通过 artifact proposal 直接写 `design_feedback.json`
+- `feedback-action` 必须由受信调用侧显式传入已存在的 Harness `run_id`、`actor` 与 `provider`。新工作项的 intent/result 会绑定同一执行上下文和请求哈希；`audit-feedback-actions`、`audit-run`、Review 和 strict 会重放校验，旧 1.0 journal 只按 legacy compatibility 处理
 
 ### Traceability
 
@@ -146,6 +151,9 @@
 
 - `reviews/quality_report.json` 是质量报告真源
 - `reviews/review_record.md`、`feishu_ready.md` 是阅读友好型派生产物
+- 公开盲测可在资产冻结后使用 `reviews/oracle_delta_input.json` 与 `oracle_delta_score.json` 量化 oracle 覆盖率和用例范围准确率；assertion 可用 `oracle_scope=requirement/implementation/risk` 分层计分，缺省按 `requirement` 兼容；oracle 不得进入生成输入。
+- Harness Review 是确定性校验阶段：始终校验 `design_feedback` 与 feedback application 生命周期；存在 Oracle 资产时，还会校验冻结哈希、Oracle 输入、当前 testcase 与评分结果一致性。
+- 新工作项默认要求代码评审或 run-scoped Review disposition。明确没有代码输入时，由人工执行 `mark-review-not-applicable` 并记录原因；Review 的确定性校验仍会运行，通过后阶段以 `skipped/not_applicable` 留痕，再进入 strict gate。
 
 ## 最小使用方式
 
@@ -243,12 +251,12 @@ work_items/
   --strict
 ```
 
-当前 PT083 正式工作项已作为 strict 正向样例：
+下面命令仅演示如何显式校验一个工作项；请替换为实际项目编码和工作项 ID，项目基线不会默认选择任何业务需求样本：
 
 ```bash
 /usr/bin/python3 scripts/validate_work_item.py \
-  --project-code WX-YGJ \
-  --work-item-id PT083 \
+  --project-code DEMO \
+  --work-item-id REQ-001 \
   --skip-code-reviews \
   --strict
 ```
@@ -276,8 +284,8 @@ work_items/
 
 ```bash
 /usr/bin/python3 scripts/run_work_item_pipeline.py start \
-  --project-code WX-YGJ \
-  --work-item-id PT083 \
+  --project-code DEMO \
+  --work-item-id REQ-001 \
   --work-item-level M \
   --strict \
   --stop-at case_plan
@@ -287,12 +295,12 @@ work_items/
 
 ```bash
 /usr/bin/python3 scripts/run_work_item_pipeline.py status \
-  --project-code WX-YGJ \
-  --work-item-id PT083
+  --project-code DEMO \
+  --work-item-id REQ-001
 
 /usr/bin/python3 scripts/run_work_item_pipeline.py resume \
-  --project-code WX-YGJ \
-  --work-item-id PT083
+  --project-code DEMO \
+  --work-item-id REQ-001
 ```
 
 新工作项首次通过 `requirement_intake` 后会停在 `waiting_approval`。人工核对当前内容后执行：
@@ -313,7 +321,7 @@ work_items/
 
 拒绝使用 `reject-requirement`。若进程在 receipt 已写、event/state 尚未完成时退出，使用 `recover-requirement-approval` 幂等补全。摘要、source manifest、原始输入或需求版本变化后，旧批准立即失效并重新进入 `waiting_approval`；仅修改 manifest 的运行期/派生字段不会撤销批准。CLI 必须显式传 reviewer；CI 环境不能执行批准。
 
-阶段推进继续复用同一 `run_id`：Case Plan 阶段不依赖未来 `testcases_main.md`，Testcases 阶段不依赖未刷新的 Bundle；`testcase_bundle.json` 必须在 Traceability 前刷新并校验。无代码 M 档可在工作项 strict 使用 `--skip-code-reviews`，但当前 Harness run 尚无 Review `not_applicable` disposition。
+阶段推进继续复用同一 `run_id`：Case Plan 阶段不依赖未来 `testcases_main.md`，Testcases 阶段不依赖未刷新的 Bundle；`testcase_bundle.json` 必须在 Traceability 前刷新并校验。无代码工作项先由人工执行 `mark-review-not-applicable`，Harness 校验 disposition 与 Review 后才会在 strict 中使用 `--skip-code-reviews`；不得直接把待评审模板当作 Review 已完成。
 
 运行状态、阶段日志、事件流与诊断写入 `.generation/runs/<RUN_ID>/`。这些是过程产物，不是真源；当前模型循环、自动 repair、Hook 与分阶段提交仍不在此入口中。
 
@@ -331,8 +339,8 @@ P3 仅开放 `testcases/case_plan.json` 单阶段试点。模型适配器通过 
 
 ```bash
 /usr/bin/python3 scripts/run_work_item_pipeline.py agent-case-plan \
-  --project-code WX-YGJ \
-  --work-item-id PT083 \
+  --project-code DEMO \
+  --work-item-id REQ-001 \
   --work-item-level M \
   --provider-command-json '["/path/to/trusted-model-adapter"]'
 ```
@@ -343,8 +351,8 @@ P3 仅开放 `testcases/case_plan.json` 单阶段试点。模型适配器通过 
 
 ```bash
 /usr/bin/python3 scripts/run_work_item_pipeline.py approve-case-plan \
-  --project-code WX-YGJ \
-  --work-item-id PT083 \
+  --project-code DEMO \
+  --work-item-id REQ-001 \
   --run-id <RUN_ID> \
   --approval-id <APPROVAL_ID> \
   --candidate-hash <CANDIDATE_SHA256> \
@@ -357,8 +365,8 @@ P3 仅开放 `testcases/case_plan.json` 单阶段试点。模型适配器通过 
 
 ```bash
 /usr/bin/python3 scripts/run_work_item_pipeline.py recover-case-plan \
-  --project-code WX-YGJ \
-  --work-item-id PT083 \
+  --project-code DEMO \
+  --work-item-id REQ-001 \
   --run-id <RUN_ID>
 ```
 
@@ -374,8 +382,8 @@ command adapter 可返回 `{action, usage, runtime}` envelope。启用 token/cos
 
 ```bash
 /usr/bin/python3 scripts/run_work_item_pipeline.py agent-case-plan \
-  --project-code WX-YGJ \
-  --work-item-id PT083 \
+  --project-code DEMO \
+  --work-item-id REQ-001 \
   --provider-command-json '["/path/to/trusted-model-adapter"]' \
   --require-usage \
   --max-wall-seconds 600 \
@@ -393,8 +401,8 @@ command adapter 可返回 `{action, usage, runtime}` envelope。启用 token/cos
 
 ```bash
 /usr/bin/python3 scripts/run_work_item_pipeline.py audit-run \
-  --project-code WX-YGJ \
-  --work-item-id PT083 \
+  --project-code DEMO \
+  --work-item-id REQ-001 \
   --run-id <RUN_ID>
 ```
 
@@ -402,8 +410,8 @@ command adapter 可返回 `{action, usage, runtime}` envelope。启用 token/cos
 
 ```bash
 /usr/bin/python3 scripts/run_work_item_pipeline.py reject-case-plan \
-  --project-code WX-YGJ \
-  --work-item-id PT083 \
+  --project-code DEMO \
+  --work-item-id REQ-001 \
   --run-id <RUN_ID> \
   --approval-id <APPROVAL_ID> \
   --rejected-by <REVIEWER> \
@@ -430,8 +438,8 @@ Hook 配置固定在 `config/harness_hooks.json`。配置只能引用仓库内�
 
 ```bash
 /usr/bin/python3 scripts/run_hook_dispatcher.py \
-  --project-code WX-YGJ \
-  --work-item-id PT083 \
+  --project-code DEMO \
+  --work-item-id REQ-001 \
   --run-id <RUN_ID> \
   --event post_stage \
   --stage-id strict_gate
@@ -445,8 +453,8 @@ Hook 配置固定在 `config/harness_hooks.json`。配置只能引用仓库内�
 
 ```bash
 /usr/bin/python3 scripts/run_work_item_pipeline.py generate \
-  --project-code WX-YGJ \
-  --work-item-id PT083 \
+  --project-code DEMO \
+  --work-item-id REQ-001 \
   --run-id <RUN_ID> \
   --work-item-level M \
   --provider existing
@@ -456,8 +464,8 @@ Hook 配置固定在 `config/harness_hooks.json`。配置只能引用仓库内�
 
 ```bash
 /usr/bin/python3 scripts/run_work_item_pipeline.py generate \
-  --project-code WX-YGJ \
-  --work-item-id PT083 \
+  --project-code DEMO \
+  --work-item-id REQ-001 \
   --provider command \
   --provider-command-json '["/path/to/trusted-generation-adapter"]'
 ```
@@ -466,8 +474,8 @@ Hook 配置固定在 `config/harness_hooks.json`。配置只能引用仓库内�
 
 ```bash
 /usr/bin/python3 scripts/run_work_item_pipeline.py approve-generation \
-  --project-code WX-YGJ \
-  --work-item-id PT083 \
+  --project-code DEMO \
+  --work-item-id REQ-001 \
   --run-id <RUN_ID> \
   --approval-id <APPROVAL_ID> \
   --candidate-hash <CANDIDATE_SHA256> \
@@ -478,8 +486,8 @@ Hook 配置固定在 `config/harness_hooks.json`。配置只能引用仓库内�
 
 ```bash
 /usr/bin/python3 scripts/run_work_item_pipeline.py recover-generation \
-  --project-code WX-YGJ \
-  --work-item-id PT083 \
+  --project-code DEMO \
+  --work-item-id REQ-001 \
   --run-id <RUN_ID> \
   --force-unlock
 ```
@@ -497,8 +505,8 @@ Hook 配置固定在 `config/harness_hooks.json`。配置只能引用仓库内�
 ```
 
 - `smoke`：3 个快速代表 fixture，用于本地高频反馈。
-- `regression`：全部 6 个 fixture 和 57 个规则/Validator 检查，用于 PR 门禁。
-- `golden`：在 regression 基础上执行全量 Harness 单元测试和 PT083 M strict，并对比 `evals/baselines/golden.json`。
+- `regression`：执行 `evals/eval_suite.json` 当前登记的全部通用 fixture 与规则/Validator 检查，用于 PR 门禁。
+- `golden`：在 regression 基础上对比 `evals/baselines/golden.json` 中的通用 fixture 快照，不默认执行业务工作项 strict。
 
 报告默认写入 `.generation/evals/<TIER>-latest.json`，包含逐 fixture 耗时、检查数、预期失败数、内容指纹、命令结果和 baseline 差异。任何 fixture/命令失败、负向样例意外通过、指标变化、fixture 指纹漂移或 baseline 缺失都会使门禁非零退出。
 
@@ -516,8 +524,8 @@ Golden baseline 不会自动刷新。只有在变更已评审且全部检查通�
 
 ```bash
 /usr/bin/python3 scripts/run_work_item_pipeline.py agent-roles \
-  --project-code WX-YGJ \
-  --work-item-id PT083 \
+  --project-code DEMO \
+  --work-item-id REQ-001 \
   --work-item-level M \
   --provider-command-json '["/path/to/trusted-role-adapter"]' \
   --require-usage
@@ -543,8 +551,8 @@ Golden baseline 不会自动刷新。只有在变更已评审且全部检查通�
 
 ```bash
 /usr/bin/python3 scripts/run_work_item_pipeline.py approve-roles \
-  --project-code WX-YGJ \
-  --work-item-id PT083 \
+  --project-code DEMO \
+  --work-item-id REQ-001 \
   --run-id <RUN_ID> \
   --approval-id <APPROVAL_ID> \
   --candidate-hash <CANDIDATE_SHA256> \
@@ -569,8 +577,8 @@ Case Reviewer 默认仍使用单 Reviewer。需要启用 P5-001 三路并行评�
 
 ```bash
 /usr/bin/python3 scripts/run_work_item_pipeline.py recover-roles \
-  --project-code WX-YGJ \
-  --work-item-id PT083 \
+  --project-code DEMO \
+  --work-item-id REQ-001 \
   --run-id <RUN_ID> \
   --recovered-by <OPERATOR> \
   --reason <CRASH_REASON> \
@@ -583,8 +591,8 @@ Case Reviewer 默认仍使用单 Reviewer。需要启用 P5-001 三路并行评�
 
 ```bash
 /usr/bin/python3 scripts/run_harness_closeout.py \
-  --project-code WX-YGJ \
-  --work-item-id PT083 \
+  --project-code DEMO \
+  --work-item-id REQ-001 \
   --work-item-level M
 ```
 

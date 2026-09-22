@@ -80,12 +80,15 @@ def build_evidence_feature_index(evidence: dict[str, Any]) -> dict[tuple[str, st
 
 def infer_rule_id(entry: dict[str, Any]) -> str:
     rule_name = str(entry.get("rule_name", "")).strip()
-    if re.fullmatch(r"ER-\d+", rule_name):
-        return rule_name
     for ref in entry.get("structured_refs", []):
-        match = re.search(r"requirement_info\.explicit_rules\.(ER-\d+)", str(ref))
+        match = re.search(
+            r"(?:^|\.)explicit_rules\.([A-Za-z0-9_-]+)(?:$|[.\[])",
+            str(ref),
+        )
         if match:
             return match.group(1)
+    if re.fullmatch(r"[A-Z][A-Z0-9_-]*\d+", rule_name):
+        return rule_name
     module_name = str(entry.get("module_name", "")).strip()
     feature_name = str(entry.get("feature_name", "")).strip()
     field_name = str(entry.get("field_name", "")).strip()

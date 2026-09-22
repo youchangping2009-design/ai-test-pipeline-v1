@@ -1,0 +1,171 @@
+{
+  "project_code": "OSS-BLIND-R3",
+  "work_item_id": "DJANGO-21801",
+  "generated_at": "2026-09-21T22:15:59",
+  "generated_from": [
+    "coverage/coverage_matrix.json",
+    "evidence/evidence_inventory.json",
+    "testcases/testcases_main.md"
+  ],
+  "summary": {
+    "record_count": 7,
+    "invalid_record_count": 0,
+    "false_traceability_rate": 0.0
+  },
+  "records": [
+    {
+      "record_id": "CFT-0001",
+      "rule_id": "MySQL 索引迁移::删除普通索引并保留唯一约束::happy_path_combo",
+      "coverage_id": "COV-EX-0001",
+      "testcase_id": "OSS-BLIND-R3-DJANGOMIG-INDEXSCHEMA-SERVER-DV-001",
+      "testcase_title": "模型变更仅移除字段普通索引声明",
+      "source_origin": "explicit_rule",
+      "coverage_level": "business",
+      "emit_mode": "main_testcase",
+      "fidelity_status": "not_applicable",
+      "evidence_ids": [],
+      "reasoning_refs": [],
+      "structured_targets": [
+        {
+          "target_type": "feature",
+          "module_name": "MySQL 索引迁移",
+          "feature_name": "删除普通索引并保留唯一约束",
+          "field_name": "",
+          "target_name": "迁移差异"
+        }
+      ]
+    },
+    {
+      "record_id": "CFT-0002",
+      "rule_id": "MySQL 索引迁移::删除普通索引并保留唯一约束::happy_path_combo",
+      "coverage_id": "COV-EX-0002",
+      "testcase_id": "OSS-BLIND-R3-DJANGOMIG-INDEXSCHEMA-SERVER-ST-001",
+      "testcase_title": "迁移删除目标排除命名唯一约束",
+      "source_origin": "explicit_rule",
+      "coverage_level": "business",
+      "emit_mode": "main_testcase",
+      "fidelity_status": "not_applicable",
+      "evidence_ids": [],
+      "reasoning_refs": [],
+      "structured_targets": [
+        {
+          "target_type": "feature",
+          "module_name": "MySQL 索引迁移",
+          "feature_name": "删除普通索引并保留唯一约束",
+          "field_name": "",
+          "target_name": "索引选择"
+        }
+      ]
+    },
+    {
+      "record_id": "CFT-0003",
+      "rule_id": "MySQL 索引迁移::删除普通索引并保留唯一约束::happy_path_combo",
+      "coverage_id": "COV-EX-0003",
+      "testcase_id": "OSS-BLIND-R3-DJANGOMIG-INDEXSCHEMA-SERVER-DV-002",
+      "testcase_title": "迁移后普通非唯一索引被删除",
+      "source_origin": "explicit_rule",
+      "coverage_level": "business",
+      "emit_mode": "main_testcase",
+      "fidelity_status": "not_applicable",
+      "evidence_ids": [],
+      "reasoning_refs": [],
+      "structured_targets": [
+        {
+          "target_type": "feature",
+          "module_name": "MySQL 索引迁移",
+          "feature_name": "删除普通索引并保留唯一约束",
+          "field_name": "",
+          "target_name": "迁移后字段上的普通非唯一索引不存在。"
+        }
+      ]
+    },
+    {
+      "record_id": "CFT-0004",
+      "rule_id": "MySQL 索引迁移::删除普通索引并保留唯一约束::happy_path_combo",
+      "coverage_id": "COV-EX-0004",
+      "testcase_id": "OSS-BLIND-R3-DJANGOMIG-INDEXSCHEMA-SERVER-DV-003",
+      "testcase_title": "迁移后命名唯一约束保持存在",
+      "source_origin": "explicit_rule",
+      "coverage_level": "business",
+      "emit_mode": "main_testcase",
+      "fidelity_status": "not_applicable",
+      "evidence_ids": [],
+      "reasoning_refs": [],
+      "structured_targets": [
+        {
+          "target_type": "feature",
+          "module_name": "MySQL 索引迁移",
+          "feature_name": "删除普通索引并保留唯一约束",
+          "field_name": "",
+          "target_name": "迁移后命名唯一约束及其数据库唯一索引仍存在。"
+        }
+      ]
+    },
+    {
+      "record_id": "CFT-0005",
+      "rule_id": "MySQL 索引迁移::删除普通索引并保留唯一约束::happy_path_combo",
+      "coverage_id": "COV-EX-0005",
+      "testcase_id": "OSS-BLIND-R3-DJANGOMIG-INDEXSCHEMA-SERVER-ST-002",
+      "testcase_title": "迁移 SQL 只删除普通非唯一索引",
+      "source_origin": "explicit_rule",
+      "coverage_level": "business",
+      "emit_mode": "main_testcase",
+      "fidelity_status": "not_applicable",
+      "evidence_ids": [],
+      "reasoning_refs": [],
+      "structured_targets": [
+        {
+          "target_type": "feature",
+          "module_name": "MySQL 索引迁移",
+          "feature_name": "删除普通索引并保留唯一约束",
+          "field_name": "",
+          "target_name": "迁移 SQL"
+        }
+      ]
+    },
+    {
+      "record_id": "CFT-0006",
+      "rule_id": "MySQL 索引迁移::删除普通索引并保留唯一约束::happy_path_combo",
+      "coverage_id": "COV-EX-0006",
+      "testcase_id": "OSS-BLIND-R3-DJANGOMIG-INDEXSCHEMA-SERVER-FL-001",
+      "testcase_title": "迁移后重复写入仍受唯一性保护",
+      "source_origin": "explicit_rule",
+      "coverage_level": "business",
+      "emit_mode": "main_testcase",
+      "fidelity_status": "not_applicable",
+      "evidence_ids": [],
+      "reasoning_refs": [],
+      "structured_targets": [
+        {
+          "target_type": "feature",
+          "module_name": "MySQL 索引迁移",
+          "feature_name": "删除普通索引并保留唯一约束",
+          "field_name": "",
+          "target_name": "数据库唯一性"
+        }
+      ]
+    },
+    {
+      "record_id": "CFT-0007",
+      "rule_id": "MySQL 索引迁移::删除普通索引并保留唯一约束::happy_path_combo",
+      "coverage_id": "COV-EX-0007",
+      "testcase_id": "OSS-BLIND-R3-DJANGOMIG-INDEXSCHEMA-SERVER-DV-004",
+      "testcase_title": "迁移前已有合法数据保持不变",
+      "source_origin": "explicit_rule",
+      "coverage_level": "business",
+      "emit_mode": "main_testcase",
+      "fidelity_status": "not_applicable",
+      "evidence_ids": [],
+      "reasoning_refs": [],
+      "structured_targets": [
+        {
+          "target_type": "feature",
+          "module_name": "MySQL 索引迁移",
+          "feature_name": "删除普通索引并保留唯一约束",
+          "field_name": "",
+          "target_name": "既有数据"
+        }
+      ]
+    }
+  ]
+}

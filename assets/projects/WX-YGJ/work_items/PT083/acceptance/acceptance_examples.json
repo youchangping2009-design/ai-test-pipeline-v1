@@ -22,18 +22,18 @@
         "COV-EX-0016",
         "COV-EX-0050"
       ],
-      "title": "约束判定：promotion_slogan; value_constraint",
+      "title": "验证“宣传口号”超过一行时在C端换行展示",
       "given": [
-        "后台管理员已进入对应配置页面，其他必需基础数据均合法。"
+        "对应后台配置或业务数据已准备完成。"
       ],
       "when": [
-        "按边界、必填或格式规则操作“promotion_slogan; value_constraint”所涉及字段。"
+        "用户进入[云挂机购买页]并查看宣传区。"
       ],
       "then": [
-        "系统按来源规则判定并明确反馈：promotion_slogan; value_constraint。"
+        "页面可直接观察到：“宣传口号”超过一行时在C端换行展示。"
       ],
-      "verification_side": "B端写侧",
-      "oracle_strength": "hard_block",
+      "verification_side": "C端读侧",
+      "oracle_strength": "display_only",
       "confidence": "confirmed",
       "source_trace": "来源：PT083 Testability Gate、Structured PRD、Coverage Matrix与当前图片证据。"
     },
@@ -46,18 +46,18 @@
         "OBJ-002"
       ],
       "coverage_refs": [],
-      "title": "约束判定：performance_parameters; value_constraint",
+      "title": "验证“性能参数”超过一行时在C端换行展示",
       "given": [
-        "后台管理员已进入对应配置页面，其他必需基础数据均合法。"
+        "对应后台配置或业务数据已准备完成。"
       ],
       "when": [
-        "按边界、必填或格式规则操作“performance_parameters; value_constraint”所涉及字段。"
+        "用户进入[云挂机购买页]并查看宣传区。"
       ],
       "then": [
-        "系统按来源规则判定并明确反馈：performance_parameters; value_constraint。"
+        "页面可直接观察到：“性能参数”超过一行时在C端换行展示。"
       ],
-      "verification_side": "B端写侧",
-      "oracle_strength": "hard_block",
+      "verification_side": "C端读侧",
+      "oracle_strength": "display_only",
       "confidence": "confirmed",
       "source_trace": "来源：PT083 Testability Gate、Structured PRD、Coverage Matrix与当前图片证据。"
     },
@@ -70,15 +70,15 @@
         "OBJ-003"
       ],
       "coverage_refs": [],
-      "title": "读侧展示：后台未配置特殊区商品时隐藏",
+      "title": "验证“特殊区商品列表”后台未配置特殊区商品时隐藏",
       "given": [
-        "对应后台配置、商品或页面数据已准备完成。"
+        "对应后台配置或业务数据已准备完成。"
       ],
       "when": [
-        "用户打开对应页面或查看对应板块。"
+        "用户进入[云挂机购买页]并查看特价专区。"
       ],
       "then": [
-        "页面可直接观察到来源规则所述结果：后台未配置特殊区商品时隐藏。"
+        "页面可直接观察到：“特殊区商品列表”后台未配置特殊区商品时隐藏。"
       ],
       "verification_side": "C端读侧",
       "oracle_strength": "display_only",
@@ -96,15 +96,15 @@
       "coverage_refs": [
         "COV-EX-0064"
       ],
-      "title": "读侧展示：最多展示4个商品",
+      "title": "验证“特殊区商品列表”最多展示4个商品",
       "given": [
-        "对应后台配置、商品或页面数据已准备完成。"
+        "对应后台配置或业务数据已准备完成。"
       ],
       "when": [
-        "用户打开对应页面或查看对应板块。"
+        "用户进入[云挂机购买页]并查看特价专区。"
       ],
       "then": [
-        "页面可直接观察到来源规则所述结果：最多展示4个商品。"
+        "页面可直接观察到：“特殊区商品列表”最多展示4个商品。"
       ],
       "verification_side": "C端读侧",
       "oracle_strength": "display_only",
@@ -253,18 +253,18 @@
         "COV-AI-0079",
         "COV-EX-0037"
       ],
-      "title": "业务结果：purchase_alert_recipient; data_source_constraint; data_source=盒子后台管理员列表",
+      "title": "验证“购买数量报警通知人”候选项来自盒子后台管理员列表",
       "given": [
-        "执行该业务规则所需的合法前置数据已准备完成。"
+        "对应后台配置或业务数据已准备完成。"
       ],
       "when": [
-        "用户或管理员完成来源规则对应的操作。"
+        "用户进入[盒子管理后台-云手机商品管理-添加]并查看商品添加表单。"
       ],
       "then": [
-        "最终业务状态与来源规则一致：purchase_alert_recipient; data_source_constraint; data_source=盒子后台管理员列表。"
+        "页面可直接观察到：“购买数量报警通知人”候选项来自盒子后台管理员列表。"
       ],
-      "verification_side": "B端写侧",
-      "oracle_strength": "business_behavior",
+      "verification_side": "C端读侧",
+      "oracle_strength": "display_only",
       "confidence": "confirmed",
       "source_trace": "来源：PT083 Testability Gate、Structured PRD、Coverage Matrix与当前图片证据。"
     },
@@ -519,15 +519,15 @@
         "FR-盒子管理后台-云手机商品管理-添加-商品区与库存规则说明表-07"
       ],
       "coverage_refs": [],
-      "title": "读侧展示：已有功能，增加未配置提示；服务时长结束后C端不再展示",
+      "title": "验证“商品展示时间”已有功能，增加未配置状态说明；服务时长结束后C端不再展示",
       "given": [
-        "对应后台配置、商品或页面数据已准备完成。"
+        "对应后台配置或业务数据已准备完成。"
       ],
       "when": [
-        "用户打开对应页面或查看对应板块。"
+        "用户进入[盒子管理后台-云手机商品管理-添加]并查看商品区与库存规则说明表。"
       ],
       "then": [
-        "页面可直接观察到来源规则所述结果：已有功能，增加未配置提示；服务时长结束后C端不再展示。"
+        "页面可直接观察到：“商品展示时间”已有功能，增加未配置状态说明；服务时长结束后C端不再展示。"
       ],
       "verification_side": "C端读侧",
       "oracle_strength": "display_only",
@@ -692,18 +692,18 @@
         "COV-EX-0073",
         "COV-EX-0042"
       ],
-      "title": "业务结果：cloud_machine_type; data_source_constraint; data_source=盒子现有云机类型",
+      "title": "验证“云机类型”候选项来自盒子现有云机类型",
       "given": [
-        "执行该业务规则所需的合法前置数据已准备完成。"
+        "对应后台配置或业务数据已准备完成。"
       ],
       "when": [
-        "用户或管理员完成来源规则对应的操作。"
+        "用户进入[盒子管理后台-编辑宣传内容]并查看宣传内容编辑表单。"
       ],
       "then": [
-        "最终业务状态与来源规则一致：cloud_machine_type; data_source_constraint; data_source=盒子现有云机类型。"
+        "页面可直接观察到：“云机类型”候选项来自盒子现有云机类型。"
       ],
-      "verification_side": "B端写侧",
-      "oracle_strength": "business_behavior",
+      "verification_side": "C端读侧",
+      "oracle_strength": "display_only",
       "confidence": "confirmed",
       "source_trace": "来源：PT083 Testability Gate、Structured PRD、Coverage Matrix与当前图片证据。"
     },
@@ -744,18 +744,18 @@
       "coverage_refs": [
         "COV-EX-0028"
       ],
-      "title": "业务结果：promotion_slogan; value_constraint",
+      "title": "验证“宣传口号”超过一行时在C端换行展示",
       "given": [
-        "执行该业务规则所需的合法前置数据已准备完成。"
+        "对应后台配置或业务数据已准备完成。"
       ],
       "when": [
-        "用户或管理员完成来源规则对应的操作。"
+        "用户进入[盒子管理后台-编辑宣传内容]并查看宣传内容编辑表单。"
       ],
       "then": [
-        "最终业务状态与来源规则一致：promotion_slogan; value_constraint。"
+        "页面可直接观察到：“宣传口号”超过一行时在C端换行展示。"
       ],
-      "verification_side": "B端写侧",
-      "oracle_strength": "business_behavior",
+      "verification_side": "C端读侧",
+      "oracle_strength": "display_only",
       "confidence": "confirmed",
       "source_trace": "来源：PT083 Testability Gate、Structured PRD、Coverage Matrix与当前图片证据。"
     },
@@ -768,18 +768,18 @@
         "OBJ-013"
       ],
       "coverage_refs": [],
-      "title": "业务结果：performance_parameters; value_constraint",
+      "title": "验证“性能参数”超过一行时在C端换行展示",
       "given": [
-        "执行该业务规则所需的合法前置数据已准备完成。"
+        "对应后台配置或业务数据已准备完成。"
       ],
       "when": [
-        "用户或管理员完成来源规则对应的操作。"
+        "用户进入[盒子管理后台-编辑宣传内容]并查看宣传内容编辑表单。"
       ],
       "then": [
-        "最终业务状态与来源规则一致：performance_parameters; value_constraint。"
+        "页面可直接观察到：“性能参数”超过一行时在C端换行展示。"
       ],
-      "verification_side": "B端写侧",
-      "oracle_strength": "business_behavior",
+      "verification_side": "C端读侧",
+      "oracle_strength": "display_only",
       "confidence": "confirmed",
       "source_trace": "来源：PT083 Testability Gate、Structured PRD、Coverage Matrix与当前图片证据。"
     },
@@ -842,18 +842,18 @@
         "FR-盒子管理后台-编辑宣传内容-宣传内容编辑表单-03"
       ],
       "coverage_refs": [],
-      "title": "约束判定：文本长度20个字符；C端超过一行换行展示",
+      "title": "验证“宣传口号”文本长度20个字符；C端超过一行换行展示",
       "given": [
-        "后台管理员已进入对应配置页面，其他必需基础数据均合法。"
+        "对应后台配置或业务数据已准备完成。"
       ],
       "when": [
-        "按边界、必填或格式规则操作“文本长度20个字符；C端超过一行换行展示”所涉及字段。"
+        "用户进入[盒子管理后台-编辑宣传内容]并查看宣传内容编辑表单。"
       ],
       "then": [
-        "系统按来源规则判定并明确反馈：文本长度20个字符；C端超过一行换行展示。"
+        "页面可直接观察到：“宣传口号”文本长度20个字符；C端超过一行换行展示。"
       ],
-      "verification_side": "B端写侧",
-      "oracle_strength": "hard_block",
+      "verification_side": "C端读侧",
+      "oracle_strength": "display_only",
       "confidence": "confirmed",
       "source_trace": "来源：PT083 Testability Gate、Structured PRD、Coverage Matrix与当前图片证据。"
     },
@@ -866,18 +866,18 @@
         "FR-盒子管理后台-编辑宣传内容-宣传内容编辑表单-04"
       ],
       "coverage_refs": [],
-      "title": "约束判定：文本长度20个字符；C端超过一行换行展示",
+      "title": "验证“性能参数”文本长度20个字符；C端超过一行换行展示",
       "given": [
-        "后台管理员已进入对应配置页面，其他必需基础数据均合法。"
+        "对应后台配置或业务数据已准备完成。"
       ],
       "when": [
-        "按边界、必填或格式规则操作“文本长度20个字符；C端超过一行换行展示”所涉及字段。"
+        "用户进入[盒子管理后台-编辑宣传内容]并查看宣传内容编辑表单。"
       ],
       "then": [
-        "系统按来源规则判定并明确反馈：文本长度20个字符；C端超过一行换行展示。"
+        "页面可直接观察到：“性能参数”文本长度20个字符；C端超过一行换行展示。"
       ],
-      "verification_side": "B端写侧",
-      "oracle_strength": "hard_block",
+      "verification_side": "C端读侧",
+      "oracle_strength": "display_only",
       "confidence": "confirmed",
       "source_trace": "来源：PT083 Testability Gate、Structured PRD、Coverage Matrix与当前图片证据。"
     },
@@ -1012,18 +1012,18 @@
         "COV-EX-0050"
       ],
       "coverage_refs": [],
-      "title": "业务结果：全新版和常规版两个Tab均可见、可切换并展示对应内容",
+      "title": "验证“宣传口号”分别覆盖19、20、21个字符，超过一行时C端换行展示",
       "given": [
-        "执行该业务规则所需的合法前置数据已准备完成。"
+        "对应后台配置或业务数据已准备完成。"
       ],
       "when": [
-        "用户或管理员完成来源规则对应的操作。"
+        "用户进入[云挂机购买页]并查看宣传区。"
       ],
       "then": [
-        "最终业务状态与来源规则一致：全新版和常规版两个Tab均可见、可切换并展示对应内容。"
+        "页面可直接观察到：“宣传口号”分别覆盖19、20、21个字符，超过一行时C端换行展示。"
       ],
-      "verification_side": "B端写侧",
-      "oracle_strength": "business_behavior",
+      "verification_side": "C端读侧",
+      "oracle_strength": "display_only",
       "confidence": "confirmed",
       "source_trace": "来源：PT083 Testability Gate、Structured PRD、Coverage Matrix与当前图片证据。"
     },
@@ -1038,18 +1038,18 @@
       "coverage_refs": [
         "COV-EX-0065"
       ],
-      "title": "业务结果：后台未配置特殊区商品时，C端隐藏整个特价专区",
+      "title": "验证相同“盒子内排序”值按创建时间倒序展示",
       "given": [
-        "执行该业务规则所需的合法前置数据已准备完成。"
+        "对应后台配置或业务数据已准备完成。"
       ],
       "when": [
-        "用户或管理员完成来源规则对应的操作。"
+        "用户进入[盒子管理后台-云手机商品管理-添加]并查看商品添加表单。"
       ],
       "then": [
-        "最终业务状态与来源规则一致：后台未配置特殊区商品时，C端隐藏整个特价专区。"
+        "页面可直接观察到：相同“盒子内排序”值按创建时间倒序展示。"
       ],
-      "verification_side": "B端写侧",
-      "oracle_strength": "business_behavior",
+      "verification_side": "C端读侧",
+      "oracle_strength": "display_only",
       "confidence": "confirmed",
       "source_trace": "来源：PT083 Testability Gate、Structured PRD、Coverage Matrix与当前图片证据。"
     },
@@ -1064,18 +1064,18 @@
       "coverage_refs": [
         "COV-EX-0072"
       ],
-      "title": "业务结果：库存不足时同步隐藏商品、停止分配云机并发送告警",
+      "title": "验证“普通区商品列表”普通商品列表保持纵向展示",
       "given": [
-        "执行该业务规则所需的合法前置数据已准备完成。"
+        "对应后台配置或业务数据已准备完成。"
       ],
       "when": [
-        "用户或管理员完成来源规则对应的操作。"
+        "用户进入[云挂机购买页]并查看普通商品列表。"
       ],
       "then": [
-        "最终业务状态与来源规则一致：库存不足时同步隐藏商品、停止分配云机并发送告警。"
+        "页面可直接观察到：“普通区商品列表”普通商品列表保持纵向展示。"
       ],
-      "verification_side": "B端写侧",
-      "oracle_strength": "business_behavior",
+      "verification_side": "C端读侧",
+      "oracle_strength": "display_only",
       "confidence": "confirmed",
       "source_trace": "来源：PT083 Testability Gate、Structured PRD、Coverage Matrix与当前图片证据。"
     },
@@ -1112,18 +1112,18 @@
         "OBJ-001"
       ],
       "coverage_refs": [],
-      "title": "约束判定：promotion_slogan; value_constraint（场景2）",
+      "title": "验证“宣传口号”超过一行时在C端换行展示",
       "given": [
-        "后台管理员已进入对应配置页面，其他必需基础数据均合法。"
+        "对应后台配置或业务数据已准备完成。"
       ],
       "when": [
-        "按边界、必填或格式规则操作“promotion_slogan; value_constraint”所涉及字段。"
+        "用户进入[云挂机购买页]并查看宣传区。"
       ],
       "then": [
-        "系统按来源规则判定并明确反馈：promotion_slogan; value_constraint。"
+        "页面可直接观察到：“宣传口号”超过一行时在C端换行展示。"
       ],
-      "verification_side": "B端写侧",
-      "oracle_strength": "hard_block",
+      "verification_side": "C端读侧",
+      "oracle_strength": "display_only",
       "confidence": "confirmed",
       "source_trace": "来源：PT083 Testability Gate、Structured PRD、Coverage Matrix与当前图片证据。"
     },
@@ -1136,18 +1136,18 @@
         "OBJ-002"
       ],
       "coverage_refs": [],
-      "title": "约束判定：performance_parameters; value_constraint（场景3）",
+      "title": "验证“性能参数”超过一行时在C端换行展示",
       "given": [
-        "后台管理员已进入对应配置页面，其他必需基础数据均合法。"
+        "对应后台配置或业务数据已准备完成。"
       ],
       "when": [
-        "按边界、必填或格式规则操作“performance_parameters; value_constraint”所涉及字段。"
+        "用户进入[云挂机购买页]并查看宣传区。"
       ],
       "then": [
-        "系统按来源规则判定并明确反馈：performance_parameters; value_constraint。"
+        "页面可直接观察到：“性能参数”超过一行时在C端换行展示。"
       ],
-      "verification_side": "B端写侧",
-      "oracle_strength": "hard_block",
+      "verification_side": "C端读侧",
+      "oracle_strength": "display_only",
       "confidence": "confirmed",
       "source_trace": "来源：PT083 Testability Gate、Structured PRD、Coverage Matrix与当前图片证据。"
     },
@@ -1160,18 +1160,18 @@
         "OBJ-003"
       ],
       "coverage_refs": [],
-      "title": "约束判定：后台未配置特殊区商品时隐藏（场景4）",
+      "title": "验证“特殊区商品列表”后台未配置特殊区商品时隐藏",
       "given": [
-        "后台管理员已进入对应配置页面，其他必需基础数据均合法。"
+        "对应后台配置或业务数据已准备完成。"
       ],
       "when": [
-        "按边界、必填或格式规则操作“后台未配置特殊区商品时隐藏”所涉及字段。"
+        "用户进入[云挂机购买页]并查看特价专区。"
       ],
       "then": [
-        "系统按来源规则判定并明确反馈：后台未配置特殊区商品时隐藏。"
+        "页面可直接观察到：“特殊区商品列表”后台未配置特殊区商品时隐藏。"
       ],
-      "verification_side": "B端写侧",
-      "oracle_strength": "hard_block",
+      "verification_side": "C端读侧",
+      "oracle_strength": "display_only",
       "confidence": "confirmed",
       "source_trace": "来源：PT083 Testability Gate、Structured PRD、Coverage Matrix与当前图片证据。"
     },
@@ -1184,15 +1184,15 @@
         "OBJ-001"
       ],
       "coverage_refs": [],
-      "title": "读侧展示：promotion_slogan; value_constraint（场景2）",
+      "title": "验证“宣传口号”超过一行时在C端换行展示",
       "given": [
-        "对应后台配置、商品或页面数据已准备完成。"
+        "对应后台配置或业务数据已准备完成。"
       ],
       "when": [
-        "用户打开对应页面或查看对应板块。"
+        "用户进入[云挂机购买页]并查看宣传区。"
       ],
       "then": [
-        "页面可直接观察到来源规则所述结果：promotion_slogan; value_constraint。"
+        "页面可直接观察到：“宣传口号”超过一行时在C端换行展示。"
       ],
       "verification_side": "C端读侧",
       "oracle_strength": "display_only",
@@ -1208,15 +1208,15 @@
         "OBJ-002"
       ],
       "coverage_refs": [],
-      "title": "读侧展示：performance_parameters; value_constraint（场景3）",
+      "title": "验证“性能参数”超过一行时在C端换行展示",
       "given": [
-        "对应后台配置、商品或页面数据已准备完成。"
+        "对应后台配置或业务数据已准备完成。"
       ],
       "when": [
-        "用户打开对应页面或查看对应板块。"
+        "用户进入[云挂机购买页]并查看宣传区。"
       ],
       "then": [
-        "页面可直接观察到来源规则所述结果：performance_parameters; value_constraint。"
+        "页面可直接观察到：“性能参数”超过一行时在C端换行展示。"
       ],
       "verification_side": "C端读侧",
       "oracle_strength": "display_only",
@@ -1232,15 +1232,15 @@
         "OBJ-003"
       ],
       "coverage_refs": [],
-      "title": "读侧展示：后台未配置特殊区商品时隐藏（场景4）",
+      "title": "验证“特殊区商品列表”后台未配置特殊区商品时隐藏",
       "given": [
-        "对应后台配置、商品或页面数据已准备完成。"
+        "对应后台配置或业务数据已准备完成。"
       ],
       "when": [
-        "用户打开对应页面或查看对应板块。"
+        "用户进入[云挂机购买页]并查看特价专区。"
       ],
       "then": [
-        "页面可直接观察到来源规则所述结果：后台未配置特殊区商品时隐藏。"
+        "页面可直接观察到：“特殊区商品列表”后台未配置特殊区商品时隐藏。"
       ],
       "verification_side": "C端读侧",
       "oracle_strength": "display_only",
@@ -1258,15 +1258,15 @@
       "coverage_refs": [
         "COV-EX-0069"
       ],
-      "title": "读侧展示：最多展示4个商品（场景5）",
+      "title": "验证“特殊区商品列表”最多展示4个商品",
       "given": [
-        "对应后台配置、商品或页面数据已准备完成。"
+        "对应后台配置或业务数据已准备完成。"
       ],
       "when": [
-        "用户打开对应页面或查看对应板块。"
+        "用户进入[云挂机购买页]并查看特价专区。"
       ],
       "then": [
-        "页面可直接观察到来源规则所述结果：最多展示4个商品。"
+        "页面可直接观察到：“特殊区商品列表”最多展示4个商品。"
       ],
       "verification_side": "C端读侧",
       "oracle_strength": "display_only",
@@ -1554,18 +1554,18 @@
         "OBJ-009"
       ],
       "coverage_refs": [],
-      "title": "业务结果：purchase_alert_recipient; data_source_constraint; data_source=盒子后台管理员列表（场景2）",
+      "title": "验证“购买数量报警通知人”候选项来自盒子后台管理员列表",
       "given": [
-        "执行该业务规则所需的合法前置数据已准备完成。"
+        "对应后台配置或业务数据已准备完成。"
       ],
       "when": [
-        "用户或管理员完成来源规则对应的操作。"
+        "用户进入[盒子管理后台-云手机商品管理-添加]并查看商品添加表单。"
       ],
       "then": [
-        "最终业务状态与来源规则一致：purchase_alert_recipient; data_source_constraint; data_source=盒子后台管理员列表。"
+        "页面可直接观察到：“购买数量报警通知人”候选项来自盒子后台管理员列表。"
       ],
-      "verification_side": "B端写侧",
-      "oracle_strength": "business_behavior",
+      "verification_side": "C端读侧",
+      "oracle_strength": "display_only",
       "confidence": "confirmed",
       "source_trace": "来源：PT083 Testability Gate、Structured PRD、Coverage Matrix与当前图片证据。"
     },
@@ -1580,18 +1580,18 @@
       "coverage_refs": [
         "COV-EX-0077"
       ],
-      "title": "业务结果：cloud_machine_type; data_source_constraint; data_source=盒子现有云机类型（场景2）",
+      "title": "验证“云机类型”候选项来自盒子现有云机类型",
       "given": [
-        "执行该业务规则所需的合法前置数据已准备完成。"
+        "对应后台配置或业务数据已准备完成。"
       ],
       "when": [
-        "用户或管理员完成来源规则对应的操作。"
+        "用户进入[盒子管理后台-编辑宣传内容]并查看宣传内容编辑表单。"
       ],
       "then": [
-        "最终业务状态与来源规则一致：cloud_machine_type; data_source_constraint; data_source=盒子现有云机类型。"
+        "页面可直接观察到：“云机类型”候选项来自盒子现有云机类型。"
       ],
-      "verification_side": "B端写侧",
-      "oracle_strength": "business_behavior",
+      "verification_side": "C端读侧",
+      "oracle_strength": "display_only",
       "confidence": "confirmed",
       "source_trace": "来源：PT083 Testability Gate、Structured PRD、Coverage Matrix与当前图片证据。"
     },
@@ -1630,18 +1630,18 @@
         "OBJ-012"
       ],
       "coverage_refs": [],
-      "title": "业务结果：promotion_slogan; value_constraint（场景2）",
+      "title": "验证“宣传口号”超过一行时在C端换行展示",
       "given": [
-        "执行该业务规则所需的合法前置数据已准备完成。"
+        "对应后台配置或业务数据已准备完成。"
       ],
       "when": [
-        "用户或管理员完成来源规则对应的操作。"
+        "用户进入[盒子管理后台-编辑宣传内容]并查看宣传内容编辑表单。"
       ],
       "then": [
-        "最终业务状态与来源规则一致：promotion_slogan; value_constraint。"
+        "页面可直接观察到：“宣传口号”超过一行时在C端换行展示。"
       ],
-      "verification_side": "B端写侧",
-      "oracle_strength": "business_behavior",
+      "verification_side": "C端读侧",
+      "oracle_strength": "display_only",
       "confidence": "confirmed",
       "source_trace": "来源：PT083 Testability Gate、Structured PRD、Coverage Matrix与当前图片证据。"
     },
@@ -1654,18 +1654,18 @@
         "OBJ-013"
       ],
       "coverage_refs": [],
-      "title": "业务结果：performance_parameters; value_constraint（场景2）",
+      "title": "验证“性能参数”超过一行时在C端换行展示",
       "given": [
-        "执行该业务规则所需的合法前置数据已准备完成。"
+        "对应后台配置或业务数据已准备完成。"
       ],
       "when": [
-        "用户或管理员完成来源规则对应的操作。"
+        "用户进入[盒子管理后台-编辑宣传内容]并查看宣传内容编辑表单。"
       ],
       "then": [
-        "最终业务状态与来源规则一致：performance_parameters; value_constraint。"
+        "页面可直接观察到：“性能参数”超过一行时在C端换行展示。"
       ],
       "verification_side": "C端读侧",
-      "oracle_strength": "business_behavior",
+      "oracle_strength": "display_only",
       "confidence": "confirmed",
       "source_trace": "来源：PT083 Testability Gate、Structured PRD、Coverage Matrix与当前图片证据。"
     },
@@ -1678,18 +1678,18 @@
         "COV-EX-0050"
       ],
       "coverage_refs": [],
-      "title": "业务结果：全新版和常规版两个Tab均可见、可切换并展示对应内容（场景2）",
+      "title": "验证“宣传口号”分别覆盖19、20、21个字符，超过一行时C端换行展示",
       "given": [
-        "执行该业务规则所需的合法前置数据已准备完成。"
+        "对应后台配置或业务数据已准备完成。"
       ],
       "when": [
-        "用户或管理员完成来源规则对应的操作。"
+        "用户进入[云挂机购买页]并查看宣传区。"
       ],
       "then": [
-        "最终业务状态与来源规则一致：全新版和常规版两个Tab均可见、可切换并展示对应内容。"
+        "页面可直接观察到：“宣传口号”分别覆盖19、20、21个字符，超过一行时C端换行展示。"
       ],
       "verification_side": "C端读侧",
-      "oracle_strength": "business_behavior",
+      "oracle_strength": "display_only",
       "confidence": "confirmed",
       "source_trace": "来源：PT083 Testability Gate、Structured PRD、Coverage Matrix与当前图片证据。"
     },
@@ -1702,18 +1702,18 @@
         "COV-EX-0060"
       ],
       "coverage_refs": [],
-      "title": "业务结果：后台未配置特殊区商品时，C端隐藏整个特价专区（场景2）",
+      "title": "验证相同“盒子内排序”值按创建时间倒序展示",
       "given": [
-        "执行该业务规则所需的合法前置数据已准备完成。"
+        "对应后台配置或业务数据已准备完成。"
       ],
       "when": [
-        "用户或管理员完成来源规则对应的操作。"
+        "用户进入[盒子管理后台-云手机商品管理-添加]并查看商品添加表单。"
       ],
       "then": [
-        "最终业务状态与来源规则一致：后台未配置特殊区商品时，C端隐藏整个特价专区。"
+        "页面可直接观察到：相同“盒子内排序”值按创建时间倒序展示。"
       ],
       "verification_side": "C端读侧",
-      "oracle_strength": "business_behavior",
+      "oracle_strength": "display_only",
       "confidence": "confirmed",
       "source_trace": "来源：PT083 Testability Gate、Structured PRD、Coverage Matrix与当前图片证据。"
     },
@@ -1726,18 +1726,18 @@
         "COV-EX-0067"
       ],
       "coverage_refs": [],
-      "title": "业务结果：库存不足时同步隐藏商品、停止分配云机并发送告警（场景2）",
+      "title": "验证“普通区商品列表”普通商品列表保持纵向展示",
       "given": [
-        "执行该业务规则所需的合法前置数据已准备完成。"
+        "对应后台配置或业务数据已准备完成。"
       ],
       "when": [
-        "用户或管理员完成来源规则对应的操作。"
+        "用户进入[云挂机购买页]并查看普通商品列表。"
       ],
       "then": [
-        "最终业务状态与来源规则一致：库存不足时同步隐藏商品、停止分配云机并发送告警。"
+        "页面可直接观察到：“普通区商品列表”普通商品列表保持纵向展示。"
       ],
-      "verification_side": "B端写侧与列表读侧",
-      "oracle_strength": "business_behavior",
+      "verification_side": "C端读侧",
+      "oracle_strength": "display_only",
       "confidence": "confirmed",
       "source_trace": "来源：PT083 Testability Gate、Structured PRD、Coverage Matrix与当前图片证据。"
     },

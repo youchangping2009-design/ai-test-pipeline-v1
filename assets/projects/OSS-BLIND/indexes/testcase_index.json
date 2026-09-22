@@ -1,0 +1,282 @@
+{
+  "project_code": "OSS-BLIND",
+  "index_type": "testcase",
+  "generated_at": "2026-09-21T18:41:14",
+  "items": [
+    {
+      "testcase_id": "OSS-BLIND-DATABRICKS-CONNECT-SERVER-AB-001",
+      "work_item_id": "APPSMITH-42244",
+      "title": "非 Databricks JDBC URL 在连接创建前被拒绝",
+      "priority": "P0",
+      "page_name": "Databricks 数据源配置页",
+      "section_name": "连接配置区",
+      "module_name": "Databricks 数据源连接",
+      "feature_name": "自定义 JDBC URL 连接创建",
+      "source_path": "work_items/APPSMITH-42244/testcases/testcases_main.md"
+    },
+    {
+      "testcase_id": "OSS-BLIND-DATABRICKS-CONNECT-SERVER-FN-001",
+      "work_item_id": "APPSMITH-42244",
+      "title": "合法自定义 Databricks JDBC URL 进入连接流程",
+      "priority": "P0",
+      "page_name": "Databricks 数据源配置页",
+      "section_name": "连接配置区",
+      "module_name": "Databricks 数据源连接",
+      "feature_name": "自定义 JDBC URL 连接创建",
+      "source_path": "work_items/APPSMITH-42244/testcases/testcases_main.md"
+    },
+    {
+      "testcase_id": "OSS-BLIND-DATABRICKS-CONNECT-SERVER-FL-001",
+      "work_item_id": "APPSMITH-42244",
+      "title": "Databricks URL 由指定 driver 处理且拒绝后不回退",
+      "priority": "P0",
+      "page_name": "Databricks 数据源配置页",
+      "section_name": "连接配置区",
+      "module_name": "Databricks 数据源连接",
+      "feature_name": "自定义 JDBC URL 连接创建",
+      "source_path": "work_items/APPSMITH-42244/testcases/testcases_main.md"
+    },
+    {
+      "testcase_id": "OSS-BLIND-DATABRICKS-CONNECT-SERVER-AB-002",
+      "work_item_id": "APPSMITH-42244",
+      "title": "Databricks JDBC driver 拒绝 URL 时返回创建错误",
+      "priority": "P0",
+      "page_name": "Databricks 数据源配置页",
+      "section_name": "连接配置区",
+      "module_name": "Databricks 数据源连接",
+      "feature_name": "自定义 JDBC URL 连接创建",
+      "source_path": "work_items/APPSMITH-42244/testcases/testcases_main.md"
+    },
+    {
+      "testcase_id": "OSS-BLIND-DATABRICKS-CONNECT-SERVER-FL-002",
+      "work_item_id": "APPSMITH-42244",
+      "title": "既有合法配置使用明确的 JDBC token 属性建立连接",
+      "priority": "P1",
+      "page_name": "Databricks 数据源配置页",
+      "section_name": "连接配置区",
+      "module_name": "Databricks 数据源连接",
+      "feature_name": "自定义 JDBC URL 连接创建",
+      "source_path": "work_items/APPSMITH-42244/testcases/testcases_main.md"
+    },
+    {
+      "testcase_id": "OSS-BLIND-DATABRICKS-CONNECT-SERVER-FL-003",
+      "work_item_id": "APPSMITH-42244",
+      "title": "URL 校验失败不产生错误目标网络连接",
+      "priority": "P0",
+      "page_name": "Databricks 数据源配置页",
+      "section_name": "连接配置区",
+      "module_name": "Databricks 数据源连接",
+      "feature_name": "自定义 JDBC URL 连接创建",
+      "source_path": "work_items/APPSMITH-42244/testcases/testcases_main.md"
+    },
+    {
+      "testcase_id": "OSS-BLIND-DATABRICKS-CONNECT-SERVER-AB-003",
+      "work_item_id": "APPSMITH-42244",
+      "title": "Databricks JDBC driver 返回空连接时返回创建错误",
+      "priority": "P0",
+      "page_name": "Databricks 数据源配置页",
+      "section_name": "连接配置区",
+      "module_name": "Databricks 数据源连接",
+      "feature_name": "自定义 JDBC URL 连接创建",
+      "source_path": "work_items/APPSMITH-42244/testcases/testcases_main.md"
+    },
+    {
+      "testcase_id": "OSS-BLIND-CONVERSATION-FILTER-WEB-FL-001",
+      "work_item_id": "CHATWOOT-15768",
+      "title": "数字自定义属性从输入到匹配保持 number 类型",
+      "priority": "P0",
+      "page_name": "会话列表页",
+      "section_name": "高级筛选面板",
+      "module_name": "会话高级筛选",
+      "feature_name": "自定义属性类型化筛选",
+      "source_path": "work_items/CHATWOOT-15768/testcases/testcases_main.md"
+    },
+    {
+      "testcase_id": "OSS-BLIND-CONVERSATION-FILTER-WEB-DV-002",
+      "work_item_id": "CHATWOOT-15768",
+      "title": "请求保留 0 和 false 并过滤真正空值",
+      "priority": "P0",
+      "page_name": "会话列表页",
+      "section_name": "高级筛选面板",
+      "module_name": "会话高级筛选",
+      "feature_name": "自定义属性类型化筛选",
+      "source_path": "work_items/CHATWOOT-15768/testcases/testcases_main.md"
+    },
+    {
+      "testcase_id": "OSS-BLIND-CONVERSATION-FILTER-WEB-DV-003",
+      "work_item_id": "CHATWOOT-15768",
+      "title": "属性缺失与显式 0、false 分开匹配",
+      "priority": "P0",
+      "page_name": "会话列表页",
+      "section_name": "高级筛选面板",
+      "module_name": "会话高级筛选",
+      "feature_name": "自定义属性类型化筛选",
+      "source_path": "work_items/CHATWOOT-15768/testcases/testcases_main.md"
+    },
+    {
+      "testcase_id": "OSS-BLIND-CONVERSATION-FILTER-WEB-DV-004",
+      "work_item_id": "CHATWOOT-15768",
+      "title": "客户端二次筛选使用严格相等匹配",
+      "priority": "P0",
+      "page_name": "会话列表页",
+      "section_name": "高级筛选面板",
+      "module_name": "会话高级筛选",
+      "feature_name": "自定义属性类型化筛选",
+      "source_path": "work_items/CHATWOOT-15768/testcases/testcases_main.md"
+    },
+    {
+      "testcase_id": "OSS-BLIND-CONVERSATION-FILTER-WEB-FN-001",
+      "work_item_id": "CHATWOOT-15768",
+      "title": "等于与不等于运算符按严格相等结果筛选",
+      "priority": "P0",
+      "page_name": "会话列表页",
+      "section_name": "高级筛选面板",
+      "module_name": "会话高级筛选",
+      "feature_name": "自定义属性类型化筛选",
+      "source_path": "work_items/CHATWOOT-15768/testcases/testcases_main.md"
+    },
+    {
+      "testcase_id": "OSS-BLIND-CONVERSATION-FILTER-WEB-FN-003",
+      "work_item_id": "CHATWOOT-15768",
+      "title": "文本、日期和列表筛选保持既有结果",
+      "priority": "P1",
+      "page_name": "会话列表页",
+      "section_name": "高级筛选面板",
+      "module_name": "会话高级筛选",
+      "feature_name": "自定义属性类型化筛选",
+      "source_path": "work_items/CHATWOOT-15768/testcases/testcases_main.md"
+    },
+    {
+      "testcase_id": "OSS-BLIND-CONVERSATION-FILTER-WEB-AB-001",
+      "work_item_id": "CHATWOOT-15768",
+      "title": "空数组筛选值返回必填错误",
+      "priority": "P0",
+      "page_name": "会话列表页",
+      "section_name": "高级筛选面板",
+      "module_name": "会话高级筛选",
+      "feature_name": "自定义属性类型化筛选",
+      "source_path": "work_items/CHATWOOT-15768/testcases/testcases_main.md"
+    },
+    {
+      "testcase_id": "OSS-BLIND-CONVERSATION-FILTER-WEB-AB-002",
+      "work_item_id": "CHATWOOT-15768",
+      "title": "早于当前日期天数输入 0 返回范围错误",
+      "priority": "P0",
+      "page_name": "会话列表页",
+      "section_name": "高级筛选面板",
+      "module_name": "会话高级筛选",
+      "feature_name": "自定义属性类型化筛选",
+      "source_path": "work_items/CHATWOOT-15768/testcases/testcases_main.md"
+    },
+    {
+      "testcase_id": "OSS-BLIND-CONVERSATION-FILTER-WEB-AB-003",
+      "work_item_id": "CHATWOOT-15768",
+      "title": "空对象筛选值返回必填错误",
+      "priority": "P0",
+      "page_name": "会话列表页",
+      "section_name": "高级筛选面板",
+      "module_name": "会话高级筛选",
+      "feature_name": "自定义属性类型化筛选",
+      "source_path": "work_items/CHATWOOT-15768/testcases/testcases_main.md"
+    },
+    {
+      "testcase_id": "OSS-BLIND-GIFTCARDBULK-BULKCREATE-API-FL-001",
+      "work_item_id": "SALEOR-19804",
+      "title": "复用已有标签时追加新礼品卡并保留历史成员",
+      "priority": "P0",
+      "page_name": "giftCardBulkCreate GraphQL 接口",
+      "section_name": "批量创建请求",
+      "module_name": "礼品卡批量创建",
+      "feature_name": "批量礼品卡标签关系追加",
+      "source_path": "work_items/SALEOR-19804/testcases/testcases_main.md"
+    },
+    {
+      "testcase_id": "OSS-BLIND-GIFTCARDBULK-BULKCREATE-API-FL-002",
+      "work_item_id": "SALEOR-19804",
+      "title": "新标签创建后关联当前批次礼品卡",
+      "priority": "P1",
+      "page_name": "giftCardBulkCreate GraphQL 接口",
+      "section_name": "批量创建请求",
+      "module_name": "礼品卡批量创建",
+      "feature_name": "批量礼品卡标签关系追加",
+      "source_path": "work_items/SALEOR-19804/testcases/testcases_main.md"
+    },
+    {
+      "testcase_id": "OSS-BLIND-GIFTCARDBULK-BULKCREATE-API-FL-003",
+      "work_item_id": "SALEOR-19804",
+      "title": "四个连续批次后标签成员集合等于批次并集",
+      "priority": "P0",
+      "page_name": "giftCardBulkCreate GraphQL 接口",
+      "section_name": "批量创建请求",
+      "module_name": "礼品卡批量创建",
+      "feature_name": "批量礼品卡标签关系追加",
+      "source_path": "work_items/SALEOR-19804/testcases/testcases_main.md"
+    },
+    {
+      "testcase_id": "OSS-BLIND-GIFTCARDBULK-BULKCREATE-API-FL-004",
+      "work_item_id": "SALEOR-19804",
+      "title": "新旧标签混合输入只建立指定关系",
+      "priority": "P0",
+      "page_name": "giftCardBulkCreate GraphQL 接口",
+      "section_name": "批量创建请求",
+      "module_name": "礼品卡批量创建",
+      "feature_name": "批量礼品卡标签关系追加",
+      "source_path": "work_items/SALEOR-19804/testcases/testcases_main.md"
+    },
+    {
+      "testcase_id": "OSS-BLIND-GIFTCARDBULK-BULKCREATE-API-DV-005",
+      "work_item_id": "SALEOR-19804",
+      "title": "成功响应数量与实际新建礼品卡一致",
+      "priority": "P0",
+      "page_name": "giftCardBulkCreate GraphQL 接口",
+      "section_name": "批量创建请求",
+      "module_name": "礼品卡批量创建",
+      "feature_name": "批量礼品卡标签关系追加",
+      "source_path": "work_items/SALEOR-19804/testcases/testcases_main.md"
+    },
+    {
+      "testcase_id": "OSS-BLIND-GIFTCARDBULK-BULKCREATE-API-PM-001",
+      "work_item_id": "SALEOR-19804",
+      "title": "权限、非法输入及非批量礼品卡操作行为不回退",
+      "priority": "P1",
+      "page_name": "giftCardBulkCreate GraphQL 接口",
+      "section_name": "批量创建请求",
+      "module_name": "礼品卡批量创建",
+      "feature_name": "批量礼品卡标签关系追加",
+      "source_path": "work_items/SALEOR-19804/testcases/testcases_main.md"
+    },
+    {
+      "testcase_id": "OSS-BLIND-GIFTCARDBULK-BULKCREATE-API-FL-005",
+      "work_item_id": "SALEOR-19804",
+      "title": "已有标签大小写变体复用同一小写记录",
+      "priority": "P0",
+      "page_name": "giftCardBulkCreate GraphQL 接口",
+      "section_name": "批量创建请求",
+      "module_name": "礼品卡批量创建",
+      "feature_name": "批量礼品卡标签关系追加",
+      "source_path": "work_items/SALEOR-19804/testcases/testcases_main.md"
+    },
+    {
+      "testcase_id": "OSS-BLIND-GIFTCARDBULK-BULKCREATE-API-DV-006",
+      "work_item_id": "SALEOR-19804",
+      "title": "重复输入的新标签只创建一条小写记录",
+      "priority": "P0",
+      "page_name": "giftCardBulkCreate GraphQL 接口",
+      "section_name": "批量创建请求",
+      "module_name": "礼品卡批量创建",
+      "feature_name": "批量礼品卡标签关系追加",
+      "source_path": "work_items/SALEOR-19804/testcases/testcases_main.md"
+    },
+    {
+      "testcase_id": "OSS-BLIND-GIFTCARDBULK-BULKCREATE-API-FL-007",
+      "work_item_id": "SALEOR-19804",
+      "title": "大小写变体和重复标签只建立一次礼品卡关系",
+      "priority": "P0",
+      "page_name": "giftCardBulkCreate GraphQL 接口",
+      "section_name": "批量创建请求",
+      "module_name": "礼品卡批量创建",
+      "feature_name": "批量礼品卡标签关系追加",
+      "source_path": "work_items/SALEOR-19804/testcases/testcases_main.md"
+    }
+  ]
+}

@@ -1,0 +1,55 @@
+# Structured PRD
+
+## project_info
+```json
+{"project_code":"OSS-BLIND-R4","project_name":"Kubernetes","business_line":"Dynamic Resource Allocation","prd_source":"inputs/requirement_summary.md","prd_version":"github-pr-141831"}
+```
+
+## requirement_info
+```json
+{
+  "requirement_title":"DeviceTaintRule 空选择器风险告警",
+  "requirement_background":"`spec.deviceSelector` 明确存在但 driver、pool、device 均为空时会匹配集群中所有 driver 的所有 device，可能产生大范围 taint 影响。",
+  "requirement_goal":"在 DeviceTaintRule 创建和更新时对空 selector 返回精确、非阻塞的 Warning，同时区分省略与有范围 selector，并保持既有校验和持久化语义。",
+  "explicit_rules":[
+    {"rule_id":"K8S-R001","rule_text":"create 或 update DeviceTaintRule 时，若 `spec.deviceSelector` 存在且 driver、pool、device 全为空，必须返回 Warning。","rule_type":"display_constraint","priority":"high","applies_to":"空选择器判定","source_scope":"primary_requirement","atomic_assertions":["create 空 selector 返回 Warning。","update 空 selector 返回 Warning。"]},
+    {"rule_id":"K8S-R002","rule_text":"空 selector 的警告文本必须为 `spec.deviceSelector: an empty selector matches every device from every driver in the cluster`。","rule_type":"display_constraint","priority":"high","applies_to":"非阻塞警告响应","source_scope":"primary_requirement","fidelity_points":[{"constraint_type":"copy_constraint","value":"spec.deviceSelector: an empty selector matches every device from every driver in the cluster","must_preserve":true,"forbidden_rewrites":["泛化为存在风险","改写为空选择器错误"]}]},
+    {"rule_id":"K8S-R003","rule_text":"`spec.deviceSelector` 省略时不得返回空 selector Warning。","rule_type":"fallback_constraint","priority":"high","applies_to":"空选择器判定","source_scope":"primary_requirement"},
+    {"rule_id":"K8S-R004","rule_text":"selector 指定 driver、pool 或 device 任一范围字段时不得返回空 selector Warning。","rule_type":"fallback_constraint","priority":"high","applies_to":"空选择器判定","source_scope":"primary_requirement","atomic_assertions":["指定 driver 时不返回空 selector Warning。","指定 pool 时不返回空 selector Warning。","指定 device 时不返回空 selector Warning。"]},
+    {"rule_id":"K8S-R005","rule_text":"空 selector Warning 不得阻止 create/update 成功，也不得改变既有校验、持久化或 taint 执行语义。","rule_type":"fallback_constraint","priority":"high","applies_to":"非阻塞警告响应","source_scope":"primary_requirement","atomic_assertions":["告警不阻止 create 成功。","告警不阻止 update 成功。","告警不改变既有校验结果。","告警不改变持久化结果和 taint 执行语义。"]},
+    {"rule_id":"K8S-R006","rule_text":"空 selector 的告警判断不受 taint effect 取值影响，包括既有 `None` 预览取值。","rule_type":"coverage_constraint","priority":"high","applies_to":"空选择器判定","source_scope":"primary_requirement"},
+    {"rule_id":"K8S-R007","rule_text":"使用 `kubectl --warnings-as-errors` 时客户端可返回非零状态，但服务端对象仍已创建。","rule_type":"state_constraint","priority":"medium","applies_to":"非阻塞警告响应","source_scope":"primary_requirement"}
+  ],
+  "scope":{"in_scope":["DeviceTaintRule create/update","selector nil/空/有范围判断","HTTP Warning header 与固定文案","不同 taint effect","warnings-as-errors 客户端表现"],"out_of_scope":["把 Warning 升级为校验错误","增加用户确认步骤","改变设备匹配或 taint 执行逻辑","修改既有 effect None 预览行为"]}
+}
+```
+
+## pages
+```json
+[
+  {"page_name":"DeviceTaintRule API","page_desc":"DeviceTaintRule 创建与更新请求的服务端告警和持久化观察面。","sections":[
+    {"section_name":"设备选择器告警","section_type":"other","section_desc":"区分 selector 省略、空对象及有范围配置并返回非阻塞 Warning。","module_name":"DeviceTaintRule Admission Warning","feature_names":["空选择器判定","非阻塞警告响应"],"section_rules":["空 selector 告警","nil selector 不告警","有范围 selector 不告警","警告不改变请求结果"],"field_refs":[],"field_rule_table_refs":[]}
+  ]}
+]
+```
+
+## modules
+```json
+[
+  {"module_name":"DeviceTaintRule Admission Warning","module_desc":"在资源 create/update 时判断空 deviceSelector 并产生非阻塞 Warning。","features":[
+    {"feature_name":"空选择器判定","page_name":"DeviceTaintRule API","section_name":"设备选择器告警","feature_desc":"按 selector 是否存在及 driver/pool/device 是否赋值决定是否告警。","actors":["Kubernetes API 客户端"],"entry_conditions":["提交 DeviceTaintRule create 或 update 请求"],"rules":["selector 存在且三个范围字段全为空时告警","selector 省略时不告警","任一范围字段指定时不告警","判断覆盖不同 effect"],"fields":[],"field_definitions":[],"field_rules":[],"field_rule_tables":[],"visible_elements":["spec.deviceSelector","driver","pool","device","taint effect"],"interactive_entries":["创建 DeviceTaintRule","更新 DeviceTaintRule"],"abnormal_scenarios":["其他字段同时校验失败时保留原有错误"],"boundary_scenarios":["selector 为 nil","selector 为 `{}`","仅指定 driver","仅指定 pool","仅指定 device","字段为空字符串或空白的语义待确认"],"dependencies":["DeviceTaintRule API","API Warning 机制"]},
+    {"feature_name":"非阻塞警告响应","page_name":"DeviceTaintRule API","section_name":"设备选择器告警","feature_desc":"返回固定 Warning header，同时保持服务端请求和资源状态语义。","actors":["Kubernetes API Server","kubectl 客户端"],"entry_conditions":["空 selector 判断成立"],"rules":["返回精确 Warning 文本","Warning 不阻止请求成功","warnings-as-errors 只改变客户端退出状态","对象仍按原请求创建或更新"],"fields":[],"field_definitions":[],"field_rules":[],"field_rule_tables":[],"visible_elements":["HTTP Warning response header","客户端退出状态","服务端资源状态"],"interactive_entries":["普通客户端提交","kubectl --warnings-as-errors 提交"],"abnormal_scenarios":["多条 Warning 并存时的顺序与去重待确认"],"boundary_scenarios":["effect 为 None","其他 effect 取值"],"dependencies":["API Warning header","kubectl 告警处理"]}
+  ]}
+]
+```
+
+## flows
+```json
+[
+  {"flow_id":"K8S-FLOW-001","flow_name":"提交 DeviceTaintRule 并处理空选择器告警","flow_type":"main_flow","business_goal":"在不改变资源请求结果的前提下提示空 selector 的全设备匹配风险。","trigger":"客户端创建或更新 DeviceTaintRule","preconditions":["DeviceTaintRule API 可用"],"steps":[
+    {"step_no":1,"step_name":"判断 deviceSelector","step_type":"data_validation","module_name":"DeviceTaintRule Admission Warning","feature_name":"空选择器判定","actor":"Kubernetes API Server","action":"区分 selector 省略、空对象及包含 driver/pool/device 的配置","input_data":["spec.deviceSelector","taint effect"],"expected_result":"仅 selector 存在且三个范围字段均为空时命中告警条件","checkpoints":["nil 与空对象被区分","任一范围字段可取消告警"],"rule_references":["K8S-R001","K8S-R003","K8S-R004","K8S-R006"],"is_key_checkpoint":true},
+    {"step_no":2,"step_name":"返回 Warning","step_type":"system_response","module_name":"DeviceTaintRule Admission Warning","feature_name":"非阻塞警告响应","actor":"Kubernetes API Server","action":"在命中条件时添加 HTTP Warning response header","expected_result":"Header 包含精确警告文本，未命中条件时无该警告","checkpoints":["警告文本逐字匹配","非命中请求无该警告"],"rule_references":["K8S-R002","K8S-R003","K8S-R004"],"is_key_checkpoint":true},
+    {"step_no":3,"step_name":"完成资源请求","step_type":"state_change","module_name":"DeviceTaintRule Admission Warning","feature_name":"非阻塞警告响应","actor":"Kubernetes API Server","action":"按既有验证和持久化逻辑完成 create/update","expected_result":"普通客户端请求成功；warnings-as-errors 可报告非零，但服务端对象仍已创建或更新","state_transition":{"from":"提交前资源状态","to":"按原请求完成后的资源状态"},"checkpoints":["Warning 未升级为服务端拒绝","服务端对象状态符合请求"],"rule_references":["K8S-R005","K8S-R007"],"is_key_checkpoint":true}
+  ],"postconditions":["资源结果不因新增 Warning 改变"],"success_criteria":["仅空 selector 收到精确 Warning","create/update 和不同 effect 行为一致","Warning 保持非阻塞"],"related_modules":["DeviceTaintRule Admission Warning"],"priority":"P0","tags":["device-taint-rule","warning","api"]}
+]
+```

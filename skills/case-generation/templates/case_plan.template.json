@@ -1,6 +1,7 @@
 {
   "project_code": "",
   "work_item_id": "",
+  "generation_mode": "case_plan_direct",
   "case_plans": [
     {
       "case_plan_id": "CP-001",

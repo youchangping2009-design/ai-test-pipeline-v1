@@ -23,6 +23,10 @@ from harness.audit import HarnessRunAuditor
 from harness.controlled_generation import ControlledGenerationService
 from harness.generation_workspace import ControlledGenerationError
 from harness.hook_dispatcher import HookConfigurationError
+from harness.feedback_action_runtime import (
+    FeedbackActionDispatchError,
+    FeedbackApplicationActionRuntime,
+)
 from harness.model_gateway import (
     CommandModelGateway,
     ModelGatewayError,
@@ -35,9 +39,11 @@ from harness.multi_role_runtime import (
     MultiRoleAgentRuntime,
 )
 from harness.orchestrator import DeterministicOrchestrator
+from harness.review_disposition import ReviewDispositionService
 from harness.state_store import HarnessStateError, StateStore
 from harness.stage_registry import stage_ids
 from harness.telemetry import BudgetConfig
+from validate_feedback_action_journal import validate_feedback_action_journal
 from work_item_policy import VALID_WORK_ITEM_LEVELS, resolve_work_item_level
 
 
@@ -140,6 +146,14 @@ def parse_args() -> argparse.Namespace:
         help="幂等补全 requirement approval receipt/event/run state",
     )
     add_common_arguments(recover_requirement)
+
+    review_not_applicable = subparsers.add_parser(
+        "mark-review-not-applicable",
+        help="人工声明 validate run 无代码映证，仍执行 Review 确定性校验",
+    )
+    add_common_arguments(review_not_applicable)
+    review_not_applicable.add_argument("--declared-by", required=True)
+    review_not_applicable.add_argument("--reason", required=True)
 
     agent_case_plan = subparsers.add_parser(
         "agent-case-plan",
@@ -284,6 +298,28 @@ def parse_args() -> argparse.Namespace:
     recover_roles.add_argument("--recovered-by", required=True)
     recover_roles.add_argument("--reason", required=True)
 
+    feedback_action = subparsers.add_parser(
+        "feedback-action",
+        help="通过白名单 Action Runtime 执行 design feedback 回灌动作",
+    )
+    feedback_action.add_argument("--project-code", required=True)
+    feedback_action.add_argument("--work-item-id", required=True)
+    feedback_action.add_argument("--run-id", required=True)
+    feedback_action.add_argument("--actor", required=True)
+    feedback_action.add_argument("--provider", required=True)
+    feedback_action.add_argument(
+        "--action-file",
+        required=True,
+        help="符合 harness_feedback_action schema 的本地 JSON 文件",
+    )
+
+    audit_feedback_actions = subparsers.add_parser(
+        "audit-feedback-actions",
+        help="重放校验当前工作项的 feedback Action journal",
+    )
+    audit_feedback_actions.add_argument("--project-code", required=True)
+    audit_feedback_actions.add_argument("--work-item-id", required=True)
+
     audit_run = subparsers.add_parser(
         "audit-run",
         help="重放校验 run state、events、actions、approvals 与 diagnostics",
@@ -373,6 +409,40 @@ def main() -> int:
     item_root = resolve_item_root(project_code, work_item_id)
     manifest = load_manifest(item_root)
     try:
+        if args.action == "feedback-action":
+            action_path = Path(args.action_file).resolve()
+            action = json.loads(action_path.read_text(encoding="utf-8"))
+            if not isinstance(action, dict):
+                raise FeedbackActionDispatchError("feedback action 必须是 JSON object")
+            observation = FeedbackApplicationActionRuntime(
+                item_root=item_root,
+                run_id=args.run_id,
+                actor=args.actor,
+                provider=args.provider,
+            ).dispatch(action)
+            print(json.dumps(observation, ensure_ascii=False, indent=2))
+            return 0
+        if args.action == "audit-feedback-actions":
+            result = validate_feedback_action_journal(item_root)
+            print(json.dumps(result, ensure_ascii=False, indent=2))
+            return 0
+        if args.action == "mark-review-not-applicable":
+            if not args.run_id:
+                raise HarnessStateError(
+                    "mark-review-not-applicable 必须提供 --run-id"
+                )
+            state, receipt = ReviewDispositionService(
+                item_root
+            ).declare_not_applicable(
+                run_id=args.run_id,
+                declared_by=args.declared_by,
+                reason=args.reason,
+                force_unlock=args.force_unlock,
+            )
+            print(f"review_disposition: {receipt['disposition']}")
+            print(f"declared_by: {receipt['declared_by']}")
+            print_state(state)
+            return 0
         if args.action in {
             "approve-requirement",
             "reject-requirement",
@@ -697,6 +767,7 @@ def main() -> int:
             return 0
     except (
         HarnessStateError,
+        FeedbackActionDispatchError,
         HookConfigurationError,
         ControlledGenerationError,
         ArtifactWorkspaceError,
@@ -712,4 +783,3 @@ def main() -> int:
 
 if __name__ == "__main__":
     raise SystemExit(main())
-

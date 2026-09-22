@@ -1,0 +1,193 @@
+{
+  "project_code": "OSS-BLIND-R3",
+  "work_item_id": "TEMPORAL-11968",
+  "generated_at": "2026-09-21T22:15:59",
+  "generated_from": [
+    "coverage/coverage_matrix.json",
+    "evidence/evidence_inventory.json",
+    "testcases/testcases_main.md"
+  ],
+  "summary": {
+    "record_count": 8,
+    "invalid_record_count": 0,
+    "false_traceability_rate": 0.0
+  },
+  "records": [
+    {
+      "record_id": "CFT-0001",
+      "rule_id": "SignalWithStart 幂等::关闭后重试去重::happy_path_combo",
+      "coverage_id": "COV-EX-0006",
+      "testcase_id": "OSS-BLIND-R3-TEMPORALAPI-SIGNALSTART-API-FL-001",
+      "testcase_title": "Workflow 关闭后仍可按原 request ID 去重",
+      "source_origin": "explicit_rule",
+      "coverage_level": "business",
+      "emit_mode": "main_testcase",
+      "fidelity_status": "not_applicable",
+      "evidence_ids": [],
+      "reasoning_refs": [],
+      "structured_targets": [
+        {
+          "target_type": "feature",
+          "module_name": "SignalWithStart 幂等",
+          "feature_name": "关闭后重试去重",
+          "field_name": "",
+          "target_name": "关闭后的请求去重"
+        }
+      ]
+    },
+    {
+      "record_id": "CFT-0002",
+      "rule_id": "SignalWithStart 幂等::关闭后重试去重::happy_path_combo",
+      "coverage_id": "COV-EX-0007",
+      "testcase_id": "OSS-BLIND-R3-TEMPORALAPI-SIGNALSTART-API-DV-001",
+      "testcase_title": "相同请求重试返回首次创建的 run ID",
+      "source_origin": "explicit_rule",
+      "coverage_level": "business",
+      "emit_mode": "main_testcase",
+      "fidelity_status": "not_applicable",
+      "evidence_ids": [],
+      "reasoning_refs": [],
+      "structured_targets": [
+        {
+          "target_type": "feature",
+          "module_name": "SignalWithStart 幂等",
+          "feature_name": "关闭后重试去重",
+          "field_name": "",
+          "target_name": "重试响应"
+        }
+      ]
+    },
+    {
+      "record_id": "CFT-0003",
+      "rule_id": "SignalWithStart 幂等::关闭后重试去重::happy_path_combo",
+      "coverage_id": "COV-EX-0008",
+      "testcase_id": "OSS-BLIND-R3-TEMPORALAPI-SIGNALSTART-API-ST-001",
+      "testcase_title": "去重命中不创建新的 Workflow run",
+      "source_origin": "explicit_rule",
+      "coverage_level": "business",
+      "emit_mode": "main_testcase",
+      "fidelity_status": "not_applicable",
+      "evidence_ids": [],
+      "reasoning_refs": [],
+      "structured_targets": [
+        {
+          "target_type": "feature",
+          "module_name": "SignalWithStart 幂等",
+          "feature_name": "关闭后重试去重",
+          "field_name": "",
+          "target_name": "去重命中不创建新的 Workflow run。"
+        }
+      ]
+    },
+    {
+      "record_id": "CFT-0004",
+      "rule_id": "SignalWithStart 幂等::关闭后重试去重::happy_path_combo",
+      "coverage_id": "COV-EX-0009",
+      "testcase_id": "OSS-BLIND-R3-TEMPORALAPI-SIGNALSTART-API-ST-002",
+      "testcase_title": "去重命中不再次投递 signal",
+      "source_origin": "explicit_rule",
+      "coverage_level": "business",
+      "emit_mode": "main_testcase",
+      "fidelity_status": "not_applicable",
+      "evidence_ids": [],
+      "reasoning_refs": [],
+      "structured_targets": [
+        {
+          "target_type": "feature",
+          "module_name": "SignalWithStart 幂等",
+          "feature_name": "关闭后重试去重",
+          "field_name": "",
+          "target_name": "去重命中不再次投递 signal。"
+        }
+      ]
+    },
+    {
+      "record_id": "CFT-0005",
+      "rule_id": "SignalWithStart 幂等::关闭后重试去重::happy_path_combo",
+      "coverage_id": "COV-EX-0010",
+      "testcase_id": "OSS-BLIND-R3-TEMPORALAPI-SIGNALSTART-API-DV-002",
+      "testcase_title": "去重命中增加专用指标",
+      "source_origin": "explicit_rule",
+      "coverage_level": "business",
+      "emit_mode": "main_testcase",
+      "fidelity_status": "not_applicable",
+      "evidence_ids": [],
+      "reasoning_refs": [],
+      "structured_targets": [
+        {
+          "target_type": "feature",
+          "module_name": "SignalWithStart 幂等",
+          "feature_name": "关闭后重试去重",
+          "field_name": "",
+          "target_name": "去重命中时 SignalWithStartWorkflowStartDeduped 指标递增。"
+        }
+      ]
+    },
+    {
+      "record_id": "CFT-0006",
+      "rule_id": "SignalWithStart 幂等::关闭后重试去重::happy_path_combo",
+      "coverage_id": "COV-EX-0011",
+      "testcase_id": "OSS-BLIND-R3-TEMPORALAPI-SIGNALSTART-API-DV-003",
+      "testcase_title": "非去重请求不增加专用指标",
+      "source_origin": "explicit_rule",
+      "coverage_level": "business",
+      "emit_mode": "main_testcase",
+      "fidelity_status": "not_applicable",
+      "evidence_ids": [],
+      "reasoning_refs": [],
+      "structured_targets": [
+        {
+          "target_type": "feature",
+          "module_name": "SignalWithStart 幂等",
+          "feature_name": "关闭后重试去重",
+          "field_name": "",
+          "target_name": "非去重请求不增加 SignalWithStartWorkflowStartDeduped 指标。"
+        }
+      ]
+    },
+    {
+      "record_id": "CFT-0007",
+      "rule_id": "SignalWithStart 幂等::关闭后重试去重::happy_path_combo",
+      "coverage_id": "COV-EX-0012",
+      "testcase_id": "OSS-BLIND-R3-TEMPORALAPI-SIGNALSTART-API-AB-001",
+      "testcase_title": "不同 request ID 不命中首次请求去重结果",
+      "source_origin": "explicit_rule",
+      "coverage_level": "business",
+      "emit_mode": "main_testcase",
+      "fidelity_status": "not_applicable",
+      "evidence_ids": [],
+      "reasoning_refs": [],
+      "structured_targets": [
+        {
+          "target_type": "feature",
+          "module_name": "SignalWithStart 幂等",
+          "feature_name": "关闭后重试去重",
+          "field_name": "",
+          "target_name": "非重复请求"
+        }
+      ]
+    },
+    {
+      "record_id": "CFT-0008",
+      "rule_id": "SignalWithStart 幂等::关闭后重试去重::happy_path_combo",
+      "coverage_id": "COV-EX-0013",
+      "testcase_id": "OSS-BLIND-R3-TEMPORALAPI-SIGNALSTART-API-ST-003",
+      "testcase_title": "关闭后重试不改变原 run 最终状态",
+      "source_origin": "explicit_rule",
+      "coverage_level": "business",
+      "emit_mode": "main_testcase",
+      "fidelity_status": "not_applicable",
+      "evidence_ids": [],
+      "reasoning_refs": [],
+      "structured_targets": [
+        {
+          "target_type": "feature",
+          "module_name": "SignalWithStart 幂等",
+          "feature_name": "关闭后重试去重",
+          "field_name": "",
+          "target_name": "原 run 最终状态"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,19 @@
+# 开发自测用例
+
+# 页面：Celery Worker 撤销状态处理
+
+## 板块：撤销状态合并与执行保护
+
+| 用例编号 | 所属模块 | 所属功能点 | 用例标题 | 前置条件 | 测试步骤 | 预期结果 | 优先级 | 标签 | 测试类型 | 备注 |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| OSS-BLIND-R3-CELERYWORKER-REVOKE-SERVER-DV-001 | Worker 撤销状态 | 跨时钟域撤销状态合并 | 外部撤销记录仅合并任务 ID | 来源 Worker 或持久化状态包含撤销任务 ID 及来源主机的 monotonic 时间戳。 | 1. 本机 Worker 接收并合并该撤销状态。 | 1. 本机撤销集合包含收到的任务 ID<br>2. 该记录不复用来源主机的 monotonic 时间戳。 | P0 | AI-API用例,开发必测,测试必测 | 数据校验 | 来源 CasePlan：CP-001；来源 Acceptance：AE-001；来源 Rule：CEL-R001；来源coverage：COV-EX-0001 |
+| OSS-BLIND-R3-CELERYWORKER-REVOKE-SERVER-ST-001 | Worker 撤销状态 | 跨时钟域撤销状态合并 | 外部撤销 ID 按本机接收时间计算有效期 | 本机 Worker 配置了 `REVOKE_EXPIRES`，并记录接收外部撤销 ID 的本机时刻。 | 1. 在有效期内及有效期结束后分别检查该撤销 ID。 | 1. 从本机接收时刻起的有效期内该 ID 保持撤销<br>2. 超过 `REVOKE_EXPIRES` 后该 ID 从撤销集合移除。 | P0 | AI-API用例,开发必测,测试必测 | 状态流转 | 来源 CasePlan：CP-002；来源 Acceptance：AE-002；来源 Rule：CEL-R002；来源coverage：COV-EX-0002 |
+| OSS-BLIND-R3-CELERYWORKER-REVOKE-SERVER-ST-002 | Worker 撤销状态 | 跨时钟域撤销状态合并 | 满容量时保留本机新撤销任务 | 撤销集合已达到 `maxlen`，其中包含从外部接收的撤销记录。 | 1. 本机新增一个撤销任务 ID。 | 1. 本机刚新增的撤销任务 ID 仍保留在集合中<br>2. 外部时间戳排序不会错误驱逐该本机新记录。 | P0 | AI-API用例,开发必测,测试必测 | 状态流转 | 来源 CasePlan：CP-003；来源 Acceptance：AE-003；来源 Rule：CEL-R003；来源coverage：COV-EX-0003 |
+| OSS-BLIND-R3-CELERYWORKER-REVOKE-SERVER-ST-003 | Worker 撤销状态 | 跨时钟域撤销状态合并 | 有效期内已撤销 ETA 或 countdown 任务不执行 | ETA 或 countdown 任务的 ID 已在本机撤销集合中，且撤销记录仍在有效期内。 | 1. 任务到达预定执行时间。 | 1. 任务不执行<br>2. 任务对应的业务副作用不发生。 | P0 | AI-API用例,开发必测,测试必测 | 状态流转 | 来源 CasePlan：CP-004；来源 Acceptance：AE-004；来源 Rule：CEL-R003；来源coverage：COV-EX-0004 |
+| OSS-BLIND-R3-CELERYWORKER-REVOKE-SERVER-ST-004 | Worker 撤销状态 | 跨时钟域撤销状态合并 | hello 同步按本机时间重新计时 | 远端 Worker 已持有待同步的撤销任务 ID。 | 1. 本机通过 hello 接收该撤销 ID。 | 1. hello 同步载荷仅包含任务 ID，不包含远端 monotonic 时间戳<br>2. 收到的撤销 ID 从本机接收时刻开始计算有效期。 | P0 | AI-API用例,开发必测,测试必测 | 状态流转 | 来源 CasePlan：CP-005；来源 Acceptance：AE-005；来源 Rule：CEL-R004；来源coverage：COV-EX-0005 |
+| OSS-BLIND-R3-CELERYWORKER-REVOKE-SERVER-ST-005 | Worker 撤销状态 | 跨时钟域撤销状态合并 | mingle 同步按本机时间重新计时 | 远端 Worker 已持有待同步的撤销任务 ID。 | 1. 本机通过 mingle 接收该撤销 ID。 | 1. mingle 同步载荷仅包含任务 ID，不包含远端 monotonic 时间戳<br>2. 收到的撤销 ID 从本机接收时刻开始计算有效期。 | P0 | AI-API用例,开发必测,测试必测 | 状态流转 | 来源 CasePlan：CP-006；来源 Acceptance：AE-006；来源 Rule：CEL-R004；来源coverage：COV-EX-0006 |
+| OSS-BLIND-R3-CELERYWORKER-REVOKE-SERVER-ST-006 | Worker 撤销状态 | 跨时钟域撤销状态合并 | statedb 恢复按本机时间重新计时 | `--statedb` 中持久化了撤销任务 ID 和原进程的 monotonic 时间戳。 | 1. Worker 启动并从 `--statedb` 恢复撤销状态。 | 1. 恢复的撤销 ID 从本机恢复时刻开始计算有效期<br>2. 持久化的旧 monotonic 时间戳不决定本机过期顺序。 | P0 | AI-API用例,开发必测,测试必测 | 状态流转 | 来源 CasePlan：CP-007；来源 Acceptance：AE-007；来源 Rule：CEL-R004；来源coverage：COV-EX-0007 |
+| OSS-BLIND-R3-CELERYWORKER-REVOKE-SERVER-FL-001 | Worker 撤销状态 | 跨时钟域撤销状态合并 | 新旧 Worker 双向交换不丢失撤销 ID | 滚动升级集群中同时存在新旧 Worker，两端各自持有不同的撤销任务 ID。 | 1. 新旧 Worker 双向交换撤销状态。 | 1. 双向同步载荷仅包含任务 ID，不包含任一 Worker 的 monotonic 时间戳<br>2. 交换完成后，新旧 Worker 的撤销集合均包含双方提供的任务 ID。 | P0 | AI-API用例,开发必测,测试必测 | 流程验证 | 来源 CasePlan：CP-008；来源 Flow：CP-008；来源 Acceptance：AE-008；来源 Rule：CEL-R005；来源coverage：COV-EX-0008 |
+| OSS-BLIND-R3-CELERYWORKER-REVOKE-SERVER-BD-001 | Worker 撤销状态 | 跨时钟域撤销状态合并 | 边界：now 为 0 时撤销记录可加入和排序 | 撤销集合的当前时间输入为 `now=0`。 | 1. 向集合加入撤销任务 ID 并执行排序。 | 1. 加入后撤销集合包含该任务 ID<br>2. 排序过程不抛出异常。 | P0 | AI-API用例,开发必测,测试必测 | 边界 | 来源 CasePlan：CP-009；来源 Acceptance：AE-009；来源 Rule：CEL-R006；来源coverage：COV-EX-0009 |
+| OSS-BLIND-R3-CELERYWORKER-REVOKE-SERVER-BD-002 | Worker 撤销状态 | 跨时钟域撤销状态合并 | 边界：相同时间戳的撤销记录排序稳定 | 撤销集合中存在多条 monotonic 时间戳相同的记录。 | 1. 集合执行排序和容量维护。 | 1. 排序过程不抛出异常<br>2. 相同时间戳的记录仍可被稳定保留和处理。 | P0 | AI-API用例,开发必测,测试必测 | 边界 | 来源 CasePlan：CP-010；来源 Acceptance：AE-010；来源 Rule：CEL-R006；来源coverage：COV-EX-0010 |
+| OSS-BLIND-R3-CELERYWORKER-REVOKE-SERVER-BD-003 | Worker 撤销状态 | 跨时钟域撤销状态合并 | 边界：混合类型任务 ID 不触发比较异常 | 撤销集合同时包含整数任务 ID 和字符串任务 ID。 | 1. 集合加入、排序并清理这些撤销记录。 | 1. 集合操作不触发任务 ID 类型比较异常。 | P0 | AI-API用例,开发必测,测试必测 | 边界 | 来源 CasePlan：CP-011；来源 Acceptance：AE-011；来源 Rule：CEL-R006；来源coverage：COV-EX-0011 |

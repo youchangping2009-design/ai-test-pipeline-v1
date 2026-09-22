@@ -103,7 +103,8 @@ def validate_feedback(payload: dict[str, Any], known_case_plan_ids: set[str]) ->
         if known_case_plan_ids:
             for case_plan_id in source_case_plan_ids:
                 if case_plan_id not in known_case_plan_ids:
-                    errors.append(f"{feedback_id} source_case_plan_id 不存在于 case_plan: {case_plan_id}")
+                    if not (feedback_type == "invalid_case" and status == "applied"):
+                        errors.append(f"{feedback_id} source_case_plan_id 不存在于 case_plan: {case_plan_id}")
 
     return errors
 

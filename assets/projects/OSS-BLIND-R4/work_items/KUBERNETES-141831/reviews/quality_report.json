@@ -1,0 +1,86 @@
+{
+  "generated_at": "2026-09-22T13:03:41",
+  "total_cases": 13,
+  "total_coverage_entries": 23,
+  "coverage_empty_with_cases": false,
+  "rule_coverage_rate": 0.5652,
+  "atomic_case_rate": 0.0,
+  "boundary_coverage_rate": 1.0,
+  "data_source_rule_coverage_rate": 1.0,
+  "generalized_case_count": 0,
+  "generalized_case_rate": 0.0,
+  "weak_case_count": 1,
+  "weak_case_rate": 0.0769,
+  "semantic_mismatch_count": 0,
+  "duplicate_case_count": 0,
+  "duplicate_case_rate": 0.0,
+  "duplicate_group_count": 0,
+  "duplicate_metric_basis": "residual_after_merge",
+  "missing_fidelity_points": 0,
+  "high_priority_fidelity_missing": 0,
+  "false_traceability_rate": 0.0,
+  "false_traceability_rate_primary": 0.0,
+  "false_traceability_rate_legacy": 0.0,
+  "traceability_metric_source": "coverage_first_traceability",
+  "field_audit_item_count": 10,
+  "grouped_audit_group_count": 0,
+  "audit_artifacts_consumed": true,
+  "quality_gate": {
+    "enabled": false,
+    "mode": "soft",
+    "rollout_source": "new_work_item",
+    "status": "report_only",
+    "thresholds": {
+      "false_traceability_rate_fail": 0.05,
+      "generalized_case_rate_warn": 0.03,
+      "generalized_case_count_warn": 5,
+      "weak_case_rate_warn": 0.03,
+      "weak_case_count_warn": 5,
+      "semantic_mismatch_count_fail": 0,
+      "duplicate_case_rate_warn": 0.005,
+      "duplicate_case_count_warn": 1
+    },
+    "warnings": [
+      {
+        "metric": "weak_case",
+        "actual": {
+          "rate": 0.0769,
+          "count": 1
+        },
+        "threshold": {
+          "rate": 0.03,
+          "count": 5
+        },
+        "artifact": "reviews/weak_cases.json",
+        "reason": "主集仍包含泛化步骤、抽象预期或语义错型用例。"
+      }
+    ],
+    "failures": []
+  },
+  "unresolved_issues": [
+    "仍有 1 条用例包含泛化步骤、抽象预期或语义错型。"
+  ],
+  "final_near_duplicate_groups": [],
+  "source_artifacts": {
+    "structured_prd": {
+      "path": "assets/projects/OSS-BLIND-R4/work_items/KUBERNETES-141831/structured_prd/structured_prd.json",
+      "sha256": "81fd649ef44b75930fc0f471b7c6c396008da2ed52fe273927dff7e5b3bceb9b",
+      "size_bytes": 12246
+    },
+    "coverage_matrix": {
+      "path": "assets/projects/OSS-BLIND-R4/work_items/KUBERNETES-141831/coverage/coverage_matrix.json",
+      "sha256": "aeebbfb322aef20cb69478d87370a3a5da27793513229899c36d52e176655868",
+      "size_bytes": 21934
+    },
+    "testcases": {
+      "path": "assets/projects/OSS-BLIND-R4/work_items/KUBERNETES-141831/testcases/testcases_main.md",
+      "sha256": "597fa7cfc3f75b8dc6cbed2fc0cf74358870f197528884576e710d45950c441f",
+      "size_bytes": 7607
+    },
+    "coverage_first_traceability": {
+      "path": "assets/projects/OSS-BLIND-R4/work_items/KUBERNETES-141831/traceability/coverage_first_traceability.json",
+      "sha256": "9842ec48363c0cab1810c549c3fdd2cfd5ae2e6d27f405715c6dd96b82704045",
+      "size_bytes": 10583
+    }
+  }
+}

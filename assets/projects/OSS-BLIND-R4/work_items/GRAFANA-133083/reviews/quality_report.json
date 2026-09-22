@@ -1,0 +1,86 @@
+{
+  "generated_at": "2026-09-22T12:59:15",
+  "total_cases": 17,
+  "total_coverage_entries": 22,
+  "coverage_empty_with_cases": false,
+  "rule_coverage_rate": 0.7727,
+  "atomic_case_rate": 0.0,
+  "boundary_coverage_rate": 1.0,
+  "data_source_rule_coverage_rate": 1.0,
+  "generalized_case_count": 0,
+  "generalized_case_rate": 0.0,
+  "weak_case_count": 1,
+  "weak_case_rate": 0.0588,
+  "semantic_mismatch_count": 0,
+  "duplicate_case_count": 0,
+  "duplicate_case_rate": 0.0,
+  "duplicate_group_count": 0,
+  "duplicate_metric_basis": "residual_after_merge",
+  "missing_fidelity_points": 0,
+  "high_priority_fidelity_missing": 0,
+  "false_traceability_rate": 0.0,
+  "false_traceability_rate_primary": 0.0,
+  "false_traceability_rate_legacy": 0.0,
+  "traceability_metric_source": "coverage_first_traceability",
+  "field_audit_item_count": 5,
+  "grouped_audit_group_count": 0,
+  "audit_artifacts_consumed": true,
+  "quality_gate": {
+    "enabled": false,
+    "mode": "soft",
+    "rollout_source": "new_work_item",
+    "status": "report_only",
+    "thresholds": {
+      "false_traceability_rate_fail": 0.05,
+      "generalized_case_rate_warn": 0.03,
+      "generalized_case_count_warn": 5,
+      "weak_case_rate_warn": 0.03,
+      "weak_case_count_warn": 5,
+      "semantic_mismatch_count_fail": 0,
+      "duplicate_case_rate_warn": 0.005,
+      "duplicate_case_count_warn": 1
+    },
+    "warnings": [
+      {
+        "metric": "weak_case",
+        "actual": {
+          "rate": 0.0588,
+          "count": 1
+        },
+        "threshold": {
+          "rate": 0.03,
+          "count": 5
+        },
+        "artifact": "reviews/weak_cases.json",
+        "reason": "主集仍包含泛化步骤、抽象预期或语义错型用例。"
+      }
+    ],
+    "failures": []
+  },
+  "unresolved_issues": [
+    "仍有 1 条用例包含泛化步骤、抽象预期或语义错型。"
+  ],
+  "final_near_duplicate_groups": [],
+  "source_artifacts": {
+    "structured_prd": {
+      "path": "assets/projects/OSS-BLIND-R4/work_items/GRAFANA-133083/structured_prd/structured_prd.json",
+      "sha256": "b402004f5af1b38e0e369ad7e06571a5e617ceb83e13ace70e91d7fcfe88292f",
+      "size_bytes": 13086
+    },
+    "coverage_matrix": {
+      "path": "assets/projects/OSS-BLIND-R4/work_items/GRAFANA-133083/coverage/coverage_matrix.json",
+      "sha256": "7d0b76f717dfe69a7168949b2901b5be8030112cbd7ee0119ac6da5eb746212b",
+      "size_bytes": 21227
+    },
+    "testcases": {
+      "path": "assets/projects/OSS-BLIND-R4/work_items/GRAFANA-133083/testcases/testcases_main.md",
+      "sha256": "9265be46c6d647fd57bb2e8fd5dd785ac1c4b4e5392299d16fd6112d150b0488",
+      "size_bytes": 9496
+    },
+    "coverage_first_traceability": {
+      "path": "assets/projects/OSS-BLIND-R4/work_items/GRAFANA-133083/traceability/coverage_first_traceability.json",
+      "sha256": "1d506b8384532ae7bc9a6ff9b5d79301f271274032655570577079402255d40d",
+      "size_bytes": 13218
+    }
+  }
+}

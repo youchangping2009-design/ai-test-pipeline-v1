@@ -1,0 +1,22 @@
+{
+  "project_code": "OSS-BLIND-R3",
+  "work_item_id": "DJANGO-21801",
+  "oracle": {"source_url": "https://github.com/django/django/pull/21801", "head_sha": "261b95cfe46cd8e6f2eb895acae6543772c05ce3"},
+  "assertions": [
+    {"assertion_id": "OA-001", "summary": "删除字段普通索引时，候选删除目标排除 Meta.constraints 中已命名约束", "disposition": "covered", "testcase_ids": ["OSS-BLIND-R3-DJANGOMIG-INDEXSCHEMA-SERVER-ST-001"]},
+    {"assertion_id": "OA-002", "summary": "迁移前同一字段可同时存在普通索引与命名唯一约束", "disposition": "covered", "testcase_ids": ["OSS-BLIND-R3-DJANGOMIG-INDEXSCHEMA-SERVER-DV-002", "OSS-BLIND-R3-DJANGOMIG-INDEXSCHEMA-SERVER-DV-003"]},
+    {"assertion_id": "OA-003", "summary": "移除 db_index 后普通非唯一索引被删除", "disposition": "covered", "testcase_ids": ["OSS-BLIND-R3-DJANGOMIG-INDEXSCHEMA-SERVER-DV-001", "OSS-BLIND-R3-DJANGOMIG-INDEXSCHEMA-SERVER-DV-002"]},
+    {"assertion_id": "OA-004", "summary": "移除 db_index 后命名唯一约束仍然存在", "disposition": "covered", "testcase_ids": ["OSS-BLIND-R3-DJANGOMIG-INDEXSCHEMA-SERVER-DV-003"]},
+    {"assertion_id": "OA-005", "summary": "迁移 SQL 只作用于普通索引，不删除命名唯一约束", "disposition": "covered", "testcase_ids": ["OSS-BLIND-R3-DJANGOMIG-INDEXSCHEMA-SERVER-ST-002"]},
+    {"assertion_id": "OA-006", "summary": "约束保留后的唯一性与既有数据保持不变", "disposition": "covered", "testcase_ids": ["OSS-BLIND-R3-DJANGOMIG-INDEXSCHEMA-SERVER-FL-001", "OSS-BLIND-R3-DJANGOMIG-INDEXSCHEMA-SERVER-DV-004"]}
+  ],
+  "testcase_assessments": [
+    {"testcase_id": "OSS-BLIND-R3-DJANGOMIG-INDEXSCHEMA-SERVER-DV-001", "disposition": "direct_match"},
+    {"testcase_id": "OSS-BLIND-R3-DJANGOMIG-INDEXSCHEMA-SERVER-ST-001", "disposition": "direct_match"},
+    {"testcase_id": "OSS-BLIND-R3-DJANGOMIG-INDEXSCHEMA-SERVER-DV-002", "disposition": "direct_match"},
+    {"testcase_id": "OSS-BLIND-R3-DJANGOMIG-INDEXSCHEMA-SERVER-DV-003", "disposition": "direct_match"},
+    {"testcase_id": "OSS-BLIND-R3-DJANGOMIG-INDEXSCHEMA-SERVER-ST-002", "disposition": "requirement_regression"},
+    {"testcase_id": "OSS-BLIND-R3-DJANGOMIG-INDEXSCHEMA-SERVER-FL-001", "disposition": "requirement_regression"},
+    {"testcase_id": "OSS-BLIND-R3-DJANGOMIG-INDEXSCHEMA-SERVER-DV-004", "disposition": "requirement_regression"}
+  ]
+}

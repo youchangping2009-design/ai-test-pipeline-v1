@@ -1,0 +1,70 @@
+{
+  "generated_at": "2026-09-21T18:23:38",
+  "total_cases": 9,
+  "total_coverage_entries": 22,
+  "coverage_empty_with_cases": false,
+  "rule_coverage_rate": 0.5294,
+  "atomic_case_rate": 0.0,
+  "boundary_coverage_rate": 1.0,
+  "data_source_rule_coverage_rate": 1.0,
+  "generalized_case_count": 0,
+  "generalized_case_rate": 0.0,
+  "weak_case_count": 0,
+  "weak_case_rate": 0.0,
+  "semantic_mismatch_count": 0,
+  "duplicate_case_count": 0,
+  "duplicate_case_rate": 0.0,
+  "duplicate_group_count": 0,
+  "duplicate_metric_basis": "residual_after_merge",
+  "missing_fidelity_points": 0,
+  "high_priority_fidelity_missing": 0,
+  "false_traceability_rate": 0.0,
+  "false_traceability_rate_primary": 0.0,
+  "false_traceability_rate_legacy": 0.0,
+  "traceability_metric_source": "coverage_first_traceability",
+  "field_audit_item_count": 13,
+  "grouped_audit_group_count": 0,
+  "audit_artifacts_consumed": true,
+  "quality_gate": {
+    "enabled": false,
+    "mode": "soft",
+    "rollout_source": "new_work_item",
+    "status": "report_only",
+    "thresholds": {
+      "false_traceability_rate_fail": 0.05,
+      "generalized_case_rate_warn": 0.03,
+      "generalized_case_count_warn": 5,
+      "weak_case_rate_warn": 0.03,
+      "weak_case_count_warn": 5,
+      "semantic_mismatch_count_fail": 0,
+      "duplicate_case_rate_warn": 0.005,
+      "duplicate_case_count_warn": 1
+    },
+    "warnings": [],
+    "failures": []
+  },
+  "unresolved_issues": [],
+  "final_near_duplicate_groups": [],
+  "source_artifacts": {
+    "structured_prd": {
+      "path": "assets/projects/OSS-BLIND/work_items/CHATWOOT-15768/structured_prd/structured_prd.json",
+      "sha256": "354d0dc0a0a8580b9d0832d28273323beb4b6269041870b0d76601015c7c847a",
+      "size_bytes": 23471
+    },
+    "coverage_matrix": {
+      "path": "assets/projects/OSS-BLIND/work_items/CHATWOOT-15768/coverage/coverage_matrix.json",
+      "sha256": "f427a566e0a4af2d457fda7fcacee65441a46adf90fe574d4df7796b75791793",
+      "size_bytes": 21911
+    },
+    "testcases": {
+      "path": "assets/projects/OSS-BLIND/work_items/CHATWOOT-15768/testcases/testcases_main.md",
+      "sha256": "ec0e22805e7b1dc944124fb32d5dffc929c1bfcd78efcabcaaf62a4355bc0c1b",
+      "size_bytes": 5651
+    },
+    "coverage_first_traceability": {
+      "path": "assets/projects/OSS-BLIND/work_items/CHATWOOT-15768/traceability/coverage_first_traceability.json",
+      "sha256": "c653e41f48d474a66c80251a7d7a3cebd4c90b52ba61473578393b5badb61d7d",
+      "size_bytes": 7676
+    }
+  }
+}

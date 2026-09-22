@@ -197,8 +197,8 @@ def infer_emit_mode(entry: dict[str, Any]) -> str:
 
 def with_semantics(entry: dict[str, Any]) -> dict[str, Any]:
     enriched = dict(entry)
-    enriched["coverage_level"] = infer_coverage_level(enriched)
-    enriched["emit_mode"] = infer_emit_mode(enriched)
+    enriched.setdefault("coverage_level", infer_coverage_level(enriched))
+    enriched.setdefault("emit_mode", infer_emit_mode(enriched))
     return enriched
 
 
@@ -389,7 +389,10 @@ def build_structured_entries(structured_prd: dict[str, Any]) -> list[dict[str, A
                 )
                 counter += 1
 
-            if any(field.get(key) not in ("", None, []) for key in ("min", "max", "max_length")):
+            if field.get("editable") is not False and any(
+                field.get(key) not in ("", None, [])
+                for key in ("min", "max", "max_length")
+            ):
                 planned = []
                 if field.get("min") not in ("", None):
                     planned.append(f"`{display_name}` 最小值边界={field.get('min')}")
@@ -659,142 +662,199 @@ def build_rule_signal_entries(structured_prd: dict[str, Any], start_counter: int
     return entries
 
 
+def build_feature_rule_entries(
+    structured_prd: dict[str, Any], start_counter: int
+) -> list[dict[str, Any]]:
+    """Project every concrete feature rule into the main coverage chain.
+
+    Field-shape entries alone cannot represent connection, matching, state, or
+    relationship behavior.  Feature rules are already the atomic design layer,
+    so Coverage must preserve them without relying on domain-specific keywords.
+    """
+    entries: list[dict[str, Any]] = []
+    seen: set[tuple[Any, ...]] = set()
+    counter = start_counter
+
+    for module_name, feature in feature_iter(structured_prd):
+        page_name = str(feature.get("page_name", "")).strip()
+        section_name = str(feature.get("section_name", "")).strip()
+        feature_name = str(feature.get("feature_name", "")).strip()
+        for rule in feature.get("rules", []):
+            if not isinstance(rule, dict):
+                continue
+            rule_text = extract_rule_text(rule)
+            if not rule_text:
+                continue
+            rule_id = str(rule.get("rule_id", "")).strip()
+            title = str(rule.get("name", "")).strip() or rule_text
+            field_name = str(rule.get("field_name", "")).strip()
+            add_entry(
+                entries,
+                seen,
+                {
+                    "coverage_id": next_coverage_id("COV-EX", counter),
+                    "coverage_type": "happy_path_combo",
+                    "source_origin": "explicit_rule",
+                    "source_type": "structured_rule",
+                    "title": title,
+                    "page_name": page_name,
+                    "section_name": section_name,
+                    "module_name": module_name,
+                    "feature_name": feature_name,
+                    "field_name": field_name,
+                    "rule_name": rule_id or title,
+                    "priority": priority_from_text(rule_text),
+                    "rationale": "Structured PRD 已将该业务行为拆为独立 feature rule，需要进入正式 Coverage 主链。",
+                    "planned_assertions": [rule_text],
+                    "structured_refs": [
+                        f"{module_name}.{feature_name}.rules.{rule_id or title}"
+                    ],
+                    "reasoning_refs": [],
+                },
+            )
+            counter += 1
+
+    return entries
+
+
+def build_explicit_rule_entries(
+    structured_prd: dict[str, Any], start_counter: int
+) -> list[dict[str, Any]]:
+    entries: list[dict[str, Any]] = []
+    seen: set[tuple[Any, ...]] = set()
+    counter = start_counter
+    features = feature_iter(structured_prd)
+    contexts = feature_context_map(structured_prd)
+    default_context = ("", "", "", "")
+    if len(features) == 1:
+        module_name, feature = features[0]
+        default_context = (
+            str(feature.get("page_name", "")).strip(),
+            str(feature.get("section_name", "")).strip(),
+            module_name,
+            str(feature.get("feature_name", "")).strip(),
+        )
+
+    rules = structured_prd.get("requirement_info", {}).get("explicit_rules", [])
+    for rule in rules:
+        if not isinstance(rule, dict):
+            continue
+        rule_id = str(rule.get("rule_id", "")).strip()
+        rule_text = str(rule.get("rule_text", "")).strip()
+        if not rule_id or not rule_text:
+            continue
+        applies_to = str(rule.get("applies_to", "")).strip()
+        page_name, section_name, module_name, feature_name = contexts.get(
+            applies_to, default_context
+        )
+        priority = str(rule.get("priority", "")).strip() or priority_from_text(rule_text)
+        source_scope = str(rule.get("source_scope", "primary_requirement")).strip() or "primary_requirement"
+        non_primary_scope = source_scope in {"context_only", "oracle_only"}
+        atomic_assertions = [
+            str(item).strip()
+            for item in rule.get("atomic_assertions", [])
+            if str(item).strip()
+        ]
+        assertion_groups = [[item] for item in atomic_assertions] or [[rule_text]]
+        if not atomic_assertions:
+            for point in rule.get("fidelity_points", []):
+                value = str(point.get("value", "")).strip() if isinstance(point, dict) else ""
+                if value and value not in rule_text:
+                    assertion_groups[0].append(value)
+
+        for assertion_index, planned_assertions in enumerate(assertion_groups, start=1):
+            # Atomic assertions are independently testable contracts. A parent rule
+            # may carry a separate unresolved qualifier (for example, error copy or
+            # input format) that must not demote otherwise confirmed assertions.
+            needs_confirmation = any(
+                "待确认" in assertion for assertion in planned_assertions
+            )
+            title = rule_text
+            if len(assertion_groups) > 1:
+                title = planned_assertions[0]
+            add_entry(
+                entries,
+                seen,
+                {
+                    "coverage_id": next_coverage_id("COV-EX", counter),
+                    "coverage_type": "happy_path_combo",
+                    "coverage_level": "audit_only" if needs_confirmation or non_primary_scope else "business",
+                    "emit_mode": "audit_item" if needs_confirmation or non_primary_scope else "main_testcase",
+                    "source_origin": "explicit_rule",
+                    "source_scope": source_scope,
+                    "source_type": "structured_rule",
+                    "title": title,
+                    "page_name": page_name,
+                    "section_name": section_name,
+                    "module_name": module_name,
+                    "feature_name": feature_name,
+                    "field_name": "",
+                    "rule_name": rule_id,
+                    "atomic_assertion_index": assertion_index if len(assertion_groups) > 1 else None,
+                    "priority": priority,
+                    "rationale": (
+                        f"该规则来源角色为 {source_scope}，仅保留为审计项。"
+                        if non_primary_scope
+                        else "该规则来自 Structured PRD 的显式需求规则，必须在 Coverage 中保留。"
+                    ),
+                    "planned_assertions": planned_assertions,
+                    "structured_refs": [f"requirement_info.explicit_rules.{rule_id}"],
+                    "reasoning_refs": [],
+                },
+            )
+            counter += 1
+
+    return entries
+
+
 def build_reasoning_entries(reasoning_pack: dict[str, Any], structured_prd: dict[str, Any], start_counter: int) -> list[dict[str, Any]]:
     entries: list[dict[str, Any]] = []
     seen: set[tuple[Any, ...]] = set()
     counter = start_counter
 
-    for edge_case in reasoning_pack.get("edge_cases", []):
-        related_field = str(edge_case.get("related_field", "")).strip()
-        if related_field == "display_day_x":
-            add_entry(
-                entries,
-                seen,
-                {
-                    "coverage_id": f"COV-AI-{counter:04d}",
-                    "coverage_type": "invalid_input",
-                    "source_origin": "ai_reasoning",
-                    "source_type": "edge_case",
-                    "title": "X 非法输入",
-                    "page_name": edge_case["source_refs"][0].get("page_name", ""),
-                    "module_name": "",
-                    "feature_name": "",
-                    "field_name": related_field,
-                    "priority": "high",
-                    "rationale": edge_case.get("scenario", ""),
-                    "planned_assertions": [
-                        "X 应覆盖小于最小值、超过最大值、非整数输入三类非法输入。"
-                    ],
-                    "structured_refs": [],
-                    "reasoning_refs": [edge_case.get("edge_case_id", "")]
-                }
-            )
-            counter += 1
-        if related_field == "link_url":
-            add_entry(
-                entries,
-                seen,
-                {
-                    "coverage_id": f"COV-AI-{counter:04d}",
-                    "coverage_type": "invalid_input",
-                    "source_origin": "ai_reasoning",
-                    "source_type": "edge_case",
-                    "title": "链接 长度越界",
-                    "page_name": edge_case["source_refs"][0].get("page_name", ""),
-                    "module_name": "",
-                    "feature_name": "",
-                    "field_name": related_field,
-                    "priority": "high",
-                    "rationale": edge_case.get("scenario", ""),
-                    "planned_assertions": [
-                        "链接长度超过 1000 时应提示越界并阻止提交。"
-                    ],
-                    "structured_refs": [],
-                    "reasoning_refs": [edge_case.get("edge_case_id", "")]
-                }
-            )
-            counter += 1
-
-    risk_text = " ".join(risk.get("risk_statement", "") for risk in reasoning_pack.get("business_risks", []))
-    if "排序" in risk_text and "条数上限" in risk_text:
-        add_entry(
-            entries,
-            seen,
-            {
-                "coverage_id": f"COV-AI-{counter:04d}",
-                "coverage_type": "happy_path_combo",
-                "source_origin": "ai_reasoning",
-                "source_type": "business_risk",
-                "title": "banner 合法组合场景",
-                "page_name": "小程序banner配置页",
-                "module_name": "小程序banner配置",
-                "feature_name": "banner配置录入与状态字段",
-                "field_name": "",
-                "priority": "high",
-                "rationale": "排序、容量与条件字段共同作用，单规则覆盖不足以验证真实可配置成功路径。",
-                "planned_assertions": [
-                    "展示类型选择“后X天（自然日）内展示”时，X 使用合法整数。",
-                    "跳转类型选择“活动中心”时，选择活动只出现满足过滤条件且排序正确的候选项。",
-                    "展示tab 选择有效导航，状态设置为开启后，可形成一条合法可保存的配置。"
-                ],
-                "structured_refs": [
-                    "小程序banner配置.banner配置录入与状态字段.display_day_x",
-                    "小程序banner配置.banner配置录入与状态字段.selected_activity",
-                    "小程序banner配置.banner配置录入与状态字段.status"
-                ],
-                "reasoning_refs": [risk.get("risk_id", "") for risk in reasoning_pack.get("business_risks", [])[:2]]
-            }
+    features = feature_iter(structured_prd)
+    default_context = ("", "", "", "")
+    if len(features) == 1:
+        module_name, feature = features[0]
+        default_context = (
+            str(feature.get("page_name", "")).strip(),
+            str(feature.get("section_name", "")).strip(),
+            module_name,
+            str(feature.get("feature_name", "")).strip(),
         )
-        counter += 1
 
-    for dimension in reasoning_pack.get("recommended_test_dimensions", []):
-        title = str(dimension.get("dimension", "")).strip()
-        if title == "数据来源、过滤与排序":
+    for source_type, items, id_key, text_key in (
+        ("edge_case", reasoning_pack.get("edge_cases", []), "edge_case_id", "scenario"),
+        ("business_risk", reasoning_pack.get("business_risks", []), "risk_id", "risk_statement"),
+    ):
+        for item in items:
+            text = str(item.get(text_key, "")).strip()
+            reasoning_id = str(item.get(id_key, "")).strip()
+            if not text or not reasoning_id:
+                continue
+            page_name, section_name, module_name, feature_name = default_context
             add_entry(
                 entries,
                 seen,
                 {
-                    "coverage_id": f"COV-AI-{counter:04d}",
-                    "coverage_type": "data_source_order",
+                    "coverage_id": next_coverage_id("COV-AI", counter),
+                    "coverage_type": "happy_path_combo",
+                    "coverage_level": "audit_only",
+                    "emit_mode": "audit_item",
                     "source_origin": "ai_reasoning",
-                    "source_type": "recommended_test_dimension",
-                    "title": "选择活动 排序口径复核",
-                    "page_name": "小程序banner配置页",
-                    "module_name": "小程序banner配置",
-                    "feature_name": "banner配置录入与状态字段",
-                    "field_name": "selected_activity",
-                    "priority": "high",
-                    "rationale": dimension.get("rationale", ""),
-                    "planned_assertions": [
-                        "选择活动 不仅要过滤正确，还要按活动创建时间倒序展示。"
-                    ],
-                    "structured_refs": ["小程序banner配置.banner配置录入与状态字段.selected_activity.order_by"],
-                    "reasoning_refs": [dimension.get("dimension_id", "")]
-                }
-            )
-            counter += 1
-        if title == "条件展示与条件只读":
-            add_entry(
-                entries,
-                seen,
-                {
-                    "coverage_id": f"COV-AI-{counter:04d}",
-                    "coverage_type": "conditional_editability",
-                    "source_origin": "ai_reasoning",
-                    "source_type": "recommended_test_dimension",
-                    "title": "链接 只读规则复核",
-                    "page_name": "小程序banner配置页",
-                    "module_name": "小程序banner配置",
-                    "feature_name": "banner配置录入与状态字段",
-                    "field_name": "link_url",
-                    "priority": "high",
-                    "rationale": dimension.get("rationale", ""),
-                    "planned_assertions": [
-                        "活动中心场景下，链接字段虽然可见，但不允许编辑。"
-                    ],
-                    "structured_refs": ["小程序banner配置.banner配置录入与状态字段.link_url.readonly_when"],
-                    "reasoning_refs": [dimension.get("dimension_id", "")]
-                }
+                    "source_type": source_type,
+                    "title": text,
+                    "page_name": page_name,
+                    "section_name": section_name,
+                    "module_name": module_name,
+                    "feature_name": feature_name,
+                    "field_name": str(item.get("related_field", "") or "").strip(),
+                    "priority": "medium",
+                    "rationale": "该项来自 Reasoning Pack，保留为风险/边界审计，不自动升级为产品验收主用例。",
+                    "planned_assertions": [f"审计并确认：{text}"],
+                    "structured_refs": [],
+                    "reasoning_refs": [reasoning_id],
+                },
             )
             counter += 1
 
@@ -803,11 +863,17 @@ def build_reasoning_entries(reasoning_pack: dict[str, Any], structured_prd: dict
 
 def build_matrix(structured_prd: dict[str, Any], reasoning_pack: dict[str, Any]) -> dict[str, Any]:
     explicit_entries = build_structured_entries(structured_prd)
-    rule_signal_entries = build_rule_signal_entries(structured_prd, len(explicit_entries) + 1)
+    rule_entries = build_explicit_rule_entries(
+        structured_prd, len(explicit_entries) + 1
+    )
+    if not rule_entries:
+        rule_entries = build_feature_rule_entries(
+            structured_prd, len(explicit_entries) + 1
+        )
     reasoning_entries = build_reasoning_entries(
         reasoning_pack,
         structured_prd,
-        len(explicit_entries) + len(rule_signal_entries) + 1,
+        len(explicit_entries) + len(rule_entries) + 1,
     )
     return {
         "project_code": reasoning_pack.get("project_code") or structured_prd.get("project_info", {}).get("project_code", ""),
@@ -817,7 +883,7 @@ def build_matrix(structured_prd: dict[str, Any], reasoning_pack: dict[str, Any])
             "structured_prd/structured_prd.json",
             "analysis/reasoning_pack.json"
         ],
-        "entries": explicit_entries + rule_signal_entries + reasoning_entries,
+        "entries": explicit_entries + rule_entries + reasoning_entries,
     }
 
 

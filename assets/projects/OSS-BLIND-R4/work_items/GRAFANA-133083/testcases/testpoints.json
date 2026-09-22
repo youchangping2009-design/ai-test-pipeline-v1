@@ -1,0 +1,420 @@
+{
+  "project_code": "OSS-BLIND-R4",
+  "work_item_id": "GRAFANA-133083",
+  "truth_source": "testcases/case_plan.json",
+  "projection_only": true,
+  "generated_from": [
+    "testcases/case_plan.json",
+    "testcases/testcases_main.md"
+  ],
+  "testpoints": [
+    {
+      "testpoint_id": "TP-001",
+      "source_case_plan_id": "CP-001",
+      "source_gate_ids": [
+        "TG-001"
+      ],
+      "source_example_ids": [
+        "AE-001"
+      ],
+      "source_responsibility_ids": [],
+      "page_name": "APIStore 资源序列化",
+      "section_name": "序列化选择与对象往返",
+      "module_name": "APIStore 序列化",
+      "feature_name": "资源序列化选择",
+      "test_dimension": "backend_job",
+      "test_point": "写入优先使用显式 Serializer",
+      "assertion": "写入数据由显式 Serializer 编码；已配置 codec 不参与本次写入编码。",
+      "priority": "P0",
+      "validation_path": "product_acceptance",
+      "should_generate_case": true,
+      "generated_testcase_ids": [
+        "OSS-BLIND-R4-APISTORE-SERIALIZER-API-ST-001"
+      ]
+    },
+    {
+      "testpoint_id": "TP-002",
+      "source_case_plan_id": "CP-002",
+      "source_gate_ids": [
+        "TG-001"
+      ],
+      "source_example_ids": [
+        "AE-002"
+      ],
+      "source_responsibility_ids": [],
+      "page_name": "APIStore 资源序列化",
+      "section_name": "序列化选择与对象往返",
+      "module_name": "APIStore 序列化",
+      "feature_name": "资源序列化选择",
+      "test_dimension": "backend_job",
+      "test_point": "单条读取优先使用显式 Serializer",
+      "assertion": "目标对象由显式 Serializer 解码；已配置 codec 不参与本次解码。",
+      "priority": "P0",
+      "validation_path": "product_acceptance",
+      "should_generate_case": true,
+      "generated_testcase_ids": [
+        "OSS-BLIND-R4-APISTORE-SERIALIZER-API-ST-002"
+      ]
+    },
+    {
+      "testpoint_id": "TP-003",
+      "source_case_plan_id": "CP-003",
+      "source_gate_ids": [
+        "TG-001"
+      ],
+      "source_example_ids": [
+        "AE-003"
+      ],
+      "source_responsibility_ids": [],
+      "page_name": "APIStore 资源序列化",
+      "section_name": "序列化选择与对象往返",
+      "module_name": "APIStore 序列化",
+      "feature_name": "资源序列化选择",
+      "test_dimension": "backend_job",
+      "test_point": "列表读取优先使用显式 Serializer",
+      "assertion": "列表中的对象由显式 Serializer 解码；已配置 codec 不参与本次列表解码。",
+      "priority": "P0",
+      "validation_path": "product_acceptance",
+      "should_generate_case": true,
+      "generated_testcase_ids": [
+        "OSS-BLIND-R4-APISTORE-SERIALIZER-API-ST-003"
+      ]
+    },
+    {
+      "testpoint_id": "TP-004",
+      "source_case_plan_id": "CP-004",
+      "source_gate_ids": [
+        "TG-001"
+      ],
+      "source_example_ids": [
+        "AE-004"
+      ],
+      "source_responsibility_ids": [],
+      "page_name": "APIStore 资源序列化",
+      "section_name": "序列化选择与对象往返",
+      "module_name": "APIStore 序列化",
+      "feature_name": "资源序列化选择",
+      "test_dimension": "backend_job",
+      "test_point": "watch 解码优先使用显式 Serializer",
+      "assertion": "watch 事件对象由显式 Serializer 解码；已配置 codec 不参与本次 watch 解码。",
+      "priority": "P0",
+      "validation_path": "product_acceptance",
+      "should_generate_case": true,
+      "generated_testcase_ids": [
+        "OSS-BLIND-R4-APISTORE-SERIALIZER-API-ST-004"
+      ]
+    },
+    {
+      "testpoint_id": "TP-005",
+      "source_case_plan_id": "CP-005",
+      "source_gate_ids": [
+        "TG-002"
+      ],
+      "source_example_ids": [
+        "AE-005"
+      ],
+      "source_responsibility_ids": [],
+      "page_name": "APIStore 资源序列化",
+      "section_name": "序列化选择与对象往返",
+      "module_name": "APIStore 序列化",
+      "feature_name": "资源序列化选择",
+      "test_dimension": "backend_job",
+      "test_point": "默认写入声明 GVK 时使用直接 JSON",
+      "assertion": "对象以直接 JSON 方式编码并写入；已配置 codec 不参与本次写入编码。",
+      "priority": "P0",
+      "validation_path": "product_acceptance",
+      "should_generate_case": true,
+      "generated_testcase_ids": [
+        "OSS-BLIND-R4-APISTORE-SERIALIZER-API-ST-005"
+      ]
+    },
+    {
+      "testpoint_id": "TP-006",
+      "source_case_plan_id": "CP-006",
+      "source_gate_ids": [
+        "TG-002"
+      ],
+      "source_example_ids": [
+        "AE-006"
+      ],
+      "source_responsibility_ids": [],
+      "page_name": "APIStore 资源序列化",
+      "section_name": "序列化选择与对象往返",
+      "module_name": "APIStore 序列化",
+      "feature_name": "资源序列化选择",
+      "test_dimension": "backend_job",
+      "test_point": "默认写入其他 GVK 时使用 codec",
+      "assertion": "对象由已配置 codec 编码并写入；本次写入不使用声明 GVK 的直接 JSON 分支。",
+      "priority": "P0",
+      "validation_path": "product_acceptance",
+      "should_generate_case": true,
+      "generated_testcase_ids": [
+        "OSS-BLIND-R4-APISTORE-SERIALIZER-API-ST-006"
+      ]
+    },
+    {
+      "testpoint_id": "TP-007",
+      "source_case_plan_id": "CP-007",
+      "source_gate_ids": [
+        "TG-003"
+      ],
+      "source_example_ids": [
+        "AE-007"
+      ],
+      "source_responsibility_ids": [],
+      "page_name": "APIStore 资源序列化",
+      "section_name": "序列化选择与对象往返",
+      "module_name": "APIStore 序列化",
+      "feature_name": "资源序列化选择",
+      "test_dimension": "backend_job",
+      "test_point": "默认单条读取使用 codec",
+      "assertion": "目标对象由已配置 codec 解码。",
+      "priority": "P0",
+      "validation_path": "product_acceptance",
+      "should_generate_case": true,
+      "generated_testcase_ids": [
+        "OSS-BLIND-R4-APISTORE-SERIALIZER-API-ST-007"
+      ]
+    },
+    {
+      "testpoint_id": "TP-008",
+      "source_case_plan_id": "CP-008",
+      "source_gate_ids": [
+        "TG-003"
+      ],
+      "source_example_ids": [
+        "AE-008"
+      ],
+      "source_responsibility_ids": [],
+      "page_name": "APIStore 资源序列化",
+      "section_name": "序列化选择与对象往返",
+      "module_name": "APIStore 序列化",
+      "feature_name": "资源序列化选择",
+      "test_dimension": "backend_job",
+      "test_point": "默认列表读取使用 codec",
+      "assertion": "列表中的对象由已配置 codec 解码。",
+      "priority": "P0",
+      "validation_path": "product_acceptance",
+      "should_generate_case": true,
+      "generated_testcase_ids": [
+        "OSS-BLIND-R4-APISTORE-SERIALIZER-API-ST-008"
+      ]
+    },
+    {
+      "testpoint_id": "TP-009",
+      "source_case_plan_id": "CP-009",
+      "source_gate_ids": [
+        "TG-003"
+      ],
+      "source_example_ids": [
+        "AE-009"
+      ],
+      "source_responsibility_ids": [],
+      "page_name": "APIStore 资源序列化",
+      "section_name": "序列化选择与对象往返",
+      "module_name": "APIStore 序列化",
+      "feature_name": "资源序列化选择",
+      "test_dimension": "backend_job",
+      "test_point": "默认 watch 解码使用 codec",
+      "assertion": "watch 事件对象由已配置 codec 解码。",
+      "priority": "P0",
+      "validation_path": "product_acceptance",
+      "should_generate_case": true,
+      "generated_testcase_ids": [
+        "OSS-BLIND-R4-APISTORE-SERIALIZER-API-ST-009"
+      ]
+    },
+    {
+      "testpoint_id": "TP-010",
+      "source_case_plan_id": "CP-010",
+      "source_gate_ids": [
+        "TG-004"
+      ],
+      "source_example_ids": [
+        "AE-010"
+      ],
+      "source_responsibility_ids": [],
+      "page_name": "APIStore 资源序列化",
+      "section_name": "序列化选择与对象往返",
+      "module_name": "APIStore 序列化",
+      "feature_name": "资源序列化选择",
+      "test_dimension": "data_persistence",
+      "test_point": "通用 JSON Serializer 往返保留对象 GVK",
+      "assertion": "解码后对象的 GVK 与编码前完全一致。",
+      "priority": "P0",
+      "validation_path": "product_acceptance",
+      "should_generate_case": true,
+      "generated_testcase_ids": [
+        "OSS-BLIND-R4-APISTORE-SERIALIZER-API-DV-001"
+      ]
+    },
+    {
+      "testpoint_id": "TP-011",
+      "source_case_plan_id": "CP-011",
+      "source_gate_ids": [
+        "TG-005"
+      ],
+      "source_example_ids": [
+        "AE-011"
+      ],
+      "source_responsibility_ids": [],
+      "page_name": "APIStore 资源序列化",
+      "section_name": "序列化选择与对象往返",
+      "module_name": "APIStore 序列化",
+      "feature_name": "资源序列化选择",
+      "test_dimension": "cross_surface_linkage",
+      "test_point": "同一 Go 类型的不同 GVK 往返后仍可区分",
+      "assertion": "持久化与读回完成后，两个对象各自保留原 GVK；两个对象不会因 Go 类型相同而被识别为同一 GVK。",
+      "priority": "P0",
+      "validation_path": "product_acceptance",
+      "should_generate_case": true,
+      "generated_testcase_ids": [
+        "OSS-BLIND-R4-APISTORE-SERIALIZER-API-FL-001"
+      ]
+    },
+    {
+      "testpoint_id": "TP-012",
+      "source_case_plan_id": "CP-012",
+      "source_gate_ids": [
+        "TG-006"
+      ],
+      "source_example_ids": [
+        "AE-012"
+      ],
+      "source_responsibility_ids": [],
+      "page_name": "APIStore 资源序列化",
+      "section_name": "序列化选择与对象往返",
+      "module_name": "APIStore 序列化",
+      "feature_name": "Watch 上下文传播",
+      "test_dimension": "backend_job",
+      "test_point": "watch 当前对象解码沿用请求 context",
+      "assertion": "当前对象的解码调用收到原请求 context。",
+      "priority": "P0",
+      "validation_path": "product_acceptance",
+      "should_generate_case": true,
+      "generated_testcase_ids": [
+        "OSS-BLIND-R4-APISTORE-SERIALIZER-API-ST-010"
+      ]
+    },
+    {
+      "testpoint_id": "TP-013",
+      "source_case_plan_id": "CP-013",
+      "source_gate_ids": [
+        "TG-006"
+      ],
+      "source_example_ids": [
+        "AE-013"
+      ],
+      "source_responsibility_ids": [],
+      "page_name": "APIStore 资源序列化",
+      "section_name": "序列化选择与对象往返",
+      "module_name": "APIStore 序列化",
+      "feature_name": "Watch 上下文传播",
+      "test_dimension": "backend_job",
+      "test_point": "watch 历史对象解码沿用请求 context",
+      "assertion": "历史对象的解码调用收到原请求 context。",
+      "priority": "P0",
+      "validation_path": "product_acceptance",
+      "should_generate_case": true,
+      "generated_testcase_ids": [
+        "OSS-BLIND-R4-APISTORE-SERIALIZER-API-ST-011"
+      ]
+    },
+    {
+      "testpoint_id": "TP-014",
+      "source_case_plan_id": "CP-014",
+      "source_gate_ids": [
+        "TG-006"
+      ],
+      "source_example_ids": [
+        "AE-014"
+      ],
+      "source_responsibility_ids": [],
+      "page_name": "APIStore 资源序列化",
+      "section_name": "序列化选择与对象往返",
+      "module_name": "APIStore 序列化",
+      "feature_name": "Watch 上下文传播",
+      "test_dimension": "backend_job",
+      "test_point": "取消 watch 请求会终止相关解码",
+      "assertion": "相关解码工作观察到取消并终止；请求取消后不继续处理后续对象。",
+      "priority": "P0",
+      "validation_path": "product_acceptance",
+      "should_generate_case": true,
+      "generated_testcase_ids": [
+        "OSS-BLIND-R4-APISTORE-SERIALIZER-API-ST-012"
+      ]
+    },
+    {
+      "testpoint_id": "TP-015",
+      "source_case_plan_id": "CP-015",
+      "source_gate_ids": [
+        "TG-012"
+      ],
+      "source_example_ids": [
+        "AE-015"
+      ],
+      "source_responsibility_ids": [],
+      "page_name": "APIStore 资源序列化",
+      "section_name": "序列化选择与对象往返",
+      "module_name": "APIStore 序列化",
+      "feature_name": "资源序列化选择",
+      "test_dimension": "backend_job",
+      "test_point": "写入时显式 Serializer 接收原请求 context",
+      "assertion": "写入编码调用的显式 Serializer 收到原请求 context。",
+      "priority": "P0",
+      "validation_path": "product_acceptance",
+      "should_generate_case": true,
+      "generated_testcase_ids": [
+        "OSS-BLIND-R4-APISTORE-SERIALIZER-API-ST-013"
+      ]
+    },
+    {
+      "testpoint_id": "TP-016",
+      "source_case_plan_id": "CP-016",
+      "source_gate_ids": [
+        "TG-012"
+      ],
+      "source_example_ids": [
+        "AE-016"
+      ],
+      "source_responsibility_ids": [],
+      "page_name": "APIStore 资源序列化",
+      "section_name": "序列化选择与对象往返",
+      "module_name": "APIStore 序列化",
+      "feature_name": "资源序列化选择",
+      "test_dimension": "backend_job",
+      "test_point": "单条读取时显式 Serializer 接收原请求 context",
+      "assertion": "单条读取解码调用的显式 Serializer 收到原请求 context。",
+      "priority": "P0",
+      "validation_path": "product_acceptance",
+      "should_generate_case": true,
+      "generated_testcase_ids": [
+        "OSS-BLIND-R4-APISTORE-SERIALIZER-API-ST-014"
+      ]
+    },
+    {
+      "testpoint_id": "TP-017",
+      "source_case_plan_id": "CP-017",
+      "source_gate_ids": [
+        "TG-012"
+      ],
+      "source_example_ids": [
+        "AE-017"
+      ],
+      "source_responsibility_ids": [],
+      "page_name": "APIStore 资源序列化",
+      "section_name": "序列化选择与对象往返",
+      "module_name": "APIStore 序列化",
+      "feature_name": "资源序列化选择",
+      "test_dimension": "backend_job",
+      "test_point": "列表读取时显式 Serializer 接收原请求 context",
+      "assertion": "列表中每个对象的解码调用均由显式 Serializer 收到原请求 context。",
+      "priority": "P0",
+      "validation_path": "product_acceptance",
+      "should_generate_case": true,
+      "generated_testcase_ids": [
+        "OSS-BLIND-R4-APISTORE-SERIALIZER-API-ST-015"
+      ]
+    }
+  ]
+}

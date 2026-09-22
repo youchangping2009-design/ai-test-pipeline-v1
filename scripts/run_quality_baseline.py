@@ -43,6 +43,14 @@ def run_command(item: BaselineCommand) -> tuple[bool, str]:
 def main() -> int:
     commands = [
         BaselineCommand(
+            name="Framework validation should not bind business samples",
+            command=[
+                PYTHON,
+                "scripts/validate_framework_sample_independence.py",
+            ],
+            expected_pass=True,
+        ),
+        BaselineCommand(
             name="Harness runtime unit tests should pass",
             command=[
                 PYTHON,
@@ -57,33 +65,6 @@ def main() -> int:
             expected_pass=True,
         ),
         BaselineCommand(
-            name="PT083 non-strict should pass",
-            command=[
-                PYTHON,
-                "scripts/validate_work_item.py",
-                "--project-code",
-                "WX-YGJ",
-                "--work-item-id",
-                "PT083",
-                "--skip-code-reviews",
-            ],
-            expected_pass=True,
-        ),
-        BaselineCommand(
-            name="PT083 strict should pass",
-            command=[
-                PYTHON,
-                "scripts/validate_work_item.py",
-                "--project-code",
-                "WX-YGJ",
-                "--work-item-id",
-                "PT083",
-                "--skip-code-reviews",
-                "--strict",
-            ],
-            expected_pass=True,
-        ),
-        BaselineCommand(
             name="Eval regression tier should pass",
             command=[
                 PYTHON,
@@ -94,15 +75,12 @@ def main() -> int:
             expected_pass=True,
         ),
         BaselineCommand(
-            name="WX-YGJ lightweight project shell should pass",
+            name="Eval golden snapshot should match",
             command=[
                 PYTHON,
-                "scripts/validate_project.py",
-                "--project-code",
-                "WX-YGJ",
-                "--strict",
-                "--validate-work-items",
-                "--skip-code-reviews",
+                "scripts/run_eval_suite.py",
+                "--tier",
+                "golden",
             ],
             expected_pass=True,
         ),

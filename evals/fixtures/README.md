@@ -4,7 +4,7 @@
 
 | Fixture | Purpose |
 |---|---|
-| `PT083` | 当前 PT083 M 档 golden regression，覆盖 technical_background、soft_prompt、写侧/读侧责任、0元链路、goodsRegion API/risk 分池 |
+| `CONFIGURATION_RULES` | 配置型需求规则 fixture，覆盖 technical_background、soft_prompt、写侧/读侧责任、0元链路、API/risk 分池 |
 | `PROMPT_ONLY` | 提示类需求，只应生成 soft_display / prompt_display |
 | `LINKAGE_ONLY` | 跨端链路需求，必须生成 linkage case_plan |
 | `RISK_API_ONLY` | 风险/API 类需求，应进入 risk_note / api_guard，不进入 product_acceptance 主验收 |
@@ -14,7 +14,7 @@
 运行单个 fixture：
 
 ```bash
-/usr/bin/python3 scripts/run_evals.py --fixture PT083
+/usr/bin/python3 scripts/run_evals.py --fixture CONFIGURATION_RULES
 ```
 
 运行全部 fixture（兼容入口）：
@@ -33,7 +33,7 @@
 
 - `smoke`：3 个快速代表 fixture，适合本地高频反馈。
 - `regression`：全部 6 个 fixture、57 个可量化检查，适合每个 PR。
-- `golden`：regression + 全量单元测试 + PT083 M strict，并与提交到仓库的 fixture 指纹和指标 baseline 比较。
+- `golden`：运行完整通用 fixture 集并与仓库中的 fixture 指纹及指标 baseline 比较，不依赖任何正式工作项。
 
 `ELEMENT_NOTATION` 与 `CASE_GROUPING` 各包含一个预期失败的负向检查。负向样例若意外通过，整个 tier 失败。
 

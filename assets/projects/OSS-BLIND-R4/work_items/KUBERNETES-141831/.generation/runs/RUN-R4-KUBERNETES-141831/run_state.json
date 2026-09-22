@@ -1,0 +1,202 @@
+{
+  "schema_version": "1.0.0",
+  "run_id": "RUN-R4-KUBERNETES-141831",
+  "project_code": "OSS-BLIND-R4",
+  "work_item_id": "KUBERNETES-141831",
+  "work_item_level": "M",
+  "mode": "validate",
+  "strict": true,
+  "status": "completed",
+  "stop_at": "strict_gate",
+  "current_stage": null,
+  "created_at": "2026-09-22T02:50:58+00:00",
+  "updated_at": "2026-09-22T05:13:36+00:00",
+  "run_dir": "assets/projects/OSS-BLIND-R4/work_items/KUBERNETES-141831/.generation/runs/RUN-R4-KUBERNETES-141831",
+  "stages": [
+    {
+      "stage_id": "requirement_intake",
+      "order": 0,
+      "kind": "validation",
+      "status": "succeeded",
+      "attempts": 1,
+      "required_files": [
+        "inputs/requirement_summary.md",
+        "inputs/source_manifest.json"
+      ],
+      "input_fingerprint": "1e2186f495a3d8d2a5db0c181f0a440c6b74ab212f463071d04bc8b4114b1199",
+      "started_at": "2026-09-22T02:50:58+00:00",
+      "completed_at": "2026-09-22T02:50:58+00:00",
+      "last_exit_code": 0,
+      "log_path": "assets/projects/OSS-BLIND-R4/work_items/KUBERNETES-141831/.generation/runs/RUN-R4-KUBERNETES-141831/logs/requirement_intake.log"
+    },
+    {
+      "stage_id": "evidence",
+      "order": 1,
+      "kind": "checkpoint",
+      "status": "succeeded",
+      "attempts": 1,
+      "required_files": [
+        "evidence/evidence_inventory.json"
+      ],
+      "input_fingerprint": "3c8728ad85acbb35597632eb11e658ebc21df0558312a5e537985905f42fc90d",
+      "started_at": "2026-09-22T02:55:26+00:00",
+      "completed_at": "2026-09-22T02:55:26+00:00",
+      "last_exit_code": 0,
+      "log_path": "assets/projects/OSS-BLIND-R4/work_items/KUBERNETES-141831/.generation/runs/RUN-R4-KUBERNETES-141831/logs/evidence.log"
+    },
+    {
+      "stage_id": "reasoning",
+      "order": 2,
+      "kind": "validation",
+      "status": "succeeded",
+      "attempts": 1,
+      "required_files": [
+        "analysis/reasoning_pack.json"
+      ],
+      "input_fingerprint": "24d7ca842b703f8a0b81d7294863d26920b89c1b75d88ed33dfed46a234853f4",
+      "started_at": "2026-09-22T02:55:26+00:00",
+      "completed_at": "2026-09-22T02:55:26+00:00",
+      "last_exit_code": 0,
+      "log_path": "assets/projects/OSS-BLIND-R4/work_items/KUBERNETES-141831/.generation/runs/RUN-R4-KUBERNETES-141831/logs/reasoning.log"
+    },
+    {
+      "stage_id": "structured_prd",
+      "order": 3,
+      "kind": "validation",
+      "status": "succeeded",
+      "attempts": 2,
+      "required_files": [
+        "structured_prd/structured_prd.json"
+      ],
+      "input_fingerprint": "d88c1188a2cbcb46aa009a861aff9ab942253b3b8ed7e43a7a29608c4f539d70",
+      "started_at": "2026-09-22T03:21:59+00:00",
+      "completed_at": "2026-09-22T03:21:59+00:00",
+      "last_exit_code": 0,
+      "log_path": "assets/projects/OSS-BLIND-R4/work_items/KUBERNETES-141831/.generation/runs/RUN-R4-KUBERNETES-141831/logs/structured_prd.log"
+    },
+    {
+      "stage_id": "coverage",
+      "order": 4,
+      "kind": "validation",
+      "status": "succeeded",
+      "attempts": 1,
+      "required_files": [
+        "coverage/coverage_matrix.json"
+      ],
+      "input_fingerprint": "bd828ddaa2fd679d14a284e67cd46e2aa0dc1acfc65e667931552530427d1801",
+      "started_at": "2026-09-22T03:21:59+00:00",
+      "completed_at": "2026-09-22T03:21:59+00:00",
+      "last_exit_code": 0,
+      "log_path": "assets/projects/OSS-BLIND-R4/work_items/KUBERNETES-141831/.generation/runs/RUN-R4-KUBERNETES-141831/logs/coverage.log"
+    },
+    {
+      "stage_id": "testability_gate",
+      "order": 5,
+      "kind": "validation",
+      "status": "succeeded",
+      "attempts": 2,
+      "required_files": [
+        "acceptance/testability_gate.json"
+      ],
+      "input_fingerprint": "38294b3c3f0fc2d5d00e8070980fed90ff373e0c4490358be135310104b0cf2f",
+      "started_at": "2026-09-22T05:01:28+00:00",
+      "completed_at": "2026-09-22T05:01:28+00:00",
+      "last_exit_code": 0,
+      "log_path": "assets/projects/OSS-BLIND-R4/work_items/KUBERNETES-141831/.generation/runs/RUN-R4-KUBERNETES-141831/logs/testability_gate.log"
+    },
+    {
+      "stage_id": "acceptance_examples",
+      "order": 6,
+      "kind": "validation",
+      "status": "succeeded",
+      "attempts": 2,
+      "required_files": [
+        "acceptance/acceptance_examples.json"
+      ],
+      "input_fingerprint": "096497d92acca93a4f7e54aa0ac3bb6ac39860cabdd3145ea35352f0f052fd61",
+      "started_at": "2026-09-22T05:01:28+00:00",
+      "completed_at": "2026-09-22T05:01:28+00:00",
+      "last_exit_code": 0,
+      "log_path": "assets/projects/OSS-BLIND-R4/work_items/KUBERNETES-141831/.generation/runs/RUN-R4-KUBERNETES-141831/logs/acceptance_examples.log"
+    },
+    {
+      "stage_id": "case_plan",
+      "order": 7,
+      "kind": "validation",
+      "status": "succeeded",
+      "attempts": 3,
+      "required_files": [
+        "testcases/case_plan.json"
+      ],
+      "input_fingerprint": "3784800b3cdd8e27a843aee892f71862f6656a121467ef37b6157bb163cfb37b",
+      "started_at": "2026-09-22T05:01:28+00:00",
+      "completed_at": "2026-09-22T05:01:28+00:00",
+      "last_exit_code": 0,
+      "log_path": "assets/projects/OSS-BLIND-R4/work_items/KUBERNETES-141831/.generation/runs/RUN-R4-KUBERNETES-141831/logs/case_plan.log"
+    },
+    {
+      "stage_id": "testcases",
+      "order": 8,
+      "kind": "validation",
+      "status": "succeeded",
+      "attempts": 2,
+      "required_files": [
+        "testcases/testcases_main.md",
+        "testcases/testpoints.json"
+      ],
+      "input_fingerprint": "af68129bed72d7c7b3d9a14582e9b23bd097cfe6046d30ff167b6d61d82f4c2a",
+      "started_at": "2026-09-22T05:01:28+00:00",
+      "completed_at": "2026-09-22T05:01:28+00:00",
+      "last_exit_code": 0,
+      "log_path": "assets/projects/OSS-BLIND-R4/work_items/KUBERNETES-141831/.generation/runs/RUN-R4-KUBERNETES-141831/logs/testcases.log"
+    },
+    {
+      "stage_id": "traceability",
+      "order": 9,
+      "kind": "validation",
+      "status": "succeeded",
+      "attempts": 2,
+      "required_files": [
+        "traceability/coverage_first_traceability.json"
+      ],
+      "input_fingerprint": "c3263f5f4e7f354b1ecdb257f51f3723e26c55054aba084c4dff39827b3e8861",
+      "started_at": "2026-09-22T05:01:28+00:00",
+      "completed_at": "2026-09-22T05:01:29+00:00",
+      "last_exit_code": 0,
+      "log_path": "assets/projects/OSS-BLIND-R4/work_items/KUBERNETES-141831/.generation/runs/RUN-R4-KUBERNETES-141831/logs/traceability.log"
+    },
+    {
+      "stage_id": "review",
+      "order": 10,
+      "kind": "validation",
+      "status": "skipped",
+      "attempts": 4,
+      "required_files": [
+        "reviews/review_record.md",
+        "reviews/quality_report.json",
+        "design/design_feedback.json"
+      ],
+      "input_fingerprint": "ac903888179a8e8d9ced00ea2d5e83b72c386d605eb990e8e69cc89dcc73b5e9",
+      "started_at": "2026-09-22T05:13:36+00:00",
+      "completed_at": "2026-09-22T05:13:36+00:00",
+      "last_exit_code": 0,
+      "log_path": "assets/projects/OSS-BLIND-R4/work_items/KUBERNETES-141831/.generation/runs/RUN-R4-KUBERNETES-141831/logs/review.log"
+    },
+    {
+      "stage_id": "strict_gate",
+      "order": 11,
+      "kind": "gate",
+      "status": "succeeded",
+      "attempts": 1,
+      "required_files": [
+        "manifest.json"
+      ],
+      "input_fingerprint": "12c98def8532735338977775563fbf82e92b67e88e57fb5c71dbf2623fb9abd2",
+      "started_at": "2026-09-22T05:13:36+00:00",
+      "completed_at": "2026-09-22T05:13:36+00:00",
+      "last_exit_code": 0,
+      "log_path": "assets/projects/OSS-BLIND-R4/work_items/KUBERNETES-141831/.generation/runs/RUN-R4-KUBERNETES-141831/logs/strict_gate.log"
+    }
+  ],
+  "last_error": null
+}

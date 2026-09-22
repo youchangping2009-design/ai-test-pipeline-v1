@@ -1,0 +1,238 @@
+{
+  "generated_at": "2026-09-22T12:00:57",
+  "project_code": "OSS-BLIND-R4",
+  "work_item_id": "KUBERNETES-141831",
+  "item_count": 10,
+  "items": [
+    {
+      "coverage_id": "COV-AI-0014",
+      "coverage_type": "happy_path_combo",
+      "coverage_level": "audit_only",
+      "emit_mode": "audit_item",
+      "source_origin": "ai_reasoning",
+      "source_type": "edge_case",
+      "page_name": "",
+      "section_name": "",
+      "module_name": "",
+      "feature_name": "",
+      "field_name": "",
+      "title": "create 空对象 selector：返回精确 Warning，资源仍成功创建。",
+      "priority": "medium",
+      "planned_assertions": [
+        "审计并确认：create 空对象 selector：返回精确 Warning，资源仍成功创建。"
+      ],
+      "structured_refs": [],
+      "reasoning_refs": [
+        "EC-001"
+      ],
+      "audit_id": "AUD-ITEM-001"
+    },
+    {
+      "coverage_id": "COV-AI-0015",
+      "coverage_type": "happy_path_combo",
+      "coverage_level": "audit_only",
+      "emit_mode": "audit_item",
+      "source_origin": "ai_reasoning",
+      "source_type": "edge_case",
+      "page_name": "",
+      "section_name": "",
+      "module_name": "",
+      "feature_name": "",
+      "field_name": "",
+      "title": "update 为/保持空对象 selector：返回相同 Warning，更新仍成功。",
+      "priority": "medium",
+      "planned_assertions": [
+        "审计并确认：update 为/保持空对象 selector：返回相同 Warning，更新仍成功。"
+      ],
+      "structured_refs": [],
+      "reasoning_refs": [
+        "EC-002"
+      ],
+      "audit_id": "AUD-ITEM-002"
+    },
+    {
+      "coverage_id": "COV-AI-0016",
+      "coverage_type": "happy_path_combo",
+      "coverage_level": "audit_only",
+      "emit_mode": "audit_item",
+      "source_origin": "ai_reasoning",
+      "source_type": "edge_case",
+      "page_name": "",
+      "section_name": "",
+      "module_name": "",
+      "feature_name": "",
+      "field_name": "",
+      "title": "分别指定 driver、pool、device：均无空 selector Warning。",
+      "priority": "medium",
+      "planned_assertions": [
+        "审计并确认：分别指定 driver、pool、device：均无空 selector Warning。"
+      ],
+      "structured_refs": [],
+      "reasoning_refs": [
+        "EC-003"
+      ],
+      "audit_id": "AUD-ITEM-003"
+    },
+    {
+      "coverage_id": "COV-AI-0017",
+      "coverage_type": "happy_path_combo",
+      "coverage_level": "audit_only",
+      "emit_mode": "audit_item",
+      "source_origin": "ai_reasoning",
+      "source_type": "edge_case",
+      "page_name": "",
+      "section_name": "",
+      "module_name": "",
+      "feature_name": "",
+      "field_name": "",
+      "title": "对不同 effect 的空 selector 都告警，包括仅用于预览的既有取值。",
+      "priority": "medium",
+      "planned_assertions": [
+        "审计并确认：对不同 effect 的空 selector 都告警，包括仅用于预览的既有取值。"
+      ],
+      "structured_refs": [],
+      "reasoning_refs": [
+        "EC-004"
+      ],
+      "audit_id": "AUD-ITEM-004"
+    },
+    {
+      "coverage_id": "COV-AI-0018",
+      "coverage_type": "happy_path_combo",
+      "coverage_level": "audit_only",
+      "emit_mode": "audit_item",
+      "source_origin": "ai_reasoning",
+      "source_type": "edge_case",
+      "page_name": "",
+      "section_name": "",
+      "module_name": "",
+      "feature_name": "",
+      "field_name": "",
+      "title": "普通客户端看到警告但请求成功；`kubectl --warnings-as-errors` 可返回非零状态，同时服务端对象确实已创建。",
+      "priority": "medium",
+      "planned_assertions": [
+        "审计并确认：普通客户端看到警告但请求成功；`kubectl --warnings-as-errors` 可返回非零状态，同时服务端对象确实已创建。"
+      ],
+      "structured_refs": [],
+      "reasoning_refs": [
+        "EC-005"
+      ],
+      "audit_id": "AUD-ITEM-005"
+    },
+    {
+      "coverage_id": "COV-AI-0019",
+      "coverage_type": "happy_path_combo",
+      "coverage_level": "audit_only",
+      "emit_mode": "audit_item",
+      "source_origin": "ai_reasoning",
+      "source_type": "edge_case",
+      "page_name": "",
+      "section_name": "",
+      "module_name": "",
+      "feature_name": "",
+      "field_name": "",
+      "title": "其他字段校验失败时，不得因本警告掩盖原有错误。",
+      "priority": "medium",
+      "planned_assertions": [
+        "审计并确认：其他字段校验失败时，不得因本警告掩盖原有错误。"
+      ],
+      "structured_refs": [],
+      "reasoning_refs": [
+        "EC-006"
+      ],
+      "audit_id": "AUD-ITEM-006"
+    },
+    {
+      "coverage_id": "COV-AI-0020",
+      "coverage_type": "happy_path_combo",
+      "coverage_level": "audit_only",
+      "emit_mode": "audit_item",
+      "source_origin": "ai_reasoning",
+      "source_type": "business_risk",
+      "page_name": "",
+      "section_name": "",
+      "module_name": "",
+      "feature_name": "",
+      "field_name": "",
+      "title": "最大风险是把 `soft_prompt` 错升为 `hard_block`，导致兼容性破坏。",
+      "priority": "medium",
+      "planned_assertions": [
+        "审计并确认：最大风险是把 `soft_prompt` 错升为 `hard_block`，导致兼容性破坏。"
+      ],
+      "structured_refs": [],
+      "reasoning_refs": [
+        "RISK-001"
+      ],
+      "audit_id": "AUD-ITEM-007"
+    },
+    {
+      "coverage_id": "COV-AI-0021",
+      "coverage_type": "happy_path_combo",
+      "coverage_level": "audit_only",
+      "emit_mode": "audit_item",
+      "source_origin": "ai_reasoning",
+      "source_type": "business_risk",
+      "page_name": "",
+      "section_name": "",
+      "module_name": "",
+      "feature_name": "",
+      "field_name": "",
+      "title": "nil 与 `{}` 的语义必须区分，否则会对合法的省略场景产生噪声。",
+      "priority": "medium",
+      "planned_assertions": [
+        "审计并确认：nil 与 `{}` 的语义必须区分，否则会对合法的省略场景产生噪声。"
+      ],
+      "structured_refs": [],
+      "reasoning_refs": [
+        "RISK-002"
+      ],
+      "audit_id": "AUD-ITEM-008"
+    },
+    {
+      "coverage_id": "COV-AI-0022",
+      "coverage_type": "happy_path_combo",
+      "coverage_level": "audit_only",
+      "emit_mode": "audit_item",
+      "source_origin": "ai_reasoning",
+      "source_type": "business_risk",
+      "page_name": "",
+      "section_name": "",
+      "module_name": "",
+      "feature_name": "",
+      "field_name": "",
+      "title": "客户端的 warnings-as-errors 行为容易被误判为服务端创建失败，需要同时核对对象状态。",
+      "priority": "medium",
+      "planned_assertions": [
+        "审计并确认：客户端的 warnings-as-errors 行为容易被误判为服务端创建失败，需要同时核对对象状态。"
+      ],
+      "structured_refs": [],
+      "reasoning_refs": [
+        "RISK-003"
+      ],
+      "audit_id": "AUD-ITEM-009"
+    },
+    {
+      "coverage_id": "COV-AI-0023",
+      "coverage_type": "happy_path_combo",
+      "coverage_level": "audit_only",
+      "emit_mode": "audit_item",
+      "source_origin": "ai_reasoning",
+      "source_type": "business_risk",
+      "page_name": "",
+      "section_name": "",
+      "module_name": "",
+      "feature_name": "",
+      "field_name": "",
+      "title": "多条警告并存时的去重和顺序可能影响客户端断言。",
+      "priority": "medium",
+      "planned_assertions": [
+        "审计并确认：多条警告并存时的去重和顺序可能影响客户端断言。"
+      ],
+      "structured_refs": [],
+      "reasoning_refs": [
+        "RISK-004"
+      ],
+      "audit_id": "AUD-ITEM-010"
+    }
+  ]
+}

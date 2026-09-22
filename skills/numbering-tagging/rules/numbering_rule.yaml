@@ -76,6 +76,17 @@ page_code_mapping:
   充值页: RECHARGE
   客服页: CS
   个人中心: PROFILE
+  Databricks 数据源配置页: DATABRICKS
+  会话列表页: CONVERSATION
+  giftCardBulkCreate GraphQL 接口: GIFTCARDBULK
+  Django Migration 执行入口: DJANGOMIG
+  Celery Worker 撤销状态处理: CELERYWORKER
+  Temporal Workflow API: TEMPORALAPI
+  恢复码认证页: RECOVERYAUTH
+  APIStore 资源序列化: APISTORE
+  TTS 音频缓存处理: TTSAUDIO
+  BroadcastLogger 标签广播: BROADCASTLOGGER
+  DeviceTaintRule API: DEVICETAINT
 
 page_module_code_mapping:
   顶部导航: NAV
@@ -109,6 +120,17 @@ page_module_code_mapping:
   平台功能区: PLATFORMNAV
   最近在玩: RECENTPLAY
   最近登录: RECENTLOGIN
+  连接配置区: CONNECT
+  高级筛选面板: FILTER
+  批量创建请求: BULKCREATE
+  索引变更与数据库状态: INDEXSCHEMA
+  撤销状态合并与执行保护: REVOKE
+  SignalWithStart 去重: SIGNALSTART
+  恢复码提交: RECOVERYCODE
+  序列化选择与对象往返: SERIALIZER
+  MP3 标签写入与缓存回放: MP3TAG
+  多 Logger 标签上下文: TAGGED
+  设备选择器告警: WARNING
 
 terminal_code_mapping:
   B端: ADMIN

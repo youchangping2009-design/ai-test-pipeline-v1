@@ -1,0 +1,295 @@
+{
+  "project_code": "OSS-BLIND-R4",
+  "work_item_id": "KUBERNETES-141831",
+  "truth_source": "testcases/testcases_main.md",
+  "projection_only": true,
+  "generated_from": [
+    "testcases/testcases_main.md"
+  ],
+  "cases": [
+    {
+      "testcase_id": "OSS-BLIND-R4-DEVICETAINT-WARNING-API-FN-001",
+      "page_name": "DeviceTaintRule API",
+      "section_name": "设备选择器告警",
+      "module": "DeviceTaintRule Admission Warning",
+      "feature": "空选择器判定",
+      "title": "create 空 deviceSelector 返回 Warning",
+      "preconditions": "准备一个 `spec.deviceSelector` 存在且 driver、pool、device 全为空的 DeviceTaintRule。",
+      "steps": "1. 向 API Server 创建该对象。",
+      "expected_results": "1. 创建响应包含空 selector Warning。",
+      "priority": "P0",
+      "tags": [
+        "AI-API用例",
+        "开发必测",
+        "测试必测"
+      ],
+      "test_type": "功能",
+      "remark": "来源 CasePlan：CP-001；来源 Acceptance：AE-001；来源 Rule：K8S-R001；来源coverage：COV-EX-0001",
+      "source_case_plan_ids": [
+        "CP-001"
+      ]
+    },
+    {
+      "testcase_id": "OSS-BLIND-R4-DEVICETAINT-WARNING-API-FN-002",
+      "page_name": "DeviceTaintRule API",
+      "section_name": "设备选择器告警",
+      "module": "DeviceTaintRule Admission Warning",
+      "feature": "空选择器判定",
+      "title": "update 空 deviceSelector 返回 Warning",
+      "preconditions": "已存在 DeviceTaintRule，并把 `spec.deviceSelector` 更新为 driver、pool、device 全为空。",
+      "steps": "1. 向 API Server 更新该对象。",
+      "expected_results": "1. 更新响应包含空 selector Warning。",
+      "priority": "P0",
+      "tags": [
+        "AI-API用例",
+        "开发必测",
+        "测试必测"
+      ],
+      "test_type": "功能",
+      "remark": "来源 CasePlan：CP-002；来源 Acceptance：AE-002；来源 Rule：K8S-R001；来源coverage：COV-EX-0002",
+      "source_case_plan_ids": [
+        "CP-002"
+      ]
+    },
+    {
+      "testcase_id": "OSS-BLIND-R4-DEVICETAINT-WARNING-API-FN-003",
+      "page_name": "DeviceTaintRule API",
+      "section_name": "设备选择器告警",
+      "module": "DeviceTaintRule Admission Warning",
+      "feature": "非阻塞警告响应",
+      "title": "空 selector 返回精确警告文本",
+      "preconditions": "准备一个 `spec.deviceSelector` 存在且范围字段全为空的 DeviceTaintRule。",
+      "steps": "1. 创建或更新该对象并读取响应 Warning。",
+      "expected_results": "1. 警告文本逐字等于 `spec.deviceSelector: an empty selector matches every device from every driver in the cluster`。",
+      "priority": "P0",
+      "tags": [
+        "AI-API用例",
+        "开发必测",
+        "测试必测"
+      ],
+      "test_type": "功能",
+      "remark": "来源 CasePlan：CP-003；来源 Acceptance：AE-003；来源 Rule：K8S-R002；来源coverage：COV-EX-0003",
+      "source_case_plan_ids": [
+        "CP-003"
+      ]
+    },
+    {
+      "testcase_id": "OSS-BLIND-R4-DEVICETAINT-WARNING-API-FN-004",
+      "page_name": "DeviceTaintRule API",
+      "section_name": "设备选择器告警",
+      "module": "DeviceTaintRule Admission Warning",
+      "feature": "空选择器判定",
+      "title": "省略 deviceSelector 不返回空 selector Warning",
+      "preconditions": "准备一个未设置 `spec.deviceSelector` 的 DeviceTaintRule。",
+      "steps": "1. 向 API Server 创建或更新该对象。",
+      "expected_results": "1. 响应中不存在空 selector Warning。",
+      "priority": "P0",
+      "tags": [
+        "AI-API用例",
+        "开发必测",
+        "测试必测"
+      ],
+      "test_type": "功能",
+      "remark": "来源 CasePlan：CP-004；来源 Acceptance：AE-004；来源 Rule：K8S-R003；来源coverage：COV-EX-0004",
+      "source_case_plan_ids": [
+        "CP-004"
+      ]
+    },
+    {
+      "testcase_id": "OSS-BLIND-R4-DEVICETAINT-WARNING-API-FN-005",
+      "page_name": "DeviceTaintRule API",
+      "section_name": "设备选择器告警",
+      "module": "DeviceTaintRule Admission Warning",
+      "feature": "空选择器判定",
+      "title": "selector 指定 driver 时不返回空 selector Warning",
+      "preconditions": "准备一个 `spec.deviceSelector.driver` 非空、其他范围字段为空的 DeviceTaintRule。",
+      "steps": "1. 向 API Server 创建或更新该对象。",
+      "expected_results": "1. 响应中不存在空 selector Warning。",
+      "priority": "P0",
+      "tags": [
+        "AI-API用例",
+        "开发必测",
+        "测试必测"
+      ],
+      "test_type": "功能",
+      "remark": "来源 CasePlan：CP-005；来源 Acceptance：AE-005；来源 Rule：K8S-R004；来源coverage：COV-EX-0005",
+      "source_case_plan_ids": [
+        "CP-005"
+      ]
+    },
+    {
+      "testcase_id": "OSS-BLIND-R4-DEVICETAINT-WARNING-API-FN-006",
+      "page_name": "DeviceTaintRule API",
+      "section_name": "设备选择器告警",
+      "module": "DeviceTaintRule Admission Warning",
+      "feature": "空选择器判定",
+      "title": "selector 指定 pool 时不返回空 selector Warning",
+      "preconditions": "准备一个 `spec.deviceSelector.pool` 非空、其他范围字段为空的 DeviceTaintRule。",
+      "steps": "1. 向 API Server 创建或更新该对象。",
+      "expected_results": "1. 响应中不存在空 selector Warning。",
+      "priority": "P0",
+      "tags": [
+        "AI-API用例",
+        "开发必测",
+        "测试必测"
+      ],
+      "test_type": "功能",
+      "remark": "来源 CasePlan：CP-006；来源 Acceptance：AE-006；来源 Rule：K8S-R004；来源coverage：COV-EX-0006",
+      "source_case_plan_ids": [
+        "CP-006"
+      ]
+    },
+    {
+      "testcase_id": "OSS-BLIND-R4-DEVICETAINT-WARNING-API-FN-007",
+      "page_name": "DeviceTaintRule API",
+      "section_name": "设备选择器告警",
+      "module": "DeviceTaintRule Admission Warning",
+      "feature": "空选择器判定",
+      "title": "selector 指定 device 时不返回空 selector Warning",
+      "preconditions": "准备一个 `spec.deviceSelector.device` 非空、其他范围字段为空的 DeviceTaintRule。",
+      "steps": "1. 向 API Server 创建或更新该对象。",
+      "expected_results": "1. 响应中不存在空 selector Warning。",
+      "priority": "P0",
+      "tags": [
+        "AI-API用例",
+        "开发必测",
+        "测试必测"
+      ],
+      "test_type": "功能",
+      "remark": "来源 CasePlan：CP-007；来源 Acceptance：AE-007；来源 Rule：K8S-R004；来源coverage：COV-EX-0007",
+      "source_case_plan_ids": [
+        "CP-007"
+      ]
+    },
+    {
+      "testcase_id": "OSS-BLIND-R4-DEVICETAINT-WARNING-API-FL-001",
+      "page_name": "DeviceTaintRule API",
+      "section_name": "设备选择器告警",
+      "module": "DeviceTaintRule Admission Warning",
+      "feature": "非阻塞警告响应",
+      "title": "空 selector Warning 不阻止 create 成功",
+      "preconditions": "准备一个其他字段合法且 `spec.deviceSelector` 范围字段全为空的 DeviceTaintRule。",
+      "steps": "1. 向 API Server 创建该对象。",
+      "expected_results": "1. create 完成后，响应包含空 selector Warning，且服务端可查询到新对象。",
+      "priority": "P0",
+      "tags": [
+        "AI-API用例",
+        "开发必测",
+        "测试必测"
+      ],
+      "test_type": "流程验证",
+      "remark": "来源 CasePlan：CP-008；来源 Flow：CP-008；来源 Acceptance：AE-008；来源 Rule：K8S-R005；来源coverage：COV-EX-0008",
+      "source_case_plan_ids": [
+        "CP-008"
+      ]
+    },
+    {
+      "testcase_id": "OSS-BLIND-R4-DEVICETAINT-WARNING-API-FL-002",
+      "page_name": "DeviceTaintRule API",
+      "section_name": "设备选择器告警",
+      "module": "DeviceTaintRule Admission Warning",
+      "feature": "非阻塞警告响应",
+      "title": "空 selector Warning 不阻止 update 成功",
+      "preconditions": "已存在合法 DeviceTaintRule，并将其 `spec.deviceSelector` 更新为空范围。",
+      "steps": "1. 向 API Server 提交更新。",
+      "expected_results": "1. update 完成后，响应包含空 selector Warning，且服务端保存了新版本对象。",
+      "priority": "P0",
+      "tags": [
+        "AI-API用例",
+        "开发必测",
+        "测试必测"
+      ],
+      "test_type": "流程验证",
+      "remark": "来源 CasePlan：CP-009；来源 Flow：CP-009；来源 Acceptance：AE-009；来源 Rule：K8S-R005；来源coverage：COV-EX-0009",
+      "source_case_plan_ids": [
+        "CP-009"
+      ]
+    },
+    {
+      "testcase_id": "OSS-BLIND-R4-DEVICETAINT-WARNING-API-AB-001",
+      "page_name": "DeviceTaintRule API",
+      "section_name": "设备选择器告警",
+      "module": "DeviceTaintRule Admission Warning",
+      "feature": "非阻塞警告响应",
+      "title": "空 selector Warning 不改变既有校验结果",
+      "preconditions": "准备两份具有相同既有校验错误的 DeviceTaintRule，其中一份 selector 为空范围，另一份 selector 非空。",
+      "steps": "1. 分别向 API Server 提交两份对象。",
+      "expected_results": "1. 两份请求得到相同的既有校验错误<br>2. 空 selector 只增加 Warning，不改变校验通过或失败结论。",
+      "priority": "P0",
+      "tags": [
+        "AI-API用例",
+        "开发必测",
+        "测试必测"
+      ],
+      "test_type": "异常",
+      "remark": "来源 CasePlan：CP-010；来源 Acceptance：AE-010；来源 Rule：K8S-R005；来源coverage：COV-EX-0010",
+      "source_case_plan_ids": [
+        "CP-010"
+      ]
+    },
+    {
+      "testcase_id": "OSS-BLIND-R4-DEVICETAINT-WARNING-API-FL-003",
+      "page_name": "DeviceTaintRule API",
+      "section_name": "设备选择器告警",
+      "module": "DeviceTaintRule Admission Warning",
+      "feature": "非阻塞警告响应",
+      "title": "空 selector Warning 不改变持久化和 taint 执行语义",
+      "preconditions": "准备一个其他字段合法且 `spec.deviceSelector` 范围字段全为空的 DeviceTaintRule。",
+      "steps": "1. 创建该对象并触发既有 taint 执行流程。",
+      "expected_results": "1. 持久化与 taint 执行完成后，对象字段与请求一致，且 taint 仍按空 selector 匹配全部设备。",
+      "priority": "P0",
+      "tags": [
+        "AI-API用例",
+        "开发必测",
+        "测试必测"
+      ],
+      "test_type": "流程验证",
+      "remark": "来源 CasePlan：CP-011；来源 Flow：CP-011；来源 Acceptance：AE-011；来源 Rule：K8S-R005；来源coverage：COV-EX-0011",
+      "source_case_plan_ids": [
+        "CP-011"
+      ]
+    },
+    {
+      "testcase_id": "OSS-BLIND-R4-DEVICETAINT-WARNING-API-FN-009",
+      "page_name": "DeviceTaintRule API",
+      "section_name": "设备选择器告警",
+      "module": "DeviceTaintRule Admission Warning",
+      "feature": "空选择器判定",
+      "title": "所有 taint effect 下空 selector 均返回相同 Warning",
+      "preconditions": "为每个支持的 taint effect（包括 `None` 预览取值）准备范围字段全为空的 DeviceTaintRule。",
+      "steps": "1. 分别创建或更新这些对象。",
+      "expected_results": "1. 每种 effect 的响应都包含同一条空 selector Warning<br>2. Warning 是否出现不受 effect 取值影响。",
+      "priority": "P0",
+      "tags": [
+        "AI-API用例",
+        "开发必测",
+        "测试必测"
+      ],
+      "test_type": "功能",
+      "remark": "来源 CasePlan：CP-012；来源 Acceptance：AE-012；来源 Rule：K8S-R006；来源coverage：COV-EX-0012",
+      "source_case_plan_ids": [
+        "CP-012"
+      ]
+    },
+    {
+      "testcase_id": "OSS-BLIND-R4-DEVICETAINT-WARNING-API-FL-004",
+      "page_name": "DeviceTaintRule API",
+      "section_name": "设备选择器告警",
+      "module": "DeviceTaintRule Admission Warning",
+      "feature": "非阻塞警告响应",
+      "title": "warnings-as-errors 返回非零时对象仍已创建",
+      "preconditions": "准备一个其他字段合法且 selector 范围为空的 DeviceTaintRule，并启用 `kubectl --warnings-as-errors`。",
+      "steps": "1. 使用 kubectl 创建该对象。",
+      "expected_results": "1. kubectl 调用完成后因 Warning 返回非零状态，但查询 API Server 时目标对象处于已创建状态。",
+      "priority": "P1",
+      "tags": [
+        "AI-API用例"
+      ],
+      "test_type": "流程验证",
+      "remark": "来源 CasePlan：CP-013；来源 Flow：CP-013；来源 Acceptance：AE-013；来源 Rule：K8S-R007；来源coverage：COV-EX-0013",
+      "source_case_plan_ids": [
+        "CP-013"
+      ]
+    }
+  ]
+}

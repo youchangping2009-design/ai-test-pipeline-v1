@@ -1,0 +1,331 @@
+{
+  "project_code": "OSS-BLIND-R4",
+  "work_item_id": "KUBERNETES-141831",
+  "records": [
+    {
+      "record_id": "TRA-0001",
+      "evidence_id": "EVD-UNMAPPED",
+      "coverage_level": "full",
+      "structured_targets": [
+        {
+          "target_type": "feature",
+          "module_name": "DeviceTaintRule Admission Warning",
+          "feature_name": "空选择器判定",
+          "field_name": "",
+          "target_name": "create 空 selector 返回 Warning。"
+        }
+      ],
+      "testcase_ids": [
+        "OSS-BLIND-R4-DEVICETAINT-WARNING-API-FN-001"
+      ],
+      "gap_notes": "adapter_source=coverage_first_traceability; source_record_id=CFT-0001; rule_id=K8S-R001; coverage_id=COV-EX-0001; fidelity_status=not_applicable",
+      "implementation_binding": "shared_contract",
+      "recommended_cr_stage": "dual_code",
+      "manual_confirmation_required": true,
+      "cr_focus_points": [
+        "create 空 selector 返回 Warning。",
+        "coverage_id=COV-EX-0001"
+      ]
+    },
+    {
+      "record_id": "TRA-0002",
+      "evidence_id": "EVD-UNMAPPED",
+      "coverage_level": "full",
+      "structured_targets": [
+        {
+          "target_type": "feature",
+          "module_name": "DeviceTaintRule Admission Warning",
+          "feature_name": "空选择器判定",
+          "field_name": "",
+          "target_name": "update 空 selector 返回 Warning。"
+        }
+      ],
+      "testcase_ids": [
+        "OSS-BLIND-R4-DEVICETAINT-WARNING-API-FN-002"
+      ],
+      "gap_notes": "adapter_source=coverage_first_traceability; source_record_id=CFT-0002; rule_id=K8S-R001; coverage_id=COV-EX-0002; fidelity_status=not_applicable",
+      "implementation_binding": "shared_contract",
+      "recommended_cr_stage": "dual_code",
+      "manual_confirmation_required": true,
+      "cr_focus_points": [
+        "update 空 selector 返回 Warning。",
+        "coverage_id=COV-EX-0002"
+      ]
+    },
+    {
+      "record_id": "TRA-0003",
+      "evidence_id": "EVD-UNMAPPED",
+      "coverage_level": "full",
+      "structured_targets": [
+        {
+          "target_type": "feature",
+          "module_name": "DeviceTaintRule Admission Warning",
+          "feature_name": "非阻塞警告响应",
+          "field_name": "",
+          "target_name": "空 selector 的警告文本必须为 `spec.deviceSelector: an empty selector matches every device from every driver in the cluster`。"
+        }
+      ],
+      "testcase_ids": [
+        "OSS-BLIND-R4-DEVICETAINT-WARNING-API-FN-003"
+      ],
+      "gap_notes": "adapter_source=coverage_first_traceability; source_record_id=CFT-0003; rule_id=K8S-R002; coverage_id=COV-EX-0003; fidelity_status=not_applicable",
+      "implementation_binding": "shared_contract",
+      "recommended_cr_stage": "dual_code",
+      "manual_confirmation_required": true,
+      "cr_focus_points": [
+        "空 selector 的警告文本必须为 `spec.deviceSelector: an empty selector matches every device from every driver in the cluster`。",
+        "coverage_id=COV-EX-0003"
+      ]
+    },
+    {
+      "record_id": "TRA-0004",
+      "evidence_id": "EVD-UNMAPPED",
+      "coverage_level": "full",
+      "structured_targets": [
+        {
+          "target_type": "feature",
+          "module_name": "DeviceTaintRule Admission Warning",
+          "feature_name": "空选择器判定",
+          "field_name": "",
+          "target_name": "`spec.deviceSelector` 省略时不得返回空 selector Warning。"
+        }
+      ],
+      "testcase_ids": [
+        "OSS-BLIND-R4-DEVICETAINT-WARNING-API-FN-004"
+      ],
+      "gap_notes": "adapter_source=coverage_first_traceability; source_record_id=CFT-0004; rule_id=K8S-R003; coverage_id=COV-EX-0004; fidelity_status=not_applicable",
+      "implementation_binding": "shared_contract",
+      "recommended_cr_stage": "dual_code",
+      "manual_confirmation_required": true,
+      "cr_focus_points": [
+        "`spec.deviceSelector` 省略时不得返回空 selector Warning。",
+        "coverage_id=COV-EX-0004"
+      ]
+    },
+    {
+      "record_id": "TRA-0005",
+      "evidence_id": "EVD-UNMAPPED",
+      "coverage_level": "full",
+      "structured_targets": [
+        {
+          "target_type": "feature",
+          "module_name": "DeviceTaintRule Admission Warning",
+          "feature_name": "空选择器判定",
+          "field_name": "",
+          "target_name": "指定 driver 时不返回空 selector Warning。"
+        }
+      ],
+      "testcase_ids": [
+        "OSS-BLIND-R4-DEVICETAINT-WARNING-API-FN-005"
+      ],
+      "gap_notes": "adapter_source=coverage_first_traceability; source_record_id=CFT-0005; rule_id=K8S-R004; coverage_id=COV-EX-0005; fidelity_status=not_applicable",
+      "implementation_binding": "shared_contract",
+      "recommended_cr_stage": "dual_code",
+      "manual_confirmation_required": true,
+      "cr_focus_points": [
+        "指定 driver 时不返回空 selector Warning。",
+        "coverage_id=COV-EX-0005"
+      ]
+    },
+    {
+      "record_id": "TRA-0006",
+      "evidence_id": "EVD-UNMAPPED",
+      "coverage_level": "full",
+      "structured_targets": [
+        {
+          "target_type": "feature",
+          "module_name": "DeviceTaintRule Admission Warning",
+          "feature_name": "空选择器判定",
+          "field_name": "",
+          "target_name": "指定 pool 时不返回空 selector Warning。"
+        }
+      ],
+      "testcase_ids": [
+        "OSS-BLIND-R4-DEVICETAINT-WARNING-API-FN-006"
+      ],
+      "gap_notes": "adapter_source=coverage_first_traceability; source_record_id=CFT-0006; rule_id=K8S-R004; coverage_id=COV-EX-0006; fidelity_status=not_applicable",
+      "implementation_binding": "shared_contract",
+      "recommended_cr_stage": "dual_code",
+      "manual_confirmation_required": true,
+      "cr_focus_points": [
+        "指定 pool 时不返回空 selector Warning。",
+        "coverage_id=COV-EX-0006"
+      ]
+    },
+    {
+      "record_id": "TRA-0007",
+      "evidence_id": "EVD-UNMAPPED",
+      "coverage_level": "full",
+      "structured_targets": [
+        {
+          "target_type": "feature",
+          "module_name": "DeviceTaintRule Admission Warning",
+          "feature_name": "空选择器判定",
+          "field_name": "",
+          "target_name": "指定 device 时不返回空 selector Warning。"
+        }
+      ],
+      "testcase_ids": [
+        "OSS-BLIND-R4-DEVICETAINT-WARNING-API-FN-007"
+      ],
+      "gap_notes": "adapter_source=coverage_first_traceability; source_record_id=CFT-0007; rule_id=K8S-R004; coverage_id=COV-EX-0007; fidelity_status=not_applicable",
+      "implementation_binding": "shared_contract",
+      "recommended_cr_stage": "dual_code",
+      "manual_confirmation_required": true,
+      "cr_focus_points": [
+        "指定 device 时不返回空 selector Warning。",
+        "coverage_id=COV-EX-0007"
+      ]
+    },
+    {
+      "record_id": "TRA-0008",
+      "evidence_id": "EVD-UNMAPPED",
+      "coverage_level": "full",
+      "structured_targets": [
+        {
+          "target_type": "feature",
+          "module_name": "DeviceTaintRule Admission Warning",
+          "feature_name": "非阻塞警告响应",
+          "field_name": "",
+          "target_name": "告警不阻止 create 成功。"
+        }
+      ],
+      "testcase_ids": [
+        "OSS-BLIND-R4-DEVICETAINT-WARNING-API-FL-001"
+      ],
+      "gap_notes": "adapter_source=coverage_first_traceability; source_record_id=CFT-0008; rule_id=K8S-R005; coverage_id=COV-EX-0008; fidelity_status=not_applicable",
+      "implementation_binding": "shared_contract",
+      "recommended_cr_stage": "dual_code",
+      "manual_confirmation_required": true,
+      "cr_focus_points": [
+        "告警不阻止 create 成功。",
+        "coverage_id=COV-EX-0008"
+      ]
+    },
+    {
+      "record_id": "TRA-0009",
+      "evidence_id": "EVD-UNMAPPED",
+      "coverage_level": "full",
+      "structured_targets": [
+        {
+          "target_type": "feature",
+          "module_name": "DeviceTaintRule Admission Warning",
+          "feature_name": "非阻塞警告响应",
+          "field_name": "",
+          "target_name": "告警不阻止 update 成功。"
+        }
+      ],
+      "testcase_ids": [
+        "OSS-BLIND-R4-DEVICETAINT-WARNING-API-FL-002"
+      ],
+      "gap_notes": "adapter_source=coverage_first_traceability; source_record_id=CFT-0009; rule_id=K8S-R005; coverage_id=COV-EX-0009; fidelity_status=not_applicable",
+      "implementation_binding": "shared_contract",
+      "recommended_cr_stage": "dual_code",
+      "manual_confirmation_required": true,
+      "cr_focus_points": [
+        "告警不阻止 update 成功。",
+        "coverage_id=COV-EX-0009"
+      ]
+    },
+    {
+      "record_id": "TRA-0010",
+      "evidence_id": "EVD-UNMAPPED",
+      "coverage_level": "full",
+      "structured_targets": [
+        {
+          "target_type": "feature",
+          "module_name": "DeviceTaintRule Admission Warning",
+          "feature_name": "非阻塞警告响应",
+          "field_name": "",
+          "target_name": "告警不改变既有校验结果。"
+        }
+      ],
+      "testcase_ids": [
+        "OSS-BLIND-R4-DEVICETAINT-WARNING-API-AB-001"
+      ],
+      "gap_notes": "adapter_source=coverage_first_traceability; source_record_id=CFT-0010; rule_id=K8S-R005; coverage_id=COV-EX-0010; fidelity_status=not_applicable",
+      "implementation_binding": "shared_contract",
+      "recommended_cr_stage": "dual_code",
+      "manual_confirmation_required": true,
+      "cr_focus_points": [
+        "告警不改变既有校验结果。",
+        "coverage_id=COV-EX-0010"
+      ]
+    },
+    {
+      "record_id": "TRA-0011",
+      "evidence_id": "EVD-UNMAPPED",
+      "coverage_level": "full",
+      "structured_targets": [
+        {
+          "target_type": "feature",
+          "module_name": "DeviceTaintRule Admission Warning",
+          "feature_name": "非阻塞警告响应",
+          "field_name": "",
+          "target_name": "告警不改变持久化结果和 taint 执行语义。"
+        }
+      ],
+      "testcase_ids": [
+        "OSS-BLIND-R4-DEVICETAINT-WARNING-API-FL-003"
+      ],
+      "gap_notes": "adapter_source=coverage_first_traceability; source_record_id=CFT-0011; rule_id=K8S-R005; coverage_id=COV-EX-0011; fidelity_status=not_applicable",
+      "implementation_binding": "shared_contract",
+      "recommended_cr_stage": "dual_code",
+      "manual_confirmation_required": true,
+      "cr_focus_points": [
+        "告警不改变持久化结果和 taint 执行语义。",
+        "coverage_id=COV-EX-0011"
+      ]
+    },
+    {
+      "record_id": "TRA-0012",
+      "evidence_id": "EVD-UNMAPPED",
+      "coverage_level": "full",
+      "structured_targets": [
+        {
+          "target_type": "feature",
+          "module_name": "DeviceTaintRule Admission Warning",
+          "feature_name": "空选择器判定",
+          "field_name": "",
+          "target_name": "空 selector 的告警判断不受 taint effect 取值影响，包括既有 `None` 预览取值。"
+        }
+      ],
+      "testcase_ids": [
+        "OSS-BLIND-R4-DEVICETAINT-WARNING-API-FN-009"
+      ],
+      "gap_notes": "adapter_source=coverage_first_traceability; source_record_id=CFT-0012; rule_id=K8S-R006; coverage_id=COV-EX-0012; fidelity_status=not_applicable",
+      "implementation_binding": "shared_contract",
+      "recommended_cr_stage": "dual_code",
+      "manual_confirmation_required": true,
+      "cr_focus_points": [
+        "空 selector 的告警判断不受 taint effect 取值影响，包括既有 `None` 预览取值。",
+        "coverage_id=COV-EX-0012"
+      ]
+    },
+    {
+      "record_id": "TRA-0013",
+      "evidence_id": "EVD-UNMAPPED",
+      "coverage_level": "full",
+      "structured_targets": [
+        {
+          "target_type": "feature",
+          "module_name": "DeviceTaintRule Admission Warning",
+          "feature_name": "非阻塞警告响应",
+          "field_name": "",
+          "target_name": "使用 `kubectl --warnings-as-errors` 时客户端可返回非零状态，但服务端对象仍已创建。"
+        }
+      ],
+      "testcase_ids": [
+        "OSS-BLIND-R4-DEVICETAINT-WARNING-API-FL-004"
+      ],
+      "gap_notes": "adapter_source=coverage_first_traceability; source_record_id=CFT-0013; rule_id=K8S-R007; coverage_id=COV-EX-0013; fidelity_status=not_applicable",
+      "implementation_binding": "shared_contract",
+      "recommended_cr_stage": "dual_code",
+      "manual_confirmation_required": true,
+      "cr_focus_points": [
+        "使用 `kubectl --warnings-as-errors` 时客户端可返回非零状态，但服务端对象仍已创建。",
+        "coverage_id=COV-EX-0013"
+      ]
+    }
+  ]
+}

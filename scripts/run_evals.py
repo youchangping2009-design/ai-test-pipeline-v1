@@ -334,7 +334,9 @@ def run_fixture(fixture: str) -> int:
 
 def main() -> int:
     parser = argparse.ArgumentParser(description="运行 AI Test Pipeline eval/regression fixture")
-    parser.add_argument("--fixture", required=False, help="fixture 名称，例如 PT083")
+    parser.add_argument(
+        "--fixture", required=False, help="fixture 名称，例如 CONFIGURATION_RULES"
+    )
     parser.add_argument("--all", action="store_true", help="运行 evals/fixtures 下全部 fixture")
     args = parser.parse_args()
     if args.all:

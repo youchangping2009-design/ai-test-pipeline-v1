@@ -57,6 +57,7 @@ Use `source_manifest.json` to record requirement source provenance. Keep raw fil
 - Mark source freshness: use exact dates for chat decisions and public docs when known.
 - Record conflicts explicitly: `PRD says ...; 2026-xx-xx chat later confirms ...`.
 - Separate product acceptance from risk/API guard items.
+- 对每条信息标明来源角色：`primary_requirement`（本工作项正式范围）、`context_only`（仅用于理解背景）、`oracle_only`（生成完成后用于评分）。`context_only` 与 `oracle_only` 不得写成正式验收要求。
 - Do not turn soft prompts, UI hints, or optional public-doc capabilities into hard blockers unless sources say so.
 - Do not create official testcase language here; this file is input preparation for later pipeline stages.
 

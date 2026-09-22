@@ -1,0 +1,70 @@
+{
+  "generated_at": "2026-09-21T22:21:30",
+  "total_cases": 8,
+  "total_coverage_entries": 19,
+  "coverage_empty_with_cases": false,
+  "rule_coverage_rate": 0.5714,
+  "atomic_case_rate": 0.0,
+  "boundary_coverage_rate": 1.0,
+  "data_source_rule_coverage_rate": 1.0,
+  "generalized_case_count": 0,
+  "generalized_case_rate": 0.0,
+  "weak_case_count": 0,
+  "weak_case_rate": 0.0,
+  "semantic_mismatch_count": 0,
+  "duplicate_case_count": 0,
+  "duplicate_case_rate": 0.0,
+  "duplicate_group_count": 0,
+  "duplicate_metric_basis": "residual_after_merge",
+  "missing_fidelity_points": 0,
+  "high_priority_fidelity_missing": 0,
+  "false_traceability_rate": 0.0,
+  "false_traceability_rate_primary": 0.0,
+  "false_traceability_rate_legacy": 0.0,
+  "traceability_metric_source": "coverage_first_traceability",
+  "field_audit_item_count": 11,
+  "grouped_audit_group_count": 0,
+  "audit_artifacts_consumed": true,
+  "quality_gate": {
+    "enabled": false,
+    "mode": "soft",
+    "rollout_source": "new_work_item",
+    "status": "report_only",
+    "thresholds": {
+      "false_traceability_rate_fail": 0.05,
+      "generalized_case_rate_warn": 0.03,
+      "generalized_case_count_warn": 5,
+      "weak_case_rate_warn": 0.03,
+      "weak_case_count_warn": 5,
+      "semantic_mismatch_count_fail": 0,
+      "duplicate_case_rate_warn": 0.005,
+      "duplicate_case_count_warn": 1
+    },
+    "warnings": [],
+    "failures": []
+  },
+  "unresolved_issues": [],
+  "final_near_duplicate_groups": [],
+  "source_artifacts": {
+    "structured_prd": {
+      "path": "assets/projects/OSS-BLIND-R3/work_items/TEMPORAL-11968/structured_prd/structured_prd.json",
+      "sha256": "f0a012dee70cd728b7019aa1daf6955d0c81bcd8638df76f43a75034d2e85865",
+      "size_bytes": 15885
+    },
+    "coverage_matrix": {
+      "path": "assets/projects/OSS-BLIND-R3/work_items/TEMPORAL-11968/coverage/coverage_matrix.json",
+      "sha256": "4033c489b97d163496e5ae7e243140fc74912a710984fc464ebe45f3d2758d1f",
+      "size_bytes": 18374
+    },
+    "testcases": {
+      "path": "assets/projects/OSS-BLIND-R3/work_items/TEMPORAL-11968/testcases/testcases_main.md",
+      "sha256": "2ae7d9c5795b895579439310af806547f7c1d6b81308a23929cf21b23a9713b7",
+      "size_bytes": 4624
+    },
+    "coverage_first_traceability": {
+      "path": "assets/projects/OSS-BLIND-R3/work_items/TEMPORAL-11968/traceability/coverage_first_traceability.json",
+      "sha256": "d6bc940ba0b572afd6b0adb26324785aaae6729672e806f414d9e9f489bcbf1c",
+      "size_bytes": 6797
+    }
+  }
+}

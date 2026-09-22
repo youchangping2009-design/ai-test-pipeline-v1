@@ -184,7 +184,7 @@ def build_reasoning_task(
 
 ## 校验命令
 - `python3 scripts/generate_reasoning_pack.py --project-code {manifest.get('project_code', '待确认')} --work-item-id {manifest.get('work_item_id', '待确认')}`
-- `python3 skills/reasoning-analysis/scripts/validate_reasoning_pack.py --input {rel(item_root / 'analysis' / 'reasoning_pack.json')} --schema schemas/reasoning_pack.schema.json`
+- `python3 skills/reasoning-analysis/scripts/validate_reasoning_pack.py --input {rel(item_root / 'analysis' / 'reasoning_pack.json')} --schema schemas/reasoning_pack.schema.json --require-grounding-contract`
 """
     write_text(generation_dir / "01-reasoning-analyst.md", content)
 
@@ -260,6 +260,8 @@ def build_structurer_task(
 - 必须显式消费 `analysis/reasoning_pack.json` 中的 `explicit_rules / implicit_rules / field_constraints / data_source_rules`
 - 显式规则优先于视觉推断
 - 对组合型说明做原子化拆解
+- 为 `explicit_rules` 标记 `source_scope=primary_requirement/context_only/oracle_only`，后两类不得进入正式主用例
+- 一个规则存在多个可独立失败分支时填写 `atomic_assertions`，供 Coverage 逐断言拆分
 - 对高优先级显式规则补充 `explicit_rules`，必要时补 `fidelity_points`
 - 固定文案、样式差异、容器结果、默认状态、扩展性说明不得静默丢失
 - 对“触发动作 -> 容器出现 -> 默认状态 / 终态结果”必须拆出中间检查点
@@ -442,6 +444,7 @@ def build_case_plan_task(
 
 ## 强制要求
 - 每个正式计划必须引用 gate；M/L 引用 example；L 引用 responsibility
+- 新生成的 Case Plan 使用 `generation_mode=case_plan_direct`，正式 testcase 逐计划派生；`coverage_legacy` 只用于旧资产兼容
 - 每个 `should_generate_case=true` 计划必须提供 `source_coverage_ids` 或稳定的 `generated_testcase_ids`
 - validation_path 决定主验收、API guard、risk note 和 out-of-scope 分池
 - `should_generate_case=false` 的计划不得进入正式 testcase
@@ -497,7 +500,7 @@ def build_case_generator_task(generation_dir: Path, item_root: Path) -> None:
 - `soft_prompt` 只能生成 prompt_display / ui_display，不得生成 hard_block
 - `technical_background` 不能生成正式业务用例
 - 主 testcase / audit 的信号判定必须以 `docs/testcase_signal_policy.md` 为准
-- testcase 生成必须以 `coverage_matrix.json` 为主输入，以 `structured_prd.rules/fields` 为辅助输入
+- `case_plan_direct` 模式下 testcase 必须以 `case_plan.json` 为主输入，以 `coverage_matrix.json` 和 `structured_prd.rules/fields` 补充规则详情；旧 `coverage_legacy` 模式保持兼容
 - `testcases_main.md` 是主用例真源，`testcases.md` 仅作为兼容镜像
 - `dev_self_testcases.md` 必须从 `testcases_main.md` 中筛选 `开发必测` 标签派生，不得作为独立真源维护
 - `field_audit.json` / `grouped_audit.json` 必须与主用例同步产出
@@ -857,7 +860,7 @@ def build_run_manifest(
         "validate_commands": [
             f"python3 skills/requirement-summary/scripts/validate_requirement_sources.py --input {rel(item_root / 'inputs' / 'source_manifest.json')} --strict",
             f"python3 scripts/generate_reasoning_pack.py --project-code {project_code} --work-item-id {work_item_id}",
-            f"python3 skills/reasoning-analysis/scripts/validate_reasoning_pack.py --input {rel(item_root / 'analysis' / 'reasoning_pack.json')} --schema schemas/reasoning_pack.schema.json",
+            f"python3 skills/reasoning-analysis/scripts/validate_reasoning_pack.py --input {rel(item_root / 'analysis' / 'reasoning_pack.json')} --schema schemas/reasoning_pack.schema.json --require-grounding-contract",
             f"python3 scripts/project_reasoning_to_structured_prd.py --project-code {project_code} --work-item-id {work_item_id}",
             f"python3 scripts/generate_coverage_matrix.py --project-code {project_code} --work-item-id {work_item_id}",
             f"python3 skills/coverage-planning/scripts/validate_coverage_matrix.py --input {rel(item_root / 'coverage' / 'coverage_matrix.json')} --schema schemas/coverage_matrix.schema.json",

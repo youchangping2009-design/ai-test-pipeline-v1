@@ -1,0 +1,312 @@
+{
+  "project_info": {
+    "project_code": "OSS-BLIND-R3",
+    "project_name": "Celery",
+    "business_line": "Worker 撤销状态同步",
+    "prd_source": "inputs/requirement_summary.md",
+    "prd_version": "github-pr-10668"
+  },
+  "requirement_info": {
+    "requirement_title": "跨 Worker 时钟域保留撤销任务",
+    "requirement_background": "不同主机的 monotonic 时间戳不可直接比较，复用外部时间戳可能使旧撤销记录长期占用有限集合并驱逐本机新撤销任务。",
+    "requirement_goal": "外部撤销状态在接收 Worker 的本机时钟域重新计时，并在同步、持久化恢复、容量限制和滚动升级条件下保持撤销语义。",
+    "explicit_rules": [
+      {
+        "rule_id": "CEL-R001",
+        "rule_text": "从其他 Worker 或持久化状态接收撤销记录时，只合并任务 ID，不复用来源主机的 monotonic 时间戳。",
+        "rule_type": "data_rule",
+        "priority": "high",
+        "applies_to": "外部撤销状态合并",
+        "source_scope": "primary_requirement"
+      },
+      {
+        "rule_id": "CEL-R002",
+        "rule_text": "接收的撤销任务 ID 从本机收到时开始计算 REVOKE_EXPIRES 有效期，并在有效期后正常过期。",
+        "rule_type": "state_constraint",
+        "priority": "high",
+        "applies_to": "撤销有效期",
+        "source_scope": "primary_requirement"
+      },
+      {
+        "rule_id": "CEL-R003",
+        "rule_text": "撤销集合达到 maxlen 时，本机刚撤销的任务不得因外部时间戳排序而被错误驱逐；有效期内的已撤销 ETA/countdown 任务不得执行。",
+        "rule_type": "state_constraint",
+        "priority": "high",
+        "applies_to": "容量与任务执行",
+        "source_scope": "primary_requirement",
+        "atomic_assertions": [
+          "集合满载后本机新撤销任务仍保留。",
+          "有效期内已撤销的 ETA/countdown 任务不执行。"
+        ]
+      },
+      {
+        "rule_id": "CEL-R004",
+        "rule_text": "hello、mingle 与 --statedb 恢复三条入口必须使用相同的本机重新计时语义。",
+        "rule_type": "data_rule",
+        "priority": "high",
+        "applies_to": "撤销状态入口",
+        "source_scope": "primary_requirement",
+        "atomic_assertions": [
+          "hello 接收的撤销 ID 使用本机时间。",
+          "mingle 接收的撤销 ID 使用本机时间。",
+          "--statedb 恢复的撤销 ID 使用本机时间。"
+        ]
+      },
+      {
+        "rule_id": "CEL-R005",
+        "rule_text": "新旧 Worker 混合集群双向交换撤销状态时，不得丢失撤销任务 ID。",
+        "rule_type": "fallback_constraint",
+        "priority": "high",
+        "applies_to": "滚动升级兼容",
+        "source_scope": "primary_requirement"
+      },
+      {
+        "rule_id": "CEL-R006",
+        "rule_text": "now=0、相同时间戳以及 int/string 混合任务 ID 不得触发排序或类型比较异常。",
+        "rule_type": "order_constraint",
+        "priority": "high",
+        "applies_to": "撤销集合排序",
+        "source_scope": "primary_requirement",
+        "atomic_assertions": [
+          "now=0 时撤销记录可正常加入和排序。",
+          "相同时间戳记录的排序稳定。",
+          "int/string 混合任务 ID 不触发类型比较异常。"
+        ]
+      }
+    ],
+    "scope": {
+      "in_scope": [
+        "hello 和 mingle 撤销状态交换",
+        "--statedb 恢复",
+        "撤销有效期与 maxlen 驱逐",
+        "新旧 Worker 滚动升级兼容",
+        "相同时间戳与混合 ID 类型"
+      ],
+      "out_of_scope": [
+        "一般任务路由",
+        "正常任务执行语义",
+        "与撤销无关的 Worker 状态",
+        "未声明的远程控制协议变更",
+        "未定义的性能与最大载荷阈值"
+      ]
+    }
+  },
+  "pages": [
+    {
+      "page_name": "Celery Worker 撤销状态处理",
+      "page_desc": "Worker 接收、恢复、保存和执行撤销状态的系统观察面。",
+      "sections": [
+        {
+          "section_name": "撤销状态合并与执行保护",
+          "section_type": "other",
+          "section_desc": "统一处理跨 Worker 同步、statedb 恢复、过期与容量驱逐。",
+          "module_name": "Worker 撤销状态",
+          "feature_names": [
+            "跨时钟域撤销状态合并"
+          ],
+          "section_rules": [
+            "外部撤销状态按本机时间重新计时",
+            "满载时保留本机新撤销任务",
+            "有效期内已撤销任务不执行",
+            "新旧 Worker 状态交换不丢 ID"
+          ],
+          "field_refs": [],
+          "field_rule_table_refs": []
+        }
+      ]
+    }
+  ],
+  "modules": [
+    {
+      "module_name": "Worker 撤销状态",
+      "module_desc": "管理撤销任务 ID 的跨节点同步、本地有效期、容量驱逐和持久化恢复。",
+      "features": [
+        {
+          "feature_name": "跨时钟域撤销状态合并",
+          "page_name": "Celery Worker 撤销状态处理",
+          "section_name": "撤销状态合并与执行保护",
+          "feature_desc": "接收外部撤销 ID 后按本机时间重新计时并保持撤销执行保护。",
+          "actors": [
+            "Celery Worker"
+          ],
+          "entry_conditions": [
+            "至少两个启动时长不同的 Worker",
+            "已配置 REVOKE_EXPIRES 与 maxlen",
+            "可准备 ETA/countdown 任务和 --statedb"
+          ],
+          "rules": [
+            {
+              "rule_id": "CEL-FR002",
+              "name": "本机有效期",
+              "rule_type": "state_constraint",
+              "target": "revoked_entry_expiry",
+              "condition": "外部 task ID 被本机接收",
+              "value": "从本机接收时刻计算 REVOKE_EXPIRES",
+              "rule_text": "有效期内保留，期满后过期。"
+            },
+            {
+              "rule_id": "CEL-FR003",
+              "name": "容量驱逐保护",
+              "rule_type": "max_count_constraint",
+              "target": "revoked_set",
+              "condition": "集合达到 maxlen 后加入本机新撤销 ID",
+              "rule_text": "不得因不可比较的外部时间戳驱逐本机新撤销项。"
+            },
+            {
+              "rule_id": "CEL-FR004",
+              "name": "多入口一致性",
+              "rule_type": "state_constraint",
+              "target": "merge_entry",
+              "allowed_values": [
+                "hello",
+                "mingle",
+                "--statedb"
+              ],
+              "rule_text": "三个入口使用相同的任务 ID 合并和本机重新计时语义。"
+            },
+            {
+              "rule_id": "CEL-FR005",
+              "name": "混合 ID 稳定排序",
+              "rule_type": "order_constraint",
+              "target": "revoked_set_order",
+              "condition": "now=0、时间戳相同或 task ID 类型不同",
+              "rule_text": "集合操作不抛出排序或类型比较异常。"
+            }
+          ],
+          "fields": [],
+          "field_definitions": [],
+          "field_rules": [],
+          "field_rule_tables": [],
+          "visible_elements": [
+            "撤销 ID 集合",
+            "接收时间",
+            "过期时间",
+            "集合容量",
+            "任务执行副作用"
+          ],
+          "interactive_entries": [
+            "hello 同步",
+            "mingle 同步",
+            "--statedb 恢复",
+            "撤销任务"
+          ],
+          "abnormal_scenarios": [
+            "来源主机 monotonic 时间明显领先",
+            "撤销集合满载",
+            "新旧 Worker 状态表示混合",
+            "int/string 任务 ID 同时存在"
+          ],
+          "boundary_scenarios": [
+            "now=0",
+            "多个记录时间戳相同",
+            "重复接收同一撤销 ID 的有效期语义待确认",
+            "最大同步载荷待确认"
+          ],
+          "dependencies": [
+            "Celery Worker 状态同步",
+            "REVOKE_EXPIRES",
+            "maxlen",
+            "--statedb"
+          ]
+        }
+      ]
+    }
+  ],
+  "flows": [
+    {
+      "flow_id": "CEL-FLOW-001",
+      "flow_name": "接收撤销状态并阻止任务执行",
+      "flow_type": "main_flow",
+      "business_goal": "跨 Worker 或 statedb 接收撤销 ID 后，在本机时钟域维持有效撤销并避免错误驱逐。",
+      "trigger": "Worker 通过 hello、mingle 或 --statedb 接收外部撤销状态",
+      "preconditions": [
+        "撤销集合和有效期配置可用",
+        "可观察目标任务执行副作用"
+      ],
+      "steps": [
+        {
+          "step_no": 1,
+          "step_name": "合并外部撤销 ID",
+          "step_type": "data_validation",
+          "module_name": "Worker 撤销状态",
+          "feature_name": "跨时钟域撤销状态合并",
+          "actor": "接收 Worker",
+          "action": "丢弃外部 monotonic 时间戳，仅合并任务 ID",
+          "input_data": [
+            "外部 revoked task IDs"
+          ],
+          "expected_result": "任务 ID 以本机接收时间进入撤销集合",
+          "checkpoints": [
+            "未复用来源主机时间戳"
+          ],
+          "rule_references": [
+            "CEL-R001",
+            "CEL-R004"
+          ],
+          "is_key_checkpoint": true
+        },
+        {
+          "step_no": 2,
+          "step_name": "维护有效期与容量",
+          "step_type": "state_change",
+          "module_name": "Worker 撤销状态",
+          "feature_name": "跨时钟域撤销状态合并",
+          "actor": "接收 Worker",
+          "action": "按本机时间计算有效期，并在 maxlen 限制下维护撤销集合",
+          "expected_result": "有效撤销 ID 保留，本机新撤销 ID 不被错误驱逐，过期 ID 可清理",
+          "state_transition": {
+            "from": "外部撤销状态",
+            "to": "本机计时的撤销状态"
+          },
+          "checkpoints": [
+            "本机新撤销 ID 存在",
+            "到期后可过期"
+          ],
+          "rule_references": [
+            "CEL-R002",
+            "CEL-R003",
+            "CEL-R006"
+          ],
+          "is_key_checkpoint": true
+        },
+        {
+          "step_no": 3,
+          "step_name": "执行任务前检查撤销",
+          "step_type": "system_response",
+          "module_name": "Worker 撤销状态",
+          "feature_name": "跨时钟域撤销状态合并",
+          "actor": "接收 Worker",
+          "action": "在 ETA/countdown 任务到期执行前查询本机撤销集合",
+          "expected_result": "有效期内的已撤销任务不执行",
+          "checkpoints": [
+            "无任务执行副作用"
+          ],
+          "rule_references": [
+            "CEL-R003",
+            "CEL-R005"
+          ],
+          "is_key_checkpoint": true
+        }
+      ],
+      "postconditions": [
+        "有效撤销 ID 按本机时间维护",
+        "被撤销任务在有效期内未执行"
+      ],
+      "success_criteria": [
+        "三条入口均不复用外部 monotonic 时间戳",
+        "满载集合不错误驱逐本机新撤销任务",
+        "新旧 Worker 交换不丢撤销 ID",
+        "边界 ID 不触发异常"
+      ],
+      "related_modules": [
+        "Worker 撤销状态"
+      ],
+      "priority": "P0",
+      "tags": [
+        "revoked-task",
+        "monotonic-clock",
+        "rolling-upgrade"
+      ]
+    }
+  ]
+}

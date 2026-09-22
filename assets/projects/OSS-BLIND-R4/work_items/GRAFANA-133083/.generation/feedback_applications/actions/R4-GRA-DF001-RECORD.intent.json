@@ -1,0 +1,20 @@
+{
+  "schema_version": "1.1.0",
+  "record_type": "intent",
+  "action_id": "R4-GRA-DF001-RECORD",
+  "request_sha256": "dcc8b6ff071f9cc88bedb54a3865ad495898d2196d1a9cb368f82a7a454ce9f2",
+  "execution_context": {
+    "run_id": "RUN-R4-GRAFANA-133083",
+    "actor": "codex-agent",
+    "provider": "openai"
+  },
+  "action": {
+    "action_id": "R4-GRA-DF001-RECORD",
+    "action_type": "record_feedback_application",
+    "stage_id": "design_feedback_application",
+    "feedback_id": "DF-001",
+    "arguments": {},
+    "expected_outcome": "记录 Grafana DF-001 的回灌凭证并置为 applied"
+  },
+  "recorded_at": "2026-09-22T04:37:24.720632+00:00"
+}

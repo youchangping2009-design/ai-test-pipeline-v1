@@ -30,21 +30,14 @@ python3 scripts/validate_work_item.py \
 
 ## Cursor 专属适配
 
-当前仓库仅保留：
-
-```text
-.cursor/rules/00-global.mdc
-```
-
-它用于加载 Cursor 工作区规则。仓库当前没有提交 `.cursor/subagents/` 或 `.cursor/mcp.json`，不得在文档中把未提供的资产描述为现有能力。
+仓库不再提交 `.cursor/`。用 Cursor 打开本仓库时，直接读 `AGENTS.md` 与 `START_HERE.md`，不要把编辑器规则目录当成流程真源。
 
 ## 适配边界
 
 Cursor adapter 可以处理：
 
-- 编辑器规则加载
 - 当前会话模型和工具调用
-- Cursor 私有工作区配置
+- 本机私有工作区配置（不提交）
 
 不得处理：
 
@@ -59,4 +52,3 @@ Cursor adapter 可以处理：
 - `testcases/testcases_main.md`：正式用例真源
 - `testcases/case_plan.json`：用例计划真源
 - `traceability/coverage_first_traceability.json`：追溯真源
-- `.cursor/`：仅宿主适配，不是流程真源

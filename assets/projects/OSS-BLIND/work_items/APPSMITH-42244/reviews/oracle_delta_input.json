@@ -1,0 +1,26 @@
+{
+  "project_code": "OSS-BLIND",
+  "work_item_id": "APPSMITH-42244",
+  "oracle": {
+    "source_url": "https://github.com/appsmithorg/appsmith/pull/42244",
+    "head_sha": "27ef9f61e2e2293b87ecd33728d79d8d84d3fef5"
+  },
+  "assertions": [
+    {"assertion_id": "OA-001", "summary": "非 Databricks URL 在连接前被拒绝", "disposition": "covered", "testcase_ids": ["OSS-BLIND-DATABRICKS-CONNECT-SERVER-AB-001"]},
+    {"assertion_id": "OA-002", "summary": "非法 URL 不调用其他已注册 driver", "disposition": "covered", "testcase_ids": ["OSS-BLIND-DATABRICKS-CONNECT-SERVER-FL-001", "OSS-BLIND-DATABRICKS-CONNECT-SERVER-FL-003"]},
+    {"assertion_id": "OA-003", "summary": "合法 URL 进入指定 driver", "disposition": "covered", "testcase_ids": ["OSS-BLIND-DATABRICKS-CONNECT-SERVER-FN-001", "OSS-BLIND-DATABRICKS-CONNECT-SERVER-FL-001"]},
+    {"assertion_id": "OA-004", "summary": "driver 返回连接并完成 Mono", "disposition": "covered", "testcase_ids": ["OSS-BLIND-DATABRICKS-CONNECT-SERVER-FN-001"]},
+    {"assertion_id": "OA-005", "summary": "非法 URL 返回精确新增错误文案", "oracle_scope": "implementation", "disposition": "covered", "testcase_ids": ["OSS-BLIND-DATABRICKS-CONNECT-SERVER-AB-001"]},
+    {"assertion_id": "OA-006", "summary": "连接属性为 UID=token 且 PWD=输入 token", "oracle_scope": "implementation", "disposition": "covered", "testcase_ids": ["OSS-BLIND-DATABRICKS-CONNECT-SERVER-FL-002"]},
+    {"assertion_id": "OA-007", "summary": "driver 返回空连接时失败关闭", "oracle_scope": "implementation", "disposition": "covered", "testcase_ids": ["OSS-BLIND-DATABRICKS-CONNECT-SERVER-AB-003"]}
+  ],
+  "testcase_assessments": [
+    {"testcase_id": "OSS-BLIND-DATABRICKS-CONNECT-SERVER-AB-001", "disposition": "direct_match"},
+    {"testcase_id": "OSS-BLIND-DATABRICKS-CONNECT-SERVER-FN-001", "disposition": "direct_match"},
+    {"testcase_id": "OSS-BLIND-DATABRICKS-CONNECT-SERVER-FL-001", "disposition": "direct_match"},
+    {"testcase_id": "OSS-BLIND-DATABRICKS-CONNECT-SERVER-AB-002", "disposition": "direct_match"},
+    {"testcase_id": "OSS-BLIND-DATABRICKS-CONNECT-SERVER-FL-002", "disposition": "direct_match"},
+    {"testcase_id": "OSS-BLIND-DATABRICKS-CONNECT-SERVER-FL-003", "disposition": "direct_match"},
+    {"testcase_id": "OSS-BLIND-DATABRICKS-CONNECT-SERVER-AB-003", "disposition": "direct_match"}
+  ]
+}

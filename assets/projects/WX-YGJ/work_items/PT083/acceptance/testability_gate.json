@@ -6,40 +6,40 @@
       "gate_id": "TG-001",
       "source_rule_id": "OBJ-001",
       "source_text": "promotion_slogan; value_constraint",
-      "classification": "field_constraint",
+      "classification": "product_behavior",
       "testability": "testable",
       "decision": "generate_acceptance_example",
-      "reason": "字段必填、范围、长度、格式、数量或数据源规则具备明确可观察结果。",
+      "reason": "规则描述的是读侧展示、隐藏或换行结果，不包含保存拦截语义。",
       "confidence": "confirmed"
     },
     {
       "gate_id": "TG-002",
       "source_rule_id": "OBJ-002",
       "source_text": "performance_parameters; value_constraint",
-      "classification": "field_constraint",
+      "classification": "product_behavior",
       "testability": "testable",
       "decision": "generate_acceptance_example",
-      "reason": "字段必填、范围、长度、格式、数量或数据源规则具备明确可观察结果。",
+      "reason": "规则描述的是读侧展示、隐藏或换行结果，不包含保存拦截语义。",
       "confidence": "confirmed"
     },
     {
       "gate_id": "TG-003",
       "source_rule_id": "OBJ-003",
       "source_text": "后台未配置特殊区商品时隐藏",
-      "classification": "field_constraint",
+      "classification": "product_behavior",
       "testability": "testable",
       "decision": "generate_acceptance_example",
-      "reason": "字段必填、范围、长度、格式、数量或数据源规则具备明确可观察结果。",
+      "reason": "规则描述的是读侧展示、隐藏或换行结果，不包含保存拦截语义。",
       "confidence": "confirmed"
     },
     {
       "gate_id": "TG-004",
       "source_rule_id": "FR-云挂机购买页-特价专区-01",
       "source_text": "最多展示4个商品",
-      "classification": "field_constraint",
+      "classification": "product_behavior",
       "testability": "testable",
       "decision": "generate_acceptance_example",
-      "reason": "字段必填、范围、长度、格式、数量或数据源规则具备明确可观察结果。",
+      "reason": "规则描述的是读侧展示、隐藏或换行结果，不包含保存拦截语义。",
       "confidence": "confirmed"
     },
     {
@@ -206,10 +206,10 @@
       "gate_id": "TG-021",
       "source_rule_id": "FR-盒子管理后台-云手机商品管理-添加-商品区与库存规则说明表-07",
       "source_text": "已有功能，增加未配置提示；服务时长结束后C端不再展示",
-      "classification": "field_constraint",
+      "classification": "product_behavior",
       "testability": "testable",
       "decision": "generate_acceptance_example",
-      "reason": "字段必填、范围、长度、格式、数量或数据源规则具备明确可观察结果。",
+      "reason": "规则描述的是读侧展示、隐藏或换行结果，不包含保存拦截语义。",
       "confidence": "confirmed"
     },
     {
@@ -336,20 +336,20 @@
       "gate_id": "TG-034",
       "source_rule_id": "FR-盒子管理后台-编辑宣传内容-宣传内容编辑表单-03",
       "source_text": "文本长度20个字符；C端超过一行换行展示",
-      "classification": "field_constraint",
+      "classification": "product_behavior",
       "testability": "testable",
       "decision": "generate_acceptance_example",
-      "reason": "字段必填、范围、长度、格式、数量或数据源规则具备明确可观察结果。",
+      "reason": "规则描述的是读侧展示、隐藏或换行结果，不包含保存拦截语义。",
       "confidence": "confirmed"
     },
     {
       "gate_id": "TG-035",
       "source_rule_id": "FR-盒子管理后台-编辑宣传内容-宣传内容编辑表单-04",
       "source_text": "文本长度20个字符；C端超过一行换行展示",
-      "classification": "field_constraint",
+      "classification": "product_behavior",
       "testability": "testable",
       "decision": "generate_acceptance_example",
-      "reason": "字段必填、范围、长度、格式、数量或数据源规则具备明确可观察结果。",
+      "reason": "规则描述的是读侧展示、隐藏或换行结果，不包含保存拦截语义。",
       "confidence": "confirmed"
     },
     {

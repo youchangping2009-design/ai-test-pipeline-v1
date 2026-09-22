@@ -1,0 +1,10 @@
+# Case Plan
+
+| case_plan_id | source_gate_ids | source_example_ids | source_responsibility_ids | source_coverage_ids | generated_testcase_ids | page_name | section_name | module_name | feature_name | title | verification_side | case_type | priority | assertion | validation_path | should_generate_case |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| CP-001 | TG-001 | AE-001 |  | COV-EX-0001 | OSS-BLIND-R4-TTSAUDIO-MP3TAG-SERVER-DV-001 | TTS 音频缓存处理 | MP3 标签写入与缓存回放 | TTS 音频标签 | ID3 标签合并 | 已有 ID3 的 MP3 更新后只保留一个有效 ID3 头 | TTS MP3 标签写入与文件解析层 | data_persistence | P0 | ID3 解析器读取输出文件时不返回格式错误；输出文件中只存在一个有效 ID3 头。 | product_acceptance | true |
+| CP-002 | TG-002 | AE-002 |  | COV-EX-0002 | OSS-BLIND-R4-TTSAUDIO-MP3TAG-SERVER-DV-002 | TTS 音频缓存处理 | MP3 标签写入与缓存回放 | TTS 音频标签 | ID3 标签合并 | 更新标签后保留原 TSSE 元数据 | TTS MP3 元数据解析层 | data_persistence | P0 | 输出文件中的 TSSE 值与输入文件一致。 | product_acceptance | true |
+| CP-003 | TG-003 | AE-003 |  | COV-EX-0003 | OSS-BLIND-R4-TTSAUDIO-MP3TAG-SERVER-DV-003 | TTS 音频缓存处理 | MP3 标签写入与缓存回放 | TTS 音频标签 | ID3 标签合并 | 标签处理不改变 MP3 音频帧 | TTS MP3 音频帧数据层 | data_persistence | P0 | 排除标签区域后，输出音频帧内容与输入一致；输出音频帧的稳定摘要与输入一致。 | product_acceptance | true |
+| CP-004 | TG-004 | AE-004 |  | COV-EX-0004 | OSS-BLIND-R4-TTSAUDIO-MP3TAG-SERVER-ST-001 | TTS 音频缓存处理 | MP3 标签写入与缓存回放 | TTS 音频标签 | 缓存音频回放 | 磁盘缓存中的已标记 MP3 可严格解码且非静音 | TTS 磁盘缓存与音频解码层 | backend_job | P0 | 严格 MP3 解码器产生至少一个音频样本；解码后的音频样本不是全静音。 | product_acceptance | true |
+| CP-005 | TG-005 | AE-005 |  | COV-EX-0005 | OSS-BLIND-R4-TTSAUDIO-MP3TAG-SERVER-ST-002 | TTS 音频缓存处理 | MP3 标签写入与缓存回放 | TTS 音频标签 | ID3 标签合并 | 无 ID3 的 MP3 可添加标签并保持可播放 | TTS MP3 标签写入与音频解码层 | backend_job | P1 | 输出文件包含所需标签；输出文件可被严格 MP3 解码器解码并产生非静音音频样本。 | product_acceptance | true |
+| CP-006 | TG-006 | AE-006 |  | COV-EX-0006 | OSS-BLIND-R4-TTSAUDIO-MP3TAG-SERVER-FL-001 | TTS 音频缓存处理 | MP3 标签写入与缓存回放 | TTS 音频标签 | ID3 标签合并 | 已带标签音频处理结果不依赖 TTS provider | TTS provider 兼容与 MP3 输出层 | linkage | P0 | 两个 provider 的处理完成后，输出都只包含一个有效 ID3 头，保留各自 TSSE 和音频帧，并可由严格解码器产生至少一个非静音音频样本。 | product_acceptance | true |

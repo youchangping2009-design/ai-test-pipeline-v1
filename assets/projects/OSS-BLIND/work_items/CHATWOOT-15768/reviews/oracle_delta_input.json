@@ -1,0 +1,29 @@
+{
+  "project_code": "OSS-BLIND",
+  "work_item_id": "CHATWOOT-15768",
+  "oracle": {
+    "source_url": "https://github.com/chatwoot/chatwoot/pull/15768",
+    "head_sha": "ce4033d3430977e1c0de712b8295a928d753de8d"
+  },
+  "assertions": [
+    {"assertion_id": "OA-001", "summary": "number 属性使用 number 输入", "disposition": "covered", "testcase_ids": ["OSS-BLIND-CONVERSATION-FILTER-WEB-FL-001"]},
+    {"assertion_id": "OA-002", "summary": "请求生成保留 0 和 false", "disposition": "covered", "testcase_ids": ["OSS-BLIND-CONVERSATION-FILTER-WEB-DV-002"]},
+    {"assertion_id": "OA-003", "summary": "输入校验接受 0 和 false", "disposition": "covered", "testcase_ids": ["OSS-BLIND-CONVERSATION-FILTER-WEB-DV-002"]},
+    {"assertion_id": "OA-004", "summary": "null、undefined、空字符串为空", "disposition": "covered", "testcase_ids": ["OSS-BLIND-CONVERSATION-FILTER-WEB-DV-002"]},
+    {"assertion_id": "OA-005", "summary": "空数组与空对象返回 VALUE_REQUIRED", "oracle_scope": "implementation", "disposition": "covered", "testcase_ids": ["OSS-BLIND-CONVERSATION-FILTER-WEB-AB-001", "OSS-BLIND-CONVERSATION-FILTER-WEB-AB-003"]},
+    {"assertion_id": "OA-006", "summary": "days_before=0 仍受 1..998 边界约束", "oracle_scope": "implementation", "disposition": "covered", "testcase_ids": ["OSS-BLIND-CONVERSATION-FILTER-WEB-AB-002"]},
+    {"assertion_id": "OA-007", "summary": "0、false、42 的等于与不等于保持严格类型", "disposition": "covered", "testcase_ids": ["OSS-BLIND-CONVERSATION-FILTER-WEB-DV-003", "OSS-BLIND-CONVERSATION-FILTER-WEB-DV-004", "OSS-BLIND-CONVERSATION-FILTER-WEB-FN-001"]},
+    {"assertion_id": "OA-008", "summary": "缺失自定义属性不与显式值匹配", "disposition": "covered", "testcase_ids": ["OSS-BLIND-CONVERSATION-FILTER-WEB-DV-003"]}
+  ],
+  "testcase_assessments": [
+    {"testcase_id": "OSS-BLIND-CONVERSATION-FILTER-WEB-FL-001", "disposition": "direct_match"},
+    {"testcase_id": "OSS-BLIND-CONVERSATION-FILTER-WEB-DV-002", "disposition": "direct_match"},
+    {"testcase_id": "OSS-BLIND-CONVERSATION-FILTER-WEB-DV-003", "disposition": "direct_match"},
+    {"testcase_id": "OSS-BLIND-CONVERSATION-FILTER-WEB-DV-004", "disposition": "direct_match"},
+    {"testcase_id": "OSS-BLIND-CONVERSATION-FILTER-WEB-FN-001", "disposition": "direct_match"},
+    {"testcase_id": "OSS-BLIND-CONVERSATION-FILTER-WEB-FN-003", "disposition": "requirement_regression"},
+    {"testcase_id": "OSS-BLIND-CONVERSATION-FILTER-WEB-AB-001", "disposition": "direct_match"},
+    {"testcase_id": "OSS-BLIND-CONVERSATION-FILTER-WEB-AB-002", "disposition": "direct_match"},
+    {"testcase_id": "OSS-BLIND-CONVERSATION-FILTER-WEB-AB-003", "disposition": "direct_match"}
+  ]
+}

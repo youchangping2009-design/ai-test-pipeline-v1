@@ -1,0 +1,22 @@
+{
+  "project_code": "OSS-BLIND-R4",
+  "work_item_id": "RAILS-58429",
+  "applications": [
+    {
+      "feedback_id": "DF-001",
+      "target_layer": "testability_gate",
+      "artifacts": [
+        {
+          "path": "acceptance/testability_gate.json",
+          "before_sha256": "fdb2be7d8f1681e069b1b66c72ef7b93606567dd7d452464ff79395035b8f158",
+          "after_sha256": "71d98e7c428d0c7c013d266edd84bc5efae914f26f6d7c9996dadb483752f885"
+        },
+        {
+          "path": "acceptance/testability_gate.md",
+          "before_sha256": "deec82d39d31bedcb5bfd3386cea37b34f4bbb29dd59e890b6dbaa6cb5660ef3",
+          "after_sha256": "3f390d97c3b165b8801e75d16b27fbaf7579b6a9dce7b4ee2449c5ee65329909"
+        }
+      ]
+    }
+  ]
+}

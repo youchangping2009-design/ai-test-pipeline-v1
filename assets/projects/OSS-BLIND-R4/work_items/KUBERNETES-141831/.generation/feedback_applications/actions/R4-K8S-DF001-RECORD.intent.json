@@ -1,0 +1,20 @@
+{
+  "schema_version": "1.1.0",
+  "record_type": "intent",
+  "action_id": "R4-K8S-DF001-RECORD",
+  "request_sha256": "8eb73b028527e9a58a520abc53d5438004746cc818b60c280b08a1dad95a1484",
+  "execution_context": {
+    "run_id": "RUN-R4-KUBERNETES-141831",
+    "actor": "codex-agent",
+    "provider": "openai"
+  },
+  "action": {
+    "action_id": "R4-K8S-DF001-RECORD",
+    "action_type": "record_feedback_application",
+    "stage_id": "design_feedback_application",
+    "feedback_id": "DF-001",
+    "arguments": {},
+    "expected_outcome": "记录 Kubernetes DF-001 的回灌凭证并置为 applied"
+  },
+  "recorded_at": "2026-09-22T04:46:22.223274+00:00"
+}

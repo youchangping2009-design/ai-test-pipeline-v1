@@ -480,9 +480,31 @@ class RequirementApprovalTests(unittest.TestCase):
             manifest["pipeline_policy"]["requirement_approval_required"],
             True,
         )
+        self.assertIs(
+            manifest["pipeline_policy"]["feedback_application_receipt_required"],
+            True,
+        )
+        self.assertIs(
+            manifest["pipeline_policy"]["feedback_action_journal_required"],
+            True,
+        )
+        self.assertIs(
+            manifest["pipeline_policy"][
+                "feedback_action_execution_identity_required"
+            ],
+            True,
+        )
+        self.assertIs(
+            manifest["pipeline_policy"]["review_disposition_required"],
+            True,
+        )
         self.assertEqual(
             manifest["artifacts"]["requirement_approval"],
             RECEIPT_RELATIVE_PATH,
+        )
+        self.assertEqual(
+            manifest["artifacts"]["feedback_application_json"],
+            "design/feedback_application.json",
         )
 
 

@@ -1,0 +1,20 @@
+{
+  "schema_version": "1.1.0",
+  "record_type": "result",
+  "action_id": "R4-GRA-DF004-RECORD",
+  "request_sha256": "5b55f5e5bd45a4c6919bd08c2e68f90c3bff88814a2b999db65c6e7966a97a57",
+  "execution_context": {
+    "run_id": "RUN-R4-GRAFANA-133083",
+    "actor": "codex-agent",
+    "provider": "openai"
+  },
+  "observation": {
+    "ok": true,
+    "action_type": "record_feedback_application",
+    "result": {
+      "status": "applied",
+      "receipt_path": "design/feedback_application.json"
+    }
+  },
+  "recorded_at": "2026-09-22T04:43:44.777078+00:00"
+}

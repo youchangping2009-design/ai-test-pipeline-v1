@@ -8,6 +8,19 @@ __pycache__/
 tmp/
 .tmp_lark_auth/
 FETCH_HEAD
-assets/projects/*/work_items/*/.generation/runs/
+.coverage
+.coverage.*
+coverage.xml
+htmlcov/
+.pytest_cache/
+
+# Harness logs/current pointers and root-level generated reports are reproducible.
+# Minimal run identity/disposition and feedback application journals remain
+# versioned because strict validation requires their identity bindings.
+assets/projects/*/work_items/*/.generation/runs/*/*
+!assets/projects/*/work_items/*/.generation/runs/*/run_state.json
+!assets/projects/*/work_items/*/.generation/runs/*/review_disposition.json
 assets/projects/*/work_items/*/.generation/current_run.json
 .generation/evals/
+.generation/evaluations/
+.generation/r4_feedback_actions/

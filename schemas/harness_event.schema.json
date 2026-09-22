@@ -55,7 +55,9 @@
         "generation_candidate_validated",
         "generation_publish_started",
         "generation_publish_completed",
-        "generation_publish_rolled_back"
+        "generation_publish_rolled_back",
+        "review_disposition_declared",
+        "stage_not_applicable"
       ]
     },
     "stage_id": { "type": ["string", "null"] },

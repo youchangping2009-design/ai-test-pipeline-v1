@@ -5,6 +5,7 @@ from typing import Any
 
 from harness.approval_service import RequirementApprovalService
 from harness.hook_dispatcher import HookDispatchResult, HookDispatcher
+from harness.review_disposition import ReviewDispositionService
 from harness.stage_registry import StageSpec, resolve_stage_plan, stage_ids
 from harness.stage_runner import StageRunner, write_diagnostics
 from harness.state_store import (
@@ -34,6 +35,7 @@ class DeterministicOrchestrator:
             item_root,
             hooks=self.hooks,
         )
+        self.review_disposition = ReviewDispositionService(item_root)
 
     def start(
         self,
@@ -138,6 +140,20 @@ class DeterministicOrchestrator:
         for index, stage in enumerate(plan):
             record = stage_records[stage.stage_id]
             fingerprint = self._stage_fingerprint(state, stage)
+            review_disposition = None
+            if stage.stage_id in {"review", "strict_gate"}:
+                review_disposition = self.review_disposition.load_valid(
+                    str(state["run_id"]),
+                    required=False,
+                )
+            if (
+                stage.stage_id == "review"
+                and record["status"] == "skipped"
+                and review_disposition is None
+            ):
+                raise HarnessStateError(
+                    "Review 标记为 skipped 但缺少有效 not_applicable disposition"
+                )
             normalized_approval_checkpoint = False
             if (
                 stage.stage_id == "requirement_intake"
@@ -148,10 +164,12 @@ class DeterministicOrchestrator:
                 record["input_fingerprint"] = fingerprint
                 self.store.save(state)
                 normalized_approval_checkpoint = True
-            if (
-                record["status"] == "succeeded"
-                and record["input_fingerprint"] == fingerprint
-            ):
+            completed_checkpoint = record["status"] == "succeeded" or (
+                stage.stage_id == "review"
+                and record["status"] == "skipped"
+                and review_disposition is not None
+            )
+            if completed_checkpoint and record["input_fingerprint"] == fingerprint:
                 self.store.append_event(
                     state,
                     "stage_skipped",
@@ -164,8 +182,19 @@ class DeterministicOrchestrator:
                         )
                     },
                 )
+                if stage.stage_id == stop_at and index < len(plan) - 1:
+                    state["status"] = "paused"
+                    state["current_stage"] = None
+                    self.store.save(state)
+                    self.store.append_event(
+                        state,
+                        "run_paused",
+                        stage.stage_id,
+                        {"reason": "stop_at_checkpoint_reached"},
+                    )
+                    return 0, state
                 continue
-            if record["status"] == "succeeded":
+            if record["status"] in {"succeeded", "skipped"}:
                 self._invalidate_from(state, index)
                 self.store.append_event(
                     state,
@@ -270,15 +299,32 @@ class DeterministicOrchestrator:
                 )
                 return execution.exit_code or 1, state
 
-            record["status"] = "succeeded"
+            record["status"] = (
+                "skipped"
+                if stage.stage_id == "review" and review_disposition is not None
+                else "succeeded"
+            )
             state["last_error"] = None
             self.store.save(state)
-            self.store.append_event(
-                state,
-                "stage_succeeded",
-                stage.stage_id,
-                {"attempt": record["attempts"]},
-            )
+            if record["status"] == "skipped":
+                self.store.append_event(
+                    state,
+                    "stage_not_applicable",
+                    stage.stage_id,
+                    {
+                        "attempt": record["attempts"],
+                        "disposition": "not_applicable",
+                        "declared_by": review_disposition["declared_by"],
+                        "reason": review_disposition["reason"],
+                    },
+                )
+            else:
+                self.store.append_event(
+                    state,
+                    "stage_succeeded",
+                    stage.stage_id,
+                    {"attempt": record["attempts"]},
+                )
             post_hook = self._dispatch_hook(
                 state=state,
                 event="post_stage",
@@ -336,7 +382,31 @@ class DeterministicOrchestrator:
             return self.requirement_approval.checkpoint_fingerprint(
                 str(state["run_id"])
             )
-        return fingerprint_files(self.item_root, stage.required_files)
+        relative_paths = list(stage.required_files)
+        if stage.stage_id == "review":
+            for relative_path in (
+                "manifest.json",
+                "code_reviews/code_review_scope.json",
+                "design/feedback_application.json",
+                "reviews/blind_asset_freeze.json",
+                "reviews/oracle_delta_input.json",
+                "reviews/oracle_delta_score.json",
+            ):
+                if (self.item_root / relative_path).is_file():
+                    relative_paths.append(relative_path)
+            action_root = (
+                self.item_root
+                / ".generation"
+                / "feedback_applications"
+                / "actions"
+            )
+            if action_root.is_dir():
+                relative_paths.extend(
+                    str(path.relative_to(self.item_root))
+                    for path in sorted(action_root.glob("*.json"))
+                    if path.is_file()
+                )
+        return fingerprint_files(self.item_root, relative_paths)
 
     def _invalidate_from(self, state: dict[str, Any], index: int) -> None:
         for record in state["stages"][index:]:
@@ -402,4 +472,3 @@ class DeterministicOrchestrator:
             raise HarnessStateError(
                 f"stop_at={stop_at} 不属于 {work_item_level} 档阶段，允许值: {', '.join(allowed)}"
             )
-

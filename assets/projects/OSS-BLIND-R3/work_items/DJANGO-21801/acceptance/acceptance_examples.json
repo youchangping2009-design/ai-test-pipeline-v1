@@ -1,0 +1,109 @@
+{
+  "project_code": "OSS-BLIND-R3",
+  "work_item_id": "DJANGO-21801",
+  "generated_from": [
+    "acceptance/testability_gate.json",
+    "structured_prd/structured_prd.json",
+    "coverage/coverage_matrix.json"
+  ],
+  "examples": [
+    {
+      "example_id": "AE-001",
+      "source_gate_ids": ["TG-001"],
+      "source_rule_ids": ["DJG-R001"],
+      "coverage_refs": ["COV-EX-0001"],
+      "title": "模型变更仅移除字段普通索引声明",
+      "given": ["模型字段的“字段普通索引设置”已开启，并在 `Meta.constraints` 中声明命名 `UniqueConstraint`。"],
+      "when": ["关闭“字段普通索引设置”并生成迁移。"],
+      "then": ["模型变更仅包含关闭“字段普通索引设置”。", "命名 `UniqueConstraint` 的定义保持不变。"],
+      "verification_side": "服务端 Django 模型与迁移层",
+      "oracle_strength": "backend_job",
+      "confidence": "confirmed",
+      "source_trace": "来源：DJG-R001 / TG-001 / COV-EX-0001。"
+    },
+    {
+      "example_id": "AE-002",
+      "source_gate_ids": ["TG-002"],
+      "source_rule_ids": ["DJG-R002"],
+      "coverage_refs": ["COV-EX-0002"],
+      "title": "迁移删除目标排除命名唯一约束",
+      "given": ["MySQL 8.4 中同一字段同时存在普通非唯一索引和命名唯一约束对应的唯一索引。"],
+      "when": ["Django 为关闭“字段普通索引设置”定位待删除索引。"],
+      "then": ["待删除目标是普通非唯一索引。", "仍存在于 `Meta.constraints` 的命名唯一约束不属于删除目标。"],
+      "verification_side": "服务端 Django 迁移与数据库层",
+      "oracle_strength": "backend_job",
+      "confidence": "confirmed",
+      "source_trace": "来源：DJG-R002 / TG-002 / COV-EX-0002。"
+    },
+    {
+      "example_id": "AE-003",
+      "source_gate_ids": ["TG-003"],
+      "source_rule_ids": ["DJG-R003"],
+      "coverage_refs": ["COV-EX-0003"],
+      "title": "迁移后普通非唯一索引被删除",
+      "given": ["初始迁移已应用，目标字段同时具有普通非唯一索引和命名唯一约束。"],
+      "when": ["生成并应用关闭“字段普通索引设置”的迁移。"],
+      "then": ["数据库 introspection 结果中目标字段的普通非唯一索引不存在。"],
+      "verification_side": "服务端 MySQL Schema 层",
+      "oracle_strength": "backend_job",
+      "confidence": "confirmed",
+      "source_trace": "来源：DJG-R003 / TG-003 / COV-EX-0003。"
+    },
+    {
+      "example_id": "AE-004",
+      "source_gate_ids": ["TG-003"],
+      "source_rule_ids": ["DJG-R003"],
+      "coverage_refs": ["COV-EX-0004"],
+      "title": "迁移后命名唯一约束保持存在",
+      "given": ["初始迁移已应用，目标字段存在命名唯一约束及对应数据库唯一索引。"],
+      "when": ["生成并应用仅关闭“字段普通索引设置”的迁移。"],
+      "then": ["命名唯一约束仍存在。", "该约束对应的数据库唯一索引仍存在。"],
+      "verification_side": "服务端 MySQL Schema 层",
+      "oracle_strength": "backend_job",
+      "confidence": "confirmed",
+      "source_trace": "来源：DJG-R003 / TG-003 / COV-EX-0004。"
+    },
+    {
+      "example_id": "AE-005",
+      "source_gate_ids": ["TG-004"],
+      "source_rule_ids": ["DJG-R004"],
+      "coverage_refs": ["COV-EX-0005"],
+      "title": "迁移 SQL 只删除普通非唯一索引",
+      "given": ["已生成仅关闭“字段普通索引设置”的迁移。"],
+      "when": ["查看该迁移在 MySQL 8.4 上生成的 SQL。"],
+      "then": ["SQL 包含删除普通非唯一索引的语句。", "SQL 不包含删除命名唯一约束的语句。"],
+      "verification_side": "服务端 Django 迁移 SQL 层",
+      "oracle_strength": "backend_job",
+      "confidence": "confirmed",
+      "source_trace": "来源：DJG-R004 / TG-004 / COV-EX-0005。"
+    },
+    {
+      "example_id": "AE-006",
+      "source_gate_ids": ["TG-005"],
+      "source_rule_ids": ["DJG-R005"],
+      "coverage_refs": ["COV-EX-0006"],
+      "title": "迁移后重复写入仍受唯一性保护",
+      "given": ["关闭“字段普通索引设置”的迁移已应用，表中已有一条合法记录。"],
+      "when": ["向受命名唯一约束保护的字段写入重复值。"],
+      "then": ["迁移后命名唯一约束保持生效。", "数据库拒绝重复值写入，表中不产生重复记录。"],
+      "verification_side": "服务端 MySQL 数据行为层",
+      "oracle_strength": "business_behavior",
+      "confidence": "confirmed",
+      "source_trace": "来源：DJG-R005 / TG-005 / COV-EX-0006。"
+    },
+    {
+      "example_id": "AE-007",
+      "source_gate_ids": ["TG-006"],
+      "source_rule_ids": ["DJG-R006"],
+      "coverage_refs": ["COV-EX-0007"],
+      "title": "迁移前已有合法数据保持不变",
+      "given": ["迁移前表中存在多条满足唯一约束的合法数据，并记录其主键与字段值。"],
+      "when": ["应用关闭“字段普通索引设置”的迁移。"],
+      "then": ["迁移后的记录数量与迁移前一致。", "各记录的主键和业务字段值与迁移前一致。"],
+      "verification_side": "服务端 MySQL 数据层",
+      "oracle_strength": "backend_job",
+      "confidence": "confirmed",
+      "source_trace": "来源：DJG-R006 / TG-006 / COV-EX-0007。"
+    }
+  ]
+}

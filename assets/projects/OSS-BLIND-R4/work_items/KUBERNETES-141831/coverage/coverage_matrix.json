@@ -1,0 +1,579 @@
+{
+  "project_code": "OSS-BLIND-R4",
+  "work_item_id": "KUBERNETES-141831",
+  "generated_at": "2026-09-22T11:21:41",
+  "generated_from": [
+    "structured_prd/structured_prd.json",
+    "analysis/reasoning_pack.json"
+  ],
+  "entries": [
+    {
+      "coverage_id": "COV-EX-0001",
+      "coverage_type": "happy_path_combo",
+      "coverage_level": "business",
+      "emit_mode": "main_testcase",
+      "source_origin": "explicit_rule",
+      "source_scope": "primary_requirement",
+      "source_type": "structured_rule",
+      "title": "create 空 selector 返回 Warning。",
+      "page_name": "DeviceTaintRule API",
+      "section_name": "设备选择器告警",
+      "module_name": "DeviceTaintRule Admission Warning",
+      "feature_name": "空选择器判定",
+      "field_name": "",
+      "rule_name": "K8S-R001",
+      "atomic_assertion_index": 1,
+      "priority": "high",
+      "rationale": "该规则来自 Structured PRD 的显式需求规则，必须在 Coverage 中保留。",
+      "planned_assertions": [
+        "create 空 selector 返回 Warning。"
+      ],
+      "structured_refs": [
+        "requirement_info.explicit_rules.K8S-R001"
+      ],
+      "reasoning_refs": []
+    },
+    {
+      "coverage_id": "COV-EX-0002",
+      "coverage_type": "happy_path_combo",
+      "coverage_level": "business",
+      "emit_mode": "main_testcase",
+      "source_origin": "explicit_rule",
+      "source_scope": "primary_requirement",
+      "source_type": "structured_rule",
+      "title": "update 空 selector 返回 Warning。",
+      "page_name": "DeviceTaintRule API",
+      "section_name": "设备选择器告警",
+      "module_name": "DeviceTaintRule Admission Warning",
+      "feature_name": "空选择器判定",
+      "field_name": "",
+      "rule_name": "K8S-R001",
+      "atomic_assertion_index": 2,
+      "priority": "high",
+      "rationale": "该规则来自 Structured PRD 的显式需求规则，必须在 Coverage 中保留。",
+      "planned_assertions": [
+        "update 空 selector 返回 Warning。"
+      ],
+      "structured_refs": [
+        "requirement_info.explicit_rules.K8S-R001"
+      ],
+      "reasoning_refs": []
+    },
+    {
+      "coverage_id": "COV-EX-0003",
+      "coverage_type": "happy_path_combo",
+      "coverage_level": "business",
+      "emit_mode": "main_testcase",
+      "source_origin": "explicit_rule",
+      "source_scope": "primary_requirement",
+      "source_type": "structured_rule",
+      "title": "空 selector 的警告文本必须为 `spec.deviceSelector: an empty selector matches every device from every driver in the cluster`。",
+      "page_name": "DeviceTaintRule API",
+      "section_name": "设备选择器告警",
+      "module_name": "DeviceTaintRule Admission Warning",
+      "feature_name": "非阻塞警告响应",
+      "field_name": "",
+      "rule_name": "K8S-R002",
+      "atomic_assertion_index": null,
+      "priority": "high",
+      "rationale": "该规则来自 Structured PRD 的显式需求规则，必须在 Coverage 中保留。",
+      "planned_assertions": [
+        "空 selector 的警告文本必须为 `spec.deviceSelector: an empty selector matches every device from every driver in the cluster`。"
+      ],
+      "structured_refs": [
+        "requirement_info.explicit_rules.K8S-R002"
+      ],
+      "reasoning_refs": []
+    },
+    {
+      "coverage_id": "COV-EX-0004",
+      "coverage_type": "happy_path_combo",
+      "coverage_level": "business",
+      "emit_mode": "main_testcase",
+      "source_origin": "explicit_rule",
+      "source_scope": "primary_requirement",
+      "source_type": "structured_rule",
+      "title": "`spec.deviceSelector` 省略时不得返回空 selector Warning。",
+      "page_name": "DeviceTaintRule API",
+      "section_name": "设备选择器告警",
+      "module_name": "DeviceTaintRule Admission Warning",
+      "feature_name": "空选择器判定",
+      "field_name": "",
+      "rule_name": "K8S-R003",
+      "atomic_assertion_index": null,
+      "priority": "high",
+      "rationale": "该规则来自 Structured PRD 的显式需求规则，必须在 Coverage 中保留。",
+      "planned_assertions": [
+        "`spec.deviceSelector` 省略时不得返回空 selector Warning。"
+      ],
+      "structured_refs": [
+        "requirement_info.explicit_rules.K8S-R003"
+      ],
+      "reasoning_refs": []
+    },
+    {
+      "coverage_id": "COV-EX-0005",
+      "coverage_type": "happy_path_combo",
+      "coverage_level": "business",
+      "emit_mode": "main_testcase",
+      "source_origin": "explicit_rule",
+      "source_scope": "primary_requirement",
+      "source_type": "structured_rule",
+      "title": "指定 driver 时不返回空 selector Warning。",
+      "page_name": "DeviceTaintRule API",
+      "section_name": "设备选择器告警",
+      "module_name": "DeviceTaintRule Admission Warning",
+      "feature_name": "空选择器判定",
+      "field_name": "",
+      "rule_name": "K8S-R004",
+      "atomic_assertion_index": 1,
+      "priority": "high",
+      "rationale": "该规则来自 Structured PRD 的显式需求规则，必须在 Coverage 中保留。",
+      "planned_assertions": [
+        "指定 driver 时不返回空 selector Warning。"
+      ],
+      "structured_refs": [
+        "requirement_info.explicit_rules.K8S-R004"
+      ],
+      "reasoning_refs": []
+    },
+    {
+      "coverage_id": "COV-EX-0006",
+      "coverage_type": "happy_path_combo",
+      "coverage_level": "business",
+      "emit_mode": "main_testcase",
+      "source_origin": "explicit_rule",
+      "source_scope": "primary_requirement",
+      "source_type": "structured_rule",
+      "title": "指定 pool 时不返回空 selector Warning。",
+      "page_name": "DeviceTaintRule API",
+      "section_name": "设备选择器告警",
+      "module_name": "DeviceTaintRule Admission Warning",
+      "feature_name": "空选择器判定",
+      "field_name": "",
+      "rule_name": "K8S-R004",
+      "atomic_assertion_index": 2,
+      "priority": "high",
+      "rationale": "该规则来自 Structured PRD 的显式需求规则，必须在 Coverage 中保留。",
+      "planned_assertions": [
+        "指定 pool 时不返回空 selector Warning。"
+      ],
+      "structured_refs": [
+        "requirement_info.explicit_rules.K8S-R004"
+      ],
+      "reasoning_refs": []
+    },
+    {
+      "coverage_id": "COV-EX-0007",
+      "coverage_type": "happy_path_combo",
+      "coverage_level": "business",
+      "emit_mode": "main_testcase",
+      "source_origin": "explicit_rule",
+      "source_scope": "primary_requirement",
+      "source_type": "structured_rule",
+      "title": "指定 device 时不返回空 selector Warning。",
+      "page_name": "DeviceTaintRule API",
+      "section_name": "设备选择器告警",
+      "module_name": "DeviceTaintRule Admission Warning",
+      "feature_name": "空选择器判定",
+      "field_name": "",
+      "rule_name": "K8S-R004",
+      "atomic_assertion_index": 3,
+      "priority": "high",
+      "rationale": "该规则来自 Structured PRD 的显式需求规则，必须在 Coverage 中保留。",
+      "planned_assertions": [
+        "指定 device 时不返回空 selector Warning。"
+      ],
+      "structured_refs": [
+        "requirement_info.explicit_rules.K8S-R004"
+      ],
+      "reasoning_refs": []
+    },
+    {
+      "coverage_id": "COV-EX-0008",
+      "coverage_type": "happy_path_combo",
+      "coverage_level": "business",
+      "emit_mode": "main_testcase",
+      "source_origin": "explicit_rule",
+      "source_scope": "primary_requirement",
+      "source_type": "structured_rule",
+      "title": "告警不阻止 create 成功。",
+      "page_name": "DeviceTaintRule API",
+      "section_name": "设备选择器告警",
+      "module_name": "DeviceTaintRule Admission Warning",
+      "feature_name": "非阻塞警告响应",
+      "field_name": "",
+      "rule_name": "K8S-R005",
+      "atomic_assertion_index": 1,
+      "priority": "high",
+      "rationale": "该规则来自 Structured PRD 的显式需求规则，必须在 Coverage 中保留。",
+      "planned_assertions": [
+        "告警不阻止 create 成功。"
+      ],
+      "structured_refs": [
+        "requirement_info.explicit_rules.K8S-R005"
+      ],
+      "reasoning_refs": []
+    },
+    {
+      "coverage_id": "COV-EX-0009",
+      "coverage_type": "happy_path_combo",
+      "coverage_level": "business",
+      "emit_mode": "main_testcase",
+      "source_origin": "explicit_rule",
+      "source_scope": "primary_requirement",
+      "source_type": "structured_rule",
+      "title": "告警不阻止 update 成功。",
+      "page_name": "DeviceTaintRule API",
+      "section_name": "设备选择器告警",
+      "module_name": "DeviceTaintRule Admission Warning",
+      "feature_name": "非阻塞警告响应",
+      "field_name": "",
+      "rule_name": "K8S-R005",
+      "atomic_assertion_index": 2,
+      "priority": "high",
+      "rationale": "该规则来自 Structured PRD 的显式需求规则，必须在 Coverage 中保留。",
+      "planned_assertions": [
+        "告警不阻止 update 成功。"
+      ],
+      "structured_refs": [
+        "requirement_info.explicit_rules.K8S-R005"
+      ],
+      "reasoning_refs": []
+    },
+    {
+      "coverage_id": "COV-EX-0010",
+      "coverage_type": "happy_path_combo",
+      "coverage_level": "business",
+      "emit_mode": "main_testcase",
+      "source_origin": "explicit_rule",
+      "source_scope": "primary_requirement",
+      "source_type": "structured_rule",
+      "title": "告警不改变既有校验结果。",
+      "page_name": "DeviceTaintRule API",
+      "section_name": "设备选择器告警",
+      "module_name": "DeviceTaintRule Admission Warning",
+      "feature_name": "非阻塞警告响应",
+      "field_name": "",
+      "rule_name": "K8S-R005",
+      "atomic_assertion_index": 3,
+      "priority": "high",
+      "rationale": "该规则来自 Structured PRD 的显式需求规则，必须在 Coverage 中保留。",
+      "planned_assertions": [
+        "告警不改变既有校验结果。"
+      ],
+      "structured_refs": [
+        "requirement_info.explicit_rules.K8S-R005"
+      ],
+      "reasoning_refs": []
+    },
+    {
+      "coverage_id": "COV-EX-0011",
+      "coverage_type": "happy_path_combo",
+      "coverage_level": "business",
+      "emit_mode": "main_testcase",
+      "source_origin": "explicit_rule",
+      "source_scope": "primary_requirement",
+      "source_type": "structured_rule",
+      "title": "告警不改变持久化结果和 taint 执行语义。",
+      "page_name": "DeviceTaintRule API",
+      "section_name": "设备选择器告警",
+      "module_name": "DeviceTaintRule Admission Warning",
+      "feature_name": "非阻塞警告响应",
+      "field_name": "",
+      "rule_name": "K8S-R005",
+      "atomic_assertion_index": 4,
+      "priority": "high",
+      "rationale": "该规则来自 Structured PRD 的显式需求规则，必须在 Coverage 中保留。",
+      "planned_assertions": [
+        "告警不改变持久化结果和 taint 执行语义。"
+      ],
+      "structured_refs": [
+        "requirement_info.explicit_rules.K8S-R005"
+      ],
+      "reasoning_refs": []
+    },
+    {
+      "coverage_id": "COV-EX-0012",
+      "coverage_type": "happy_path_combo",
+      "coverage_level": "business",
+      "emit_mode": "main_testcase",
+      "source_origin": "explicit_rule",
+      "source_scope": "primary_requirement",
+      "source_type": "structured_rule",
+      "title": "空 selector 的告警判断不受 taint effect 取值影响，包括既有 `None` 预览取值。",
+      "page_name": "DeviceTaintRule API",
+      "section_name": "设备选择器告警",
+      "module_name": "DeviceTaintRule Admission Warning",
+      "feature_name": "空选择器判定",
+      "field_name": "",
+      "rule_name": "K8S-R006",
+      "atomic_assertion_index": null,
+      "priority": "high",
+      "rationale": "该规则来自 Structured PRD 的显式需求规则，必须在 Coverage 中保留。",
+      "planned_assertions": [
+        "空 selector 的告警判断不受 taint effect 取值影响，包括既有 `None` 预览取值。"
+      ],
+      "structured_refs": [
+        "requirement_info.explicit_rules.K8S-R006"
+      ],
+      "reasoning_refs": []
+    },
+    {
+      "coverage_id": "COV-EX-0013",
+      "coverage_type": "happy_path_combo",
+      "coverage_level": "business",
+      "emit_mode": "main_testcase",
+      "source_origin": "explicit_rule",
+      "source_scope": "primary_requirement",
+      "source_type": "structured_rule",
+      "title": "使用 `kubectl --warnings-as-errors` 时客户端可返回非零状态，但服务端对象仍已创建。",
+      "page_name": "DeviceTaintRule API",
+      "section_name": "设备选择器告警",
+      "module_name": "DeviceTaintRule Admission Warning",
+      "feature_name": "非阻塞警告响应",
+      "field_name": "",
+      "rule_name": "K8S-R007",
+      "atomic_assertion_index": null,
+      "priority": "medium",
+      "rationale": "该规则来自 Structured PRD 的显式需求规则，必须在 Coverage 中保留。",
+      "planned_assertions": [
+        "使用 `kubectl --warnings-as-errors` 时客户端可返回非零状态，但服务端对象仍已创建。"
+      ],
+      "structured_refs": [
+        "requirement_info.explicit_rules.K8S-R007"
+      ],
+      "reasoning_refs": []
+    },
+    {
+      "coverage_id": "COV-AI-0014",
+      "coverage_type": "happy_path_combo",
+      "coverage_level": "audit_only",
+      "emit_mode": "audit_item",
+      "source_origin": "ai_reasoning",
+      "source_type": "edge_case",
+      "title": "create 空对象 selector：返回精确 Warning，资源仍成功创建。",
+      "page_name": "",
+      "section_name": "",
+      "module_name": "",
+      "feature_name": "",
+      "field_name": "",
+      "priority": "medium",
+      "rationale": "该项来自 Reasoning Pack，保留为风险/边界审计，不自动升级为产品验收主用例。",
+      "planned_assertions": [
+        "审计并确认：create 空对象 selector：返回精确 Warning，资源仍成功创建。"
+      ],
+      "structured_refs": [],
+      "reasoning_refs": [
+        "EC-001"
+      ]
+    },
+    {
+      "coverage_id": "COV-AI-0015",
+      "coverage_type": "happy_path_combo",
+      "coverage_level": "audit_only",
+      "emit_mode": "audit_item",
+      "source_origin": "ai_reasoning",
+      "source_type": "edge_case",
+      "title": "update 为/保持空对象 selector：返回相同 Warning，更新仍成功。",
+      "page_name": "",
+      "section_name": "",
+      "module_name": "",
+      "feature_name": "",
+      "field_name": "",
+      "priority": "medium",
+      "rationale": "该项来自 Reasoning Pack，保留为风险/边界审计，不自动升级为产品验收主用例。",
+      "planned_assertions": [
+        "审计并确认：update 为/保持空对象 selector：返回相同 Warning，更新仍成功。"
+      ],
+      "structured_refs": [],
+      "reasoning_refs": [
+        "EC-002"
+      ]
+    },
+    {
+      "coverage_id": "COV-AI-0016",
+      "coverage_type": "happy_path_combo",
+      "coverage_level": "audit_only",
+      "emit_mode": "audit_item",
+      "source_origin": "ai_reasoning",
+      "source_type": "edge_case",
+      "title": "分别指定 driver、pool、device：均无空 selector Warning。",
+      "page_name": "",
+      "section_name": "",
+      "module_name": "",
+      "feature_name": "",
+      "field_name": "",
+      "priority": "medium",
+      "rationale": "该项来自 Reasoning Pack，保留为风险/边界审计，不自动升级为产品验收主用例。",
+      "planned_assertions": [
+        "审计并确认：分别指定 driver、pool、device：均无空 selector Warning。"
+      ],
+      "structured_refs": [],
+      "reasoning_refs": [
+        "EC-003"
+      ]
+    },
+    {
+      "coverage_id": "COV-AI-0017",
+      "coverage_type": "happy_path_combo",
+      "coverage_level": "audit_only",
+      "emit_mode": "audit_item",
+      "source_origin": "ai_reasoning",
+      "source_type": "edge_case",
+      "title": "对不同 effect 的空 selector 都告警，包括仅用于预览的既有取值。",
+      "page_name": "",
+      "section_name": "",
+      "module_name": "",
+      "feature_name": "",
+      "field_name": "",
+      "priority": "medium",
+      "rationale": "该项来自 Reasoning Pack，保留为风险/边界审计，不自动升级为产品验收主用例。",
+      "planned_assertions": [
+        "审计并确认：对不同 effect 的空 selector 都告警，包括仅用于预览的既有取值。"
+      ],
+      "structured_refs": [],
+      "reasoning_refs": [
+        "EC-004"
+      ]
+    },
+    {
+      "coverage_id": "COV-AI-0018",
+      "coverage_type": "happy_path_combo",
+      "coverage_level": "audit_only",
+      "emit_mode": "audit_item",
+      "source_origin": "ai_reasoning",
+      "source_type": "edge_case",
+      "title": "普通客户端看到警告但请求成功；`kubectl --warnings-as-errors` 可返回非零状态，同时服务端对象确实已创建。",
+      "page_name": "",
+      "section_name": "",
+      "module_name": "",
+      "feature_name": "",
+      "field_name": "",
+      "priority": "medium",
+      "rationale": "该项来自 Reasoning Pack，保留为风险/边界审计，不自动升级为产品验收主用例。",
+      "planned_assertions": [
+        "审计并确认：普通客户端看到警告但请求成功；`kubectl --warnings-as-errors` 可返回非零状态，同时服务端对象确实已创建。"
+      ],
+      "structured_refs": [],
+      "reasoning_refs": [
+        "EC-005"
+      ]
+    },
+    {
+      "coverage_id": "COV-AI-0019",
+      "coverage_type": "happy_path_combo",
+      "coverage_level": "audit_only",
+      "emit_mode": "audit_item",
+      "source_origin": "ai_reasoning",
+      "source_type": "edge_case",
+      "title": "其他字段校验失败时，不得因本警告掩盖原有错误。",
+      "page_name": "",
+      "section_name": "",
+      "module_name": "",
+      "feature_name": "",
+      "field_name": "",
+      "priority": "medium",
+      "rationale": "该项来自 Reasoning Pack，保留为风险/边界审计，不自动升级为产品验收主用例。",
+      "planned_assertions": [
+        "审计并确认：其他字段校验失败时，不得因本警告掩盖原有错误。"
+      ],
+      "structured_refs": [],
+      "reasoning_refs": [
+        "EC-006"
+      ]
+    },
+    {
+      "coverage_id": "COV-AI-0020",
+      "coverage_type": "happy_path_combo",
+      "coverage_level": "audit_only",
+      "emit_mode": "audit_item",
+      "source_origin": "ai_reasoning",
+      "source_type": "business_risk",
+      "title": "最大风险是把 `soft_prompt` 错升为 `hard_block`，导致兼容性破坏。",
+      "page_name": "",
+      "section_name": "",
+      "module_name": "",
+      "feature_name": "",
+      "field_name": "",
+      "priority": "medium",
+      "rationale": "该项来自 Reasoning Pack，保留为风险/边界审计，不自动升级为产品验收主用例。",
+      "planned_assertions": [
+        "审计并确认：最大风险是把 `soft_prompt` 错升为 `hard_block`，导致兼容性破坏。"
+      ],
+      "structured_refs": [],
+      "reasoning_refs": [
+        "RISK-001"
+      ]
+    },
+    {
+      "coverage_id": "COV-AI-0021",
+      "coverage_type": "happy_path_combo",
+      "coverage_level": "audit_only",
+      "emit_mode": "audit_item",
+      "source_origin": "ai_reasoning",
+      "source_type": "business_risk",
+      "title": "nil 与 `{}` 的语义必须区分，否则会对合法的省略场景产生噪声。",
+      "page_name": "",
+      "section_name": "",
+      "module_name": "",
+      "feature_name": "",
+      "field_name": "",
+      "priority": "medium",
+      "rationale": "该项来自 Reasoning Pack，保留为风险/边界审计，不自动升级为产品验收主用例。",
+      "planned_assertions": [
+        "审计并确认：nil 与 `{}` 的语义必须区分，否则会对合法的省略场景产生噪声。"
+      ],
+      "structured_refs": [],
+      "reasoning_refs": [
+        "RISK-002"
+      ]
+    },
+    {
+      "coverage_id": "COV-AI-0022",
+      "coverage_type": "happy_path_combo",
+      "coverage_level": "audit_only",
+      "emit_mode": "audit_item",
+      "source_origin": "ai_reasoning",
+      "source_type": "business_risk",
+      "title": "客户端的 warnings-as-errors 行为容易被误判为服务端创建失败，需要同时核对对象状态。",
+      "page_name": "",
+      "section_name": "",
+      "module_name": "",
+      "feature_name": "",
+      "field_name": "",
+      "priority": "medium",
+      "rationale": "该项来自 Reasoning Pack，保留为风险/边界审计，不自动升级为产品验收主用例。",
+      "planned_assertions": [
+        "审计并确认：客户端的 warnings-as-errors 行为容易被误判为服务端创建失败，需要同时核对对象状态。"
+      ],
+      "structured_refs": [],
+      "reasoning_refs": [
+        "RISK-003"
+      ]
+    },
+    {
+      "coverage_id": "COV-AI-0023",
+      "coverage_type": "happy_path_combo",
+      "coverage_level": "audit_only",
+      "emit_mode": "audit_item",
+      "source_origin": "ai_reasoning",
+      "source_type": "business_risk",
+      "title": "多条警告并存时的去重和顺序可能影响客户端断言。",
+      "page_name": "",
+      "section_name": "",
+      "module_name": "",
+      "feature_name": "",
+      "field_name": "",
+      "priority": "medium",
+      "rationale": "该项来自 Reasoning Pack，保留为风险/边界审计，不自动升级为产品验收主用例。",
+      "planned_assertions": [
+        "审计并确认：多条警告并存时的去重和顺序可能影响客户端断言。"
+      ],
+      "structured_refs": [],
+      "reasoning_refs": [
+        "RISK-004"
+      ]
+    }
+  ]
+}

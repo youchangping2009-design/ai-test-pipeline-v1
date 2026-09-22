@@ -1,0 +1,86 @@
+{
+  "generated_at": "2026-09-22T13:03:40",
+  "total_cases": 6,
+  "total_coverage_entries": 10,
+  "coverage_empty_with_cases": false,
+  "rule_coverage_rate": 0.6,
+  "atomic_case_rate": 0.0,
+  "boundary_coverage_rate": 1.0,
+  "data_source_rule_coverage_rate": 1.0,
+  "generalized_case_count": 0,
+  "generalized_case_rate": 0.0,
+  "weak_case_count": 2,
+  "weak_case_rate": 0.3333,
+  "semantic_mismatch_count": 0,
+  "duplicate_case_count": 0,
+  "duplicate_case_rate": 0.0,
+  "duplicate_group_count": 0,
+  "duplicate_metric_basis": "residual_after_merge",
+  "missing_fidelity_points": 0,
+  "high_priority_fidelity_missing": 0,
+  "false_traceability_rate": 0.0,
+  "false_traceability_rate_primary": 0.0,
+  "false_traceability_rate_legacy": 0.0,
+  "traceability_metric_source": "coverage_first_traceability",
+  "field_audit_item_count": 4,
+  "grouped_audit_group_count": 0,
+  "audit_artifacts_consumed": true,
+  "quality_gate": {
+    "enabled": false,
+    "mode": "soft",
+    "rollout_source": "new_work_item",
+    "status": "report_only",
+    "thresholds": {
+      "false_traceability_rate_fail": 0.05,
+      "generalized_case_rate_warn": 0.03,
+      "generalized_case_count_warn": 5,
+      "weak_case_rate_warn": 0.03,
+      "weak_case_count_warn": 5,
+      "semantic_mismatch_count_fail": 0,
+      "duplicate_case_rate_warn": 0.005,
+      "duplicate_case_count_warn": 1
+    },
+    "warnings": [
+      {
+        "metric": "weak_case",
+        "actual": {
+          "rate": 0.3333,
+          "count": 2
+        },
+        "threshold": {
+          "rate": 0.03,
+          "count": 5
+        },
+        "artifact": "reviews/weak_cases.json",
+        "reason": "主集仍包含泛化步骤、抽象预期或语义错型用例。"
+      }
+    ],
+    "failures": []
+  },
+  "unresolved_issues": [
+    "仍有 2 条用例包含泛化步骤、抽象预期或语义错型。"
+  ],
+  "final_near_duplicate_groups": [],
+  "source_artifacts": {
+    "structured_prd": {
+      "path": "assets/projects/OSS-BLIND-R4/work_items/HOMEASSISTANT-182800/structured_prd/structured_prd.json",
+      "sha256": "2d16ad2e5a7c47632a83d15afd648b351545362cb6de389eaee2ad8c68b7f83c",
+      "size_bytes": 10064
+    },
+    "coverage_matrix": {
+      "path": "assets/projects/OSS-BLIND-R4/work_items/HOMEASSISTANT-182800/coverage/coverage_matrix.json",
+      "sha256": "664db7c80e3c37fe2c14b5fdfc58bac1dd6119b9ae5f5bebeb76cddce6991ed8",
+      "size_bytes": 9801
+    },
+    "testcases": {
+      "path": "assets/projects/OSS-BLIND-R4/work_items/HOMEASSISTANT-182800/testcases/testcases_main.md",
+      "sha256": "f78a6b2fab8f4f173fa1139aa7bd6f19a65d4bf4a3838a9474b69373cfd8bfcf",
+      "size_bytes": 3569
+    },
+    "coverage_first_traceability": {
+      "path": "assets/projects/OSS-BLIND-R4/work_items/HOMEASSISTANT-182800/traceability/coverage_first_traceability.json",
+      "sha256": "853cedc603e1d6258cd4e750f6bfefe0d06ae799758a96bd72fd7961fedf8ed9",
+      "size_bytes": 5037
+    }
+  }
+}

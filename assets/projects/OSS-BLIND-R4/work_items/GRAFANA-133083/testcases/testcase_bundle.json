@@ -1,0 +1,385 @@
+{
+  "project_code": "OSS-BLIND-R4",
+  "work_item_id": "GRAFANA-133083",
+  "truth_source": "testcases/testcases_main.md",
+  "projection_only": true,
+  "generated_from": [
+    "testcases/testcases_main.md"
+  ],
+  "cases": [
+    {
+      "testcase_id": "OSS-BLIND-R4-APISTORE-SERIALIZER-API-ST-001",
+      "page_name": "APIStore 资源序列化",
+      "section_name": "序列化选择与对象往返",
+      "module": "APIStore 序列化",
+      "feature": "资源序列化选择",
+      "title": "写入优先使用显式 Serializer",
+      "preconditions": "APIStore 已配置可记录调用的显式 Serializer，并准备一个可写入对象。",
+      "steps": "1. 通过 APIStore 写入该对象。",
+      "expected_results": "1. 写入数据由显式 Serializer 编码<br>2. 已配置 codec 不参与本次写入编码。",
+      "priority": "P0",
+      "tags": [
+        "AI-API用例",
+        "开发必测",
+        "测试必测"
+      ],
+      "test_type": "状态流转",
+      "remark": "来源 CasePlan：CP-001；来源 Acceptance：AE-001；来源 Rule：GRA-R001；来源coverage：COV-EX-0001",
+      "source_case_plan_ids": [
+        "CP-001"
+      ]
+    },
+    {
+      "testcase_id": "OSS-BLIND-R4-APISTORE-SERIALIZER-API-ST-002",
+      "page_name": "APIStore 资源序列化",
+      "section_name": "序列化选择与对象往返",
+      "module": "APIStore 序列化",
+      "feature": "资源序列化选择",
+      "title": "单条读取优先使用显式 Serializer",
+      "preconditions": "APIStore 已配置可记录调用的显式 Serializer，且存储中存在目标对象。",
+      "steps": "1. 通过 APIStore 单条读取目标对象。",
+      "expected_results": "1. 目标对象由显式 Serializer 解码<br>2. 已配置 codec 不参与本次解码。",
+      "priority": "P0",
+      "tags": [
+        "AI-API用例",
+        "开发必测",
+        "测试必测"
+      ],
+      "test_type": "状态流转",
+      "remark": "来源 CasePlan：CP-002；来源 Acceptance：AE-002；来源 Rule：GRA-R001；来源coverage：COV-EX-0002",
+      "source_case_plan_ids": [
+        "CP-002"
+      ]
+    },
+    {
+      "testcase_id": "OSS-BLIND-R4-APISTORE-SERIALIZER-API-ST-003",
+      "page_name": "APIStore 资源序列化",
+      "section_name": "序列化选择与对象往返",
+      "module": "APIStore 序列化",
+      "feature": "资源序列化选择",
+      "title": "列表读取优先使用显式 Serializer",
+      "preconditions": "APIStore 已配置可记录调用的显式 Serializer，且存储中存在多个目标对象。",
+      "steps": "1. 通过 APIStore 列表读取目标对象。",
+      "expected_results": "1. 列表中的对象由显式 Serializer 解码<br>2. 已配置 codec 不参与本次列表解码。",
+      "priority": "P0",
+      "tags": [
+        "AI-API用例",
+        "开发必测",
+        "测试必测"
+      ],
+      "test_type": "状态流转",
+      "remark": "来源 CasePlan：CP-003；来源 Acceptance：AE-003；来源 Rule：GRA-R001；来源coverage：COV-EX-0003",
+      "source_case_plan_ids": [
+        "CP-003"
+      ]
+    },
+    {
+      "testcase_id": "OSS-BLIND-R4-APISTORE-SERIALIZER-API-ST-004",
+      "page_name": "APIStore 资源序列化",
+      "section_name": "序列化选择与对象往返",
+      "module": "APIStore 序列化",
+      "feature": "资源序列化选择",
+      "title": "watch 解码优先使用显式 Serializer",
+      "preconditions": "APIStore 已配置可记录调用的显式 Serializer，并已建立目标资源的 watch。",
+      "steps": "1. 存储层向 watch 投递对象事件。",
+      "expected_results": "1. watch 事件对象由显式 Serializer 解码<br>2. 已配置 codec 不参与本次 watch 解码。",
+      "priority": "P0",
+      "tags": [
+        "AI-API用例",
+        "开发必测",
+        "测试必测"
+      ],
+      "test_type": "状态流转",
+      "remark": "来源 CasePlan：CP-004；来源 Acceptance：AE-004；来源 Rule：GRA-R001；来源coverage：COV-EX-0004",
+      "source_case_plan_ids": [
+        "CP-004"
+      ]
+    },
+    {
+      "testcase_id": "OSS-BLIND-R4-APISTORE-SERIALIZER-API-ST-005",
+      "page_name": "APIStore 资源序列化",
+      "section_name": "序列化选择与对象往返",
+      "module": "APIStore 序列化",
+      "feature": "资源序列化选择",
+      "title": "默认写入声明 GVK 时使用直接 JSON",
+      "preconditions": "APIStore 未配置显式 Serializer，并准备一个使用声明 GVK 的对象。",
+      "steps": "1. 通过 APIStore 写入该对象。",
+      "expected_results": "1. 对象以直接 JSON 方式编码并写入<br>2. 已配置 codec 不参与本次写入编码。",
+      "priority": "P0",
+      "tags": [
+        "AI-API用例",
+        "开发必测",
+        "测试必测"
+      ],
+      "test_type": "状态流转",
+      "remark": "来源 CasePlan：CP-005；来源 Acceptance：AE-005；来源 Rule：GRA-R002；来源coverage：COV-EX-0005",
+      "source_case_plan_ids": [
+        "CP-005"
+      ]
+    },
+    {
+      "testcase_id": "OSS-BLIND-R4-APISTORE-SERIALIZER-API-ST-006",
+      "page_name": "APIStore 资源序列化",
+      "section_name": "序列化选择与对象往返",
+      "module": "APIStore 序列化",
+      "feature": "资源序列化选择",
+      "title": "默认写入其他 GVK 时使用 codec",
+      "preconditions": "APIStore 未配置显式 Serializer，已配置可记录调用的 codec，并准备一个非声明 GVK 的对象。",
+      "steps": "1. 通过 APIStore 写入该对象。",
+      "expected_results": "1. 对象由已配置 codec 编码并写入<br>2. 本次写入不使用声明 GVK 的直接 JSON 分支。",
+      "priority": "P0",
+      "tags": [
+        "AI-API用例",
+        "开发必测",
+        "测试必测"
+      ],
+      "test_type": "状态流转",
+      "remark": "来源 CasePlan：CP-006；来源 Acceptance：AE-006；来源 Rule：GRA-R002；来源coverage：COV-EX-0006",
+      "source_case_plan_ids": [
+        "CP-006"
+      ]
+    },
+    {
+      "testcase_id": "OSS-BLIND-R4-APISTORE-SERIALIZER-API-ST-007",
+      "page_name": "APIStore 资源序列化",
+      "section_name": "序列化选择与对象往返",
+      "module": "APIStore 序列化",
+      "feature": "资源序列化选择",
+      "title": "默认单条读取使用 codec",
+      "preconditions": "APIStore 未配置显式 Serializer，已配置可记录调用的 codec，且存储中存在目标对象。",
+      "steps": "1. 通过 APIStore 单条读取目标对象。",
+      "expected_results": "1. 目标对象由已配置 codec 解码。",
+      "priority": "P0",
+      "tags": [
+        "AI-API用例",
+        "开发必测",
+        "测试必测"
+      ],
+      "test_type": "状态流转",
+      "remark": "来源 CasePlan：CP-007；来源 Acceptance：AE-007；来源 Rule：GRA-R003；来源coverage：COV-EX-0007",
+      "source_case_plan_ids": [
+        "CP-007"
+      ]
+    },
+    {
+      "testcase_id": "OSS-BLIND-R4-APISTORE-SERIALIZER-API-ST-008",
+      "page_name": "APIStore 资源序列化",
+      "section_name": "序列化选择与对象往返",
+      "module": "APIStore 序列化",
+      "feature": "资源序列化选择",
+      "title": "默认列表读取使用 codec",
+      "preconditions": "APIStore 未配置显式 Serializer，已配置可记录调用的 codec，且存储中存在多个目标对象。",
+      "steps": "1. 通过 APIStore 列表读取目标对象。",
+      "expected_results": "1. 列表中的对象由已配置 codec 解码。",
+      "priority": "P0",
+      "tags": [
+        "AI-API用例",
+        "开发必测",
+        "测试必测"
+      ],
+      "test_type": "状态流转",
+      "remark": "来源 CasePlan：CP-008；来源 Acceptance：AE-008；来源 Rule：GRA-R003；来源coverage：COV-EX-0008",
+      "source_case_plan_ids": [
+        "CP-008"
+      ]
+    },
+    {
+      "testcase_id": "OSS-BLIND-R4-APISTORE-SERIALIZER-API-ST-009",
+      "page_name": "APIStore 资源序列化",
+      "section_name": "序列化选择与对象往返",
+      "module": "APIStore 序列化",
+      "feature": "资源序列化选择",
+      "title": "默认 watch 解码使用 codec",
+      "preconditions": "APIStore 未配置显式 Serializer，已配置可记录调用的 codec，并已建立目标资源的 watch。",
+      "steps": "1. 存储层向 watch 投递对象事件。",
+      "expected_results": "1. watch 事件对象由已配置 codec 解码。",
+      "priority": "P0",
+      "tags": [
+        "AI-API用例",
+        "开发必测",
+        "测试必测"
+      ],
+      "test_type": "状态流转",
+      "remark": "来源 CasePlan：CP-009；来源 Acceptance：AE-009；来源 Rule：GRA-R003；来源coverage：COV-EX-0009",
+      "source_case_plan_ids": [
+        "CP-009"
+      ]
+    },
+    {
+      "testcase_id": "OSS-BLIND-R4-APISTORE-SERIALIZER-API-DV-001",
+      "page_name": "APIStore 资源序列化",
+      "section_name": "序列化选择与对象往返",
+      "module": "APIStore 序列化",
+      "feature": "资源序列化选择",
+      "title": "通用 JSON Serializer 往返保留对象 GVK",
+      "preconditions": "准备一个已设置 GVK 的 datasource 对象和通用 JSON Serializer。",
+      "steps": "1. 使用该 Serializer 编码对象后再解码。",
+      "expected_results": "1. 解码后对象的 GVK 与编码前完全一致。",
+      "priority": "P0",
+      "tags": [
+        "AI-API用例",
+        "开发必测",
+        "测试必测"
+      ],
+      "test_type": "数据校验",
+      "remark": "来源 CasePlan：CP-010；来源 Acceptance：AE-010；来源 Rule：GRA-R004；来源coverage：COV-EX-0010",
+      "source_case_plan_ids": [
+        "CP-010"
+      ]
+    },
+    {
+      "testcase_id": "OSS-BLIND-R4-APISTORE-SERIALIZER-API-FL-001",
+      "page_name": "APIStore 资源序列化",
+      "section_name": "序列化选择与对象往返",
+      "module": "APIStore 序列化",
+      "feature": "资源序列化选择",
+      "title": "同一 Go 类型的不同 GVK 往返后仍可区分",
+      "preconditions": "准备两个 Go 类型相同但 GVK 不同的对象。",
+      "steps": "1. 分别持久化并读回两个对象。",
+      "expected_results": "1. 持久化与读回完成后，两个对象各自保留原 GVK<br>2. 两个对象不会因 Go 类型相同而被识别为同一 GVK。",
+      "priority": "P0",
+      "tags": [
+        "AI-API用例",
+        "开发必测",
+        "测试必测"
+      ],
+      "test_type": "流程验证",
+      "remark": "来源 CasePlan：CP-011；来源 Flow：CP-011；来源 Acceptance：AE-011；来源 Rule：GRA-R005；来源coverage：COV-EX-0011",
+      "source_case_plan_ids": [
+        "CP-011"
+      ]
+    },
+    {
+      "testcase_id": "OSS-BLIND-R4-APISTORE-SERIALIZER-API-ST-010",
+      "page_name": "APIStore 资源序列化",
+      "section_name": "序列化选择与对象往返",
+      "module": "APIStore 序列化",
+      "feature": "Watch 上下文传播",
+      "title": "watch 当前对象解码沿用请求 context",
+      "preconditions": "建立带可识别值的请求 context，并让 watch 事件包含当前对象。",
+      "steps": "1. watch 解码当前对象。",
+      "expected_results": "1. 当前对象的解码调用收到原请求 context。",
+      "priority": "P0",
+      "tags": [
+        "AI-API用例",
+        "开发必测",
+        "测试必测"
+      ],
+      "test_type": "状态流转",
+      "remark": "来源 CasePlan：CP-012；来源 Acceptance：AE-012；来源 Rule：GRA-R006；来源coverage：COV-EX-0012",
+      "source_case_plan_ids": [
+        "CP-012"
+      ]
+    },
+    {
+      "testcase_id": "OSS-BLIND-R4-APISTORE-SERIALIZER-API-ST-011",
+      "page_name": "APIStore 资源序列化",
+      "section_name": "序列化选择与对象往返",
+      "module": "APIStore 序列化",
+      "feature": "Watch 上下文传播",
+      "title": "watch 历史对象解码沿用请求 context",
+      "preconditions": "建立带可识别值的请求 context，并让 watch 事件包含历史对象。",
+      "steps": "1. watch 解码历史对象。",
+      "expected_results": "1. 历史对象的解码调用收到原请求 context。",
+      "priority": "P0",
+      "tags": [
+        "AI-API用例",
+        "开发必测",
+        "测试必测"
+      ],
+      "test_type": "状态流转",
+      "remark": "来源 CasePlan：CP-013；来源 Acceptance：AE-013；来源 Rule：GRA-R006；来源coverage：COV-EX-0013",
+      "source_case_plan_ids": [
+        "CP-013"
+      ]
+    },
+    {
+      "testcase_id": "OSS-BLIND-R4-APISTORE-SERIALIZER-API-ST-012",
+      "page_name": "APIStore 资源序列化",
+      "section_name": "序列化选择与对象往返",
+      "module": "APIStore 序列化",
+      "feature": "Watch 上下文传播",
+      "title": "取消 watch 请求会终止相关解码",
+      "preconditions": "已建立一个正在等待或执行对象解码的 watch 请求。",
+      "steps": "1. 取消该 watch 请求的 context。",
+      "expected_results": "1. 相关解码工作观察到取消并终止<br>2. 请求取消后不继续处理后续对象。",
+      "priority": "P0",
+      "tags": [
+        "AI-API用例",
+        "开发必测",
+        "测试必测"
+      ],
+      "test_type": "状态流转",
+      "remark": "来源 CasePlan：CP-014；来源 Acceptance：AE-014；来源 Rule：GRA-R006；来源coverage：COV-EX-0014",
+      "source_case_plan_ids": [
+        "CP-014"
+      ]
+    },
+    {
+      "testcase_id": "OSS-BLIND-R4-APISTORE-SERIALIZER-API-ST-013",
+      "page_name": "APIStore 资源序列化",
+      "section_name": "序列化选择与对象往返",
+      "module": "APIStore 序列化",
+      "feature": "资源序列化选择",
+      "title": "写入时显式 Serializer 接收原请求 context",
+      "preconditions": "APIStore 已配置可记录 context 的显式 Serializer，并建立带可识别值的请求 context。",
+      "steps": "1. 使用该请求 context 通过 APIStore 写入对象。",
+      "expected_results": "1. 写入编码调用的显式 Serializer 收到原请求 context。",
+      "priority": "P0",
+      "tags": [
+        "AI-API用例",
+        "开发必测",
+        "测试必测"
+      ],
+      "test_type": "状态流转",
+      "remark": "来源 CasePlan：CP-015；来源 Acceptance：AE-015；来源 Rule：ER-002；来源coverage：COV-EX-0020",
+      "source_case_plan_ids": [
+        "CP-015"
+      ]
+    },
+    {
+      "testcase_id": "OSS-BLIND-R4-APISTORE-SERIALIZER-API-ST-014",
+      "page_name": "APIStore 资源序列化",
+      "section_name": "序列化选择与对象往返",
+      "module": "APIStore 序列化",
+      "feature": "资源序列化选择",
+      "title": "单条读取时显式 Serializer 接收原请求 context",
+      "preconditions": "APIStore 已配置可记录 context 的显式 Serializer，存储中存在目标对象，并建立带可识别值的请求 context。",
+      "steps": "1. 使用该请求 context 通过 APIStore 单条读取目标对象。",
+      "expected_results": "1. 单条读取解码调用的显式 Serializer 收到原请求 context。",
+      "priority": "P0",
+      "tags": [
+        "AI-API用例",
+        "开发必测",
+        "测试必测"
+      ],
+      "test_type": "状态流转",
+      "remark": "来源 CasePlan：CP-016；来源 Acceptance：AE-016；来源 Rule：ER-002；来源coverage：COV-EX-0021",
+      "source_case_plan_ids": [
+        "CP-016"
+      ]
+    },
+    {
+      "testcase_id": "OSS-BLIND-R4-APISTORE-SERIALIZER-API-ST-015",
+      "page_name": "APIStore 资源序列化",
+      "section_name": "序列化选择与对象往返",
+      "module": "APIStore 序列化",
+      "feature": "资源序列化选择",
+      "title": "列表读取时显式 Serializer 接收原请求 context",
+      "preconditions": "APIStore 已配置可记录 context 的显式 Serializer，存储中存在多个目标对象，并建立带可识别值的请求 context。",
+      "steps": "1. 使用该请求 context 通过 APIStore 列表读取目标对象。",
+      "expected_results": "1. 列表中每个对象的解码调用均由显式 Serializer 收到原请求 context。",
+      "priority": "P0",
+      "tags": [
+        "AI-API用例",
+        "开发必测",
+        "测试必测"
+      ],
+      "test_type": "状态流转",
+      "remark": "来源 CasePlan：CP-017；来源 Acceptance：AE-017；来源 Rule：ER-002；来源coverage：COV-EX-0022",
+      "source_case_plan_ids": [
+        "CP-017"
+      ]
+    }
+  ]
+}

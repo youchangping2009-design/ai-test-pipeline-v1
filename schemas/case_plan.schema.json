@@ -6,6 +6,10 @@
   "properties": {
     "project_code": { "type": "string" },
     "work_item_id": { "type": "string" },
+    "generation_mode": {
+      "type": "string",
+      "enum": ["coverage_legacy", "case_plan_direct"]
+    },
     "case_plans": {
       "type": "array",
       "items": {

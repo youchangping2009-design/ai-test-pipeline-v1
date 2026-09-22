@@ -1,16 +1,21 @@
 {
-  "generated_at": "2026-08-27T07:49:51",
-  "total_cases": 75,
+  "generated_at": "2026-09-21T11:33:08",
+  "total_cases": 44,
   "total_coverage_entries": 82,
   "coverage_empty_with_cases": false,
   "rule_coverage_rate": 0.875,
-  "atomic_case_rate": 0.7733,
+  "atomic_case_rate": 0.7045,
   "boundary_coverage_rate": 1.0,
   "data_source_rule_coverage_rate": 0.25,
   "generalized_case_count": 0,
   "generalized_case_rate": 0.0,
+  "weak_case_count": 0,
+  "weak_case_rate": 0.0,
+  "semantic_mismatch_count": 0,
   "duplicate_case_count": 0,
   "duplicate_case_rate": 0.0,
+  "duplicate_group_count": 0,
+  "duplicate_metric_basis": "residual_after_merge",
   "missing_fidelity_points": 0,
   "high_priority_fidelity_missing": 0,
   "false_traceability_rate": 0.0,
@@ -29,6 +34,9 @@
       "false_traceability_rate_fail": 0.05,
       "generalized_case_rate_warn": 0.03,
       "generalized_case_count_warn": 5,
+      "weak_case_rate_warn": 0.03,
+      "weak_case_count_warn": 5,
+      "semantic_mismatch_count_fail": 0,
       "duplicate_case_rate_warn": 0.005,
       "duplicate_case_count_warn": 1
     },
@@ -36,6 +44,7 @@
     "failures": []
   },
   "unresolved_issues": [],
+  "final_near_duplicate_groups": [],
   "source_artifacts": {
     "structured_prd": {
       "path": "assets/projects/WX-YGJ/work_items/PT083/structured_prd/structured_prd.json",
@@ -49,13 +58,13 @@
     },
     "testcases": {
       "path": "assets/projects/WX-YGJ/work_items/PT083/testcases/testcases_main.md",
-      "sha256": "981a5ef557beb0a1ae44795ef92e4a26194070c63a48262c6a662ad12b9c3ed3",
-      "size_bytes": 65894
+      "sha256": "73aaacf5b7858e8007a22c87e862794eddcfaf33fa6acab4bcb4f61f289fe56f",
+      "size_bytes": 42076
     },
     "coverage_first_traceability": {
       "path": "assets/projects/WX-YGJ/work_items/PT083/traceability/coverage_first_traceability.json",
-      "sha256": "9acca556ba7e0e2e8b3a7bffc2ef00e6f41ce4d6e26f66c3110ca8f46147c5ed",
-      "size_bytes": 31865
+      "sha256": "974178144b4744491622711157b22937cacca225e36dc196be59ceb49da6b23e",
+      "size_bytes": 33821
     }
   }
 }

@@ -2,7 +2,7 @@
 
 本文档说明 AI Test Pipeline 从头到尾哪些环节必须有人介入、哪些环节建议人审查、对应看哪些产物、谁来看、看什么、用什么命令收口。
 
-它配合 `AI_TEST_CASE_PIPELINE.md` 使用，不替代流程契约。最终交付仍以 `validate_work_item.py --strict` 的退出码为准。
+它配合 `AI_TEST_CASE_PIPELINE.md` 使用，不替代流程契约。最终交付仍以 `validate_work_item.py --strict` 的退出码为准。本文件是审查手册，流程变化时就地修订，不要往这里追加阶段流水账。
 
 路径均相对于工作项根目录：
 
@@ -316,7 +316,7 @@ docs/roadmap/HUMAN_ACTION_REQUIRED.md
 | 档位  | 人要额外接受的强制产物                                               |
 | --- | --------------------------------------------------------- |
 | S   | Gate + Case Plan + Testcase                               |
-| M   | 另加 Acceptance Examples。当前默认档，PT083 正式样本是 M                |
+| M   | 另加 Acceptance Examples。当前默认档；具体工作项需显式选择              |
 | L   | 再加 `verification_responsibility_map`、`test_design_matrix` |
 
 

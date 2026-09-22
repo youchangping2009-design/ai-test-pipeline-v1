@@ -54,10 +54,10 @@
 该脚本会执行当前 5 项质量基线：
 
 - 全量 Harness 单元测试应通过。
-- PT083 非 strict 应通过。
-- PT083 strict 应通过。
+- Harness 全量单元测试应通过。
+- regression 与 golden 通用 fixture 应通过。
 - regression tier 应通过。
-- WX-YGJ 轻量项目壳 strict 应通过。
+- 对显式指定的轻量项目壳执行 strict 时应通过；框架基线不默认绑定具体业务项目。
 
 如果任务修改了特定 validator、schema 或 eval fixture，还应额外运行对应脚本的局部校验。
 
@@ -108,11 +108,16 @@
 
 ## 如何记录结果
 
-任务完成后应更新：
+任务完成后按职责更新，不把同一段流水账复制到多份过程文档：
 
-- `docs/roadmap/NEXT_ACTION.md`：记录当前任务状态和下一步建议。
-- `docs/roadmap/DECISION_LOG.md`：只记录已经确认的关键决策，不记录流水账。
-- `docs/roadmap/HUMAN_ACTION_REQUIRED.md`：仅在存在真实阻塞时写入。
+- `docs/roadmap/NEXT_ACTION.md`：就地改当前任务 yaml / Goal / Status / Next Suggestion；`Completion Notes` 只追加到该节文末。yaml 必填 `task_id` / `title` / `status`；`priority` 仅当任务来自 `WORK_QUEUE.md` 时填 `P1`–`P5`，不要把用户当场指定的任务写成 `priority: ad-hoc`。
+- `docs/roadmap/WORK_QUEUE.md`：只就地改队列表格状态，不追加流水账。
+- `docs/roadmap/DECISION_LOG.md`：只记录已确认关键决策。`Confirmed Decisions` 就地修订；带日期条目只追加到文末。
+- `docs/roadmap/HUMAN_ACTION_REQUIRED.md`：仅在存在真实阻塞时改顶部未决项；解除后把摘要追加到 `Resolved` 末尾。
+- `PROGRESS.md`：阶段流水账，只追加到文末。不是真源，不进 strict。
+- `HUMAN_REVIEW_CHECKPOINTS.md`：人工审查手册，流程变化时就地修订，不写阶段流水账。
+
+统一写法：当前状态就地改；带日期流水账只追加到文末。禁止插到文件或章节顶部，也禁止 newest-first 回写历史。
 
 最终回复需要说明：
 

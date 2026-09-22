@@ -1,0 +1,42 @@
+{
+  "project_code": "OSS-BLIND-R3",
+  "work_item_id": "TEMPORAL-11968",
+  "feedback_items": [
+    {
+      "feedback_id": "DF-001", "source_review_stage": "manual_review", "source_confirmation_file": "reviews/review_record.md",
+      "source_case_plan_ids": ["CP-002"], "source_testcase_ids": ["OSS-BLIND-R3-TEMPORALAPI-SIGNALSTART-API-DV-001"],
+      "feedback_type": "risk_note", "target_layer": "testability_gate",
+      "title": "补齐去重响应字段断言",
+      "finding": "冻结用例只核对首次 run ID，公开回归测试还要求 FirstExecutionRunId 指向首次执行且 Started=true。",
+      "recommended_action": "以 oracle_only API 响应风险进入 Gate；需求方确认这些字段属于交付契约后再进入 Acceptance 与 Case Plan。",
+      "must_not_directly_overwrite_testcase": true, "status": "accepted"
+    },
+    {
+      "feedback_id": "DF-002", "source_review_stage": "manual_review", "source_confirmation_file": "reviews/review_record.md",
+      "source_case_plan_ids": ["CP-003", "CP-008"],
+      "feedback_type": "risk_note", "target_layer": "testability_gate",
+      "title": "覆盖 TERMINATE_EXISTING 冲突策略前置去重",
+      "finding": "公开测试确认重复 request ID 必须先完成去重，不能让 TERMINATE_EXISTING 终止或替换现有 run；冻结计划未覆盖该分支。",
+      "recommended_action": "以 oracle_only 风险进入 Gate；只有需求方确认冲突策略属于交付契约后，才新增正式组合计划。",
+      "must_not_directly_overwrite_testcase": true, "status": "accepted"
+    },
+    {
+      "feedback_id": "DF-003", "source_review_stage": "manual_review", "source_confirmation_file": "reviews/review_record.md",
+      "source_case_plan_ids": ["CP-001", "CP-005"],
+      "feedback_type": "risk_note", "target_layer": "testability_gate",
+      "title": "保留动态配置关闭路径的兼容性风险",
+      "finding": "实现新增动态配置开关；关闭时应保持旧行为且不记录去重指标，但需求摘要没有该运维控制面。",
+      "recommended_action": "先作为 risk_note 进入 Gate，确认该开关属于交付范围后再决定是否生成兼容性 Case Plan。",
+      "must_not_directly_overwrite_testcase": true, "status": "accepted"
+    },
+    {
+      "feedback_id": "DF-004", "source_review_stage": "manual_review", "source_confirmation_file": "reviews/review_record.md",
+      "source_case_plan_ids": ["CP-001", "CP-003"],
+      "feedback_type": "risk_note", "target_layer": "testability_gate",
+      "title": "补充去重查询与并发创建错误传播风险",
+      "finding": "公开单测覆盖首次 run 查询失败与并发创建冲突，要求错误不被静默当作去重成功且不误记指标；冻结设计没有该错误路径。",
+      "recommended_action": "在 Gate 记录实现级错误传播风险，具备可控故障注入环境后再生成审计或稳定性计划。",
+      "must_not_directly_overwrite_testcase": true, "status": "accepted"
+    }
+  ]
+}

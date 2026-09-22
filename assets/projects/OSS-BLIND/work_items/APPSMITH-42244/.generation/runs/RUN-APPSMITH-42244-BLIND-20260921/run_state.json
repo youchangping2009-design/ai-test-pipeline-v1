@@ -1,0 +1,201 @@
+{
+  "schema_version": "1.0.0",
+  "run_id": "RUN-APPSMITH-42244-BLIND-20260921",
+  "project_code": "OSS-BLIND",
+  "work_item_id": "APPSMITH-42244",
+  "work_item_level": "M",
+  "mode": "validate",
+  "strict": true,
+  "status": "completed",
+  "stop_at": "strict_gate",
+  "current_stage": null,
+  "created_at": "2026-09-21T05:59:26+00:00",
+  "updated_at": "2026-09-21T10:40:45+00:00",
+  "run_dir": "assets/projects/OSS-BLIND/work_items/APPSMITH-42244/.generation/runs/RUN-APPSMITH-42244-BLIND-20260921",
+  "stages": [
+    {
+      "stage_id": "requirement_intake",
+      "order": 0,
+      "kind": "validation",
+      "status": "succeeded",
+      "attempts": 1,
+      "required_files": [
+        "inputs/requirement_summary.md",
+        "inputs/source_manifest.json"
+      ],
+      "input_fingerprint": "cfb872b44c0cbb4ee6f827507f2797a70e31fd2c1d601f7be4ae2971f616af84",
+      "started_at": "2026-09-21T05:59:26+00:00",
+      "completed_at": "2026-09-21T05:59:26+00:00",
+      "last_exit_code": 0,
+      "log_path": "assets/projects/OSS-BLIND/work_items/APPSMITH-42244/.generation/runs/RUN-APPSMITH-42244-BLIND-20260921/logs/requirement_intake.log"
+    },
+    {
+      "stage_id": "evidence",
+      "order": 1,
+      "kind": "checkpoint",
+      "status": "succeeded",
+      "attempts": 2,
+      "required_files": [
+        "evidence/evidence_inventory.json"
+      ],
+      "input_fingerprint": "e4df2a535a99155e05883a48c3f0f98e84724f30bc9370863e41d1b413ea44bb",
+      "started_at": "2026-09-21T07:09:30+00:00",
+      "completed_at": "2026-09-21T07:09:30+00:00",
+      "last_exit_code": 0,
+      "log_path": "assets/projects/OSS-BLIND/work_items/APPSMITH-42244/.generation/runs/RUN-APPSMITH-42244-BLIND-20260921/logs/evidence.log"
+    },
+    {
+      "stage_id": "reasoning",
+      "order": 2,
+      "kind": "validation",
+      "status": "succeeded",
+      "attempts": 2,
+      "required_files": [
+        "analysis/reasoning_pack.json"
+      ],
+      "input_fingerprint": "3892afad9899599ea841639cf4dd5979aa6115ba69aa207082a0914705ad78ff",
+      "started_at": "2026-09-21T07:09:30+00:00",
+      "completed_at": "2026-09-21T07:09:30+00:00",
+      "last_exit_code": 0,
+      "log_path": "assets/projects/OSS-BLIND/work_items/APPSMITH-42244/.generation/runs/RUN-APPSMITH-42244-BLIND-20260921/logs/reasoning.log"
+    },
+    {
+      "stage_id": "structured_prd",
+      "order": 3,
+      "kind": "validation",
+      "status": "succeeded",
+      "attempts": 3,
+      "required_files": [
+        "structured_prd/structured_prd.json"
+      ],
+      "input_fingerprint": "af52cee165f9d90deed71e50dad9bd673faaa635668ddd8e1732ea7e05646e94",
+      "started_at": "2026-09-21T10:27:18+00:00",
+      "completed_at": "2026-09-21T10:27:18+00:00",
+      "last_exit_code": 0,
+      "log_path": "assets/projects/OSS-BLIND/work_items/APPSMITH-42244/.generation/runs/RUN-APPSMITH-42244-BLIND-20260921/logs/structured_prd.log"
+    },
+    {
+      "stage_id": "coverage",
+      "order": 4,
+      "kind": "validation",
+      "status": "succeeded",
+      "attempts": 4,
+      "required_files": [
+        "coverage/coverage_matrix.json"
+      ],
+      "input_fingerprint": "d10a412e0921c635cc69f32b61608bb99877267d703a1eeeacb4ab6863cbbe07",
+      "started_at": "2026-09-21T10:27:18+00:00",
+      "completed_at": "2026-09-21T10:27:18+00:00",
+      "last_exit_code": 0,
+      "log_path": "assets/projects/OSS-BLIND/work_items/APPSMITH-42244/.generation/runs/RUN-APPSMITH-42244-BLIND-20260921/logs/coverage.log"
+    },
+    {
+      "stage_id": "testability_gate",
+      "order": 5,
+      "kind": "validation",
+      "status": "succeeded",
+      "attempts": 3,
+      "required_files": [
+        "acceptance/testability_gate.json"
+      ],
+      "input_fingerprint": "9f6aa5a2da039550787f62ceb5dca1d8ccfc9a0208262cbe5a8574dfa65ed85c",
+      "started_at": "2026-09-21T10:27:18+00:00",
+      "completed_at": "2026-09-21T10:27:18+00:00",
+      "last_exit_code": 0,
+      "log_path": "assets/projects/OSS-BLIND/work_items/APPSMITH-42244/.generation/runs/RUN-APPSMITH-42244-BLIND-20260921/logs/testability_gate.log"
+    },
+    {
+      "stage_id": "acceptance_examples",
+      "order": 6,
+      "kind": "validation",
+      "status": "succeeded",
+      "attempts": 2,
+      "required_files": [
+        "acceptance/acceptance_examples.json"
+      ],
+      "input_fingerprint": "2a033f04622a087653085d5a7c8fd07b52a7299afd3f8eda6b59b584f839b880",
+      "started_at": "2026-09-21T10:27:18+00:00",
+      "completed_at": "2026-09-21T10:27:18+00:00",
+      "last_exit_code": 0,
+      "log_path": "assets/projects/OSS-BLIND/work_items/APPSMITH-42244/.generation/runs/RUN-APPSMITH-42244-BLIND-20260921/logs/acceptance_examples.log"
+    },
+    {
+      "stage_id": "case_plan",
+      "order": 7,
+      "kind": "validation",
+      "status": "succeeded",
+      "attempts": 3,
+      "required_files": [
+        "testcases/case_plan.json"
+      ],
+      "input_fingerprint": "db396e4ad4f0116a5f0e1a4ef18ec9d5bedfb404fc1f63ce6b64e0dd90731940",
+      "started_at": "2026-09-21T10:27:18+00:00",
+      "completed_at": "2026-09-21T10:27:18+00:00",
+      "last_exit_code": 0,
+      "log_path": "assets/projects/OSS-BLIND/work_items/APPSMITH-42244/.generation/runs/RUN-APPSMITH-42244-BLIND-20260921/logs/case_plan.log"
+    },
+    {
+      "stage_id": "testcases",
+      "order": 8,
+      "kind": "validation",
+      "status": "succeeded",
+      "attempts": 2,
+      "required_files": [
+        "testcases/testcases_main.md",
+        "testcases/testpoints.json"
+      ],
+      "input_fingerprint": "2064113b10587cbf4a93349a5b6b3874ac3ce30b3b1d4b5c00bba0bf0c7f34e1",
+      "started_at": "2026-09-21T10:27:18+00:00",
+      "completed_at": "2026-09-21T10:27:18+00:00",
+      "last_exit_code": 0,
+      "log_path": "assets/projects/OSS-BLIND/work_items/APPSMITH-42244/.generation/runs/RUN-APPSMITH-42244-BLIND-20260921/logs/testcases.log"
+    },
+    {
+      "stage_id": "traceability",
+      "order": 9,
+      "kind": "validation",
+      "status": "succeeded",
+      "attempts": 2,
+      "required_files": [
+        "traceability/coverage_first_traceability.json"
+      ],
+      "input_fingerprint": "3376ded6f40c2a6f6d4af36b6e2ff48cdcc165999851bfecedbe5601a9dcf139",
+      "started_at": "2026-09-21T10:27:18+00:00",
+      "completed_at": "2026-09-21T10:27:18+00:00",
+      "last_exit_code": 0,
+      "log_path": "assets/projects/OSS-BLIND/work_items/APPSMITH-42244/.generation/runs/RUN-APPSMITH-42244-BLIND-20260921/logs/traceability.log"
+    },
+    {
+      "stage_id": "review",
+      "order": 10,
+      "kind": "checkpoint",
+      "status": "succeeded",
+      "attempts": 2,
+      "required_files": [
+        "reviews/review_record.md",
+        "reviews/quality_report.json"
+      ],
+      "input_fingerprint": "6f2ae744727670e9e97712e7c1ffe6654eba8551d4548cb24b8859874de50105",
+      "started_at": "2026-09-21T10:27:18+00:00",
+      "completed_at": "2026-09-21T10:27:18+00:00",
+      "last_exit_code": 0,
+      "log_path": "assets/projects/OSS-BLIND/work_items/APPSMITH-42244/.generation/runs/RUN-APPSMITH-42244-BLIND-20260921/logs/review.log"
+    },
+    {
+      "stage_id": "strict_gate",
+      "order": 11,
+      "kind": "gate",
+      "status": "succeeded",
+      "attempts": 2,
+      "required_files": [
+        "manifest.json"
+      ],
+      "input_fingerprint": "aa09061dbac6fc4ed8dc21ff5b8239afb1756a3bf17aaffa81275174c2f72394",
+      "started_at": "2026-09-21T10:40:44+00:00",
+      "completed_at": "2026-09-21T10:40:45+00:00",
+      "last_exit_code": 0,
+      "log_path": "assets/projects/OSS-BLIND/work_items/APPSMITH-42244/.generation/runs/RUN-APPSMITH-42244-BLIND-20260921/logs/strict_gate.log"
+    }
+  ],
+  "last_error": null
+}

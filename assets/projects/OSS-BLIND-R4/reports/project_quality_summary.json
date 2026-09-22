@@ -1,0 +1,14 @@
+{
+  "project_code": "OSS-BLIND-R4",
+  "generated_at": "2026-09-22T13:13:56",
+  "work_item_count": 4,
+  "ready_work_item_count": 4,
+  "incomplete_work_item_count": 0,
+  "testcase_count": 46,
+  "open_risk_count": 3,
+  "stale_quality_report_count": 0,
+  "priority_counts": {
+    "P0": 43,
+    "P1": 3
+  }
+}

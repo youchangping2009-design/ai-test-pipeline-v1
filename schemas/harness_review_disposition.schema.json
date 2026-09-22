@@ -1,0 +1,37 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "AI Test Pipeline Harness Review Disposition",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "disposition",
+    "run_id",
+    "project_code",
+    "work_item_id",
+    "declared_by",
+    "declared_at",
+    "reason",
+    "code_review_scope"
+  ],
+  "properties": {
+    "schema_version": { "type": "string", "const": "1.0.0" },
+    "disposition": { "type": "string", "const": "not_applicable" },
+    "run_id": { "type": "string", "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]*$" },
+    "project_code": { "type": "string", "minLength": 1 },
+    "work_item_id": { "type": "string", "minLength": 1 },
+    "declared_by": { "type": "string", "minLength": 1 },
+    "declared_at": { "type": "string", "minLength": 1 },
+    "reason": { "type": "string", "minLength": 1 },
+    "code_review_scope": {
+      "type": "object",
+      "required": ["path", "sha256", "status"],
+      "properties": {
+        "path": { "type": "string", "minLength": 1 },
+        "sha256": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+        "status": { "type": "string", "const": "awaiting_code_directories" }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

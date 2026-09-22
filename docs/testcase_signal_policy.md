@@ -13,6 +13,8 @@
 3. 结构性低信号检查不能继续挤占主用例，应转入结构化 audit 链路。
 4. 若规则无法稳定落入主用例，应显式进入 audit 或缺失报告，不能靠泛化标题占位。
 5. 后续所有分流都必须保留可追踪来源，不能因为“收敛”而丢失 provenance。
+6. `context_only` 与 `oracle_only` 只用于背景理解或生成后评分，默认只能进入 audit，不能进入主 testcase。
+7. 一条来源规则包含多个可独立失败分支时，应先拆为 `atomic_assertions`，再分别进入 Coverage 与 Case Plan。
 
 ## 高信号判定
 

@@ -28,14 +28,7 @@ from harness.telemetry import BudgetConfig  # noqa: E402
 from harness.state_store import HarnessStateError, atomic_write_json  # noqa: E402
 
 
-SOURCE_ITEM = (
-    ROOT
-    / "assets"
-    / "projects"
-    / "WX-YGJ"
-    / "work_items"
-    / "PT083"
-)
+SOURCE_ITEM = ROOT / "tests" / "fixtures" / "runtime_work_item"
 
 
 def role_action(
@@ -192,6 +185,9 @@ class MultiRoleRuntimeTests(unittest.TestCase):
         (self.item_root / "inputs" / "requirement_approval.json").unlink(
             missing_ok=True
         )
+        feishu_ready_path = self.item_root / "feishu_ready.md"
+        if not feishu_ready_path.exists():
+            feishu_ready_path.write_text("# Feishu Ready\n", encoding="utf-8")
         self.run_dir = (
             self.item_root / ".generation" / "runs" / "RUN-ROLE-TEST"
         )
@@ -201,7 +197,7 @@ class MultiRoleRuntimeTests(unittest.TestCase):
         self.temporary.cleanup()
 
     def _build_base_bundle(self) -> dict:
-        prefix = "assets/projects/WX-YGJ/work_items/PT083/"
+        prefix = "assets/projects/FIXTURE/work_items/FIXTURE-RUNTIME-001/"
         artifacts: dict[str, str] = {}
         allowed_prefixes = (
             "analysis/",
@@ -239,8 +235,8 @@ class MultiRoleRuntimeTests(unittest.TestCase):
         return MultiRoleArtifactWorkspace(
             item_root=self.item_root,
             run_dir=self.run_dir,
-            project_code="WX-YGJ",
-            work_item_id="PT083",
+            project_code="FIXTURE",
+            work_item_id="FIXTURE-RUNTIME-001",
             work_item_level="M",
             base_bundle=self.base_bundle,
         )
@@ -254,8 +250,8 @@ class MultiRoleRuntimeTests(unittest.TestCase):
     ) -> MultiRoleAgentRuntime:
         return MultiRoleAgentRuntime(
             item_root=self.item_root,
-            project_code="WX-YGJ",
-            work_item_id="PT083",
+            project_code="FIXTURE",
+            work_item_id="FIXTURE-RUNTIME-001",
             work_item_level="M",
             gateway=gateway,
             budget=budget,
@@ -594,20 +590,30 @@ class MultiRoleRuntimeTests(unittest.TestCase):
         self.assertTrue((self.run_dir / "generation_candidate.json").is_file())
         self.assertEqual(HarnessRunAuditor(self.item_root).audit("RUN-ROLE-TEST")[0], 0)
         case_plan_path.write_text('{"external": "drift"}\n', encoding="utf-8")
-        with self.assertRaises(ControlledGenerationError):
-            runtime.approve(
+        with patch.object(
+            runtime,
+            "_formal_strict_validator",
+            return_value=(True, "fixture strict passed"),
+        ):
+            with self.assertRaises(ControlledGenerationError):
+                runtime.approve(
+                    run_id="RUN-ROLE-TEST",
+                    approval_id=approval_id,
+                    candidate_hash=approval["candidate_hash"],
+                    approved_by="unit-test",
+                )
+        case_plan_path.write_bytes(case_plan_content)
+        with patch.object(
+            runtime,
+            "_formal_strict_validator",
+            return_value=(True, "fixture strict passed"),
+        ):
+            state, approval = runtime.approve(
                 run_id="RUN-ROLE-TEST",
                 approval_id=approval_id,
                 candidate_hash=approval["candidate_hash"],
                 approved_by="unit-test",
             )
-        case_plan_path.write_bytes(case_plan_content)
-        state, approval = runtime.approve(
-            run_id="RUN-ROLE-TEST",
-            approval_id=approval_id,
-            candidate_hash=approval["candidate_hash"],
-            approved_by="unit-test",
-        )
         self.assertEqual(state["status"], "completed")
         self.assertEqual(approval["status"], "approved")
         role_state = json.loads(
@@ -660,8 +666,8 @@ class MultiRoleRuntimeTests(unittest.TestCase):
     def test_repair_budget_exhaustion_requests_approval(self) -> None:
         runtime = MultiRoleAgentRuntime(
             item_root=self.item_root,
-            project_code="WX-YGJ",
-            work_item_id="PT083",
+            project_code="FIXTURE",
+            work_item_id="FIXTURE-RUNTIME-001",
             work_item_level="M",
             gateway=InvalidPRDGateway(),
             max_repairs_per_role=1,

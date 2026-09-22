@@ -18,7 +18,7 @@
 - `approve-requirement / reject-requirement` 要求显式 reviewer/note；`recover-requirement-approval` 可在 receipt 已写但 event/state 未完成时幂等补全。内容漂移会失效旧批准和下游 checkpoint。
 - Requirement intake checkpoint 与 receipt 共用 canonical binding；manifest 的运行期/派生字段变化不撤销批准。历史完整-manifest checkpoint 在 receipt 仍匹配时会原位规范化，不要求重复审批；真实绑定漂移仍创建新的 pending approval ID 并保持审计事件隔离。
 - minimal 清理拒绝删除非终结 run、pending approval、进程锁或未恢复事务；默认把发布备份和事务元数据归档到 `.generation/backups/`。
-- smoke/regression/golden 与 CI 门禁已覆盖规则 fixture、负向检查、Harness 单测和 PT083 strict。
+- smoke/regression/golden 与 CI 门禁已覆盖通用规则 fixture、负向检查和 Harness 单测，不默认绑定业务工作项。
 - `scripts/run_harness_closeout.py` 一次执行确定性 Harness、run audit、golden 和质量基线，并校验工作项 `.generation` 之外的文件 hash 不变。
 
 ## 已确认但未采用的原建议
@@ -72,8 +72,8 @@
 
 ```bash
 /usr/bin/python3 scripts/run_harness_closeout.py \
-  --project-code WX-YGJ \
-  --work-item-id PT083 \
+  --project-code DEMO \
+  --work-item-id REQ-001 \
   --work-item-level M
 ```
 
@@ -82,4 +82,4 @@
 1. 确定性 Harness 完成且 `audit-run` 通过。
 2. golden eval 通过。
 3. `run_quality_baseline.py` 全部通过。
-4. PT083 `.generation` 之外的工作项文件聚合 hash 前后一致；macOS `.DS_Store` 文件系统元数据不计入，其他流程资产全部纳入。
+4. 显式传入工作项的 `.generation` 之外文件聚合 hash 前后一致；macOS `.DS_Store` 文件系统元数据不计入，其他流程资产全部纳入。

@@ -1,0 +1,343 @@
+{
+  "project_code": "OSS-BLIND-R3",
+  "work_item_id": "SUPABASE-50569",
+  "generation_mode": "case_plan_direct",
+  "generated_from": [
+    "acceptance/acceptance_examples.json",
+    "acceptance/testability_gate.json",
+    "coverage/coverage_matrix.json",
+    "structured_prd/structured_prd.json"
+  ],
+  "case_plans": [
+    {
+      "case_plan_id": "CP-001",
+      "source_gate_ids": [
+        "TG-001"
+      ],
+      "source_example_ids": [
+        "AE-001"
+      ],
+      "source_responsibility_ids": [],
+      "source_rule_ids": [
+        "SUP-R001"
+      ],
+      "source_coverage_ids": [
+        "COV-EX-0002"
+      ],
+      "generated_testcase_ids": [
+        "OSS-BLIND-R3-RECOVERYAUTH-RECOVERYCODE-WEB-FN-001"
+      ],
+      "page_name": "恢复码认证页",
+      "section_name": "恢复码提交",
+      "module_name": "MFA 恢复码认证",
+      "feature_name": "恢复码登录与路由保护",
+      "title": "满足开关与账户条件时显示恢复码入口",
+      "verification_side": "认证前端展示层",
+      "case_type": "ui_display",
+      "priority": "P0",
+      "assertion": "页面显示【使用恢复码验证】入口。",
+      "validation_path": "product_acceptance",
+      "should_generate_case": true
+    },
+    {
+      "case_plan_id": "CP-002",
+      "source_gate_ids": [
+        "TG-001"
+      ],
+      "source_example_ids": [
+        "AE-002"
+      ],
+      "source_responsibility_ids": [],
+      "source_rule_ids": [
+        "SUP-R001"
+      ],
+      "source_coverage_ids": [
+        "COV-EX-0003"
+      ],
+      "generated_testcase_ids": [
+        "OSS-BLIND-R3-RECOVERYAUTH-RECOVERYCODE-WEB-FL-001"
+      ],
+      "page_name": "恢复码认证页",
+      "section_name": "恢复码提交",
+      "module_name": "MFA 恢复码认证",
+      "feature_name": "恢复码登录与路由保护",
+      "title": "从[MFA 验证页]进入独立[恢复码认证页]",
+      "verification_side": "认证前端路由层",
+      "case_type": "linkage",
+      "priority": "P0",
+      "assertion": "导航完成后，当前页面为[恢复码认证页]。",
+      "validation_path": "product_acceptance",
+      "should_generate_case": true
+    },
+    {
+      "case_plan_id": "CP-003",
+      "source_gate_ids": [
+        "TG-002"
+      ],
+      "source_example_ids": [
+        "AE-003"
+      ],
+      "source_responsibility_ids": [],
+      "source_rule_ids": [
+        "SUP-R002"
+      ],
+      "source_coverage_ids": [
+        "COV-EX-0004"
+      ],
+      "generated_testcase_ids": [
+        "OSS-BLIND-R3-RECOVERYAUTH-RECOVERYCODE-WEB-FL-002"
+      ],
+      "page_name": "恢复码认证页",
+      "section_name": "恢复码提交",
+      "module_name": "MFA 恢复码认证",
+      "feature_name": "恢复码登录与路由保护",
+      "title": "有效未使用恢复码建立 MFA 完成会话",
+      "verification_side": "认证前端与服务端",
+      "case_type": "linkage",
+      "priority": "P0",
+      "assertion": "系统建立登录会话；该登录会话的 MFA 状态为已完成。",
+      "validation_path": "product_acceptance",
+      "should_generate_case": true
+    },
+    {
+      "case_plan_id": "CP-004",
+      "source_gate_ids": [
+        "TG-003"
+      ],
+      "source_example_ids": [
+        "AE-004"
+      ],
+      "source_responsibility_ids": [],
+      "source_rule_ids": [
+        "SUP-R003"
+      ],
+      "source_coverage_ids": [
+        "COV-EX-0005"
+      ],
+      "generated_testcase_ids": [
+        "OSS-BLIND-R3-RECOVERYAUTH-RECOVERYCODE-WEB-DV-001"
+      ],
+      "page_name": "恢复码认证页",
+      "section_name": "恢复码提交",
+      "module_name": "MFA 恢复码认证",
+      "feature_name": "恢复码登录与路由保护",
+      "title": "恢复码认证成功后可用数量减少一条",
+      "verification_side": "认证服务与数据层",
+      "case_type": "data_persistence",
+      "priority": "P0",
+      "assertion": "认证后的可用恢复码数量比认证前减少 1。",
+      "validation_path": "product_acceptance",
+      "should_generate_case": true
+    },
+    {
+      "case_plan_id": "CP-005",
+      "source_gate_ids": [
+        "TG-003"
+      ],
+      "source_example_ids": [
+        "AE-005"
+      ],
+      "source_responsibility_ids": [],
+      "source_rule_ids": [
+        "SUP-R003"
+      ],
+      "source_coverage_ids": [
+        "COV-EX-0006"
+      ],
+      "generated_testcase_ids": [
+        "OSS-BLIND-R3-RECOVERYAUTH-RECOVERYCODE-WEB-AB-001"
+      ],
+      "page_name": "恢复码认证页",
+      "section_name": "恢复码提交",
+      "module_name": "MFA 恢复码认证",
+      "feature_name": "恢复码登录与路由保护",
+      "title": "拒绝已使用恢复码再次建立登录会话",
+      "verification_side": "认证服务与数据层",
+      "case_type": "field_constraint",
+      "priority": "P0",
+      "assertion": "系统不建立新的登录会话；该恢复码仍处于不可用状态。",
+      "validation_path": "product_acceptance",
+      "should_generate_case": true
+    },
+    {
+      "case_plan_id": "CP-006",
+      "source_gate_ids": [
+        "TG-004"
+      ],
+      "source_example_ids": [
+        "AE-006"
+      ],
+      "source_responsibility_ids": [],
+      "source_rule_ids": [
+        "SUP-R004"
+      ],
+      "source_coverage_ids": [
+        "COV-EX-0007"
+      ],
+      "generated_testcase_ids": [
+        "OSS-BLIND-R3-RECOVERYAUTH-RECOVERYCODE-WEB-AB-002"
+      ],
+      "page_name": "恢复码认证页",
+      "section_name": "恢复码提交",
+      "module_name": "MFA 恢复码认证",
+      "feature_name": "恢复码登录与路由保护",
+      "title": "拒绝无效恢复码建立登录会话",
+      "verification_side": "认证服务端",
+      "case_type": "field_constraint",
+      "priority": "P0",
+      "assertion": "系统不建立登录会话。",
+      "validation_path": "product_acceptance",
+      "should_generate_case": true
+    },
+    {
+      "case_plan_id": "CP-007",
+      "source_gate_ids": [
+        "TG-004"
+      ],
+      "source_example_ids": [
+        "AE-007"
+      ],
+      "source_responsibility_ids": [],
+      "source_rule_ids": [
+        "SUP-R004"
+      ],
+      "source_coverage_ids": [
+        "COV-EX-0008"
+      ],
+      "generated_testcase_ids": [
+        "OSS-BLIND-R3-RECOVERYAUTH-RECOVERYCODE-WEB-AB-003"
+      ],
+      "page_name": "恢复码认证页",
+      "section_name": "恢复码提交",
+      "module_name": "MFA 恢复码认证",
+      "feature_name": "恢复码登录与路由保护",
+      "title": "空恢复码不建立登录会话",
+      "verification_side": "认证前端与服务端",
+      "case_type": "field_constraint",
+      "priority": "P0",
+      "assertion": "系统不建立登录会话；不对未定义的错误文案作强断言。",
+      "validation_path": "product_acceptance",
+      "should_generate_case": true
+    },
+    {
+      "case_plan_id": "CP-008",
+      "source_gate_ids": [
+        "TG-004"
+      ],
+      "source_example_ids": [
+        "AE-008"
+      ],
+      "source_responsibility_ids": [],
+      "source_rule_ids": [
+        "SUP-R004"
+      ],
+      "source_coverage_ids": [
+        "COV-EX-0009"
+      ],
+      "generated_testcase_ids": [
+        "OSS-BLIND-R3-RECOVERYAUTH-RECOVERYCODE-WEB-AB-004"
+      ],
+      "page_name": "恢复码认证页",
+      "section_name": "恢复码提交",
+      "module_name": "MFA 恢复码认证",
+      "feature_name": "恢复码登录与路由保护",
+      "title": "已知格式不正确的恢复码不建立登录会话",
+      "verification_side": "认证服务端",
+      "case_type": "field_constraint",
+      "priority": "P0",
+      "assertion": "系统不建立登录会话；不对未定义的格式边界或错误文案作强断言。",
+      "validation_path": "product_acceptance",
+      "should_generate_case": true
+    },
+    {
+      "case_plan_id": "CP-009",
+      "source_gate_ids": [
+        "TG-005"
+      ],
+      "source_example_ids": [
+        "AE-009"
+      ],
+      "source_responsibility_ids": [],
+      "source_rule_ids": [
+        "SUP-R005"
+      ],
+      "source_coverage_ids": [
+        "COV-EX-0010"
+      ],
+      "generated_testcase_ids": [
+        "OSS-BLIND-R3-RECOVERYAUTH-RECOVERYCODE-WEB-FN-002"
+      ],
+      "page_name": "恢复码认证页",
+      "section_name": "恢复码提交",
+      "module_name": "MFA 恢复码认证",
+      "feature_name": "恢复码登录与路由保护",
+      "title": "功能关闭时隐藏恢复码入口",
+      "verification_side": "认证前端展示层",
+      "case_type": "ui_display",
+      "priority": "P0",
+      "assertion": "页面不显示【使用恢复码验证】入口。",
+      "validation_path": "product_acceptance",
+      "should_generate_case": true
+    },
+    {
+      "case_plan_id": "CP-010",
+      "source_gate_ids": [
+        "TG-005"
+      ],
+      "source_example_ids": [
+        "AE-010"
+      ],
+      "source_responsibility_ids": [],
+      "source_rule_ids": [
+        "SUP-R005"
+      ],
+      "source_coverage_ids": [
+        "COV-EX-0011"
+      ],
+      "generated_testcase_ids": [
+        "OSS-BLIND-R3-RECOVERYAUTH-RECOVERYCODE-WEB-FL-003"
+      ],
+      "page_name": "恢复码认证页",
+      "section_name": "恢复码提交",
+      "module_name": "MFA 恢复码认证",
+      "feature_name": "恢复码登录与路由保护",
+      "title": "功能关闭时直接访问[恢复码认证页]返回[MFA 验证页]",
+      "verification_side": "认证前端路由层",
+      "case_type": "linkage",
+      "priority": "P0",
+      "assertion": "重定向完成后，当前页面为[MFA 验证页]；用户不能通过直接 URL 停留在[恢复码认证页]。",
+      "validation_path": "product_acceptance",
+      "should_generate_case": true
+    },
+    {
+      "case_plan_id": "CP-011",
+      "source_gate_ids": [
+        "TG-006"
+      ],
+      "source_example_ids": [
+        "AE-011"
+      ],
+      "source_responsibility_ids": [],
+      "source_rule_ids": [
+        "SUP-R006"
+      ],
+      "source_coverage_ids": [
+        "COV-EX-0012"
+      ],
+      "generated_testcase_ids": [
+        "OSS-BLIND-R3-RECOVERYAUTH-RECOVERYCODE-WEB-FL-004"
+      ],
+      "page_name": "恢复码认证页",
+      "section_name": "恢复码提交",
+      "module_name": "MFA 恢复码认证",
+      "feature_name": "恢复码登录与路由保护",
+      "title": "恢复码开关两种状态下普通 MFA 路径均可用",
+      "verification_side": "认证前端与服务端",
+      "case_type": "linkage",
+      "priority": "P0",
+      "assertion": "两种开关状态下普通 MFA 验证均完成并建立已完成 MFA 的登录会话；恢复码功能开关不改变普通 MFA 路径的既有结果。",
+      "validation_path": "product_acceptance",
+      "should_generate_case": true
+    }
+  ]
+}

@@ -1,0 +1,548 @@
+{
+  "project_code": "OSS-BLIND",
+  "work_item_id": "CHATWOOT-15768",
+  "generated_at": "2026-09-21T18:19:28",
+  "generated_from": [
+    "structured_prd/structured_prd.json",
+    "analysis/reasoning_pack.json"
+  ],
+  "entries": [
+    {
+      "coverage_id": "COV-EX-0001",
+      "coverage_type": "field_property",
+      "source_origin": "explicit_rule",
+      "source_type": "structured_field",
+      "title": "自定义属性类型 字段属性",
+      "page_name": "会话列表页",
+      "section_name": "高级筛选面板",
+      "module_name": "会话高级筛选",
+      "feature_name": "自定义属性类型化筛选",
+      "field_name": "custom_attribute_type",
+      "priority": "medium",
+      "rationale": "字段 `自定义属性类型` 已在 structured_prd 中显式建模，需要基础属性覆盖。",
+      "planned_assertions": [
+        "校验 `自定义属性类型` 的控件类型、默认值或枚举定义与结构化规则一致。"
+      ],
+      "structured_refs": [
+        "会话高级筛选.自定义属性类型化筛选.custom_attribute_type"
+      ],
+      "reasoning_refs": [],
+      "coverage_level": "structural",
+      "emit_mode": "audit_item"
+    },
+    {
+      "coverage_id": "COV-EX-0002",
+      "coverage_type": "field_property",
+      "source_origin": "explicit_rule",
+      "source_type": "structured_field",
+      "title": "筛选运算符 字段属性",
+      "page_name": "会话列表页",
+      "section_name": "高级筛选面板",
+      "module_name": "会话高级筛选",
+      "feature_name": "自定义属性类型化筛选",
+      "field_name": "filter_operator",
+      "priority": "medium",
+      "rationale": "字段 `筛选运算符` 已在 structured_prd 中显式建模，需要基础属性覆盖。",
+      "planned_assertions": [
+        "校验 `筛选运算符` 的控件类型、默认值或枚举定义与结构化规则一致。"
+      ],
+      "structured_refs": [
+        "会话高级筛选.自定义属性类型化筛选.filter_operator"
+      ],
+      "reasoning_refs": [],
+      "coverage_level": "structural",
+      "emit_mode": "audit_item"
+    },
+    {
+      "coverage_id": "COV-EX-0003",
+      "coverage_type": "field_property",
+      "source_origin": "explicit_rule",
+      "source_type": "structured_field",
+      "title": "筛选值 字段属性",
+      "page_name": "会话列表页",
+      "section_name": "高级筛选面板",
+      "module_name": "会话高级筛选",
+      "feature_name": "自定义属性类型化筛选",
+      "field_name": "filter_values",
+      "priority": "medium",
+      "rationale": "字段 `筛选值` 已在 structured_prd 中显式建模，需要基础属性覆盖。",
+      "planned_assertions": [
+        "校验 `筛选值` 的控件类型、默认值或枚举定义与结构化规则一致。"
+      ],
+      "structured_refs": [
+        "会话高级筛选.自定义属性类型化筛选.filter_values"
+      ],
+      "reasoning_refs": [],
+      "coverage_level": "structural",
+      "emit_mode": "audit_item"
+    },
+    {
+      "coverage_id": "COV-EX-0004",
+      "coverage_type": "field_property",
+      "source_origin": "explicit_rule",
+      "source_type": "structured_field",
+      "title": "会话自定义属性值 字段属性",
+      "page_name": "会话列表页",
+      "section_name": "高级筛选面板",
+      "module_name": "会话高级筛选",
+      "feature_name": "自定义属性类型化筛选",
+      "field_name": "conversation_custom_attribute_value",
+      "priority": "medium",
+      "rationale": "字段 `会话自定义属性值` 已在 structured_prd 中显式建模，需要基础属性覆盖。",
+      "planned_assertions": [
+        "校验 `会话自定义属性值` 的控件类型、默认值或枚举定义与结构化规则一致。"
+      ],
+      "structured_refs": [
+        "会话高级筛选.自定义属性类型化筛选.conversation_custom_attribute_value"
+      ],
+      "reasoning_refs": [],
+      "coverage_level": "structural",
+      "emit_mode": "audit_item"
+    },
+    {
+      "coverage_id": "COV-EX-0005",
+      "coverage_type": "field_property",
+      "source_origin": "explicit_rule",
+      "source_type": "structured_field",
+      "title": "筛选结果数量 字段属性",
+      "page_name": "会话列表页",
+      "section_name": "高级筛选面板",
+      "module_name": "会话高级筛选",
+      "feature_name": "自定义属性类型化筛选",
+      "field_name": "result_count",
+      "priority": "medium",
+      "rationale": "字段 `筛选结果数量` 已在 structured_prd 中显式建模，需要基础属性覆盖。",
+      "planned_assertions": [
+        "校验 `筛选结果数量` 的控件类型、默认值或枚举定义与结构化规则一致。"
+      ],
+      "structured_refs": [
+        "会话高级筛选.自定义属性类型化筛选.result_count"
+      ],
+      "reasoning_refs": [],
+      "coverage_level": "structural",
+      "emit_mode": "audit_item"
+    },
+    {
+      "coverage_id": "COV-EX-0006",
+      "coverage_type": "happy_path_combo",
+      "coverage_level": "business",
+      "emit_mode": "main_testcase",
+      "source_origin": "explicit_rule",
+      "source_scope": "primary_requirement",
+      "source_type": "structured_rule",
+      "title": "number 自定义属性",
+      "page_name": "会话列表页",
+      "section_name": "高级筛选面板",
+      "module_name": "会话高级筛选",
+      "feature_name": "自定义属性类型化筛选",
+      "field_name": "",
+      "rule_name": "CW-R001",
+      "atomic_assertion_index": null,
+      "priority": "high",
+      "rationale": "该规则来自 Structured PRD 的显式需求规则，必须在 Coverage 中保留。",
+      "planned_assertions": [
+        "number 自定义属性的筛选控件和值转换必须保持 number 类型。"
+      ],
+      "structured_refs": [
+        "requirement_info.explicit_rules.CW-R001"
+      ],
+      "reasoning_refs": []
+    },
+    {
+      "coverage_id": "COV-EX-0007",
+      "coverage_type": "happy_path_combo",
+      "coverage_level": "business",
+      "emit_mode": "main_testcase",
+      "source_origin": "explicit_rule",
+      "source_scope": "primary_requirement",
+      "source_type": "structured_rule",
+      "title": "filter payload values",
+      "page_name": "会话列表页",
+      "section_name": "高级筛选面板",
+      "module_name": "会话高级筛选",
+      "feature_name": "自定义属性类型化筛选",
+      "field_name": "",
+      "rule_name": "CW-R002",
+      "atomic_assertion_index": null,
+      "priority": "high",
+      "rationale": "该规则来自 Structured PRD 的显式需求规则，必须在 Coverage 中保留。",
+      "planned_assertions": [
+        "生成筛选请求时只把 null、undefined、空字符串等真正空值视为空；数值 0 和布尔值 false 是有效值，必须保留。",
+        "0 和 false 必须保留"
+      ],
+      "structured_refs": [
+        "requirement_info.explicit_rules.CW-R002"
+      ],
+      "reasoning_refs": []
+    },
+    {
+      "coverage_id": "COV-EX-0008",
+      "coverage_type": "happy_path_combo",
+      "coverage_level": "business",
+      "emit_mode": "main_testcase",
+      "source_origin": "explicit_rule",
+      "source_scope": "primary_requirement",
+      "source_type": "structured_rule",
+      "title": "conversation custom attribute",
+      "page_name": "会话列表页",
+      "section_name": "高级筛选面板",
+      "module_name": "会话高级筛选",
+      "feature_name": "自定义属性类型化筛选",
+      "field_name": "",
+      "rule_name": "CW-R003",
+      "atomic_assertion_index": null,
+      "priority": "high",
+      "rationale": "该规则来自 Structured PRD 的显式需求规则，必须在 Coverage 中保留。",
+      "planned_assertions": [
+        "读取 conversation custom attribute 时不得依赖 truthy 判断；缺失属性不得与显式的 0 或 false 混淆。"
+      ],
+      "structured_refs": [
+        "requirement_info.explicit_rules.CW-R003"
+      ],
+      "reasoning_refs": []
+    },
+    {
+      "coverage_id": "COV-EX-0009",
+      "coverage_type": "happy_path_combo",
+      "coverage_level": "business",
+      "emit_mode": "main_testcase",
+      "source_origin": "explicit_rule",
+      "source_scope": "primary_requirement",
+      "source_type": "structured_rule",
+      "title": "客户端二次匹配",
+      "page_name": "会话列表页",
+      "section_name": "高级筛选面板",
+      "module_name": "会话高级筛选",
+      "feature_name": "自定义属性类型化筛选",
+      "field_name": "",
+      "rule_name": "CW-R004",
+      "atomic_assertion_index": null,
+      "priority": "high",
+      "rationale": "该规则来自 Structured PRD 的显式需求规则，必须在 Coverage 中保留。",
+      "planned_assertions": [
+        "客户端会话匹配继续使用严格相等，输入值与会话属性值不得统一转换为字符串。"
+      ],
+      "structured_refs": [
+        "requirement_info.explicit_rules.CW-R004"
+      ],
+      "reasoning_refs": []
+    },
+    {
+      "coverage_id": "COV-EX-0010",
+      "coverage_type": "happy_path_combo",
+      "coverage_level": "business",
+      "emit_mode": "main_testcase",
+      "source_origin": "explicit_rule",
+      "source_scope": "primary_requirement",
+      "source_type": "structured_rule",
+      "title": "equal_to 与 not_equal_to",
+      "page_name": "会话列表页",
+      "section_name": "高级筛选面板",
+      "module_name": "会话高级筛选",
+      "feature_name": "自定义属性类型化筛选",
+      "field_name": "",
+      "rule_name": "CW-R005",
+      "atomic_assertion_index": null,
+      "priority": "high",
+      "rationale": "该规则来自 Structured PRD 的显式需求规则，必须在 Coverage 中保留。",
+      "planned_assertions": [
+        "equal_to 应命中类型和值都相等的会话；not_equal_to 应排除类型和值都相等的会话。"
+      ],
+      "structured_refs": [
+        "requirement_info.explicit_rules.CW-R005"
+      ],
+      "reasoning_refs": []
+    },
+    {
+      "coverage_id": "COV-EX-0011",
+      "coverage_type": "happy_path_combo",
+      "coverage_level": "audit_only",
+      "emit_mode": "audit_item",
+      "source_origin": "explicit_rule",
+      "source_scope": "context_only",
+      "source_type": "structured_rule",
+      "title": "筛选结果展示",
+      "page_name": "会话列表页",
+      "section_name": "高级筛选面板",
+      "module_name": "会话高级筛选",
+      "feature_name": "自定义属性类型化筛选",
+      "field_name": "",
+      "rule_name": "CW-R006",
+      "atomic_assertion_index": null,
+      "priority": "medium",
+      "rationale": "该规则来源角色为 context_only，仅保留为审计项。",
+      "planned_assertions": [
+        "筛选后的数量徽标与会话列表结果应一致；出现差异时需区分后端返回与客户端二次过滤结果。"
+      ],
+      "structured_refs": [
+        "requirement_info.explicit_rules.CW-R006"
+      ],
+      "reasoning_refs": []
+    },
+    {
+      "coverage_id": "COV-EX-0012",
+      "coverage_type": "happy_path_combo",
+      "coverage_level": "business",
+      "emit_mode": "main_testcase",
+      "source_origin": "explicit_rule",
+      "source_scope": "primary_requirement",
+      "source_type": "structured_rule",
+      "title": "既有筛选类型",
+      "page_name": "会话列表页",
+      "section_name": "高级筛选面板",
+      "module_name": "会话高级筛选",
+      "feature_name": "自定义属性类型化筛选",
+      "field_name": "",
+      "rule_name": "CW-R007",
+      "atomic_assertion_index": null,
+      "priority": "high",
+      "rationale": "该规则来自 Structured PRD 的显式需求规则，必须在 Coverage 中保留。",
+      "planned_assertions": [
+        "文本、日期、列表等既有筛选类型不得因本次类型化修复回退。"
+      ],
+      "structured_refs": [
+        "requirement_info.explicit_rules.CW-R007"
+      ],
+      "reasoning_refs": []
+    },
+    {
+      "coverage_id": "COV-EX-0013",
+      "coverage_type": "happy_path_combo",
+      "coverage_level": "business",
+      "emit_mode": "main_testcase",
+      "source_origin": "explicit_rule",
+      "source_scope": "primary_requirement",
+      "source_type": "structured_rule",
+      "title": "筛选输入为空数组时返回 VALUE_REQUIRED，且不得进入请求序列化。",
+      "page_name": "会话列表页",
+      "section_name": "高级筛选面板",
+      "module_name": "会话高级筛选",
+      "feature_name": "自定义属性类型化筛选",
+      "field_name": "",
+      "rule_name": "CW-R008",
+      "atomic_assertion_index": 1,
+      "priority": "high",
+      "rationale": "该规则来自 Structured PRD 的显式需求规则，必须在 Coverage 中保留。",
+      "planned_assertions": [
+        "筛选输入为空数组时返回 VALUE_REQUIRED，且不得进入请求序列化。"
+      ],
+      "structured_refs": [
+        "requirement_info.explicit_rules.CW-R008"
+      ],
+      "reasoning_refs": []
+    },
+    {
+      "coverage_id": "COV-EX-0014",
+      "coverage_type": "happy_path_combo",
+      "coverage_level": "business",
+      "emit_mode": "main_testcase",
+      "source_origin": "explicit_rule",
+      "source_scope": "primary_requirement",
+      "source_type": "structured_rule",
+      "title": "筛选输入为空对象时返回 VALUE_REQUIRED，且不得进入请求序列化。",
+      "page_name": "会话列表页",
+      "section_name": "高级筛选面板",
+      "module_name": "会话高级筛选",
+      "feature_name": "自定义属性类型化筛选",
+      "field_name": "",
+      "rule_name": "CW-R008",
+      "atomic_assertion_index": 2,
+      "priority": "high",
+      "rationale": "该规则来自 Structured PRD 的显式需求规则，必须在 Coverage 中保留。",
+      "planned_assertions": [
+        "筛选输入为空对象时返回 VALUE_REQUIRED，且不得进入请求序列化。"
+      ],
+      "structured_refs": [
+        "requirement_info.explicit_rules.CW-R008"
+      ],
+      "reasoning_refs": []
+    },
+    {
+      "coverage_id": "COV-EX-0015",
+      "coverage_type": "happy_path_combo",
+      "coverage_level": "business",
+      "emit_mode": "main_testcase",
+      "source_origin": "explicit_rule",
+      "source_scope": "primary_requirement",
+      "source_type": "structured_rule",
+      "title": "days_before 日期范围",
+      "page_name": "会话列表页",
+      "section_name": "高级筛选面板",
+      "module_name": "会话高级筛选",
+      "feature_name": "自定义属性类型化筛选",
+      "field_name": "",
+      "rule_name": "CW-R009",
+      "atomic_assertion_index": null,
+      "priority": "high",
+      "rationale": "该规则来自 Structured PRD 的显式需求规则，必须在 Coverage 中保留。",
+      "planned_assertions": [
+        "created_at 使用 days_before 运算符且输入值为 0 时，不得因 0 是有效 falsy 值而绕过日期范围校验，必须返回 VALUE_MUST_BE_BETWEEN_1_AND_998。"
+      ],
+      "structured_refs": [
+        "requirement_info.explicit_rules.CW-R009"
+      ],
+      "reasoning_refs": []
+    },
+    {
+      "coverage_id": "COV-AI-0016",
+      "coverage_type": "happy_path_combo",
+      "coverage_level": "audit_only",
+      "emit_mode": "audit_item",
+      "source_origin": "ai_reasoning",
+      "source_type": "edge_case",
+      "title": "数字属性输入正数和 `{0}` 后，请求及本地匹配均保留 number 类型。",
+      "page_name": "会话列表页",
+      "section_name": "高级筛选面板",
+      "module_name": "会话高级筛选",
+      "feature_name": "自定义属性类型化筛选",
+      "field_name": "",
+      "priority": "medium",
+      "rationale": "该项来自 Reasoning Pack，保留为风险/边界审计，不自动升级为产品验收主用例。",
+      "planned_assertions": [
+        "审计并确认：数字属性输入正数和 `{0}` 后，请求及本地匹配均保留 number 类型。"
+      ],
+      "structured_refs": [],
+      "reasoning_refs": [
+        "EC-001"
+      ]
+    },
+    {
+      "coverage_id": "COV-AI-0017",
+      "coverage_type": "happy_path_combo",
+      "coverage_level": "audit_only",
+      "emit_mode": "audit_item",
+      "source_origin": "ai_reasoning",
+      "source_type": "edge_case",
+      "title": "checkbox 属性为 `{false}` 时仍能被 `equal_to` 命中，并被 `not_equal_to` 排除。",
+      "page_name": "会话列表页",
+      "section_name": "高级筛选面板",
+      "module_name": "会话高级筛选",
+      "feature_name": "自定义属性类型化筛选",
+      "field_name": "",
+      "priority": "medium",
+      "rationale": "该项来自 Reasoning Pack，保留为风险/边界审计，不自动升级为产品验收主用例。",
+      "planned_assertions": [
+        "审计并确认：checkbox 属性为 `{false}` 时仍能被 `equal_to` 命中，并被 `not_equal_to` 排除。"
+      ],
+      "structured_refs": [],
+      "reasoning_refs": [
+        "EC-002"
+      ]
+    },
+    {
+      "coverage_id": "COV-AI-0018",
+      "coverage_type": "happy_path_combo",
+      "coverage_level": "audit_only",
+      "emit_mode": "audit_item",
+      "source_origin": "ai_reasoning",
+      "source_type": "edge_case",
+      "title": "属性缺失时不得与 `{0}` 或 `{false}` 混淆。",
+      "page_name": "会话列表页",
+      "section_name": "高级筛选面板",
+      "module_name": "会话高级筛选",
+      "feature_name": "自定义属性类型化筛选",
+      "field_name": "",
+      "priority": "medium",
+      "rationale": "该项来自 Reasoning Pack，保留为风险/边界审计，不自动升级为产品验收主用例。",
+      "planned_assertions": [
+        "审计并确认：属性缺失时不得与 `{0}` 或 `{false}` 混淆。"
+      ],
+      "structured_refs": [],
+      "reasoning_refs": [
+        "EC-003"
+      ]
+    },
+    {
+      "coverage_id": "COV-AI-0019",
+      "coverage_type": "happy_path_combo",
+      "coverage_level": "audit_only",
+      "emit_mode": "audit_item",
+      "source_origin": "ai_reasoning",
+      "source_type": "edge_case",
+      "title": "`null`、`undefined`、空字符串、空数组、空对象的校验差异按既有规则验证，不自行假设全部等价。",
+      "page_name": "会话列表页",
+      "section_name": "高级筛选面板",
+      "module_name": "会话高级筛选",
+      "feature_name": "自定义属性类型化筛选",
+      "field_name": "",
+      "priority": "medium",
+      "rationale": "该项来自 Reasoning Pack，保留为风险/边界审计，不自动升级为产品验收主用例。",
+      "planned_assertions": [
+        "审计并确认：`null`、`undefined`、空字符串、空数组、空对象的校验差异按既有规则验证，不自行假设全部等价。"
+      ],
+      "structured_refs": [],
+      "reasoning_refs": [
+        "EC-004"
+      ]
+    },
+    {
+      "coverage_id": "COV-AI-0020",
+      "coverage_type": "happy_path_combo",
+      "coverage_level": "audit_only",
+      "emit_mode": "audit_item",
+      "source_origin": "ai_reasoning",
+      "source_type": "business_risk",
+      "title": "历史保存的字符串数字筛选不会自动迁移，可能继续与数字属性严格匹配失败。",
+      "page_name": "会话列表页",
+      "section_name": "高级筛选面板",
+      "module_name": "会话高级筛选",
+      "feature_name": "自定义属性类型化筛选",
+      "field_name": "",
+      "priority": "medium",
+      "rationale": "该项来自 Reasoning Pack，保留为风险/边界审计，不自动升级为产品验收主用例。",
+      "planned_assertions": [
+        "审计并确认：历史保存的字符串数字筛选不会自动迁移，可能继续与数字属性严格匹配失败。"
+      ],
+      "structured_refs": [],
+      "reasoning_refs": [
+        "RISK-001"
+      ]
+    },
+    {
+      "coverage_id": "COV-AI-0021",
+      "coverage_type": "happy_path_combo",
+      "coverage_level": "audit_only",
+      "emit_mode": "audit_item",
+      "source_origin": "ai_reasoning",
+      "source_type": "business_risk",
+      "title": "JavaScript falsy 语义可能同时影响校验、请求生成和本地列表过滤，需要跨层一致性验证。",
+      "page_name": "会话列表页",
+      "section_name": "高级筛选面板",
+      "module_name": "会话高级筛选",
+      "feature_name": "自定义属性类型化筛选",
+      "field_name": "",
+      "priority": "medium",
+      "rationale": "该项来自 Reasoning Pack，保留为风险/边界审计，不自动升级为产品验收主用例。",
+      "planned_assertions": [
+        "审计并确认：JavaScript falsy 语义可能同时影响校验、请求生成和本地列表过滤，需要跨层一致性验证。"
+      ],
+      "structured_refs": [],
+      "reasoning_refs": [
+        "RISK-002"
+      ]
+    },
+    {
+      "coverage_id": "COV-AI-0022",
+      "coverage_type": "happy_path_combo",
+      "coverage_level": "audit_only",
+      "emit_mode": "audit_item",
+      "source_origin": "ai_reasoning",
+      "source_type": "business_risk",
+      "title": "inbox ID 类型问题与本次修复共享匹配路径，但属于独立变更。",
+      "page_name": "会话列表页",
+      "section_name": "高级筛选面板",
+      "module_name": "会话高级筛选",
+      "feature_name": "自定义属性类型化筛选",
+      "field_name": "",
+      "priority": "medium",
+      "rationale": "该项来自 Reasoning Pack，保留为风险/边界审计，不自动升级为产品验收主用例。",
+      "planned_assertions": [
+        "审计并确认：inbox ID 类型问题与本次修复共享匹配路径，但属于独立变更。"
+      ],
+      "structured_refs": [],
+      "reasoning_refs": [
+        "RISK-003"
+      ]
+    }
+  ]
+}

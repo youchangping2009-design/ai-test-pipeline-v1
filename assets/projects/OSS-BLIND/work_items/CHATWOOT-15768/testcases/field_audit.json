@@ -1,0 +1,307 @@
+{
+  "generated_at": "2026-09-21T18:23:38",
+  "project_code": "OSS-BLIND",
+  "work_item_id": "CHATWOOT-15768",
+  "item_count": 13,
+  "items": [
+    {
+      "coverage_id": "COV-EX-0001",
+      "coverage_type": "field_property",
+      "coverage_level": "structural",
+      "emit_mode": "audit_item",
+      "source_origin": "explicit_rule",
+      "source_type": "structured_field",
+      "page_name": "会话列表页",
+      "section_name": "高级筛选面板",
+      "module_name": "会话高级筛选",
+      "feature_name": "自定义属性类型化筛选",
+      "field_name": "custom_attribute_type",
+      "title": "自定义属性类型 字段属性",
+      "priority": "medium",
+      "planned_assertions": [
+        "校验 `自定义属性类型` 的控件类型、默认值或枚举定义与结构化规则一致。"
+      ],
+      "structured_refs": [
+        "会话高级筛选.自定义属性类型化筛选.custom_attribute_type"
+      ],
+      "reasoning_refs": [],
+      "audit_id": "AUD-ITEM-001"
+    },
+    {
+      "coverage_id": "COV-EX-0002",
+      "coverage_type": "field_property",
+      "coverage_level": "structural",
+      "emit_mode": "audit_item",
+      "source_origin": "explicit_rule",
+      "source_type": "structured_field",
+      "page_name": "会话列表页",
+      "section_name": "高级筛选面板",
+      "module_name": "会话高级筛选",
+      "feature_name": "自定义属性类型化筛选",
+      "field_name": "filter_operator",
+      "title": "筛选运算符 字段属性",
+      "priority": "medium",
+      "planned_assertions": [
+        "校验 `筛选运算符` 的控件类型、默认值或枚举定义与结构化规则一致。"
+      ],
+      "structured_refs": [
+        "会话高级筛选.自定义属性类型化筛选.filter_operator"
+      ],
+      "reasoning_refs": [],
+      "audit_id": "AUD-ITEM-002"
+    },
+    {
+      "coverage_id": "COV-EX-0003",
+      "coverage_type": "field_property",
+      "coverage_level": "structural",
+      "emit_mode": "audit_item",
+      "source_origin": "explicit_rule",
+      "source_type": "structured_field",
+      "page_name": "会话列表页",
+      "section_name": "高级筛选面板",
+      "module_name": "会话高级筛选",
+      "feature_name": "自定义属性类型化筛选",
+      "field_name": "filter_values",
+      "title": "筛选值 字段属性",
+      "priority": "medium",
+      "planned_assertions": [
+        "校验 `筛选值` 的控件类型、默认值或枚举定义与结构化规则一致。"
+      ],
+      "structured_refs": [
+        "会话高级筛选.自定义属性类型化筛选.filter_values"
+      ],
+      "reasoning_refs": [],
+      "audit_id": "AUD-ITEM-003"
+    },
+    {
+      "coverage_id": "COV-EX-0004",
+      "coverage_type": "field_property",
+      "coverage_level": "structural",
+      "emit_mode": "audit_item",
+      "source_origin": "explicit_rule",
+      "source_type": "structured_field",
+      "page_name": "会话列表页",
+      "section_name": "高级筛选面板",
+      "module_name": "会话高级筛选",
+      "feature_name": "自定义属性类型化筛选",
+      "field_name": "conversation_custom_attribute_value",
+      "title": "会话自定义属性值 字段属性",
+      "priority": "medium",
+      "planned_assertions": [
+        "校验 `会话自定义属性值` 的控件类型、默认值或枚举定义与结构化规则一致。"
+      ],
+      "structured_refs": [
+        "会话高级筛选.自定义属性类型化筛选.conversation_custom_attribute_value"
+      ],
+      "reasoning_refs": [],
+      "audit_id": "AUD-ITEM-004"
+    },
+    {
+      "coverage_id": "COV-EX-0005",
+      "coverage_type": "field_property",
+      "coverage_level": "structural",
+      "emit_mode": "audit_item",
+      "source_origin": "explicit_rule",
+      "source_type": "structured_field",
+      "page_name": "会话列表页",
+      "section_name": "高级筛选面板",
+      "module_name": "会话高级筛选",
+      "feature_name": "自定义属性类型化筛选",
+      "field_name": "result_count",
+      "title": "筛选结果数量 字段属性",
+      "priority": "medium",
+      "planned_assertions": [
+        "校验 `筛选结果数量` 的控件类型、默认值或枚举定义与结构化规则一致。"
+      ],
+      "structured_refs": [
+        "会话高级筛选.自定义属性类型化筛选.result_count"
+      ],
+      "reasoning_refs": [],
+      "audit_id": "AUD-ITEM-005"
+    },
+    {
+      "coverage_id": "COV-EX-0011",
+      "coverage_type": "happy_path_combo",
+      "coverage_level": "audit_only",
+      "emit_mode": "audit_item",
+      "source_origin": "explicit_rule",
+      "source_type": "structured_rule",
+      "page_name": "会话列表页",
+      "section_name": "高级筛选面板",
+      "module_name": "会话高级筛选",
+      "feature_name": "自定义属性类型化筛选",
+      "field_name": "",
+      "title": "筛选结果展示",
+      "priority": "medium",
+      "planned_assertions": [
+        "筛选后的数量徽标与会话列表结果应一致；出现差异时需区分后端返回与客户端二次过滤结果。"
+      ],
+      "structured_refs": [
+        "requirement_info.explicit_rules.CW-R006"
+      ],
+      "reasoning_refs": [],
+      "audit_id": "AUD-ITEM-006"
+    },
+    {
+      "coverage_id": "COV-AI-0016",
+      "coverage_type": "happy_path_combo",
+      "coverage_level": "audit_only",
+      "emit_mode": "audit_item",
+      "source_origin": "ai_reasoning",
+      "source_type": "edge_case",
+      "page_name": "会话列表页",
+      "section_name": "高级筛选面板",
+      "module_name": "会话高级筛选",
+      "feature_name": "自定义属性类型化筛选",
+      "field_name": "",
+      "title": "数字属性输入正数和 `{0}` 后，请求及本地匹配均保留 number 类型。",
+      "priority": "medium",
+      "planned_assertions": [
+        "审计并确认：数字属性输入正数和 `{0}` 后，请求及本地匹配均保留 number 类型。"
+      ],
+      "structured_refs": [],
+      "reasoning_refs": [
+        "EC-001"
+      ],
+      "audit_id": "AUD-ITEM-007"
+    },
+    {
+      "coverage_id": "COV-AI-0017",
+      "coverage_type": "happy_path_combo",
+      "coverage_level": "audit_only",
+      "emit_mode": "audit_item",
+      "source_origin": "ai_reasoning",
+      "source_type": "edge_case",
+      "page_name": "会话列表页",
+      "section_name": "高级筛选面板",
+      "module_name": "会话高级筛选",
+      "feature_name": "自定义属性类型化筛选",
+      "field_name": "",
+      "title": "checkbox 属性为 `{false}` 时仍能被 `equal_to` 命中，并被 `not_equal_to` 排除。",
+      "priority": "medium",
+      "planned_assertions": [
+        "审计并确认：checkbox 属性为 `{false}` 时仍能被 `equal_to` 命中，并被 `not_equal_to` 排除。"
+      ],
+      "structured_refs": [],
+      "reasoning_refs": [
+        "EC-002"
+      ],
+      "audit_id": "AUD-ITEM-008"
+    },
+    {
+      "coverage_id": "COV-AI-0018",
+      "coverage_type": "happy_path_combo",
+      "coverage_level": "audit_only",
+      "emit_mode": "audit_item",
+      "source_origin": "ai_reasoning",
+      "source_type": "edge_case",
+      "page_name": "会话列表页",
+      "section_name": "高级筛选面板",
+      "module_name": "会话高级筛选",
+      "feature_name": "自定义属性类型化筛选",
+      "field_name": "",
+      "title": "属性缺失时不得与 `{0}` 或 `{false}` 混淆。",
+      "priority": "medium",
+      "planned_assertions": [
+        "审计并确认：属性缺失时不得与 `{0}` 或 `{false}` 混淆。"
+      ],
+      "structured_refs": [],
+      "reasoning_refs": [
+        "EC-003"
+      ],
+      "audit_id": "AUD-ITEM-009"
+    },
+    {
+      "coverage_id": "COV-AI-0019",
+      "coverage_type": "happy_path_combo",
+      "coverage_level": "audit_only",
+      "emit_mode": "audit_item",
+      "source_origin": "ai_reasoning",
+      "source_type": "edge_case",
+      "page_name": "会话列表页",
+      "section_name": "高级筛选面板",
+      "module_name": "会话高级筛选",
+      "feature_name": "自定义属性类型化筛选",
+      "field_name": "",
+      "title": "`null`、`undefined`、空字符串、空数组、空对象的校验差异按既有规则验证，不自行假设全部等价。",
+      "priority": "medium",
+      "planned_assertions": [
+        "审计并确认：`null`、`undefined`、空字符串、空数组、空对象的校验差异按既有规则验证，不自行假设全部等价。"
+      ],
+      "structured_refs": [],
+      "reasoning_refs": [
+        "EC-004"
+      ],
+      "audit_id": "AUD-ITEM-010"
+    },
+    {
+      "coverage_id": "COV-AI-0020",
+      "coverage_type": "happy_path_combo",
+      "coverage_level": "audit_only",
+      "emit_mode": "audit_item",
+      "source_origin": "ai_reasoning",
+      "source_type": "business_risk",
+      "page_name": "会话列表页",
+      "section_name": "高级筛选面板",
+      "module_name": "会话高级筛选",
+      "feature_name": "自定义属性类型化筛选",
+      "field_name": "",
+      "title": "历史保存的字符串数字筛选不会自动迁移，可能继续与数字属性严格匹配失败。",
+      "priority": "medium",
+      "planned_assertions": [
+        "审计并确认：历史保存的字符串数字筛选不会自动迁移，可能继续与数字属性严格匹配失败。"
+      ],
+      "structured_refs": [],
+      "reasoning_refs": [
+        "RISK-001"
+      ],
+      "audit_id": "AUD-ITEM-011"
+    },
+    {
+      "coverage_id": "COV-AI-0021",
+      "coverage_type": "happy_path_combo",
+      "coverage_level": "audit_only",
+      "emit_mode": "audit_item",
+      "source_origin": "ai_reasoning",
+      "source_type": "business_risk",
+      "page_name": "会话列表页",
+      "section_name": "高级筛选面板",
+      "module_name": "会话高级筛选",
+      "feature_name": "自定义属性类型化筛选",
+      "field_name": "",
+      "title": "JavaScript falsy 语义可能同时影响校验、请求生成和本地列表过滤，需要跨层一致性验证。",
+      "priority": "medium",
+      "planned_assertions": [
+        "审计并确认：JavaScript falsy 语义可能同时影响校验、请求生成和本地列表过滤，需要跨层一致性验证。"
+      ],
+      "structured_refs": [],
+      "reasoning_refs": [
+        "RISK-002"
+      ],
+      "audit_id": "AUD-ITEM-012"
+    },
+    {
+      "coverage_id": "COV-AI-0022",
+      "coverage_type": "happy_path_combo",
+      "coverage_level": "audit_only",
+      "emit_mode": "audit_item",
+      "source_origin": "ai_reasoning",
+      "source_type": "business_risk",
+      "page_name": "会话列表页",
+      "section_name": "高级筛选面板",
+      "module_name": "会话高级筛选",
+      "feature_name": "自定义属性类型化筛选",
+      "field_name": "",
+      "title": "inbox ID 类型问题与本次修复共享匹配路径，但属于独立变更。",
+      "priority": "medium",
+      "planned_assertions": [
+        "审计并确认：inbox ID 类型问题与本次修复共享匹配路径，但属于独立变更。"
+      ],
+      "structured_refs": [],
+      "reasoning_refs": [
+        "RISK-003"
+      ],
+      "audit_id": "AUD-ITEM-013"
+    }
+  ]
+}

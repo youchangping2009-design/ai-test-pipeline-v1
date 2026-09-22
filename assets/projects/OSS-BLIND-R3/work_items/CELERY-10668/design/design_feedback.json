@@ -1,0 +1,35 @@
+{
+  "project_code": "OSS-BLIND-R3",
+  "work_item_id": "CELERY-10668",
+  "feedback_items": [
+    {
+      "feedback_id": "DF-001",
+      "source_review_stage": "manual_review",
+      "source_confirmation_file": "reviews/review_record.md",
+      "source_case_plan_ids": ["CP-005", "CP-006", "CP-008"],
+      "source_testcase_ids": ["OSS-BLIND-R3-CELERYWORKER-REVOKE-SERVER-ST-004", "OSS-BLIND-R3-CELERYWORKER-REVOKE-SERVER-ST-005", "OSS-BLIND-R3-CELERYWORKER-REVOKE-SERVER-FL-001"],
+      "feedback_type": "case_gap",
+      "target_layer": "acceptance_examples",
+      "title": "明确跨 Worker 撤销同步载荷契约",
+      "finding": "冻结用例已验证本机重新计时和双向同步，但没有直接断言 hello/mingle 响应只包含任务 ID 且保持最旧优先顺序；公开补丁通过该载荷契约避免传播远端时间戳。",
+      "recommended_action": "在同步入口的 Case Plan 中增加载荷结构与顺序断言，继续把时间戳保留限制在本机内部状态。",
+      "must_not_directly_overwrite_testcase": true,
+      "status": "applied",
+      "application_note": "已将需求摘要明确支持的“同步载荷仅包含任务 ID、不传播远端 monotonic 时间戳”回灌 Acceptance Examples；最旧优先顺序仅见于公开补丁实现，继续保留为 implementation oracle，不升级为产品验收要求。"
+    },
+    {
+      "feedback_id": "DF-002",
+      "source_review_stage": "manual_review",
+      "source_confirmation_file": "reviews/review_record.md",
+      "source_case_plan_ids": ["CP-005", "CP-006", "CP-008"],
+      "source_testcase_ids": ["OSS-BLIND-R3-CELERYWORKER-REVOKE-SERVER-ST-004", "OSS-BLIND-R3-CELERYWORKER-REVOKE-SERVER-ST-005", "OSS-BLIND-R3-CELERYWORKER-REVOKE-SERVER-FL-001"],
+      "feedback_type": "case_gap",
+      "target_layer": "case_plan",
+      "title": "将跨 Worker 撤销同步契约传递到 Case Plan",
+      "finding": "上游验收层的载荷契约需要由 Case Plan 显式承接，才能通过 case_plan_direct 生成正式用例。",
+      "recommended_action": "在 CP-005、CP-006 与 CP-008 中保留 ID-only 和不传播远端 monotonic 时间戳的可观察断言。",
+      "must_not_directly_overwrite_testcase": true,
+      "status": "applied"
+    }
+  ]
+}

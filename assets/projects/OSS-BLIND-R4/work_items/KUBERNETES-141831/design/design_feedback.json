@@ -1,0 +1,28 @@
+{
+  "project_code": "OSS-BLIND-R4",
+  "work_item_id": "KUBERNETES-141831",
+  "feedback_items": [
+    {
+      "feedback_id": "DF-001",
+      "source_review_stage": "manual_review",
+      "source_confirmation_file": "reviews/review_record.md",
+      "source_case_plan_ids": [
+        "CP-005",
+        "CP-006",
+        "CP-007"
+      ],
+      "source_testcase_ids": [
+        "OSS-BLIND-R4-DEVICETAINT-WARNING-API-FN-005",
+        "OSS-BLIND-R4-DEVICETAINT-WARNING-API-FN-006",
+        "OSS-BLIND-R4-DEVICETAINT-WARNING-API-FN-007"
+      ],
+      "feedback_type": "needs_confirmation",
+      "target_layer": "testability_gate",
+      "title": "确认空字符串范围字段是否应抑制 Warning",
+      "finding": "公开实现按 driver、pool、device 指针是否为 nil 判断；字段存在但值为空字符串时也会被视为已指定，而冻结用例只覆盖非空范围值。",
+      "recommended_action": "先确认 API 默认化和校验是否保证已设置指针必为有效非空值；若不能保证，在 Gate 中保留该歧义并补充空字符串边界计划。",
+      "must_not_directly_overwrite_testcase": true,
+      "status": "applied"
+    }
+  ]
+}

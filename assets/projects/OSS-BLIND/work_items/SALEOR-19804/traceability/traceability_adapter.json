@@ -1,0 +1,231 @@
+{
+  "project_code": "OSS-BLIND",
+  "work_item_id": "SALEOR-19804",
+  "records": [
+    {
+      "record_id": "TRA-0001",
+      "evidence_id": "EVD-UNMAPPED",
+      "coverage_level": "full",
+      "structured_targets": [
+        {
+          "target_type": "feature",
+          "module_name": "礼品卡批量创建",
+          "feature_name": "批量礼品卡标签关系追加",
+          "field_name": "",
+          "target_name": "已有 GiftCardTag 关系"
+        }
+      ],
+      "testcase_ids": [
+        "OSS-BLIND-GIFTCARDBULK-BULKCREATE-API-FL-001"
+      ],
+      "gap_notes": "adapter_source=coverage_first_traceability; source_record_id=CFT-0001; rule_id=礼品卡批量创建::批量礼品卡标签关系追加::happy_path_combo; coverage_id=COV-EX-0009; fidelity_status=not_applicable",
+      "implementation_binding": "shared_contract",
+      "recommended_cr_stage": "dual_code",
+      "manual_confirmation_required": true,
+      "cr_focus_points": [
+        "已有 GiftCardTag 关系",
+        "coverage_id=COV-EX-0009"
+      ]
+    },
+    {
+      "record_id": "TRA-0002",
+      "evidence_id": "EVD-UNMAPPED",
+      "coverage_level": "full",
+      "structured_targets": [
+        {
+          "target_type": "feature",
+          "module_name": "礼品卡批量创建",
+          "feature_name": "批量礼品卡标签关系追加",
+          "field_name": "",
+          "target_name": "新 GiftCardTag"
+        }
+      ],
+      "testcase_ids": [
+        "OSS-BLIND-GIFTCARDBULK-BULKCREATE-API-FL-002"
+      ],
+      "gap_notes": "adapter_source=coverage_first_traceability; source_record_id=CFT-0002; rule_id=礼品卡批量创建::批量礼品卡标签关系追加::happy_path_combo; coverage_id=COV-EX-0010; fidelity_status=not_applicable",
+      "implementation_binding": "shared_contract",
+      "recommended_cr_stage": "dual_code",
+      "manual_confirmation_required": true,
+      "cr_focus_points": [
+        "新 GiftCardTag",
+        "coverage_id=COV-EX-0010"
+      ]
+    },
+    {
+      "record_id": "TRA-0003",
+      "evidence_id": "EVD-UNMAPPED",
+      "coverage_level": "full",
+      "structured_targets": [
+        {
+          "target_type": "feature",
+          "module_name": "礼品卡批量创建",
+          "feature_name": "批量礼品卡标签关系追加",
+          "field_name": "",
+          "target_name": "跨批次标签成员集合"
+        }
+      ],
+      "testcase_ids": [
+        "OSS-BLIND-GIFTCARDBULK-BULKCREATE-API-FL-003"
+      ],
+      "gap_notes": "adapter_source=coverage_first_traceability; source_record_id=CFT-0003; rule_id=礼品卡批量创建::批量礼品卡标签关系追加::happy_path_combo; coverage_id=COV-EX-0011; fidelity_status=not_applicable",
+      "implementation_binding": "shared_contract",
+      "recommended_cr_stage": "dual_code",
+      "manual_confirmation_required": true,
+      "cr_focus_points": [
+        "跨批次标签成员集合",
+        "coverage_id=COV-EX-0011"
+      ]
+    },
+    {
+      "record_id": "TRA-0004",
+      "evidence_id": "EVD-UNMAPPED",
+      "coverage_level": "full",
+      "structured_targets": [
+        {
+          "target_type": "feature",
+          "module_name": "礼品卡批量创建",
+          "feature_name": "批量礼品卡标签关系追加",
+          "field_name": "",
+          "target_name": "当前批次礼品卡标签"
+        }
+      ],
+      "testcase_ids": [
+        "OSS-BLIND-GIFTCARDBULK-BULKCREATE-API-FL-004"
+      ],
+      "gap_notes": "adapter_source=coverage_first_traceability; source_record_id=CFT-0004; rule_id=礼品卡批量创建::批量礼品卡标签关系追加::happy_path_combo; coverage_id=COV-EX-0012; fidelity_status=not_applicable",
+      "implementation_binding": "shared_contract",
+      "recommended_cr_stage": "dual_code",
+      "manual_confirmation_required": true,
+      "cr_focus_points": [
+        "当前批次礼品卡标签",
+        "coverage_id=COV-EX-0012"
+      ]
+    },
+    {
+      "record_id": "TRA-0005",
+      "evidence_id": "EVD-UNMAPPED",
+      "coverage_level": "full",
+      "structured_targets": [
+        {
+          "target_type": "feature",
+          "module_name": "礼品卡批量创建",
+          "feature_name": "批量礼品卡标签关系追加",
+          "field_name": "",
+          "target_name": "giftCardBulkCreate 返回结果"
+        }
+      ],
+      "testcase_ids": [
+        "OSS-BLIND-GIFTCARDBULK-BULKCREATE-API-DV-005"
+      ],
+      "gap_notes": "adapter_source=coverage_first_traceability; source_record_id=CFT-0005; rule_id=礼品卡批量创建::批量礼品卡标签关系追加::happy_path_combo; coverage_id=COV-EX-0013; fidelity_status=not_applicable",
+      "implementation_binding": "shared_contract",
+      "recommended_cr_stage": "dual_code",
+      "manual_confirmation_required": true,
+      "cr_focus_points": [
+        "giftCardBulkCreate 返回结果",
+        "coverage_id=COV-EX-0013"
+      ]
+    },
+    {
+      "record_id": "TRA-0006",
+      "evidence_id": "EVD-UNMAPPED",
+      "coverage_level": "full",
+      "structured_targets": [
+        {
+          "target_type": "feature",
+          "module_name": "礼品卡批量创建",
+          "feature_name": "批量礼品卡标签关系追加",
+          "field_name": "",
+          "target_name": "既有非批量行为与错误行为"
+        }
+      ],
+      "testcase_ids": [
+        "OSS-BLIND-GIFTCARDBULK-BULKCREATE-API-PM-001"
+      ],
+      "gap_notes": "adapter_source=coverage_first_traceability; source_record_id=CFT-0006; rule_id=礼品卡批量创建::批量礼品卡标签关系追加::happy_path_combo; coverage_id=COV-EX-0015; fidelity_status=not_applicable",
+      "implementation_binding": "shared_contract",
+      "recommended_cr_stage": "dual_code",
+      "manual_confirmation_required": true,
+      "cr_focus_points": [
+        "既有非批量行为与错误行为",
+        "coverage_id=COV-EX-0015"
+      ]
+    },
+    {
+      "record_id": "TRA-0007",
+      "evidence_id": "EVD-UNMAPPED",
+      "coverage_level": "full",
+      "structured_targets": [
+        {
+          "target_type": "feature",
+          "module_name": "礼品卡批量创建",
+          "feature_name": "批量礼品卡标签关系追加",
+          "field_name": "",
+          "target_name": "输入已有标签的大小写变体时复用同一个小写标签记录，不新建重复标签。"
+        }
+      ],
+      "testcase_ids": [
+        "OSS-BLIND-GIFTCARDBULK-BULKCREATE-API-FL-005"
+      ],
+      "gap_notes": "adapter_source=coverage_first_traceability; source_record_id=CFT-0007; rule_id=礼品卡批量创建::批量礼品卡标签关系追加::happy_path_combo; coverage_id=COV-EX-0016; fidelity_status=not_applicable",
+      "implementation_binding": "shared_contract",
+      "recommended_cr_stage": "dual_code",
+      "manual_confirmation_required": true,
+      "cr_focus_points": [
+        "输入已有标签的大小写变体时复用同一个小写标签记录，不新建重复标签。",
+        "coverage_id=COV-EX-0016"
+      ]
+    },
+    {
+      "record_id": "TRA-0008",
+      "evidence_id": "EVD-UNMAPPED",
+      "coverage_level": "full",
+      "structured_targets": [
+        {
+          "target_type": "feature",
+          "module_name": "礼品卡批量创建",
+          "feature_name": "批量礼品卡标签关系追加",
+          "field_name": "",
+          "target_name": "同一请求重复输入同名新标签时只创建一个小写标签记录。"
+        }
+      ],
+      "testcase_ids": [
+        "OSS-BLIND-GIFTCARDBULK-BULKCREATE-API-DV-006"
+      ],
+      "gap_notes": "adapter_source=coverage_first_traceability; source_record_id=CFT-0008; rule_id=礼品卡批量创建::批量礼品卡标签关系追加::happy_path_combo; coverage_id=COV-EX-0017; fidelity_status=not_applicable",
+      "implementation_binding": "shared_contract",
+      "recommended_cr_stage": "dual_code",
+      "manual_confirmation_required": true,
+      "cr_focus_points": [
+        "同一请求重复输入同名新标签时只创建一个小写标签记录。",
+        "coverage_id=COV-EX-0017"
+      ]
+    },
+    {
+      "record_id": "TRA-0009",
+      "evidence_id": "EVD-UNMAPPED",
+      "coverage_level": "full",
+      "structured_targets": [
+        {
+          "target_type": "feature",
+          "module_name": "礼品卡批量创建",
+          "feature_name": "批量礼品卡标签关系追加",
+          "field_name": "",
+          "target_name": "大小写变体或重复标签输入只为当前批次礼品卡建立一次对应标签关系。"
+        }
+      ],
+      "testcase_ids": [
+        "OSS-BLIND-GIFTCARDBULK-BULKCREATE-API-FL-007"
+      ],
+      "gap_notes": "adapter_source=coverage_first_traceability; source_record_id=CFT-0009; rule_id=礼品卡批量创建::批量礼品卡标签关系追加::happy_path_combo; coverage_id=COV-EX-0018; fidelity_status=not_applicable",
+      "implementation_binding": "shared_contract",
+      "recommended_cr_stage": "dual_code",
+      "manual_confirmation_required": true,
+      "cr_focus_points": [
+        "大小写变体或重复标签输入只为当前批次礼品卡建立一次对应标签关系。",
+        "coverage_id=COV-EX-0018"
+      ]
+    }
+  ]
+}

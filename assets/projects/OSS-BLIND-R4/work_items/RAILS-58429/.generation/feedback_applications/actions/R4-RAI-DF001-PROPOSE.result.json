@@ -1,0 +1,24 @@
+{
+  "schema_version": "1.1.0",
+  "record_type": "result",
+  "action_id": "R4-RAI-DF001-PROPOSE",
+  "request_sha256": "b74abfe5d5832d3d0cbc3d47c463caf2a10f6bc8dd740cd3c41fcbd3d1f823ee",
+  "execution_context": {
+    "run_id": "RUN-R4-RAILS-58429",
+    "actor": "codex-agent",
+    "provider": "openai"
+  },
+  "observation": {
+    "ok": true,
+    "action_type": "propose_feedback_design_artifacts",
+    "result": {
+      "status": "proposed",
+      "target_layer": "testability_gate",
+      "paths": [
+        "acceptance/testability_gate.json",
+        "acceptance/testability_gate.md"
+      ]
+    }
+  },
+  "recorded_at": "2026-09-22T04:46:21.334422+00:00"
+}

@@ -1,0 +1,244 @@
+{
+  "project_code": "OSS-BLIND-R3",
+  "work_item_id": "SUPABASE-50569",
+  "generated_at": "2026-09-22T07:38:32",
+  "metric_scope": "post_generation_oracle_review_only",
+  "oracle": {
+    "source_url": "https://github.com/supabase/supabase/pull/50569",
+    "head_sha": "3e3d1348dd7ddc901c7425168cdf2ccbf5f9dbce"
+  },
+  "oracle_assertion_count": 13,
+  "assertion_disposition_counts": {
+    "covered": 6,
+    "missing": 2,
+    "partial": 5
+  },
+  "oracle_coverage_rate": 0.6538,
+  "oracle_scope_metrics": {
+    "implementation": {
+      "assertion_count": 7,
+      "assertion_disposition_counts": {
+        "covered": 0,
+        "missing": 2,
+        "partial": 5
+      },
+      "coverage_rate": 0.3571
+    },
+    "requirement": {
+      "assertion_count": 6,
+      "assertion_disposition_counts": {
+        "covered": 6,
+        "missing": 0,
+        "partial": 0
+      },
+      "coverage_rate": 1.0
+    },
+    "risk": {
+      "assertion_count": 0,
+      "assertion_disposition_counts": {
+        "covered": 0,
+        "missing": 0,
+        "partial": 0
+      },
+      "coverage_rate": null
+    }
+  },
+  "requirement_oracle_coverage_rate": 1.0,
+  "implementation_oracle_coverage_rate": 0.3571,
+  "risk_oracle_coverage_rate": null,
+  "testcase_count": 11,
+  "testcase_disposition_counts": {
+    "context_overreach": 0,
+    "direct_match": 9,
+    "requirement_regression": 2
+  },
+  "testcase_relevance_rate": 1.0,
+  "assertions": [
+    {
+      "assertion_id": "OA-001",
+      "summary": "仅在功能开关开启且恢复码状态可用时显示恢复码入口",
+      "disposition": "covered",
+      "testcase_ids": [
+        "OSS-BLIND-R3-RECOVERYAUTH-RECOVERYCODE-WEB-FN-001",
+        "OSS-BLIND-R3-RECOVERYAUTH-RECOVERYCODE-WEB-FN-002"
+      ],
+      "oracle_scope": "requirement"
+    },
+    {
+      "assertion_id": "OA-002",
+      "summary": "入口进入独立恢复码页面并保留当前查询参数与返回目标",
+      "oracle_scope": "implementation",
+      "disposition": "partial",
+      "testcase_ids": [
+        "OSS-BLIND-R3-RECOVERYAUTH-RECOVERYCODE-WEB-FL-001"
+      ],
+      "design_feedback_ids": [
+        "DF-001"
+      ]
+    },
+    {
+      "assertion_id": "OA-003A",
+      "summary": "空恢复码不得建立 MFA 完成会话",
+      "disposition": "covered",
+      "testcase_ids": [
+        "OSS-BLIND-R3-RECOVERYAUTH-RECOVERYCODE-WEB-AB-003"
+      ],
+      "oracle_scope": "requirement"
+    },
+    {
+      "assertion_id": "OA-003B",
+      "summary": "空恢复码在客户端显示明确必填反馈",
+      "oracle_scope": "implementation",
+      "disposition": "partial",
+      "testcase_ids": [
+        "OSS-BLIND-R3-RECOVERYAUTH-RECOVERYCODE-WEB-AB-003"
+      ],
+      "design_feedback_ids": [
+        "DF-002"
+      ]
+    },
+    {
+      "assertion_id": "OA-004A",
+      "summary": "有效恢复码完成 MFA 认证",
+      "disposition": "covered",
+      "testcase_ids": [
+        "OSS-BLIND-R3-RECOVERYAUTH-RECOVERYCODE-WEB-FL-002"
+      ],
+      "oracle_scope": "requirement"
+    },
+    {
+      "assertion_id": "OA-004B",
+      "summary": "成功后刷新客户端认证状态并返回原 returnTo",
+      "oracle_scope": "implementation",
+      "disposition": "partial",
+      "testcase_ids": [
+        "OSS-BLIND-R3-RECOVERYAUTH-RECOVERYCODE-WEB-FL-002"
+      ],
+      "design_feedback_ids": [
+        "DF-001"
+      ]
+    },
+    {
+      "assertion_id": "OA-005",
+      "summary": "无效、已用或格式错误恢复码不能建立 MFA 完成会话",
+      "disposition": "covered",
+      "testcase_ids": [
+        "OSS-BLIND-R3-RECOVERYAUTH-RECOVERYCODE-WEB-AB-001",
+        "OSS-BLIND-R3-RECOVERYAUTH-RECOVERYCODE-WEB-AB-002",
+        "OSS-BLIND-R3-RECOVERYAUTH-RECOVERYCODE-WEB-AB-004"
+      ],
+      "oracle_scope": "requirement"
+    },
+    {
+      "assertion_id": "OA-006",
+      "summary": "功能关闭或账户未登记恢复码时，直接访问页面按 returnTo 跳离",
+      "oracle_scope": "implementation",
+      "disposition": "partial",
+      "testcase_ids": [
+        "OSS-BLIND-R3-RECOVERYAUTH-RECOVERYCODE-WEB-FL-003"
+      ],
+      "design_feedback_ids": [
+        "DF-003"
+      ]
+    },
+    {
+      "assertion_id": "OA-007",
+      "summary": "状态查询加载与失败均有可观察页面反馈",
+      "oracle_scope": "implementation",
+      "disposition": "missing",
+      "testcase_ids": [],
+      "design_feedback_ids": [
+        "DF-004"
+      ]
+    },
+    {
+      "assertion_id": "OA-008",
+      "summary": "验证进行中阻止重复提交，粘贴与显隐交互不会改变提交的恢复码",
+      "oracle_scope": "implementation",
+      "disposition": "missing",
+      "testcase_ids": [],
+      "design_feedback_ids": [
+        "DF-004"
+      ]
+    },
+    {
+      "assertion_id": "OA-009",
+      "summary": "验证失败显示错误反馈并保留重试能力",
+      "oracle_scope": "implementation",
+      "disposition": "partial",
+      "testcase_ids": [
+        "OSS-BLIND-R3-RECOVERYAUTH-RECOVERYCODE-WEB-AB-001",
+        "OSS-BLIND-R3-RECOVERYAUTH-RECOVERYCODE-WEB-AB-002",
+        "OSS-BLIND-R3-RECOVERYAUTH-RECOVERYCODE-WEB-AB-004"
+      ],
+      "design_feedback_ids": [
+        "DF-002"
+      ]
+    },
+    {
+      "assertion_id": "OA-010",
+      "summary": "成功使用后恢复码数量减少且已用码不可复用",
+      "disposition": "covered",
+      "testcase_ids": [
+        "OSS-BLIND-R3-RECOVERYAUTH-RECOVERYCODE-WEB-DV-001",
+        "OSS-BLIND-R3-RECOVERYAUTH-RECOVERYCODE-WEB-AB-001"
+      ],
+      "oracle_scope": "requirement"
+    },
+    {
+      "assertion_id": "OA-011",
+      "summary": "恢复码开关不影响普通 MFA 路径",
+      "disposition": "covered",
+      "testcase_ids": [
+        "OSS-BLIND-R3-RECOVERYAUTH-RECOVERYCODE-WEB-FL-004"
+      ],
+      "oracle_scope": "requirement"
+    }
+  ],
+  "testcase_assessments": [
+    {
+      "testcase_id": "OSS-BLIND-R3-RECOVERYAUTH-RECOVERYCODE-WEB-FN-001",
+      "disposition": "direct_match"
+    },
+    {
+      "testcase_id": "OSS-BLIND-R3-RECOVERYAUTH-RECOVERYCODE-WEB-FL-001",
+      "disposition": "direct_match"
+    },
+    {
+      "testcase_id": "OSS-BLIND-R3-RECOVERYAUTH-RECOVERYCODE-WEB-FL-002",
+      "disposition": "direct_match"
+    },
+    {
+      "testcase_id": "OSS-BLIND-R3-RECOVERYAUTH-RECOVERYCODE-WEB-DV-001",
+      "disposition": "requirement_regression"
+    },
+    {
+      "testcase_id": "OSS-BLIND-R3-RECOVERYAUTH-RECOVERYCODE-WEB-AB-001",
+      "disposition": "requirement_regression"
+    },
+    {
+      "testcase_id": "OSS-BLIND-R3-RECOVERYAUTH-RECOVERYCODE-WEB-AB-002",
+      "disposition": "direct_match"
+    },
+    {
+      "testcase_id": "OSS-BLIND-R3-RECOVERYAUTH-RECOVERYCODE-WEB-AB-003",
+      "disposition": "direct_match"
+    },
+    {
+      "testcase_id": "OSS-BLIND-R3-RECOVERYAUTH-RECOVERYCODE-WEB-AB-004",
+      "disposition": "direct_match"
+    },
+    {
+      "testcase_id": "OSS-BLIND-R3-RECOVERYAUTH-RECOVERYCODE-WEB-FN-002",
+      "disposition": "direct_match"
+    },
+    {
+      "testcase_id": "OSS-BLIND-R3-RECOVERYAUTH-RECOVERYCODE-WEB-FL-003",
+      "disposition": "direct_match"
+    },
+    {
+      "testcase_id": "OSS-BLIND-R3-RECOVERYAUTH-RECOVERYCODE-WEB-FL-004",
+      "disposition": "direct_match"
+    }
+  ]
+}

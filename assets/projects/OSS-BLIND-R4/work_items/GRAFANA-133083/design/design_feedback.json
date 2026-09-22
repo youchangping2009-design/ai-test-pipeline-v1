@@ -1,0 +1,102 @@
+{
+  "project_code": "OSS-BLIND-R4",
+  "work_item_id": "GRAFANA-133083",
+  "feedback_items": [
+    {
+      "feedback_id": "DF-001",
+      "source_review_stage": "manual_review",
+      "source_confirmation_file": "reviews/review_record.md",
+      "source_case_plan_ids": [
+        "CP-001",
+        "CP-002",
+        "CP-010"
+      ],
+      "source_testcase_ids": [
+        "OSS-BLIND-R4-APISTORE-SERIALIZER-API-ST-001",
+        "OSS-BLIND-R4-APISTORE-SERIALIZER-API-ST-002",
+        "OSS-BLIND-R4-APISTORE-SERIALIZER-API-DV-001"
+      ],
+      "feedback_type": "risk_note",
+      "target_layer": "testability_gate",
+      "title": "补齐 Serializer 错误传播与 JSON 异常输入风险",
+      "finding": "公开补丁测试要求 encode/decode 错误原样传播、失败编码不返回载荷，并覆盖非法 JSON、不可编码值以及 nil/typed/unstructured decode target；冻结设计只覆盖正常往返。",
+      "recommended_action": "将错误传播和 JSON 异常输入记录为实现级 Gate 风险；仅在需求方确认其为交付契约后再下沉 Acceptance 与 Case Plan。",
+      "must_not_directly_overwrite_testcase": true,
+      "status": "applied"
+    },
+    {
+      "feedback_id": "DF-002",
+      "source_review_stage": "manual_review",
+      "source_confirmation_file": "reviews/review_record.md",
+      "source_case_plan_ids": [
+        "CP-001",
+        "CP-002",
+        "CP-003",
+        "CP-004",
+        "CP-012",
+        "CP-013",
+        "CP-014"
+      ],
+      "source_testcase_ids": [
+        "OSS-BLIND-R4-APISTORE-SERIALIZER-API-ST-001",
+        "OSS-BLIND-R4-APISTORE-SERIALIZER-API-ST-002",
+        "OSS-BLIND-R4-APISTORE-SERIALIZER-API-ST-003",
+        "OSS-BLIND-R4-APISTORE-SERIALIZER-API-ST-004",
+        "OSS-BLIND-R4-APISTORE-SERIALIZER-API-ST-010",
+        "OSS-BLIND-R4-APISTORE-SERIALIZER-API-ST-011",
+        "OSS-BLIND-R4-APISTORE-SERIALIZER-API-ST-012"
+      ],
+      "feedback_type": "case_gap",
+      "target_layer": "testability_gate",
+      "title": "将请求 context 传播覆盖到非 watch 序列化路径",
+      "finding": "冻结用例完整检查 watch 当前对象、历史对象与取消，但写入、单条读取和列表用例只断言 Serializer 选择，未断言调用收到原请求 context。",
+      "recommended_action": "以获批需求摘要和 Reasoning ER-002 为来源，在 Gate 新增可测试决策，再按正常顺序生成 Acceptance 与 Case Plan；不得仅在现有 Case Plan 上追加无上游来源的断言。",
+      "must_not_directly_overwrite_testcase": true,
+      "status": "applied"
+    },
+    {
+      "feedback_id": "DF-003",
+      "source_review_stage": "manual_review",
+      "source_confirmation_file": "reviews/review_record.md",
+      "source_case_plan_ids": [
+        "CP-005",
+        "CP-006"
+      ],
+      "source_testcase_ids": [
+        "OSS-BLIND-R4-APISTORE-SERIALIZER-API-ST-005",
+        "OSS-BLIND-R4-APISTORE-SERIALIZER-API-ST-006"
+      ],
+      "feedback_type": "risk_note",
+      "target_layer": "testability_gate",
+      "title": "明确 Serializer 与版本上限策略的交互边界",
+      "finding": "公开实现按 Serializer 实际输出的 apiVersion 执行版本上限，拒绝跨资源组输出，同时为删除相关写入保留超上限豁免；这些规则在需求摘要中仍是待确认项。",
+      "recommended_action": "先在 Gate 记录版本上限、跨组拒绝和删除豁免风险，确认属于产品契约后再生成正式版本策略用例。",
+      "must_not_directly_overwrite_testcase": true,
+      "status": "applied"
+    },
+    {
+      "feedback_id": "DF-004",
+      "source_review_stage": "manual_review",
+      "source_confirmation_file": "reviews/review_record.md",
+      "source_case_plan_ids": [
+        "CP-001",
+        "CP-002",
+        "CP-003",
+        "CP-004"
+      ],
+      "source_testcase_ids": [
+        "OSS-BLIND-R4-APISTORE-SERIALIZER-API-ST-001",
+        "OSS-BLIND-R4-APISTORE-SERIALIZER-API-ST-002",
+        "OSS-BLIND-R4-APISTORE-SERIALIZER-API-ST-003",
+        "OSS-BLIND-R4-APISTORE-SERIALIZER-API-ST-004"
+      ],
+      "feedback_type": "risk_note",
+      "target_layer": "testability_gate",
+      "title": "保留 Serializer 并发安全约束",
+      "finding": "Serializer 接口文档明确实现必须可并发安全使用，但冻结设计未将并发调用列入风险或验证责任。",
+      "recommended_action": "将并发安全作为实现级风险与代码评审关注点；具备 race 或并发压力环境后再决定是否形成稳定性计划。",
+      "must_not_directly_overwrite_testcase": true,
+      "status": "applied"
+    }
+  ]
+}

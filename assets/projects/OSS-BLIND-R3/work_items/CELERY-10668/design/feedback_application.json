@@ -1,0 +1,38 @@
+{
+  "project_code": "OSS-BLIND-R3",
+  "work_item_id": "CELERY-10668",
+  "applications": [
+    {
+      "feedback_id": "DF-001",
+      "target_layer": "acceptance_examples",
+      "artifacts": [
+        {
+          "path": "acceptance/acceptance_examples.json",
+          "before_sha256": "2577ef8b58d4505ec6032d71338ef78846ac9dd93ae2cda51735942a8eeef4b3",
+          "after_sha256": "82ca1de140882763d7791c8a123d2a7ab87c6e054d2ff589df51e3e9978a2381"
+        },
+        {
+          "path": "acceptance/acceptance_examples.md",
+          "before_sha256": "ccb7fd69530afddca002736f08dde56edd5ada361fe763b5bc5d718df84efe81",
+          "after_sha256": "41654b03a6777c863aaf8611fd27138448f5dabccf42a9e50356567b188543f2"
+        }
+      ]
+    },
+    {
+      "feedback_id": "DF-002",
+      "target_layer": "case_plan",
+      "artifacts": [
+        {
+          "path": "testcases/case_plan.json",
+          "before_sha256": "ba497a469df4818dec90d13d09034178609c491eefd71c3ecd5c3441c64c7989",
+          "after_sha256": "da2e38fefc1cd79678dedf0f6ce34a50e35b441304c6c1eaa1434919df48311d"
+        },
+        {
+          "path": "testcases/case_plan.md",
+          "before_sha256": "c6d4e02ac6f310866398ae5c4652537a8b5a0ee7017b0f02cd8a476715acdb8d",
+          "after_sha256": "63723eeb7008bf64bc69a964a4a4e5bf2206f5de6bbe2bcc8c6deb12a42cc81a"
+        }
+      ]
+    }
+  ]
+}

@@ -473,6 +473,10 @@
     }
   },
   "properties": {
+    "grounding_contract_version": {
+      "type": "string",
+      "enum": ["1.0"]
+    },
     "project_code": {
       "type": "string"
     },

@@ -1,0 +1,181 @@
+{
+  "project_code": "OSS-BLIND",
+  "work_item_id": "APPSMITH-42244",
+  "records": [
+    {
+      "record_id": "TRA-0001",
+      "evidence_id": "EVD-UNMAPPED",
+      "coverage_level": "full",
+      "structured_targets": [
+        {
+          "target_type": "feature",
+          "module_name": "Databricks 数据源连接",
+          "feature_name": "自定义 JDBC URL 连接创建",
+          "field_name": "",
+          "target_name": "Databricks 数据源连接创建"
+        }
+      ],
+      "testcase_ids": [
+        "OSS-BLIND-DATABRICKS-CONNECT-SERVER-AB-001"
+      ],
+      "gap_notes": "adapter_source=coverage_first_traceability; source_record_id=CFT-0001; rule_id=Databricks 数据源连接::自定义 JDBC URL 连接创建::happy_path_combo; coverage_id=COV-EX-0003; fidelity_status=not_applicable",
+      "implementation_binding": "backend_contract",
+      "recommended_cr_stage": "backend_code",
+      "manual_confirmation_required": true,
+      "cr_focus_points": [
+        "Databricks 数据源连接创建",
+        "coverage_id=COV-EX-0003"
+      ]
+    },
+    {
+      "record_id": "TRA-0002",
+      "evidence_id": "EVD-UNMAPPED",
+      "coverage_level": "full",
+      "structured_targets": [
+        {
+          "target_type": "feature",
+          "module_name": "Databricks 数据源连接",
+          "feature_name": "自定义 JDBC URL 连接创建",
+          "field_name": "",
+          "target_name": "JDBC URL"
+        }
+      ],
+      "testcase_ids": [
+        "OSS-BLIND-DATABRICKS-CONNECT-SERVER-FN-001"
+      ],
+      "gap_notes": "adapter_source=coverage_first_traceability; source_record_id=CFT-0002; rule_id=Databricks 数据源连接::自定义 JDBC URL 连接创建::happy_path_combo; coverage_id=COV-EX-0004; fidelity_status=not_applicable",
+      "implementation_binding": "shared_contract",
+      "recommended_cr_stage": "dual_code",
+      "manual_confirmation_required": true,
+      "cr_focus_points": [
+        "JDBC URL",
+        "coverage_id=COV-EX-0004"
+      ]
+    },
+    {
+      "record_id": "TRA-0003",
+      "evidence_id": "EVD-UNMAPPED",
+      "coverage_level": "full",
+      "structured_targets": [
+        {
+          "target_type": "feature",
+          "module_name": "Databricks 数据源连接",
+          "feature_name": "自定义 JDBC URL 连接创建",
+          "field_name": "",
+          "target_name": "JDBC driver 选择"
+        }
+      ],
+      "testcase_ids": [
+        "OSS-BLIND-DATABRICKS-CONNECT-SERVER-FL-001"
+      ],
+      "gap_notes": "adapter_source=coverage_first_traceability; source_record_id=CFT-0003; rule_id=Databricks 数据源连接::自定义 JDBC URL 连接创建::happy_path_combo; coverage_id=COV-EX-0005; fidelity_status=not_applicable",
+      "implementation_binding": "shared_contract",
+      "recommended_cr_stage": "dual_code",
+      "manual_confirmation_required": true,
+      "cr_focus_points": [
+        "JDBC driver 选择",
+        "coverage_id=COV-EX-0005"
+      ]
+    },
+    {
+      "record_id": "TRA-0004",
+      "evidence_id": "EVD-UNMAPPED",
+      "coverage_level": "full",
+      "structured_targets": [
+        {
+          "target_type": "feature",
+          "module_name": "Databricks 数据源连接",
+          "feature_name": "自定义 JDBC URL 连接创建",
+          "field_name": "",
+          "target_name": "Databricks JDBC driver 拒绝 URL 时返回连接创建错误并停止后续连接行为。"
+        }
+      ],
+      "testcase_ids": [
+        "OSS-BLIND-DATABRICKS-CONNECT-SERVER-AB-002"
+      ],
+      "gap_notes": "adapter_source=coverage_first_traceability; source_record_id=CFT-0004; rule_id=Databricks 数据源连接::自定义 JDBC URL 连接创建::happy_path_combo; coverage_id=COV-EX-0006; fidelity_status=not_applicable",
+      "implementation_binding": "shared_contract",
+      "recommended_cr_stage": "dual_code",
+      "manual_confirmation_required": true,
+      "cr_focus_points": [
+        "Databricks JDBC driver 拒绝 URL 时返回连接创建错误并停止后续连接行为。",
+        "coverage_id=COV-EX-0006"
+      ]
+    },
+    {
+      "record_id": "TRA-0005",
+      "evidence_id": "EVD-UNMAPPED",
+      "coverage_level": "full",
+      "structured_targets": [
+        {
+          "target_type": "feature",
+          "module_name": "Databricks 数据源连接",
+          "feature_name": "自定义 JDBC URL 连接创建",
+          "field_name": "",
+          "target_name": "Databricks JDBC driver 返回空连接时返回连接创建错误并停止后续连接行为。"
+        }
+      ],
+      "testcase_ids": [
+        "OSS-BLIND-DATABRICKS-CONNECT-SERVER-AB-003"
+      ],
+      "gap_notes": "adapter_source=coverage_first_traceability; source_record_id=CFT-0005; rule_id=Databricks 数据源连接::自定义 JDBC URL 连接创建::happy_path_combo; coverage_id=COV-EX-0007; fidelity_status=not_applicable",
+      "implementation_binding": "shared_contract",
+      "recommended_cr_stage": "dual_code",
+      "manual_confirmation_required": true,
+      "cr_focus_points": [
+        "Databricks JDBC driver 返回空连接时返回连接创建错误并停止后续连接行为。",
+        "coverage_id=COV-EX-0007"
+      ]
+    },
+    {
+      "record_id": "TRA-0006",
+      "evidence_id": "EVD-UNMAPPED",
+      "coverage_level": "full",
+      "structured_targets": [
+        {
+          "target_type": "feature",
+          "module_name": "Databricks 数据源连接",
+          "feature_name": "自定义 JDBC URL 连接创建",
+          "field_name": "",
+          "target_name": "既有合法 Databricks 配置"
+        }
+      ],
+      "testcase_ids": [
+        "OSS-BLIND-DATABRICKS-CONNECT-SERVER-FL-002"
+      ],
+      "gap_notes": "adapter_source=coverage_first_traceability; source_record_id=CFT-0006; rule_id=Databricks 数据源连接::自定义 JDBC URL 连接创建::happy_path_combo; coverage_id=COV-EX-0008; fidelity_status=not_applicable",
+      "implementation_binding": "shared_contract",
+      "recommended_cr_stage": "dual_code",
+      "manual_confirmation_required": true,
+      "cr_focus_points": [
+        "既有合法 Databricks 配置",
+        "coverage_id=COV-EX-0008"
+      ]
+    },
+    {
+      "record_id": "TRA-0007",
+      "evidence_id": "EVD-UNMAPPED",
+      "coverage_level": "full",
+      "structured_targets": [
+        {
+          "target_type": "feature",
+          "module_name": "Databricks 数据源连接",
+          "feature_name": "自定义 JDBC URL 连接创建",
+          "field_name": "",
+          "target_name": "连接创建顺序"
+        }
+      ],
+      "testcase_ids": [
+        "OSS-BLIND-DATABRICKS-CONNECT-SERVER-FL-003"
+      ],
+      "gap_notes": "adapter_source=coverage_first_traceability; source_record_id=CFT-0007; rule_id=Databricks 数据源连接::自定义 JDBC URL 连接创建::happy_path_combo; coverage_id=COV-EX-0009; fidelity_status=not_applicable",
+      "implementation_binding": "shared_contract",
+      "recommended_cr_stage": "dual_code",
+      "manual_confirmation_required": true,
+      "cr_focus_points": [
+        "连接创建顺序",
+        "coverage_id=COV-EX-0009"
+      ]
+    }
+  ]
+}

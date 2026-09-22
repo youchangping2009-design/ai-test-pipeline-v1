@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "AI Test Pipeline Feedback Application Action",
+  "type": "object",
+  "required": [
+    "action_id",
+    "action_type",
+    "stage_id",
+    "feedback_id",
+    "arguments",
+    "expected_outcome"
+  ],
+  "properties": {
+    "action_id": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$"
+    },
+    "action_type": {
+      "type": "string",
+      "enum": [
+        "prepare_feedback_application",
+        "propose_feedback_design_artifacts",
+        "record_feedback_application"
+      ]
+    },
+    "stage_id": { "const": "design_feedback_application" },
+    "feedback_id": { "type": "string", "minLength": 1 },
+    "arguments": { "type": "object" },
+    "expected_outcome": { "type": "string", "minLength": 1 }
+  },
+  "additionalProperties": false
+}

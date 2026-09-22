@@ -1,0 +1,11 @@
+{
+  "generated_at": "2026-09-22T12:56:18",
+  "project_code": "OSS-BLIND-R4",
+  "work_item_id": "GRAFANA-133083",
+  "group_count": 0,
+  "groups_by_type": {
+    "page_level_metadata_audit": [],
+    "module_level_field_property_audit": [],
+    "table_header_audit": []
+  }
+}

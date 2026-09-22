@@ -1,0 +1,31 @@
+{
+  "project_code": "OSS-BLIND-R4",
+  "index_type": "risk",
+  "generated_at": "2026-09-22T13:13:56",
+  "items": [
+    {
+      "risk_id": "GRAFANA-133083-QUALITY-001",
+      "work_item_id": "GRAFANA-133083",
+      "source_type": "quality_report",
+      "summary": "仍有 1 条用例包含泛化步骤、抽象预期或语义错型。",
+      "status": "open",
+      "source_path": "work_items/GRAFANA-133083/reviews/quality_report.json"
+    },
+    {
+      "risk_id": "HOMEASSISTANT-182800-QUALITY-001",
+      "work_item_id": "HOMEASSISTANT-182800",
+      "source_type": "quality_report",
+      "summary": "仍有 2 条用例包含泛化步骤、抽象预期或语义错型。",
+      "status": "open",
+      "source_path": "work_items/HOMEASSISTANT-182800/reviews/quality_report.json"
+    },
+    {
+      "risk_id": "KUBERNETES-141831-QUALITY-001",
+      "work_item_id": "KUBERNETES-141831",
+      "source_type": "quality_report",
+      "summary": "仍有 1 条用例包含泛化步骤、抽象预期或语义错型。",
+      "status": "open",
+      "source_path": "work_items/KUBERNETES-141831/reviews/quality_report.json"
+    }
+  ]
+}

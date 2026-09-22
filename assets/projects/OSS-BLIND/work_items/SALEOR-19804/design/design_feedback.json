@@ -1,0 +1,34 @@
+{
+  "project_code": "OSS-BLIND",
+  "work_item_id": "SALEOR-19804",
+  "feedback_items": [
+    {
+      "feedback_id": "DF-001",
+      "source_review_stage": "manual_review",
+      "source_confirmation_file": "reviews/review_record.md",
+      "source_case_plan_ids": ["CP-002", "CP-004"],
+      "source_testcase_ids": ["OSS-BLIND-GIFTCARDBULK-BULKCREATE-API-FL-002", "OSS-BLIND-GIFTCARDBULK-BULKCREATE-API-FL-004"],
+      "feedback_type": "case_gap",
+      "target_layer": "testability_gate",
+      "title": "补充标签名称归一与去重",
+      "finding": "公开回归测试覆盖已有标签和新标签的大小写变体与重复输入，并断言只新增一个小写标签；当前设计层没有该规则。",
+      "recommended_action": "在 Structured PRD 与 Gate 明确标签名称归一、重复输入去重和标签记录数量，再生成原子 Case Plan。",
+      "must_not_directly_overwrite_testcase": true,
+      "status": "applied"
+    },
+    {
+      "feedback_id": "DF-002",
+      "source_review_stage": "manual_review",
+      "source_confirmation_file": "reviews/review_record.md",
+      "source_case_plan_ids": ["CP-003"],
+      "source_testcase_ids": ["OSS-BLIND-GIFTCARDBULK-BULKCREATE-API-FL-003"],
+      "feedback_type": "case_gap",
+      "target_layer": "acceptance_examples",
+      "title": "具体化跨批次标签集合判定",
+      "finding": "CP-003 只描述相同、部分重叠和完全不同，未提供输入矩阵、批次数量以及每个标签精确成员集合。",
+      "recommended_action": "在 Acceptance 中列出四组标签集合，并以每个标签关联礼品卡 ID 等于各批次并集作为 oracle。",
+      "must_not_directly_overwrite_testcase": true,
+      "status": "applied"
+    }
+  ]
+}

@@ -1,0 +1,212 @@
+{
+  "project_code": "OSS-BLIND",
+  "work_item_id": "CHATWOOT-15768",
+  "truth_source": "testcases/testcases_main.md",
+  "projection_only": true,
+  "generated_from": [
+    "testcases/testcases_main.md"
+  ],
+  "cases": [
+    {
+      "testcase_id": "OSS-BLIND-CONVERSATION-FILTER-WEB-FL-001",
+      "page_name": "会话列表页",
+      "section_name": "高级筛选面板",
+      "module": "会话高级筛选",
+      "feature": "自定义属性类型化筛选",
+      "title": "数字自定义属性从输入到匹配保持 number 类型",
+      "preconditions": "会话存在 number 类型自定义属性，用户在[会话列表页]的高级筛选中选择该属性。",
+      "steps": "1. 用户输入数字并应用筛选。",
+      "expected_results": "1. 筛选控件产生 number 类型的值。<br>2. 筛选请求和客户端匹配使用的值均保持 number 类型。<br>3. 最终处理状态可在对应列表或响应结果中核对。",
+      "priority": "P0",
+      "tags": [
+        "AI-API用例",
+        "AI-UI用例",
+        "开发必测",
+        "测试必测"
+      ],
+      "test_type": "流程验证",
+      "remark": "来源 CasePlan：CP-001；来源 Flow：CP-001；来源 Acceptance：AE-001；来源 Rule：CW-R001；来源coverage：COV-EX-0006",
+      "source_case_plan_ids": [
+        "CP-001"
+      ]
+    },
+    {
+      "testcase_id": "OSS-BLIND-CONVERSATION-FILTER-WEB-DV-002",
+      "page_name": "会话列表页",
+      "section_name": "高级筛选面板",
+      "module": "会话高级筛选",
+      "feature": "自定义属性类型化筛选",
+      "title": "请求保留 0 和 false 并过滤真正空值",
+      "preconditions": "分别准备筛选值 0、false、null、undefined 和空字符串。",
+      "steps": "1. 前端生成会话筛选请求。",
+      "expected_results": "1. 数值 0 和布尔值 false 均保留在请求值中。<br>2. null、undefined 和空字符串按空值处理，不作为有效筛选值发送。",
+      "priority": "P0",
+      "tags": [
+        "AI-API用例",
+        "AI-UI用例",
+        "开发必测",
+        "测试必测"
+      ],
+      "test_type": "数据校验",
+      "remark": "来源 CasePlan：CP-002；来源 Acceptance：AE-002；来源 Rule：CW-R002；来源coverage：COV-EX-0007",
+      "source_case_plan_ids": [
+        "CP-002"
+      ]
+    },
+    {
+      "testcase_id": "OSS-BLIND-CONVERSATION-FILTER-WEB-DV-003",
+      "page_name": "会话列表页",
+      "section_name": "高级筛选面板",
+      "module": "会话高级筛选",
+      "feature": "自定义属性类型化筛选",
+      "title": "属性缺失与显式 0、false 分开匹配",
+      "preconditions": "会话集合分别包含属性缺失、属性值为数值 0、属性值为布尔值 false 的记录。",
+      "steps": "1. 客户端读取自定义属性并执行筛选匹配。",
+      "expected_results": "1. 属性缺失的会话不会被当作值为 0 或 false。<br>2. 属性值为 0 或 false 的会话仍可按各自显式值参与匹配。",
+      "priority": "P0",
+      "tags": [
+        "AI-UI用例",
+        "开发必测",
+        "测试必测"
+      ],
+      "test_type": "数据校验",
+      "remark": "来源 CasePlan：CP-003；来源 Acceptance：AE-003；来源 Rule：CW-R003；来源coverage：COV-EX-0008",
+      "source_case_plan_ids": [
+        "CP-003"
+      ]
+    },
+    {
+      "testcase_id": "OSS-BLIND-CONVERSATION-FILTER-WEB-DV-004",
+      "page_name": "会话列表页",
+      "section_name": "高级筛选面板",
+      "module": "会话高级筛选",
+      "feature": "自定义属性类型化筛选",
+      "title": "客户端二次筛选使用严格相等匹配",
+      "preconditions": "会话属性包含数值 0 和字符串 `0` 等值相同但类型不同的数据。",
+      "steps": "1. 客户端使用数值 0 执行二次筛选匹配。",
+      "expected_results": "1. 仅数值与类型都相等的会话被视为匹配。<br>2. 字符串 `0` 不会因统一字符串化而与数值 0 匹配。",
+      "priority": "P0",
+      "tags": [
+        "AI-UI用例",
+        "开发必测",
+        "测试必测"
+      ],
+      "test_type": "数据校验",
+      "remark": "来源 CasePlan：CP-004；来源 Acceptance：AE-004；来源 Rule：CW-R004；来源coverage：COV-EX-0009",
+      "source_case_plan_ids": [
+        "CP-004"
+      ]
+    },
+    {
+      "testcase_id": "OSS-BLIND-CONVERSATION-FILTER-WEB-FN-001",
+      "page_name": "会话列表页",
+      "section_name": "高级筛选面板",
+      "module": "会话高级筛选",
+      "feature": "自定义属性类型化筛选",
+      "title": "等于与不等于运算符按严格相等结果筛选",
+      "preconditions": "会话集合同时包含与筛选值类型和值都相等、仅文本表示相同但类型不同的属性值。",
+      "steps": "1. 用户分别使用 等于 和 不等于 应用同一筛选值。",
+      "expected_results": "1. 等于 只命中类型和值都相等的会话。<br>2. 不等于 排除类型和值都相等的会话，并保留不严格相等的会话。",
+      "priority": "P0",
+      "tags": [
+        "AI-UI用例",
+        "开发必测",
+        "测试必测"
+      ],
+      "test_type": "功能",
+      "remark": "来源 CasePlan：CP-005；来源 Acceptance：AE-005；来源 Rule：CW-R005；来源coverage：COV-EX-0010",
+      "source_case_plan_ids": [
+        "CP-005"
+      ]
+    },
+    {
+      "testcase_id": "OSS-BLIND-CONVERSATION-FILTER-WEB-FN-003",
+      "page_name": "会话列表页",
+      "section_name": "高级筛选面板",
+      "module": "会话高级筛选",
+      "feature": "自定义属性类型化筛选",
+      "title": "文本、日期和列表筛选保持既有结果",
+      "preconditions": "已准备可被文本、日期和列表类型筛选命中的既有会话数据。",
+      "steps": "1. 用户分别应用文本、日期和列表类型的高级筛选。",
+      "expected_results": "1. 三类筛选均按各自既有值类型和运算规则返回正确会话。<br>2. 本次 number 类型修复不会改变这些筛选类型的结果。",
+      "priority": "P1",
+      "tags": [
+        "AI-API用例",
+        "AI-UI用例"
+      ],
+      "test_type": "功能",
+      "remark": "来源 CasePlan：CP-007；来源 Acceptance：AE-007；来源 Rule：CW-R007；来源coverage：COV-EX-0012",
+      "source_case_plan_ids": [
+        "CP-007"
+      ]
+    },
+    {
+      "testcase_id": "OSS-BLIND-CONVERSATION-FILTER-WEB-AB-001",
+      "page_name": "会话列表页",
+      "section_name": "高级筛选面板",
+      "module": "会话高级筛选",
+      "feature": "自定义属性类型化筛选",
+      "title": "空数组筛选值返回必填错误",
+      "preconditions": "准备空数组 `[]` 作为筛选输入。",
+      "steps": "1. 用户应用会话高级筛选。",
+      "expected_results": "1. 输入返回错误值 {VALUE_REQUIRED}。<br>2. 输入校验失败后不生成或发送筛选请求。",
+      "priority": "P0",
+      "tags": [
+        "AI-API用例",
+        "AI-UI用例",
+        "开发必测",
+        "测试必测"
+      ],
+      "test_type": "异常",
+      "remark": "来源 CasePlan：CP-008；来源 Acceptance：AE-008；来源 Rule：CW-R008；来源coverage：COV-EX-0013",
+      "source_case_plan_ids": [
+        "CP-008"
+      ]
+    },
+    {
+      "testcase_id": "OSS-BLIND-CONVERSATION-FILTER-WEB-AB-002",
+      "page_name": "会话列表页",
+      "section_name": "高级筛选面板",
+      "module": "会话高级筛选",
+      "feature": "自定义属性类型化筛选",
+      "title": "早于当前日期天数输入 0 返回范围错误",
+      "preconditions": "“创建时间”筛选条件选择“早于当前日期天数”，输入值为 {0}。",
+      "steps": "1. 用户应用会话高级筛选。",
+      "expected_results": "1. 系统返回错误值 {VALUE_MUST_BE_BETWEEN_1_AND_998}。<br>2. 数值 {0} 不会因空值保留逻辑而绕过日期范围校验。",
+      "priority": "P0",
+      "tags": [
+        "AI-UI用例",
+        "开发必测",
+        "测试必测"
+      ],
+      "test_type": "异常",
+      "remark": "来源 CasePlan：CP-009；来源 Acceptance：AE-009；来源 Rule：CW-R009；来源coverage：COV-EX-0015",
+      "source_case_plan_ids": [
+        "CP-009"
+      ]
+    },
+    {
+      "testcase_id": "OSS-BLIND-CONVERSATION-FILTER-WEB-AB-003",
+      "page_name": "会话列表页",
+      "section_name": "高级筛选面板",
+      "module": "会话高级筛选",
+      "feature": "自定义属性类型化筛选",
+      "title": "空对象筛选值返回必填错误",
+      "preconditions": "准备空对象 `{}` 作为筛选输入。",
+      "steps": "1. 用户应用会话高级筛选。",
+      "expected_results": "1. 输入返回错误值 {VALUE_REQUIRED}。<br>2. 输入校验失败后不生成或发送筛选请求。",
+      "priority": "P0",
+      "tags": [
+        "AI-API用例",
+        "AI-UI用例",
+        "开发必测",
+        "测试必测"
+      ],
+      "test_type": "异常",
+      "remark": "来源 CasePlan：CP-010；来源 Acceptance：AE-010；来源 Rule：CW-R008；来源coverage：COV-EX-0014",
+      "source_case_plan_ids": [
+        "CP-010"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,191 @@
+{
+  "project_code": "OSS-BLIND-R4",
+  "work_item_id": "KUBERNETES-141831",
+  "generated_at": "2026-09-22T12:20:09",
+  "metric_scope": "post_generation_oracle_review_only",
+  "oracle": {
+    "source_url": "https://github.com/kubernetes/kubernetes/pull/141831",
+    "head_sha": "42d2a3f19edd995a73f1bfb4a964f2dbc03358cf"
+  },
+  "oracle_assertion_count": 8,
+  "assertion_disposition_counts": {
+    "covered": 7,
+    "missing": 1,
+    "partial": 0
+  },
+  "oracle_coverage_rate": 0.875,
+  "oracle_scope_metrics": {
+    "implementation": {
+      "assertion_count": 2,
+      "assertion_disposition_counts": {
+        "covered": 1,
+        "missing": 1,
+        "partial": 0
+      },
+      "coverage_rate": 0.5
+    },
+    "requirement": {
+      "assertion_count": 5,
+      "assertion_disposition_counts": {
+        "covered": 5,
+        "missing": 0,
+        "partial": 0
+      },
+      "coverage_rate": 1.0
+    },
+    "risk": {
+      "assertion_count": 1,
+      "assertion_disposition_counts": {
+        "covered": 1,
+        "missing": 0,
+        "partial": 0
+      },
+      "coverage_rate": 1.0
+    }
+  },
+  "requirement_oracle_coverage_rate": 1.0,
+  "implementation_oracle_coverage_rate": 0.5,
+  "risk_oracle_coverage_rate": 1.0,
+  "testcase_count": 13,
+  "testcase_disposition_counts": {
+    "context_overreach": 0,
+    "direct_match": 11,
+    "requirement_regression": 2
+  },
+  "testcase_relevance_rate": 1.0,
+  "assertions": [
+    {
+      "assertion_id": "OA-001",
+      "oracle_scope": "requirement",
+      "summary": "create 与 update 对非 nil 且三个范围字段均未设置的 selector 返回 Warning",
+      "disposition": "covered",
+      "testcase_ids": [
+        "OSS-BLIND-R4-DEVICETAINT-WARNING-API-FN-001",
+        "OSS-BLIND-R4-DEVICETAINT-WARNING-API-FN-002"
+      ]
+    },
+    {
+      "assertion_id": "OA-002",
+      "oracle_scope": "requirement",
+      "summary": "Warning 使用固定的空 selector 风险文本",
+      "disposition": "covered",
+      "testcase_ids": [
+        "OSS-BLIND-R4-DEVICETAINT-WARNING-API-FN-003"
+      ]
+    },
+    {
+      "assertion_id": "OA-003",
+      "oracle_scope": "requirement",
+      "summary": "selector 省略时 create 与 update 均不产生该 Warning",
+      "disposition": "covered",
+      "testcase_ids": [
+        "OSS-BLIND-R4-DEVICETAINT-WARNING-API-FN-004"
+      ]
+    },
+    {
+      "assertion_id": "OA-004",
+      "oracle_scope": "implementation",
+      "summary": "driver、pool 或 device 任一指针已设置时不产生空 selector Warning",
+      "disposition": "covered",
+      "testcase_ids": [
+        "OSS-BLIND-R4-DEVICETAINT-WARNING-API-FN-005",
+        "OSS-BLIND-R4-DEVICETAINT-WARNING-API-FN-006",
+        "OSS-BLIND-R4-DEVICETAINT-WARNING-API-FN-007"
+      ]
+    },
+    {
+      "assertion_id": "OA-005",
+      "oracle_scope": "requirement",
+      "summary": "Warning 是非阻塞提示，不改变 create/update、持久化或 taint 执行语义",
+      "disposition": "covered",
+      "testcase_ids": [
+        "OSS-BLIND-R4-DEVICETAINT-WARNING-API-FL-001",
+        "OSS-BLIND-R4-DEVICETAINT-WARNING-API-FL-002",
+        "OSS-BLIND-R4-DEVICETAINT-WARNING-API-AB-001",
+        "OSS-BLIND-R4-DEVICETAINT-WARNING-API-FL-003"
+      ]
+    },
+    {
+      "assertion_id": "OA-006",
+      "oracle_scope": "requirement",
+      "summary": "空 selector 告警与 taint effect 无关",
+      "disposition": "covered",
+      "testcase_ids": [
+        "OSS-BLIND-R4-DEVICETAINT-WARNING-API-FN-009"
+      ]
+    },
+    {
+      "assertion_id": "OA-007",
+      "oracle_scope": "risk",
+      "summary": "warnings-as-errors 可让客户端返回非零，但服务端对象已经成功创建",
+      "disposition": "covered",
+      "testcase_ids": [
+        "OSS-BLIND-R4-DEVICETAINT-WARNING-API-FL-004"
+      ]
+    },
+    {
+      "assertion_id": "OA-008",
+      "oracle_scope": "implementation",
+      "summary": "范围字段以指针是否为 nil 判断；指向空字符串的 driver、pool 或 device 也会被视为已设置并抑制 Warning",
+      "disposition": "missing",
+      "testcase_ids": [],
+      "design_feedback_ids": [
+        "DF-001"
+      ]
+    }
+  ],
+  "testcase_assessments": [
+    {
+      "testcase_id": "OSS-BLIND-R4-DEVICETAINT-WARNING-API-FN-001",
+      "disposition": "direct_match"
+    },
+    {
+      "testcase_id": "OSS-BLIND-R4-DEVICETAINT-WARNING-API-FN-002",
+      "disposition": "direct_match"
+    },
+    {
+      "testcase_id": "OSS-BLIND-R4-DEVICETAINT-WARNING-API-FN-003",
+      "disposition": "direct_match"
+    },
+    {
+      "testcase_id": "OSS-BLIND-R4-DEVICETAINT-WARNING-API-FN-004",
+      "disposition": "direct_match"
+    },
+    {
+      "testcase_id": "OSS-BLIND-R4-DEVICETAINT-WARNING-API-FN-005",
+      "disposition": "direct_match"
+    },
+    {
+      "testcase_id": "OSS-BLIND-R4-DEVICETAINT-WARNING-API-FN-006",
+      "disposition": "direct_match"
+    },
+    {
+      "testcase_id": "OSS-BLIND-R4-DEVICETAINT-WARNING-API-FN-007",
+      "disposition": "direct_match"
+    },
+    {
+      "testcase_id": "OSS-BLIND-R4-DEVICETAINT-WARNING-API-FL-001",
+      "disposition": "direct_match"
+    },
+    {
+      "testcase_id": "OSS-BLIND-R4-DEVICETAINT-WARNING-API-FL-002",
+      "disposition": "direct_match"
+    },
+    {
+      "testcase_id": "OSS-BLIND-R4-DEVICETAINT-WARNING-API-AB-001",
+      "disposition": "requirement_regression"
+    },
+    {
+      "testcase_id": "OSS-BLIND-R4-DEVICETAINT-WARNING-API-FL-003",
+      "disposition": "requirement_regression"
+    },
+    {
+      "testcase_id": "OSS-BLIND-R4-DEVICETAINT-WARNING-API-FN-009",
+      "disposition": "direct_match"
+    },
+    {
+      "testcase_id": "OSS-BLIND-R4-DEVICETAINT-WARNING-API-FL-004",
+      "disposition": "direct_match"
+    }
+  ]
+}

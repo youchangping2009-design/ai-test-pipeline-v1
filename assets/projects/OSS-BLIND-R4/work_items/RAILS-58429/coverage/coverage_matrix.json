@@ -1,0 +1,409 @@
+{
+  "project_code": "OSS-BLIND-R4",
+  "work_item_id": "RAILS-58429",
+  "generated_at": "2026-09-22T11:21:41",
+  "generated_from": [
+    "structured_prd/structured_prd.json",
+    "analysis/reasoning_pack.json"
+  ],
+  "entries": [
+    {
+      "coverage_id": "COV-EX-0001",
+      "coverage_type": "happy_path_combo",
+      "coverage_level": "business",
+      "emit_mode": "main_testcase",
+      "source_origin": "explicit_rule",
+      "source_scope": "primary_requirement",
+      "source_type": "structured_rule",
+      "title": "无 block 调用 `BroadcastLogger#tagged` 必须返回可继续调用日志方法的 BroadcastLogger，而不是 Array。",
+      "page_name": "BroadcastLogger 标签广播",
+      "section_name": "多 Logger 标签上下文",
+      "module_name": "BroadcastLogger tagged",
+      "feature_name": "无 block 标签广播",
+      "field_name": "",
+      "rule_name": "RAI-R001",
+      "atomic_assertion_index": null,
+      "priority": "high",
+      "rationale": "该规则来自 Structured PRD 的显式需求规则，必须在 Coverage 中保留。",
+      "planned_assertions": [
+        "无 block 调用 `BroadcastLogger#tagged` 必须返回可继续调用日志方法的 BroadcastLogger，而不是 Array。"
+      ],
+      "structured_refs": [
+        "requirement_info.explicit_rules.RAI-R001"
+      ],
+      "reasoning_refs": []
+    },
+    {
+      "coverage_id": "COV-EX-0002",
+      "coverage_type": "happy_path_combo",
+      "coverage_level": "business",
+      "emit_mode": "main_testcase",
+      "source_origin": "explicit_rule",
+      "source_scope": "primary_requirement",
+      "source_type": "structured_rule",
+      "title": "无 block 返回对象中，所有支持 tagged 的 logger 应应用指定标签。",
+      "page_name": "BroadcastLogger 标签广播",
+      "section_name": "多 Logger 标签上下文",
+      "module_name": "BroadcastLogger tagged",
+      "feature_name": "无 block 标签广播",
+      "field_name": "",
+      "rule_name": "RAI-R002",
+      "atomic_assertion_index": null,
+      "priority": "high",
+      "rationale": "该规则来自 Structured PRD 的显式需求规则，必须在 Coverage 中保留。",
+      "planned_assertions": [
+        "无 block 返回对象中，所有支持 tagged 的 logger 应应用指定标签。"
+      ],
+      "structured_refs": [
+        "requirement_info.explicit_rules.RAI-R002"
+      ],
+      "reasoning_refs": []
+    },
+    {
+      "coverage_id": "COV-EX-0003",
+      "coverage_type": "happy_path_combo",
+      "coverage_level": "business",
+      "emit_mode": "main_testcase",
+      "source_origin": "explicit_rule",
+      "source_scope": "primary_requirement",
+      "source_type": "structured_rule",
+      "title": "不支持 tagged 的广播目标仍必须保留并收到后续日志消息。",
+      "page_name": "BroadcastLogger 标签广播",
+      "section_name": "多 Logger 标签上下文",
+      "module_name": "BroadcastLogger tagged",
+      "feature_name": "无 block 标签广播",
+      "field_name": "",
+      "rule_name": "RAI-R003",
+      "atomic_assertion_index": null,
+      "priority": "high",
+      "rationale": "该规则来自 Structured PRD 的显式需求规则，必须在 Coverage 中保留。",
+      "planned_assertions": [
+        "不支持 tagged 的广播目标仍必须保留并收到后续日志消息。"
+      ],
+      "structured_refs": [
+        "requirement_info.explicit_rules.RAI-R003"
+      ],
+      "reasoning_refs": []
+    },
+    {
+      "coverage_id": "COV-EX-0004",
+      "coverage_type": "happy_path_combo",
+      "coverage_level": "business",
+      "emit_mode": "main_testcase",
+      "source_origin": "explicit_rule",
+      "source_scope": "primary_requirement",
+      "source_type": "structured_rule",
+      "title": "用户 block 只执行一次。",
+      "page_name": "BroadcastLogger 标签广播",
+      "section_name": "多 Logger 标签上下文",
+      "module_name": "BroadcastLogger tagged",
+      "feature_name": "Block 标签上下文",
+      "field_name": "",
+      "rule_name": "RAI-R004",
+      "atomic_assertion_index": 1,
+      "priority": "high",
+      "rationale": "该规则来自 Structured PRD 的显式需求规则，必须在 Coverage 中保留。",
+      "planned_assertions": [
+        "用户 block 只执行一次。"
+      ],
+      "structured_refs": [
+        "requirement_info.explicit_rules.RAI-R004"
+      ],
+      "reasoning_refs": []
+    },
+    {
+      "coverage_id": "COV-EX-0005",
+      "coverage_type": "happy_path_combo",
+      "coverage_level": "business",
+      "emit_mode": "main_testcase",
+      "source_origin": "explicit_rule",
+      "source_scope": "primary_requirement",
+      "source_type": "structured_rule",
+      "title": "所有支持 tagged 的 logger 在同一次 block 执行期间激活标签。",
+      "page_name": "BroadcastLogger 标签广播",
+      "section_name": "多 Logger 标签上下文",
+      "module_name": "BroadcastLogger tagged",
+      "feature_name": "Block 标签上下文",
+      "field_name": "",
+      "rule_name": "RAI-R004",
+      "atomic_assertion_index": 2,
+      "priority": "high",
+      "rationale": "该规则来自 Structured PRD 的显式需求规则，必须在 Coverage 中保留。",
+      "planned_assertions": [
+        "所有支持 tagged 的 logger 在同一次 block 执行期间激活标签。"
+      ],
+      "structured_refs": [
+        "requirement_info.explicit_rules.RAI-R004"
+      ],
+      "reasoning_refs": []
+    },
+    {
+      "coverage_id": "COV-EX-0006",
+      "coverage_type": "happy_path_combo",
+      "coverage_level": "business",
+      "emit_mode": "main_testcase",
+      "source_origin": "explicit_rule",
+      "source_scope": "primary_requirement",
+      "source_type": "structured_rule",
+      "title": "block 正常结束后清理临时标签。",
+      "page_name": "BroadcastLogger 标签广播",
+      "section_name": "多 Logger 标签上下文",
+      "module_name": "BroadcastLogger tagged",
+      "feature_name": "Block 标签上下文",
+      "field_name": "",
+      "rule_name": "RAI-R005",
+      "atomic_assertion_index": 1,
+      "priority": "high",
+      "rationale": "该规则来自 Structured PRD 的显式需求规则，必须在 Coverage 中保留。",
+      "planned_assertions": [
+        "block 正常结束后清理临时标签。"
+      ],
+      "structured_refs": [
+        "requirement_info.explicit_rules.RAI-R005"
+      ],
+      "reasoning_refs": []
+    },
+    {
+      "coverage_id": "COV-EX-0007",
+      "coverage_type": "happy_path_combo",
+      "coverage_level": "business",
+      "emit_mode": "main_testcase",
+      "source_origin": "explicit_rule",
+      "source_scope": "primary_requirement",
+      "source_type": "structured_rule",
+      "title": "block 抛出异常后清理临时标签。",
+      "page_name": "BroadcastLogger 标签广播",
+      "section_name": "多 Logger 标签上下文",
+      "module_name": "BroadcastLogger tagged",
+      "feature_name": "Block 标签上下文",
+      "field_name": "",
+      "rule_name": "RAI-R005",
+      "atomic_assertion_index": 2,
+      "priority": "high",
+      "rationale": "该规则来自 Structured PRD 的显式需求规则，必须在 Coverage 中保留。",
+      "planned_assertions": [
+        "block 抛出异常后清理临时标签。"
+      ],
+      "structured_refs": [
+        "requirement_info.explicit_rules.RAI-R005"
+      ],
+      "reasoning_refs": []
+    },
+    {
+      "coverage_id": "COV-EX-0008",
+      "coverage_type": "happy_path_combo",
+      "coverage_level": "business",
+      "emit_mode": "main_testcase",
+      "source_origin": "explicit_rule",
+      "source_scope": "primary_requirement",
+      "source_type": "structured_rule",
+      "title": "block 异常继续传播给调用方。",
+      "page_name": "BroadcastLogger 标签广播",
+      "section_name": "多 Logger 标签上下文",
+      "module_name": "BroadcastLogger tagged",
+      "feature_name": "Block 标签上下文",
+      "field_name": "",
+      "rule_name": "RAI-R005",
+      "atomic_assertion_index": 3,
+      "priority": "high",
+      "rationale": "该规则来自 Structured PRD 的显式需求规则，必须在 Coverage 中保留。",
+      "planned_assertions": [
+        "block 异常继续传播给调用方。"
+      ],
+      "structured_refs": [
+        "requirement_info.explicit_rules.RAI-R005"
+      ],
+      "reasoning_refs": []
+    },
+    {
+      "coverage_id": "COV-EX-0009",
+      "coverage_type": "happy_path_combo",
+      "coverage_level": "business",
+      "emit_mode": "main_testcase",
+      "source_origin": "explicit_rule",
+      "source_scope": "primary_requirement",
+      "source_type": "structured_rule",
+      "title": "是否参与标签处理以广播目标是否响应 `tagged` 为能力边界。",
+      "page_name": "BroadcastLogger 标签广播",
+      "section_name": "多 Logger 标签上下文",
+      "module_name": "BroadcastLogger tagged",
+      "feature_name": "无 block 标签广播",
+      "field_name": "",
+      "rule_name": "RAI-R006",
+      "atomic_assertion_index": null,
+      "priority": "medium",
+      "rationale": "该规则来自 Structured PRD 的显式需求规则，必须在 Coverage 中保留。",
+      "planned_assertions": [
+        "是否参与标签处理以广播目标是否响应 `tagged` 为能力边界。"
+      ],
+      "structured_refs": [
+        "requirement_info.explicit_rules.RAI-R006"
+      ],
+      "reasoning_refs": []
+    },
+    {
+      "coverage_id": "COV-EX-0010",
+      "coverage_type": "happy_path_combo",
+      "coverage_level": "business",
+      "emit_mode": "main_testcase",
+      "source_origin": "explicit_rule",
+      "source_scope": "primary_requirement",
+      "source_type": "structured_rule",
+      "title": "单个支持 tagged 的 logger 和既有普通广播行为不得回退。",
+      "page_name": "BroadcastLogger 标签广播",
+      "section_name": "多 Logger 标签上下文",
+      "module_name": "BroadcastLogger tagged",
+      "feature_name": "无 block 标签广播",
+      "field_name": "",
+      "rule_name": "RAI-R007",
+      "atomic_assertion_index": null,
+      "priority": "medium",
+      "rationale": "该规则来自 Structured PRD 的显式需求规则，必须在 Coverage 中保留。",
+      "planned_assertions": [
+        "单个支持 tagged 的 logger 和既有普通广播行为不得回退。"
+      ],
+      "structured_refs": [
+        "requirement_info.explicit_rules.RAI-R007"
+      ],
+      "reasoning_refs": []
+    },
+    {
+      "coverage_id": "COV-AI-0011",
+      "coverage_type": "happy_path_combo",
+      "coverage_level": "audit_only",
+      "emit_mode": "audit_item",
+      "source_origin": "ai_reasoning",
+      "source_type": "edge_case",
+      "title": "支持与不支持 tagged 的混合组合：无 block 后所有目标仍收到消息，仅支持者应用标签。",
+      "page_name": "",
+      "section_name": "",
+      "module_name": "",
+      "feature_name": "",
+      "field_name": "",
+      "priority": "medium",
+      "rationale": "该项来自 Reasoning Pack，保留为风险/边界审计，不自动升级为产品验收主用例。",
+      "planned_assertions": [
+        "审计并确认：支持与不支持 tagged 的混合组合：无 block 后所有目标仍收到消息，仅支持者应用标签。"
+      ],
+      "structured_refs": [],
+      "reasoning_refs": [
+        "EC-001"
+      ]
+    },
+    {
+      "coverage_id": "COV-AI-0012",
+      "coverage_type": "happy_path_combo",
+      "coverage_level": "audit_only",
+      "emit_mode": "audit_item",
+      "source_origin": "ai_reasoning",
+      "source_type": "edge_case",
+      "title": "block 抛异常时异常继续传播，随后写日志不再携带临时标签。",
+      "page_name": "",
+      "section_name": "",
+      "module_name": "",
+      "feature_name": "",
+      "field_name": "",
+      "priority": "medium",
+      "rationale": "该项来自 Reasoning Pack，保留为风险/边界审计，不自动升级为产品验收主用例。",
+      "planned_assertions": [
+        "审计并确认：block 抛异常时异常继续传播，随后写日志不再携带临时标签。"
+      ],
+      "structured_refs": [],
+      "reasoning_refs": [
+        "EC-002"
+      ]
+    },
+    {
+      "coverage_id": "COV-AI-0013",
+      "coverage_type": "happy_path_combo",
+      "coverage_level": "audit_only",
+      "emit_mode": "audit_item",
+      "source_origin": "ai_reasoning",
+      "source_type": "business_risk",
+      "title": "返回对象如果遗漏非 tagging logger，会造成静默日志丢失。",
+      "page_name": "",
+      "section_name": "",
+      "module_name": "",
+      "feature_name": "",
+      "field_name": "",
+      "priority": "medium",
+      "rationale": "该项来自 Reasoning Pack，保留为风险/边界审计，不自动升级为产品验收主用例。",
+      "planned_assertions": [
+        "审计并确认：返回对象如果遗漏非 tagging logger，会造成静默日志丢失。"
+      ],
+      "structured_refs": [],
+      "reasoning_refs": [
+        "RISK-001"
+      ]
+    },
+    {
+      "coverage_id": "COV-AI-0014",
+      "coverage_type": "happy_path_combo",
+      "coverage_level": "audit_only",
+      "emit_mode": "audit_item",
+      "source_origin": "ai_reasoning",
+      "source_type": "business_risk",
+      "title": "block 重复执行可能重复业务副作用，属于高风险兼容问题。",
+      "page_name": "",
+      "section_name": "",
+      "module_name": "",
+      "feature_name": "",
+      "field_name": "",
+      "priority": "medium",
+      "rationale": "该项来自 Reasoning Pack，保留为风险/边界审计，不自动升级为产品验收主用例。",
+      "planned_assertions": [
+        "审计并确认：block 重复执行可能重复业务副作用，属于高风险兼容问题。"
+      ],
+      "structured_refs": [],
+      "reasoning_refs": [
+        "RISK-002"
+      ]
+    },
+    {
+      "coverage_id": "COV-AI-0015",
+      "coverage_type": "happy_path_combo",
+      "coverage_level": "audit_only",
+      "emit_mode": "audit_item",
+      "source_origin": "ai_reasoning",
+      "source_type": "business_risk",
+      "title": "异常路径清理不完整会把标签泄漏到后续请求或线程。",
+      "page_name": "",
+      "section_name": "",
+      "module_name": "",
+      "feature_name": "",
+      "field_name": "",
+      "priority": "medium",
+      "rationale": "该项来自 Reasoning Pack，保留为风险/边界审计，不自动升级为产品验收主用例。",
+      "planned_assertions": [
+        "审计并确认：异常路径清理不完整会把标签泄漏到后续请求或线程。"
+      ],
+      "structured_refs": [],
+      "reasoning_refs": [
+        "RISK-003"
+      ]
+    },
+    {
+      "coverage_id": "COV-AI-0016",
+      "coverage_type": "happy_path_combo",
+      "coverage_level": "audit_only",
+      "emit_mode": "audit_item",
+      "source_origin": "ai_reasoning",
+      "source_type": "business_risk",
+      "title": "嵌套标签、并发日志和不同 logger 返回值可能暴露组合边界。",
+      "page_name": "",
+      "section_name": "",
+      "module_name": "",
+      "feature_name": "",
+      "field_name": "",
+      "priority": "medium",
+      "rationale": "该项来自 Reasoning Pack，保留为风险/边界审计，不自动升级为产品验收主用例。",
+      "planned_assertions": [
+        "审计并确认：嵌套标签、并发日志和不同 logger 返回值可能暴露组合边界。"
+      ],
+      "structured_refs": [],
+      "reasoning_refs": [
+        "RISK-004"
+      ]
+    }
+  ]
+}

@@ -72,7 +72,18 @@ def validate_semantics(data: dict[str, Any]) -> list[str]:
         coverage_type = str(entry.get("coverage_type", "")).strip()
         coverage_level = str(entry.get("coverage_level", "")).strip()
         emit_mode = str(entry.get("emit_mode", "")).strip()
+        source_scope = str(entry.get("source_scope", "primary_requirement")).strip()
         text = entry_text(entry)
+
+        if source_scope in {"context_only", "oracle_only"}:
+            if coverage_level != "audit_only":
+                errors.append(
+                    f"entries[{index}]: {source_scope} 来源只能为 audit_only，当前为 {coverage_level}"
+                )
+            if emit_mode not in {"audit_item", "group_audit", "drop"}:
+                errors.append(
+                    f"entries[{index}]: {source_scope} 来源不得进入 main_testcase，当前为 {emit_mode}"
+                )
 
         if coverage_type in {"data_source_filter", "data_source_order"} and coverage_level != "critical":
             errors.append(

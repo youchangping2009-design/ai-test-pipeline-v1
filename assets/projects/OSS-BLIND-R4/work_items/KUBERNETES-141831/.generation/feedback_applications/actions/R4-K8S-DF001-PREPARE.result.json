@@ -1,0 +1,25 @@
+{
+  "schema_version": "1.1.0",
+  "record_type": "result",
+  "action_id": "R4-K8S-DF001-PREPARE",
+  "request_sha256": "a1f215feae3b9c380475ff6fa970c758eec24c8fcf2107bae8a7717a9bd3d0ee",
+  "execution_context": {
+    "run_id": "RUN-R4-KUBERNETES-141831",
+    "actor": "codex-agent",
+    "provider": "openai"
+  },
+  "observation": {
+    "ok": true,
+    "action_type": "prepare_feedback_application",
+    "result": {
+      "status": "prepared",
+      "snapshot_path": ".generation/feedback_applications/DF-001.before.json",
+      "target_layer": "testability_gate",
+      "targets": [
+        "acceptance/testability_gate.json",
+        "acceptance/testability_gate.md"
+      ]
+    }
+  },
+  "recorded_at": "2026-09-22T04:46:21.551014+00:00"
+}

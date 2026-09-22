@@ -1,0 +1,761 @@
+{
+  "project_code": "OSS-BLIND",
+  "work_item_id": "SALEOR-19804",
+  "grounding_contract_version": "1.0",
+  "generated_at": "2026-09-21T15:05:29",
+  "generated_from": [
+    "assets/projects/OSS-BLIND/work_items/SALEOR-19804/manifest.json",
+    "assets/projects/OSS-BLIND/work_items/SALEOR-19804/inputs/requirement_summary.md",
+    "assets/projects/OSS-BLIND/work_items/SALEOR-19804/inputs/source_manifest.json",
+    "assets/projects/OSS-BLIND/work_items/SALEOR-19804/image_evidence/image_evidence_inventory.json"
+  ],
+  "requirement_summary": {
+    "title": "SALEOR-19804 Gift card bulk-create tag preservation 需求整理",
+    "summary_text": "调用 `giftCardBulkCreate` 创建新一批礼品卡并复用已有标签时，只能把新礼品卡追加到标签关系，不能移除该标签与历史礼品卡之间的关联。连续批次使用相同、部分重叠或完全不同的标签集合后，每个标签都应保留其全部正确礼品卡成员。",
+    "primary_pages": [],
+    "primary_user_surfaces": [],
+    "source_notes": [
+      "归一化需求来源：assets/projects/OSS-BLIND/work_items/SALEOR-19804/inputs/requirement_summary.md",
+      "SRC-001: https://github.com/saleor/saleor/pull/19804 (available)",
+      "SRC-002: https://github.com/saleor/saleor/pull/19794 (available)",
+      "SRC-003: inputs/public_source_snapshot.md (available)"
+    ]
+  },
+  "explicit_rules": [
+    {
+      "id": "ER-001",
+      "title": "需求整理-explicit_rule",
+      "statement": "调用 `giftCardBulkCreate` 创建新一批礼品卡并复用已有标签时，只能把新礼品卡追加到标签关系，不能移除该标签与历史礼品卡之间的关联。连续批次使用相同、部分重叠或完全不同的标签集合后，每个标签都应保留其全部正确礼品卡成员。",
+      "confidence": 0.99,
+      "reasoning_notes": [
+        "来自主流程 requirement_summary.md 的确认需求。"
+      ],
+      "must_preserve_terms": [],
+      "source_refs": [
+        {
+          "source_type": "input_markdown",
+          "path": "assets/projects/OSS-BLIND/work_items/SALEOR-19804/inputs/requirement_summary.md",
+          "excerpt": "调用 `giftCardBulkCreate` 创建新一批礼品卡并复用已有标签时，只能把新礼品卡追加到标签关系，不能移除该标签与历史礼品卡之间的关联。连续批次使用相同、部分重叠或完全不同的标签集合后，每个标签都应保留其全部正确礼品卡成员。"
+        }
+      ]
+    },
+    {
+      "id": "ER-002",
+      "title": "需求整理-explicit_rule",
+      "statement": "对已存在标签，将新创建礼品卡加入已有关系，而不是替换该标签的完整礼品卡集合。",
+      "confidence": 0.99,
+      "reasoning_notes": [
+        "来自主流程 requirement_summary.md 的确认需求。"
+      ],
+      "must_preserve_terms": [],
+      "source_refs": [
+        {
+          "source_type": "input_markdown",
+          "path": "assets/projects/OSS-BLIND/work_items/SALEOR-19804/inputs/requirement_summary.md",
+          "excerpt": "对已存在标签，将新创建礼品卡加入已有关系，而不是替换该标签的完整礼品卡集合。"
+        }
+      ]
+    },
+    {
+      "id": "ER-003",
+      "title": "需求整理-explicit_rule",
+      "statement": "对新标签，创建标签后关联当前批次礼品卡。",
+      "confidence": 0.99,
+      "reasoning_notes": [
+        "来自主流程 requirement_summary.md 的确认需求。"
+      ],
+      "must_preserve_terms": [],
+      "source_refs": [
+        {
+          "source_type": "input_markdown",
+          "path": "assets/projects/OSS-BLIND/work_items/SALEOR-19804/inputs/requirement_summary.md",
+          "excerpt": "对新标签，创建标签后关联当前批次礼品卡。"
+        }
+      ]
+    },
+    {
+      "id": "ER-004",
+      "title": "需求整理-explicit_rule",
+      "statement": "一次批量创建的返回数量、错误列表和礼品卡标签结果保持既有接口契约。",
+      "confidence": 0.99,
+      "reasoning_notes": [
+        "来自主流程 requirement_summary.md 的确认需求。"
+      ],
+      "must_preserve_terms": [],
+      "source_refs": [
+        {
+          "source_type": "input_markdown",
+          "path": "assets/projects/OSS-BLIND/work_items/SALEOR-19804/inputs/requirement_summary.md",
+          "excerpt": "一次批量创建的返回数量、错误列表和礼品卡标签结果保持既有接口契约。"
+        }
+      ]
+    },
+    {
+      "id": "ER-005",
+      "title": "需求整理-explicit_rule",
+      "statement": "关系更新应支持批量数量，不引入与历史礼品卡数量线性失控的额外查询。",
+      "confidence": 0.99,
+      "reasoning_notes": [
+        "来自主流程 requirement_summary.md 的确认需求。"
+      ],
+      "must_preserve_terms": [],
+      "source_refs": [
+        {
+          "source_type": "input_markdown",
+          "path": "assets/projects/OSS-BLIND/work_items/SALEOR-19804/inputs/requirement_summary.md",
+          "excerpt": "关系更新应支持批量数量，不引入与历史礼品卡数量线性失控的额外查询。"
+        }
+      ]
+    },
+    {
+      "id": "ER-006",
+      "title": "需求整理-explicit_rule",
+      "statement": "第二批复用第一批标签后，第一批礼品卡仍保留该标签。",
+      "confidence": 0.99,
+      "reasoning_notes": [
+        "来自主流程 requirement_summary.md 的确认需求。"
+      ],
+      "must_preserve_terms": [],
+      "source_refs": [
+        {
+          "source_type": "input_markdown",
+          "path": "assets/projects/OSS-BLIND/work_items/SALEOR-19804/inputs/requirement_summary.md",
+          "excerpt": "第二批复用第一批标签后，第一批礼品卡仍保留该标签。"
+        }
+      ]
+    },
+    {
+      "id": "ER-007",
+      "title": "需求整理-explicit_rule",
+      "statement": "两批标签集合完全相同、部分重叠和完全不重叠时，逐标签核对成员集合。",
+      "confidence": 0.99,
+      "reasoning_notes": [
+        "来自主流程 requirement_summary.md 的确认需求。"
+      ],
+      "must_preserve_terms": [],
+      "source_refs": [
+        {
+          "source_type": "input_markdown",
+          "path": "assets/projects/OSS-BLIND/work_items/SALEOR-19804/inputs/requirement_summary.md",
+          "excerpt": "两批标签集合完全相同、部分重叠和完全不重叠时，逐标签核对成员集合。"
+        }
+      ]
+    },
+    {
+      "id": "ER-008",
+      "title": "需求整理-explicit_rule",
+      "statement": "新批次每张礼品卡只获得本次输入指定的标签。",
+      "confidence": 0.99,
+      "reasoning_notes": [
+        "来自主流程 requirement_summary.md 的确认需求。"
+      ],
+      "must_preserve_terms": [],
+      "source_refs": [
+        {
+          "source_type": "input_markdown",
+          "path": "assets/projects/OSS-BLIND/work_items/SALEOR-19804/inputs/requirement_summary.md",
+          "excerpt": "新批次每张礼品卡只获得本次输入指定的标签。"
+        }
+      ]
+    },
+    {
+      "id": "ER-009",
+      "title": "需求整理-explicit_rule",
+      "statement": "新标签与已有标签混合输入时，已有关系保留、新关系正确建立。",
+      "confidence": 0.99,
+      "reasoning_notes": [
+        "来自主流程 requirement_summary.md 的确认需求。"
+      ],
+      "must_preserve_terms": [],
+      "source_refs": [
+        {
+          "source_type": "input_markdown",
+          "path": "assets/projects/OSS-BLIND/work_items/SALEOR-19804/inputs/requirement_summary.md",
+          "excerpt": "新标签与已有标签混合输入时，已有关系保留、新关系正确建立。"
+        }
+      ]
+    },
+    {
+      "id": "ER-010",
+      "title": "需求整理-explicit_rule",
+      "statement": "批量创建返回 count 与实际新建数量一致，errors 为空时才视为成功。",
+      "confidence": 0.99,
+      "reasoning_notes": [
+        "来自主流程 requirement_summary.md 的确认需求。"
+      ],
+      "must_preserve_terms": [],
+      "source_refs": [
+        {
+          "source_type": "input_markdown",
+          "path": "assets/projects/OSS-BLIND/work_items/SALEOR-19804/inputs/requirement_summary.md",
+          "excerpt": "批量创建返回 count 与实际新建数量一致，errors 为空时才视为成功。"
+        }
+      ]
+    },
+    {
+      "id": "ER-011",
+      "title": "需求整理-explicit_rule",
+      "statement": "无权限、非法输入和已有非批量 mutation 不应因本次修复改变行为。",
+      "confidence": 0.99,
+      "reasoning_notes": [
+        "来自主流程 requirement_summary.md 的确认需求。"
+      ],
+      "must_preserve_terms": [],
+      "source_refs": [
+        {
+          "source_type": "input_markdown",
+          "path": "assets/projects/OSS-BLIND/work_items/SALEOR-19804/inputs/requirement_summary.md",
+          "excerpt": "无权限、非法输入和已有非批量 mutation 不应因本次修复改变行为。"
+        }
+      ]
+    },
+    {
+      "id": "ER-012",
+      "title": "需求整理-explicit_rule",
+      "statement": "GraphQL mutation：`giftCardBulkCreate`。",
+      "confidence": 0.99,
+      "reasoning_notes": [
+        "来自主流程 requirement_summary.md 的确认需求。"
+      ],
+      "must_preserve_terms": [],
+      "source_refs": [
+        {
+          "source_type": "input_markdown",
+          "path": "assets/projects/OSS-BLIND/work_items/SALEOR-19804/inputs/requirement_summary.md",
+          "excerpt": "GraphQL mutation：`giftCardBulkCreate`。"
+        }
+      ]
+    },
+    {
+      "id": "ER-013",
+      "title": "需求整理-explicit_rule",
+      "statement": "关键输入：`count`、`balance.amount`、`balance.currency`、`tags`、`isActive`。",
+      "confidence": 0.99,
+      "reasoning_notes": [
+        "来自主流程 requirement_summary.md 的确认需求。"
+      ],
+      "must_preserve_terms": [],
+      "source_refs": [
+        {
+          "source_type": "input_markdown",
+          "path": "assets/projects/OSS-BLIND/work_items/SALEOR-19804/inputs/requirement_summary.md",
+          "excerpt": "关键输入：`count`、`balance.amount`、`balance.currency`、`tags`、`isActive`。"
+        }
+      ]
+    },
+    {
+      "id": "ER-014",
+      "title": "需求整理-explicit_rule",
+      "statement": "关键数据关系：GiftCard 与 GiftCardTag 的多对多成员集合。",
+      "confidence": 0.99,
+      "reasoning_notes": [
+        "来自主流程 requirement_summary.md 的确认需求。"
+      ],
+      "must_preserve_terms": [],
+      "source_refs": [
+        {
+          "source_type": "input_markdown",
+          "path": "assets/projects/OSS-BLIND/work_items/SALEOR-19804/inputs/requirement_summary.md",
+          "excerpt": "关键数据关系：GiftCard 与 GiftCardTag 的多对多成员集合。"
+        }
+      ]
+    },
+    {
+      "id": "ER-015",
+      "title": "需求整理-explicit_rule",
+      "statement": "PR 未声明新增埋点、配置、API 字段或迁移。",
+      "confidence": 0.99,
+      "reasoning_notes": [
+        "来自主流程 requirement_summary.md 的确认需求。"
+      ],
+      "must_preserve_terms": [],
+      "source_refs": [
+        {
+          "source_type": "input_markdown",
+          "path": "assets/projects/OSS-BLIND/work_items/SALEOR-19804/inputs/requirement_summary.md",
+          "excerpt": "PR 未声明新增埋点、配置、API 字段或迁移。"
+        }
+      ]
+    }
+  ],
+  "implicit_rules": [],
+  "field_constraints": [],
+  "data_source_rules": [],
+  "business_risks": [
+    {
+      "risk_id": "RISK-001",
+      "title": "关系替换与追加在单批次中可能都表现正常",
+      "risk_statement": "关系替换与追加在单批次中可能都表现正常，必须跨批次检查历史关系。",
+      "severity": "medium",
+      "impact_scope": [],
+      "source_refs": [
+        {
+          "source_type": "input_markdown",
+          "path": "assets/projects/OSS-BLIND/work_items/SALEOR-19804/inputs/requirement_summary.md",
+          "excerpt": "关系替换与追加在单批次中可能都表现正常，必须跨批次检查历史关系。"
+        }
+      ]
+    },
+    {
+      "risk_id": "RISK-002",
+      "title": "大批量礼品卡和高复用标签可能引入查询次数或关系写入性能风险",
+      "risk_statement": "大批量礼品卡和高复用标签可能引入查询次数或关系写入性能风险。",
+      "severity": "medium",
+      "impact_scope": [],
+      "source_refs": [
+        {
+          "source_type": "input_markdown",
+          "path": "assets/projects/OSS-BLIND/work_items/SALEOR-19804/inputs/requirement_summary.md",
+          "excerpt": "大批量礼品卡和高复用标签可能引入查询次数或关系写入性能风险。"
+        }
+      ]
+    },
+    {
+      "risk_id": "RISK-003",
+      "title": "并发批量创建复用同一标签时的锁、唯一性和最终成员集合未明确",
+      "risk_statement": "并发批量创建复用同一标签时的锁、唯一性和最终成员集合未明确。",
+      "severity": "high",
+      "impact_scope": [],
+      "source_refs": [
+        {
+          "source_type": "input_markdown",
+          "path": "assets/projects/OSS-BLIND/work_items/SALEOR-19804/inputs/requirement_summary.md",
+          "excerpt": "并发批量创建复用同一标签时的锁、唯一性和最终成员集合未明确。"
+        }
+      ]
+    },
+    {
+      "risk_id": "RISK-004",
+      "title": "修复是前向修复",
+      "risk_statement": "修复是前向修复，历史已丢失关系不可从数据库自动推导。",
+      "severity": "high",
+      "impact_scope": [],
+      "source_refs": [
+        {
+          "source_type": "input_markdown",
+          "path": "assets/projects/OSS-BLIND/work_items/SALEOR-19804/inputs/requirement_summary.md",
+          "excerpt": "修复是前向修复，历史已丢失关系不可从数据库自动推导。"
+        }
+      ]
+    }
+  ],
+  "edge_cases": [
+    {
+      "edge_case_id": "EC-001",
+      "title": "两批标签集合完全相同、部分重叠和完全不重叠时",
+      "scenario": "两批标签集合完全相同、部分重叠和完全不重叠时，逐标签核对成员集合。",
+      "priority": "P1",
+      "source_refs": [
+        {
+          "source_type": "input_markdown",
+          "path": "assets/projects/OSS-BLIND/work_items/SALEOR-19804/inputs/requirement_summary.md",
+          "excerpt": "两批标签集合完全相同、部分重叠和完全不重叠时，逐标签核对成员集合。"
+        }
+      ]
+    },
+    {
+      "edge_case_id": "EC-002",
+      "title": "新标签与已有标签混合输入时",
+      "scenario": "新标签与已有标签混合输入时，已有关系保留、新关系正确建立。",
+      "priority": "P1",
+      "source_refs": [
+        {
+          "source_type": "input_markdown",
+          "path": "assets/projects/OSS-BLIND/work_items/SALEOR-19804/inputs/requirement_summary.md",
+          "excerpt": "新标签与已有标签混合输入时，已有关系保留、新关系正确建立。"
+        }
+      ]
+    },
+    {
+      "edge_case_id": "EC-003",
+      "title": "批量创建返回 count 与实际新建数量一致",
+      "scenario": "批量创建返回 count 与实际新建数量一致，errors 为空时才视为成功。",
+      "priority": "P1",
+      "source_refs": [
+        {
+          "source_type": "input_markdown",
+          "path": "assets/projects/OSS-BLIND/work_items/SALEOR-19804/inputs/requirement_summary.md",
+          "excerpt": "批量创建返回 count 与实际新建数量一致，errors 为空时才视为成功。"
+        }
+      ]
+    },
+    {
+      "edge_case_id": "EC-004",
+      "title": "无权限、非法输入和已有非批量 mutation 不应因本次修复改变行为",
+      "scenario": "无权限、非法输入和已有非批量 mutation 不应因本次修复改变行为。",
+      "priority": "P1",
+      "source_refs": [
+        {
+          "source_type": "input_markdown",
+          "path": "assets/projects/OSS-BLIND/work_items/SALEOR-19804/inputs/requirement_summary.md",
+          "excerpt": "无权限、非法输入和已有非批量 mutation 不应因本次修复改变行为。"
+        }
+      ]
+    }
+  ],
+  "ambiguities": [
+    {
+      "ambiguity_id": "AMB-001",
+      "title": "标签名称的大小写、空白和重复输入归一化规则是否属于本需求",
+      "description": "标签名称的大小写、空白和重复输入归一化规则是否属于本需求？",
+      "status": "open",
+      "suggested_resolution": "在进入正式测试设计前由需求方确认；未确认时保持显式缺失，不推断为强规则。",
+      "source_refs": [
+        {
+          "source_type": "input_markdown",
+          "path": "assets/projects/OSS-BLIND/work_items/SALEOR-19804/inputs/requirement_summary.md",
+          "excerpt": "标签名称的大小写、空白和重复输入归一化规则是否属于本需求？"
+        }
+      ]
+    },
+    {
+      "ambiguity_id": "AMB-002",
+      "title": "`tags=[]`、省略 tags 和不存在标签的具体返回语义是什么",
+      "description": "`tags=[]`、省略 tags 和不存在标签的具体返回语义是什么？",
+      "status": "open",
+      "suggested_resolution": "在进入正式测试设计前由需求方确认；未确认时保持显式缺失，不推断为强规则。",
+      "source_refs": [
+        {
+          "source_type": "input_markdown",
+          "path": "assets/projects/OSS-BLIND/work_items/SALEOR-19804/inputs/requirement_summary.md",
+          "excerpt": "`tags=[]`、省略 tags 和不存在标签的具体返回语义是什么？"
+        }
+      ]
+    },
+    {
+      "ambiguity_id": "AMB-003",
+      "title": "并发调用复用同一标签时是否要求强一致成员集合",
+      "description": "并发调用复用同一标签时是否要求强一致成员集合？",
+      "status": "open",
+      "suggested_resolution": "在进入正式测试设计前由需求方确认；未确认时保持显式缺失，不推断为强规则。",
+      "source_refs": [
+        {
+          "source_type": "input_markdown",
+          "path": "assets/projects/OSS-BLIND/work_items/SALEOR-19804/inputs/requirement_summary.md",
+          "excerpt": "并发调用复用同一标签时是否要求强一致成员集合？"
+        }
+      ]
+    },
+    {
+      "ambiguity_id": "AMB-004",
+      "title": "性能验收是否有最大 `count`、标签数或查询次数阈值",
+      "description": "性能验收是否有最大 `count`、标签数或查询次数阈值？",
+      "status": "open",
+      "suggested_resolution": "在进入正式测试设计前由需求方确认；未确认时保持显式缺失，不推断为强规则。",
+      "source_refs": [
+        {
+          "source_type": "input_markdown",
+          "path": "assets/projects/OSS-BLIND/work_items/SALEOR-19804/inputs/requirement_summary.md",
+          "excerpt": "性能验收是否有最大 `count`、标签数或查询次数阈值？"
+        }
+      ]
+    }
+  ],
+  "recommended_test_dimensions": [
+    {
+      "dimension_id": "TD-001",
+      "dimension": "显式规则逐条验证",
+      "rationale": "需求摘要已给出可追溯规则，后续设计应保持单规则单断言并验证成功与失败结果。",
+      "priority": "high",
+      "related_reasoning_ids": [
+        "ER-001",
+        "ER-002",
+        "ER-003",
+        "ER-004",
+        "ER-005",
+        "ER-006",
+        "ER-007",
+        "ER-008"
+      ]
+    },
+    {
+      "dimension_id": "TD-002",
+      "dimension": "异常与失败处理",
+      "rationale": "需求包含明确拒绝或失败语义，需要验证失败状态、错误反馈及副作用隔离。",
+      "priority": "high",
+      "related_reasoning_ids": [
+        "ER-004",
+        "ER-011"
+      ]
+    },
+    {
+      "dimension_id": "TD-003",
+      "dimension": "兼容性与回归",
+      "rationale": "需求要求保留既有合法行为或历史关系，需要同时验证变更路径与未变路径。",
+      "priority": "high",
+      "related_reasoning_ids": [
+        "ER-001",
+        "ER-004",
+        "ER-005",
+        "ER-011"
+      ]
+    },
+    {
+      "dimension_id": "TD-004",
+      "dimension": "数据一致性与状态保留",
+      "rationale": "需求涉及关系或状态保留，应核对操作前后数据集合而非只看接口成功。",
+      "priority": "high",
+      "related_reasoning_ids": [
+        "ER-001",
+        "ER-002",
+        "ER-005",
+        "ER-006",
+        "ER-007",
+        "ER-009",
+        "ER-010",
+        "ER-014"
+      ]
+    },
+    {
+      "dimension_id": "TD-005",
+      "dimension": "风险与非功能约束",
+      "rationale": "需求摘要已明确兼容性、性能或一致性风险，需与产品验收规则分层承接。",
+      "priority": "medium",
+      "related_reasoning_ids": [
+        "RISK-001",
+        "RISK-002",
+        "RISK-003",
+        "RISK-004"
+      ]
+    },
+    {
+      "dimension_id": "TD-006",
+      "dimension": "未决项追踪",
+      "rationale": "摘要存在尚未确认的输入或验收口径，后续不得将其自动升级为强制规则。",
+      "priority": "medium",
+      "related_reasoning_ids": [
+        "AMB-001",
+        "AMB-002",
+        "AMB-003",
+        "AMB-004"
+      ]
+    }
+  ],
+  "coverage_candidates": [
+    {
+      "candidate_id": "COV-001",
+      "candidate_type": "rule_cluster",
+      "title": "调用 `giftCardBulkCreate` 创建新一批礼品卡并复用已…",
+      "scope": "文本需求规则",
+      "priority": "high",
+      "rationale": "文本需求中的显式规则需要在后续 Structured PRD 与测试设计中保持可追溯。",
+      "suggested_test_types": [
+        "功能",
+        "异常"
+      ],
+      "source_reasoning_ids": [
+        "ER-001"
+      ]
+    },
+    {
+      "candidate_id": "COV-002",
+      "candidate_type": "rule_cluster",
+      "title": "对已存在标签",
+      "scope": "文本需求规则",
+      "priority": "high",
+      "rationale": "文本需求中的显式规则需要在后续 Structured PRD 与测试设计中保持可追溯。",
+      "suggested_test_types": [
+        "功能",
+        "异常"
+      ],
+      "source_reasoning_ids": [
+        "ER-002"
+      ]
+    },
+    {
+      "candidate_id": "COV-003",
+      "candidate_type": "rule_cluster",
+      "title": "对新标签",
+      "scope": "文本需求规则",
+      "priority": "high",
+      "rationale": "文本需求中的显式规则需要在后续 Structured PRD 与测试设计中保持可追溯。",
+      "suggested_test_types": [
+        "功能",
+        "异常"
+      ],
+      "source_reasoning_ids": [
+        "ER-003"
+      ]
+    },
+    {
+      "candidate_id": "COV-004",
+      "candidate_type": "rule_cluster",
+      "title": "一次批量创建的返回数量、错误列表和礼品卡标签结果保持既有接口契约",
+      "scope": "文本需求规则",
+      "priority": "high",
+      "rationale": "文本需求中的显式规则需要在后续 Structured PRD 与测试设计中保持可追溯。",
+      "suggested_test_types": [
+        "功能",
+        "异常"
+      ],
+      "source_reasoning_ids": [
+        "ER-004"
+      ]
+    },
+    {
+      "candidate_id": "COV-005",
+      "candidate_type": "rule_cluster",
+      "title": "关系更新应支持批量数量",
+      "scope": "文本需求规则",
+      "priority": "high",
+      "rationale": "文本需求中的显式规则需要在后续 Structured PRD 与测试设计中保持可追溯。",
+      "suggested_test_types": [
+        "功能",
+        "异常"
+      ],
+      "source_reasoning_ids": [
+        "ER-005"
+      ]
+    },
+    {
+      "candidate_id": "COV-006",
+      "candidate_type": "rule_cluster",
+      "title": "第二批复用第一批标签后",
+      "scope": "文本需求规则",
+      "priority": "high",
+      "rationale": "文本需求中的显式规则需要在后续 Structured PRD 与测试设计中保持可追溯。",
+      "suggested_test_types": [
+        "功能",
+        "异常"
+      ],
+      "source_reasoning_ids": [
+        "ER-006"
+      ]
+    },
+    {
+      "candidate_id": "COV-007",
+      "candidate_type": "rule_cluster",
+      "title": "两批标签集合完全相同、部分重叠和完全不重叠时",
+      "scope": "文本需求规则",
+      "priority": "high",
+      "rationale": "文本需求中的显式规则需要在后续 Structured PRD 与测试设计中保持可追溯。",
+      "suggested_test_types": [
+        "功能",
+        "异常"
+      ],
+      "source_reasoning_ids": [
+        "ER-007"
+      ]
+    },
+    {
+      "candidate_id": "COV-008",
+      "candidate_type": "rule_cluster",
+      "title": "新批次每张礼品卡只获得本次输入指定的标签",
+      "scope": "文本需求规则",
+      "priority": "high",
+      "rationale": "文本需求中的显式规则需要在后续 Structured PRD 与测试设计中保持可追溯。",
+      "suggested_test_types": [
+        "功能",
+        "异常"
+      ],
+      "source_reasoning_ids": [
+        "ER-008"
+      ]
+    },
+    {
+      "candidate_id": "COV-009",
+      "candidate_type": "rule_cluster",
+      "title": "新标签与已有标签混合输入时",
+      "scope": "文本需求规则",
+      "priority": "high",
+      "rationale": "文本需求中的显式规则需要在后续 Structured PRD 与测试设计中保持可追溯。",
+      "suggested_test_types": [
+        "功能",
+        "异常"
+      ],
+      "source_reasoning_ids": [
+        "ER-009"
+      ]
+    },
+    {
+      "candidate_id": "COV-010",
+      "candidate_type": "rule_cluster",
+      "title": "批量创建返回 count 与实际新建数量一致",
+      "scope": "文本需求规则",
+      "priority": "high",
+      "rationale": "文本需求中的显式规则需要在后续 Structured PRD 与测试设计中保持可追溯。",
+      "suggested_test_types": [
+        "功能",
+        "异常"
+      ],
+      "source_reasoning_ids": [
+        "ER-010"
+      ]
+    },
+    {
+      "candidate_id": "COV-011",
+      "candidate_type": "rule_cluster",
+      "title": "无权限、非法输入和已有非批量 mutation 不应因本次修复改变行为",
+      "scope": "文本需求规则",
+      "priority": "high",
+      "rationale": "文本需求中的显式规则需要在后续 Structured PRD 与测试设计中保持可追溯。",
+      "suggested_test_types": [
+        "功能",
+        "异常"
+      ],
+      "source_reasoning_ids": [
+        "ER-011"
+      ]
+    },
+    {
+      "candidate_id": "COV-012",
+      "candidate_type": "rule_cluster",
+      "title": "GraphQL mutation",
+      "scope": "文本需求规则",
+      "priority": "high",
+      "rationale": "文本需求中的显式规则需要在后续 Structured PRD 与测试设计中保持可追溯。",
+      "suggested_test_types": [
+        "功能",
+        "异常"
+      ],
+      "source_reasoning_ids": [
+        "ER-012"
+      ]
+    },
+    {
+      "candidate_id": "COV-013",
+      "candidate_type": "rule_cluster",
+      "title": "关键输入",
+      "scope": "文本需求规则",
+      "priority": "high",
+      "rationale": "文本需求中的显式规则需要在后续 Structured PRD 与测试设计中保持可追溯。",
+      "suggested_test_types": [
+        "功能",
+        "异常"
+      ],
+      "source_reasoning_ids": [
+        "ER-013"
+      ]
+    },
+    {
+      "candidate_id": "COV-014",
+      "candidate_type": "rule_cluster",
+      "title": "关键数据关系",
+      "scope": "文本需求规则",
+      "priority": "high",
+      "rationale": "文本需求中的显式规则需要在后续 Structured PRD 与测试设计中保持可追溯。",
+      "suggested_test_types": [
+        "功能",
+        "异常"
+      ],
+      "source_reasoning_ids": [
+        "ER-014"
+      ]
+    },
+    {
+      "candidate_id": "COV-015",
+      "candidate_type": "rule_cluster",
+      "title": "PR 未声明新增埋点、配置、API 字段或迁移",
+      "scope": "文本需求规则",
+      "priority": "high",
+      "rationale": "文本需求中的显式规则需要在后续 Structured PRD 与测试设计中保持可追溯。",
+      "suggested_test_types": [
+        "功能",
+        "异常"
+      ],
+      "source_reasoning_ids": [
+        "ER-015"
+      ]
+    }
+  ]
+}

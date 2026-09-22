@@ -1,0 +1,7 @@
+{
+  "status": "awaiting_code_directories",
+  "frontend_code_dirs": [],
+  "backend_code_dirs": [],
+  "next_action": "请补充前端或后端代码目录后进入代码映证流程。",
+  "updated_at": ""
+}

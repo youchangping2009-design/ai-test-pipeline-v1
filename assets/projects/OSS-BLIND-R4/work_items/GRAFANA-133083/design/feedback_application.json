@@ -1,0 +1,55 @@
+{
+  "project_code": "OSS-BLIND-R4",
+  "work_item_id": "GRAFANA-133083",
+  "applications": [
+    {
+      "feedback_id": "DF-001",
+      "target_layer": "testability_gate",
+      "artifacts": [
+        {
+          "path": "acceptance/testability_gate.json",
+          "before_sha256": "676be1b8f35a0a4152077f90c6786652cf07d0d989934347322250b9f4f634d5",
+          "after_sha256": "6325765dd3f0b7c606f09bc1d680914952881440c8cbba41c0d08fec3594150a"
+        }
+      ]
+    },
+    {
+      "feedback_id": "DF-002",
+      "target_layer": "testability_gate",
+      "artifacts": [
+        {
+          "path": "acceptance/testability_gate.json",
+          "before_sha256": "6325765dd3f0b7c606f09bc1d680914952881440c8cbba41c0d08fec3594150a",
+          "after_sha256": "cec9294a464029d661a246df3d2d248d0f8f97e250a4a2ec14353dc8ccfa9e29"
+        }
+      ]
+    },
+    {
+      "feedback_id": "DF-003",
+      "target_layer": "testability_gate",
+      "artifacts": [
+        {
+          "path": "acceptance/testability_gate.json",
+          "before_sha256": "cec9294a464029d661a246df3d2d248d0f8f97e250a4a2ec14353dc8ccfa9e29",
+          "after_sha256": "3e77508b9c2274c5aaa0415bba5a48c93ff4eb9b638b7dff2269e363e248c7ce"
+        }
+      ]
+    },
+    {
+      "feedback_id": "DF-004",
+      "target_layer": "testability_gate",
+      "artifacts": [
+        {
+          "path": "acceptance/testability_gate.json",
+          "before_sha256": "3e77508b9c2274c5aaa0415bba5a48c93ff4eb9b638b7dff2269e363e248c7ce",
+          "after_sha256": "ebc78e29f0110e49753e82f388b8b411fa0fb9b88397dd58f2062666f8bbc22f"
+        },
+        {
+          "path": "acceptance/testability_gate.md",
+          "before_sha256": "b5e99ac414803b19a3de2a05efc9a92bd88d8df6cf58d35b5689d4304b833311",
+          "after_sha256": "268707b925a174048120337d3d44a0345ce824c40b0c2ac598af6ebd0359603a"
+        }
+      ]
+    }
+  ]
+}

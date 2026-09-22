@@ -1,0 +1,13 @@
+{
+  "schema_version": "1.0.0",
+  "approval_id": "RUN-R4-RAILS-58429-requirement-42106f5eb9a088073efe043a",
+  "status": "approved",
+  "reviewed_by": "user",
+  "reviewed_at": "2026-09-22T02:51:06+00:00",
+  "note": "用户于 2026-09-22 明确批准本轮四份需求摘要。",
+  "run_id": "RUN-R4-RAILS-58429",
+  "requirement_summary_sha256": "4b849643c2b67e541ce286fdc963a999acd0d4bfbf62003b353e017b3e60f3f3",
+  "source_manifest_sha256": "4dadde472d1c73e34fe9abdc2a7c94acb10cd5b6879a91c9759517cd1be93d12",
+  "raw_inputs_fingerprint": "710ddeed20fefee17d6b745c5e03711df78662bdbc67b58eeeacaf82b5d25840",
+  "requirement_version": "1.0.0"
+}

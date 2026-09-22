@@ -124,6 +124,11 @@
 - `design/verification_responsibility_map.md` / `.json` 负责 B端、C端、API、服务端强校验与风险加固的责任划分
 - `design/test_design_matrix.md` / `.json` 是 L 档工作项的测试设计矩阵
 - `design/design_feedback.md` / `.json` 承接 code review 映证反馈；反馈进入设计层，不直接覆盖 testcase
+- 新工作项默认启用 `pipeline_policy.feedback_application_receipt_required=true`。当 feedback 标记为 `applied` 时，`design/feedback_application.json` 必须记录反馈 ID、目标设计层以及修改文件的前后 SHA-256；旧 manifest 缺少该 policy 时保持 legacy compatibility，不补造历史哈希
+- 标准回灌顺序为 `manage_feedback_application.py prepare` -> 修改目标设计层 -> `manage_feedback_application.py record`。prepare 只接受 `accepted` feedback 并拒绝覆盖既有 baseline；record 要求反馈内容与目标层未漂移、至少一个已冻结产物发生变化，并以“先写 receipt、后置 applied”的顺序支持中断后幂等恢复
+- Agent 执行回灌时不得直接写工作项文件，必须通过 `run_work_item_pipeline.py feedback-action` 提交符合 `harness_feedback_action.schema.json` 的动作。白名单仅包含 `prepare_feedback_application`、`propose_feedback_design_artifacts`、`record_feedback_application`；propose 只能写 prepare 快照中的路径，record 是唯一状态迁移入口
+- `feedback-action` 的 `run_id`、`actor` 与 `provider` 必须由受信调用侧注入，不能由模型 Action payload 自报。Runtime 校验 run 存在且项目/工作项身份匹配，再将执行上下文与 Action 一起纳入请求 SHA-256
+- 新工作项默认启用 `pipeline_policy.feedback_action_journal_required=true` 与 `feedback_action_execution_identity_required=true`。Runtime 在动作执行前创建不可覆盖的 intent，成功或确定性失败后创建不可覆盖的 result；相同 action ID/请求/执行上下文可幂等读取结果，不同绑定不得复用 ID。Review、strict 与 Harness run audit 重放校验 journal；旧 manifest 和 1.0 journal 不补造历史身份
 
 ### Traceability
 
@@ -135,6 +140,9 @@
 
 - `reviews/quality_report.json` 是质量报告真源
 - `reviews/review_record.md` 是阅读友好型评审记录
+- `reviews/oracle_delta_input.json` 记录冻结测试资产与后置代码/测试 oracle 的人工映射；assertion 使用可选 `oracle_scope=requirement/implementation/risk` 区分批准需求、实现行为和风险路径，旧输入缺省为 `requirement`。`reviews/oracle_delta_score.json` 同时保留总体兼容分和三类分层覆盖率。两者只用于生成后评测，不得反向污染盲测输入。
+- Harness Review 阶段必须执行 design feedback 与 feedback application validator；启用 receipt policy 的工作项存在 `applied` feedback 时，缺失或不完整回灌凭证必须失败。旧工作项只允许显式识别为 legacy compatible，不得生成伪造凭证。当 freeze/input/score 任一 Oracle 资产出现时，三者必须齐全，并以只读方式校验冻结哈希与当前评分重算结果。反馈回灌后允许设计/用例资产相对原始冻结基线变化，但 requirement summary 不得漂移，且所有反馈必须已标记 applied。
+- 新工作项默认启用 `review_disposition_required=true`。无代码映证必须由人工为具体 validate run 声明 `not_applicable`、执行者和原因，凭证绑定当前 `code_review_scope.json`。N/A 不绕过 Review validator；全部通过后 Review stage 记录为 `skipped`，strict gate 才允许 `--skip-code-reviews`。scope 漂移、存在代码目录、CI 自声明或缺失凭证均不得复用该路径。
 - `feishu_ready.md` 是阅读友好型导出产物
 
 ## 5. 真源与兼容层契约

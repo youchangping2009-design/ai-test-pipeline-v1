@@ -1,0 +1,61 @@
+{
+  "project_code": "OSS-BLIND",
+  "index_type": "work_item",
+  "generated_at": "2026-09-21T18:41:14",
+  "items": [
+    {
+      "work_item_id": "APPSMITH-42244",
+      "title": "Databricks JDBC URL validation",
+      "status": "initialized",
+      "work_item_level": "M",
+      "manifest_path": "work_items/APPSMITH-42244/manifest.json",
+      "manifest_sha256": "fc505d1ba47c766939503f1a503d729ab3d8dc23df5adde413cb98e9417023ed",
+      "artifact_status": "ready",
+      "missing_artifacts": [],
+      "testcase_count": 7,
+      "open_risk_count": 0,
+      "quality_report_status": "current",
+      "primary_artifacts": {
+        "structured_prd": "work_items/APPSMITH-42244/structured_prd/structured_prd.md",
+        "testcases_main": "work_items/APPSMITH-42244/testcases/testcases_main.md",
+        "traceability_primary": "work_items/APPSMITH-42244/traceability/coverage_first_traceability.json"
+      }
+    },
+    {
+      "work_item_id": "CHATWOOT-15768",
+      "title": "Conversation filter typed value matching",
+      "status": "initialized",
+      "work_item_level": "M",
+      "manifest_path": "work_items/CHATWOOT-15768/manifest.json",
+      "manifest_sha256": "57c828aa44c112ccefe8fdd36a12b93013df68ba08a7588f31703f24e98a1e23",
+      "artifact_status": "ready",
+      "missing_artifacts": [],
+      "testcase_count": 9,
+      "open_risk_count": 0,
+      "quality_report_status": "current",
+      "primary_artifacts": {
+        "structured_prd": "work_items/CHATWOOT-15768/structured_prd/structured_prd.md",
+        "testcases_main": "work_items/CHATWOOT-15768/testcases/testcases_main.md",
+        "traceability_primary": "work_items/CHATWOOT-15768/traceability/coverage_first_traceability.json"
+      }
+    },
+    {
+      "work_item_id": "SALEOR-19804",
+      "title": "Gift card bulk-create tag preservation",
+      "status": "initialized",
+      "work_item_level": "M",
+      "manifest_path": "work_items/SALEOR-19804/manifest.json",
+      "manifest_sha256": "664018d1f17ffec03ca6402901eac0cabe2eb2a9f75faba1df6de20264801515",
+      "artifact_status": "ready",
+      "missing_artifacts": [],
+      "testcase_count": 9,
+      "open_risk_count": 0,
+      "quality_report_status": "current",
+      "primary_artifacts": {
+        "structured_prd": "work_items/SALEOR-19804/structured_prd/structured_prd.md",
+        "testcases_main": "work_items/SALEOR-19804/testcases/testcases_main.md",
+        "traceability_primary": "work_items/SALEOR-19804/traceability/coverage_first_traceability.json"
+      }
+    }
+  ]
+}

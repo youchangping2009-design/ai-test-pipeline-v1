@@ -1,0 +1,156 @@
+{
+  "project_code": "OSS-BLIND-R4",
+  "work_item_id": "HOMEASSISTANT-182800",
+  "truth_source": "testcases/case_plan.json",
+  "projection_only": true,
+  "generated_from": [
+    "testcases/case_plan.json",
+    "testcases/testcases_main.md"
+  ],
+  "testpoints": [
+    {
+      "testpoint_id": "TP-001",
+      "source_case_plan_id": "CP-001",
+      "source_gate_ids": [
+        "TG-001"
+      ],
+      "source_example_ids": [
+        "AE-001"
+      ],
+      "source_responsibility_ids": [],
+      "page_name": "TTS 音频缓存处理",
+      "section_name": "MP3 标签写入与缓存回放",
+      "module_name": "TTS 音频标签",
+      "feature_name": "ID3 标签合并",
+      "test_dimension": "data_persistence",
+      "test_point": "已有 ID3 的 MP3 更新后只保留一个有效 ID3 头",
+      "assertion": "ID3 解析器读取输出文件时不返回格式错误；输出文件中只存在一个有效 ID3 头。",
+      "priority": "P0",
+      "validation_path": "product_acceptance",
+      "should_generate_case": true,
+      "generated_testcase_ids": [
+        "OSS-BLIND-R4-TTSAUDIO-MP3TAG-SERVER-DV-001"
+      ]
+    },
+    {
+      "testpoint_id": "TP-002",
+      "source_case_plan_id": "CP-002",
+      "source_gate_ids": [
+        "TG-002"
+      ],
+      "source_example_ids": [
+        "AE-002"
+      ],
+      "source_responsibility_ids": [],
+      "page_name": "TTS 音频缓存处理",
+      "section_name": "MP3 标签写入与缓存回放",
+      "module_name": "TTS 音频标签",
+      "feature_name": "ID3 标签合并",
+      "test_dimension": "data_persistence",
+      "test_point": "更新标签后保留原 TSSE 元数据",
+      "assertion": "输出文件中的 TSSE 值与输入文件一致。",
+      "priority": "P0",
+      "validation_path": "product_acceptance",
+      "should_generate_case": true,
+      "generated_testcase_ids": [
+        "OSS-BLIND-R4-TTSAUDIO-MP3TAG-SERVER-DV-002"
+      ]
+    },
+    {
+      "testpoint_id": "TP-003",
+      "source_case_plan_id": "CP-003",
+      "source_gate_ids": [
+        "TG-003"
+      ],
+      "source_example_ids": [
+        "AE-003"
+      ],
+      "source_responsibility_ids": [],
+      "page_name": "TTS 音频缓存处理",
+      "section_name": "MP3 标签写入与缓存回放",
+      "module_name": "TTS 音频标签",
+      "feature_name": "ID3 标签合并",
+      "test_dimension": "data_persistence",
+      "test_point": "标签处理不改变 MP3 音频帧",
+      "assertion": "排除标签区域后，输出音频帧内容与输入一致；输出音频帧的稳定摘要与输入一致。",
+      "priority": "P0",
+      "validation_path": "product_acceptance",
+      "should_generate_case": true,
+      "generated_testcase_ids": [
+        "OSS-BLIND-R4-TTSAUDIO-MP3TAG-SERVER-DV-003"
+      ]
+    },
+    {
+      "testpoint_id": "TP-004",
+      "source_case_plan_id": "CP-004",
+      "source_gate_ids": [
+        "TG-004"
+      ],
+      "source_example_ids": [
+        "AE-004"
+      ],
+      "source_responsibility_ids": [],
+      "page_name": "TTS 音频缓存处理",
+      "section_name": "MP3 标签写入与缓存回放",
+      "module_name": "TTS 音频标签",
+      "feature_name": "缓存音频回放",
+      "test_dimension": "backend_job",
+      "test_point": "磁盘缓存中的已标记 MP3 可严格解码且非静音",
+      "assertion": "严格 MP3 解码器产生至少一个音频样本；解码后的音频样本不是全静音。",
+      "priority": "P0",
+      "validation_path": "product_acceptance",
+      "should_generate_case": true,
+      "generated_testcase_ids": [
+        "OSS-BLIND-R4-TTSAUDIO-MP3TAG-SERVER-ST-001"
+      ]
+    },
+    {
+      "testpoint_id": "TP-005",
+      "source_case_plan_id": "CP-005",
+      "source_gate_ids": [
+        "TG-005"
+      ],
+      "source_example_ids": [
+        "AE-005"
+      ],
+      "source_responsibility_ids": [],
+      "page_name": "TTS 音频缓存处理",
+      "section_name": "MP3 标签写入与缓存回放",
+      "module_name": "TTS 音频标签",
+      "feature_name": "ID3 标签合并",
+      "test_dimension": "backend_job",
+      "test_point": "无 ID3 的 MP3 可添加标签并保持可播放",
+      "assertion": "输出文件包含所需标签；输出文件可被严格 MP3 解码器解码并产生非静音音频样本。",
+      "priority": "P1",
+      "validation_path": "product_acceptance",
+      "should_generate_case": true,
+      "generated_testcase_ids": [
+        "OSS-BLIND-R4-TTSAUDIO-MP3TAG-SERVER-ST-002"
+      ]
+    },
+    {
+      "testpoint_id": "TP-006",
+      "source_case_plan_id": "CP-006",
+      "source_gate_ids": [
+        "TG-006"
+      ],
+      "source_example_ids": [
+        "AE-006"
+      ],
+      "source_responsibility_ids": [],
+      "page_name": "TTS 音频缓存处理",
+      "section_name": "MP3 标签写入与缓存回放",
+      "module_name": "TTS 音频标签",
+      "feature_name": "ID3 标签合并",
+      "test_dimension": "cross_surface_linkage",
+      "test_point": "已带标签音频处理结果不依赖 TTS provider",
+      "assertion": "两个 provider 的处理完成后，输出都只包含一个有效 ID3 头，保留各自 TSSE 和音频帧，并可由严格解码器产生至少一个非静音音频样本。",
+      "priority": "P0",
+      "validation_path": "product_acceptance",
+      "should_generate_case": true,
+      "generated_testcase_ids": [
+        "OSS-BLIND-R4-TTSAUDIO-MP3TAG-SERVER-FL-001"
+      ]
+    }
+  ]
+}

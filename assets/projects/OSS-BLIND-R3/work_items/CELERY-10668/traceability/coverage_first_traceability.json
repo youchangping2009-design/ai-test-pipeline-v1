@@ -1,0 +1,259 @@
+{
+  "project_code": "OSS-BLIND-R3",
+  "work_item_id": "CELERY-10668",
+  "generated_at": "2026-09-22T08:35:23",
+  "generated_from": [
+    "coverage/coverage_matrix.json",
+    "evidence/evidence_inventory.json",
+    "testcases/testcases_main.md"
+  ],
+  "summary": {
+    "record_count": 11,
+    "invalid_record_count": 0,
+    "false_traceability_rate": 0.0
+  },
+  "records": [
+    {
+      "record_id": "CFT-0001",
+      "rule_id": "Worker 撤销状态::跨时钟域撤销状态合并::happy_path_combo",
+      "coverage_id": "COV-EX-0001",
+      "testcase_id": "OSS-BLIND-R3-CELERYWORKER-REVOKE-SERVER-DV-001",
+      "testcase_title": "外部撤销记录仅合并任务 ID",
+      "source_origin": "explicit_rule",
+      "coverage_level": "business",
+      "emit_mode": "main_testcase",
+      "fidelity_status": "not_applicable",
+      "evidence_ids": [],
+      "reasoning_refs": [],
+      "structured_targets": [
+        {
+          "target_type": "feature",
+          "module_name": "Worker 撤销状态",
+          "feature_name": "跨时钟域撤销状态合并",
+          "field_name": "",
+          "target_name": "外部撤销状态合并"
+        }
+      ]
+    },
+    {
+      "record_id": "CFT-0002",
+      "rule_id": "Worker 撤销状态::跨时钟域撤销状态合并::happy_path_combo",
+      "coverage_id": "COV-EX-0002",
+      "testcase_id": "OSS-BLIND-R3-CELERYWORKER-REVOKE-SERVER-ST-001",
+      "testcase_title": "外部撤销 ID 按本机接收时间计算有效期",
+      "source_origin": "explicit_rule",
+      "coverage_level": "business",
+      "emit_mode": "main_testcase",
+      "fidelity_status": "not_applicable",
+      "evidence_ids": [],
+      "reasoning_refs": [],
+      "structured_targets": [
+        {
+          "target_type": "feature",
+          "module_name": "Worker 撤销状态",
+          "feature_name": "跨时钟域撤销状态合并",
+          "field_name": "",
+          "target_name": "撤销有效期"
+        }
+      ]
+    },
+    {
+      "record_id": "CFT-0003",
+      "rule_id": "Worker 撤销状态::跨时钟域撤销状态合并::happy_path_combo",
+      "coverage_id": "COV-EX-0003",
+      "testcase_id": "OSS-BLIND-R3-CELERYWORKER-REVOKE-SERVER-ST-002",
+      "testcase_title": "满容量时保留本机新撤销任务",
+      "source_origin": "explicit_rule",
+      "coverage_level": "business",
+      "emit_mode": "main_testcase",
+      "fidelity_status": "not_applicable",
+      "evidence_ids": [],
+      "reasoning_refs": [],
+      "structured_targets": [
+        {
+          "target_type": "feature",
+          "module_name": "Worker 撤销状态",
+          "feature_name": "跨时钟域撤销状态合并",
+          "field_name": "",
+          "target_name": "集合满载后本机新撤销任务仍保留。"
+        }
+      ]
+    },
+    {
+      "record_id": "CFT-0004",
+      "rule_id": "Worker 撤销状态::跨时钟域撤销状态合并::happy_path_combo",
+      "coverage_id": "COV-EX-0004",
+      "testcase_id": "OSS-BLIND-R3-CELERYWORKER-REVOKE-SERVER-ST-003",
+      "testcase_title": "有效期内已撤销 ETA 或 countdown 任务不执行",
+      "source_origin": "explicit_rule",
+      "coverage_level": "business",
+      "emit_mode": "main_testcase",
+      "fidelity_status": "not_applicable",
+      "evidence_ids": [],
+      "reasoning_refs": [],
+      "structured_targets": [
+        {
+          "target_type": "feature",
+          "module_name": "Worker 撤销状态",
+          "feature_name": "跨时钟域撤销状态合并",
+          "field_name": "",
+          "target_name": "有效期内已撤销的 ETA/countdown 任务不执行。"
+        }
+      ]
+    },
+    {
+      "record_id": "CFT-0005",
+      "rule_id": "Worker 撤销状态::跨时钟域撤销状态合并::happy_path_combo",
+      "coverage_id": "COV-EX-0005",
+      "testcase_id": "OSS-BLIND-R3-CELERYWORKER-REVOKE-SERVER-ST-004",
+      "testcase_title": "hello 同步按本机时间重新计时",
+      "source_origin": "explicit_rule",
+      "coverage_level": "business",
+      "emit_mode": "main_testcase",
+      "fidelity_status": "not_applicable",
+      "evidence_ids": [],
+      "reasoning_refs": [],
+      "structured_targets": [
+        {
+          "target_type": "feature",
+          "module_name": "Worker 撤销状态",
+          "feature_name": "跨时钟域撤销状态合并",
+          "field_name": "",
+          "target_name": "hello 接收的撤销 ID 使用本机时间。"
+        }
+      ]
+    },
+    {
+      "record_id": "CFT-0006",
+      "rule_id": "Worker 撤销状态::跨时钟域撤销状态合并::happy_path_combo",
+      "coverage_id": "COV-EX-0006",
+      "testcase_id": "OSS-BLIND-R3-CELERYWORKER-REVOKE-SERVER-ST-005",
+      "testcase_title": "mingle 同步按本机时间重新计时",
+      "source_origin": "explicit_rule",
+      "coverage_level": "business",
+      "emit_mode": "main_testcase",
+      "fidelity_status": "not_applicable",
+      "evidence_ids": [],
+      "reasoning_refs": [],
+      "structured_targets": [
+        {
+          "target_type": "feature",
+          "module_name": "Worker 撤销状态",
+          "feature_name": "跨时钟域撤销状态合并",
+          "field_name": "",
+          "target_name": "mingle 接收的撤销 ID 使用本机时间。"
+        }
+      ]
+    },
+    {
+      "record_id": "CFT-0007",
+      "rule_id": "Worker 撤销状态::跨时钟域撤销状态合并::happy_path_combo",
+      "coverage_id": "COV-EX-0007",
+      "testcase_id": "OSS-BLIND-R3-CELERYWORKER-REVOKE-SERVER-ST-006",
+      "testcase_title": "statedb 恢复按本机时间重新计时",
+      "source_origin": "explicit_rule",
+      "coverage_level": "business",
+      "emit_mode": "main_testcase",
+      "fidelity_status": "not_applicable",
+      "evidence_ids": [],
+      "reasoning_refs": [],
+      "structured_targets": [
+        {
+          "target_type": "feature",
+          "module_name": "Worker 撤销状态",
+          "feature_name": "跨时钟域撤销状态合并",
+          "field_name": "",
+          "target_name": "--statedb 恢复的撤销 ID 使用本机时间。"
+        }
+      ]
+    },
+    {
+      "record_id": "CFT-0008",
+      "rule_id": "Worker 撤销状态::跨时钟域撤销状态合并::happy_path_combo",
+      "coverage_id": "COV-EX-0008",
+      "testcase_id": "OSS-BLIND-R3-CELERYWORKER-REVOKE-SERVER-FL-001",
+      "testcase_title": "新旧 Worker 双向交换不丢失撤销 ID",
+      "source_origin": "explicit_rule",
+      "coverage_level": "business",
+      "emit_mode": "main_testcase",
+      "fidelity_status": "not_applicable",
+      "evidence_ids": [],
+      "reasoning_refs": [],
+      "structured_targets": [
+        {
+          "target_type": "feature",
+          "module_name": "Worker 撤销状态",
+          "feature_name": "跨时钟域撤销状态合并",
+          "field_name": "",
+          "target_name": "滚动升级兼容"
+        }
+      ]
+    },
+    {
+      "record_id": "CFT-0009",
+      "rule_id": "Worker 撤销状态::跨时钟域撤销状态合并::happy_path_combo",
+      "coverage_id": "COV-EX-0009",
+      "testcase_id": "OSS-BLIND-R3-CELERYWORKER-REVOKE-SERVER-BD-001",
+      "testcase_title": "边界：now 为 0 时撤销记录可加入和排序",
+      "source_origin": "explicit_rule",
+      "coverage_level": "business",
+      "emit_mode": "main_testcase",
+      "fidelity_status": "not_applicable",
+      "evidence_ids": [],
+      "reasoning_refs": [],
+      "structured_targets": [
+        {
+          "target_type": "feature",
+          "module_name": "Worker 撤销状态",
+          "feature_name": "跨时钟域撤销状态合并",
+          "field_name": "",
+          "target_name": "now=0 时撤销记录可正常加入和排序。"
+        }
+      ]
+    },
+    {
+      "record_id": "CFT-0010",
+      "rule_id": "Worker 撤销状态::跨时钟域撤销状态合并::happy_path_combo",
+      "coverage_id": "COV-EX-0010",
+      "testcase_id": "OSS-BLIND-R3-CELERYWORKER-REVOKE-SERVER-BD-002",
+      "testcase_title": "边界：相同时间戳的撤销记录排序稳定",
+      "source_origin": "explicit_rule",
+      "coverage_level": "business",
+      "emit_mode": "main_testcase",
+      "fidelity_status": "not_applicable",
+      "evidence_ids": [],
+      "reasoning_refs": [],
+      "structured_targets": [
+        {
+          "target_type": "feature",
+          "module_name": "Worker 撤销状态",
+          "feature_name": "跨时钟域撤销状态合并",
+          "field_name": "",
+          "target_name": "相同时间戳记录的排序稳定。"
+        }
+      ]
+    },
+    {
+      "record_id": "CFT-0011",
+      "rule_id": "Worker 撤销状态::跨时钟域撤销状态合并::happy_path_combo",
+      "coverage_id": "COV-EX-0011",
+      "testcase_id": "OSS-BLIND-R3-CELERYWORKER-REVOKE-SERVER-BD-003",
+      "testcase_title": "边界：混合类型任务 ID 不触发比较异常",
+      "source_origin": "explicit_rule",
+      "coverage_level": "business",
+      "emit_mode": "main_testcase",
+      "fidelity_status": "not_applicable",
+      "evidence_ids": [],
+      "reasoning_refs": [],
+      "structured_targets": [
+        {
+          "target_type": "feature",
+          "module_name": "Worker 撤销状态",
+          "feature_name": "跨时钟域撤销状态合并",
+          "field_name": "",
+          "target_name": "int/string 混合任务 ID 不触发类型比较异常。"
+        }
+      ]
+    }
+  ]
+}

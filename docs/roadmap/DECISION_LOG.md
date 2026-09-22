@@ -2,6 +2,12 @@
 
 本文件只记录已经确定的关键决策，不记录执行流水账。
 
+写法：
+
+- `Confirmed Decisions` 只就地修订长期有效口径。
+- 带日期的决策只追加到文末，禁止插到 `Confirmed Decisions` 后面冒充最新。
+- 不把阶段流水账、校验命令或 Completion Notes 写进本文件。
+
 ## Confirmed Decisions
 
 - 非 strict 模式必须兼容旧流程。
@@ -17,6 +23,17 @@
 - `technical_background` 不得生成正式业务用例。
 - `testcases/testcases_main.md` 当前仍是主 testcase 真源。
 - 不允许切换 testcase 真源，除非 roadmap 明确进入 P3。
+
+## Decision Format
+
+后续新增决策时使用：
+
+```text
+YYYY-MM-DD - Decision Title
+Decision:
+Reason:
+Impact:
+```
 
 ## 2026-04-28 - P1-1-001 Completed
 
@@ -303,17 +320,6 @@ Reason:
 
 Impact:
 `skills/numbering-tagging/rules/tag_rule.yaml`、tagging skill、case-generation skill、prompt、lint 与 coverage testcase generator 已更新。`validate_work_item.py` 会在 `dev_self_testcases.md` 存在时校验它与 `testcases_main.md` 的 `开发必测` 过滤结果一致。SC0963 重跑后 33 条主用例、4 条开发自测；SC0965 重跑后 20 条主用例、2 条开发自测；PT083 strict baseline 已同步核心/关键用例双责任标签并通过基线。
-
-## Decision Format
-
-后续新增决策时使用：
-
-```text
-YYYY-MM-DD - Decision Title
-Decision:
-Reason:
-Impact:
-```
 
 ## 2026-05-19 - Human Readable Testcase Style Rule
 
@@ -645,3 +651,322 @@ Reason:
 
 Impact:
 首次阅读顺序改为：第 0 节快速指南 → 第 3.1 节举例 → 第 4 节起的阶段实现。正式样本、真源和 Strict Gate 口径不变。
+
+## 2026-09-21 - Blind Oracle Feedback Isolation
+
+Decision:
+盲测生成前的来源角色统一为 `primary_requirement / context_only / oracle_only`；后两类只能进入 audit。复合显式规则可用 `atomic_assertions` 逐断言拆分 Coverage。代码 diff 与已有测试只在资产冻结后通过独立 oracle-delta 评分进入 Review/Design Feedback，不直接反写 testcase。
+
+Reason:
+第二轮公开盲测证明，关联 issue 背景可能被误升为主验收，复合规则可能生成不可定位的多分支用例，而实现级边界只有解封 oracle 后才能合理识别。将三者分层可以同时保持盲测真实性与评审后的可迭代性。
+
+Impact:
+Coverage 生成器会把 `context_only/oracle_only` 显式规则降为 audit，并按 `atomic_assertions` 拆分；Coverage Validator 阻止非主来源进入 main；`score_oracle_delta.py` 独立计算 oracle 覆盖率与用例相关率。旧资产缺少新字段时仍按 `primary_requirement` 兼容。
+
+## 2026-09-21 - Image Evidence Requirement Follows Actual Source Modality
+
+Decision:
+工作项声明 `image_evidence` 兼容占位时，只有 `source_manifest` 存在 `status=available` 的 `source_type=image`，或 inventory 实际包含图片，才执行图片非空强校验。纯文本来源的空 inventory 记录为 SKIPPED。
+
+Reason:
+Appsmith、Chatwoot、Saleor 三个公开 PR 盲测样本均为纯文本来源，全部正式资产和追溯已通过，但 Harness strict 仍被空图片列表统一阻断。图片证据要求应由真实输入模态决定，不能由兼容占位文件是否存在决定。
+
+Impact:
+纯文本需求可通过 Harness strict；有可用图片来源、非空 inventory、缺失或损坏 source manifest 仍保留原强校验，不降低图片型工作项门禁。
+
+## 2026-09-21 - Atomic Assertion Confirmation Is Independent
+
+Decision:
+Coverage 生成器在规则提供 `atomic_assertions` 时，逐条依据原子断言自身是否含“待确认”决定 main/audit 分流；不得因父规则同时记录了其它未决限定而把全部已确认断言降为 audit。未拆分规则仍按完整 `rule_text` 判断，`context_only/oracle_only` 继续强制进入 audit。
+
+Reason:
+Supabase 恢复码规则明确规定无效、空值和格式不正确时不得建立会话，但只把具体格式与错误文案标为待确认。父句级判断导致三个已确认拒绝行为全部丢失主覆盖。
+
+Impact:
+已确认的原子行为可进入正式 Coverage，未决断言和非主来源仍被隔离；新增单测防止父规则中的局部待确认说明再次污染其它原子断言。
+
+## 2026-09-21 - Blind R3 Testability Classification Preserves Source Scope
+
+Decision:
+第三轮公开盲测的 Testability Gate 以 Structured PRD 的来源范围和规则层级为边界：`primary_requirement` 明确行为进入 Acceptance Examples 候选，重复的 feature/field 规则使用 `skip_case`，Reasoning 风险与 `context_only` 规则只进入 `risk_note_only`；可验证结果与未确认细节并存时使用 `partially_testable`。
+
+Reason:
+门禁必须同时避免漏掉可测业务结果和把推理风险、重复语义、未定义格式或错误文案升级为强验收断言。
+
+Impact:
+四份 Gate 共 59 条并通过 Validator；下一阶段只能消费 `generate_acceptance_example` 项，Supabase 的具体恢复码格式、错误文案和上下文安全项不得进入正式验收主链。
+
+## 2026-09-21 - Blind R3 Acceptance Examples Follow Atomic Main Coverage
+
+Decision:
+第三轮公开盲测的 Acceptance Examples 按 main Coverage 原子断言一对一生成，并同时保留 `source_gate_ids`、`source_rule_ids` 与 `coverage_refs`；Gate 中的重复、风险和非主来源决议不参与生成。
+
+Reason:
+仅按 Gate 父规则生成会重新合并已拆开的独立结果，而只按 Coverage 生成又可能绕过 Testability Gate。三向追溯能同时保持原子性和门禁边界。
+
+Impact:
+四份工作项共 37 条验收示例，精确覆盖 37 个 main Coverage 和 24 个允许 Gate；下一阶段 Case Plan 可直接以每条 Acceptance Example 的单一可观察结果为输入。
+
+## 2026-09-21 - Blind R3 Case Plan Uses One-to-One Direct Generation
+
+Decision:
+第三轮公开盲测的 37 条 Acceptance Example 各生成一条 `case_plan_direct` 计划，并各自绑定唯一的稳定 testcase ID；页面与板块编码先登记到统一编号规则，不使用临时编号。
+
+Reason:
+一计划一用例可保持原子 Coverage 不被再次合并，并让正式用例生成阶段直接执行已确认的页面、类型、优先级和断言决策。
+
+Impact:
+四份 Case Plan 共 37 条，Gate、Example、Rule、Coverage 追溯完整；M 档不要求且未伪造 Verification Responsibility，下一阶段须严格复用预留 testcase ID。
+
+## 2026-09-21 - Direct Generation Preserves Explicit Case Plan Type
+
+Decision:
+`case_plan_direct` 生成正式用例时，以 Case Plan 显式 `case_type` 为测试类型真源；通用语义推断只补齐文案，不得把已明确的类型重新解释为展示类。
+
+Reason:
+Celery 边界计划虽明确为 `field_constraint`，但来源描述中的“排序”触发展示语义推断，导致预留 `BD` 编号与生成的“功能”类型冲突。
+
+Impact:
+边界、异常、流程、状态和数据类型保持设计层决策，编号与测试类型一致；新增 direct 生成回归测试，未改变非 direct 流程或降低 lint 规则。
+
+## 2026-09-21 - Baseline Comparison Is A Concrete Oracle
+
+Decision:
+质量评分中的“一致”不再一律视为抽象预期；当结果显式绑定迁移前、重试前、认证前、首次、原始或基线值时，按可判定的前后比较 Oracle 处理。
+
+Reason:
+Django 的记录数量、主键和字段值迁移前后对比，以及 Temporal 的 run 最终状态重试前后对比，都具备已记录基线与明确比较对象，旧规则却仅因包含“一致”而误报。
+
+Impact:
+真正的“与需求一致”等无基线抽象表述仍会被识别；显式 before/after 不变量不再制造弱用例噪声。新增回归测试，未放宽 Traceability、Bundle 或 testcase 校验。
+
+## 2026-09-21 - Oracle Feedback Must Preserve Requirement Scope
+
+Decision:
+冻结资产后的 Oracle 反馈必须区分正式需求缺口、`oracle_only` 实现风险与实现差异。只有已批准需求能够支持的反馈进入正式设计主链；代码或新增测试独有的行为先进入 Gate 的 risk/audit。实现与已批准需求冲突时保留需求预期并记录 implementation gap，不按代码现状改写 testcase。
+
+Reason:
+第三轮盲测中 Temporal 的动态开关、冲突策略和错误传播，以及 Supabase 的 returnTo、异步交互均来自后置代码 Oracle。若全部等权回灌正式用例，会破坏盲测边界并把实现偶然细节升级为产品契约。Supabase 已批准摘要明确功能关闭时返回 MFA 验证页，不能因当前实现使用 `getReturnToPath()` 而修改 CP-010。
+
+Impact:
+本轮 9 条反馈分为 2 条正式设计补强、6 条 oracle-only 风险和 1 条实现差异。后续 Oracle scorer 需要拆分 requirement coverage 与 implementation-risk coverage，不能继续只用单一覆盖率解释用例质量。
+
+## 2026-09-22 - Oracle Coverage Is Reported By Scope
+
+Decision:
+Oracle assertion 使用 `oracle_scope=requirement/implementation/risk` 分层；旧输入缺省为 `requirement`。评分结果保留总体兼容分，同时分别输出批准需求、实现行为和风险路径覆盖率。不同 scope 不互相替代，也不得用实现/风险缺口判定需求用例不合格。
+
+Reason:
+Temporal 与 Supabase 的动态开关、冲突策略、错误路径、returnTo 和异步 UI 行为来自冻结后的代码 Oracle，不在批准需求输入中。旧总体分将这些缺口与需求覆盖等权混合，错误地把 0.65/0.5909 解释为需求用例不足。
+
+Impact:
+7 份样本复算后，Temporal/Supabase requirement coverage 均为 1.0，implementation 分别为 0.25/0.3571，Temporal risk 为 0.0；Celery requirement 0.9444 保持为真实设计缺口。后续报告必须优先展示分层指标，总体分只用于兼容。
+
+## 2026-09-22 - Harness Review Is A Validation Stage
+
+Decision:
+Harness Review 不再是零命令 checkpoint。所有工作项必须校验 design feedback；存在 Oracle 资产时必须校验 freeze/input/score 完整性、冻结哈希和当前评分重算一致性。Review fingerprint 必须包含这些输入，内容变化后旧 checkpoint 不得继续复用。
+
+Reason:
+此前 `review=succeeded` 只表示 review record 与 quality report 文件存在，不能证明 design feedback 合法、冻结资产未漂移或 Oracle score 未过期，容易把人工产物存在误当成 Review 结论可信。
+
+Impact:
+四份 R3 run 的旧 Review checkpoint 均因 fingerprint 变化自动失效并以两个 validator 重跑成功。反馈回灌后只有 requirement summary 不变且所有反馈已 applied 才允许相对原始冻结基线产生可审计差异。
+
+## 2026-09-22 - Case Plan Assertion Is The Direct Generator Oracle
+
+Decision:
+`case_plan_direct` 模式中，Acceptance Example 继续提供 Given/When 执行上下文；只要 Case Plan 提供 `assertion`，正式 testcase 的预期结果必须以该 assertion 为准。Design feedback 标记 `applied` 时可附带 `feedback_application.json`，记录目标设计层文件的前后 SHA-256；Review 与统一工作项校验在该凭证存在时执行确定性校验，禁止把正式 testcase 作为回灌目标。
+
+Reason:
+Celery DF-001 已正确写入 Case Plan，但生成器仍优先返回旧 Acceptance Example 的 Then，导致设计反馈无法下传正式用例。仅依赖人工说明“已应用”也无法证明修改发生在声明的设计层。
+
+Impact:
+Celery 三条相关用例已通过生成器获得“同步载荷仅包含任务 ID、不传播远端 monotonic 时间戳”预期；批准需求覆盖率达到 1.0。公开补丁独有的 oldest-first 顺序继续留在 implementation oracle，未升级为产品验收契约。
+
+## 2026-09-22 - Feedback Receipt Enforcement Is Opt-In By Manifest Generation
+
+Decision:
+新建工作项默认设置 `pipeline_policy.feedback_application_receipt_required=true`。启用后，只要存在 `status=applied` 的 design feedback，就必须有完整 `design/feedback_application.json`；Review 和 strict 工作项校验始终执行该判断。旧 manifest 未声明策略时允许返回 `legacy_compatible`，不补造历史 before hash。
+
+Reason:
+仅在凭证文件已存在时才校验，无法阻止新流程漏写凭证；反过来要求所有历史 applied feedback 补凭证，会迫使系统伪造当时没有记录的修改前哈希。以 manifest policy 区分新契约与历史兼容可同时关闭新漏洞并保存旧事实。
+
+Impact:
+Celery 作为 opt-in 样本必须并已提供 verified receipt；第一轮 Appsmith、Chatwoot、Saleor 保持可验证的 legacy-compatible 状态。新工作项若直接把 feedback 改为 applied 而不提交凭证，将在 Review 和统一工作项校验失败。
+
+## 2026-09-22 - Feedback Application Uses Prepare Then Record
+
+Decision:
+标准反馈回灌采用两阶段协议：`prepare` 在任何设计修改前冻结 accepted feedback、目标层和目标文件 SHA-256；`record` 只在 feedback fingerprint 未漂移且目标设计产物发生真实变化时生成 receipt。写入顺序固定为 receipt first、feedback status second，重复 record 必须能够完成中断恢复。
+
+Reason:
+强制 receipt 仍不能阻止操作者在修改后手工倒填 before hash。工具化的修改前快照能减少这一人为风险；先写 receipt 再置 applied 可保证任一中断状态都会被现有门禁拒绝，且可安全重试。
+
+Impact:
+标准路径拒绝直接选择 `testcases_main.md`、覆盖已有 baseline、无变更 record 和 prepare 后修改 feedback 内容。baseline 快照保留在 `.generation/feedback_applications/`，不影响正式 testcase 真源。
+
+## 2026-09-22 - Agent Feedback Application Uses A Dedicated Action Runtime
+
+Decision:
+Agent 回灌 design feedback 必须通过独立的受限 Action Runtime。Schema 仅允许 `prepare_feedback_application`、`propose_feedback_design_artifacts`、`record_feedback_application`；propose 只能写 prepare 快照中冻结的设计层路径，record 是唯一可以把反馈状态置为 `applied` 的动作。
+
+Reason:
+两阶段命令能证明 before hash 和真实变化，但若 Agent 仍可直接写工作项文件，设计修改与状态迁移就没有统一能力边界。把编辑动作纳入同一白名单后，Runtime 可以在写入前验证 feedback identity、fingerprint、target layer 和具体路径。
+
+Impact:
+受限入口不能修改 `design_feedback.json`、`feedback_application.json` 或正式 testcase，也不接受 shell 动作。外部进程仍拥有操作系统层面的文件权限，因此 Review/strict receipt gate 继续作为绕过 Runtime 后的确定性兜底；下一阶段可补不可变 action journal 和 Harness audit 重放。
+
+## 2026-09-22 - Feedback Actions Use Immutable Intent And Result Records
+
+Decision:
+每个 feedback Action ID 分别持久化不可覆盖的 intent 与 result。相同 ID 只能绑定同一请求；完成结果可幂等复用，intent 后中断可用原动作恢复，确定性失败也必须形成 result。新工作项默认要求 applied feedback 具备完整 prepare/propose/record journal。
+
+Reason:
+仅有最终 receipt 无法证明 Agent 实际通过受限入口执行，也无法区分进程中断与无日志绕过。双记录既保留执行前意图，又避免通过覆写单一状态文件改写历史；失败结果终态化则避免一次可预期拒绝永久留下“疑似崩溃”。
+
+Impact:
+`audit-feedback-actions`、Harness Review 和 strict 会验证请求哈希、intent/result 配对、成功动作顺序、receipt 与最终状态；journal 变化会失效旧 Review checkpoint。旧 manifest 未启用策略时保留 legacy compatibility，不补造历史动作。当前日志尚未绑定具体 Harness run 或执行主体，该增强属于后续责任追踪而非正确性门禁。
+
+## 2026-09-22 - Framework Validation Must Be Business-Sample Independent
+
+Decision:
+质量基线、Eval Golden、Harness Runtime 单元测试和收口脚本不得默认绑定任何具体业务工作项。业务样本只能作为显式输入单独校验；框架回归使用匿名、自包含 fixture。
+
+Reason:
+把 PT083 同时作为需求样本和框架默认正向样例，会让样本自身变化影响框架结论，并使“该需求通过”被误读为“项目通过”。测试代码直接复制业务目录还会形成隐藏依赖。
+
+Impact:
+基线移除业务工作项与项目壳命令；Golden 仅比较通用 fixture；收口入口要求显式项目和工作项参数；Runtime 测试迁移到匿名 fixture。新增独立性门禁，阻止已知业务样本标识和工作项校验命令重新进入框架验证范围。真实业务目录与历史记录不改写。
+
+## 2026-09-22 - Feedback Action Journal Binds Trusted Execution Context
+
+Decision:
+feedback Action Runtime 必须从 action payload 外部接收 Harness `run_id`、`actor` 与 `provider`。journal 1.1 的 intent/result 同时记录该上下文，request hash 绑定 action 与上下文；同一 feedback 的成功动作必须属于同一 run。
+
+Reason:
+仅记录动作内容无法证明动作属于哪个执行过程，也无法识别跨 run 拼接或执行身份被改写。由调用边界注入上下文可以阻止模型在 action 内自报身份，并让 Harness audit 将反馈动作归属到具体 run。
+
+Impact:
+新工作项默认强制执行身份绑定；Runtime 和审计验证 run 存在、项目/工作项匹配以及 intent/result 上下文一致。旧 1.0 journal 继续只读兼容，不能补证历史身份。`actor` 与 `provider` 当前是可审计声明，不等同于宿主认证凭证。
+
+## 2026-09-22 - No-Code Review Requires A Run-Scoped Disposition
+
+Decision:
+新工作项默认启用 `review_disposition_required=true`。没有业务代码输入时，必须由人工对具体 validate run 声明 `not_applicable`、执行者和原因，凭证绑定当时的 `code_review_scope.json`。Review 的确定性 validator 仍必须执行，通过后阶段记录为 `skipped`，strict gate 才可跳过代码评审资产。
+
+Reason:
+无代码工作项不应伪造代码评审完成，但直接使用全局 `--skip-code-reviews` 又缺少责任人、原因、run 归属和输入绑定。独立 disposition 可区分“不适用”与“尚未评审”，同时保留设计反馈、回灌和 Oracle 门禁。
+
+Impact:
+CI 不得自行声明 N/A；存在代码目录、Traceability 未成功或 scope 漂移时声明无效。run audit 校验凭证、声明事件、阶段终态和前置阶段。旧 manifest 延续原跳过行为，避免破坏历史运行；既有 run 不会被框架自动补写人工声明。
+
+## 2026-09-22 - Requirement Summary Metadata Is Not An Executable Rule
+
+Decision:
+Reasoning 生成器不得把“关键数据”“关键契约”“关键公开 API”“资源字段”等清单说明，或“PR 未声明新增项”这类范围声明，归类为 `explicit_rules` 或生成 Coverage 候选；明确的输入、输出和行为契约仍保留。
+
+Reason:
+最终轮盲测发现，第 7 节的说明性元数据会被统一规则抽取逻辑提升为正式行为，导致后续 Coverage 数量虚高并可能生成不可执行用例。
+
+Impact:
+四份 R4 Reasoning Pack 共移除 8 条伪规则，真实规则、风险和待确认项不变。新增解析回归测试；历史产物不批量改写，重新生成时自动应用新口径。
+
+## 2026-09-22 - Explicit Coverage Uses Feature Context And Rule Identity
+
+Decision:
+Coverage 生成器必须使用 Structured PRD `explicit_rules[].applies_to` 映射对应 feature 的页面、板块和模块上下文；Coverage 标题与去重身份必须来自具体规则文本或 atomic assertion，不能仅使用共享的 feature 名称。
+
+Reason:
+最终轮盲测发现，多 feature 工作项的顶层规则会丢失上下文；补上映射后，如果仍用 `applies_to` 作为标题，同一 feature 下的多条独立规则会被误合并。
+
+Impact:
+四份 R4 矩阵的 43 项主覆盖均获得完整上下文，且同一 feature 的不同规则保持独立。新增两项生成器回归测试；历史 Coverage 不批量改写，重新生成时应用新口径。
+
+## 2026-09-22 - Testability Gate Binds Rule Identity And Text
+
+Decision:
+Testability Gate 除覆盖 Structured PRD 的 `rule_id` 外，还必须保证 `source_text` 与该规则正文一致；同一 ID 下的文本漂移必须判定为校验失败。
+
+Reason:
+只校验 ID 存在无法阻止规则内容在 Gate 中被静默改写，可能让后续 Acceptance Example 在看似完整的追溯链上执行错误语义。
+
+Impact:
+Gate Validator 新增规则正文一致性检查与正反向回归测试。四份 R4 Gate 全部精确匹配；历史已验证样本抽查无不兼容项。
+
+## 2026-09-22 - Case Plan Direct Tagging Uses Explicit Side Or Terminal
+
+Decision:
+`case_plan_direct` 生成标签时，先使用明确的验证侧语义；若验证侧没有前后端关键词，则以稳定 testcase ID 中的 `API` / `SERVER` 终端段作为 `AI-API用例` 兜底。“列表”本身不再作为 `AI-UI用例` 判据。
+
+Reason:
+最终轮生成发现 APIStore 列表读取、TTS 音频解码和 BroadcastLogger 标签等纯后端用例会因为“列表”或缺少固定关键词而被误标为 UI 用例，导致执行载体与真实验证面不一致。
+
+Impact:
+四份 R4 后端样本重新生成后不再包含错误的 `AI-UI用例` 标签；显式包含页面、前端、展示或 B/C 端语义的计划仍可生成 UI 标签。新增 SERVER 兜底和 API 列表反例测试，历史资产不批量改写。
+
+## 2026-09-22 - Coverage-First Traceability Preserves Explicit Rule IDs
+
+Decision:
+Coverage-first traceability 必须优先从 `structured_refs` 解析并保留实际显式规则 ID，不再把规则 ID 限定为 `ER-数字`；只有不存在合法显式引用和 ID 型 `rule_name` 时才使用上下文合成标识。
+
+Reason:
+最终轮盲测的规则采用 `GRA-R001`、`HA-R001`、`RAI-R001`、`K8S-R001` 等项目级命名。旧逻辑会把它们退化成重复的模块/功能/coverage-type 字符串，虽然 Coverage 与 testcase 存在，规则身份却不精确。
+
+Impact:
+四份 R4 追溯的 43 条记录均绑定真实 Structured Rule ID；旧描述型 `rule_name` 仍保留原 fallback 行为。新增自定义规则前缀与 fallback 回归测试，历史资产不批量改写。
+
+## 2026-09-22 - Oracle Coverage Must Remain Layered
+
+Decision:
+最终轮公开盲测继续分别报告 requirement、implementation 与 risk Oracle coverage；总体分只作为补丁差异规模指标，不能用实现级缺口反推需求用例不相关或直接修改正式 testcase。
+
+Reason:
+Grafana #133083 的公开实现包含版本上限、错误传播和并发安全等需求摘要未确认的实现契约，使总体 Oracle coverage 明显低于需求层覆盖率。若合并口径，会把合理的需求边界误判为主流程失败，并诱发 Oracle 反向污染。
+
+Impact:
+四份 R4 的 43 条正式 testcase 相关率均为 1.0；6 条新发现只进入 design feedback。后续必须先分流反馈，需求可确认项才进入 Acceptance/Case Plan，纯实现风险保留在 Gate 或验证责任层。
+
+## 2026-09-22 - Approved Requirement Gaps Re-enter At Testability Gate
+
+Decision:
+Oracle 发现若能追溯到已批准 Requirement Summary 与 Reasoning 的明确规则，但在 Structured PRD 后续链路漏传，应从 Testability Gate 重新进入正式设计链；不得直接修补 Case Plan 或 testcase。仅存在于实现 diff 的行为继续作为 risk-only，未决语义继续保持 needs-confirmation。
+
+Reason:
+Grafana 的 Serializer 接收请求 context 已由获批摘要和 `ER-002` 明确，但正式设计只覆盖了 watch context。直接修改 Case Plan 会跳过 Gate 与 Acceptance 的来源约束，既破坏追溯，也会把一次样本修复伪装成完整设计。
+
+Impact:
+Grafana DF-002 的 target layer 调整为 Testability Gate；下一阶段先生成可审计 Gate 决策，再顺序重建下游。其余 5 条反馈不会自动升级为正式业务用例。
+
+## 2026-09-22 - Sequential Feedback Applications Form A Hash Chain
+
+Decision:
+同一设计产物连续承接多个 feedback 时，回灌凭证按目标路径组成有序哈希链；后一个 application 的 `before_sha256` 必须等于前一个 `after_sha256`，只有链尾必须等于当前文件。
+
+Reason:
+旧校验要求每个历史 receipt 的 `after_sha256` 都等于当前文件，第二次合法修改同一 Gate 后，第一份历史凭证必然被误报为过期。该约束既不支持批次回灌，也无法表达真实的版本演进。
+
+Impact:
+合法连续回灌可审计通过；缺失中间环节、前后哈希断裂或链尾与当前文件不一致仍会失败。此规则是框架通用逻辑，不绑定 Grafana、PT083 或任何单一样本。
+
+## 2026-09-22 - Late Review N/A Declaration Reopens Deterministic Review
+
+Decision:
+当 validate run 的 Review 已成功、Strict Gate 尚未执行且本地代码目录确实为空时，允许用户补充 run-scoped `not_applicable` 声明；Runtime 必须把 Review 重开为 pending，清除旧 checkpoint，再重新执行全部 Review validator，成功后才记录为 `skipped/not_applicable`。
+
+Reason:
+旧生命周期只允许在 Review 前声明 N/A。若 Agent 先运行确定性 Review，用户随后批准 N/A，run 会永久卡在 Strict 前；直接保留 succeeded 又会使审计无法证明 N/A 路径重新执行过 Review。
+
+Impact:
+补充声明不会绕过 Review、Oracle、feedback receipt 或 Action journal；Strict 已运行、存在本地代码目录、Traceability 未成功或非人工环境时仍拒绝声明。新增回归测试覆盖成功 Review 后声明、重跑和审计闭环。
+
+## 2026-09-22 - Feedback Application Journal Is A Release Artifact
+
+Decision:
+工作项 `.generation/feedback_applications/` 下的 baseline 快照与不可变 Action journal，以及 identity 校验所需的 `run_state.json` 和人工 `review_disposition.json` 属于 strict 可复验的正式审计证据，必须进入版本库；其余 run 过程文件与根级可再生评测/动作输入不进入版本库。
+
+Reason:
+新工作项启用 `feedback_action_journal_required=true` 后，applied feedback 缺少完整 journal 会被 Review 和 strict 拒绝。整体忽略 `.generation/` 会导致本地通过、干净克隆后无法复验。
+
+Impact:
+发布包保留 feedback prepare/propose/record 的 intent/result 与 before snapshot，并保留校验执行身份所需的最小 run 元数据；继续排除 events、诊断、hook、阶段日志、当前 run 指针、覆盖率数据库和根级生成缓存。

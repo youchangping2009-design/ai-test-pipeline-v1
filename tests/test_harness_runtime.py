@@ -64,6 +64,9 @@ class HarnessContractTests(unittest.TestCase):
             "harness_event.schema.json",
             "harness_diagnostic.schema.json",
             "harness_model_action.schema.json",
+            "harness_feedback_action.schema.json",
+            "harness_feedback_action_journal.schema.json",
+            "harness_review_disposition.schema.json",
             "harness_approval.schema.json",
             "requirement_approval.schema.json",
             "work_item_manifest.schema.json",
@@ -180,14 +183,7 @@ class HarnessContractTests(unittest.TestCase):
 
 class HarnessStageBoundaryTests(unittest.TestCase):
     def test_valid_case_plan_checkpoint_succeeds_before_testcases_exist(self) -> None:
-        source = (
-            ROOT
-            / "assets"
-            / "projects"
-            / "WX-YGJ"
-            / "work_items"
-            / "PT083"
-        )
+        source = ROOT / "tests" / "fixtures" / "runtime_work_item"
         with tempfile.TemporaryDirectory() as temporary:
             item_root = Path(temporary) / "work_item"
             for relative_path in [
@@ -214,8 +210,8 @@ class HarnessStageBoundaryTests(unittest.TestCase):
             )
             command = case_plan_stage.commands(
                 item_root,
-                "WX-YGJ",
-                "PT083",
+                "FIXTURE",
+                "FIXTURE-RUNTIME-001",
                 "M",
                 True,
             )[0]
@@ -241,8 +237,8 @@ class HarnessStageBoundaryTests(unittest.TestCase):
                 command
                 for command in testcase_stage.commands(
                     item_root,
-                    "WX-YGJ",
-                    "PT083",
+                    "FIXTURE",
+                    "FIXTURE-RUNTIME-001",
                     "M",
                     True,
                 )
@@ -262,14 +258,7 @@ class HarnessStageBoundaryTests(unittest.TestCase):
             )
 
     def test_testcases_checkpoint_succeeds_before_bundle_is_refreshed(self) -> None:
-        source = (
-            ROOT
-            / "assets"
-            / "projects"
-            / "WX-YGJ"
-            / "work_items"
-            / "PT083"
-        )
+        source = ROOT / "tests" / "fixtures" / "runtime_work_item"
         with tempfile.TemporaryDirectory() as temporary:
             item_root = Path(temporary) / "work_item"
             for relative_path in [
@@ -300,8 +289,8 @@ class HarnessStageBoundaryTests(unittest.TestCase):
             failures = []
             for command in testcase_stage.commands(
                 item_root,
-                "WX-YGJ",
-                "PT083",
+                "FIXTURE",
+                "FIXTURE-RUNTIME-001",
                 "M",
                 True,
             ):
@@ -325,8 +314,8 @@ class HarnessStageBoundaryTests(unittest.TestCase):
                 command
                 for command in traceability_stage.commands(
                     item_root,
-                    "WX-YGJ",
-                    "PT083",
+                    "FIXTURE",
+                    "FIXTURE-RUNTIME-001",
                     "M",
                     True,
                 )
@@ -340,8 +329,15 @@ class HarnessStageBoundaryTests(unittest.TestCase):
                 check=False,
             )
             self.assertNotEqual(downstream_result.returncode, 0)
+            active_case_count = sum(
+                1
+                for plan in json.loads(
+                    (item_root / "testcases" / "case_plan.json").read_text(encoding="utf-8")
+                ).get("case_plans", [])
+                if plan.get("should_generate_case")
+            )
             self.assertIn(
-                "0 != 75",
+                f"0 != {active_case_count}",
                 downstream_result.stdout + downstream_result.stderr,
             )
 
@@ -463,6 +459,33 @@ class HarnessOrchestratorTests(unittest.TestCase):
             self.assertEqual(completed["stop_at"], "stage_two")
             self.assertEqual(completed["stages"][0]["attempts"], 1)
             self.assertEqual(completed["stages"][1]["attempts"], 1)
+
+    def test_resume_to_existing_checkpoint_pauses_without_running_downstream(self) -> None:
+        with (
+            patch("harness.orchestrator.resolve_stage_plan", return_value=self.plan),
+            patch(
+                "harness.orchestrator.stage_ids",
+                return_value=["stage_one", "stage_two"],
+            ),
+        ):
+            code, paused = self.orchestrator.start(
+                run_id="RUN-REWIND",
+                work_item_level="S",
+                strict=False,
+                stop_at="stage_one",
+            )
+            self.assertEqual(code, 0)
+            self.assertEqual(paused["status"], "paused")
+
+            code, paused_again = self.orchestrator.resume(
+                run_id="RUN-REWIND",
+                stop_at="stage_one",
+            )
+
+            self.assertEqual(code, 0)
+            self.assertEqual(paused_again["status"], "paused")
+            self.assertEqual(paused_again["stages"][0]["attempts"], 1)
+            self.assertEqual(paused_again["stages"][1]["attempts"], 0)
 
     def test_failed_stage_resumes_without_repeating_valid_checkpoint(self) -> None:
         failing_plan = [
@@ -848,4 +871,3 @@ class HarnessHookTests(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
-

@@ -147,16 +147,30 @@ def validate_gate(payload: dict[str, Any], structured_prd: dict[str, Any] | None
             errors.append(f"{gate_id} out_of_scope 不允许生成主用例")
 
     if structured_prd is not None:
+        structured_rules = iter_rule_candidates(structured_prd)
         required_rule_ids = {
-            item["rule_id"]
-            for item in iter_rule_candidates(structured_prd)
-            if item["rule_id"].strip()
+            item["rule_id"] for item in structured_rules if item["rule_id"].strip()
         }
         missing_rule_ids = sorted(required_rule_ids - source_rule_ids)
         if missing_rule_ids:
             preview = ", ".join(missing_rule_ids[:20])
             suffix = " ..." if len(missing_rule_ids) > 20 else ""
             errors.append(f"structured_prd 中存在未经过 testability_gate 处理的规则: {preview}{suffix}")
+
+        expected_text_by_rule = {
+            item["rule_id"]: item["rule_text"] for item in structured_rules
+        }
+        for item in items:
+            if not isinstance(item, dict):
+                continue
+            source_rule_id = str(item.get("source_rule_id", "")).strip()
+            if source_rule_id not in expected_text_by_rule:
+                continue
+            source_text = str(item.get("source_text", "")).strip()
+            if source_text != expected_text_by_rule[source_rule_id]:
+                errors.append(
+                    f"{item.get('gate_id', source_rule_id)} source_text 与 structured_prd 规则 {source_rule_id} 不一致"
+                )
 
     return errors
 

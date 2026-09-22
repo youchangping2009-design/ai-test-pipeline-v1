@@ -1,0 +1,780 @@
+{
+  "project_code": "OSS-BLIND-R4",
+  "work_item_id": "KUBERNETES-141831",
+  "grounding_contract_version": "1.0",
+  "generated_at": "2026-09-22T10:54:30",
+  "generated_from": [
+    "assets/projects/OSS-BLIND-R4/work_items/KUBERNETES-141831/manifest.json",
+    "assets/projects/OSS-BLIND-R4/work_items/KUBERNETES-141831/inputs/requirement_summary.md",
+    "assets/projects/OSS-BLIND-R4/work_items/KUBERNETES-141831/inputs/source_manifest.json",
+    "assets/projects/OSS-BLIND-R4/work_items/KUBERNETES-141831/image_evidence/image_evidence_inventory.json"
+  ],
+  "requirement_summary": {
+    "title": "KUBERNETES-141831 Warn on empty DeviceTaintRule selector 需求整理",
+    "summary_text": "创建或更新 DeviceTaintRule 时，若 `spec.deviceSelector` 明确存在但 driver、pool、device 均未指定，API 应返回固定文本的非阻塞 Warning；selector 省略或具有有效范围时不告警，既有校验和资源创建/更新结果不改变。",
+    "primary_pages": [],
+    "primary_user_surfaces": [],
+    "source_notes": [
+      "归一化需求来源：assets/projects/OSS-BLIND-R4/work_items/KUBERNETES-141831/inputs/requirement_summary.md",
+      "SRC-001: https://github.com/kubernetes/kubernetes/pull/141831 (available)",
+      "SRC-002: inputs/public_source_snapshot.md (available)"
+    ]
+  },
+  "explicit_rules": [
+    {
+      "id": "ER-001",
+      "title": "需求整理-explicit_rule",
+      "statement": "创建或更新 DeviceTaintRule 时，若 `spec.deviceSelector` 明确存在但 driver、pool、device 均未指定，API 应返回固定文本的非阻塞 Warning；selector 省略或具有有效范围时不告警，既有校验和资源创建/更新结果不改变。",
+      "confidence": 0.99,
+      "reasoning_notes": [
+        "来自主流程 requirement_summary.md 的确认需求。"
+      ],
+      "must_preserve_terms": [],
+      "source_refs": [
+        {
+          "source_type": "input_markdown",
+          "path": "assets/projects/OSS-BLIND-R4/work_items/KUBERNETES-141831/inputs/requirement_summary.md",
+          "excerpt": "创建或更新 DeviceTaintRule 时，若 `spec.deviceSelector` 明确存在但 driver、pool、device 均未指定，API 应返回固定文本的非阻塞 Warning；selector 省略或具有有效范围时不告警，既有校验和资源创建/更新结果不改变。"
+        }
+      ]
+    },
+    {
+      "id": "ER-002",
+      "title": "需求整理-explicit_rule",
+      "statement": "仅当 `spec.deviceSelector` 存在且 driver、pool、device 全为空时发出警告。",
+      "confidence": 0.99,
+      "reasoning_notes": [
+        "来自主流程 requirement_summary.md 的确认需求。"
+      ],
+      "must_preserve_terms": [],
+      "source_refs": [
+        {
+          "source_type": "input_markdown",
+          "path": "assets/projects/OSS-BLIND-R4/work_items/KUBERNETES-141831/inputs/requirement_summary.md",
+          "excerpt": "仅当 `spec.deviceSelector` 存在且 driver、pool、device 全为空时发出警告。"
+        }
+      ]
+    },
+    {
+      "id": "ER-003",
+      "title": "需求整理-explicit_rule",
+      "statement": "create 与 update 使用相同判断和警告文本。",
+      "confidence": 0.99,
+      "reasoning_notes": [
+        "来自主流程 requirement_summary.md 的确认需求。"
+      ],
+      "must_preserve_terms": [],
+      "source_refs": [
+        {
+          "source_type": "input_markdown",
+          "path": "assets/projects/OSS-BLIND-R4/work_items/KUBERNETES-141831/inputs/requirement_summary.md",
+          "excerpt": "create 与 update 使用相同判断和警告文本。"
+        }
+      ]
+    },
+    {
+      "id": "ER-004",
+      "title": "需求整理-explicit_rule",
+      "statement": "精确警告文本为：`spec.deviceSelector: an empty selector matches every device from every driver in the cluster`。",
+      "confidence": 0.99,
+      "reasoning_notes": [
+        "来自主流程 requirement_summary.md 的确认需求。"
+      ],
+      "must_preserve_terms": [],
+      "source_refs": [
+        {
+          "source_type": "input_markdown",
+          "path": "assets/projects/OSS-BLIND-R4/work_items/KUBERNETES-141831/inputs/requirement_summary.md",
+          "excerpt": "精确警告文本为：`spec.deviceSelector: an empty selector matches every device from every driver in the cluster`。"
+        }
+      ]
+    },
+    {
+      "id": "ER-005",
+      "title": "需求整理-explicit_rule",
+      "statement": "selector 省略时不告警；任一范围字段已指定时不告警。",
+      "confidence": 0.99,
+      "reasoning_notes": [
+        "来自主流程 requirement_summary.md 的确认需求。"
+      ],
+      "must_preserve_terms": [],
+      "source_refs": [
+        {
+          "source_type": "input_markdown",
+          "path": "assets/projects/OSS-BLIND-R4/work_items/KUBERNETES-141831/inputs/requirement_summary.md",
+          "excerpt": "selector 省略时不告警；任一范围字段已指定时不告警。"
+        }
+      ]
+    },
+    {
+      "id": "ER-006",
+      "title": "需求整理-explicit_rule",
+      "statement": "警告不阻止请求成功，不改变验证结果、持久化结果或后续 taint 行为。",
+      "confidence": 0.99,
+      "reasoning_notes": [
+        "来自主流程 requirement_summary.md 的确认需求。"
+      ],
+      "must_preserve_terms": [],
+      "source_refs": [
+        {
+          "source_type": "input_markdown",
+          "path": "assets/projects/OSS-BLIND-R4/work_items/KUBERNETES-141831/inputs/requirement_summary.md",
+          "excerpt": "警告不阻止请求成功，不改变验证结果、持久化结果或后续 taint 行为。"
+        }
+      ]
+    },
+    {
+      "id": "ER-007",
+      "title": "需求整理-explicit_rule",
+      "statement": "判断不应因 taint effect 不同而失效。",
+      "confidence": 0.99,
+      "reasoning_notes": [
+        "来自主流程 requirement_summary.md 的确认需求。"
+      ],
+      "must_preserve_terms": [],
+      "source_refs": [
+        {
+          "source_type": "input_markdown",
+          "path": "assets/projects/OSS-BLIND-R4/work_items/KUBERNETES-141831/inputs/requirement_summary.md",
+          "excerpt": "判断不应因 taint effect 不同而失效。"
+        }
+      ]
+    },
+    {
+      "id": "ER-008",
+      "title": "需求整理-explicit_rule",
+      "statement": "create 空对象 selector：返回精确 Warning，资源仍成功创建。",
+      "confidence": 0.99,
+      "reasoning_notes": [
+        "来自主流程 requirement_summary.md 的确认需求。"
+      ],
+      "must_preserve_terms": [],
+      "source_refs": [
+        {
+          "source_type": "input_markdown",
+          "path": "assets/projects/OSS-BLIND-R4/work_items/KUBERNETES-141831/inputs/requirement_summary.md",
+          "excerpt": "create 空对象 selector：返回精确 Warning，资源仍成功创建。"
+        }
+      ]
+    },
+    {
+      "id": "ER-009",
+      "title": "需求整理-explicit_rule",
+      "statement": "update 为/保持空对象 selector：返回相同 Warning，更新仍成功。",
+      "confidence": 0.99,
+      "reasoning_notes": [
+        "来自主流程 requirement_summary.md 的确认需求。"
+      ],
+      "must_preserve_terms": [],
+      "source_refs": [
+        {
+          "source_type": "input_markdown",
+          "path": "assets/projects/OSS-BLIND-R4/work_items/KUBERNETES-141831/inputs/requirement_summary.md",
+          "excerpt": "update 为/保持空对象 selector：返回相同 Warning，更新仍成功。"
+        }
+      ]
+    },
+    {
+      "id": "ER-010",
+      "title": "需求整理-explicit_rule",
+      "statement": "selector 省略：create/update 均无该 Warning。",
+      "confidence": 0.99,
+      "reasoning_notes": [
+        "来自主流程 requirement_summary.md 的确认需求。"
+      ],
+      "must_preserve_terms": [],
+      "source_refs": [
+        {
+          "source_type": "input_markdown",
+          "path": "assets/projects/OSS-BLIND-R4/work_items/KUBERNETES-141831/inputs/requirement_summary.md",
+          "excerpt": "selector 省略：create/update 均无该 Warning。"
+        }
+      ]
+    },
+    {
+      "id": "ER-011",
+      "title": "需求整理-explicit_rule",
+      "statement": "分别指定 driver、pool、device：均无空 selector Warning。",
+      "confidence": 0.99,
+      "reasoning_notes": [
+        "来自主流程 requirement_summary.md 的确认需求。"
+      ],
+      "must_preserve_terms": [],
+      "source_refs": [
+        {
+          "source_type": "input_markdown",
+          "path": "assets/projects/OSS-BLIND-R4/work_items/KUBERNETES-141831/inputs/requirement_summary.md",
+          "excerpt": "分别指定 driver、pool、device：均无空 selector Warning。"
+        }
+      ]
+    },
+    {
+      "id": "ER-012",
+      "title": "需求整理-explicit_rule",
+      "statement": "对不同 effect 的空 selector 都告警，包括仅用于预览的既有取值。",
+      "confidence": 0.99,
+      "reasoning_notes": [
+        "来自主流程 requirement_summary.md 的确认需求。"
+      ],
+      "must_preserve_terms": [
+        "仅用于预览的既有取值"
+      ],
+      "source_refs": [
+        {
+          "source_type": "input_markdown",
+          "path": "assets/projects/OSS-BLIND-R4/work_items/KUBERNETES-141831/inputs/requirement_summary.md",
+          "excerpt": "对不同 effect 的空 selector 都告警，包括仅用于预览的既有取值。"
+        }
+      ]
+    },
+    {
+      "id": "ER-013",
+      "title": "需求整理-explicit_rule",
+      "statement": "普通客户端看到警告但请求成功；`kubectl --warnings-as-errors` 可返回非零状态，同时服务端对象确实已创建。",
+      "confidence": 0.99,
+      "reasoning_notes": [
+        "来自主流程 requirement_summary.md 的确认需求。"
+      ],
+      "must_preserve_terms": [],
+      "source_refs": [
+        {
+          "source_type": "input_markdown",
+          "path": "assets/projects/OSS-BLIND-R4/work_items/KUBERNETES-141831/inputs/requirement_summary.md",
+          "excerpt": "普通客户端看到警告但请求成功；`kubectl --warnings-as-errors` 可返回非零状态，同时服务端对象确实已创建。"
+        }
+      ]
+    },
+    {
+      "id": "ER-014",
+      "title": "需求整理-explicit_rule",
+      "statement": "其他字段校验失败时，不得因本警告掩盖原有错误。",
+      "confidence": 0.99,
+      "reasoning_notes": [
+        "来自主流程 requirement_summary.md 的确认需求。"
+      ],
+      "must_preserve_terms": [],
+      "source_refs": [
+        {
+          "source_type": "input_markdown",
+          "path": "assets/projects/OSS-BLIND-R4/work_items/KUBERNETES-141831/inputs/requirement_summary.md",
+          "excerpt": "其他字段校验失败时，不得因本警告掩盖原有错误。"
+        }
+      ]
+    },
+    {
+      "id": "ER-015",
+      "title": "需求整理-explicit_rule",
+      "statement": "输出契约：HTTP Warning response header，文本必须与公开需求一致。",
+      "confidence": 0.99,
+      "reasoning_notes": [
+        "来自主流程 requirement_summary.md 的确认需求。"
+      ],
+      "must_preserve_terms": [],
+      "source_refs": [
+        {
+          "source_type": "input_markdown",
+          "path": "assets/projects/OSS-BLIND-R4/work_items/KUBERNETES-141831/inputs/requirement_summary.md",
+          "excerpt": "输出契约：HTTP Warning response header，文本必须与公开需求一致。"
+        }
+      ]
+    }
+  ],
+  "implicit_rules": [],
+  "field_constraints": [],
+  "data_source_rules": [],
+  "business_risks": [
+    {
+      "risk_id": "RISK-001",
+      "title": "最大风险是把 `soft_prompt` 错升为 `hard_block…",
+      "risk_statement": "最大风险是把 `soft_prompt` 错升为 `hard_block`，导致兼容性破坏。",
+      "severity": "medium",
+      "impact_scope": [],
+      "source_refs": [
+        {
+          "source_type": "input_markdown",
+          "path": "assets/projects/OSS-BLIND-R4/work_items/KUBERNETES-141831/inputs/requirement_summary.md",
+          "excerpt": "最大风险是把 `soft_prompt` 错升为 `hard_block`，导致兼容性破坏。"
+        }
+      ]
+    },
+    {
+      "risk_id": "RISK-002",
+      "title": "nil 与 `{}` 的语义必须区分",
+      "risk_statement": "nil 与 `{}` 的语义必须区分，否则会对合法的省略场景产生噪声。",
+      "severity": "medium",
+      "impact_scope": [],
+      "source_refs": [
+        {
+          "source_type": "input_markdown",
+          "path": "assets/projects/OSS-BLIND-R4/work_items/KUBERNETES-141831/inputs/requirement_summary.md",
+          "excerpt": "nil 与 `{}` 的语义必须区分，否则会对合法的省略场景产生噪声。"
+        }
+      ]
+    },
+    {
+      "risk_id": "RISK-003",
+      "title": "客户端的 warnings-as-errors 行为容易被误判为服务端创…",
+      "risk_statement": "客户端的 warnings-as-errors 行为容易被误判为服务端创建失败，需要同时核对对象状态。",
+      "severity": "medium",
+      "impact_scope": [],
+      "source_refs": [
+        {
+          "source_type": "input_markdown",
+          "path": "assets/projects/OSS-BLIND-R4/work_items/KUBERNETES-141831/inputs/requirement_summary.md",
+          "excerpt": "客户端的 warnings-as-errors 行为容易被误判为服务端创建失败，需要同时核对对象状态。"
+        }
+      ]
+    },
+    {
+      "risk_id": "RISK-004",
+      "title": "多条警告并存时的去重和顺序可能影响客户端断言",
+      "risk_statement": "多条警告并存时的去重和顺序可能影响客户端断言。",
+      "severity": "medium",
+      "impact_scope": [],
+      "source_refs": [
+        {
+          "source_type": "input_markdown",
+          "path": "assets/projects/OSS-BLIND-R4/work_items/KUBERNETES-141831/inputs/requirement_summary.md",
+          "excerpt": "多条警告并存时的去重和顺序可能影响客户端断言。"
+        }
+      ]
+    }
+  ],
+  "edge_cases": [
+    {
+      "edge_case_id": "EC-001",
+      "title": "create 空对象 selector",
+      "scenario": "create 空对象 selector：返回精确 Warning，资源仍成功创建。",
+      "priority": "P1",
+      "source_refs": [
+        {
+          "source_type": "input_markdown",
+          "path": "assets/projects/OSS-BLIND-R4/work_items/KUBERNETES-141831/inputs/requirement_summary.md",
+          "excerpt": "create 空对象 selector：返回精确 Warning，资源仍成功创建。"
+        }
+      ]
+    },
+    {
+      "edge_case_id": "EC-002",
+      "title": "update 为/保持空对象 selector",
+      "scenario": "update 为/保持空对象 selector：返回相同 Warning，更新仍成功。",
+      "priority": "P1",
+      "source_refs": [
+        {
+          "source_type": "input_markdown",
+          "path": "assets/projects/OSS-BLIND-R4/work_items/KUBERNETES-141831/inputs/requirement_summary.md",
+          "excerpt": "update 为/保持空对象 selector：返回相同 Warning，更新仍成功。"
+        }
+      ]
+    },
+    {
+      "edge_case_id": "EC-003",
+      "title": "分别指定 driver、pool、device",
+      "scenario": "分别指定 driver、pool、device：均无空 selector Warning。",
+      "priority": "P1",
+      "source_refs": [
+        {
+          "source_type": "input_markdown",
+          "path": "assets/projects/OSS-BLIND-R4/work_items/KUBERNETES-141831/inputs/requirement_summary.md",
+          "excerpt": "分别指定 driver、pool、device：均无空 selector Warning。"
+        }
+      ]
+    },
+    {
+      "edge_case_id": "EC-004",
+      "title": "对不同 effect 的空 selector 都告警",
+      "scenario": "对不同 effect 的空 selector 都告警，包括仅用于预览的既有取值。",
+      "priority": "P1",
+      "source_refs": [
+        {
+          "source_type": "input_markdown",
+          "path": "assets/projects/OSS-BLIND-R4/work_items/KUBERNETES-141831/inputs/requirement_summary.md",
+          "excerpt": "对不同 effect 的空 selector 都告警，包括仅用于预览的既有取值。"
+        }
+      ]
+    },
+    {
+      "edge_case_id": "EC-005",
+      "title": "普通客户端看到警告但请求成功",
+      "scenario": "普通客户端看到警告但请求成功；`kubectl --warnings-as-errors` 可返回非零状态，同时服务端对象确实已创建。",
+      "priority": "P1",
+      "source_refs": [
+        {
+          "source_type": "input_markdown",
+          "path": "assets/projects/OSS-BLIND-R4/work_items/KUBERNETES-141831/inputs/requirement_summary.md",
+          "excerpt": "普通客户端看到警告但请求成功；`kubectl --warnings-as-errors` 可返回非零状态，同时服务端对象确实已创建。"
+        }
+      ]
+    },
+    {
+      "edge_case_id": "EC-006",
+      "title": "其他字段校验失败时",
+      "scenario": "其他字段校验失败时，不得因本警告掩盖原有错误。",
+      "priority": "P1",
+      "source_refs": [
+        {
+          "source_type": "input_markdown",
+          "path": "assets/projects/OSS-BLIND-R4/work_items/KUBERNETES-141831/inputs/requirement_summary.md",
+          "excerpt": "其他字段校验失败时，不得因本警告掩盖原有错误。"
+        }
+      ]
+    }
+  ],
+  "ambiguities": [
+    {
+      "ambiguity_id": "AMB-001",
+      "title": "driver/pool/device 组合为空字符串或只含空白时如何判定",
+      "description": "driver/pool/device 组合为空字符串或只含空白时如何判定？",
+      "status": "open",
+      "suggested_resolution": "在进入正式测试设计前由需求方确认；未确认时保持显式缺失，不推断为强规则。",
+      "source_refs": [
+        {
+          "source_type": "input_markdown",
+          "path": "assets/projects/OSS-BLIND-R4/work_items/KUBERNETES-141831/inputs/requirement_summary.md",
+          "excerpt": "driver/pool/device 组合为空字符串或只含空白时如何判定？"
+        }
+      ]
+    },
+    {
+      "ambiguity_id": "AMB-002",
+      "title": "patch、apply、status 子资源是否属于“update”覆盖…",
+      "description": "patch、apply、status 子资源是否属于“update”覆盖范围？",
+      "status": "open",
+      "suggested_resolution": "在进入正式测试设计前由需求方确认；未确认时保持显式缺失，不推断为强规则。",
+      "source_refs": [
+        {
+          "source_type": "input_markdown",
+          "path": "assets/projects/OSS-BLIND-R4/work_items/KUBERNETES-141831/inputs/requirement_summary.md",
+          "excerpt": "patch、apply、status 子资源是否属于“update”覆盖范围？"
+        }
+      ]
+    },
+    {
+      "ambiguity_id": "AMB-003",
+      "title": "同一请求产生多条 warning 时",
+      "description": "同一请求产生多条 warning 时，顺序与去重规则是什么？",
+      "status": "open",
+      "suggested_resolution": "在进入正式测试设计前由需求方确认；未确认时保持显式缺失，不推断为强规则。",
+      "source_refs": [
+        {
+          "source_type": "input_markdown",
+          "path": "assets/projects/OSS-BLIND-R4/work_items/KUBERNETES-141831/inputs/requirement_summary.md",
+          "excerpt": "同一请求产生多条 warning 时，顺序与去重规则是什么？"
+        }
+      ]
+    },
+    {
+      "ambiguity_id": "AMB-004",
+      "title": "Warning header 的标准编码/agent 文本拼接是否已有公…",
+      "description": "Warning header 的标准编码/agent 文本拼接是否已有公共约束？",
+      "status": "open",
+      "suggested_resolution": "在进入正式测试设计前由需求方确认；未确认时保持显式缺失，不推断为强规则。",
+      "source_refs": [
+        {
+          "source_type": "input_markdown",
+          "path": "assets/projects/OSS-BLIND-R4/work_items/KUBERNETES-141831/inputs/requirement_summary.md",
+          "excerpt": "Warning header 的标准编码/agent 文本拼接是否已有公共约束？"
+        }
+      ]
+    }
+  ],
+  "recommended_test_dimensions": [
+    {
+      "dimension_id": "TD-001",
+      "dimension": "显式规则逐条验证",
+      "rationale": "需求摘要已给出可追溯规则，后续设计应保持单规则单断言并验证成功与失败结果。",
+      "priority": "high",
+      "related_reasoning_ids": [
+        "ER-001",
+        "ER-002",
+        "ER-003",
+        "ER-004",
+        "ER-005",
+        "ER-006",
+        "ER-007",
+        "ER-008"
+      ]
+    },
+    {
+      "dimension_id": "TD-002",
+      "dimension": "异常与失败处理",
+      "rationale": "需求包含明确拒绝或失败语义，需要验证失败状态、错误反馈及副作用隔离。",
+      "priority": "high",
+      "related_reasoning_ids": [
+        "ER-014"
+      ]
+    },
+    {
+      "dimension_id": "TD-003",
+      "dimension": "兼容性与回归",
+      "rationale": "需求要求保留既有合法行为或历史关系，需要同时验证变更路径与未变路径。",
+      "priority": "high",
+      "related_reasoning_ids": [
+        "ER-001",
+        "ER-006",
+        "ER-012"
+      ]
+    },
+    {
+      "dimension_id": "TD-004",
+      "dimension": "数据一致性与状态保留",
+      "rationale": "需求涉及关系或状态保留，应核对操作前后数据集合而非只看接口成功。",
+      "priority": "high",
+      "related_reasoning_ids": [
+        "ER-013",
+        "ER-015"
+      ]
+    },
+    {
+      "dimension_id": "TD-005",
+      "dimension": "风险与非功能约束",
+      "rationale": "需求摘要已明确兼容性、性能或一致性风险，需与产品验收规则分层承接。",
+      "priority": "medium",
+      "related_reasoning_ids": [
+        "RISK-001",
+        "RISK-002",
+        "RISK-003",
+        "RISK-004"
+      ]
+    },
+    {
+      "dimension_id": "TD-006",
+      "dimension": "未决项追踪",
+      "rationale": "摘要存在尚未确认的输入或验收口径，后续不得将其自动升级为强制规则。",
+      "priority": "medium",
+      "related_reasoning_ids": [
+        "AMB-001",
+        "AMB-002",
+        "AMB-003",
+        "AMB-004"
+      ]
+    }
+  ],
+  "coverage_candidates": [
+    {
+      "candidate_id": "COV-001",
+      "candidate_type": "rule_cluster",
+      "title": "创建或更新 DeviceTaintRule 时",
+      "scope": "文本需求规则",
+      "priority": "high",
+      "rationale": "文本需求中的显式规则需要在后续 Structured PRD 与测试设计中保持可追溯。",
+      "suggested_test_types": [
+        "功能",
+        "异常"
+      ],
+      "source_reasoning_ids": [
+        "ER-001"
+      ]
+    },
+    {
+      "candidate_id": "COV-002",
+      "candidate_type": "rule_cluster",
+      "title": "仅当 `spec.deviceSelector` 存在且 driver、…",
+      "scope": "文本需求规则",
+      "priority": "high",
+      "rationale": "文本需求中的显式规则需要在后续 Structured PRD 与测试设计中保持可追溯。",
+      "suggested_test_types": [
+        "功能",
+        "异常"
+      ],
+      "source_reasoning_ids": [
+        "ER-002"
+      ]
+    },
+    {
+      "candidate_id": "COV-003",
+      "candidate_type": "rule_cluster",
+      "title": "create 与 update 使用相同判断和警告文本",
+      "scope": "文本需求规则",
+      "priority": "high",
+      "rationale": "文本需求中的显式规则需要在后续 Structured PRD 与测试设计中保持可追溯。",
+      "suggested_test_types": [
+        "功能",
+        "异常"
+      ],
+      "source_reasoning_ids": [
+        "ER-003"
+      ]
+    },
+    {
+      "candidate_id": "COV-004",
+      "candidate_type": "rule_cluster",
+      "title": "精确警告文本为",
+      "scope": "文本需求规则",
+      "priority": "high",
+      "rationale": "文本需求中的显式规则需要在后续 Structured PRD 与测试设计中保持可追溯。",
+      "suggested_test_types": [
+        "功能",
+        "异常"
+      ],
+      "source_reasoning_ids": [
+        "ER-004"
+      ]
+    },
+    {
+      "candidate_id": "COV-005",
+      "candidate_type": "rule_cluster",
+      "title": "selector 省略时不告警",
+      "scope": "文本需求规则",
+      "priority": "high",
+      "rationale": "文本需求中的显式规则需要在后续 Structured PRD 与测试设计中保持可追溯。",
+      "suggested_test_types": [
+        "功能",
+        "异常"
+      ],
+      "source_reasoning_ids": [
+        "ER-005"
+      ]
+    },
+    {
+      "candidate_id": "COV-006",
+      "candidate_type": "rule_cluster",
+      "title": "警告不阻止请求成功",
+      "scope": "文本需求规则",
+      "priority": "high",
+      "rationale": "文本需求中的显式规则需要在后续 Structured PRD 与测试设计中保持可追溯。",
+      "suggested_test_types": [
+        "功能",
+        "异常"
+      ],
+      "source_reasoning_ids": [
+        "ER-006"
+      ]
+    },
+    {
+      "candidate_id": "COV-007",
+      "candidate_type": "rule_cluster",
+      "title": "判断不应因 taint effect 不同而失效",
+      "scope": "文本需求规则",
+      "priority": "high",
+      "rationale": "文本需求中的显式规则需要在后续 Structured PRD 与测试设计中保持可追溯。",
+      "suggested_test_types": [
+        "功能",
+        "异常"
+      ],
+      "source_reasoning_ids": [
+        "ER-007"
+      ]
+    },
+    {
+      "candidate_id": "COV-008",
+      "candidate_type": "rule_cluster",
+      "title": "create 空对象 selector",
+      "scope": "文本需求规则",
+      "priority": "high",
+      "rationale": "文本需求中的显式规则需要在后续 Structured PRD 与测试设计中保持可追溯。",
+      "suggested_test_types": [
+        "功能",
+        "异常"
+      ],
+      "source_reasoning_ids": [
+        "ER-008"
+      ]
+    },
+    {
+      "candidate_id": "COV-009",
+      "candidate_type": "rule_cluster",
+      "title": "update 为/保持空对象 selector",
+      "scope": "文本需求规则",
+      "priority": "high",
+      "rationale": "文本需求中的显式规则需要在后续 Structured PRD 与测试设计中保持可追溯。",
+      "suggested_test_types": [
+        "功能",
+        "异常"
+      ],
+      "source_reasoning_ids": [
+        "ER-009"
+      ]
+    },
+    {
+      "candidate_id": "COV-010",
+      "candidate_type": "rule_cluster",
+      "title": "selector 省略",
+      "scope": "文本需求规则",
+      "priority": "high",
+      "rationale": "文本需求中的显式规则需要在后续 Structured PRD 与测试设计中保持可追溯。",
+      "suggested_test_types": [
+        "功能",
+        "异常"
+      ],
+      "source_reasoning_ids": [
+        "ER-010"
+      ]
+    },
+    {
+      "candidate_id": "COV-011",
+      "candidate_type": "rule_cluster",
+      "title": "分别指定 driver、pool、device",
+      "scope": "文本需求规则",
+      "priority": "high",
+      "rationale": "文本需求中的显式规则需要在后续 Structured PRD 与测试设计中保持可追溯。",
+      "suggested_test_types": [
+        "功能",
+        "异常"
+      ],
+      "source_reasoning_ids": [
+        "ER-011"
+      ]
+    },
+    {
+      "candidate_id": "COV-012",
+      "candidate_type": "rule_cluster",
+      "title": "对不同 effect 的空 selector 都告警",
+      "scope": "文本需求规则",
+      "priority": "high",
+      "rationale": "文本需求中的显式规则需要在后续 Structured PRD 与测试设计中保持可追溯。",
+      "suggested_test_types": [
+        "功能",
+        "异常"
+      ],
+      "source_reasoning_ids": [
+        "ER-012"
+      ]
+    },
+    {
+      "candidate_id": "COV-013",
+      "candidate_type": "rule_cluster",
+      "title": "普通客户端看到警告但请求成功",
+      "scope": "文本需求规则",
+      "priority": "high",
+      "rationale": "文本需求中的显式规则需要在后续 Structured PRD 与测试设计中保持可追溯。",
+      "suggested_test_types": [
+        "功能",
+        "异常"
+      ],
+      "source_reasoning_ids": [
+        "ER-013"
+      ]
+    },
+    {
+      "candidate_id": "COV-014",
+      "candidate_type": "rule_cluster",
+      "title": "其他字段校验失败时",
+      "scope": "文本需求规则",
+      "priority": "high",
+      "rationale": "文本需求中的显式规则需要在后续 Structured PRD 与测试设计中保持可追溯。",
+      "suggested_test_types": [
+        "功能",
+        "异常"
+      ],
+      "source_reasoning_ids": [
+        "ER-014"
+      ]
+    },
+    {
+      "candidate_id": "COV-015",
+      "candidate_type": "rule_cluster",
+      "title": "输出契约",
+      "scope": "文本需求规则",
+      "priority": "high",
+      "rationale": "文本需求中的显式规则需要在后续 Structured PRD 与测试设计中保持可追溯。",
+      "suggested_test_types": [
+        "功能",
+        "异常"
+      ],
+      "source_reasoning_ids": [
+        "ER-015"
+      ]
+    }
+  ]
+}

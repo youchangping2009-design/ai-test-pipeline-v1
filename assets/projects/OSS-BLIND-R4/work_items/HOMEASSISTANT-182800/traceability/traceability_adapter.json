@@ -1,0 +1,156 @@
+{
+  "project_code": "OSS-BLIND-R4",
+  "work_item_id": "HOMEASSISTANT-182800",
+  "records": [
+    {
+      "record_id": "TRA-0001",
+      "evidence_id": "EVD-UNMAPPED",
+      "coverage_level": "full",
+      "structured_targets": [
+        {
+          "target_type": "feature",
+          "module_name": "TTS 音频标签",
+          "feature_name": "ID3 标签合并",
+          "field_name": "",
+          "target_name": "已带 ID3 标签的 MP3 写入 Home Assistant 标签后只能保留一个有效 ID3 头。"
+        }
+      ],
+      "testcase_ids": [
+        "OSS-BLIND-R4-TTSAUDIO-MP3TAG-SERVER-DV-001"
+      ],
+      "gap_notes": "adapter_source=coverage_first_traceability; source_record_id=CFT-0001; rule_id=HA-R001; coverage_id=COV-EX-0001; fidelity_status=not_applicable",
+      "implementation_binding": "shared_contract",
+      "recommended_cr_stage": "dual_code",
+      "manual_confirmation_required": true,
+      "cr_focus_points": [
+        "已带 ID3 标签的 MP3 写入 Home Assistant 标签后只能保留一个有效 ID3 头。",
+        "coverage_id=COV-EX-0001"
+      ]
+    },
+    {
+      "record_id": "TRA-0002",
+      "evidence_id": "EVD-UNMAPPED",
+      "coverage_level": "full",
+      "structured_targets": [
+        {
+          "target_type": "feature",
+          "module_name": "TTS 音频标签",
+          "feature_name": "ID3 标签合并",
+          "field_name": "",
+          "target_name": "更新标签时必须保留输入中的 TSSE 元数据。"
+        }
+      ],
+      "testcase_ids": [
+        "OSS-BLIND-R4-TTSAUDIO-MP3TAG-SERVER-DV-002"
+      ],
+      "gap_notes": "adapter_source=coverage_first_traceability; source_record_id=CFT-0002; rule_id=HA-R002; coverage_id=COV-EX-0002; fidelity_status=not_applicable",
+      "implementation_binding": "shared_contract",
+      "recommended_cr_stage": "dual_code",
+      "manual_confirmation_required": true,
+      "cr_focus_points": [
+        "更新标签时必须保留输入中的 TSSE 元数据。",
+        "coverage_id=COV-EX-0002"
+      ]
+    },
+    {
+      "record_id": "TRA-0003",
+      "evidence_id": "EVD-UNMAPPED",
+      "coverage_level": "full",
+      "structured_targets": [
+        {
+          "target_type": "feature",
+          "module_name": "TTS 音频标签",
+          "feature_name": "ID3 标签合并",
+          "field_name": "",
+          "target_name": "标签处理不得改变 MP3 音频帧内容。"
+        }
+      ],
+      "testcase_ids": [
+        "OSS-BLIND-R4-TTSAUDIO-MP3TAG-SERVER-DV-003"
+      ],
+      "gap_notes": "adapter_source=coverage_first_traceability; source_record_id=CFT-0003; rule_id=HA-R003; coverage_id=COV-EX-0003; fidelity_status=not_applicable",
+      "implementation_binding": "shared_contract",
+      "recommended_cr_stage": "dual_code",
+      "manual_confirmation_required": true,
+      "cr_focus_points": [
+        "标签处理不得改变 MP3 音频帧内容。",
+        "coverage_id=COV-EX-0003"
+      ]
+    },
+    {
+      "record_id": "TRA-0004",
+      "evidence_id": "EVD-UNMAPPED",
+      "coverage_level": "full",
+      "structured_targets": [
+        {
+          "target_type": "feature",
+          "module_name": "TTS 音频标签",
+          "feature_name": "缓存音频回放",
+          "field_name": "",
+          "target_name": "缓存文件从内存路径切换为磁盘读取后仍应可被严格解码器正常播放，不能静音。"
+        }
+      ],
+      "testcase_ids": [
+        "OSS-BLIND-R4-TTSAUDIO-MP3TAG-SERVER-ST-001"
+      ],
+      "gap_notes": "adapter_source=coverage_first_traceability; source_record_id=CFT-0004; rule_id=HA-R004; coverage_id=COV-EX-0004; fidelity_status=not_applicable",
+      "implementation_binding": "shared_contract",
+      "recommended_cr_stage": "dual_code",
+      "manual_confirmation_required": true,
+      "cr_focus_points": [
+        "缓存文件从内存路径切换为磁盘读取后仍应可被严格解码器正常播放，不能静音。",
+        "coverage_id=COV-EX-0004"
+      ]
+    },
+    {
+      "record_id": "TRA-0005",
+      "evidence_id": "EVD-UNMAPPED",
+      "coverage_level": "full",
+      "structured_targets": [
+        {
+          "target_type": "feature",
+          "module_name": "TTS 音频标签",
+          "feature_name": "ID3 标签合并",
+          "field_name": "",
+          "target_name": "未带 ID3 标签的 MP3 仍可添加所需标签并保持可播放。"
+        }
+      ],
+      "testcase_ids": [
+        "OSS-BLIND-R4-TTSAUDIO-MP3TAG-SERVER-ST-002"
+      ],
+      "gap_notes": "adapter_source=coverage_first_traceability; source_record_id=CFT-0005; rule_id=HA-R005; coverage_id=COV-EX-0005; fidelity_status=not_applicable",
+      "implementation_binding": "shared_contract",
+      "recommended_cr_stage": "dual_code",
+      "manual_confirmation_required": true,
+      "cr_focus_points": [
+        "未带 ID3 标签的 MP3 仍可添加所需标签并保持可播放。",
+        "coverage_id=COV-EX-0005"
+      ]
+    },
+    {
+      "record_id": "TRA-0006",
+      "evidence_id": "EVD-UNMAPPED",
+      "coverage_level": "full",
+      "structured_targets": [
+        {
+          "target_type": "feature",
+          "module_name": "TTS 音频标签",
+          "feature_name": "ID3 标签合并",
+          "field_name": "",
+          "target_name": "已带标签音频的处理结果不应依赖具体 TTS provider。"
+        }
+      ],
+      "testcase_ids": [
+        "OSS-BLIND-R4-TTSAUDIO-MP3TAG-SERVER-FL-001"
+      ],
+      "gap_notes": "adapter_source=coverage_first_traceability; source_record_id=CFT-0006; rule_id=HA-R006; coverage_id=COV-EX-0006; fidelity_status=not_applicable",
+      "implementation_binding": "shared_contract",
+      "recommended_cr_stage": "dual_code",
+      "manual_confirmation_required": true,
+      "cr_focus_points": [
+        "已带标签音频的处理结果不应依赖具体 TTS provider。",
+        "coverage_id=COV-EX-0006"
+      ]
+    }
+  ]
+}

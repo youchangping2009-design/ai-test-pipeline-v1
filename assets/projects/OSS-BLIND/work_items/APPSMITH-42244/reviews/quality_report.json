@@ -1,0 +1,70 @@
+{
+  "generated_at": "2026-09-21T18:18:55",
+  "total_cases": 7,
+  "total_coverage_entries": 15,
+  "coverage_empty_with_cases": false,
+  "rule_coverage_rate": 0.5385,
+  "atomic_case_rate": 0.0,
+  "boundary_coverage_rate": 1.0,
+  "data_source_rule_coverage_rate": 1.0,
+  "generalized_case_count": 0,
+  "generalized_case_rate": 0.0,
+  "weak_case_count": 0,
+  "weak_case_rate": 0.0,
+  "semantic_mismatch_count": 0,
+  "duplicate_case_count": 0,
+  "duplicate_case_rate": 0.0,
+  "duplicate_group_count": 0,
+  "duplicate_metric_basis": "residual_after_merge",
+  "missing_fidelity_points": 0,
+  "high_priority_fidelity_missing": 0,
+  "false_traceability_rate": 0.0,
+  "false_traceability_rate_primary": 0.0,
+  "false_traceability_rate_legacy": 0.0,
+  "traceability_metric_source": "coverage_first_traceability",
+  "field_audit_item_count": 8,
+  "grouped_audit_group_count": 0,
+  "audit_artifacts_consumed": true,
+  "quality_gate": {
+    "enabled": false,
+    "mode": "soft",
+    "rollout_source": "new_work_item",
+    "status": "report_only",
+    "thresholds": {
+      "false_traceability_rate_fail": 0.05,
+      "generalized_case_rate_warn": 0.03,
+      "generalized_case_count_warn": 5,
+      "weak_case_rate_warn": 0.03,
+      "weak_case_count_warn": 5,
+      "semantic_mismatch_count_fail": 0,
+      "duplicate_case_rate_warn": 0.005,
+      "duplicate_case_count_warn": 1
+    },
+    "warnings": [],
+    "failures": []
+  },
+  "unresolved_issues": [],
+  "final_near_duplicate_groups": [],
+  "source_artifacts": {
+    "structured_prd": {
+      "path": "assets/projects/OSS-BLIND/work_items/APPSMITH-42244/structured_prd/structured_prd.json",
+      "sha256": "32f89a67b4721876bdcbb3a91051b0b12694233e6ad82f2b0165b532e0c6b5cf",
+      "size_bytes": 15155
+    },
+    "coverage_matrix": {
+      "path": "assets/projects/OSS-BLIND/work_items/APPSMITH-42244/coverage/coverage_matrix.json",
+      "sha256": "b41a81966d25a45fd802f8da11a3f2496118f456b1c4b76e19fff2db6ae0cfef",
+      "size_bytes": 15402
+    },
+    "testcases": {
+      "path": "assets/projects/OSS-BLIND/work_items/APPSMITH-42244/testcases/testcases_main.md",
+      "sha256": "0e81c8de11c5df17608ad72d93d48d51889c2f63bd0f04f768a327869684db43",
+      "size_bytes": 4849
+    },
+    "coverage_first_traceability": {
+      "path": "assets/projects/OSS-BLIND/work_items/APPSMITH-42244/traceability/coverage_first_traceability.json",
+      "sha256": "dddf54a9e1da737fa509c0b9b13bf1e5092dd5528b7311c4b4cebccbd781b9b3",
+      "size_bytes": 6295
+    }
+  }
+}

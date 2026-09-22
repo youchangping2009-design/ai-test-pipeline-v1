@@ -234,10 +234,10 @@ python scripts/validate_work_item.py --project-code WX-YYPT --work-item-id REQ-0
 python scripts/validate_work_item.py --project-code WX-YYPT --work-item-id REQ-001 --strict
 ```
 
-当前 PT083 正式工作项已作为 strict 正向样例：
+下面命令仅演示如何显式校验一个工作项；请替换为实际项目编码和工作项 ID，项目基线不会默认选择任何业务需求样本：
 
 ```powershell
-python scripts/validate_work_item.py --project-code WX-YGJ --work-item-id PT083 --skip-code-reviews --strict
+python scripts/validate_work_item.py --project-code DEMO --work-item-id REQ-001 --skip-code-reviews --strict
 ```
 
 如需检查正式用例元素标注，可显式启用：

@@ -1,0 +1,28 @@
+[
+  {
+    "case_id": "OSS-BLIND-R4-TTSAUDIO-MP3TAG-SERVER-DV-002",
+    "title": "更新标签后保留原 TSSE 元数据",
+    "page_name": "TTS 音频缓存处理",
+    "module_name": "TTS 音频标签",
+    "feature_name": "ID3 标签合并",
+    "issue_types": [
+      "abstract_oracle"
+    ],
+    "reasons": [
+      "预期结果偏抽象，判定标准不够具体。"
+    ]
+  },
+  {
+    "case_id": "OSS-BLIND-R4-TTSAUDIO-MP3TAG-SERVER-DV-003",
+    "title": "标签处理不改变 MP3 音频帧",
+    "page_name": "TTS 音频缓存处理",
+    "module_name": "TTS 音频标签",
+    "feature_name": "ID3 标签合并",
+    "issue_types": [
+      "abstract_oracle"
+    ],
+    "reasons": [
+      "预期结果偏抽象，判定标准不够具体。"
+    ]
+  }
+]

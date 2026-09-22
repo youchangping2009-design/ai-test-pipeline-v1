@@ -1,0 +1,45 @@
+{
+  "project_code": "OSS-BLIND",
+  "work_item_id": "APPSMITH-42244",
+  "manifest_type": "requirement_source_manifest",
+  "summary_artifact": "inputs/requirement_summary.md",
+  "sources": [
+    {
+      "source_id": "SRC-001",
+      "source_type": "public_doc",
+      "location": "https://github.com/appsmithorg/appsmith/pull/42244",
+      "status": "available",
+      "retrieved_at": "2026-09-21",
+      "notes": "PR description and merge metadata; diff excluded from blind input"
+    },
+    {
+      "source_id": "SRC-002",
+      "source_type": "local_file",
+      "location": "inputs/public_source_snapshot.md",
+      "status": "available",
+      "local_artifact": "inputs/public_source_snapshot.md",
+      "retrieved_at": "2026-09-21",
+      "notes": "Frozen public-input snapshot with oracle boundary"
+    },
+    {
+      "source_id": "SRC-003",
+      "source_type": "other",
+      "location": "https://linear.app/appsmith/issue/APP-15972",
+      "status": "pending_auth",
+      "retrieved_at": "2026-09-21",
+      "notes": "Linked from PR but not publicly readable"
+    },
+    {
+      "source_id": "SRC-004",
+      "source_type": "public_doc",
+      "location": "https://github.com/advisories/GHSA-4frm-93mv-j963",
+      "status": "failed",
+      "retrieved_at": "2026-09-21",
+      "notes": "Advisory details were unavailable from the GitHub API during capture"
+    }
+  ],
+  "unresolved_sources": [
+    "APP-15972 issue details require authorization",
+    "GHSA-4frm-93mv-j963 details were unavailable during capture"
+  ]
+}

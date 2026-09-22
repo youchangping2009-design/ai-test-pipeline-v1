@@ -1,0 +1,226 @@
+{
+  "project_code": "OSS-BLIND-R4",
+  "work_item_id": "GRAFANA-133083",
+  "generated_at": "2026-09-22T12:59:15",
+  "metric_scope": "post_generation_oracle_review_only",
+  "oracle": {
+    "source_url": "https://github.com/grafana/grafana/pull/133083",
+    "head_sha": "9aeaf1e74014e8db92593bfce51e7cf6dd0be65c"
+  },
+  "oracle_assertion_count": 8,
+  "assertion_disposition_counts": {
+    "covered": 3,
+    "missing": 4,
+    "partial": 1
+  },
+  "oracle_coverage_rate": 0.4375,
+  "oracle_scope_metrics": {
+    "implementation": {
+      "assertion_count": 4,
+      "assertion_disposition_counts": {
+        "covered": 0,
+        "missing": 3,
+        "partial": 1
+      },
+      "coverage_rate": 0.125
+    },
+    "requirement": {
+      "assertion_count": 3,
+      "assertion_disposition_counts": {
+        "covered": 3,
+        "missing": 0,
+        "partial": 0
+      },
+      "coverage_rate": 1.0
+    },
+    "risk": {
+      "assertion_count": 1,
+      "assertion_disposition_counts": {
+        "covered": 0,
+        "missing": 1,
+        "partial": 0
+      },
+      "coverage_rate": 0.0
+    }
+  },
+  "requirement_oracle_coverage_rate": 1.0,
+  "implementation_oracle_coverage_rate": 0.125,
+  "risk_oracle_coverage_rate": 0.0,
+  "testcase_count": 17,
+  "testcase_disposition_counts": {
+    "context_overreach": 0,
+    "direct_match": 17,
+    "requirement_regression": 0
+  },
+  "testcase_relevance_rate": 1.0,
+  "assertions": [
+    {
+      "assertion_id": "OA-001",
+      "oracle_scope": "requirement",
+      "summary": "显式 Serializer 统一用于写入、单条读取、列表和 watch 解码",
+      "disposition": "covered",
+      "testcase_ids": [
+        "OSS-BLIND-R4-APISTORE-SERIALIZER-API-ST-001",
+        "OSS-BLIND-R4-APISTORE-SERIALIZER-API-ST-002",
+        "OSS-BLIND-R4-APISTORE-SERIALIZER-API-ST-003",
+        "OSS-BLIND-R4-APISTORE-SERIALIZER-API-ST-004"
+      ]
+    },
+    {
+      "assertion_id": "OA-002",
+      "oracle_scope": "requirement",
+      "summary": "未显式配置时，声明 GVK 的写入保留 GVK，其他路径继续使用 codec",
+      "disposition": "covered",
+      "testcase_ids": [
+        "OSS-BLIND-R4-APISTORE-SERIALIZER-API-ST-005",
+        "OSS-BLIND-R4-APISTORE-SERIALIZER-API-ST-006",
+        "OSS-BLIND-R4-APISTORE-SERIALIZER-API-ST-007",
+        "OSS-BLIND-R4-APISTORE-SERIALIZER-API-ST-008",
+        "OSS-BLIND-R4-APISTORE-SERIALIZER-API-ST-009"
+      ]
+    },
+    {
+      "assertion_id": "OA-003",
+      "oracle_scope": "implementation",
+      "summary": "通用 JSON Serializer 支持 typed、unstructured 和 nil target，并对非法 JSON 或不可编码值返回错误",
+      "disposition": "partial",
+      "testcase_ids": [
+        "OSS-BLIND-R4-APISTORE-SERIALIZER-API-DV-001",
+        "OSS-BLIND-R4-APISTORE-SERIALIZER-API-FL-001"
+      ],
+      "design_feedback_ids": [
+        "DF-001"
+      ]
+    },
+    {
+      "assertion_id": "OA-004",
+      "oracle_scope": "requirement",
+      "summary": "Serializer 在一般 encode/decode 与 watch 当前和历史对象解码中接收原请求 context，并观察取消",
+      "disposition": "covered",
+      "testcase_ids": [
+        "OSS-BLIND-R4-APISTORE-SERIALIZER-API-ST-001",
+        "OSS-BLIND-R4-APISTORE-SERIALIZER-API-ST-002",
+        "OSS-BLIND-R4-APISTORE-SERIALIZER-API-ST-003",
+        "OSS-BLIND-R4-APISTORE-SERIALIZER-API-ST-010",
+        "OSS-BLIND-R4-APISTORE-SERIALIZER-API-ST-011",
+        "OSS-BLIND-R4-APISTORE-SERIALIZER-API-ST-012",
+        "OSS-BLIND-R4-APISTORE-SERIALIZER-API-ST-013",
+        "OSS-BLIND-R4-APISTORE-SERIALIZER-API-ST-014",
+        "OSS-BLIND-R4-APISTORE-SERIALIZER-API-ST-015"
+      ],
+      "design_feedback_ids": [
+        "DF-002"
+      ]
+    },
+    {
+      "assertion_id": "OA-005",
+      "oracle_scope": "implementation",
+      "summary": "版本上限按 Serializer 实际持久化版本执行，并拒绝持久化到其他资源组",
+      "disposition": "missing",
+      "testcase_ids": [],
+      "design_feedback_ids": [
+        "DF-003"
+      ]
+    },
+    {
+      "assertion_id": "OA-006",
+      "oracle_scope": "implementation",
+      "summary": "删除相关写入关闭版本上限检查时仍允许写入高于上限的持久化版本",
+      "disposition": "missing",
+      "testcase_ids": [],
+      "design_feedback_ids": [
+        "DF-003"
+      ]
+    },
+    {
+      "assertion_id": "OA-007",
+      "oracle_scope": "implementation",
+      "summary": "显式 Serializer 的 encode/decode 错误原样传播且失败写入不返回载荷",
+      "disposition": "missing",
+      "testcase_ids": [],
+      "design_feedback_ids": [
+        "DF-001"
+      ]
+    },
+    {
+      "assertion_id": "OA-008",
+      "oracle_scope": "risk",
+      "summary": "Serializer 实现必须可安全并发使用",
+      "disposition": "missing",
+      "testcase_ids": [],
+      "design_feedback_ids": [
+        "DF-004"
+      ]
+    }
+  ],
+  "testcase_assessments": [
+    {
+      "testcase_id": "OSS-BLIND-R4-APISTORE-SERIALIZER-API-ST-001",
+      "disposition": "direct_match"
+    },
+    {
+      "testcase_id": "OSS-BLIND-R4-APISTORE-SERIALIZER-API-ST-002",
+      "disposition": "direct_match"
+    },
+    {
+      "testcase_id": "OSS-BLIND-R4-APISTORE-SERIALIZER-API-ST-003",
+      "disposition": "direct_match"
+    },
+    {
+      "testcase_id": "OSS-BLIND-R4-APISTORE-SERIALIZER-API-ST-004",
+      "disposition": "direct_match"
+    },
+    {
+      "testcase_id": "OSS-BLIND-R4-APISTORE-SERIALIZER-API-ST-005",
+      "disposition": "direct_match"
+    },
+    {
+      "testcase_id": "OSS-BLIND-R4-APISTORE-SERIALIZER-API-ST-006",
+      "disposition": "direct_match"
+    },
+    {
+      "testcase_id": "OSS-BLIND-R4-APISTORE-SERIALIZER-API-ST-007",
+      "disposition": "direct_match"
+    },
+    {
+      "testcase_id": "OSS-BLIND-R4-APISTORE-SERIALIZER-API-ST-008",
+      "disposition": "direct_match"
+    },
+    {
+      "testcase_id": "OSS-BLIND-R4-APISTORE-SERIALIZER-API-ST-009",
+      "disposition": "direct_match"
+    },
+    {
+      "testcase_id": "OSS-BLIND-R4-APISTORE-SERIALIZER-API-DV-001",
+      "disposition": "direct_match"
+    },
+    {
+      "testcase_id": "OSS-BLIND-R4-APISTORE-SERIALIZER-API-FL-001",
+      "disposition": "direct_match"
+    },
+    {
+      "testcase_id": "OSS-BLIND-R4-APISTORE-SERIALIZER-API-ST-010",
+      "disposition": "direct_match"
+    },
+    {
+      "testcase_id": "OSS-BLIND-R4-APISTORE-SERIALIZER-API-ST-011",
+      "disposition": "direct_match"
+    },
+    {
+      "testcase_id": "OSS-BLIND-R4-APISTORE-SERIALIZER-API-ST-012",
+      "disposition": "direct_match"
+    },
+    {
+      "testcase_id": "OSS-BLIND-R4-APISTORE-SERIALIZER-API-ST-013",
+      "disposition": "direct_match"
+    },
+    {
+      "testcase_id": "OSS-BLIND-R4-APISTORE-SERIALIZER-API-ST-014",
+      "disposition": "direct_match"
+    },
+    {
+      "testcase_id": "OSS-BLIND-R4-APISTORE-SERIALIZER-API-ST-015",
+      "disposition": "direct_match"
+    }
+  ]
+}

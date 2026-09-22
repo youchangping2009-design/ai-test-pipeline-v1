@@ -1,0 +1,48 @@
+{
+  "project_code": "OSS-BLIND",
+  "work_item_id": "CHATWOOT-15768",
+  "feedback_items": [
+    {
+      "feedback_id": "DF-001",
+      "source_review_stage": "manual_review",
+      "source_confirmation_file": "reviews/review_record.md",
+      "source_case_plan_ids": ["CP-002"],
+      "source_testcase_ids": ["OSS-BLIND-CONVERSATION-FILTER-WEB-DV-002"],
+      "feedback_type": "case_gap",
+      "target_layer": "case_plan",
+      "title": "补充集合型空值校验",
+      "finding": "公开回归测试要求空数组与空对象返回 VALUE_REQUIRED，当前计划只覆盖 null、undefined 和空字符串。",
+      "recommended_action": "在 Gate 与 Case Plan 中补充空数组和空对象，并区分输入校验与请求序列化。",
+      "must_not_directly_overwrite_testcase": true,
+      "status": "applied"
+    },
+    {
+      "feedback_id": "DF-002",
+      "source_review_stage": "manual_review",
+      "source_confirmation_file": "reviews/review_record.md",
+      "source_case_plan_ids": ["CP-002"],
+      "source_testcase_ids": ["OSS-BLIND-CONVERSATION-FILTER-WEB-DV-002"],
+      "feedback_type": "case_gap",
+      "target_layer": "testability_gate",
+      "title": "保留 days_before 的零值边界",
+      "finding": "公开回归测试明确要求 created_at 的 days_before=0 仍返回 VALUE_MUST_BE_BETWEEN_1_AND_998，当前设计层没有该规则。",
+      "recommended_action": "新增日期运算符边界规则并生成独立 Case Plan，避免 falsy 修复扩大到合法性边界。",
+      "must_not_directly_overwrite_testcase": true,
+      "status": "applied"
+    },
+    {
+      "feedback_id": "DF-003",
+      "source_review_stage": "manual_review",
+      "source_confirmation_file": "reviews/review_record.md",
+      "source_case_plan_ids": ["CP-006"],
+      "source_testcase_ids": ["OSS-BLIND-CONVERSATION-FILTER-WEB-FN-002"],
+      "feedback_type": "invalid_case",
+      "target_layer": "testability_gate",
+      "title": "移出本 PR 的数量徽标验收",
+      "finding": "需求快照将数量徽标问题标记为关联 issue 背景，且 PR 说明 inbox-ID 不匹配已由其他改动修复；CP-006 不属于本 PR 的直接 oracle。",
+      "recommended_action": "将该 Gate 标记为 out_of_scope 或迁移到独立关联工作项。",
+      "must_not_directly_overwrite_testcase": true,
+      "status": "applied"
+    }
+  ]
+}

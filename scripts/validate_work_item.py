@@ -124,6 +124,39 @@ def read_json(path: Path) -> dict:
         return json.load(f)
 
 
+def source_manifest_requires_image_evidence(source_manifest_path: Path) -> bool:
+    """Return whether an available requirement source is explicitly an image.
+
+    Missing or unreadable manifests keep the legacy strict behaviour. Their own
+    validation will report the malformed source manifest separately.
+    """
+    if not source_manifest_path.exists():
+        return True
+    try:
+        payload = read_json(source_manifest_path)
+    except Exception:
+        return True
+    sources = payload.get("sources")
+    if not isinstance(sources, list):
+        return True
+    return any(
+        isinstance(source, dict)
+        and source.get("source_type") == "image"
+        and source.get("status") == "available"
+        for source in sources
+    )
+
+
+def image_evidence_contains_images(image_evidence_path: Path) -> bool:
+    """Keep validating populated inventories even if source metadata is stale."""
+    try:
+        payload = read_json(image_evidence_path)
+    except Exception:
+        return True
+    images = payload.get("images")
+    return not isinstance(images, list) or bool(images)
+
+
 def should_run_backend_config_chain(image_evidence_path: Path) -> bool:
     if not image_evidence_path.exists():
         return False
@@ -457,8 +490,11 @@ def validate_requirement_sources(
 def validate_dev_self_testcases(
     testcase_path: Path,
     dev_self_testcases_path: Path,
+    required: bool = False,
 ) -> Tuple[bool, str]:
     if not dev_self_testcases_path.exists():
+        if required:
+            return False, f"strict 要求 dev_self_testcases 存在: {dev_self_testcases_path}"
         return True, f"dev_self_testcases 不存在，跳过一致性校验: {dev_self_testcases_path}"
     try:
         expected_markdown, expected_count = build_dev_self_markdown(testcase_path)
@@ -599,6 +635,32 @@ def validate_design_feedback(
         str(case_plan_path),
     ]
     code, output = run_subprocess(command)
+    return code == 0, output
+
+
+def validate_feedback_application(
+    repo_root: Path,
+    work_item_root: Path,
+) -> Tuple[bool, str]:
+    script_path = repo_root / "scripts" / "validate_feedback_application.py"
+    if not script_path.exists():
+        return False, f"feedback application 校验脚本不存在: {script_path}"
+    code, output = run_subprocess(
+        [sys.executable, str(script_path), "--item-root", str(work_item_root)]
+    )
+    return code == 0, output
+
+
+def validate_feedback_action_journal(
+    repo_root: Path,
+    work_item_root: Path,
+) -> Tuple[bool, str]:
+    script_path = repo_root / "scripts" / "validate_feedback_action_journal.py"
+    if not script_path.exists():
+        return False, f"feedback action journal 校验脚本不存在: {script_path}"
+    code, output = run_subprocess(
+        [sys.executable, str(script_path), "--item-root", str(work_item_root)]
+    )
     return code == 0, output
 
 
@@ -960,6 +1022,7 @@ def main() -> int:
     responsibility_map_path = work_item_root / "design" / "verification_responsibility_map.json"
     test_design_matrix_path = work_item_root / "design" / "test_design_matrix.json"
     design_feedback_path = work_item_root / "design" / "design_feedback.json"
+    feedback_application_path = work_item_root / "design" / "feedback_application.json"
     case_plan_path = work_item_root / "testcases" / "case_plan.json"
     testpoints_path = work_item_root / "testcases" / "testpoints.json"
     testcase_bundle_path = work_item_root / "testcases" / "testcase_bundle.json"
@@ -1075,6 +1138,7 @@ def main() -> int:
         ("verification_responsibility_map", responsibility_map_path, requires_responsibility_map),
         ("test_design_matrix", test_design_matrix_path, requires_test_design_matrix),
         ("design_feedback", design_feedback_path, design_feedback_path.exists()),
+        ("feedback_application", feedback_application_path, feedback_application_path.exists()),
         ("case_plan", case_plan_path, args.strict),
         ("testpoints", testpoints_path, args.strict or testpoints_path.exists()),
         ("testcase_bundle", testcase_bundle_path, testcase_bundle_path.exists()),
@@ -1265,13 +1329,34 @@ def main() -> int:
         if not ok:
             overall_pass = False
 
-    if image_evidence_path is not None:
+    if design_feedback_path.exists():
+        print_section("Feedback Application Validation")
+        ok, output = validate_feedback_application(repo_root, work_item_root)
+        print(output if output else "(无输出)")
+        summary.append(f"Feedback Application: {'PASS' if ok else 'FAIL'}")
+        if not ok:
+            overall_pass = False
+
+        print_section("Feedback Action Journal Validation")
+        ok, output = validate_feedback_action_journal(repo_root, work_item_root)
+        print(output if output else "(无输出)")
+        summary.append(f"Feedback Action Journal: {'PASS' if ok else 'FAIL'}")
+        if not ok:
+            overall_pass = False
+
+    image_evidence_required = image_evidence_path is not None and (
+        source_manifest_requires_image_evidence(source_manifest_path)
+        or image_evidence_contains_images(image_evidence_path)
+    )
+    if image_evidence_required:
         print_section("Image Evidence Validation")
         ok, output = validate_image_evidence(repo_root, image_evidence_path)
         print(output if output else "(无输出)")
         summary.append(f"Image Evidence: {'PASS' if ok else 'FAIL'}")
         if not ok:
             overall_pass = False
+    elif image_evidence_path is not None:
+        summary.append("Image Evidence: SKIPPED (no available image source)")
 
     if image_evidence_path is not None and not args.skip_structured_prd:
         print_section("Image Evidence Mapping Validation")
@@ -1336,7 +1421,11 @@ def main() -> int:
             overall_pass = False
 
         print_section("Developer Self-Test Projection Validation")
-        ok, output = validate_dev_self_testcases(testcase_path, dev_self_testcases_path)
+        ok, output = validate_dev_self_testcases(
+            testcase_path,
+            dev_self_testcases_path,
+            required=args.strict,
+        )
         print(output if output else "(无输出)")
         summary.append(f"Dev Self Testcases: {'PASS' if ok else 'FAIL'}")
         if not ok:

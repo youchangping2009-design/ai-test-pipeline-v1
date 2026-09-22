@@ -1,0 +1,13 @@
+{
+  "schema_version": "1.0.0",
+  "approval_id": "RUN-R4-KUBERNETES-141831-requirement-1e2186f495a3d8d2a5db0c18",
+  "status": "approved",
+  "reviewed_by": "user",
+  "reviewed_at": "2026-09-22T02:51:06+00:00",
+  "note": "用户于 2026-09-22 明确批准本轮四份需求摘要。",
+  "run_id": "RUN-R4-KUBERNETES-141831",
+  "requirement_summary_sha256": "5818ebd6729b0ecf5bc37dd34291f66ea5910da1ba3cbc4ec9fdcae408ff85f7",
+  "source_manifest_sha256": "69a3339c607c3c4fcfd1421009b943703dc914463e1b8781f002f3bbeea3b4de",
+  "raw_inputs_fingerprint": "8c03ce827661170202a34a7d8e6b1b11e7bda57db793ec3927bd7ca161045068",
+  "requirement_version": "1.0.0"
+}

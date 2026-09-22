@@ -1,0 +1,343 @@
+{
+  "project_code": "OSS-BLIND-R3",
+  "work_item_id": "CELERY-10668",
+  "generation_mode": "case_plan_direct",
+  "generated_from": [
+    "acceptance/acceptance_examples.json",
+    "acceptance/testability_gate.json",
+    "coverage/coverage_matrix.json",
+    "structured_prd/structured_prd.json"
+  ],
+  "case_plans": [
+    {
+      "case_plan_id": "CP-001",
+      "source_gate_ids": [
+        "TG-001"
+      ],
+      "source_example_ids": [
+        "AE-001"
+      ],
+      "source_responsibility_ids": [],
+      "source_rule_ids": [
+        "CEL-R001"
+      ],
+      "source_coverage_ids": [
+        "COV-EX-0001"
+      ],
+      "generated_testcase_ids": [
+        "OSS-BLIND-R3-CELERYWORKER-REVOKE-SERVER-DV-001"
+      ],
+      "page_name": "Celery Worker 撤销状态处理",
+      "section_name": "撤销状态合并与执行保护",
+      "module_name": "Worker 撤销状态",
+      "feature_name": "跨时钟域撤销状态合并",
+      "title": "外部撤销记录仅合并任务 ID",
+      "verification_side": "服务端 Celery Worker 状态层",
+      "case_type": "data_persistence",
+      "priority": "P0",
+      "assertion": "本机撤销集合包含收到的任务 ID；该记录不复用来源主机的 monotonic 时间戳。",
+      "validation_path": "product_acceptance",
+      "should_generate_case": true
+    },
+    {
+      "case_plan_id": "CP-002",
+      "source_gate_ids": [
+        "TG-002"
+      ],
+      "source_example_ids": [
+        "AE-002"
+      ],
+      "source_responsibility_ids": [],
+      "source_rule_ids": [
+        "CEL-R002"
+      ],
+      "source_coverage_ids": [
+        "COV-EX-0002"
+      ],
+      "generated_testcase_ids": [
+        "OSS-BLIND-R3-CELERYWORKER-REVOKE-SERVER-ST-001"
+      ],
+      "page_name": "Celery Worker 撤销状态处理",
+      "section_name": "撤销状态合并与执行保护",
+      "module_name": "Worker 撤销状态",
+      "feature_name": "跨时钟域撤销状态合并",
+      "title": "外部撤销 ID 按本机接收时间计算有效期",
+      "verification_side": "服务端 Celery Worker 状态层",
+      "case_type": "backend_job",
+      "priority": "P0",
+      "assertion": "从本机接收时刻起的有效期内该 ID 保持撤销；超过 `REVOKE_EXPIRES` 后该 ID 从撤销集合移除。",
+      "validation_path": "product_acceptance",
+      "should_generate_case": true
+    },
+    {
+      "case_plan_id": "CP-003",
+      "source_gate_ids": [
+        "TG-003"
+      ],
+      "source_example_ids": [
+        "AE-003"
+      ],
+      "source_responsibility_ids": [],
+      "source_rule_ids": [
+        "CEL-R003"
+      ],
+      "source_coverage_ids": [
+        "COV-EX-0003"
+      ],
+      "generated_testcase_ids": [
+        "OSS-BLIND-R3-CELERYWORKER-REVOKE-SERVER-ST-002"
+      ],
+      "page_name": "Celery Worker 撤销状态处理",
+      "section_name": "撤销状态合并与执行保护",
+      "module_name": "Worker 撤销状态",
+      "feature_name": "跨时钟域撤销状态合并",
+      "title": "满容量时保留本机新撤销任务",
+      "verification_side": "服务端 Celery Worker 状态层",
+      "case_type": "backend_job",
+      "priority": "P0",
+      "assertion": "本机刚新增的撤销任务 ID 仍保留在集合中；外部时间戳排序不会错误驱逐该本机新记录。",
+      "validation_path": "product_acceptance",
+      "should_generate_case": true
+    },
+    {
+      "case_plan_id": "CP-004",
+      "source_gate_ids": [
+        "TG-003"
+      ],
+      "source_example_ids": [
+        "AE-004"
+      ],
+      "source_responsibility_ids": [],
+      "source_rule_ids": [
+        "CEL-R003"
+      ],
+      "source_coverage_ids": [
+        "COV-EX-0004"
+      ],
+      "generated_testcase_ids": [
+        "OSS-BLIND-R3-CELERYWORKER-REVOKE-SERVER-ST-003"
+      ],
+      "page_name": "Celery Worker 撤销状态处理",
+      "section_name": "撤销状态合并与执行保护",
+      "module_name": "Worker 撤销状态",
+      "feature_name": "跨时钟域撤销状态合并",
+      "title": "有效期内已撤销 ETA 或 countdown 任务不执行",
+      "verification_side": "服务端 Celery Worker 执行层",
+      "case_type": "backend_job",
+      "priority": "P0",
+      "assertion": "任务不执行；任务对应的业务副作用不发生。",
+      "validation_path": "product_acceptance",
+      "should_generate_case": true
+    },
+    {
+      "case_plan_id": "CP-005",
+      "source_gate_ids": [
+        "TG-004"
+      ],
+      "source_example_ids": [
+        "AE-005"
+      ],
+      "source_responsibility_ids": [],
+      "source_rule_ids": [
+        "CEL-R004"
+      ],
+      "source_coverage_ids": [
+        "COV-EX-0005"
+      ],
+      "generated_testcase_ids": [
+        "OSS-BLIND-R3-CELERYWORKER-REVOKE-SERVER-ST-004"
+      ],
+      "page_name": "Celery Worker 撤销状态处理",
+      "section_name": "撤销状态合并与执行保护",
+      "module_name": "Worker 撤销状态",
+      "feature_name": "跨时钟域撤销状态合并",
+      "title": "hello 同步按本机时间重新计时",
+      "verification_side": "服务端 Celery Worker 同步层",
+      "case_type": "backend_job",
+      "priority": "P0",
+      "assertion": "hello 同步载荷仅包含任务 ID，不包含远端 monotonic 时间戳；收到的撤销 ID 从本机接收时刻开始计算有效期。",
+      "validation_path": "product_acceptance",
+      "should_generate_case": true
+    },
+    {
+      "case_plan_id": "CP-006",
+      "source_gate_ids": [
+        "TG-004"
+      ],
+      "source_example_ids": [
+        "AE-006"
+      ],
+      "source_responsibility_ids": [],
+      "source_rule_ids": [
+        "CEL-R004"
+      ],
+      "source_coverage_ids": [
+        "COV-EX-0006"
+      ],
+      "generated_testcase_ids": [
+        "OSS-BLIND-R3-CELERYWORKER-REVOKE-SERVER-ST-005"
+      ],
+      "page_name": "Celery Worker 撤销状态处理",
+      "section_name": "撤销状态合并与执行保护",
+      "module_name": "Worker 撤销状态",
+      "feature_name": "跨时钟域撤销状态合并",
+      "title": "mingle 同步按本机时间重新计时",
+      "verification_side": "服务端 Celery Worker 同步层",
+      "case_type": "backend_job",
+      "priority": "P0",
+      "assertion": "mingle 同步载荷仅包含任务 ID，不包含远端 monotonic 时间戳；收到的撤销 ID 从本机接收时刻开始计算有效期。",
+      "validation_path": "product_acceptance",
+      "should_generate_case": true
+    },
+    {
+      "case_plan_id": "CP-007",
+      "source_gate_ids": [
+        "TG-004"
+      ],
+      "source_example_ids": [
+        "AE-007"
+      ],
+      "source_responsibility_ids": [],
+      "source_rule_ids": [
+        "CEL-R004"
+      ],
+      "source_coverage_ids": [
+        "COV-EX-0007"
+      ],
+      "generated_testcase_ids": [
+        "OSS-BLIND-R3-CELERYWORKER-REVOKE-SERVER-ST-006"
+      ],
+      "page_name": "Celery Worker 撤销状态处理",
+      "section_name": "撤销状态合并与执行保护",
+      "module_name": "Worker 撤销状态",
+      "feature_name": "跨时钟域撤销状态合并",
+      "title": "statedb 恢复按本机时间重新计时",
+      "verification_side": "服务端 Celery Worker 持久化恢复层",
+      "case_type": "backend_job",
+      "priority": "P0",
+      "assertion": "恢复的撤销 ID 从本机恢复时刻开始计算有效期；持久化的旧 monotonic 时间戳不决定本机过期顺序。",
+      "validation_path": "product_acceptance",
+      "should_generate_case": true
+    },
+    {
+      "case_plan_id": "CP-008",
+      "source_gate_ids": [
+        "TG-005"
+      ],
+      "source_example_ids": [
+        "AE-008"
+      ],
+      "source_responsibility_ids": [],
+      "source_rule_ids": [
+        "CEL-R005"
+      ],
+      "source_coverage_ids": [
+        "COV-EX-0008"
+      ],
+      "generated_testcase_ids": [
+        "OSS-BLIND-R3-CELERYWORKER-REVOKE-SERVER-FL-001"
+      ],
+      "page_name": "Celery Worker 撤销状态处理",
+      "section_name": "撤销状态合并与执行保护",
+      "module_name": "Worker 撤销状态",
+      "feature_name": "跨时钟域撤销状态合并",
+      "title": "新旧 Worker 双向交换不丢失撤销 ID",
+      "verification_side": "服务端 Celery 混合集群状态层",
+      "case_type": "linkage",
+      "priority": "P0",
+      "assertion": "双向同步载荷仅包含任务 ID，不包含任一 Worker 的 monotonic 时间戳；交换完成后，新旧 Worker 的撤销集合均包含双方提供的任务 ID。",
+      "validation_path": "product_acceptance",
+      "should_generate_case": true
+    },
+    {
+      "case_plan_id": "CP-009",
+      "source_gate_ids": [
+        "TG-006"
+      ],
+      "source_example_ids": [
+        "AE-009"
+      ],
+      "source_responsibility_ids": [],
+      "source_rule_ids": [
+        "CEL-R006"
+      ],
+      "source_coverage_ids": [
+        "COV-EX-0009"
+      ],
+      "generated_testcase_ids": [
+        "OSS-BLIND-R3-CELERYWORKER-REVOKE-SERVER-BD-001"
+      ],
+      "page_name": "Celery Worker 撤销状态处理",
+      "section_name": "撤销状态合并与执行保护",
+      "module_name": "Worker 撤销状态",
+      "feature_name": "跨时钟域撤销状态合并",
+      "title": "边界：now 为 0 时撤销记录可加入和排序",
+      "verification_side": "服务端 Celery Worker 状态层",
+      "case_type": "field_constraint",
+      "priority": "P0",
+      "assertion": "加入后撤销集合包含该任务 ID；排序过程不抛出异常。",
+      "validation_path": "product_acceptance",
+      "should_generate_case": true
+    },
+    {
+      "case_plan_id": "CP-010",
+      "source_gate_ids": [
+        "TG-006"
+      ],
+      "source_example_ids": [
+        "AE-010"
+      ],
+      "source_responsibility_ids": [],
+      "source_rule_ids": [
+        "CEL-R006"
+      ],
+      "source_coverage_ids": [
+        "COV-EX-0010"
+      ],
+      "generated_testcase_ids": [
+        "OSS-BLIND-R3-CELERYWORKER-REVOKE-SERVER-BD-002"
+      ],
+      "page_name": "Celery Worker 撤销状态处理",
+      "section_name": "撤销状态合并与执行保护",
+      "module_name": "Worker 撤销状态",
+      "feature_name": "跨时钟域撤销状态合并",
+      "title": "边界：相同时间戳的撤销记录排序稳定",
+      "verification_side": "服务端 Celery Worker 状态层",
+      "case_type": "field_constraint",
+      "priority": "P0",
+      "assertion": "排序过程不抛出异常；相同时间戳的记录仍可被稳定保留和处理。",
+      "validation_path": "product_acceptance",
+      "should_generate_case": true
+    },
+    {
+      "case_plan_id": "CP-011",
+      "source_gate_ids": [
+        "TG-006"
+      ],
+      "source_example_ids": [
+        "AE-011"
+      ],
+      "source_responsibility_ids": [],
+      "source_rule_ids": [
+        "CEL-R006"
+      ],
+      "source_coverage_ids": [
+        "COV-EX-0011"
+      ],
+      "generated_testcase_ids": [
+        "OSS-BLIND-R3-CELERYWORKER-REVOKE-SERVER-BD-003"
+      ],
+      "page_name": "Celery Worker 撤销状态处理",
+      "section_name": "撤销状态合并与执行保护",
+      "module_name": "Worker 撤销状态",
+      "feature_name": "跨时钟域撤销状态合并",
+      "title": "边界：混合类型任务 ID 不触发比较异常",
+      "verification_side": "服务端 Celery Worker 状态层",
+      "case_type": "field_constraint",
+      "priority": "P0",
+      "assertion": "集合操作不触发任务 ID 类型比较异常。",
+      "validation_path": "product_acceptance",
+      "should_generate_case": true
+    }
+  ]
+}

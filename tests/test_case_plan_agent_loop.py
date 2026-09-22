@@ -28,14 +28,7 @@ from harness.state_store import HarnessStateError, atomic_write_json  # noqa: E4
 from harness.telemetry import BudgetConfig  # noqa: E402
 
 
-SOURCE_ITEM = (
-    ROOT
-    / "assets"
-    / "projects"
-    / "WX-YGJ"
-    / "work_items"
-    / "PT083"
-)
+SOURCE_ITEM = ROOT / "tests" / "fixtures" / "runtime_work_item"
 
 
 def action(
@@ -789,4 +782,3 @@ class CasePlanAgentLoopTests(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
-

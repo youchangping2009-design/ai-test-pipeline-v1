@@ -1,0 +1,70 @@
+{
+  "project_code": "FIXTURE",
+  "work_item_id": "FIXTURE-RUNTIME-001",
+  "manifest_type": "requirement_source_manifest",
+  "summary_artifact": "inputs/requirement_summary.md",
+  "sources": [
+    {
+      "source_id": "SRC-001",
+      "source_type": "image",
+      "location": "inputs/images/FIXTURE-RUNTIME-001-01_副本.png",
+      "status": "available",
+      "local_artifact": "inputs/images/FIXTURE-RUNTIME-001-01_副本.png",
+      "retrieved_at": "2026-08-21",
+      "notes": "需求背景、云挂机覆盖数据、画质与尺寸问题及目标；SHA-256 7dcea3fbc5f54a14b21fcedb7d25a668b598edf42e5f9b0ab1f181995eed246e"
+    },
+    {
+      "source_id": "SRC-002",
+      "source_type": "image",
+      "location": "inputs/images/FIXTURE-RUNTIME-001-02_副本.png",
+      "status": "available",
+      "local_artifact": "inputs/images/FIXTURE-RUNTIME-001-02_副本.png",
+      "retrieved_at": "2026-08-21",
+      "notes": "C 端云挂机购买页宣传位、宣传区、特价专区和普通商品区改版说明；SHA-256 8aba8714ae3b768a4a9d5c43698bf272fe5421897ff992c9e51b48672346b5b4"
+    },
+    {
+      "source_id": "SRC-003",
+      "source_type": "image",
+      "location": "inputs/images/FIXTURE-RUNTIME-001-03-01_副本.png",
+      "status": "available",
+      "local_artifact": "inputs/images/FIXTURE-RUNTIME-001-03-01_副本.png",
+      "retrieved_at": "2026-08-21",
+      "notes": "B 端云手机商品管理列表及添加、编辑宣传内容、商品区列；SHA-256 cfb06c64180f92c9a5783b969d270c83d57462924357ae59bda5713f5e3d4e58"
+    },
+    {
+      "source_id": "SRC-004",
+      "source_type": "image",
+      "location": "inputs/images/FIXTURE-RUNTIME-001-03-02_副本.png",
+      "status": "available",
+      "local_artifact": "inputs/images/FIXTURE-RUNTIME-001-03-02_副本.png",
+      "retrieved_at": "2026-08-21",
+      "notes": "B 端商品添加表单、字段属性、特殊区数量限制、库存预警和告警说明；SHA-256 1af5fda9097b7b206b7fb704e0af1dae76f7643f8258f4e8d27cf5df2232b479"
+    },
+    {
+      "source_id": "SRC-005",
+      "source_type": "image",
+      "location": "inputs/images/FIXTURE-RUNTIME-001-03-03_副本.png",
+      "status": "available",
+      "local_artifact": "inputs/images/FIXTURE-RUNTIME-001-03-03_副本.png",
+      "retrieved_at": "2026-08-21",
+      "notes": "B 端宣传内容配置、图片规则、字符限制和云机类型完整性校验；SHA-256 b19f0c565a98765bf018d721bcd956f4601918922bfcd19fcc360b8eca62769a"
+    },
+    {
+      "source_id": "SRC-006",
+      "source_type": "image",
+      "location": "inputs/images/FIXTURE-RUNTIME-001-04_副本.png",
+      "status": "available",
+      "local_artifact": "inputs/images/FIXTURE-RUNTIME-001-04_副本.png",
+      "retrieved_at": "2026-08-21",
+      "notes": "更新云机 SDK 与画面尺寸调整为 720*1280 的结论；SHA-256 fd7827ce38c310ad998099939207a50d556e269988e2351f8a96da0532662984"
+    }
+  ],
+  "unresolved_sources": [
+    {
+      "source_id": "UNRESOLVED-001",
+      "location": "FIXTURE-RUNTIME-001-01_副本.png 中的两份免费领云机活动复盘链接",
+      "status": "failed",
+      "notes": "图片仅显示链接名称，未提供可访问 URL，本轮未读取复盘正文"
+    }
+  ]
+}

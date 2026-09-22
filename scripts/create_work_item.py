@@ -142,6 +142,11 @@ def build_manifest(
         "pipeline_policy": {
             "requirement_intake_required": True,
             "requirement_approval_required": True,
+            "reasoning_grounding_required": True,
+            "feedback_application_receipt_required": True,
+            "feedback_action_journal_required": True,
+            "feedback_action_execution_identity_required": True,
+            "review_disposition_required": True,
             "testpoints_required": True,
         },
         "quality_gate": {
@@ -152,6 +157,9 @@ def build_manifest(
                 "false_traceability_rate_fail": 0.05,
                 "generalized_case_rate_warn": 0.03,
                 "generalized_case_count_warn": 5,
+                "weak_case_rate_warn": 0.03,
+                "weak_case_count_warn": 5,
+                "semantic_mismatch_count_fail": 0,
                 "duplicate_case_rate_warn": 0.005,
                 "duplicate_case_count_warn": 1
             }
@@ -181,6 +189,7 @@ def build_manifest(
             "test_design_matrix_json": "design/test_design_matrix.json",
             "design_feedback_markdown": "design/design_feedback.md",
             "design_feedback_json": "design/design_feedback.json",
+            "feedback_application_json": "design/feedback_application.json",
             "traceability_primary": "traceability/coverage_first_traceability.json",
             "traceability_adapter": "traceability/traceability_adapter.json",
             "traceability_legacy": "traceability/traceability_matrix.json",
@@ -485,8 +494,13 @@ def build_quality_report_placeholder() -> str:
         "data_source_rule_coverage_rate": 0.0,
         "generalized_case_count": 0,
         "generalized_case_rate": 0.0,
+        "weak_case_count": 0,
+        "weak_case_rate": 0.0,
+        "semantic_mismatch_count": 0,
         "duplicate_case_count": 0,
         "duplicate_case_rate": 0.0,
+        "duplicate_group_count": 0,
+        "duplicate_metric_basis": "final_testcase_semantic_signature",
         "missing_fidelity_points": 0,
         "high_priority_fidelity_missing": 0,
         "false_traceability_rate": 0.0,
@@ -502,6 +516,9 @@ def build_quality_report_placeholder() -> str:
                 "false_traceability_rate_fail": 0.05,
                 "generalized_case_rate_warn": 0.03,
                 "generalized_case_count_warn": 5,
+                "weak_case_rate_warn": 0.03,
+                "weak_case_count_warn": 5,
+                "semantic_mismatch_count_fail": 0,
                 "duplicate_case_rate_warn": 0.005,
                 "duplicate_case_count_warn": 1
             },

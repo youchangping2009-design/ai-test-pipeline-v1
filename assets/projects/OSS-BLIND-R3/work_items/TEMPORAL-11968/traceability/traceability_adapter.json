@@ -1,0 +1,206 @@
+{
+  "project_code": "OSS-BLIND-R3",
+  "work_item_id": "TEMPORAL-11968",
+  "records": [
+    {
+      "record_id": "TRA-0001",
+      "evidence_id": "EVD-UNMAPPED",
+      "coverage_level": "full",
+      "structured_targets": [
+        {
+          "target_type": "feature",
+          "module_name": "SignalWithStart 幂等",
+          "feature_name": "关闭后重试去重",
+          "field_name": "",
+          "target_name": "关闭后的请求去重"
+        }
+      ],
+      "testcase_ids": [
+        "OSS-BLIND-R3-TEMPORALAPI-SIGNALSTART-API-FL-001"
+      ],
+      "gap_notes": "adapter_source=coverage_first_traceability; source_record_id=CFT-0001; rule_id=SignalWithStart 幂等::关闭后重试去重::happy_path_combo; coverage_id=COV-EX-0006; fidelity_status=not_applicable",
+      "implementation_binding": "shared_contract",
+      "recommended_cr_stage": "dual_code",
+      "manual_confirmation_required": true,
+      "cr_focus_points": [
+        "关闭后的请求去重",
+        "coverage_id=COV-EX-0006"
+      ]
+    },
+    {
+      "record_id": "TRA-0002",
+      "evidence_id": "EVD-UNMAPPED",
+      "coverage_level": "full",
+      "structured_targets": [
+        {
+          "target_type": "feature",
+          "module_name": "SignalWithStart 幂等",
+          "feature_name": "关闭后重试去重",
+          "field_name": "",
+          "target_name": "重试响应"
+        }
+      ],
+      "testcase_ids": [
+        "OSS-BLIND-R3-TEMPORALAPI-SIGNALSTART-API-DV-001"
+      ],
+      "gap_notes": "adapter_source=coverage_first_traceability; source_record_id=CFT-0002; rule_id=SignalWithStart 幂等::关闭后重试去重::happy_path_combo; coverage_id=COV-EX-0007; fidelity_status=not_applicable",
+      "implementation_binding": "shared_contract",
+      "recommended_cr_stage": "dual_code",
+      "manual_confirmation_required": true,
+      "cr_focus_points": [
+        "重试响应",
+        "coverage_id=COV-EX-0007"
+      ]
+    },
+    {
+      "record_id": "TRA-0003",
+      "evidence_id": "EVD-UNMAPPED",
+      "coverage_level": "full",
+      "structured_targets": [
+        {
+          "target_type": "feature",
+          "module_name": "SignalWithStart 幂等",
+          "feature_name": "关闭后重试去重",
+          "field_name": "",
+          "target_name": "去重命中不创建新的 Workflow run。"
+        }
+      ],
+      "testcase_ids": [
+        "OSS-BLIND-R3-TEMPORALAPI-SIGNALSTART-API-ST-001"
+      ],
+      "gap_notes": "adapter_source=coverage_first_traceability; source_record_id=CFT-0003; rule_id=SignalWithStart 幂等::关闭后重试去重::happy_path_combo; coverage_id=COV-EX-0008; fidelity_status=not_applicable",
+      "implementation_binding": "shared_contract",
+      "recommended_cr_stage": "dual_code",
+      "manual_confirmation_required": true,
+      "cr_focus_points": [
+        "去重命中不创建新的 Workflow run。",
+        "coverage_id=COV-EX-0008"
+      ]
+    },
+    {
+      "record_id": "TRA-0004",
+      "evidence_id": "EVD-UNMAPPED",
+      "coverage_level": "full",
+      "structured_targets": [
+        {
+          "target_type": "feature",
+          "module_name": "SignalWithStart 幂等",
+          "feature_name": "关闭后重试去重",
+          "field_name": "",
+          "target_name": "去重命中不再次投递 signal。"
+        }
+      ],
+      "testcase_ids": [
+        "OSS-BLIND-R3-TEMPORALAPI-SIGNALSTART-API-ST-002"
+      ],
+      "gap_notes": "adapter_source=coverage_first_traceability; source_record_id=CFT-0004; rule_id=SignalWithStart 幂等::关闭后重试去重::happy_path_combo; coverage_id=COV-EX-0009; fidelity_status=not_applicable",
+      "implementation_binding": "shared_contract",
+      "recommended_cr_stage": "dual_code",
+      "manual_confirmation_required": true,
+      "cr_focus_points": [
+        "去重命中不再次投递 signal。",
+        "coverage_id=COV-EX-0009"
+      ]
+    },
+    {
+      "record_id": "TRA-0005",
+      "evidence_id": "EVD-UNMAPPED",
+      "coverage_level": "full",
+      "structured_targets": [
+        {
+          "target_type": "feature",
+          "module_name": "SignalWithStart 幂等",
+          "feature_name": "关闭后重试去重",
+          "field_name": "",
+          "target_name": "去重命中时 SignalWithStartWorkflowStartDeduped 指标递增。"
+        }
+      ],
+      "testcase_ids": [
+        "OSS-BLIND-R3-TEMPORALAPI-SIGNALSTART-API-DV-002"
+      ],
+      "gap_notes": "adapter_source=coverage_first_traceability; source_record_id=CFT-0005; rule_id=SignalWithStart 幂等::关闭后重试去重::happy_path_combo; coverage_id=COV-EX-0010; fidelity_status=not_applicable",
+      "implementation_binding": "shared_contract",
+      "recommended_cr_stage": "dual_code",
+      "manual_confirmation_required": true,
+      "cr_focus_points": [
+        "去重命中时 SignalWithStartWorkflowStartDeduped 指标递增。",
+        "coverage_id=COV-EX-0010"
+      ]
+    },
+    {
+      "record_id": "TRA-0006",
+      "evidence_id": "EVD-UNMAPPED",
+      "coverage_level": "full",
+      "structured_targets": [
+        {
+          "target_type": "feature",
+          "module_name": "SignalWithStart 幂等",
+          "feature_name": "关闭后重试去重",
+          "field_name": "",
+          "target_name": "非去重请求不增加 SignalWithStartWorkflowStartDeduped 指标。"
+        }
+      ],
+      "testcase_ids": [
+        "OSS-BLIND-R3-TEMPORALAPI-SIGNALSTART-API-DV-003"
+      ],
+      "gap_notes": "adapter_source=coverage_first_traceability; source_record_id=CFT-0006; rule_id=SignalWithStart 幂等::关闭后重试去重::happy_path_combo; coverage_id=COV-EX-0011; fidelity_status=not_applicable",
+      "implementation_binding": "shared_contract",
+      "recommended_cr_stage": "dual_code",
+      "manual_confirmation_required": true,
+      "cr_focus_points": [
+        "非去重请求不增加 SignalWithStartWorkflowStartDeduped 指标。",
+        "coverage_id=COV-EX-0011"
+      ]
+    },
+    {
+      "record_id": "TRA-0007",
+      "evidence_id": "EVD-UNMAPPED",
+      "coverage_level": "full",
+      "structured_targets": [
+        {
+          "target_type": "feature",
+          "module_name": "SignalWithStart 幂等",
+          "feature_name": "关闭后重试去重",
+          "field_name": "",
+          "target_name": "非重复请求"
+        }
+      ],
+      "testcase_ids": [
+        "OSS-BLIND-R3-TEMPORALAPI-SIGNALSTART-API-AB-001"
+      ],
+      "gap_notes": "adapter_source=coverage_first_traceability; source_record_id=CFT-0007; rule_id=SignalWithStart 幂等::关闭后重试去重::happy_path_combo; coverage_id=COV-EX-0012; fidelity_status=not_applicable",
+      "implementation_binding": "shared_contract",
+      "recommended_cr_stage": "dual_code",
+      "manual_confirmation_required": true,
+      "cr_focus_points": [
+        "非重复请求",
+        "coverage_id=COV-EX-0012"
+      ]
+    },
+    {
+      "record_id": "TRA-0008",
+      "evidence_id": "EVD-UNMAPPED",
+      "coverage_level": "full",
+      "structured_targets": [
+        {
+          "target_type": "feature",
+          "module_name": "SignalWithStart 幂等",
+          "feature_name": "关闭后重试去重",
+          "field_name": "",
+          "target_name": "原 run 最终状态"
+        }
+      ],
+      "testcase_ids": [
+        "OSS-BLIND-R3-TEMPORALAPI-SIGNALSTART-API-ST-003"
+      ],
+      "gap_notes": "adapter_source=coverage_first_traceability; source_record_id=CFT-0008; rule_id=SignalWithStart 幂等::关闭后重试去重::happy_path_combo; coverage_id=COV-EX-0013; fidelity_status=not_applicable",
+      "implementation_binding": "shared_contract",
+      "recommended_cr_stage": "dual_code",
+      "manual_confirmation_required": true,
+      "cr_focus_points": [
+        "原 run 最终状态",
+        "coverage_id=COV-EX-0013"
+      ]
+    }
+  ]
+}

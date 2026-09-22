@@ -122,6 +122,8 @@
 - 不要凭空编造背景与范围
 - 信息不足时用 `"待确认"` 或空数组表达
 - 若 PRD 中存在“前置说明 / 功能说明 / 当前展示内容写死 / 点击进入 / 不校验”等显式规则，必须进入 `explicit_rules`
+- 每条 `explicit_rules` 应填写 `source_scope`：正式需求为 `primary_requirement`，仅供理解的关联问题或背景为 `context_only`，生成后才解封的代码/测试 oracle 为 `oracle_only`。后两者不得作为正式主用例来源。
+- 一条规则包含多个可独立失败的输入、分支或结果时，必须填写 `atomic_assertions`，逐项保留可独立判断的断言；不得只用一个复合句掩盖多个失败原因。
 
 `explicit_rules` 典型来源包括：
 - 前置说明

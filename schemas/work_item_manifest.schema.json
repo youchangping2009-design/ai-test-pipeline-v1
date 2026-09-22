@@ -24,6 +24,10 @@
       "properties": {
         "requirement_intake_required": { "type": "boolean" },
         "requirement_approval_required": { "type": "boolean" },
+        "feedback_application_receipt_required": { "type": "boolean" },
+        "feedback_action_journal_required": { "type": "boolean" },
+        "feedback_action_execution_identity_required": { "type": "boolean" },
+        "review_disposition_required": { "type": "boolean" },
         "testpoints_required": { "type": "boolean" }
       },
       "additionalProperties": true
@@ -38,6 +42,10 @@
         "requirement_approval": {
           "type": "string",
           "const": "inputs/requirement_approval.json"
+        },
+        "feedback_application_json": {
+          "type": "string",
+          "const": "design/feedback_application.json"
         },
         "structured_prd": { "type": "string", "minLength": 1 },
         "testcases": { "type": "string", "minLength": 1 },
@@ -64,6 +72,27 @@
         "properties": {
           "artifacts": {
             "required": ["requirement_approval"]
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "pipeline_policy": {
+            "type": "object",
+            "properties": {
+              "feedback_application_receipt_required": { "const": true }
+            },
+            "required": ["feedback_application_receipt_required"]
+          }
+        },
+        "required": ["pipeline_policy"]
+      },
+      "then": {
+        "properties": {
+          "artifacts": {
+            "required": ["feedback_application_json"]
           }
         }
       }

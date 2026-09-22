@@ -1,0 +1,259 @@
+{
+  "project_code": "OSS-BLIND-R3",
+  "work_item_id": "SUPABASE-50569",
+  "generated_at": "2026-09-21T22:16:00",
+  "generated_from": [
+    "coverage/coverage_matrix.json",
+    "evidence/evidence_inventory.json",
+    "testcases/testcases_main.md"
+  ],
+  "summary": {
+    "record_count": 11,
+    "invalid_record_count": 0,
+    "false_traceability_rate": 0.0
+  },
+  "records": [
+    {
+      "record_id": "CFT-0001",
+      "rule_id": "MFA 恢复码认证::恢复码登录与路由保护::happy_path_combo",
+      "coverage_id": "COV-EX-0002",
+      "testcase_id": "OSS-BLIND-R3-RECOVERYAUTH-RECOVERYCODE-WEB-FN-001",
+      "testcase_title": "满足开关与账户条件时显示恢复码入口",
+      "source_origin": "explicit_rule",
+      "coverage_level": "business",
+      "emit_mode": "main_testcase",
+      "fidelity_status": "not_applicable",
+      "evidence_ids": [],
+      "reasoning_refs": [],
+      "structured_targets": [
+        {
+          "target_type": "feature",
+          "module_name": "MFA 恢复码认证",
+          "feature_name": "恢复码登录与路由保护",
+          "field_name": "",
+          "target_name": "满足开关和账户条件时显示【使用恢复码验证】入口。"
+        }
+      ]
+    },
+    {
+      "record_id": "CFT-0002",
+      "rule_id": "MFA 恢复码认证::恢复码登录与路由保护::happy_path_combo",
+      "coverage_id": "COV-EX-0003",
+      "testcase_id": "OSS-BLIND-R3-RECOVERYAUTH-RECOVERYCODE-WEB-FL-001",
+      "testcase_title": "从[MFA 验证页]进入独立[恢复码认证页]",
+      "source_origin": "explicit_rule",
+      "coverage_level": "business",
+      "emit_mode": "main_testcase",
+      "fidelity_status": "not_applicable",
+      "evidence_ids": [],
+      "reasoning_refs": [],
+      "structured_targets": [
+        {
+          "target_type": "feature",
+          "module_name": "MFA 恢复码认证",
+          "feature_name": "恢复码登录与路由保护",
+          "field_name": "",
+          "target_name": "点击入口进入独立恢复码认证页。"
+        }
+      ]
+    },
+    {
+      "record_id": "CFT-0003",
+      "rule_id": "MFA 恢复码认证::恢复码登录与路由保护::happy_path_combo",
+      "coverage_id": "COV-EX-0004",
+      "testcase_id": "OSS-BLIND-R3-RECOVERYAUTH-RECOVERYCODE-WEB-FL-002",
+      "testcase_title": "有效未使用恢复码建立 MFA 完成会话",
+      "source_origin": "explicit_rule",
+      "coverage_level": "business",
+      "emit_mode": "main_testcase",
+      "fidelity_status": "not_applicable",
+      "evidence_ids": [],
+      "reasoning_refs": [],
+      "structured_targets": [
+        {
+          "target_type": "feature",
+          "module_name": "MFA 恢复码认证",
+          "feature_name": "恢复码登录与路由保护",
+          "field_name": "",
+          "target_name": "恢复码认证"
+        }
+      ]
+    },
+    {
+      "record_id": "CFT-0004",
+      "rule_id": "MFA 恢复码认证::恢复码登录与路由保护::happy_path_combo",
+      "coverage_id": "COV-EX-0005",
+      "testcase_id": "OSS-BLIND-R3-RECOVERYAUTH-RECOVERYCODE-WEB-DV-001",
+      "testcase_title": "恢复码认证成功后可用数量减少一条",
+      "source_origin": "explicit_rule",
+      "coverage_level": "business",
+      "emit_mode": "main_testcase",
+      "fidelity_status": "not_applicable",
+      "evidence_ids": [],
+      "reasoning_refs": [],
+      "structured_targets": [
+        {
+          "target_type": "feature",
+          "module_name": "MFA 恢复码认证",
+          "feature_name": "恢复码登录与路由保护",
+          "field_name": "",
+          "target_name": "成功认证后可用恢复码数量减少 1。"
+        }
+      ]
+    },
+    {
+      "record_id": "CFT-0005",
+      "rule_id": "MFA 恢复码认证::恢复码登录与路由保护::happy_path_combo",
+      "coverage_id": "COV-EX-0006",
+      "testcase_id": "OSS-BLIND-R3-RECOVERYAUTH-RECOVERYCODE-WEB-AB-001",
+      "testcase_title": "拒绝已使用恢复码再次建立登录会话",
+      "source_origin": "explicit_rule",
+      "coverage_level": "business",
+      "emit_mode": "main_testcase",
+      "fidelity_status": "not_applicable",
+      "evidence_ids": [],
+      "reasoning_refs": [],
+      "structured_targets": [
+        {
+          "target_type": "feature",
+          "module_name": "MFA 恢复码认证",
+          "feature_name": "恢复码登录与路由保护",
+          "field_name": "",
+          "target_name": "已使用恢复码再次提交不能建立登录会话。"
+        }
+      ]
+    },
+    {
+      "record_id": "CFT-0006",
+      "rule_id": "MFA 恢复码认证::恢复码登录与路由保护::happy_path_combo",
+      "coverage_id": "COV-EX-0007",
+      "testcase_id": "OSS-BLIND-R3-RECOVERYAUTH-RECOVERYCODE-WEB-AB-002",
+      "testcase_title": "拒绝无效恢复码建立登录会话",
+      "source_origin": "explicit_rule",
+      "coverage_level": "business",
+      "emit_mode": "main_testcase",
+      "fidelity_status": "not_applicable",
+      "evidence_ids": [],
+      "reasoning_refs": [],
+      "structured_targets": [
+        {
+          "target_type": "feature",
+          "module_name": "MFA 恢复码认证",
+          "feature_name": "恢复码登录与路由保护",
+          "field_name": "",
+          "target_name": "无效恢复码不建立登录会话。"
+        }
+      ]
+    },
+    {
+      "record_id": "CFT-0007",
+      "rule_id": "MFA 恢复码认证::恢复码登录与路由保护::happy_path_combo",
+      "coverage_id": "COV-EX-0008",
+      "testcase_id": "OSS-BLIND-R3-RECOVERYAUTH-RECOVERYCODE-WEB-AB-003",
+      "testcase_title": "空恢复码不建立登录会话",
+      "source_origin": "explicit_rule",
+      "coverage_level": "business",
+      "emit_mode": "main_testcase",
+      "fidelity_status": "not_applicable",
+      "evidence_ids": [],
+      "reasoning_refs": [],
+      "structured_targets": [
+        {
+          "target_type": "feature",
+          "module_name": "MFA 恢复码认证",
+          "feature_name": "恢复码登录与路由保护",
+          "field_name": "",
+          "target_name": "空恢复码不建立登录会话。"
+        }
+      ]
+    },
+    {
+      "record_id": "CFT-0008",
+      "rule_id": "MFA 恢复码认证::恢复码登录与路由保护::happy_path_combo",
+      "coverage_id": "COV-EX-0009",
+      "testcase_id": "OSS-BLIND-R3-RECOVERYAUTH-RECOVERYCODE-WEB-AB-004",
+      "testcase_title": "已知格式不正确的恢复码不建立登录会话",
+      "source_origin": "explicit_rule",
+      "coverage_level": "business",
+      "emit_mode": "main_testcase",
+      "fidelity_status": "not_applicable",
+      "evidence_ids": [],
+      "reasoning_refs": [],
+      "structured_targets": [
+        {
+          "target_type": "feature",
+          "module_name": "MFA 恢复码认证",
+          "feature_name": "恢复码登录与路由保护",
+          "field_name": "",
+          "target_name": "格式不正确的恢复码不建立登录会话。"
+        }
+      ]
+    },
+    {
+      "record_id": "CFT-0009",
+      "rule_id": "MFA 恢复码认证::恢复码登录与路由保护::happy_path_combo",
+      "coverage_id": "COV-EX-0010",
+      "testcase_id": "OSS-BLIND-R3-RECOVERYAUTH-RECOVERYCODE-WEB-FN-002",
+      "testcase_title": "功能关闭时隐藏恢复码入口",
+      "source_origin": "explicit_rule",
+      "coverage_level": "business",
+      "emit_mode": "main_testcase",
+      "fidelity_status": "not_applicable",
+      "evidence_ids": [],
+      "reasoning_refs": [],
+      "structured_targets": [
+        {
+          "target_type": "feature",
+          "module_name": "MFA 恢复码认证",
+          "feature_name": "恢复码登录与路由保护",
+          "field_name": "",
+          "target_name": "功能关闭时恢复码入口不可见。"
+        }
+      ]
+    },
+    {
+      "record_id": "CFT-0010",
+      "rule_id": "MFA 恢复码认证::恢复码登录与路由保护::happy_path_combo",
+      "coverage_id": "COV-EX-0011",
+      "testcase_id": "OSS-BLIND-R3-RECOVERYAUTH-RECOVERYCODE-WEB-FL-003",
+      "testcase_title": "功能关闭时直接访问[恢复码认证页]返回[MFA 验证页]",
+      "source_origin": "explicit_rule",
+      "coverage_level": "business",
+      "emit_mode": "main_testcase",
+      "fidelity_status": "not_applicable",
+      "evidence_ids": [],
+      "reasoning_refs": [],
+      "structured_targets": [
+        {
+          "target_type": "feature",
+          "module_name": "MFA 恢复码认证",
+          "feature_name": "恢复码登录与路由保护",
+          "field_name": "",
+          "target_name": "功能关闭时直接访问恢复码认证 URL 返回 MFA 验证页。"
+        }
+      ]
+    },
+    {
+      "record_id": "CFT-0011",
+      "rule_id": "MFA 恢复码认证::恢复码登录与路由保护::happy_path_combo",
+      "coverage_id": "COV-EX-0012",
+      "testcase_id": "OSS-BLIND-R3-RECOVERYAUTH-RECOVERYCODE-WEB-FL-004",
+      "testcase_title": "恢复码开关两种状态下普通 MFA 路径均可用",
+      "source_origin": "explicit_rule",
+      "coverage_level": "business",
+      "emit_mode": "main_testcase",
+      "fidelity_status": "not_applicable",
+      "evidence_ids": [],
+      "reasoning_refs": [],
+      "structured_targets": [
+        {
+          "target_type": "feature",
+          "module_name": "MFA 恢复码认证",
+          "feature_name": "恢复码登录与路由保护",
+          "field_name": "",
+          "target_name": "既有 MFA 路径"
+        }
+      ]
+    }
+  ]
+}

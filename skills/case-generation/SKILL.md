@@ -2,7 +2,7 @@
 
 ## 目标
 
-基于 `structured_prd.json` 生成标准测试用例 Markdown 表格，覆盖：
+基于 `case_plan.json` 生成标准测试用例 Markdown 表格，并使用 `structured_prd.json`、`coverage_matrix.json` 补充规则详情与追溯，覆盖：
 
 - 单点用例
 - 流程类用例
@@ -15,7 +15,9 @@
 
 主要输入：
 
-- `structured_prd.json`
+- `testcases/case_plan.json`
+- `structured_prd/structured_prd.json`
+- `coverage/coverage_matrix.json`
 
 可选辅助输入：
 
@@ -54,6 +56,7 @@
 
 - `skills/case-generation/templates/testcase_template.md`
 - `skills/case-generation/templates/testcase_row_template.json`
+- `skills/case-generation/templates/case_plan.template.json`
 - `skills/case-generation/templates/testpoints.template.md`
 - `skills/case-generation/templates/testpoints.template.json`
 
@@ -73,7 +76,19 @@
 
 ## 执行步骤
 
-### 1. 读取 structured_prd
+### 1. 读取 Case Plan 与规则详情
+
+新工作项的 `case_plan.json` 必须使用 `generation_mode=case_plan_direct`。每个 `should_generate_case=true` 的计划直接派生一条正式 testcase；不得先按 Coverage 生成草稿、合并后再反向筛选计划。
+
+`coverage_legacy` 仅保留给既有资产兼容。直出模式下：
+
+- Case Plan 决定是否生成、页面/板块、用例类型、验证侧、优先级与稳定 testcase ID
+- Structured PRD 提供字段中文名、约束、数据源和展示规则
+- Coverage Matrix 提供原子规则详情和精确追溯 ID
+- 同页面、同板块、同规则语义的计划必须先在 Case Plan 层合并
+- 展示、隐藏、换行规则不得生成保存失败；C端规则不得仅标记为B端写侧
+
+随后读取 Structured PRD 的以下信息：
 
 优先读取以下信息：
 

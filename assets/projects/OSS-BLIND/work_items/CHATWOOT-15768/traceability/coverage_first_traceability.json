@@ -1,0 +1,215 @@
+{
+  "project_code": "OSS-BLIND",
+  "work_item_id": "CHATWOOT-15768",
+  "generated_at": "2026-09-21T18:23:38",
+  "generated_from": [
+    "coverage/coverage_matrix.json",
+    "evidence/evidence_inventory.json",
+    "testcases/testcases_main.md"
+  ],
+  "summary": {
+    "record_count": 9,
+    "invalid_record_count": 0,
+    "false_traceability_rate": 0.0
+  },
+  "records": [
+    {
+      "record_id": "CFT-0001",
+      "rule_id": "会话高级筛选::自定义属性类型化筛选::happy_path_combo",
+      "coverage_id": "COV-EX-0006",
+      "testcase_id": "OSS-BLIND-CONVERSATION-FILTER-WEB-FL-001",
+      "testcase_title": "数字自定义属性从输入到匹配保持 number 类型",
+      "source_origin": "explicit_rule",
+      "coverage_level": "business",
+      "emit_mode": "main_testcase",
+      "fidelity_status": "not_applicable",
+      "evidence_ids": [],
+      "reasoning_refs": [],
+      "structured_targets": [
+        {
+          "target_type": "feature",
+          "module_name": "会话高级筛选",
+          "feature_name": "自定义属性类型化筛选",
+          "field_name": "",
+          "target_name": "number 自定义属性"
+        }
+      ]
+    },
+    {
+      "record_id": "CFT-0002",
+      "rule_id": "会话高级筛选::自定义属性类型化筛选::happy_path_combo",
+      "coverage_id": "COV-EX-0007",
+      "testcase_id": "OSS-BLIND-CONVERSATION-FILTER-WEB-DV-002",
+      "testcase_title": "请求保留 0 和 false 并过滤真正空值",
+      "source_origin": "explicit_rule",
+      "coverage_level": "business",
+      "emit_mode": "main_testcase",
+      "fidelity_status": "not_applicable",
+      "evidence_ids": [],
+      "reasoning_refs": [],
+      "structured_targets": [
+        {
+          "target_type": "feature",
+          "module_name": "会话高级筛选",
+          "feature_name": "自定义属性类型化筛选",
+          "field_name": "",
+          "target_name": "filter payload values"
+        }
+      ]
+    },
+    {
+      "record_id": "CFT-0003",
+      "rule_id": "会话高级筛选::自定义属性类型化筛选::happy_path_combo",
+      "coverage_id": "COV-EX-0008",
+      "testcase_id": "OSS-BLIND-CONVERSATION-FILTER-WEB-DV-003",
+      "testcase_title": "属性缺失与显式 0、false 分开匹配",
+      "source_origin": "explicit_rule",
+      "coverage_level": "business",
+      "emit_mode": "main_testcase",
+      "fidelity_status": "not_applicable",
+      "evidence_ids": [],
+      "reasoning_refs": [],
+      "structured_targets": [
+        {
+          "target_type": "feature",
+          "module_name": "会话高级筛选",
+          "feature_name": "自定义属性类型化筛选",
+          "field_name": "",
+          "target_name": "conversation custom attribute"
+        }
+      ]
+    },
+    {
+      "record_id": "CFT-0004",
+      "rule_id": "会话高级筛选::自定义属性类型化筛选::happy_path_combo",
+      "coverage_id": "COV-EX-0009",
+      "testcase_id": "OSS-BLIND-CONVERSATION-FILTER-WEB-DV-004",
+      "testcase_title": "客户端二次筛选使用严格相等匹配",
+      "source_origin": "explicit_rule",
+      "coverage_level": "business",
+      "emit_mode": "main_testcase",
+      "fidelity_status": "not_applicable",
+      "evidence_ids": [],
+      "reasoning_refs": [],
+      "structured_targets": [
+        {
+          "target_type": "feature",
+          "module_name": "会话高级筛选",
+          "feature_name": "自定义属性类型化筛选",
+          "field_name": "",
+          "target_name": "客户端二次匹配"
+        }
+      ]
+    },
+    {
+      "record_id": "CFT-0005",
+      "rule_id": "会话高级筛选::自定义属性类型化筛选::happy_path_combo",
+      "coverage_id": "COV-EX-0010",
+      "testcase_id": "OSS-BLIND-CONVERSATION-FILTER-WEB-FN-001",
+      "testcase_title": "等于与不等于运算符按严格相等结果筛选",
+      "source_origin": "explicit_rule",
+      "coverage_level": "business",
+      "emit_mode": "main_testcase",
+      "fidelity_status": "not_applicable",
+      "evidence_ids": [],
+      "reasoning_refs": [],
+      "structured_targets": [
+        {
+          "target_type": "feature",
+          "module_name": "会话高级筛选",
+          "feature_name": "自定义属性类型化筛选",
+          "field_name": "",
+          "target_name": "equal_to 与 not_equal_to"
+        }
+      ]
+    },
+    {
+      "record_id": "CFT-0006",
+      "rule_id": "会话高级筛选::自定义属性类型化筛选::happy_path_combo",
+      "coverage_id": "COV-EX-0012",
+      "testcase_id": "OSS-BLIND-CONVERSATION-FILTER-WEB-FN-003",
+      "testcase_title": "文本、日期和列表筛选保持既有结果",
+      "source_origin": "explicit_rule",
+      "coverage_level": "business",
+      "emit_mode": "main_testcase",
+      "fidelity_status": "not_applicable",
+      "evidence_ids": [],
+      "reasoning_refs": [],
+      "structured_targets": [
+        {
+          "target_type": "feature",
+          "module_name": "会话高级筛选",
+          "feature_name": "自定义属性类型化筛选",
+          "field_name": "",
+          "target_name": "既有筛选类型"
+        }
+      ]
+    },
+    {
+      "record_id": "CFT-0007",
+      "rule_id": "会话高级筛选::自定义属性类型化筛选::happy_path_combo",
+      "coverage_id": "COV-EX-0013",
+      "testcase_id": "OSS-BLIND-CONVERSATION-FILTER-WEB-AB-001",
+      "testcase_title": "空数组筛选值返回必填错误",
+      "source_origin": "explicit_rule",
+      "coverage_level": "business",
+      "emit_mode": "main_testcase",
+      "fidelity_status": "not_applicable",
+      "evidence_ids": [],
+      "reasoning_refs": [],
+      "structured_targets": [
+        {
+          "target_type": "feature",
+          "module_name": "会话高级筛选",
+          "feature_name": "自定义属性类型化筛选",
+          "field_name": "",
+          "target_name": "筛选输入为空数组时返回 VALUE_REQUIRED，且不得进入请求序列化。"
+        }
+      ]
+    },
+    {
+      "record_id": "CFT-0008",
+      "rule_id": "会话高级筛选::自定义属性类型化筛选::happy_path_combo",
+      "coverage_id": "COV-EX-0014",
+      "testcase_id": "OSS-BLIND-CONVERSATION-FILTER-WEB-AB-003",
+      "testcase_title": "空对象筛选值返回必填错误",
+      "source_origin": "explicit_rule",
+      "coverage_level": "business",
+      "emit_mode": "main_testcase",
+      "fidelity_status": "not_applicable",
+      "evidence_ids": [],
+      "reasoning_refs": [],
+      "structured_targets": [
+        {
+          "target_type": "feature",
+          "module_name": "会话高级筛选",
+          "feature_name": "自定义属性类型化筛选",
+          "field_name": "",
+          "target_name": "筛选输入为空对象时返回 VALUE_REQUIRED，且不得进入请求序列化。"
+        }
+      ]
+    },
+    {
+      "record_id": "CFT-0009",
+      "rule_id": "会话高级筛选::自定义属性类型化筛选::happy_path_combo",
+      "coverage_id": "COV-EX-0015",
+      "testcase_id": "OSS-BLIND-CONVERSATION-FILTER-WEB-AB-002",
+      "testcase_title": "早于当前日期天数输入 0 返回范围错误",
+      "source_origin": "explicit_rule",
+      "coverage_level": "business",
+      "emit_mode": "main_testcase",
+      "fidelity_status": "not_applicable",
+      "evidence_ids": [],
+      "reasoning_refs": [],
+      "structured_targets": [
+        {
+          "target_type": "feature",
+          "module_name": "会话高级筛选",
+          "feature_name": "自定义属性类型化筛选",
+          "field_name": "",
+          "target_name": "days_before 日期范围"
+        }
+      ]
+    }
+  ]
+}

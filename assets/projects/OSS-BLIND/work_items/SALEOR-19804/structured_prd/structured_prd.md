@@ -1,0 +1,436 @@
+# Structured PRD
+
+## project_info
+```json
+{
+  "project_code": "OSS-BLIND",
+  "project_name": "Saleor",
+  "business_line": "礼品卡批量创建",
+  "prd_source": "inputs/requirement_summary.md",
+  "prd_version": "github-pr-19804"
+}
+```
+
+## requirement_info
+```json
+{
+  "requirement_title": "Gift card bulk-create tag preservation",
+  "requirement_background": "giftCardBulkCreate 在复用已有标签时可能以当前批次关系替换标签的完整成员集合，导致历史礼品卡与标签之间的关系丢失。",
+  "requirement_goal": "批量创建礼品卡时，对已有标签追加当前批次成员，对新标签创建后关联当前批次，并保持历史标签关系及既有接口契约。",
+  "explicit_rules": [
+    {
+      "rule_id": "SL-R001",
+      "rule_text": "giftCardBulkCreate 复用已有标签时，只能把新礼品卡追加到标签关系，不得移除该标签与历史礼品卡之间的关联。",
+      "rule_type": "data_rule",
+      "priority": "high",
+      "applies_to": "已有 GiftCardTag 关系",
+      "source_scope": "primary_requirement",
+      "fidelity_points": [
+        {
+          "constraint_type": "sequence_constraint",
+          "value": "追加关系，不替换完整成员集合",
+          "must_preserve": true,
+          "forbidden_rewrites": ["用当前批次覆盖历史成员"]
+        }
+      ]
+    },
+    {
+      "rule_id": "SL-R002",
+      "rule_text": "输入新标签时，先创建标签，再把当前批次礼品卡关联到该标签。",
+      "rule_type": "data_rule",
+      "priority": "high",
+      "applies_to": "新 GiftCardTag",
+      "source_scope": "primary_requirement"
+    },
+    {
+      "rule_id": "SL-R003",
+      "rule_text": "连续批次使用相同、部分重叠或完全不同的标签集合后，每个标签都应保留其全部正确礼品卡成员。",
+      "rule_type": "state_constraint",
+      "priority": "high",
+      "applies_to": "跨批次标签成员集合",
+      "source_scope": "primary_requirement"
+    },
+    {
+      "rule_id": "SL-R004",
+      "rule_text": "新批次每张礼品卡只获得本次输入指定的标签；新旧标签混合输入时，已有关系保留且新关系正确建立。",
+      "rule_type": "data_rule",
+      "priority": "high",
+      "applies_to": "当前批次礼品卡标签",
+      "source_scope": "primary_requirement"
+    },
+    {
+      "rule_id": "SL-R005",
+      "rule_text": "批量创建返回 count 与实际新建数量一致，errors 为空时才视为成功，礼品卡标签结果保持既有接口契约。",
+      "rule_type": "container_constraint",
+      "priority": "high",
+      "applies_to": "giftCardBulkCreate 返回结果",
+      "source_scope": "primary_requirement"
+    },
+    {
+      "rule_id": "SL-R006",
+      "rule_text": "关系更新应支持批量数量，不引入与历史礼品卡数量线性失控的额外查询；具体性能阈值待确认。",
+      "rule_type": "coverage_constraint",
+      "priority": "medium",
+      "applies_to": "批量关系写入",
+      "source_scope": "primary_requirement"
+    },
+    {
+      "rule_id": "SL-R007",
+      "rule_text": "无权限、非法输入、giftCardCreate 与 giftCardUpdate 的既有行为不得因本次修复改变。",
+      "rule_type": "state_constraint",
+      "priority": "high",
+      "applies_to": "既有非批量行为与错误行为",
+      "source_scope": "primary_requirement"
+    },
+    {
+      "rule_id": "SL-R008",
+      "rule_text": "giftCardBulkCreate 的标签名称按小写归一并去重，大小写变体或重复输入不得创建重复标签记录或重复关系。",
+      "rule_type": "data_rule",
+      "priority": "high",
+      "applies_to": "标签名称归一与去重",
+      "source_scope": "primary_requirement",
+      "atomic_assertions": [
+        "输入已有标签的大小写变体时复用同一个小写标签记录，不新建重复标签。",
+        "同一请求重复输入同名新标签时只创建一个小写标签记录。",
+        "大小写变体或重复标签输入只为当前批次礼品卡建立一次对应标签关系。"
+      ]
+    }
+  ],
+  "scope": {
+    "in_scope": [
+      "giftCardBulkCreate 对已有标签的关系追加",
+      "新标签创建及当前批次关系建立",
+      "相同、部分重叠和完全不同标签集合的连续批次",
+      "批量返回数量、错误列表和标签结果",
+      "历史标签成员关系保留"
+    ],
+    "out_of_scope": [
+      "giftCardCreate 与 giftCardUpdate 行为变更",
+      "新增 GraphQL 字段或数据库迁移",
+      "自动恢复上线前已丢失的历史关系",
+      "未明确的标签名称归一化规则"
+    ]
+  }
+}
+```
+
+## pages
+```json
+[
+  {
+    "page_name": "giftCardBulkCreate GraphQL 接口",
+    "page_desc": "批量创建礼品卡并写入 GiftCard 与 GiftCardTag 多对多关系的接口入口。",
+    "sections": [
+      {
+        "section_name": "批量创建请求",
+        "section_type": "other",
+        "section_desc": "接收创建数量、余额、币种、启用状态和标签集合。",
+        "module_name": "礼品卡批量创建",
+        "feature_names": ["批量礼品卡标签关系追加"],
+        "section_rules": [
+          "已有标签追加当前批次成员",
+          "新标签创建后关联当前批次",
+          "新批次礼品卡只获得输入指定标签"
+        ],
+        "field_refs": ["count", "balance_amount", "balance_currency", "tags", "is_active"],
+        "field_rule_table_refs": []
+      },
+      {
+        "section_name": "批量创建响应",
+        "section_type": "display_area",
+        "section_desc": "返回创建数量、错误列表和新建礼品卡标签结果。",
+        "module_name": "礼品卡批量创建",
+        "feature_names": ["批量礼品卡标签关系追加"],
+        "section_rules": [
+          "count 与实际新建数量一致",
+          "errors 为空时才视为成功",
+          "返回的礼品卡标签符合本次输入"
+        ],
+        "field_refs": ["result_count", "errors", "gift_card_tags"],
+        "field_rule_table_refs": []
+      }
+    ]
+  }
+]
+```
+
+## modules
+```json
+[
+  {
+    "module_name": "礼品卡批量创建",
+    "module_desc": "通过 giftCardBulkCreate 创建礼品卡并以追加方式维护 GiftCard 与 GiftCardTag 多对多成员集合。",
+    "features": [
+      {
+        "feature_name": "批量礼品卡标签关系追加",
+        "page_name": "giftCardBulkCreate GraphQL 接口",
+        "section_name": "批量创建请求",
+        "feature_desc": "对已有标签追加新礼品卡，对新标签创建关系，并保证跨批次历史成员不丢失。",
+        "actors": ["具备礼品卡批量创建权限的 API 调用方"],
+        "entry_conditions": [
+          "调用方具备 giftCardBulkCreate 所需权限",
+          "请求提供 count、balance、tags 和 isActive 等批量创建输入",
+          "可存在历史礼品卡与已有标签关系"
+        ],
+        "rules": [
+          {
+            "rule_id": "SL-FR001",
+            "name": "已有标签关系追加",
+            "rule_type": "state_constraint",
+            "field_name": "tags",
+            "condition": "输入标签已存在",
+            "value": "历史成员集合并入当前批次新成员",
+            "rule_text": "不得用当前批次替换已有标签的完整礼品卡成员集合。"
+          },
+          {
+            "rule_id": "SL-FR002",
+            "name": "新标签创建并关联",
+            "rule_type": "state_constraint",
+            "field_name": "tags",
+            "condition": "输入标签不存在",
+            "value": "创建标签并关联当前批次礼品卡",
+            "rule_text": "新标签仅建立本次批次所需关系。"
+          },
+          {
+            "rule_id": "SL-FR003",
+            "name": "当前批次标签准确",
+            "rule_type": "data_source_constraint",
+            "target": "gift_card_tags",
+            "data_source": "本次 giftCardBulkCreate 输入 tags",
+            "rule_text": "新批次每张礼品卡只获得本次输入指定的标签。"
+          },
+          {
+            "rule_id": "SL-FR004",
+            "name": "连续批次成员集合保留",
+            "rule_type": "state_constraint",
+            "target": "GiftCardTag.members",
+            "condition": "连续批次标签集合相同、部分重叠或完全不同",
+            "value": "每个标签保留全部正确礼品卡成员",
+            "rule_text": "第二批复用第一批标签后，第一批礼品卡仍保留该标签。"
+          },
+          {
+            "rule_id": "SL-FR005",
+            "name": "批量返回成功判定",
+            "rule_type": "state_constraint",
+            "target": "giftCardBulkCreate response",
+            "condition": "批量创建完成",
+            "rule_text": "count 与实际新建数量一致且 errors 为空时才视为成功。"
+          },
+          {
+            "rule_id": "SL-FR006",
+            "name": "既有行为兼容",
+            "rule_type": "state_constraint",
+            "target": "existing_mutations_and_errors",
+            "condition": "无权限、非法输入或调用非批量 mutation",
+            "rule_text": "giftCardCreate、giftCardUpdate 以及既有错误行为不变。"
+          }
+        ],
+        "fields": [
+          {
+            "name": "count",
+            "display_name": "创建数量",
+            "type": "graphql_input",
+            "data_type": "integer",
+            "required": false,
+            "editable": true,
+            "integer_only": true
+          },
+          {
+            "name": "balance_amount",
+            "display_name": "余额金额",
+            "type": "graphql_input",
+            "data_type": "number",
+            "required": false,
+            "editable": true
+          },
+          {
+            "name": "balance_currency",
+            "display_name": "余额币种",
+            "type": "graphql_input",
+            "data_type": "string",
+            "required": false,
+            "editable": true
+          },
+          {
+            "name": "tags",
+            "display_name": "标签集合",
+            "type": "graphql_input_list",
+            "data_type": "array",
+            "required": false,
+            "editable": true,
+            "data_source": "已有标签或本次需创建的新标签"
+          },
+          {
+            "name": "is_active",
+            "display_name": "启用状态",
+            "type": "graphql_input",
+            "data_type": "boolean",
+            "required": false,
+            "editable": true
+          },
+          {
+            "name": "result_count",
+            "display_name": "返回创建数量",
+            "type": "graphql_response",
+            "data_type": "integer",
+            "required": false,
+            "editable": false,
+            "min": 0,
+            "integer_only": true
+          },
+          {
+            "name": "errors",
+            "display_name": "错误列表",
+            "type": "graphql_response",
+            "data_type": "array",
+            "required": false,
+            "editable": false
+          },
+          {
+            "name": "gift_card_tags",
+            "display_name": "礼品卡标签结果",
+            "type": "graphql_response",
+            "data_type": "array",
+            "required": false,
+            "editable": false
+          }
+        ],
+        "field_definitions": [],
+        "field_rules": [
+          {
+            "rule_id": "SL-FIELD-001",
+            "field_name": "tags",
+            "display_name": "标签集合",
+            "rule_text": "已有标签采用关系追加，新标签创建后关联当前批次，当前批次礼品卡只获得输入指定标签。",
+            "rule_type": "effect_constraint",
+            "expected_effects": [
+              "已有标签的历史礼品卡成员保留",
+              "当前批次新成员加入已有标签",
+              "新标签关联当前批次礼品卡"
+            ],
+            "must_cover": true
+          },
+          {
+            "rule_id": "SL-FIELD-002",
+            "field_name": "result_count",
+            "display_name": "返回创建数量",
+            "rule_text": "返回 count 与实际新建礼品卡数量一致。",
+            "rule_type": "effect_constraint",
+            "expected_effects": ["errors 为空且 count 一致时批量创建成功"],
+            "must_cover": true
+          }
+        ],
+        "field_rule_tables": [],
+        "visible_elements": ["giftCardBulkCreate 请求输入", "count 返回值", "errors 返回值", "礼品卡标签结果"],
+        "interactive_entries": ["调用 giftCardBulkCreate"],
+        "abnormal_scenarios": [
+          "无权限调用",
+          "非法批量创建输入",
+          "已有标签关系被当前批次覆盖",
+          "返回 count 与实际新建数量不一致",
+          "errors 非空却判定为成功"
+        ],
+        "boundary_scenarios": [
+          "连续批次使用完全相同标签集合",
+          "连续批次使用部分重叠标签集合",
+          "连续批次使用完全不同标签集合",
+          "新标签与已有标签混合输入",
+          "tags 为空数组、省略或包含不存在标签时的具体语义待确认",
+          "并发批量创建复用同一标签的一致性要求待确认",
+          "最大 count、标签数和查询次数阈值待确认"
+        ],
+        "dependencies": ["GiftCard 与 GiftCardTag 多对多关系", "giftCardBulkCreate GraphQL mutation"]
+      }
+    ]
+  }
+]
+```
+
+## flows
+```json
+[
+  {
+    "flow_id": "SL-FLOW-001",
+    "flow_name": "礼品卡批量创建并追加标签关系",
+    "flow_type": "main_flow",
+    "business_goal": "创建当前批次礼品卡并准确建立标签关系，同时保留已有标签的历史成员。",
+    "trigger": "具备权限的调用方提交 giftCardBulkCreate",
+    "preconditions": [
+      "调用方具备所需权限",
+      "可存在历史礼品卡与已有标签关系"
+    ],
+    "steps": [
+      {
+        "step_no": 1,
+        "step_name": "创建当前批次礼品卡",
+        "step_type": "operation",
+        "module_name": "礼品卡批量创建",
+        "feature_name": "批量礼品卡标签关系追加",
+        "actor": "系统",
+        "action": "按 count、balance、isActive 创建当前批次礼品卡",
+        "input_data": ["count", "balance.amount", "balance.currency", "isActive"],
+        "expected_result": "创建当前批次礼品卡并保留既有批量创建接口行为",
+        "rule_references": ["SL-R007"],
+        "is_key_checkpoint": false
+      },
+      {
+        "step_no": 2,
+        "step_name": "解析标签集合",
+        "step_type": "data_validation",
+        "module_name": "礼品卡批量创建",
+        "feature_name": "批量礼品卡标签关系追加",
+        "actor": "系统",
+        "action": "区分输入 tags 中的已有标签与新标签",
+        "input_data": ["tags"],
+        "expected_result": "已有标签进入关系追加路径，新标签进入创建后关联路径",
+        "rule_references": ["SL-R001", "SL-R002"],
+        "is_key_checkpoint": true
+      },
+      {
+        "step_no": 3,
+        "step_name": "写入标签关系",
+        "step_type": "state_change",
+        "module_name": "礼品卡批量创建",
+        "feature_name": "批量礼品卡标签关系追加",
+        "actor": "系统",
+        "action": "把当前批次礼品卡追加到已有标签，并关联新创建标签",
+        "expected_result": "历史标签成员不丢失，当前批次每张礼品卡只获得输入指定标签",
+        "state_transition": {"from": "历史标签成员集合", "to": "历史成员与当前批次成员的正确并集"},
+        "checkpoints": [
+          "已有标签关系为追加而非替换",
+          "新标签关系只包含正确礼品卡",
+          "相同、部分重叠和不同标签集合均保持逐标签成员正确"
+        ],
+        "rule_references": ["SL-R001", "SL-R002", "SL-R003", "SL-R004"],
+        "is_key_checkpoint": true
+      },
+      {
+        "step_no": 4,
+        "step_name": "返回批量创建结果",
+        "step_type": "system_response",
+        "module_name": "礼品卡批量创建",
+        "feature_name": "批量礼品卡标签关系追加",
+        "actor": "系统",
+        "action": "返回 count、errors 和礼品卡标签结果",
+        "expected_result": "count 与实际新建数量一致；errors 为空时才判定成功；标签结果符合输入",
+        "rule_references": ["SL-R005"],
+        "is_key_checkpoint": true
+      }
+    ],
+    "postconditions": [
+      "当前批次礼品卡已创建并关联指定标签",
+      "已有标签的历史礼品卡关系保持不变",
+      "接口返回值与实际创建结果一致"
+    ],
+    "success_criteria": [
+      "复用已有标签不会移除历史礼品卡关系",
+      "新标签创建后正确关联当前批次",
+      "跨批次相同、部分重叠和不同标签集合的成员关系正确",
+      "count 与实际新建数量一致且 errors 为空"
+    ],
+    "related_modules": ["礼品卡批量创建"],
+    "priority": "P0",
+    "tags": ["bulk-create", "many-to-many", "append-not-replace"]
+  }
+]
+```

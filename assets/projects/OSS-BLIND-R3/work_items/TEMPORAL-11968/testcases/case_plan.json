@@ -1,0 +1,253 @@
+{
+  "project_code": "OSS-BLIND-R3",
+  "work_item_id": "TEMPORAL-11968",
+  "generation_mode": "case_plan_direct",
+  "generated_from": [
+    "acceptance/acceptance_examples.json",
+    "acceptance/testability_gate.json",
+    "coverage/coverage_matrix.json",
+    "structured_prd/structured_prd.json"
+  ],
+  "case_plans": [
+    {
+      "case_plan_id": "CP-001",
+      "source_gate_ids": [
+        "TG-001"
+      ],
+      "source_example_ids": [
+        "AE-001"
+      ],
+      "source_responsibility_ids": [],
+      "source_rule_ids": [
+        "TMP-R001"
+      ],
+      "source_coverage_ids": [
+        "COV-EX-0006"
+      ],
+      "generated_testcase_ids": [
+        "OSS-BLIND-R3-TEMPORALAPI-SIGNALSTART-API-FL-001"
+      ],
+      "page_name": "Temporal Workflow API",
+      "section_name": "SignalWithStart 去重",
+      "module_name": "SignalWithStart 幂等",
+      "feature_name": "关闭后重试去重",
+      "title": "Workflow 关闭后仍可按原 request ID 去重",
+      "verification_side": "Temporal 服务端 API 与历史状态层",
+      "case_type": "linkage",
+      "priority": "P0",
+      "assertion": "Workflow 关闭后，首次 request ID 与原始 run 的去重关联状态仍可被命中。",
+      "validation_path": "product_acceptance",
+      "should_generate_case": true
+    },
+    {
+      "case_plan_id": "CP-002",
+      "source_gate_ids": [
+        "TG-002"
+      ],
+      "source_example_ids": [
+        "AE-002"
+      ],
+      "source_responsibility_ids": [],
+      "source_rule_ids": [
+        "TMP-R002"
+      ],
+      "source_coverage_ids": [
+        "COV-EX-0007"
+      ],
+      "generated_testcase_ids": [
+        "OSS-BLIND-R3-TEMPORALAPI-SIGNALSTART-API-DV-001"
+      ],
+      "page_name": "Temporal Workflow API",
+      "section_name": "SignalWithStart 去重",
+      "module_name": "SignalWithStart 幂等",
+      "feature_name": "关闭后重试去重",
+      "title": "相同请求重试返回首次创建的 run ID",
+      "verification_side": "Temporal 服务端 API 层",
+      "case_type": "data_persistence",
+      "priority": "P0",
+      "assertion": "重试响应中的 run ID 等于首次请求创建的 run ID。",
+      "validation_path": "product_acceptance",
+      "should_generate_case": true
+    },
+    {
+      "case_plan_id": "CP-003",
+      "source_gate_ids": [
+        "TG-003"
+      ],
+      "source_example_ids": [
+        "AE-003"
+      ],
+      "source_responsibility_ids": [],
+      "source_rule_ids": [
+        "TMP-R003"
+      ],
+      "source_coverage_ids": [
+        "COV-EX-0008"
+      ],
+      "generated_testcase_ids": [
+        "OSS-BLIND-R3-TEMPORALAPI-SIGNALSTART-API-ST-001"
+      ],
+      "page_name": "Temporal Workflow API",
+      "section_name": "SignalWithStart 去重",
+      "module_name": "SignalWithStart 幂等",
+      "feature_name": "关闭后重试去重",
+      "title": "去重命中不创建新的 Workflow run",
+      "verification_side": "Temporal 服务端历史与持久化层",
+      "case_type": "backend_job",
+      "priority": "P0",
+      "assertion": "该 workflow ID 下的 run 数量不增加。",
+      "validation_path": "product_acceptance",
+      "should_generate_case": true
+    },
+    {
+      "case_plan_id": "CP-004",
+      "source_gate_ids": [
+        "TG-003"
+      ],
+      "source_example_ids": [
+        "AE-004"
+      ],
+      "source_responsibility_ids": [],
+      "source_rule_ids": [
+        "TMP-R003"
+      ],
+      "source_coverage_ids": [
+        "COV-EX-0009"
+      ],
+      "generated_testcase_ids": [
+        "OSS-BLIND-R3-TEMPORALAPI-SIGNALSTART-API-ST-002"
+      ],
+      "page_name": "Temporal Workflow API",
+      "section_name": "SignalWithStart 去重",
+      "module_name": "SignalWithStart 幂等",
+      "feature_name": "关闭后重试去重",
+      "title": "去重命中不再次投递 signal",
+      "verification_side": "Temporal 服务端历史与 Worker 行为层",
+      "case_type": "backend_job",
+      "priority": "P0",
+      "assertion": "signal 处理次数不增加；原 run 不收到第二次相同 signal。",
+      "validation_path": "product_acceptance",
+      "should_generate_case": true
+    },
+    {
+      "case_plan_id": "CP-005",
+      "source_gate_ids": [
+        "TG-004"
+      ],
+      "source_example_ids": [
+        "AE-005"
+      ],
+      "source_responsibility_ids": [],
+      "source_rule_ids": [
+        "TMP-R004"
+      ],
+      "source_coverage_ids": [
+        "COV-EX-0010"
+      ],
+      "generated_testcase_ids": [
+        "OSS-BLIND-R3-TEMPORALAPI-SIGNALSTART-API-DV-002"
+      ],
+      "page_name": "Temporal Workflow API",
+      "section_name": "SignalWithStart 去重",
+      "module_name": "SignalWithStart 幂等",
+      "feature_name": "关闭后重试去重",
+      "title": "去重命中增加专用指标",
+      "verification_side": "Temporal 服务端指标层",
+      "case_type": "data_persistence",
+      "priority": "P1",
+      "assertion": "`SignalWithStartWorkflowStartDeduped` 指标按本次去重命中递增。",
+      "validation_path": "product_acceptance",
+      "should_generate_case": true
+    },
+    {
+      "case_plan_id": "CP-006",
+      "source_gate_ids": [
+        "TG-004"
+      ],
+      "source_example_ids": [
+        "AE-006"
+      ],
+      "source_responsibility_ids": [],
+      "source_rule_ids": [
+        "TMP-R004"
+      ],
+      "source_coverage_ids": [
+        "COV-EX-0011"
+      ],
+      "generated_testcase_ids": [
+        "OSS-BLIND-R3-TEMPORALAPI-SIGNALSTART-API-DV-003"
+      ],
+      "page_name": "Temporal Workflow API",
+      "section_name": "SignalWithStart 去重",
+      "module_name": "SignalWithStart 幂等",
+      "feature_name": "关闭后重试去重",
+      "title": "非去重请求不增加专用指标",
+      "verification_side": "Temporal 服务端指标层",
+      "case_type": "data_persistence",
+      "priority": "P1",
+      "assertion": "`SignalWithStartWorkflowStartDeduped` 指标不因该请求增加。",
+      "validation_path": "product_acceptance",
+      "should_generate_case": true
+    },
+    {
+      "case_plan_id": "CP-007",
+      "source_gate_ids": [
+        "TG-005"
+      ],
+      "source_example_ids": [
+        "AE-007"
+      ],
+      "source_responsibility_ids": [],
+      "source_rule_ids": [
+        "TMP-R005"
+      ],
+      "source_coverage_ids": [
+        "COV-EX-0012"
+      ],
+      "generated_testcase_ids": [
+        "OSS-BLIND-R3-TEMPORALAPI-SIGNALSTART-API-AB-001"
+      ],
+      "page_name": "Temporal Workflow API",
+      "section_name": "SignalWithStart 去重",
+      "module_name": "SignalWithStart 幂等",
+      "feature_name": "关闭后重试去重",
+      "title": "不同 request ID 不命中首次请求去重结果",
+      "verification_side": "Temporal 服务端 API 与去重状态层",
+      "case_type": "field_constraint",
+      "priority": "P0",
+      "assertion": "该请求不返回首次 request ID 对应的去重结果；该请求不计为首次请求的重复。",
+      "validation_path": "product_acceptance",
+      "should_generate_case": true
+    },
+    {
+      "case_plan_id": "CP-008",
+      "source_gate_ids": [
+        "TG-006"
+      ],
+      "source_example_ids": [
+        "AE-008"
+      ],
+      "source_responsibility_ids": [],
+      "source_rule_ids": [
+        "TMP-R006"
+      ],
+      "source_coverage_ids": [
+        "COV-EX-0013"
+      ],
+      "generated_testcase_ids": [
+        "OSS-BLIND-R3-TEMPORALAPI-SIGNALSTART-API-ST-003"
+      ],
+      "page_name": "Temporal Workflow API",
+      "section_name": "SignalWithStart 去重",
+      "module_name": "SignalWithStart 幂等",
+      "feature_name": "关闭后重试去重",
+      "title": "关闭后重试不改变原 run 最终状态",
+      "verification_side": "Temporal 服务端历史状态层",
+      "case_type": "backend_job",
+      "priority": "P0",
+      "assertion": "原 run 的最终状态与重试前一致。",
+      "validation_path": "product_acceptance",
+      "should_generate_case": true
+    }
+  ]
+}

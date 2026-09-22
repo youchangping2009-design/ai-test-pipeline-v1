@@ -1,0 +1,13 @@
+{
+  "schema_version": "1.0.0",
+  "approval_id": "RUN-R4-GRAFANA-133083-requirement-4ed1d46a10da6153c63ddc23",
+  "status": "approved",
+  "reviewed_by": "user",
+  "reviewed_at": "2026-09-22T02:51:06+00:00",
+  "note": "用户于 2026-09-22 明确批准本轮四份需求摘要。",
+  "run_id": "RUN-R4-GRAFANA-133083",
+  "requirement_summary_sha256": "81807bdd8ab09ce5abd0fe0dca79f6fe6c572208187279f9eb1954fe7baafdb3",
+  "source_manifest_sha256": "db19e7b25754d50d5f7f23ec0a8539e78fae5699f84f7e63877940086f4ffa38",
+  "raw_inputs_fingerprint": "87e46c93fe9046ee4f12d67df47bd7114759ea569ed8ceb6515d36038c67c4e5",
+  "requirement_version": "1.0.0"
+}

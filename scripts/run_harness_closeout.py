@@ -89,8 +89,8 @@ def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(
         description="执行 Harness-Loop 端到端只读收口验收"
     )
-    parser.add_argument("--project-code", default="WX-YGJ")
-    parser.add_argument("--work-item-id", default="PT083")
+    parser.add_argument("--project-code", required=True)
+    parser.add_argument("--work-item-id", required=True)
     parser.add_argument("--work-item-level", choices=["S", "M", "L"], default="M")
     parser.add_argument("--run-id")
     parser.add_argument("--command-timeout", type=int, default=1200)

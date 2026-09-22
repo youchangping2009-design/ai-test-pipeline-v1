@@ -41,7 +41,7 @@
         }
       ],
       "testcase_ids": [
-        "WX-YGJ-ADD-FORM-B-AB-001"
+        "WX-YGJ-ADD-FORM-B-FN-001"
       ],
       "gap_notes": "adapter_source=coverage_first_traceability; source_record_id=CFT-0002; rule_id=云手机商品管理::商品添加表单::cloud_phone_product_type::required; coverage_id=COV-EX-0016; fidelity_status=not_applicable",
       "implementation_binding": "frontend_behavior",
@@ -116,7 +116,7 @@
         }
       ],
       "testcase_ids": [
-        "WX-YGJ-BUY-TAB-C-FN-005"
+        "WX-YGJ-BUY-TAB-C-AB-005"
       ],
       "gap_notes": "adapter_source=coverage_first_traceability; source_record_id=CFT-0005; rule_id=云手机商品管理::商品添加表单::original_price::required; coverage_id=COV-EX-0022; fidelity_status=not_applicable",
       "implementation_binding": "shared_contract",
@@ -141,7 +141,7 @@
         }
       ],
       "testcase_ids": [
-        "WX-YGJ-PROMO-FORM-B-BD-058"
+        "WX-YGJ-BUY-TAB-C-AB-005"
       ],
       "gap_notes": "adapter_source=coverage_first_traceability; source_record_id=CFT-0006; rule_id=云手机商品管理::商品添加表单::current_price::required; coverage_id=COV-EX-0024; fidelity_status=not_applicable",
       "implementation_binding": "shared_contract",
@@ -166,7 +166,7 @@
         }
       ],
       "testcase_ids": [
-        "WX-YGJ-BUY-REG-C-FN-007"
+        "WX-YGJ-BUY-REG-C-AB-007"
       ],
       "gap_notes": "adapter_source=coverage_first_traceability; source_record_id=CFT-0007; rule_id=云手机商品管理::商品添加表单::service_duration::required; coverage_id=COV-EX-0026; fidelity_status=not_applicable",
       "implementation_binding": "shared_contract",
@@ -216,7 +216,7 @@
         }
       ],
       "testcase_ids": [
-        "WX-YGJ-BUY-REG-C-FN-008"
+        "WX-YGJ-BUY-REG-C-AB-008"
       ],
       "gap_notes": "adapter_source=coverage_first_traceability; source_record_id=CFT-0009; rule_id=云手机商品管理::商品添加表单::in_box_sort_order::required; coverage_id=COV-EX-0030; fidelity_status=not_applicable",
       "implementation_binding": "backend_contract",
@@ -291,11 +291,11 @@
         }
       ],
       "testcase_ids": [
-        "WX-YGJ-PROMO-FORM-B-FN-037"
+        "WX-YGJ-BUY-PIC-C-AB-029"
       ],
       "gap_notes": "adapter_source=coverage_first_traceability; source_record_id=CFT-0012; rule_id=宣传内容管理::宣传内容编辑表单::promotion_image::required; coverage_id=COV-EX-0044; fidelity_status=not_applicable",
-      "implementation_binding": "frontend_behavior",
-      "recommended_cr_stage": "frontend_code",
+      "implementation_binding": "shared_contract",
+      "recommended_cr_stage": "dual_code",
       "manual_confirmation_required": true,
       "cr_focus_points": [
         "宣传图片 必填",
@@ -316,7 +316,7 @@
         }
       ],
       "testcase_ids": [
-        "WX-YGJ-BUY-PROMO-C-AB-038"
+        "WX-YGJ-ADD-FORM-B-FN-030"
       ],
       "gap_notes": "adapter_source=coverage_first_traceability; source_record_id=CFT-0013; rule_id=宣传内容管理::宣传内容编辑表单::promotion_slogan::required; coverage_id=COV-EX-0046; fidelity_status=not_applicable",
       "implementation_binding": "frontend_behavior",
@@ -341,7 +341,7 @@
         }
       ],
       "testcase_ids": [
-        "WX-YGJ-BUY-PROMO-C-AB-039"
+        "WX-YGJ-ADD-FORM-B-FN-031"
       ],
       "gap_notes": "adapter_source=coverage_first_traceability; source_record_id=CFT-0014; rule_id=宣传内容管理::宣传内容编辑表单::performance_parameters::required; coverage_id=COV-EX-0048; fidelity_status=not_applicable",
       "implementation_binding": "frontend_behavior",
@@ -366,7 +366,7 @@
         }
       ],
       "testcase_ids": [
-        "WX-YGJ-ADD-FORM-B-AB-001"
+        "WX-YGJ-ADD-FORM-B-FN-001"
       ],
       "gap_notes": "adapter_source=coverage_first_traceability; source_record_id=CFT-0015; rule_id=云挂机购买页::宣传区::promotion_slogan::value_boundary; coverage_id=COV-EX-0050; fidelity_status=not_applicable",
       "implementation_binding": "frontend_behavior",
@@ -386,14 +386,39 @@
           "target_type": "field_definition",
           "module_name": "云挂机购买页",
           "feature_name": "宣传区",
+          "field_name": "promotion_slogan",
+          "target_name": "宣传口号 边界值"
+        }
+      ],
+      "testcase_ids": [
+        "WX-YGJ-BUY-TAB-C-FN-041"
+      ],
+      "gap_notes": "adapter_source=coverage_first_traceability; source_record_id=CFT-0016; rule_id=云挂机购买页::宣传区::promotion_slogan::value_boundary; coverage_id=COV-EX-0050; fidelity_status=not_applicable",
+      "implementation_binding": "frontend_behavior",
+      "recommended_cr_stage": "frontend_code",
+      "manual_confirmation_required": true,
+      "cr_focus_points": [
+        "宣传口号 边界值",
+        "coverage_id=COV-EX-0050"
+      ]
+    },
+    {
+      "record_id": "TRA-0017",
+      "evidence_id": "EVD-UNMAPPED",
+      "coverage_level": "full",
+      "structured_targets": [
+        {
+          "target_type": "field_definition",
+          "module_name": "云挂机购买页",
+          "feature_name": "宣传区",
           "field_name": "performance_parameters",
           "target_name": "性能参数 边界值"
         }
       ],
       "testcase_ids": [
-        "WX-YGJ-BUY-PROMO-C-AB-039"
+        "WX-YGJ-ADD-FORM-B-FN-002"
       ],
-      "gap_notes": "adapter_source=coverage_first_traceability; source_record_id=CFT-0016; rule_id=云挂机购买页::宣传区::performance_parameters::value_boundary; coverage_id=COV-EX-0051; fidelity_status=not_applicable",
+      "gap_notes": "adapter_source=coverage_first_traceability; source_record_id=CFT-0017; rule_id=云挂机购买页::宣传区::performance_parameters::value_boundary; coverage_id=COV-EX-0051; fidelity_status=not_applicable",
       "implementation_binding": "frontend_behavior",
       "recommended_cr_stage": "frontend_code",
       "manual_confirmation_required": true,
@@ -403,7 +428,7 @@
       ]
     },
     {
-      "record_id": "TRA-0017",
+      "record_id": "TRA-0018",
       "evidence_id": "EVD-UNMAPPED",
       "coverage_level": "full",
       "structured_targets": [
@@ -416,9 +441,9 @@
         }
       ],
       "testcase_ids": [
-        "WX-YGJ-ADD-FORM-B-AB-016"
+        "WX-YGJ-BUY-TAB-C-AB-005"
       ],
-      "gap_notes": "adapter_source=coverage_first_traceability; source_record_id=CFT-0017; rule_id=云手机商品管理::商品添加表单::original_price::value_boundary; coverage_id=COV-EX-0052; fidelity_status=not_applicable",
+      "gap_notes": "adapter_source=coverage_first_traceability; source_record_id=CFT-0018; rule_id=云手机商品管理::商品添加表单::original_price::value_boundary; coverage_id=COV-EX-0052; fidelity_status=not_applicable",
       "implementation_binding": "shared_contract",
       "recommended_cr_stage": "dual_code",
       "manual_confirmation_required": true,
@@ -428,7 +453,7 @@
       ]
     },
     {
-      "record_id": "TRA-0018",
+      "record_id": "TRA-0019",
       "evidence_id": "EVD-UNMAPPED",
       "coverage_level": "full",
       "structured_targets": [
@@ -441,9 +466,9 @@
         }
       ],
       "testcase_ids": [
-        "WX-YGJ-ADD-FORM-B-AB-017"
+        "WX-YGJ-BUY-REG-C-AB-006"
       ],
-      "gap_notes": "adapter_source=coverage_first_traceability; source_record_id=CFT-0018; rule_id=云手机商品管理::商品添加表单::current_price::value_boundary; coverage_id=COV-EX-0053; fidelity_status=not_applicable",
+      "gap_notes": "adapter_source=coverage_first_traceability; source_record_id=CFT-0019; rule_id=云手机商品管理::商品添加表单::current_price::value_boundary; coverage_id=COV-EX-0053; fidelity_status=not_applicable",
       "implementation_binding": "shared_contract",
       "recommended_cr_stage": "dual_code",
       "manual_confirmation_required": true,
@@ -453,7 +478,7 @@
       ]
     },
     {
-      "record_id": "TRA-0019",
+      "record_id": "TRA-0020",
       "evidence_id": "EVD-UNMAPPED",
       "coverage_level": "full",
       "structured_targets": [
@@ -466,9 +491,9 @@
         }
       ],
       "testcase_ids": [
-        "WX-YGJ-ADD-FORM-B-AB-020"
+        "WX-YGJ-BUY-REG-C-AB-008"
       ],
-      "gap_notes": "adapter_source=coverage_first_traceability; source_record_id=CFT-0019; rule_id=云手机商品管理::商品添加表单::in_box_sort_order::value_boundary; coverage_id=COV-EX-0054; fidelity_status=not_applicable",
+      "gap_notes": "adapter_source=coverage_first_traceability; source_record_id=CFT-0020; rule_id=云手机商品管理::商品添加表单::in_box_sort_order::value_boundary; coverage_id=COV-EX-0054; fidelity_status=not_applicable",
       "implementation_binding": "backend_contract",
       "recommended_cr_stage": "backend_code",
       "manual_confirmation_required": true,
@@ -478,7 +503,7 @@
       ]
     },
     {
-      "record_id": "TRA-0020",
+      "record_id": "TRA-0021",
       "evidence_id": "EVD-UNMAPPED",
       "coverage_level": "full",
       "structured_targets": [
@@ -491,9 +516,9 @@
         }
       ],
       "testcase_ids": [
-        "WX-YGJ-ADD-FORM-B-AB-022"
+        "WX-YGJ-BUY-REG-C-AB-009"
       ],
-      "gap_notes": "adapter_source=coverage_first_traceability; source_record_id=CFT-0020; rule_id=云手机商品管理::商品添加表单::inventory_warning_threshold::value_boundary; coverage_id=COV-EX-0055; fidelity_status=not_applicable",
+      "gap_notes": "adapter_source=coverage_first_traceability; source_record_id=CFT-0021; rule_id=云手机商品管理::商品添加表单::inventory_warning_threshold::value_boundary; coverage_id=COV-EX-0055; fidelity_status=not_applicable",
       "implementation_binding": "shared_contract",
       "recommended_cr_stage": "dual_code",
       "manual_confirmation_required": true,
@@ -503,7 +528,7 @@
       ]
     },
     {
-      "record_id": "TRA-0021",
+      "record_id": "TRA-0022",
       "evidence_id": "EVD-UNMAPPED",
       "coverage_level": "full",
       "structured_targets": [
@@ -516,9 +541,9 @@
         }
       ],
       "testcase_ids": [
-        "WX-YGJ-ADD-RULE-B-ST-015"
+        "WX-YGJ-ADD-FORM-B-AB-022"
       ],
-      "gap_notes": "adapter_source=coverage_first_traceability; source_record_id=CFT-0021; rule_id=云手机商品管理::商品区与库存规则说明表::inventory_warning_threshold::value_boundary; coverage_id=COV-EX-0056; fidelity_status=not_applicable",
+      "gap_notes": "adapter_source=coverage_first_traceability; source_record_id=CFT-0022; rule_id=云手机商品管理::商品区与库存规则说明表::inventory_warning_threshold::value_boundary; coverage_id=COV-EX-0056; fidelity_status=not_applicable",
       "implementation_binding": "shared_contract",
       "recommended_cr_stage": "dual_code",
       "manual_confirmation_required": true,
@@ -528,7 +553,7 @@
       ]
     },
     {
-      "record_id": "TRA-0022",
+      "record_id": "TRA-0023",
       "evidence_id": "EVD-UNMAPPED",
       "coverage_level": "full",
       "structured_targets": [
@@ -541,9 +566,9 @@
         }
       ],
       "testcase_ids": [
-        "WX-YGJ-BUY-PROMO-C-AB-038"
+        "WX-YGJ-BUY-PROMO-C-FN-034"
       ],
-      "gap_notes": "adapter_source=coverage_first_traceability; source_record_id=CFT-0022; rule_id=宣传内容管理::宣传内容编辑表单::promotion_slogan::value_boundary; coverage_id=COV-EX-0057; fidelity_status=not_applicable",
+      "gap_notes": "adapter_source=coverage_first_traceability; source_record_id=CFT-0023; rule_id=宣传内容管理::宣传内容编辑表单::promotion_slogan::value_boundary; coverage_id=COV-EX-0057; fidelity_status=not_applicable",
       "implementation_binding": "frontend_behavior",
       "recommended_cr_stage": "frontend_code",
       "manual_confirmation_required": true,
@@ -553,7 +578,7 @@
       ]
     },
     {
-      "record_id": "TRA-0023",
+      "record_id": "TRA-0024",
       "evidence_id": "EVD-UNMAPPED",
       "coverage_level": "full",
       "structured_targets": [
@@ -566,9 +591,9 @@
         }
       ],
       "testcase_ids": [
-        "WX-YGJ-BUY-PROMO-C-AB-039"
+        "WX-YGJ-BUY-PROMO-C-FN-035"
       ],
-      "gap_notes": "adapter_source=coverage_first_traceability; source_record_id=CFT-0023; rule_id=宣传内容管理::宣传内容编辑表单::performance_parameters::value_boundary; coverage_id=COV-EX-0058; fidelity_status=not_applicable",
+      "gap_notes": "adapter_source=coverage_first_traceability; source_record_id=CFT-0024; rule_id=宣传内容管理::宣传内容编辑表单::performance_parameters::value_boundary; coverage_id=COV-EX-0058; fidelity_status=not_applicable",
       "implementation_binding": "frontend_behavior",
       "recommended_cr_stage": "frontend_code",
       "manual_confirmation_required": true,
@@ -578,7 +603,7 @@
       ]
     },
     {
-      "record_id": "TRA-0024",
+      "record_id": "TRA-0025",
       "evidence_id": "EVD-UNMAPPED",
       "coverage_level": "full",
       "structured_targets": [
@@ -591,9 +616,9 @@
         }
       ],
       "testcase_ids": [
-        "WX-YGJ-ADD-FORM-B-AB-018"
+        "WX-YGJ-BUY-REG-C-AB-007"
       ],
-      "gap_notes": "adapter_source=coverage_first_traceability; source_record_id=CFT-0024; rule_id=云手机商品管理::商品添加表单::service_duration::value_boundary; coverage_id=COV-EX-0059; fidelity_status=not_applicable",
+      "gap_notes": "adapter_source=coverage_first_traceability; source_record_id=CFT-0025; rule_id=云手机商品管理::商品添加表单::service_duration::value_boundary; coverage_id=COV-EX-0059; fidelity_status=not_applicable",
       "implementation_binding": "shared_contract",
       "recommended_cr_stage": "dual_code",
       "manual_confirmation_required": true,
@@ -603,7 +628,7 @@
       ]
     },
     {
-      "record_id": "TRA-0025",
+      "record_id": "TRA-0026",
       "evidence_id": "EVD-UNMAPPED",
       "coverage_level": "full",
       "structured_targets": [
@@ -616,9 +641,9 @@
         }
       ],
       "testcase_ids": [
-        "WX-YGJ-ADD-FORM-B-AB-020"
+        "WX-YGJ-BUY-SALE-C-FN-042"
       ],
-      "gap_notes": "adapter_source=coverage_first_traceability; source_record_id=CFT-0025; rule_id=云手机商品管理::商品添加表单::in_box_sort_order::data_source_order; coverage_id=COV-EX-0060; fidelity_status=not_applicable",
+      "gap_notes": "adapter_source=coverage_first_traceability; source_record_id=CFT-0026; rule_id=云手机商品管理::商品添加表单::in_box_sort_order::data_source_order; coverage_id=COV-EX-0060; fidelity_status=not_applicable",
       "implementation_binding": "backend_contract",
       "recommended_cr_stage": "backend_code",
       "manual_confirmation_required": true,
@@ -628,7 +653,7 @@
       ]
     },
     {
-      "record_id": "TRA-0026",
+      "record_id": "TRA-0027",
       "evidence_id": "EVD-UNMAPPED",
       "coverage_level": "full",
       "structured_targets": [
@@ -641,11 +666,11 @@
         }
       ],
       "testcase_ids": [
-        "WX-YGJ-PROMO-FORM-B-FN-071"
+        "WX-YGJ-PROMO-FORM-B-AB-036"
       ],
-      "gap_notes": "adapter_source=coverage_first_traceability; source_record_id=CFT-0026; rule_id=宣传内容管理::宣传内容字段说明表::promotion_content::required; coverage_id=COV-EX-0061; fidelity_status=not_applicable",
-      "implementation_binding": "shared_contract",
-      "recommended_cr_stage": "dual_code",
+      "gap_notes": "adapter_source=coverage_first_traceability; source_record_id=CFT-0027; rule_id=宣传内容管理::宣传内容字段说明表::promotion_content::required; coverage_id=COV-EX-0061; fidelity_status=not_applicable",
+      "implementation_binding": "frontend_behavior",
+      "recommended_cr_stage": "frontend_code",
       "manual_confirmation_required": true,
       "cr_focus_points": [
         "宣传内容配置 必填",
@@ -653,7 +678,7 @@
       ]
     },
     {
-      "record_id": "TRA-0027",
+      "record_id": "TRA-0028",
       "evidence_id": "EVD-UNMAPPED",
       "coverage_level": "full",
       "structured_targets": [
@@ -668,7 +693,7 @@
       "testcase_ids": [
         "WX-YGJ-BUY-SALE-C-FN-004"
       ],
-      "gap_notes": "adapter_source=coverage_first_traceability; source_record_id=CFT-0027; rule_id=云挂机购买页::特价专区::special_product_list::happy_path_combo; coverage_id=COV-EX-0064; fidelity_status=not_applicable",
+      "gap_notes": "adapter_source=coverage_first_traceability; source_record_id=CFT-0028; rule_id=云挂机购买页::特价专区::special_product_list::happy_path_combo; coverage_id=COV-EX-0064; fidelity_status=not_applicable",
       "implementation_binding": "frontend_behavior",
       "recommended_cr_stage": "frontend_code",
       "manual_confirmation_required": true,
@@ -678,7 +703,7 @@
       ]
     },
     {
-      "record_id": "TRA-0028",
+      "record_id": "TRA-0029",
       "evidence_id": "EVD-UNMAPPED",
       "coverage_level": "full",
       "structured_targets": [
@@ -691,40 +716,15 @@
         }
       ],
       "testcase_ids": [
-        "WX-YGJ-BUY-SALE-C-BD-042"
+        "WX-YGJ-BUY-SALE-C-FN-003"
       ],
-      "gap_notes": "adapter_source=coverage_first_traceability; source_record_id=CFT-0028; rule_id=云挂机购买页::特价专区::special_product_list::happy_path_combo; coverage_id=COV-EX-0065; fidelity_status=not_applicable",
+      "gap_notes": "adapter_source=coverage_first_traceability; source_record_id=CFT-0029; rule_id=云挂机购买页::特价专区::special_product_list::happy_path_combo; coverage_id=COV-EX-0065; fidelity_status=not_applicable",
       "implementation_binding": "shared_contract",
       "recommended_cr_stage": "dual_code",
       "manual_confirmation_required": true,
       "cr_focus_points": [
         "后台未配置时隐藏",
         "coverage_id=COV-EX-0065"
-      ]
-    },
-    {
-      "record_id": "TRA-0029",
-      "evidence_id": "EVD-UNMAPPED",
-      "coverage_level": "full",
-      "structured_targets": [
-        {
-          "target_type": "field_definition",
-          "module_name": "云挂机购买页",
-          "feature_name": "普通商品列表",
-          "field_name": "regular_product_list",
-          "target_name": "限时购买"
-        }
-      ],
-      "testcase_ids": [
-        "WX-YGJ-BUY-REG-C-FN-006"
-      ],
-      "gap_notes": "adapter_source=coverage_first_traceability; source_record_id=CFT-0029; rule_id=云挂机购买页::普通商品列表::regular_product_list::happy_path_combo; coverage_id=COV-EX-0066; fidelity_status=not_applicable",
-      "implementation_binding": "shared_contract",
-      "recommended_cr_stage": "dual_code",
-      "manual_confirmation_required": true,
-      "cr_focus_points": [
-        "限时购买",
-        "coverage_id=COV-EX-0066"
       ]
     },
     {
@@ -737,13 +737,38 @@
           "module_name": "云挂机购买页",
           "feature_name": "普通商品列表",
           "field_name": "regular_product_list",
+          "target_name": "限时购买"
+        }
+      ],
+      "testcase_ids": [
+        "WX-YGJ-BUY-REG-C-AB-006"
+      ],
+      "gap_notes": "adapter_source=coverage_first_traceability; source_record_id=CFT-0030; rule_id=云挂机购买页::普通商品列表::regular_product_list::happy_path_combo; coverage_id=COV-EX-0066; fidelity_status=not_applicable",
+      "implementation_binding": "shared_contract",
+      "recommended_cr_stage": "dual_code",
+      "manual_confirmation_required": true,
+      "cr_focus_points": [
+        "限时购买",
+        "coverage_id=COV-EX-0066"
+      ]
+    },
+    {
+      "record_id": "TRA-0031",
+      "evidence_id": "EVD-UNMAPPED",
+      "coverage_level": "full",
+      "structured_targets": [
+        {
+          "target_type": "field_definition",
+          "module_name": "云挂机购买页",
+          "feature_name": "普通商品列表",
+          "field_name": "regular_product_list",
           "target_name": "纵向展示"
         }
       ],
       "testcase_ids": [
-        "WX-YGJ-BUY-REG-C-FN-009"
+        "WX-YGJ-BUY-REG-C-AB-009"
       ],
-      "gap_notes": "adapter_source=coverage_first_traceability; source_record_id=CFT-0030; rule_id=云挂机购买页::普通商品列表::regular_product_list::happy_path_combo; coverage_id=COV-EX-0067; fidelity_status=not_applicable",
+      "gap_notes": "adapter_source=coverage_first_traceability; source_record_id=CFT-0031; rule_id=云挂机购买页::普通商品列表::regular_product_list::happy_path_combo; coverage_id=COV-EX-0067; fidelity_status=not_applicable",
       "implementation_binding": "frontend_behavior",
       "recommended_cr_stage": "frontend_code",
       "manual_confirmation_required": true,
@@ -753,7 +778,32 @@
       ]
     },
     {
-      "record_id": "TRA-0031",
+      "record_id": "TRA-0032",
+      "evidence_id": "EVD-UNMAPPED",
+      "coverage_level": "full",
+      "structured_targets": [
+        {
+          "target_type": "field_definition",
+          "module_name": "云挂机购买页",
+          "feature_name": "普通商品列表",
+          "field_name": "regular_product_list",
+          "target_name": "纵向展示"
+        }
+      ],
+      "testcase_ids": [
+        "WX-YGJ-ADD-FORM-B-FN-043"
+      ],
+      "gap_notes": "adapter_source=coverage_first_traceability; source_record_id=CFT-0032; rule_id=云挂机购买页::普通商品列表::regular_product_list::happy_path_combo; coverage_id=COV-EX-0067; fidelity_status=not_applicable",
+      "implementation_binding": "frontend_behavior",
+      "recommended_cr_stage": "frontend_code",
+      "manual_confirmation_required": true,
+      "cr_focus_points": [
+        "纵向展示",
+        "coverage_id=COV-EX-0067"
+      ]
+    },
+    {
+      "record_id": "TRA-0033",
       "evidence_id": "EVD-UNMAPPED",
       "coverage_level": "full",
       "structured_targets": [
@@ -766,9 +816,9 @@
         }
       ],
       "testcase_ids": [
-        "WX-YGJ-BUY-SALE-C-FN-051"
+        "WX-YGJ-BUY-SALE-C-FN-004"
       ],
-      "gap_notes": "adapter_source=coverage_first_traceability; source_record_id=CFT-0031; rule_id=云手机商品管理::商品添加表单::product_region::happy_path_combo; coverage_id=COV-EX-0069; fidelity_status=not_applicable",
+      "gap_notes": "adapter_source=coverage_first_traceability; source_record_id=CFT-0033; rule_id=云手机商品管理::商品添加表单::product_region::happy_path_combo; coverage_id=COV-EX-0069; fidelity_status=not_applicable",
       "implementation_binding": "frontend_behavior",
       "recommended_cr_stage": "frontend_code",
       "manual_confirmation_required": true,
@@ -778,7 +828,7 @@
       ]
     },
     {
-      "record_id": "TRA-0032",
+      "record_id": "TRA-0034",
       "evidence_id": "EVD-UNMAPPED",
       "coverage_level": "full",
       "structured_targets": [
@@ -791,9 +841,9 @@
         }
       ],
       "testcase_ids": [
-        "WX-YGJ-PROMO-FORM-B-FN-053"
+        "WX-YGJ-GOODS-OPS-B-AB-012"
       ],
-      "gap_notes": "adapter_source=coverage_first_traceability; source_record_id=CFT-0032; rule_id=云手机商品管理::商品添加表单::product_region::happy_path_combo; coverage_id=COV-EX-0070; fidelity_status=not_applicable",
+      "gap_notes": "adapter_source=coverage_first_traceability; source_record_id=CFT-0034; rule_id=云手机商品管理::商品添加表单::product_region::happy_path_combo; coverage_id=COV-EX-0070; fidelity_status=not_applicable",
       "implementation_binding": "shared_contract",
       "recommended_cr_stage": "dual_code",
       "manual_confirmation_required": true,
@@ -803,7 +853,32 @@
       ]
     },
     {
-      "record_id": "TRA-0033",
+      "record_id": "TRA-0035",
+      "evidence_id": "EVD-UNMAPPED",
+      "coverage_level": "full",
+      "structured_targets": [
+        {
+          "target_type": "field_definition",
+          "module_name": "云手机商品管理",
+          "feature_name": "商品添加表单",
+          "field_name": "product_region",
+          "target_name": "特殊区超过4个不可保存"
+        }
+      ],
+      "testcase_ids": [
+        "WX-YGJ-PROMO-FORM-B-AB-044"
+      ],
+      "gap_notes": "adapter_source=coverage_first_traceability; source_record_id=CFT-0035; rule_id=云手机商品管理::商品添加表单::product_region::happy_path_combo; coverage_id=COV-EX-0070; fidelity_status=not_applicable",
+      "implementation_binding": "shared_contract",
+      "recommended_cr_stage": "dual_code",
+      "manual_confirmation_required": true,
+      "cr_focus_points": [
+        "特殊区超过4个不可保存",
+        "coverage_id=COV-EX-0070"
+      ]
+    },
+    {
+      "record_id": "TRA-0036",
       "evidence_id": "EVD-UNMAPPED",
       "coverage_level": "full",
       "structured_targets": [
@@ -816,9 +891,9 @@
         }
       ],
       "testcase_ids": [
-        "WX-YGJ-PROMO-FORM-B-BD-062"
+        "WX-YGJ-BUY-REG-C-AB-009"
       ],
-      "gap_notes": "adapter_source=coverage_first_traceability; source_record_id=CFT-0033; rule_id=云手机商品管理::商品区与库存规则说明表::inventory_warning_threshold::happy_path_combo; coverage_id=COV-EX-0071; fidelity_status=not_applicable",
+      "gap_notes": "adapter_source=coverage_first_traceability; source_record_id=CFT-0036; rule_id=云手机商品管理::商品区与库存规则说明表::inventory_warning_threshold::happy_path_combo; coverage_id=COV-EX-0071; fidelity_status=not_applicable",
       "implementation_binding": "shared_contract",
       "recommended_cr_stage": "dual_code",
       "manual_confirmation_required": true,
@@ -828,7 +903,7 @@
       ]
     },
     {
-      "record_id": "TRA-0034",
+      "record_id": "TRA-0037",
       "evidence_id": "EVD-UNMAPPED",
       "coverage_level": "full",
       "structured_targets": [
@@ -841,9 +916,9 @@
         }
       ],
       "testcase_ids": [
-        "WX-YGJ-ADD-FORM-B-BD-043"
+        "WX-YGJ-ADD-RULE-B-FL-015"
       ],
-      "gap_notes": "adapter_source=coverage_first_traceability; source_record_id=CFT-0034; rule_id=云手机商品管理::商品区与库存规则说明表::inventory_warning_threshold::happy_path_combo; coverage_id=COV-EX-0072; fidelity_status=not_applicable",
+      "gap_notes": "adapter_source=coverage_first_traceability; source_record_id=CFT-0037; rule_id=云手机商品管理::商品区与库存规则说明表::inventory_warning_threshold::happy_path_combo; coverage_id=COV-EX-0072; fidelity_status=not_applicable",
       "implementation_binding": "shared_contract",
       "recommended_cr_stage": "dual_code",
       "manual_confirmation_required": true,
@@ -853,7 +928,7 @@
       ]
     },
     {
-      "record_id": "TRA-0035",
+      "record_id": "TRA-0038",
       "evidence_id": "EVD-UNMAPPED",
       "coverage_level": "full",
       "structured_targets": [
@@ -868,7 +943,7 @@
       "testcase_ids": [
         "WX-YGJ-PROMO-FORM-B-FN-028"
       ],
-      "gap_notes": "adapter_source=coverage_first_traceability; source_record_id=CFT-0035; rule_id=宣传内容管理::宣传内容编辑表单::cloud_machine_type::happy_path_combo; coverage_id=COV-EX-0073; fidelity_status=not_applicable",
+      "gap_notes": "adapter_source=coverage_first_traceability; source_record_id=CFT-0038; rule_id=宣传内容管理::宣传内容编辑表单::cloud_machine_type::happy_path_combo; coverage_id=COV-EX-0073; fidelity_status=not_applicable",
       "implementation_binding": "backend_contract",
       "recommended_cr_stage": "backend_code",
       "manual_confirmation_required": true,
@@ -878,7 +953,7 @@
       ]
     },
     {
-      "record_id": "TRA-0036",
+      "record_id": "TRA-0039",
       "evidence_id": "EVD-UNMAPPED",
       "coverage_level": "full",
       "structured_targets": [
@@ -891,11 +966,11 @@
         }
       ],
       "testcase_ids": [
-        "WX-YGJ-BUY-PIC-C-FN-029"
+        "WX-YGJ-BUY-PIC-C-AB-029"
       ],
-      "gap_notes": "adapter_source=coverage_first_traceability; source_record_id=CFT-0036; rule_id=宣传内容管理::宣传内容编辑表单::promotion_image::happy_path_combo; coverage_id=COV-EX-0074; fidelity_status=not_applicable",
-      "implementation_binding": "backend_contract",
-      "recommended_cr_stage": "backend_code",
+      "gap_notes": "adapter_source=coverage_first_traceability; source_record_id=CFT-0039; rule_id=宣传内容管理::宣传内容编辑表单::promotion_image::happy_path_combo; coverage_id=COV-EX-0074; fidelity_status=not_applicable",
+      "implementation_binding": "shared_contract",
+      "recommended_cr_stage": "dual_code",
       "manual_confirmation_required": true,
       "cr_focus_points": [
         "宣传图片最多5张",
@@ -903,7 +978,7 @@
       ]
     },
     {
-      "record_id": "TRA-0037",
+      "record_id": "TRA-0040",
       "evidence_id": "EVD-UNMAPPED",
       "coverage_level": "full",
       "structured_targets": [
@@ -918,9 +993,9 @@
       "testcase_ids": [
         "WX-YGJ-PROMO-FORM-B-FN-033"
       ],
-      "gap_notes": "adapter_source=coverage_first_traceability; source_record_id=CFT-0037; rule_id=宣传内容管理::宣传内容编辑表单::promotion_image::happy_path_combo; coverage_id=COV-EX-0075; fidelity_status=not_applicable",
-      "implementation_binding": "frontend_behavior",
-      "recommended_cr_stage": "frontend_code",
+      "gap_notes": "adapter_source=coverage_first_traceability; source_record_id=CFT-0040; rule_id=宣传内容管理::宣传内容编辑表单::promotion_image::happy_path_combo; coverage_id=COV-EX-0075; fidelity_status=not_applicable",
+      "implementation_binding": "shared_contract",
+      "recommended_cr_stage": "dual_code",
       "manual_confirmation_required": true,
       "cr_focus_points": [
         "宣传图片格式与大小",

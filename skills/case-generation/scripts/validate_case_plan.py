@@ -119,6 +119,9 @@ def validate_case_plan(
     seen_ids: set[str] = set()
     generated_case_to_plan: dict[str, str] = {}
     active_plan_ids: set[str] = set()
+    referenced_active_plan_ids: set[str] = set()
+    direct_mode = payload.get("generation_mode") == "case_plan_direct"
+    semantic_signatures: dict[tuple[str, str, str, str], str] = {}
 
     required = {
         "case_plan_id",
@@ -182,6 +185,8 @@ def validate_case_plan(
             errors.append(
                 f"{plan_id} 必须通过 source_coverage_ids 或 generated_testcase_ids 提供可执行生成映射"
             )
+        if direct_mode and should_generate and len(generated_testcase_ids) != 1:
+            errors.append(f"{plan_id} 在 case_plan_direct 模式下必须且只能映射一个 generated_testcase_id")
         if case_type not in CASE_TYPES:
             errors.append(f"{plan_id} case_type 非法: {case_type}")
         if priority not in PRIORITIES:
@@ -192,6 +197,25 @@ def validate_case_plan(
             errors.append(f"{plan_id} 必须填写 assertion")
         if any(pattern in title for pattern in GENERIC_TITLE_PATTERNS):
             errors.append(f"{plan_id} 用例计划标题过于泛化: {title}")
+        if direct_mode and re.search(r"[a-z][a-z0-9_]*\s*;\s*(?:value|data_source)_constraint", f"{title} {assertion}"):
+            errors.append(f"{plan_id} 在 case_plan_direct 模式下仍暴露机器规则表达: {title}")
+        if direct_mode and case_type == "save_block" and any(
+            signal in title for signal in ("展示", "隐藏", "换行", "可见")
+        ) and not any(signal in title for signal in ("必填", "必传", "上限", "最大", "不可保存", "不能保存")):
+            errors.append(f"{plan_id} 展示类规则不得生成 save_block: {title}")
+        if direct_mode and "C端" in str(plan.get("page_name", "")) and "B端写侧" == str(plan.get("verification_side", "")).strip():
+            errors.append(f"{plan_id} C端页面不得仅标记为 B端写侧")
+        if direct_mode and should_generate:
+            signature = (
+                str(plan.get("page_name", "")).strip(),
+                str(plan.get("section_name", "")).strip(),
+                case_type,
+                re.sub(r"[\s：:，,。；;（）()]", "", title),
+            )
+            previous_plan = semantic_signatures.get(signature)
+            if previous_plan:
+                errors.append(f"{plan_id} 与 {previous_plan} 为同页面同板块同语义重复计划")
+            semantic_signatures[signature] = plan_id
         for field_name, text in [
             ("title", title),
             ("assertion", assertion),
@@ -297,6 +321,7 @@ def validate_case_plan(
                 if marker_id not in seen_ids:
                     errors.append(f"第 {row_index} 条 testcase 引用了不存在的 case_plan: {marker_id}")
             referenced_plan_ids = valid_markers or ({mapped_id} if mapped_id else set())
+            referenced_active_plan_ids.update(referenced_plan_ids & active_plan_ids)
             for plan_id in referenced_plan_ids:
                 if plan_id not in active_plan_ids:
                     errors.append(f"第 {row_index} 条 testcase 映射到 should_generate_case=false 的 case_plan: {plan_id}")
@@ -316,6 +341,11 @@ def validate_case_plan(
                         errors.append(f"第 {row_index} 条 testcase 来源 soft_prompt 但 case_type 非展示类: {plan_id}")
                     if classification == "technical_background":
                         errors.append(f"第 {row_index} 条 testcase 来源 technical_background，不允许生成正式用例: {plan_id}")
+
+        if direct_mode:
+            missing_plan_ids = sorted(active_plan_ids - referenced_active_plan_ids)
+            if missing_plan_ids:
+                errors.append(f"case_plan_direct 存在未生成正式 testcase 的计划: {missing_plan_ids}")
 
     return errors
 

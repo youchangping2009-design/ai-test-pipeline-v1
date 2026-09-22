@@ -1,0 +1,24 @@
+{
+  "schema_version": "1.1.0",
+  "record_type": "intent",
+  "action_id": "R4-GRA-DF002-PREPARE",
+  "request_sha256": "e891c5633f349e3d9a2036a0ba73485321ecf4deef71b78e68ea3b4db3cb11aa",
+  "execution_context": {
+    "run_id": "RUN-R4-GRAFANA-133083",
+    "actor": "codex-agent",
+    "provider": "openai"
+  },
+  "action": {
+    "action_id": "R4-GRA-DF002-PREPARE",
+    "action_type": "prepare_feedback_application",
+    "stage_id": "design_feedback_application",
+    "feedback_id": "DF-002",
+    "arguments": {
+      "targets": [
+        "acceptance/testability_gate.json"
+      ]
+    },
+    "expected_outcome": "冻结 Grafana DF-002 修改前的 Testability Gate JSON"
+  },
+  "recorded_at": "2026-09-22T04:38:24.815831+00:00"
+}

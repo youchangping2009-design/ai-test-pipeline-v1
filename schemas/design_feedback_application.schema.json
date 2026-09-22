@@ -1,0 +1,46 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "AI Test Pipeline Design Feedback Application",
+  "type": "object",
+  "required": ["project_code", "work_item_id", "applications"],
+  "properties": {
+    "project_code": { "type": "string", "minLength": 1 },
+    "work_item_id": { "type": "string", "minLength": 1 },
+    "applications": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["feedback_id", "target_layer", "artifacts"],
+        "properties": {
+          "feedback_id": { "type": "string", "pattern": "^DF-[0-9]{3,}$" },
+          "target_layer": {
+            "type": "string",
+            "enum": [
+              "testability_gate",
+              "acceptance_examples",
+              "verification_responsibility_map",
+              "test_design_matrix",
+              "case_plan"
+            ]
+          },
+          "artifacts": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "type": "object",
+              "required": ["path", "before_sha256", "after_sha256"],
+              "properties": {
+                "path": { "type": "string", "minLength": 1 },
+                "before_sha256": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+                "after_sha256": { "type": "string", "pattern": "^[0-9a-f]{64}$" }
+              },
+              "additionalProperties": false
+            }
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false
+}

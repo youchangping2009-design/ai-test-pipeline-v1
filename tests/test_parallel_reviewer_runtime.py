@@ -26,14 +26,7 @@ from harness.role_workspace import MultiRoleArtifactWorkspace  # noqa: E402
 from harness.telemetry import BudgetConfig, RunTelemetry  # noqa: E402
 
 
-SOURCE_ITEM = (
-    ROOT
-    / "assets"
-    / "projects"
-    / "WX-YGJ"
-    / "work_items"
-    / "PT083"
-)
+SOURCE_ITEM = ROOT / "tests" / "fixtures" / "runtime_work_item"
 
 
 def reviewer_action(request, action_type, arguments):
@@ -109,7 +102,7 @@ class ReviewerGateway:
                         "severity": "low",
                         "message": "%s finding" % reviewer,
                         "suggestion": "复核对应追溯关系",
-                        "trace_ids": ["PT083", "CP-001"],
+                        "trace_ids": ["FIXTURE-RUNTIME-001", "CP-001"],
                     }
                 ]
             action = reviewer_action(
@@ -130,7 +123,7 @@ class ReviewerGateway:
                             "severity": "low",
                             "message": "testcase repaired finding",
                             "suggestion": "复核对应追溯关系",
-                            "trace_ids": ["PT083"],
+                            "trace_ids": ["FIXTURE-RUNTIME-001"],
                         }
                     ]
                 },
@@ -164,8 +157,8 @@ class ParallelReviewerRuntimeTests(unittest.TestCase):
         self.workspace = MultiRoleArtifactWorkspace(
             item_root=self.item_root,
             run_dir=self.run_dir,
-            project_code="WX-YGJ",
-            work_item_id="PT083",
+            project_code="FIXTURE",
+            work_item_id="FIXTURE-RUNTIME-001",
             work_item_level="M",
             base_bundle=self._base_bundle(),
         )
@@ -174,7 +167,7 @@ class ParallelReviewerRuntimeTests(unittest.TestCase):
         self.temporary.cleanup()
 
     def _base_bundle(self):
-        prefix = "assets/projects/WX-YGJ/work_items/PT083/"
+        prefix = "assets/projects/FIXTURE/work_items/FIXTURE-RUNTIME-001/"
         artifacts = {}
         allowed_prefixes = (
             "analysis/",

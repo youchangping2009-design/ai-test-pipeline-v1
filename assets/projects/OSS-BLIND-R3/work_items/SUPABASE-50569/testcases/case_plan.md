@@ -1,0 +1,15 @@
+# Case Plan
+
+| case_plan_id | source_gate_ids | source_example_ids | source_responsibility_ids | source_coverage_ids | generated_testcase_ids | page_name | section_name | module_name | feature_name | title | verification_side | case_type | priority | assertion | validation_path | should_generate_case |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| CP-001 | TG-001 | AE-001 |  | COV-EX-0002 | OSS-BLIND-R3-RECOVERYAUTH-RECOVERYCODE-WEB-FN-001 | 恢复码认证页 | 恢复码提交 | MFA 恢复码认证 | 恢复码登录与路由保护 | 满足开关与账户条件时显示恢复码入口 | 认证前端展示层 | ui_display | P0 | 页面显示【使用恢复码验证】入口。 | product_acceptance | True |
+| CP-002 | TG-001 | AE-002 |  | COV-EX-0003 | OSS-BLIND-R3-RECOVERYAUTH-RECOVERYCODE-WEB-FL-001 | 恢复码认证页 | 恢复码提交 | MFA 恢复码认证 | 恢复码登录与路由保护 | 从[MFA 验证页]进入独立[恢复码认证页] | 认证前端路由层 | linkage | P0 | 导航完成后，当前页面为[恢复码认证页]。 | product_acceptance | True |
+| CP-003 | TG-002 | AE-003 |  | COV-EX-0004 | OSS-BLIND-R3-RECOVERYAUTH-RECOVERYCODE-WEB-FL-002 | 恢复码认证页 | 恢复码提交 | MFA 恢复码认证 | 恢复码登录与路由保护 | 有效未使用恢复码建立 MFA 完成会话 | 认证前端与服务端 | linkage | P0 | 系统建立登录会话；该登录会话的 MFA 状态为已完成。 | product_acceptance | True |
+| CP-004 | TG-003 | AE-004 |  | COV-EX-0005 | OSS-BLIND-R3-RECOVERYAUTH-RECOVERYCODE-WEB-DV-001 | 恢复码认证页 | 恢复码提交 | MFA 恢复码认证 | 恢复码登录与路由保护 | 恢复码认证成功后可用数量减少一条 | 认证服务与数据层 | data_persistence | P0 | 认证后的可用恢复码数量比认证前减少 1。 | product_acceptance | True |
+| CP-005 | TG-003 | AE-005 |  | COV-EX-0006 | OSS-BLIND-R3-RECOVERYAUTH-RECOVERYCODE-WEB-AB-001 | 恢复码认证页 | 恢复码提交 | MFA 恢复码认证 | 恢复码登录与路由保护 | 拒绝已使用恢复码再次建立登录会话 | 认证服务与数据层 | field_constraint | P0 | 系统不建立新的登录会话；该恢复码仍处于不可用状态。 | product_acceptance | True |
+| CP-006 | TG-004 | AE-006 |  | COV-EX-0007 | OSS-BLIND-R3-RECOVERYAUTH-RECOVERYCODE-WEB-AB-002 | 恢复码认证页 | 恢复码提交 | MFA 恢复码认证 | 恢复码登录与路由保护 | 拒绝无效恢复码建立登录会话 | 认证服务端 | field_constraint | P0 | 系统不建立登录会话。 | product_acceptance | True |
+| CP-007 | TG-004 | AE-007 |  | COV-EX-0008 | OSS-BLIND-R3-RECOVERYAUTH-RECOVERYCODE-WEB-AB-003 | 恢复码认证页 | 恢复码提交 | MFA 恢复码认证 | 恢复码登录与路由保护 | 空恢复码不建立登录会话 | 认证前端与服务端 | field_constraint | P0 | 系统不建立登录会话；不对未定义的错误文案作强断言。 | product_acceptance | True |
+| CP-008 | TG-004 | AE-008 |  | COV-EX-0009 | OSS-BLIND-R3-RECOVERYAUTH-RECOVERYCODE-WEB-AB-004 | 恢复码认证页 | 恢复码提交 | MFA 恢复码认证 | 恢复码登录与路由保护 | 已知格式不正确的恢复码不建立登录会话 | 认证服务端 | field_constraint | P0 | 系统不建立登录会话；不对未定义的格式边界或错误文案作强断言。 | product_acceptance | True |
+| CP-009 | TG-005 | AE-009 |  | COV-EX-0010 | OSS-BLIND-R3-RECOVERYAUTH-RECOVERYCODE-WEB-FN-002 | 恢复码认证页 | 恢复码提交 | MFA 恢复码认证 | 恢复码登录与路由保护 | 功能关闭时隐藏恢复码入口 | 认证前端展示层 | ui_display | P0 | 页面不显示【使用恢复码验证】入口。 | product_acceptance | True |
+| CP-010 | TG-005 | AE-010 |  | COV-EX-0011 | OSS-BLIND-R3-RECOVERYAUTH-RECOVERYCODE-WEB-FL-003 | 恢复码认证页 | 恢复码提交 | MFA 恢复码认证 | 恢复码登录与路由保护 | 功能关闭时直接访问[恢复码认证页]返回[MFA 验证页] | 认证前端路由层 | linkage | P0 | 重定向完成后，当前页面为[MFA 验证页]；用户不能通过直接 URL 停留在[恢复码认证页]。 | product_acceptance | True |
+| CP-011 | TG-006 | AE-011 |  | COV-EX-0012 | OSS-BLIND-R3-RECOVERYAUTH-RECOVERYCODE-WEB-FL-004 | 恢复码认证页 | 恢复码提交 | MFA 恢复码认证 | 恢复码登录与路由保护 | 恢复码开关两种状态下普通 MFA 路径均可用 | 认证前端与服务端 | linkage | P0 | 两种开关状态下普通 MFA 验证均完成并建立已完成 MFA 的登录会话；恢复码功能开关不改变普通 MFA 路径的既有结果。 | product_acceptance | True |

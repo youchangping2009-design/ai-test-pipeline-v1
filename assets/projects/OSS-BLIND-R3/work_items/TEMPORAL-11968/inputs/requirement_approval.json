@@ -1,0 +1,13 @@
+{
+  "schema_version": "1.0.0",
+  "approval_id": "RUN-TEMPORAL-11968-BLIND-R3-20260921-requirement-ab6ae1394e1bfc487be9c1a2",
+  "status": "approved",
+  "reviewed_by": "user",
+  "reviewed_at": "2026-09-21T11:26:14+00:00",
+  "note": "用户已批准第三轮公开盲测四份需求摘要，允许进入后续盲测阶段",
+  "run_id": "RUN-TEMPORAL-11968-BLIND-R3-20260921",
+  "requirement_summary_sha256": "ed621826af9d9d247ee7fd63e891d868ed187cf54790114894ed2a3909f43633",
+  "source_manifest_sha256": "074c7c8f544d129db270e11aee3fd47056a573a2c3aa630ba142c2d866ab8643",
+  "raw_inputs_fingerprint": "02e7bfeeae4dc9e0c0f09c9562b01c7a4b3cb3b8570c77d5285deb33065fbbca",
+  "requirement_version": "1.0.0"
+}

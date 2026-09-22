@@ -1,0 +1,79 @@
+{
+  "project_code": "OSS-BLIND-R3",
+  "index_type": "risk",
+  "generated_at": "2026-09-22T13:33:33",
+  "items": [
+    {
+      "risk_id": "DF-001",
+      "work_item_id": "SUPABASE-50569",
+      "source_type": "design_feedback",
+      "summary": "补齐恢复码页面的 returnTo 导航契约",
+      "status": "accepted",
+      "severity": "",
+      "source_path": "work_items/SUPABASE-50569/design/design_feedback.json"
+    },
+    {
+      "risk_id": "DF-002",
+      "work_item_id": "SUPABASE-50569",
+      "source_type": "design_feedback",
+      "summary": "明确恢复码失败反馈与重试状态",
+      "status": "accepted",
+      "severity": "",
+      "source_path": "work_items/SUPABASE-50569/design/design_feedback.json"
+    },
+    {
+      "risk_id": "DF-003",
+      "work_item_id": "SUPABASE-50569",
+      "source_type": "design_feedback",
+      "summary": "功能关闭时直接访问返回目标与批准需求不一致",
+      "status": "accepted",
+      "severity": "",
+      "source_path": "work_items/SUPABASE-50569/design/design_feedback.json"
+    },
+    {
+      "risk_id": "DF-004",
+      "work_item_id": "SUPABASE-50569",
+      "source_type": "design_feedback",
+      "summary": "补充恢复码页面异步与重复提交风险",
+      "status": "accepted",
+      "severity": "",
+      "source_path": "work_items/SUPABASE-50569/design/design_feedback.json"
+    },
+    {
+      "risk_id": "DF-001",
+      "work_item_id": "TEMPORAL-11968",
+      "source_type": "design_feedback",
+      "summary": "补齐去重响应字段断言",
+      "status": "accepted",
+      "severity": "",
+      "source_path": "work_items/TEMPORAL-11968/design/design_feedback.json"
+    },
+    {
+      "risk_id": "DF-002",
+      "work_item_id": "TEMPORAL-11968",
+      "source_type": "design_feedback",
+      "summary": "覆盖 TERMINATE_EXISTING 冲突策略前置去重",
+      "status": "accepted",
+      "severity": "",
+      "source_path": "work_items/TEMPORAL-11968/design/design_feedback.json"
+    },
+    {
+      "risk_id": "DF-003",
+      "work_item_id": "TEMPORAL-11968",
+      "source_type": "design_feedback",
+      "summary": "保留动态配置关闭路径的兼容性风险",
+      "status": "accepted",
+      "severity": "",
+      "source_path": "work_items/TEMPORAL-11968/design/design_feedback.json"
+    },
+    {
+      "risk_id": "DF-004",
+      "work_item_id": "TEMPORAL-11968",
+      "source_type": "design_feedback",
+      "summary": "补充去重查询与并发创建错误传播风险",
+      "status": "accepted",
+      "severity": "",
+      "source_path": "work_items/TEMPORAL-11968/design/design_feedback.json"
+    }
+  ]
+}

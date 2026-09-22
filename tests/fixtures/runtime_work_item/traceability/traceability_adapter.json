@@ -1,0 +1,1006 @@
+{
+  "project_code": "FIXTURE",
+  "work_item_id": "FIXTURE-RUNTIME-001",
+  "records": [
+    {
+      "record_id": "TRA-0001",
+      "evidence_id": "EVD-UNMAPPED",
+      "coverage_level": "full",
+      "structured_targets": [
+        {
+          "target_type": "field_definition",
+          "module_name": "云挂机购买页",
+          "feature_name": "特价专区",
+          "field_name": "special_product_list",
+          "target_name": "特殊区商品列表 条件展示"
+        }
+      ],
+      "testcase_ids": [
+        "FIXTURE-BUY-SALE-C-FN-003"
+      ],
+      "gap_notes": "adapter_source=coverage_first_traceability; source_record_id=CFT-0001; rule_id=云挂机购买页::特价专区::special_product_list::conditional_visibility; coverage_id=COV-EX-0008; fidelity_status=not_applicable",
+      "implementation_binding": "frontend_behavior",
+      "recommended_cr_stage": "frontend_code",
+      "manual_confirmation_required": true,
+      "cr_focus_points": [
+        "特殊区商品列表 条件展示",
+        "coverage_id=COV-EX-0008"
+      ]
+    },
+    {
+      "record_id": "TRA-0002",
+      "evidence_id": "EVD-UNMAPPED",
+      "coverage_level": "full",
+      "structured_targets": [
+        {
+          "target_type": "field_definition",
+          "module_name": "云手机商品管理",
+          "feature_name": "商品添加表单",
+          "field_name": "cloud_phone_product_type",
+          "target_name": "云手机商品类型 必填"
+        }
+      ],
+      "testcase_ids": [
+        "FIXTURE-ADD-FORM-B-FN-001"
+      ],
+      "gap_notes": "adapter_source=coverage_first_traceability; source_record_id=CFT-0002; rule_id=云手机商品管理::商品添加表单::cloud_phone_product_type::required; coverage_id=COV-EX-0016; fidelity_status=not_applicable",
+      "implementation_binding": "frontend_behavior",
+      "recommended_cr_stage": "frontend_code",
+      "manual_confirmation_required": true,
+      "cr_focus_points": [
+        "云手机商品类型 必填",
+        "coverage_id=COV-EX-0016"
+      ]
+    },
+    {
+      "record_id": "TRA-0003",
+      "evidence_id": "EVD-UNMAPPED",
+      "coverage_level": "full",
+      "structured_targets": [
+        {
+          "target_type": "field_definition",
+          "module_name": "云手机商品管理",
+          "feature_name": "商品添加表单",
+          "field_name": "cloud_machine_type",
+          "target_name": "云机类型 必填"
+        }
+      ],
+      "testcase_ids": [
+        "FIXTURE-PROMO-FORM-B-AB-036"
+      ],
+      "gap_notes": "adapter_source=coverage_first_traceability; source_record_id=CFT-0003; rule_id=云手机商品管理::商品添加表单::cloud_machine_type::required; coverage_id=COV-EX-0018; fidelity_status=not_applicable",
+      "implementation_binding": "frontend_behavior",
+      "recommended_cr_stage": "frontend_code",
+      "manual_confirmation_required": true,
+      "cr_focus_points": [
+        "云机类型 必填",
+        "coverage_id=COV-EX-0018"
+      ]
+    },
+    {
+      "record_id": "TRA-0004",
+      "evidence_id": "EVD-UNMAPPED",
+      "coverage_level": "full",
+      "structured_targets": [
+        {
+          "target_type": "field_definition",
+          "module_name": "云手机商品管理",
+          "feature_name": "商品添加表单",
+          "field_name": "product_name",
+          "target_name": "商品名称 必填"
+        }
+      ],
+      "testcase_ids": [
+        "FIXTURE-GOODS-OPS-B-AB-012"
+      ],
+      "gap_notes": "adapter_source=coverage_first_traceability; source_record_id=CFT-0004; rule_id=云手机商品管理::商品添加表单::product_name::required; coverage_id=COV-EX-0020; fidelity_status=not_applicable",
+      "implementation_binding": "shared_contract",
+      "recommended_cr_stage": "dual_code",
+      "manual_confirmation_required": true,
+      "cr_focus_points": [
+        "商品名称 必填",
+        "coverage_id=COV-EX-0020"
+      ]
+    },
+    {
+      "record_id": "TRA-0005",
+      "evidence_id": "EVD-UNMAPPED",
+      "coverage_level": "full",
+      "structured_targets": [
+        {
+          "target_type": "field_definition",
+          "module_name": "云手机商品管理",
+          "feature_name": "商品添加表单",
+          "field_name": "original_price",
+          "target_name": "原价（元） 必填"
+        }
+      ],
+      "testcase_ids": [
+        "FIXTURE-BUY-TAB-C-AB-005"
+      ],
+      "gap_notes": "adapter_source=coverage_first_traceability; source_record_id=CFT-0005; rule_id=云手机商品管理::商品添加表单::original_price::required; coverage_id=COV-EX-0022; fidelity_status=not_applicable",
+      "implementation_binding": "shared_contract",
+      "recommended_cr_stage": "dual_code",
+      "manual_confirmation_required": true,
+      "cr_focus_points": [
+        "原价（元） 必填",
+        "coverage_id=COV-EX-0022"
+      ]
+    },
+    {
+      "record_id": "TRA-0006",
+      "evidence_id": "EVD-UNMAPPED",
+      "coverage_level": "full",
+      "structured_targets": [
+        {
+          "target_type": "field_definition",
+          "module_name": "云手机商品管理",
+          "feature_name": "商品添加表单",
+          "field_name": "current_price",
+          "target_name": "现价（元） 必填"
+        }
+      ],
+      "testcase_ids": [
+        "FIXTURE-BUY-TAB-C-AB-005"
+      ],
+      "gap_notes": "adapter_source=coverage_first_traceability; source_record_id=CFT-0006; rule_id=云手机商品管理::商品添加表单::current_price::required; coverage_id=COV-EX-0024; fidelity_status=not_applicable",
+      "implementation_binding": "shared_contract",
+      "recommended_cr_stage": "dual_code",
+      "manual_confirmation_required": true,
+      "cr_focus_points": [
+        "现价（元） 必填",
+        "coverage_id=COV-EX-0024"
+      ]
+    },
+    {
+      "record_id": "TRA-0007",
+      "evidence_id": "EVD-UNMAPPED",
+      "coverage_level": "full",
+      "structured_targets": [
+        {
+          "target_type": "field_definition",
+          "module_name": "云手机商品管理",
+          "feature_name": "商品添加表单",
+          "field_name": "service_duration",
+          "target_name": "服务时长 必填"
+        }
+      ],
+      "testcase_ids": [
+        "FIXTURE-BUY-REG-C-AB-007"
+      ],
+      "gap_notes": "adapter_source=coverage_first_traceability; source_record_id=CFT-0007; rule_id=云手机商品管理::商品添加表单::service_duration::required; coverage_id=COV-EX-0026; fidelity_status=not_applicable",
+      "implementation_binding": "shared_contract",
+      "recommended_cr_stage": "dual_code",
+      "manual_confirmation_required": true,
+      "cr_focus_points": [
+        "服务时长 必填",
+        "coverage_id=COV-EX-0026"
+      ]
+    },
+    {
+      "record_id": "TRA-0008",
+      "evidence_id": "EVD-UNMAPPED",
+      "coverage_level": "full",
+      "structured_targets": [
+        {
+          "target_type": "field_definition",
+          "module_name": "云手机商品管理",
+          "feature_name": "商品添加表单",
+          "field_name": "product_region",
+          "target_name": "商品区 必填"
+        }
+      ],
+      "testcase_ids": [
+        "FIXTURE-ADD-FORM-B-FN-030"
+      ],
+      "gap_notes": "adapter_source=coverage_first_traceability; source_record_id=CFT-0008; rule_id=云手机商品管理::商品添加表单::product_region::required; coverage_id=COV-EX-0028; fidelity_status=not_applicable",
+      "implementation_binding": "frontend_behavior",
+      "recommended_cr_stage": "frontend_code",
+      "manual_confirmation_required": true,
+      "cr_focus_points": [
+        "商品区 必填",
+        "coverage_id=COV-EX-0028"
+      ]
+    },
+    {
+      "record_id": "TRA-0009",
+      "evidence_id": "EVD-UNMAPPED",
+      "coverage_level": "full",
+      "structured_targets": [
+        {
+          "target_type": "field_definition",
+          "module_name": "云手机商品管理",
+          "feature_name": "商品添加表单",
+          "field_name": "in_box_sort_order",
+          "target_name": "盒子内排序 必填"
+        }
+      ],
+      "testcase_ids": [
+        "FIXTURE-BUY-REG-C-AB-008"
+      ],
+      "gap_notes": "adapter_source=coverage_first_traceability; source_record_id=CFT-0009; rule_id=云手机商品管理::商品添加表单::in_box_sort_order::required; coverage_id=COV-EX-0030; fidelity_status=not_applicable",
+      "implementation_binding": "backend_contract",
+      "recommended_cr_stage": "backend_code",
+      "manual_confirmation_required": true,
+      "cr_focus_points": [
+        "盒子内排序 必填",
+        "coverage_id=COV-EX-0030"
+      ]
+    },
+    {
+      "record_id": "TRA-0010",
+      "evidence_id": "EVD-UNMAPPED",
+      "coverage_level": "full",
+      "structured_targets": [
+        {
+          "target_type": "field_definition",
+          "module_name": "云手机商品管理",
+          "feature_name": "商品添加表单",
+          "field_name": "purchase_alert_recipient",
+          "target_name": "购买数量报警通知人 必填"
+        }
+      ],
+      "testcase_ids": [
+        "FIXTURE-BUY-REG-C-FN-010"
+      ],
+      "gap_notes": "adapter_source=coverage_first_traceability; source_record_id=CFT-0010; rule_id=云手机商品管理::商品添加表单::purchase_alert_recipient::required; coverage_id=COV-EX-0037; fidelity_status=not_applicable",
+      "implementation_binding": "backend_contract",
+      "recommended_cr_stage": "backend_code",
+      "manual_confirmation_required": true,
+      "cr_focus_points": [
+        "购买数量报警通知人 必填",
+        "coverage_id=COV-EX-0037"
+      ]
+    },
+    {
+      "record_id": "TRA-0011",
+      "evidence_id": "EVD-UNMAPPED",
+      "coverage_level": "full",
+      "structured_targets": [
+        {
+          "target_type": "field_definition",
+          "module_name": "宣传内容管理",
+          "feature_name": "宣传内容编辑表单",
+          "field_name": "cloud_machine_type",
+          "target_name": "云机类型 必填"
+        }
+      ],
+      "testcase_ids": [
+        "FIXTURE-PROMO-FORM-B-FN-028"
+      ],
+      "gap_notes": "adapter_source=coverage_first_traceability; source_record_id=CFT-0011; rule_id=宣传内容管理::宣传内容编辑表单::cloud_machine_type::required; coverage_id=COV-EX-0042; fidelity_status=not_applicable",
+      "implementation_binding": "backend_contract",
+      "recommended_cr_stage": "backend_code",
+      "manual_confirmation_required": true,
+      "cr_focus_points": [
+        "云机类型 必填",
+        "coverage_id=COV-EX-0042"
+      ]
+    },
+    {
+      "record_id": "TRA-0012",
+      "evidence_id": "EVD-UNMAPPED",
+      "coverage_level": "full",
+      "structured_targets": [
+        {
+          "target_type": "field_definition",
+          "module_name": "宣传内容管理",
+          "feature_name": "宣传内容编辑表单",
+          "field_name": "promotion_image",
+          "target_name": "宣传图片 必填"
+        }
+      ],
+      "testcase_ids": [
+        "FIXTURE-BUY-PIC-C-AB-029"
+      ],
+      "gap_notes": "adapter_source=coverage_first_traceability; source_record_id=CFT-0012; rule_id=宣传内容管理::宣传内容编辑表单::promotion_image::required; coverage_id=COV-EX-0044; fidelity_status=not_applicable",
+      "implementation_binding": "shared_contract",
+      "recommended_cr_stage": "dual_code",
+      "manual_confirmation_required": true,
+      "cr_focus_points": [
+        "宣传图片 必填",
+        "coverage_id=COV-EX-0044"
+      ]
+    },
+    {
+      "record_id": "TRA-0013",
+      "evidence_id": "EVD-UNMAPPED",
+      "coverage_level": "full",
+      "structured_targets": [
+        {
+          "target_type": "field_definition",
+          "module_name": "宣传内容管理",
+          "feature_name": "宣传内容编辑表单",
+          "field_name": "promotion_slogan",
+          "target_name": "宣传口号 必填"
+        }
+      ],
+      "testcase_ids": [
+        "FIXTURE-ADD-FORM-B-FN-030"
+      ],
+      "gap_notes": "adapter_source=coverage_first_traceability; source_record_id=CFT-0013; rule_id=宣传内容管理::宣传内容编辑表单::promotion_slogan::required; coverage_id=COV-EX-0046; fidelity_status=not_applicable",
+      "implementation_binding": "frontend_behavior",
+      "recommended_cr_stage": "frontend_code",
+      "manual_confirmation_required": true,
+      "cr_focus_points": [
+        "宣传口号 必填",
+        "coverage_id=COV-EX-0046"
+      ]
+    },
+    {
+      "record_id": "TRA-0014",
+      "evidence_id": "EVD-UNMAPPED",
+      "coverage_level": "full",
+      "structured_targets": [
+        {
+          "target_type": "field_definition",
+          "module_name": "宣传内容管理",
+          "feature_name": "宣传内容编辑表单",
+          "field_name": "performance_parameters",
+          "target_name": "性能参数 必填"
+        }
+      ],
+      "testcase_ids": [
+        "FIXTURE-ADD-FORM-B-FN-031"
+      ],
+      "gap_notes": "adapter_source=coverage_first_traceability; source_record_id=CFT-0014; rule_id=宣传内容管理::宣传内容编辑表单::performance_parameters::required; coverage_id=COV-EX-0048; fidelity_status=not_applicable",
+      "implementation_binding": "frontend_behavior",
+      "recommended_cr_stage": "frontend_code",
+      "manual_confirmation_required": true,
+      "cr_focus_points": [
+        "性能参数 必填",
+        "coverage_id=COV-EX-0048"
+      ]
+    },
+    {
+      "record_id": "TRA-0015",
+      "evidence_id": "EVD-UNMAPPED",
+      "coverage_level": "full",
+      "structured_targets": [
+        {
+          "target_type": "field_definition",
+          "module_name": "云挂机购买页",
+          "feature_name": "宣传区",
+          "field_name": "promotion_slogan",
+          "target_name": "宣传口号 边界值"
+        }
+      ],
+      "testcase_ids": [
+        "FIXTURE-ADD-FORM-B-FN-001"
+      ],
+      "gap_notes": "adapter_source=coverage_first_traceability; source_record_id=CFT-0015; rule_id=云挂机购买页::宣传区::promotion_slogan::value_boundary; coverage_id=COV-EX-0050; fidelity_status=not_applicable",
+      "implementation_binding": "frontend_behavior",
+      "recommended_cr_stage": "frontend_code",
+      "manual_confirmation_required": true,
+      "cr_focus_points": [
+        "宣传口号 边界值",
+        "coverage_id=COV-EX-0050"
+      ]
+    },
+    {
+      "record_id": "TRA-0016",
+      "evidence_id": "EVD-UNMAPPED",
+      "coverage_level": "full",
+      "structured_targets": [
+        {
+          "target_type": "field_definition",
+          "module_name": "云挂机购买页",
+          "feature_name": "宣传区",
+          "field_name": "promotion_slogan",
+          "target_name": "宣传口号 边界值"
+        }
+      ],
+      "testcase_ids": [
+        "FIXTURE-BUY-TAB-C-FN-041"
+      ],
+      "gap_notes": "adapter_source=coverage_first_traceability; source_record_id=CFT-0016; rule_id=云挂机购买页::宣传区::promotion_slogan::value_boundary; coverage_id=COV-EX-0050; fidelity_status=not_applicable",
+      "implementation_binding": "frontend_behavior",
+      "recommended_cr_stage": "frontend_code",
+      "manual_confirmation_required": true,
+      "cr_focus_points": [
+        "宣传口号 边界值",
+        "coverage_id=COV-EX-0050"
+      ]
+    },
+    {
+      "record_id": "TRA-0017",
+      "evidence_id": "EVD-UNMAPPED",
+      "coverage_level": "full",
+      "structured_targets": [
+        {
+          "target_type": "field_definition",
+          "module_name": "云挂机购买页",
+          "feature_name": "宣传区",
+          "field_name": "performance_parameters",
+          "target_name": "性能参数 边界值"
+        }
+      ],
+      "testcase_ids": [
+        "FIXTURE-ADD-FORM-B-FN-002"
+      ],
+      "gap_notes": "adapter_source=coverage_first_traceability; source_record_id=CFT-0017; rule_id=云挂机购买页::宣传区::performance_parameters::value_boundary; coverage_id=COV-EX-0051; fidelity_status=not_applicable",
+      "implementation_binding": "frontend_behavior",
+      "recommended_cr_stage": "frontend_code",
+      "manual_confirmation_required": true,
+      "cr_focus_points": [
+        "性能参数 边界值",
+        "coverage_id=COV-EX-0051"
+      ]
+    },
+    {
+      "record_id": "TRA-0018",
+      "evidence_id": "EVD-UNMAPPED",
+      "coverage_level": "full",
+      "structured_targets": [
+        {
+          "target_type": "field_definition",
+          "module_name": "云手机商品管理",
+          "feature_name": "商品添加表单",
+          "field_name": "original_price",
+          "target_name": "原价（元） 边界值"
+        }
+      ],
+      "testcase_ids": [
+        "FIXTURE-BUY-TAB-C-AB-005"
+      ],
+      "gap_notes": "adapter_source=coverage_first_traceability; source_record_id=CFT-0018; rule_id=云手机商品管理::商品添加表单::original_price::value_boundary; coverage_id=COV-EX-0052; fidelity_status=not_applicable",
+      "implementation_binding": "shared_contract",
+      "recommended_cr_stage": "dual_code",
+      "manual_confirmation_required": true,
+      "cr_focus_points": [
+        "原价（元） 边界值",
+        "coverage_id=COV-EX-0052"
+      ]
+    },
+    {
+      "record_id": "TRA-0019",
+      "evidence_id": "EVD-UNMAPPED",
+      "coverage_level": "full",
+      "structured_targets": [
+        {
+          "target_type": "field_definition",
+          "module_name": "云手机商品管理",
+          "feature_name": "商品添加表单",
+          "field_name": "current_price",
+          "target_name": "现价（元） 边界值"
+        }
+      ],
+      "testcase_ids": [
+        "FIXTURE-BUY-REG-C-AB-006"
+      ],
+      "gap_notes": "adapter_source=coverage_first_traceability; source_record_id=CFT-0019; rule_id=云手机商品管理::商品添加表单::current_price::value_boundary; coverage_id=COV-EX-0053; fidelity_status=not_applicable",
+      "implementation_binding": "shared_contract",
+      "recommended_cr_stage": "dual_code",
+      "manual_confirmation_required": true,
+      "cr_focus_points": [
+        "现价（元） 边界值",
+        "coverage_id=COV-EX-0053"
+      ]
+    },
+    {
+      "record_id": "TRA-0020",
+      "evidence_id": "EVD-UNMAPPED",
+      "coverage_level": "full",
+      "structured_targets": [
+        {
+          "target_type": "field_definition",
+          "module_name": "云手机商品管理",
+          "feature_name": "商品添加表单",
+          "field_name": "in_box_sort_order",
+          "target_name": "盒子内排序 边界值"
+        }
+      ],
+      "testcase_ids": [
+        "FIXTURE-BUY-REG-C-AB-008"
+      ],
+      "gap_notes": "adapter_source=coverage_first_traceability; source_record_id=CFT-0020; rule_id=云手机商品管理::商品添加表单::in_box_sort_order::value_boundary; coverage_id=COV-EX-0054; fidelity_status=not_applicable",
+      "implementation_binding": "backend_contract",
+      "recommended_cr_stage": "backend_code",
+      "manual_confirmation_required": true,
+      "cr_focus_points": [
+        "盒子内排序 边界值",
+        "coverage_id=COV-EX-0054"
+      ]
+    },
+    {
+      "record_id": "TRA-0021",
+      "evidence_id": "EVD-UNMAPPED",
+      "coverage_level": "full",
+      "structured_targets": [
+        {
+          "target_type": "field_definition",
+          "module_name": "云手机商品管理",
+          "feature_name": "商品添加表单",
+          "field_name": "inventory_warning_threshold",
+          "target_name": "库存预警值 边界值"
+        }
+      ],
+      "testcase_ids": [
+        "FIXTURE-BUY-REG-C-AB-009"
+      ],
+      "gap_notes": "adapter_source=coverage_first_traceability; source_record_id=CFT-0021; rule_id=云手机商品管理::商品添加表单::inventory_warning_threshold::value_boundary; coverage_id=COV-EX-0055; fidelity_status=not_applicable",
+      "implementation_binding": "shared_contract",
+      "recommended_cr_stage": "dual_code",
+      "manual_confirmation_required": true,
+      "cr_focus_points": [
+        "库存预警值 边界值",
+        "coverage_id=COV-EX-0055"
+      ]
+    },
+    {
+      "record_id": "TRA-0022",
+      "evidence_id": "EVD-UNMAPPED",
+      "coverage_level": "full",
+      "structured_targets": [
+        {
+          "target_type": "field_definition",
+          "module_name": "云手机商品管理",
+          "feature_name": "商品区与库存规则说明表",
+          "field_name": "inventory_warning_threshold",
+          "target_name": "库存预警值 边界值"
+        }
+      ],
+      "testcase_ids": [
+        "FIXTURE-ADD-FORM-B-AB-022"
+      ],
+      "gap_notes": "adapter_source=coverage_first_traceability; source_record_id=CFT-0022; rule_id=云手机商品管理::商品区与库存规则说明表::inventory_warning_threshold::value_boundary; coverage_id=COV-EX-0056; fidelity_status=not_applicable",
+      "implementation_binding": "shared_contract",
+      "recommended_cr_stage": "dual_code",
+      "manual_confirmation_required": true,
+      "cr_focus_points": [
+        "库存预警值 边界值",
+        "coverage_id=COV-EX-0056"
+      ]
+    },
+    {
+      "record_id": "TRA-0023",
+      "evidence_id": "EVD-UNMAPPED",
+      "coverage_level": "full",
+      "structured_targets": [
+        {
+          "target_type": "field_definition",
+          "module_name": "宣传内容管理",
+          "feature_name": "宣传内容编辑表单",
+          "field_name": "promotion_slogan",
+          "target_name": "宣传口号 边界值"
+        }
+      ],
+      "testcase_ids": [
+        "FIXTURE-BUY-PROMO-C-FN-034"
+      ],
+      "gap_notes": "adapter_source=coverage_first_traceability; source_record_id=CFT-0023; rule_id=宣传内容管理::宣传内容编辑表单::promotion_slogan::value_boundary; coverage_id=COV-EX-0057; fidelity_status=not_applicable",
+      "implementation_binding": "frontend_behavior",
+      "recommended_cr_stage": "frontend_code",
+      "manual_confirmation_required": true,
+      "cr_focus_points": [
+        "宣传口号 边界值",
+        "coverage_id=COV-EX-0057"
+      ]
+    },
+    {
+      "record_id": "TRA-0024",
+      "evidence_id": "EVD-UNMAPPED",
+      "coverage_level": "full",
+      "structured_targets": [
+        {
+          "target_type": "field_definition",
+          "module_name": "宣传内容管理",
+          "feature_name": "宣传内容编辑表单",
+          "field_name": "performance_parameters",
+          "target_name": "性能参数 边界值"
+        }
+      ],
+      "testcase_ids": [
+        "FIXTURE-BUY-PROMO-C-FN-035"
+      ],
+      "gap_notes": "adapter_source=coverage_first_traceability; source_record_id=CFT-0024; rule_id=宣传内容管理::宣传内容编辑表单::performance_parameters::value_boundary; coverage_id=COV-EX-0058; fidelity_status=not_applicable",
+      "implementation_binding": "frontend_behavior",
+      "recommended_cr_stage": "frontend_code",
+      "manual_confirmation_required": true,
+      "cr_focus_points": [
+        "性能参数 边界值",
+        "coverage_id=COV-EX-0058"
+      ]
+    },
+    {
+      "record_id": "TRA-0025",
+      "evidence_id": "EVD-UNMAPPED",
+      "coverage_level": "full",
+      "structured_targets": [
+        {
+          "target_type": "field_definition",
+          "module_name": "云手机商品管理",
+          "feature_name": "商品添加表单",
+          "field_name": "service_duration",
+          "target_name": "服务时长 边界值"
+        }
+      ],
+      "testcase_ids": [
+        "FIXTURE-BUY-REG-C-AB-007"
+      ],
+      "gap_notes": "adapter_source=coverage_first_traceability; source_record_id=CFT-0025; rule_id=云手机商品管理::商品添加表单::service_duration::value_boundary; coverage_id=COV-EX-0059; fidelity_status=not_applicable",
+      "implementation_binding": "shared_contract",
+      "recommended_cr_stage": "dual_code",
+      "manual_confirmation_required": true,
+      "cr_focus_points": [
+        "服务时长 边界值",
+        "coverage_id=COV-EX-0059"
+      ]
+    },
+    {
+      "record_id": "TRA-0026",
+      "evidence_id": "EVD-UNMAPPED",
+      "coverage_level": "full",
+      "structured_targets": [
+        {
+          "target_type": "field_definition",
+          "module_name": "云手机商品管理",
+          "feature_name": "商品添加表单",
+          "field_name": "in_box_sort_order",
+          "target_name": "盒子内排序 数据源排序"
+        }
+      ],
+      "testcase_ids": [
+        "FIXTURE-BUY-SALE-C-FN-042"
+      ],
+      "gap_notes": "adapter_source=coverage_first_traceability; source_record_id=CFT-0026; rule_id=云手机商品管理::商品添加表单::in_box_sort_order::data_source_order; coverage_id=COV-EX-0060; fidelity_status=not_applicable",
+      "implementation_binding": "backend_contract",
+      "recommended_cr_stage": "backend_code",
+      "manual_confirmation_required": true,
+      "cr_focus_points": [
+        "盒子内排序 数据源排序",
+        "coverage_id=COV-EX-0060"
+      ]
+    },
+    {
+      "record_id": "TRA-0027",
+      "evidence_id": "EVD-UNMAPPED",
+      "coverage_level": "full",
+      "structured_targets": [
+        {
+          "target_type": "field_definition",
+          "module_name": "宣传内容管理",
+          "feature_name": "宣传内容字段说明表",
+          "field_name": "promotion_content",
+          "target_name": "宣传内容配置 必填"
+        }
+      ],
+      "testcase_ids": [
+        "FIXTURE-PROMO-FORM-B-AB-036"
+      ],
+      "gap_notes": "adapter_source=coverage_first_traceability; source_record_id=CFT-0027; rule_id=宣传内容管理::宣传内容字段说明表::promotion_content::required; coverage_id=COV-EX-0061; fidelity_status=not_applicable",
+      "implementation_binding": "frontend_behavior",
+      "recommended_cr_stage": "frontend_code",
+      "manual_confirmation_required": true,
+      "cr_focus_points": [
+        "宣传内容配置 必填",
+        "coverage_id=COV-EX-0061"
+      ]
+    },
+    {
+      "record_id": "TRA-0028",
+      "evidence_id": "EVD-UNMAPPED",
+      "coverage_level": "full",
+      "structured_targets": [
+        {
+          "target_type": "field_definition",
+          "module_name": "云挂机购买页",
+          "feature_name": "特价专区",
+          "field_name": "special_product_list",
+          "target_name": "首屏2.5个，最多4个"
+        }
+      ],
+      "testcase_ids": [
+        "FIXTURE-BUY-SALE-C-FN-004"
+      ],
+      "gap_notes": "adapter_source=coverage_first_traceability; source_record_id=CFT-0028; rule_id=云挂机购买页::特价专区::special_product_list::happy_path_combo; coverage_id=COV-EX-0064; fidelity_status=not_applicable",
+      "implementation_binding": "frontend_behavior",
+      "recommended_cr_stage": "frontend_code",
+      "manual_confirmation_required": true,
+      "cr_focus_points": [
+        "首屏2.5个，最多4个",
+        "coverage_id=COV-EX-0064"
+      ]
+    },
+    {
+      "record_id": "TRA-0029",
+      "evidence_id": "EVD-UNMAPPED",
+      "coverage_level": "full",
+      "structured_targets": [
+        {
+          "target_type": "field_definition",
+          "module_name": "云挂机购买页",
+          "feature_name": "特价专区",
+          "field_name": "special_product_list",
+          "target_name": "后台未配置时隐藏"
+        }
+      ],
+      "testcase_ids": [
+        "FIXTURE-BUY-SALE-C-FN-003"
+      ],
+      "gap_notes": "adapter_source=coverage_first_traceability; source_record_id=CFT-0029; rule_id=云挂机购买页::特价专区::special_product_list::happy_path_combo; coverage_id=COV-EX-0065; fidelity_status=not_applicable",
+      "implementation_binding": "shared_contract",
+      "recommended_cr_stage": "dual_code",
+      "manual_confirmation_required": true,
+      "cr_focus_points": [
+        "后台未配置时隐藏",
+        "coverage_id=COV-EX-0065"
+      ]
+    },
+    {
+      "record_id": "TRA-0030",
+      "evidence_id": "EVD-UNMAPPED",
+      "coverage_level": "full",
+      "structured_targets": [
+        {
+          "target_type": "field_definition",
+          "module_name": "云挂机购买页",
+          "feature_name": "普通商品列表",
+          "field_name": "regular_product_list",
+          "target_name": "限时购买"
+        }
+      ],
+      "testcase_ids": [
+        "FIXTURE-BUY-REG-C-AB-006"
+      ],
+      "gap_notes": "adapter_source=coverage_first_traceability; source_record_id=CFT-0030; rule_id=云挂机购买页::普通商品列表::regular_product_list::happy_path_combo; coverage_id=COV-EX-0066; fidelity_status=not_applicable",
+      "implementation_binding": "shared_contract",
+      "recommended_cr_stage": "dual_code",
+      "manual_confirmation_required": true,
+      "cr_focus_points": [
+        "限时购买",
+        "coverage_id=COV-EX-0066"
+      ]
+    },
+    {
+      "record_id": "TRA-0031",
+      "evidence_id": "EVD-UNMAPPED",
+      "coverage_level": "full",
+      "structured_targets": [
+        {
+          "target_type": "field_definition",
+          "module_name": "云挂机购买页",
+          "feature_name": "普通商品列表",
+          "field_name": "regular_product_list",
+          "target_name": "纵向展示"
+        }
+      ],
+      "testcase_ids": [
+        "FIXTURE-BUY-REG-C-AB-009"
+      ],
+      "gap_notes": "adapter_source=coverage_first_traceability; source_record_id=CFT-0031; rule_id=云挂机购买页::普通商品列表::regular_product_list::happy_path_combo; coverage_id=COV-EX-0067; fidelity_status=not_applicable",
+      "implementation_binding": "frontend_behavior",
+      "recommended_cr_stage": "frontend_code",
+      "manual_confirmation_required": true,
+      "cr_focus_points": [
+        "纵向展示",
+        "coverage_id=COV-EX-0067"
+      ]
+    },
+    {
+      "record_id": "TRA-0032",
+      "evidence_id": "EVD-UNMAPPED",
+      "coverage_level": "full",
+      "structured_targets": [
+        {
+          "target_type": "field_definition",
+          "module_name": "云挂机购买页",
+          "feature_name": "普通商品列表",
+          "field_name": "regular_product_list",
+          "target_name": "纵向展示"
+        }
+      ],
+      "testcase_ids": [
+        "FIXTURE-ADD-FORM-B-FN-043"
+      ],
+      "gap_notes": "adapter_source=coverage_first_traceability; source_record_id=CFT-0032; rule_id=云挂机购买页::普通商品列表::regular_product_list::happy_path_combo; coverage_id=COV-EX-0067; fidelity_status=not_applicable",
+      "implementation_binding": "frontend_behavior",
+      "recommended_cr_stage": "frontend_code",
+      "manual_confirmation_required": true,
+      "cr_focus_points": [
+        "纵向展示",
+        "coverage_id=COV-EX-0067"
+      ]
+    },
+    {
+      "record_id": "TRA-0033",
+      "evidence_id": "EVD-UNMAPPED",
+      "coverage_level": "full",
+      "structured_targets": [
+        {
+          "target_type": "field_definition",
+          "module_name": "云手机商品管理",
+          "feature_name": "商品添加表单",
+          "field_name": "product_region",
+          "target_name": "最多4个商品"
+        }
+      ],
+      "testcase_ids": [
+        "FIXTURE-BUY-SALE-C-FN-004"
+      ],
+      "gap_notes": "adapter_source=coverage_first_traceability; source_record_id=CFT-0033; rule_id=云手机商品管理::商品添加表单::product_region::happy_path_combo; coverage_id=COV-EX-0069; fidelity_status=not_applicable",
+      "implementation_binding": "frontend_behavior",
+      "recommended_cr_stage": "frontend_code",
+      "manual_confirmation_required": true,
+      "cr_focus_points": [
+        "最多4个商品",
+        "coverage_id=COV-EX-0069"
+      ]
+    },
+    {
+      "record_id": "TRA-0034",
+      "evidence_id": "EVD-UNMAPPED",
+      "coverage_level": "full",
+      "structured_targets": [
+        {
+          "target_type": "field_definition",
+          "module_name": "云手机商品管理",
+          "feature_name": "商品添加表单",
+          "field_name": "product_region",
+          "target_name": "特殊区超过4个不可保存"
+        }
+      ],
+      "testcase_ids": [
+        "FIXTURE-GOODS-OPS-B-AB-012"
+      ],
+      "gap_notes": "adapter_source=coverage_first_traceability; source_record_id=CFT-0034; rule_id=云手机商品管理::商品添加表单::product_region::happy_path_combo; coverage_id=COV-EX-0070; fidelity_status=not_applicable",
+      "implementation_binding": "shared_contract",
+      "recommended_cr_stage": "dual_code",
+      "manual_confirmation_required": true,
+      "cr_focus_points": [
+        "特殊区超过4个不可保存",
+        "coverage_id=COV-EX-0070"
+      ]
+    },
+    {
+      "record_id": "TRA-0035",
+      "evidence_id": "EVD-UNMAPPED",
+      "coverage_level": "full",
+      "structured_targets": [
+        {
+          "target_type": "field_definition",
+          "module_name": "云手机商品管理",
+          "feature_name": "商品添加表单",
+          "field_name": "product_region",
+          "target_name": "特殊区超过4个不可保存"
+        }
+      ],
+      "testcase_ids": [
+        "FIXTURE-PROMO-FORM-B-AB-044"
+      ],
+      "gap_notes": "adapter_source=coverage_first_traceability; source_record_id=CFT-0035; rule_id=云手机商品管理::商品添加表单::product_region::happy_path_combo; coverage_id=COV-EX-0070; fidelity_status=not_applicable",
+      "implementation_binding": "shared_contract",
+      "recommended_cr_stage": "dual_code",
+      "manual_confirmation_required": true,
+      "cr_focus_points": [
+        "特殊区超过4个不可保存",
+        "coverage_id=COV-EX-0070"
+      ]
+    },
+    {
+      "record_id": "TRA-0036",
+      "evidence_id": "EVD-UNMAPPED",
+      "coverage_level": "full",
+      "structured_targets": [
+        {
+          "target_type": "field_definition",
+          "module_name": "云手机商品管理",
+          "feature_name": "商品区与库存规则说明表",
+          "field_name": "inventory_warning_threshold",
+          "target_name": "库存小于等于预警值"
+        }
+      ],
+      "testcase_ids": [
+        "FIXTURE-BUY-REG-C-AB-009"
+      ],
+      "gap_notes": "adapter_source=coverage_first_traceability; source_record_id=CFT-0036; rule_id=云手机商品管理::商品区与库存规则说明表::inventory_warning_threshold::happy_path_combo; coverage_id=COV-EX-0071; fidelity_status=not_applicable",
+      "implementation_binding": "shared_contract",
+      "recommended_cr_stage": "dual_code",
+      "manual_confirmation_required": true,
+      "cr_focus_points": [
+        "库存小于等于预警值",
+        "coverage_id=COV-EX-0071"
+      ]
+    },
+    {
+      "record_id": "TRA-0037",
+      "evidence_id": "EVD-UNMAPPED",
+      "coverage_level": "full",
+      "structured_targets": [
+        {
+          "target_type": "field_definition",
+          "module_name": "云手机商品管理",
+          "feature_name": "商品区与库存规则说明表",
+          "field_name": "inventory_warning_threshold",
+          "target_name": "隐藏商品、不分配云机、发送告警"
+        }
+      ],
+      "testcase_ids": [
+        "FIXTURE-ADD-RULE-B-FL-015"
+      ],
+      "gap_notes": "adapter_source=coverage_first_traceability; source_record_id=CFT-0037; rule_id=云手机商品管理::商品区与库存规则说明表::inventory_warning_threshold::happy_path_combo; coverage_id=COV-EX-0072; fidelity_status=not_applicable",
+      "implementation_binding": "shared_contract",
+      "recommended_cr_stage": "dual_code",
+      "manual_confirmation_required": true,
+      "cr_focus_points": [
+        "隐藏商品、不分配云机、发送告警",
+        "coverage_id=COV-EX-0072"
+      ]
+    },
+    {
+      "record_id": "TRA-0038",
+      "evidence_id": "EVD-UNMAPPED",
+      "coverage_level": "full",
+      "structured_targets": [
+        {
+          "target_type": "field_definition",
+          "module_name": "宣传内容管理",
+          "feature_name": "宣传内容编辑表单",
+          "field_name": "cloud_machine_type",
+          "target_name": "所有云机类型均配置且不重复"
+        }
+      ],
+      "testcase_ids": [
+        "FIXTURE-PROMO-FORM-B-FN-028"
+      ],
+      "gap_notes": "adapter_source=coverage_first_traceability; source_record_id=CFT-0038; rule_id=宣传内容管理::宣传内容编辑表单::cloud_machine_type::happy_path_combo; coverage_id=COV-EX-0073; fidelity_status=not_applicable",
+      "implementation_binding": "backend_contract",
+      "recommended_cr_stage": "backend_code",
+      "manual_confirmation_required": true,
+      "cr_focus_points": [
+        "所有云机类型均配置且不重复",
+        "coverage_id=COV-EX-0073"
+      ]
+    },
+    {
+      "record_id": "TRA-0039",
+      "evidence_id": "EVD-UNMAPPED",
+      "coverage_level": "full",
+      "structured_targets": [
+        {
+          "target_type": "field_definition",
+          "module_name": "宣传内容管理",
+          "feature_name": "宣传内容编辑表单",
+          "field_name": "promotion_image",
+          "target_name": "宣传图片最多5张"
+        }
+      ],
+      "testcase_ids": [
+        "FIXTURE-BUY-PIC-C-AB-029"
+      ],
+      "gap_notes": "adapter_source=coverage_first_traceability; source_record_id=CFT-0039; rule_id=宣传内容管理::宣传内容编辑表单::promotion_image::happy_path_combo; coverage_id=COV-EX-0074; fidelity_status=not_applicable",
+      "implementation_binding": "shared_contract",
+      "recommended_cr_stage": "dual_code",
+      "manual_confirmation_required": true,
+      "cr_focus_points": [
+        "宣传图片最多5张",
+        "coverage_id=COV-EX-0074"
+      ]
+    },
+    {
+      "record_id": "TRA-0040",
+      "evidence_id": "EVD-UNMAPPED",
+      "coverage_level": "full",
+      "structured_targets": [
+        {
+          "target_type": "field_definition",
+          "module_name": "宣传内容管理",
+          "feature_name": "宣传内容编辑表单",
+          "field_name": "promotion_image",
+          "target_name": "宣传图片格式与大小"
+        }
+      ],
+      "testcase_ids": [
+        "FIXTURE-PROMO-FORM-B-FN-033"
+      ],
+      "gap_notes": "adapter_source=coverage_first_traceability; source_record_id=CFT-0040; rule_id=宣传内容管理::宣传内容编辑表单::promotion_image::happy_path_combo; coverage_id=COV-EX-0075; fidelity_status=not_applicable",
+      "implementation_binding": "shared_contract",
+      "recommended_cr_stage": "dual_code",
+      "manual_confirmation_required": true,
+      "cr_focus_points": [
+        "宣传图片格式与大小",
+        "coverage_id=COV-EX-0075"
+      ]
+    }
+  ]
+}

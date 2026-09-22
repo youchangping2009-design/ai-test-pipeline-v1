@@ -1,0 +1,472 @@
+{
+  "project_code": "OSS-BLIND-R3",
+  "work_item_id": "TEMPORAL-11968",
+  "generated_at": "2026-09-21T19:52:27",
+  "generated_from": [
+    "structured_prd/structured_prd.json",
+    "analysis/reasoning_pack.json"
+  ],
+  "entries": [
+    {
+      "coverage_id": "COV-EX-0001",
+      "coverage_type": "field_property",
+      "source_origin": "explicit_rule",
+      "source_type": "structured_field",
+      "title": "Namespace 字段属性",
+      "page_name": "Temporal Workflow API",
+      "section_name": "SignalWithStart 去重",
+      "module_name": "SignalWithStart 幂等",
+      "feature_name": "关闭后重试去重",
+      "field_name": "namespace",
+      "priority": "medium",
+      "rationale": "字段 `Namespace` 已在 structured_prd 中显式建模，需要基础属性覆盖。",
+      "planned_assertions": [
+        "校验 `Namespace` 的控件类型、默认值或枚举定义与结构化规则一致。"
+      ],
+      "structured_refs": [
+        "SignalWithStart 幂等.关闭后重试去重.namespace"
+      ],
+      "reasoning_refs": [],
+      "coverage_level": "structural",
+      "emit_mode": "audit_item"
+    },
+    {
+      "coverage_id": "COV-EX-0002",
+      "coverage_type": "field_property",
+      "source_origin": "explicit_rule",
+      "source_type": "structured_field",
+      "title": "Workflow ID 字段属性",
+      "page_name": "Temporal Workflow API",
+      "section_name": "SignalWithStart 去重",
+      "module_name": "SignalWithStart 幂等",
+      "feature_name": "关闭后重试去重",
+      "field_name": "workflow_id",
+      "priority": "medium",
+      "rationale": "字段 `Workflow ID` 已在 structured_prd 中显式建模，需要基础属性覆盖。",
+      "planned_assertions": [
+        "校验 `Workflow ID` 的控件类型、默认值或枚举定义与结构化规则一致。"
+      ],
+      "structured_refs": [
+        "SignalWithStart 幂等.关闭后重试去重.workflow_id"
+      ],
+      "reasoning_refs": [],
+      "coverage_level": "structural",
+      "emit_mode": "audit_item"
+    },
+    {
+      "coverage_id": "COV-EX-0003",
+      "coverage_type": "field_property",
+      "source_origin": "explicit_rule",
+      "source_type": "structured_field",
+      "title": "Request ID 字段属性",
+      "page_name": "Temporal Workflow API",
+      "section_name": "SignalWithStart 去重",
+      "module_name": "SignalWithStart 幂等",
+      "feature_name": "关闭后重试去重",
+      "field_name": "request_id",
+      "priority": "medium",
+      "rationale": "字段 `Request ID` 已在 structured_prd 中显式建模，需要基础属性覆盖。",
+      "planned_assertions": [
+        "校验 `Request ID` 的控件类型、默认值或枚举定义与结构化规则一致。"
+      ],
+      "structured_refs": [
+        "SignalWithStart 幂等.关闭后重试去重.request_id"
+      ],
+      "reasoning_refs": [],
+      "coverage_level": "structural",
+      "emit_mode": "audit_item"
+    },
+    {
+      "coverage_id": "COV-EX-0004",
+      "coverage_type": "field_property",
+      "source_origin": "explicit_rule",
+      "source_type": "structured_field",
+      "title": "Signal Name 字段属性",
+      "page_name": "Temporal Workflow API",
+      "section_name": "SignalWithStart 去重",
+      "module_name": "SignalWithStart 幂等",
+      "feature_name": "关闭后重试去重",
+      "field_name": "signal_name",
+      "priority": "medium",
+      "rationale": "字段 `Signal Name` 已在 structured_prd 中显式建模，需要基础属性覆盖。",
+      "planned_assertions": [
+        "校验 `Signal Name` 的控件类型、默认值或枚举定义与结构化规则一致。"
+      ],
+      "structured_refs": [
+        "SignalWithStart 幂等.关闭后重试去重.signal_name"
+      ],
+      "reasoning_refs": [],
+      "coverage_level": "structural",
+      "emit_mode": "audit_item"
+    },
+    {
+      "coverage_id": "COV-EX-0005",
+      "coverage_type": "field_property",
+      "source_origin": "explicit_rule",
+      "source_type": "structured_field",
+      "title": "Signal Payload 字段属性",
+      "page_name": "Temporal Workflow API",
+      "section_name": "SignalWithStart 去重",
+      "module_name": "SignalWithStart 幂等",
+      "feature_name": "关闭后重试去重",
+      "field_name": "signal_payload",
+      "priority": "medium",
+      "rationale": "字段 `Signal Payload` 已在 structured_prd 中显式建模，需要基础属性覆盖。",
+      "planned_assertions": [
+        "校验 `Signal Payload` 的控件类型、默认值或枚举定义与结构化规则一致。"
+      ],
+      "structured_refs": [
+        "SignalWithStart 幂等.关闭后重试去重.signal_payload"
+      ],
+      "reasoning_refs": [],
+      "coverage_level": "structural",
+      "emit_mode": "audit_item"
+    },
+    {
+      "coverage_id": "COV-EX-0006",
+      "coverage_type": "happy_path_combo",
+      "coverage_level": "business",
+      "emit_mode": "main_testcase",
+      "source_origin": "explicit_rule",
+      "source_scope": "primary_requirement",
+      "source_type": "structured_rule",
+      "title": "关闭后的请求去重",
+      "page_name": "Temporal Workflow API",
+      "section_name": "SignalWithStart 去重",
+      "module_name": "SignalWithStart 幂等",
+      "feature_name": "关闭后重试去重",
+      "field_name": "",
+      "rule_name": "TMP-R001",
+      "atomic_assertion_index": null,
+      "priority": "high",
+      "rationale": "该规则来自 Structured PRD 的显式需求规则，必须在 Coverage 中保留。",
+      "planned_assertions": [
+        "首次 SignalWithStart 的 request ID 与原始 run 的关联在该 Workflow Execution 关闭后仍可用于去重。"
+      ],
+      "structured_refs": [
+        "requirement_info.explicit_rules.TMP-R001"
+      ],
+      "reasoning_refs": []
+    },
+    {
+      "coverage_id": "COV-EX-0007",
+      "coverage_type": "happy_path_combo",
+      "coverage_level": "business",
+      "emit_mode": "main_testcase",
+      "source_origin": "explicit_rule",
+      "source_scope": "primary_requirement",
+      "source_type": "structured_rule",
+      "title": "重试响应",
+      "page_name": "Temporal Workflow API",
+      "section_name": "SignalWithStart 去重",
+      "module_name": "SignalWithStart 幂等",
+      "feature_name": "关闭后重试去重",
+      "field_name": "",
+      "rule_name": "TMP-R002",
+      "atomic_assertion_index": null,
+      "priority": "high",
+      "rationale": "该规则来自 Structured PRD 的显式需求规则，必须在 Coverage 中保留。",
+      "planned_assertions": [
+        "使用相同 namespace、workflow ID 和 request ID 重试 SignalWithStart 时，返回首次请求创建的 run ID。"
+      ],
+      "structured_refs": [
+        "requirement_info.explicit_rules.TMP-R002"
+      ],
+      "reasoning_refs": []
+    },
+    {
+      "coverage_id": "COV-EX-0008",
+      "coverage_type": "happy_path_combo",
+      "coverage_level": "business",
+      "emit_mode": "main_testcase",
+      "source_origin": "explicit_rule",
+      "source_scope": "primary_requirement",
+      "source_type": "structured_rule",
+      "title": "去重命中不创建新的 Workflow run。",
+      "page_name": "Temporal Workflow API",
+      "section_name": "SignalWithStart 去重",
+      "module_name": "SignalWithStart 幂等",
+      "feature_name": "关闭后重试去重",
+      "field_name": "",
+      "rule_name": "TMP-R003",
+      "atomic_assertion_index": 1,
+      "priority": "high",
+      "rationale": "该规则来自 Structured PRD 的显式需求规则，必须在 Coverage 中保留。",
+      "planned_assertions": [
+        "去重命中不创建新的 Workflow run。"
+      ],
+      "structured_refs": [
+        "requirement_info.explicit_rules.TMP-R003"
+      ],
+      "reasoning_refs": []
+    },
+    {
+      "coverage_id": "COV-EX-0009",
+      "coverage_type": "happy_path_combo",
+      "coverage_level": "business",
+      "emit_mode": "main_testcase",
+      "source_origin": "explicit_rule",
+      "source_scope": "primary_requirement",
+      "source_type": "structured_rule",
+      "title": "去重命中不再次投递 signal。",
+      "page_name": "Temporal Workflow API",
+      "section_name": "SignalWithStart 去重",
+      "module_name": "SignalWithStart 幂等",
+      "feature_name": "关闭后重试去重",
+      "field_name": "",
+      "rule_name": "TMP-R003",
+      "atomic_assertion_index": 2,
+      "priority": "high",
+      "rationale": "该规则来自 Structured PRD 的显式需求规则，必须在 Coverage 中保留。",
+      "planned_assertions": [
+        "去重命中不再次投递 signal。"
+      ],
+      "structured_refs": [
+        "requirement_info.explicit_rules.TMP-R003"
+      ],
+      "reasoning_refs": []
+    },
+    {
+      "coverage_id": "COV-EX-0010",
+      "coverage_type": "happy_path_combo",
+      "coverage_level": "business",
+      "emit_mode": "main_testcase",
+      "source_origin": "explicit_rule",
+      "source_scope": "primary_requirement",
+      "source_type": "structured_rule",
+      "title": "去重命中时 SignalWithStartWorkflowStartDeduped 指标递增。",
+      "page_name": "Temporal Workflow API",
+      "section_name": "SignalWithStart 去重",
+      "module_name": "SignalWithStart 幂等",
+      "feature_name": "关闭后重试去重",
+      "field_name": "",
+      "rule_name": "TMP-R004",
+      "atomic_assertion_index": 1,
+      "priority": "medium",
+      "rationale": "该规则来自 Structured PRD 的显式需求规则，必须在 Coverage 中保留。",
+      "planned_assertions": [
+        "去重命中时 SignalWithStartWorkflowStartDeduped 指标递增。"
+      ],
+      "structured_refs": [
+        "requirement_info.explicit_rules.TMP-R004"
+      ],
+      "reasoning_refs": []
+    },
+    {
+      "coverage_id": "COV-EX-0011",
+      "coverage_type": "happy_path_combo",
+      "coverage_level": "business",
+      "emit_mode": "main_testcase",
+      "source_origin": "explicit_rule",
+      "source_scope": "primary_requirement",
+      "source_type": "structured_rule",
+      "title": "非去重请求不增加 SignalWithStartWorkflowStartDeduped 指标。",
+      "page_name": "Temporal Workflow API",
+      "section_name": "SignalWithStart 去重",
+      "module_name": "SignalWithStart 幂等",
+      "feature_name": "关闭后重试去重",
+      "field_name": "",
+      "rule_name": "TMP-R004",
+      "atomic_assertion_index": 2,
+      "priority": "medium",
+      "rationale": "该规则来自 Structured PRD 的显式需求规则，必须在 Coverage 中保留。",
+      "planned_assertions": [
+        "非去重请求不增加 SignalWithStartWorkflowStartDeduped 指标。"
+      ],
+      "structured_refs": [
+        "requirement_info.explicit_rules.TMP-R004"
+      ],
+      "reasoning_refs": []
+    },
+    {
+      "coverage_id": "COV-EX-0012",
+      "coverage_type": "happy_path_combo",
+      "coverage_level": "business",
+      "emit_mode": "main_testcase",
+      "source_origin": "explicit_rule",
+      "source_scope": "primary_requirement",
+      "source_type": "structured_rule",
+      "title": "非重复请求",
+      "page_name": "Temporal Workflow API",
+      "section_name": "SignalWithStart 去重",
+      "module_name": "SignalWithStart 幂等",
+      "feature_name": "关闭后重试去重",
+      "field_name": "",
+      "rule_name": "TMP-R005",
+      "atomic_assertion_index": null,
+      "priority": "high",
+      "rationale": "该规则来自 Structured PRD 的显式需求规则，必须在 Coverage 中保留。",
+      "planned_assertions": [
+        "使用不同 request ID 的 SignalWithStart 请求不得被错误识别为首次请求的重复。"
+      ],
+      "structured_refs": [
+        "requirement_info.explicit_rules.TMP-R005"
+      ],
+      "reasoning_refs": []
+    },
+    {
+      "coverage_id": "COV-EX-0013",
+      "coverage_type": "happy_path_combo",
+      "coverage_level": "business",
+      "emit_mode": "main_testcase",
+      "source_origin": "explicit_rule",
+      "source_scope": "primary_requirement",
+      "source_type": "structured_rule",
+      "title": "原 run 最终状态",
+      "page_name": "Temporal Workflow API",
+      "section_name": "SignalWithStart 去重",
+      "module_name": "SignalWithStart 幂等",
+      "feature_name": "关闭后重试去重",
+      "field_name": "",
+      "rule_name": "TMP-R006",
+      "atomic_assertion_index": null,
+      "priority": "high",
+      "rationale": "该规则来自 Structured PRD 的显式需求规则，必须在 Coverage 中保留。",
+      "planned_assertions": [
+        "关闭后重试不得改变原已关闭 run 的最终状态。"
+      ],
+      "structured_refs": [
+        "requirement_info.explicit_rules.TMP-R006"
+      ],
+      "reasoning_refs": []
+    },
+    {
+      "coverage_id": "COV-AI-0014",
+      "coverage_type": "happy_path_combo",
+      "coverage_level": "audit_only",
+      "emit_mode": "audit_item",
+      "source_origin": "ai_reasoning",
+      "source_type": "edge_case",
+      "title": "workflow 历史或业务副作用中 signal 只出现一次。",
+      "page_name": "Temporal Workflow API",
+      "section_name": "SignalWithStart 去重",
+      "module_name": "SignalWithStart 幂等",
+      "feature_name": "关闭后重试去重",
+      "field_name": "",
+      "priority": "medium",
+      "rationale": "该项来自 Reasoning Pack，保留为风险/边界审计，不自动升级为产品验收主用例。",
+      "planned_assertions": [
+        "审计并确认：workflow 历史或业务副作用中 signal 只出现一次。"
+      ],
+      "structured_refs": [],
+      "reasoning_refs": [
+        "EC-001"
+      ]
+    },
+    {
+      "coverage_id": "COV-AI-0015",
+      "coverage_type": "happy_path_combo",
+      "coverage_level": "audit_only",
+      "emit_mode": "audit_item",
+      "source_origin": "ai_reasoning",
+      "source_type": "edge_case",
+      "title": "去重发生时对应指标递增，非去重请求不误计数。",
+      "page_name": "Temporal Workflow API",
+      "section_name": "SignalWithStart 去重",
+      "module_name": "SignalWithStart 幂等",
+      "feature_name": "关闭后重试去重",
+      "field_name": "",
+      "priority": "medium",
+      "rationale": "该项来自 Reasoning Pack，保留为风险/边界审计，不自动升级为产品验收主用例。",
+      "planned_assertions": [
+        "审计并确认：去重发生时对应指标递增，非去重请求不误计数。"
+      ],
+      "structured_refs": [],
+      "reasoning_refs": [
+        "EC-002"
+      ]
+    },
+    {
+      "coverage_id": "COV-AI-0016",
+      "coverage_type": "happy_path_combo",
+      "coverage_level": "audit_only",
+      "emit_mode": "audit_item",
+      "source_origin": "ai_reasoning",
+      "source_type": "business_risk",
+      "title": "执行关闭与重试并发可能形成竞态，需要验证关闭提交前后边界。",
+      "page_name": "Temporal Workflow API",
+      "section_name": "SignalWithStart 去重",
+      "module_name": "SignalWithStart 幂等",
+      "feature_name": "关闭后重试去重",
+      "field_name": "",
+      "priority": "medium",
+      "rationale": "该项来自 Reasoning Pack，保留为风险/边界审计，不自动升级为产品验收主用例。",
+      "planned_assertions": [
+        "审计并确认：执行关闭与重试并发可能形成竞态，需要验证关闭提交前后边界。"
+      ],
+      "structured_refs": [],
+      "reasoning_refs": [
+        "RISK-001"
+      ]
+    },
+    {
+      "coverage_id": "COV-AI-0017",
+      "coverage_type": "happy_path_combo",
+      "coverage_level": "audit_only",
+      "emit_mode": "audit_item",
+      "source_origin": "ai_reasoning",
+      "source_type": "business_risk",
+      "title": "去重记录保留时长未公开，超出保留期后的行为不能脑补为永久去重。",
+      "page_name": "Temporal Workflow API",
+      "section_name": "SignalWithStart 去重",
+      "module_name": "SignalWithStart 幂等",
+      "feature_name": "关闭后重试去重",
+      "field_name": "",
+      "priority": "medium",
+      "rationale": "该项来自 Reasoning Pack，保留为风险/边界审计，不自动升级为产品验收主用例。",
+      "planned_assertions": [
+        "审计并确认：去重记录保留时长未公开，超出保留期后的行为不能脑补为永久去重。"
+      ],
+      "structured_refs": [],
+      "reasoning_refs": [
+        "RISK-002"
+      ]
+    },
+    {
+      "coverage_id": "COV-AI-0018",
+      "coverage_type": "happy_path_combo",
+      "coverage_level": "audit_only",
+      "emit_mode": "audit_item",
+      "source_origin": "ai_reasoning",
+      "source_type": "business_risk",
+      "title": "不同 namespace、workflow ID 或 request ID 的请求不得被错误关联。",
+      "page_name": "Temporal Workflow API",
+      "section_name": "SignalWithStart 去重",
+      "module_name": "SignalWithStart 幂等",
+      "feature_name": "关闭后重试去重",
+      "field_name": "",
+      "priority": "medium",
+      "rationale": "该项来自 Reasoning Pack，保留为风险/边界审计，不自动升级为产品验收主用例。",
+      "planned_assertions": [
+        "审计并确认：不同 namespace、workflow ID 或 request ID 的请求不得被错误关联。"
+      ],
+      "structured_refs": [],
+      "reasoning_refs": [
+        "RISK-003"
+      ]
+    },
+    {
+      "coverage_id": "COV-AI-0019",
+      "coverage_type": "happy_path_combo",
+      "coverage_level": "audit_only",
+      "emit_mode": "audit_item",
+      "source_origin": "ai_reasoning",
+      "source_type": "business_risk",
+      "title": "返回原 run 与不发送重复 signal 必须同时满足，不能只验证其中一项。",
+      "page_name": "Temporal Workflow API",
+      "section_name": "SignalWithStart 去重",
+      "module_name": "SignalWithStart 幂等",
+      "feature_name": "关闭后重试去重",
+      "field_name": "",
+      "priority": "medium",
+      "rationale": "该项来自 Reasoning Pack，保留为风险/边界审计，不自动升级为产品验收主用例。",
+      "planned_assertions": [
+        "审计并确认：返回原 run 与不发送重复 signal 必须同时满足，不能只验证其中一项。"
+      ],
+      "structured_refs": [],
+      "reasoning_refs": [
+        "RISK-004"
+      ]
+    }
+  ]
+}

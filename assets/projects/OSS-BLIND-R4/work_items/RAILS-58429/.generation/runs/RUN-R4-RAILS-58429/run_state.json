@@ -1,0 +1,202 @@
+{
+  "schema_version": "1.0.0",
+  "run_id": "RUN-R4-RAILS-58429",
+  "project_code": "OSS-BLIND-R4",
+  "work_item_id": "RAILS-58429",
+  "work_item_level": "M",
+  "mode": "validate",
+  "strict": true,
+  "status": "completed",
+  "stop_at": "strict_gate",
+  "current_stage": null,
+  "created_at": "2026-09-22T02:50:58+00:00",
+  "updated_at": "2026-09-22T05:13:35+00:00",
+  "run_dir": "assets/projects/OSS-BLIND-R4/work_items/RAILS-58429/.generation/runs/RUN-R4-RAILS-58429",
+  "stages": [
+    {
+      "stage_id": "requirement_intake",
+      "order": 0,
+      "kind": "validation",
+      "status": "succeeded",
+      "attempts": 1,
+      "required_files": [
+        "inputs/requirement_summary.md",
+        "inputs/source_manifest.json"
+      ],
+      "input_fingerprint": "42106f5eb9a088073efe043a10493c30e854bdfaf1a6f19c2585bd11613f5d5c",
+      "started_at": "2026-09-22T02:50:58+00:00",
+      "completed_at": "2026-09-22T02:50:58+00:00",
+      "last_exit_code": 0,
+      "log_path": "assets/projects/OSS-BLIND-R4/work_items/RAILS-58429/.generation/runs/RUN-R4-RAILS-58429/logs/requirement_intake.log"
+    },
+    {
+      "stage_id": "evidence",
+      "order": 1,
+      "kind": "checkpoint",
+      "status": "succeeded",
+      "attempts": 1,
+      "required_files": [
+        "evidence/evidence_inventory.json"
+      ],
+      "input_fingerprint": "1308fd27e7cb2a434903f1a824337232d5ab70f3bc5219236eff8e157f3821ac",
+      "started_at": "2026-09-22T02:55:26+00:00",
+      "completed_at": "2026-09-22T02:55:26+00:00",
+      "last_exit_code": 0,
+      "log_path": "assets/projects/OSS-BLIND-R4/work_items/RAILS-58429/.generation/runs/RUN-R4-RAILS-58429/logs/evidence.log"
+    },
+    {
+      "stage_id": "reasoning",
+      "order": 2,
+      "kind": "validation",
+      "status": "succeeded",
+      "attempts": 1,
+      "required_files": [
+        "analysis/reasoning_pack.json"
+      ],
+      "input_fingerprint": "d2c395497884bcd743d97284f0911d9617fce3c963d69f30b70c1ab1bd779f0b",
+      "started_at": "2026-09-22T02:55:26+00:00",
+      "completed_at": "2026-09-22T02:55:26+00:00",
+      "last_exit_code": 0,
+      "log_path": "assets/projects/OSS-BLIND-R4/work_items/RAILS-58429/.generation/runs/RUN-R4-RAILS-58429/logs/reasoning.log"
+    },
+    {
+      "stage_id": "structured_prd",
+      "order": 3,
+      "kind": "validation",
+      "status": "succeeded",
+      "attempts": 2,
+      "required_files": [
+        "structured_prd/structured_prd.json"
+      ],
+      "input_fingerprint": "1657d8395399c905a1eb04f20ffbcd03c8a79853c7edc822bc5fbbfec06ab11b",
+      "started_at": "2026-09-22T03:21:59+00:00",
+      "completed_at": "2026-09-22T03:21:59+00:00",
+      "last_exit_code": 0,
+      "log_path": "assets/projects/OSS-BLIND-R4/work_items/RAILS-58429/.generation/runs/RUN-R4-RAILS-58429/logs/structured_prd.log"
+    },
+    {
+      "stage_id": "coverage",
+      "order": 4,
+      "kind": "validation",
+      "status": "succeeded",
+      "attempts": 1,
+      "required_files": [
+        "coverage/coverage_matrix.json"
+      ],
+      "input_fingerprint": "1136a2478fcb266d6a4ca84b35cce8fd1e593dd0939399457f1f46cdfd3c0c8f",
+      "started_at": "2026-09-22T03:21:59+00:00",
+      "completed_at": "2026-09-22T03:21:59+00:00",
+      "last_exit_code": 0,
+      "log_path": "assets/projects/OSS-BLIND-R4/work_items/RAILS-58429/.generation/runs/RUN-R4-RAILS-58429/logs/coverage.log"
+    },
+    {
+      "stage_id": "testability_gate",
+      "order": 5,
+      "kind": "validation",
+      "status": "succeeded",
+      "attempts": 2,
+      "required_files": [
+        "acceptance/testability_gate.json"
+      ],
+      "input_fingerprint": "d35778a41f4f653c5ad77af9f7d93e4c84de2af50df7a73e028c79c478f080c6",
+      "started_at": "2026-09-22T05:01:28+00:00",
+      "completed_at": "2026-09-22T05:01:28+00:00",
+      "last_exit_code": 0,
+      "log_path": "assets/projects/OSS-BLIND-R4/work_items/RAILS-58429/.generation/runs/RUN-R4-RAILS-58429/logs/testability_gate.log"
+    },
+    {
+      "stage_id": "acceptance_examples",
+      "order": 6,
+      "kind": "validation",
+      "status": "succeeded",
+      "attempts": 2,
+      "required_files": [
+        "acceptance/acceptance_examples.json"
+      ],
+      "input_fingerprint": "e9fb5e91fd21f7b95de2160c921fcfc1e66cb987d6edfe0ccd1fe973783c8b49",
+      "started_at": "2026-09-22T05:01:28+00:00",
+      "completed_at": "2026-09-22T05:01:28+00:00",
+      "last_exit_code": 0,
+      "log_path": "assets/projects/OSS-BLIND-R4/work_items/RAILS-58429/.generation/runs/RUN-R4-RAILS-58429/logs/acceptance_examples.log"
+    },
+    {
+      "stage_id": "case_plan",
+      "order": 7,
+      "kind": "validation",
+      "status": "succeeded",
+      "attempts": 3,
+      "required_files": [
+        "testcases/case_plan.json"
+      ],
+      "input_fingerprint": "d0119e44d05190c9ea1ea42be03c52099ffdcac77eef5529f994623eec8dc920",
+      "started_at": "2026-09-22T05:01:28+00:00",
+      "completed_at": "2026-09-22T05:01:28+00:00",
+      "last_exit_code": 0,
+      "log_path": "assets/projects/OSS-BLIND-R4/work_items/RAILS-58429/.generation/runs/RUN-R4-RAILS-58429/logs/case_plan.log"
+    },
+    {
+      "stage_id": "testcases",
+      "order": 8,
+      "kind": "validation",
+      "status": "succeeded",
+      "attempts": 2,
+      "required_files": [
+        "testcases/testcases_main.md",
+        "testcases/testpoints.json"
+      ],
+      "input_fingerprint": "207eca69716a9438970b168d4bb68db16b6780d9edd811d5514c0a7aecc879c0",
+      "started_at": "2026-09-22T05:01:28+00:00",
+      "completed_at": "2026-09-22T05:01:28+00:00",
+      "last_exit_code": 0,
+      "log_path": "assets/projects/OSS-BLIND-R4/work_items/RAILS-58429/.generation/runs/RUN-R4-RAILS-58429/logs/testcases.log"
+    },
+    {
+      "stage_id": "traceability",
+      "order": 9,
+      "kind": "validation",
+      "status": "succeeded",
+      "attempts": 2,
+      "required_files": [
+        "traceability/coverage_first_traceability.json"
+      ],
+      "input_fingerprint": "32ae6250709f00aad7cc398a4539c53cf13a71998268fe2895792c56407f3c8f",
+      "started_at": "2026-09-22T05:01:28+00:00",
+      "completed_at": "2026-09-22T05:01:28+00:00",
+      "last_exit_code": 0,
+      "log_path": "assets/projects/OSS-BLIND-R4/work_items/RAILS-58429/.generation/runs/RUN-R4-RAILS-58429/logs/traceability.log"
+    },
+    {
+      "stage_id": "review",
+      "order": 10,
+      "kind": "validation",
+      "status": "skipped",
+      "attempts": 4,
+      "required_files": [
+        "reviews/review_record.md",
+        "reviews/quality_report.json",
+        "design/design_feedback.json"
+      ],
+      "input_fingerprint": "38c0863ecfebf124b91d8efb749ac39a9b232a0877f388ded87789fc6177c220",
+      "started_at": "2026-09-22T05:13:35+00:00",
+      "completed_at": "2026-09-22T05:13:35+00:00",
+      "last_exit_code": 0,
+      "log_path": "assets/projects/OSS-BLIND-R4/work_items/RAILS-58429/.generation/runs/RUN-R4-RAILS-58429/logs/review.log"
+    },
+    {
+      "stage_id": "strict_gate",
+      "order": 11,
+      "kind": "gate",
+      "status": "succeeded",
+      "attempts": 1,
+      "required_files": [
+        "manifest.json"
+      ],
+      "input_fingerprint": "5c297652c832d3e0f94b7d806947aea29b6ec50e4f71cd7b2270f1d36c7d9c1e",
+      "started_at": "2026-09-22T05:13:35+00:00",
+      "completed_at": "2026-09-22T05:13:35+00:00",
+      "last_exit_code": 0,
+      "log_path": "assets/projects/OSS-BLIND-R4/work_items/RAILS-58429/.generation/runs/RUN-R4-RAILS-58429/logs/strict_gate.log"
+    }
+  ],
+  "last_error": null
+}

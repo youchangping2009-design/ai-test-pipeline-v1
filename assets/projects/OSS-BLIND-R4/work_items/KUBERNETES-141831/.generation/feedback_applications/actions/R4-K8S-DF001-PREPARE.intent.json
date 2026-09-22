@@ -1,0 +1,25 @@
+{
+  "schema_version": "1.1.0",
+  "record_type": "intent",
+  "action_id": "R4-K8S-DF001-PREPARE",
+  "request_sha256": "a1f215feae3b9c380475ff6fa970c758eec24c8fcf2107bae8a7717a9bd3d0ee",
+  "execution_context": {
+    "run_id": "RUN-R4-KUBERNETES-141831",
+    "actor": "codex-agent",
+    "provider": "openai"
+  },
+  "action": {
+    "action_id": "R4-K8S-DF001-PREPARE",
+    "action_type": "prepare_feedback_application",
+    "stage_id": "design_feedback_application",
+    "feedback_id": "DF-001",
+    "arguments": {
+      "targets": [
+        "acceptance/testability_gate.json",
+        "acceptance/testability_gate.md"
+      ]
+    },
+    "expected_outcome": "冻结 Kubernetes DF-001 修改前的 Testability Gate JSON 与 Markdown"
+  },
+  "recorded_at": "2026-09-22T04:46:21.548453+00:00"
+}

@@ -1,0 +1,314 @@
+# Structured PRD
+
+## project_info
+```json
+{
+  "project_code": "OSS-BLIND",
+  "project_name": "Appsmith",
+  "business_line": "Databricks 数据源连接",
+  "prd_source": "inputs/requirement_summary.md",
+  "prd_version": "github-pr-42244"
+}
+```
+
+## requirement_info
+```json
+{
+  "requirement_title": "Databricks JDBC URL validation",
+  "requirement_background": "Databricks 插件允许使用自定义 JDBC URL 建立数据源连接，需要在连接前确认 URL 归属于 Databricks 协议，避免错误 URL 被其他 JDBC driver 接管。",
+  "requirement_goal": "仅通过 Databricks JDBC driver 处理合法 URL，并在 URL 或 driver 拒绝连接时失败关闭，同时保持既有合法配置兼容。",
+  "explicit_rules": [
+    {
+      "rule_id": "APP-R001",
+      "rule_text": "在真正创建连接之前检查 JDBC URL 是否属于 Databricks JDBC 协议；非法协议必须返回 The JDBC URL must use the jdbc:databricks:// protocol.",
+      "rule_type": "interaction_rule",
+      "priority": "high",
+      "applies_to": "Databricks 数据源连接创建",
+      "source_scope": "primary_requirement",
+      "fidelity_points": [
+        {
+          "constraint_type": "copy_constraint",
+          "value": "The JDBC URL must use the jdbc:databricks:// protocol.",
+          "must_preserve": true,
+          "forbidden_rewrites": ["连接创建错误"]
+        }
+      ]
+    },
+    {
+      "rule_id": "APP-R002",
+      "rule_text": "已知合法协议前缀为 jdbc:databricks://；有效且自定义的 Databricks URL 应继续进入连接流程。",
+      "rule_type": "data_rule",
+      "priority": "high",
+      "applies_to": "JDBC URL",
+      "source_scope": "primary_requirement",
+      "fidelity_points": [
+        {
+          "constraint_type": "field_constraint",
+          "value": "jdbc:databricks://",
+          "must_preserve": true,
+          "forbidden_rewrites": ["任意 jdbc 协议"]
+        }
+      ]
+    },
+    {
+      "rule_id": "APP-R003",
+      "rule_text": "Databricks 连接由明确的 Databricks JDBC driver 处理，非 Databricks URL 被拒绝后不得转交其他已注册 driver。",
+      "rule_type": "data_rule",
+      "priority": "high",
+      "applies_to": "JDBC driver 选择",
+      "source_scope": "primary_requirement"
+    },
+    {
+      "rule_id": "APP-R004",
+      "rule_text": "Databricks driver 拒绝 URL 或未返回连接时，应按失败分支返回连接创建错误并停止后续连接行为，不得判为成功。",
+      "rule_type": "fallback_constraint",
+      "priority": "high",
+      "applies_to": "连接失败处理",
+      "source_scope": "primary_requirement",
+      "atomic_assertions": [
+        "Databricks JDBC driver 拒绝 URL 时返回连接创建错误并停止后续连接行为。",
+        "Databricks JDBC driver 返回空连接时返回连接创建错误并停止后续连接行为。"
+      ]
+    },
+    {
+      "rule_id": "APP-R005",
+      "rule_text": "有效 URL 建立连接时，JDBC 属性 UID 固定为 token，PWD 使用当前 token 值；既有合法配置及安装升级场景行为不变。",
+      "rule_type": "state_constraint",
+      "priority": "high",
+      "applies_to": "既有合法 Databricks 配置",
+      "source_scope": "primary_requirement"
+    },
+    {
+      "rule_id": "APP-R006",
+      "rule_text": "JDBC URL 校验失败发生在连接创建阶段，不应先对错误目标建立网络连接。",
+      "rule_type": "interaction_rule",
+      "priority": "high",
+      "applies_to": "连接创建顺序",
+      "source_scope": "primary_requirement"
+    }
+  ],
+  "scope": {
+    "in_scope": [
+      "Databricks 自定义 JDBC URL 的协议归属校验",
+      "Databricks driver 接受或拒绝连接的结果",
+      "既有合法 URL 与认证信息的兼容性",
+      "失败时不回退到其他 JDBC driver"
+    ],
+    "out_of_scope": [
+      "其他数据库插件",
+      "新增 API 字段、数据库迁移、埋点或持久化配置",
+      "依据未公开安全公告推断攻击方式或影响版本",
+      "自动迁移历史配置"
+    ]
+  }
+}
+```
+
+## pages
+```json
+[
+  {
+    "page_name": "Databricks 数据源配置页",
+    "page_desc": "创建或编辑 Databricks 数据源并发起连接创建的产品入口。",
+    "sections": [
+      {
+        "section_name": "连接配置区",
+        "section_type": "other",
+        "section_desc": "填写 JDBC URL 与 token，并触发 Databricks 连接创建。",
+        "module_name": "Databricks 数据源连接",
+        "feature_names": ["自定义 JDBC URL 连接创建"],
+        "section_rules": [
+          "连接创建前完成 URL 协议归属校验",
+          "合法 URL 由 Databricks JDBC driver 处理",
+          "拒绝或无连接结果时失败关闭"
+        ],
+        "field_refs": ["jdbc_url", "token"],
+        "field_rule_table_refs": []
+      }
+    ]
+  }
+]
+```
+
+## modules
+```json
+[
+  {
+    "module_name": "Databricks 数据源连接",
+    "module_desc": "处理自定义 JDBC URL 校验、driver 选择和连接创建结果。",
+    "features": [
+      {
+        "feature_name": "自定义 JDBC URL 连接创建",
+        "page_name": "Databricks 数据源配置页",
+        "section_name": "连接配置区",
+        "feature_desc": "在创建连接前校验 URL，由 Databricks driver 建连，并对拒绝或空连接结果失败关闭。",
+        "actors": ["Databricks 数据源配置用户"],
+        "entry_conditions": [
+          "用户可创建或编辑 Appsmith Databricks 数据源",
+          "用户已准备 JDBC URL 与当前 token 认证信息"
+        ],
+        "rules": [
+          {
+            "rule_id": "APP-FR001",
+            "name": "连接前校验协议归属",
+            "rule_type": "state_constraint",
+            "field_name": "jdbc_url",
+            "condition": "发起 Databricks 连接创建",
+            "rule_text": "先确认 JDBC URL 属于 Databricks JDBC 协议，再尝试建立网络连接。"
+          },
+          {
+            "rule_id": "APP-FR002",
+            "name": "合法 Databricks URL 前缀",
+            "rule_type": "value_constraint",
+            "field_name": "jdbc_url",
+            "formats": ["jdbc:databricks://"],
+            "rule_text": "已知合法协议前缀为 jdbc:databricks://。"
+          },
+          {
+            "rule_id": "APP-FR003",
+            "name": "固定使用 Databricks driver",
+            "rule_type": "data_source_constraint",
+            "target": "connection_driver",
+            "data_source": "Databricks JDBC driver",
+            "rule_text": "不得将非 Databricks URL 转交其他已注册 JDBC driver。"
+          },
+          {
+            "rule_id": "APP-FR004",
+            "name": "连接失败关闭",
+            "rule_type": "state_constraint",
+            "target": "connection_result",
+            "condition": "URL 被校验或 driver 拒绝，或 driver 未返回连接",
+            "value": "连接创建失败",
+            "rule_text": "返回连接创建错误，停止后续连接行为，不得判为成功。"
+          },
+          {
+            "rule_id": "APP-FR005",
+            "name": "既有合法配置兼容",
+            "rule_type": "state_constraint",
+            "target": "existing_valid_configuration",
+            "condition": "JDBC URL 合法且认证信息有效",
+            "value": "继续正常建立连接",
+            "rule_text": "自定义合法 URL 与既有有效安装、升级场景行为不回退。"
+          }
+        ],
+        "fields": [
+          {
+            "name": "jdbc_url",
+            "display_name": "JDBC URL",
+            "type": "text_input",
+            "data_type": "string",
+            "required": false,
+            "editable": true,
+            "formats": ["jdbc:databricks://"]
+          },
+          {
+            "name": "token",
+            "display_name": "Token",
+            "type": "credential_input",
+            "data_type": "string",
+            "required": false,
+            "editable": true
+          }
+        ],
+        "field_definitions": [],
+        "field_rules": [
+          {
+            "rule_id": "APP-FIELD-001",
+            "field_name": "jdbc_url",
+            "display_name": "JDBC URL",
+            "rule_text": "已知合法协议前缀为 jdbc:databricks://，非 Databricks JDBC URL 在连接前被拒绝。",
+            "rule_type": "format_constraint",
+            "expected_effects": [
+              "合法 URL 进入 Databricks driver 连接流程",
+              "非法 URL 不建立网络连接且不回退其他 driver"
+            ],
+            "must_cover": true
+          }
+        ],
+        "field_rule_tables": [],
+        "visible_elements": ["JDBC URL 输入项", "Token 认证信息"],
+        "interactive_entries": ["发起连接创建"],
+        "abnormal_scenarios": [
+          "非 Databricks JDBC URL",
+          "Databricks driver 明确拒绝 URL",
+          "Databricks driver 未返回连接"
+        ],
+        "boundary_scenarios": [
+          "空 URL、纯空白 URL、大小写变化和前导空白的处理规则待确认",
+          "URL 参数、端口、catalog/schema 和编码边界的判定责任待确认",
+          "失败错误码和用户可见文案待确认"
+        ],
+        "dependencies": ["Databricks JDBC driver", "当前 token 认证信息"]
+      }
+    ]
+  }
+]
+```
+
+## flows
+```json
+[
+  {
+    "flow_id": "APP-FLOW-001",
+    "flow_name": "Databricks 数据源连接创建",
+    "flow_type": "main_flow",
+    "business_goal": "仅使用 Databricks JDBC driver 为合法 URL 创建连接，并对非法或被拒绝的连接失败关闭。",
+    "trigger": "用户在 Databricks 数据源配置中发起连接创建",
+    "preconditions": ["已填写 JDBC URL 与当前 token 认证信息"],
+    "steps": [
+      {
+        "step_no": 1,
+        "step_name": "校验 JDBC URL",
+        "step_type": "data_validation",
+        "module_name": "Databricks 数据源连接",
+        "feature_name": "自定义 JDBC URL 连接创建",
+        "actor": "系统",
+        "action": "在创建网络连接前检查 JDBC URL 是否属于 Databricks JDBC 协议",
+        "input_data": ["jdbc_url"],
+        "expected_result": "非 Databricks URL 被拒绝；合法 jdbc:databricks:// URL 可进入下一步",
+        "checkpoints": ["错误目标尚未建立网络连接"],
+        "rule_references": ["APP-R001", "APP-R002", "APP-R006"],
+        "is_key_checkpoint": true
+      },
+      {
+        "step_no": 2,
+        "step_name": "调用 Databricks driver",
+        "step_type": "operation",
+        "module_name": "Databricks 数据源连接",
+        "feature_name": "自定义 JDBC URL 连接创建",
+        "actor": "系统",
+        "action": "使用 Databricks JDBC driver 和当前 token 尝试建立连接",
+        "input_data": ["jdbc_url", "token"],
+        "expected_result": "连接仅由 Databricks driver 处理，不回退到其他已注册 driver",
+        "rule_references": ["APP-R003", "APP-R005"],
+        "is_key_checkpoint": true
+      },
+      {
+        "step_no": 3,
+        "step_name": "判定连接结果",
+        "step_type": "state_change",
+        "module_name": "Databricks 数据源连接",
+        "feature_name": "自定义 JDBC URL 连接创建",
+        "actor": "系统",
+        "action": "依据 Databricks driver 返回结果判定连接创建成功或失败",
+        "expected_result": "driver 接受并返回连接时成功；拒绝或未返回连接时返回错误且不得判为成功",
+        "state_transition": {"from": "连接创建中", "to": "连接成功或连接失败"},
+        "rule_references": ["APP-R004"],
+        "is_key_checkpoint": true
+      }
+    ],
+    "postconditions": [
+      "合法配置可建立 Databricks 连接",
+      "非法或被拒绝的配置不产生成功连接"
+    ],
+    "success_criteria": [
+      "非 Databricks URL 在连接前被拒绝且未转交其他 driver",
+      "有效 jdbc:databricks:// URL 使用当前认证信息进入 Databricks driver 连接流程",
+      "driver 拒绝或未返回连接时结果为连接创建失败"
+    ],
+    "related_modules": ["Databricks 数据源连接"],
+    "priority": "P0",
+    "tags": ["jdbc-url", "fail-closed", "compatibility"]
+  }
+]
+```

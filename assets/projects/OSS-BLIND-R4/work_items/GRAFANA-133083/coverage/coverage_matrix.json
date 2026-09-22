@@ -1,0 +1,568 @@
+{
+  "project_code": "OSS-BLIND-R4",
+  "work_item_id": "GRAFANA-133083",
+  "generated_at": "2026-09-22T11:21:41",
+  "generated_from": [
+    "structured_prd/structured_prd.json",
+    "analysis/reasoning_pack.json"
+  ],
+  "entries": [
+    {
+      "coverage_id": "COV-EX-0001",
+      "coverage_type": "happy_path_combo",
+      "coverage_level": "business",
+      "emit_mode": "main_testcase",
+      "source_origin": "explicit_rule",
+      "source_scope": "primary_requirement",
+      "source_type": "structured_rule",
+      "title": "写入使用显式 Serializer。",
+      "page_name": "APIStore 资源序列化",
+      "section_name": "序列化选择与对象往返",
+      "module_name": "APIStore 序列化",
+      "feature_name": "资源序列化选择",
+      "field_name": "",
+      "rule_name": "GRA-R001",
+      "atomic_assertion_index": 1,
+      "priority": "high",
+      "rationale": "该规则来自 Structured PRD 的显式需求规则，必须在 Coverage 中保留。",
+      "planned_assertions": [
+        "写入使用显式 Serializer。"
+      ],
+      "structured_refs": [
+        "requirement_info.explicit_rules.GRA-R001"
+      ],
+      "reasoning_refs": []
+    },
+    {
+      "coverage_id": "COV-EX-0002",
+      "coverage_type": "happy_path_combo",
+      "coverage_level": "business",
+      "emit_mode": "main_testcase",
+      "source_origin": "explicit_rule",
+      "source_scope": "primary_requirement",
+      "source_type": "structured_rule",
+      "title": "单条读取使用显式 Serializer。",
+      "page_name": "APIStore 资源序列化",
+      "section_name": "序列化选择与对象往返",
+      "module_name": "APIStore 序列化",
+      "feature_name": "资源序列化选择",
+      "field_name": "",
+      "rule_name": "GRA-R001",
+      "atomic_assertion_index": 2,
+      "priority": "high",
+      "rationale": "该规则来自 Structured PRD 的显式需求规则，必须在 Coverage 中保留。",
+      "planned_assertions": [
+        "单条读取使用显式 Serializer。"
+      ],
+      "structured_refs": [
+        "requirement_info.explicit_rules.GRA-R001"
+      ],
+      "reasoning_refs": []
+    },
+    {
+      "coverage_id": "COV-EX-0003",
+      "coverage_type": "happy_path_combo",
+      "coverage_level": "business",
+      "emit_mode": "main_testcase",
+      "source_origin": "explicit_rule",
+      "source_scope": "primary_requirement",
+      "source_type": "structured_rule",
+      "title": "列表读取使用显式 Serializer。",
+      "page_name": "APIStore 资源序列化",
+      "section_name": "序列化选择与对象往返",
+      "module_name": "APIStore 序列化",
+      "feature_name": "资源序列化选择",
+      "field_name": "",
+      "rule_name": "GRA-R001",
+      "atomic_assertion_index": 3,
+      "priority": "high",
+      "rationale": "该规则来自 Structured PRD 的显式需求规则，必须在 Coverage 中保留。",
+      "planned_assertions": [
+        "列表读取使用显式 Serializer。"
+      ],
+      "structured_refs": [
+        "requirement_info.explicit_rules.GRA-R001"
+      ],
+      "reasoning_refs": []
+    },
+    {
+      "coverage_id": "COV-EX-0004",
+      "coverage_type": "happy_path_combo",
+      "coverage_level": "business",
+      "emit_mode": "main_testcase",
+      "source_origin": "explicit_rule",
+      "source_scope": "primary_requirement",
+      "source_type": "structured_rule",
+      "title": "watch 解码使用显式 Serializer。",
+      "page_name": "APIStore 资源序列化",
+      "section_name": "序列化选择与对象往返",
+      "module_name": "APIStore 序列化",
+      "feature_name": "资源序列化选择",
+      "field_name": "",
+      "rule_name": "GRA-R001",
+      "atomic_assertion_index": 4,
+      "priority": "high",
+      "rationale": "该规则来自 Structured PRD 的显式需求规则，必须在 Coverage 中保留。",
+      "planned_assertions": [
+        "watch 解码使用显式 Serializer。"
+      ],
+      "structured_refs": [
+        "requirement_info.explicit_rules.GRA-R001"
+      ],
+      "reasoning_refs": []
+    },
+    {
+      "coverage_id": "COV-EX-0005",
+      "coverage_type": "happy_path_combo",
+      "coverage_level": "business",
+      "emit_mode": "main_testcase",
+      "source_origin": "explicit_rule",
+      "source_scope": "primary_requirement",
+      "source_type": "structured_rule",
+      "title": "声明 GVK 的写入使用直接 JSON。",
+      "page_name": "APIStore 资源序列化",
+      "section_name": "序列化选择与对象往返",
+      "module_name": "APIStore 序列化",
+      "feature_name": "资源序列化选择",
+      "field_name": "",
+      "rule_name": "GRA-R002",
+      "atomic_assertion_index": 1,
+      "priority": "high",
+      "rationale": "该规则来自 Structured PRD 的显式需求规则，必须在 Coverage 中保留。",
+      "planned_assertions": [
+        "声明 GVK 的写入使用直接 JSON。"
+      ],
+      "structured_refs": [
+        "requirement_info.explicit_rules.GRA-R002"
+      ],
+      "reasoning_refs": []
+    },
+    {
+      "coverage_id": "COV-EX-0006",
+      "coverage_type": "happy_path_combo",
+      "coverage_level": "business",
+      "emit_mode": "main_testcase",
+      "source_origin": "explicit_rule",
+      "source_scope": "primary_requirement",
+      "source_type": "structured_rule",
+      "title": "其他 GVK 的写入使用已配置 codec。",
+      "page_name": "APIStore 资源序列化",
+      "section_name": "序列化选择与对象往返",
+      "module_name": "APIStore 序列化",
+      "feature_name": "资源序列化选择",
+      "field_name": "",
+      "rule_name": "GRA-R002",
+      "atomic_assertion_index": 2,
+      "priority": "high",
+      "rationale": "该规则来自 Structured PRD 的显式需求规则，必须在 Coverage 中保留。",
+      "planned_assertions": [
+        "其他 GVK 的写入使用已配置 codec。"
+      ],
+      "structured_refs": [
+        "requirement_info.explicit_rules.GRA-R002"
+      ],
+      "reasoning_refs": []
+    },
+    {
+      "coverage_id": "COV-EX-0007",
+      "coverage_type": "happy_path_combo",
+      "coverage_level": "business",
+      "emit_mode": "main_testcase",
+      "source_origin": "explicit_rule",
+      "source_scope": "primary_requirement",
+      "source_type": "structured_rule",
+      "title": "单条读取使用已配置 codec。",
+      "page_name": "APIStore 资源序列化",
+      "section_name": "序列化选择与对象往返",
+      "module_name": "APIStore 序列化",
+      "feature_name": "资源序列化选择",
+      "field_name": "",
+      "rule_name": "GRA-R003",
+      "atomic_assertion_index": 1,
+      "priority": "high",
+      "rationale": "该规则来自 Structured PRD 的显式需求规则，必须在 Coverage 中保留。",
+      "planned_assertions": [
+        "单条读取使用已配置 codec。"
+      ],
+      "structured_refs": [
+        "requirement_info.explicit_rules.GRA-R003"
+      ],
+      "reasoning_refs": []
+    },
+    {
+      "coverage_id": "COV-EX-0008",
+      "coverage_type": "happy_path_combo",
+      "coverage_level": "business",
+      "emit_mode": "main_testcase",
+      "source_origin": "explicit_rule",
+      "source_scope": "primary_requirement",
+      "source_type": "structured_rule",
+      "title": "列表读取使用已配置 codec。",
+      "page_name": "APIStore 资源序列化",
+      "section_name": "序列化选择与对象往返",
+      "module_name": "APIStore 序列化",
+      "feature_name": "资源序列化选择",
+      "field_name": "",
+      "rule_name": "GRA-R003",
+      "atomic_assertion_index": 2,
+      "priority": "high",
+      "rationale": "该规则来自 Structured PRD 的显式需求规则，必须在 Coverage 中保留。",
+      "planned_assertions": [
+        "列表读取使用已配置 codec。"
+      ],
+      "structured_refs": [
+        "requirement_info.explicit_rules.GRA-R003"
+      ],
+      "reasoning_refs": []
+    },
+    {
+      "coverage_id": "COV-EX-0009",
+      "coverage_type": "happy_path_combo",
+      "coverage_level": "business",
+      "emit_mode": "main_testcase",
+      "source_origin": "explicit_rule",
+      "source_scope": "primary_requirement",
+      "source_type": "structured_rule",
+      "title": "watch 解码使用已配置 codec。",
+      "page_name": "APIStore 资源序列化",
+      "section_name": "序列化选择与对象往返",
+      "module_name": "APIStore 序列化",
+      "feature_name": "资源序列化选择",
+      "field_name": "",
+      "rule_name": "GRA-R003",
+      "atomic_assertion_index": 3,
+      "priority": "high",
+      "rationale": "该规则来自 Structured PRD 的显式需求规则，必须在 Coverage 中保留。",
+      "planned_assertions": [
+        "watch 解码使用已配置 codec。"
+      ],
+      "structured_refs": [
+        "requirement_info.explicit_rules.GRA-R003"
+      ],
+      "reasoning_refs": []
+    },
+    {
+      "coverage_id": "COV-EX-0010",
+      "coverage_type": "happy_path_combo",
+      "coverage_level": "business",
+      "emit_mode": "main_testcase",
+      "source_origin": "explicit_rule",
+      "source_scope": "primary_requirement",
+      "source_type": "structured_rule",
+      "title": "datasource 通用 JSON Serializer 往返处理后必须保留对象 GVK。",
+      "page_name": "APIStore 资源序列化",
+      "section_name": "序列化选择与对象往返",
+      "module_name": "APIStore 序列化",
+      "feature_name": "资源序列化选择",
+      "field_name": "",
+      "rule_name": "GRA-R004",
+      "atomic_assertion_index": null,
+      "priority": "high",
+      "rationale": "该规则来自 Structured PRD 的显式需求规则，必须在 Coverage 中保留。",
+      "planned_assertions": [
+        "datasource 通用 JSON Serializer 往返处理后必须保留对象 GVK。"
+      ],
+      "structured_refs": [
+        "requirement_info.explicit_rules.GRA-R004"
+      ],
+      "reasoning_refs": []
+    },
+    {
+      "coverage_id": "COV-EX-0011",
+      "coverage_type": "happy_path_combo",
+      "coverage_level": "business",
+      "emit_mode": "main_testcase",
+      "source_origin": "explicit_rule",
+      "source_scope": "primary_requirement",
+      "source_type": "structured_rule",
+      "title": "同一个 Go 类型承载不同 GVK 时，持久化和读回后仍能区分目标 GVK。",
+      "page_name": "APIStore 资源序列化",
+      "section_name": "序列化选择与对象往返",
+      "module_name": "APIStore 序列化",
+      "feature_name": "资源序列化选择",
+      "field_name": "",
+      "rule_name": "GRA-R005",
+      "atomic_assertion_index": null,
+      "priority": "high",
+      "rationale": "该规则来自 Structured PRD 的显式需求规则，必须在 Coverage 中保留。",
+      "planned_assertions": [
+        "同一个 Go 类型承载不同 GVK 时，持久化和读回后仍能区分目标 GVK。"
+      ],
+      "structured_refs": [
+        "requirement_info.explicit_rules.GRA-R005"
+      ],
+      "reasoning_refs": []
+    },
+    {
+      "coverage_id": "COV-EX-0012",
+      "coverage_type": "happy_path_combo",
+      "coverage_level": "business",
+      "emit_mode": "main_testcase",
+      "source_origin": "explicit_rule",
+      "source_scope": "primary_requirement",
+      "source_type": "structured_rule",
+      "title": "当前对象解码沿用原请求 context。",
+      "page_name": "APIStore 资源序列化",
+      "section_name": "序列化选择与对象往返",
+      "module_name": "APIStore 序列化",
+      "feature_name": "Watch 上下文传播",
+      "field_name": "",
+      "rule_name": "GRA-R006",
+      "atomic_assertion_index": 1,
+      "priority": "high",
+      "rationale": "该规则来自 Structured PRD 的显式需求规则，必须在 Coverage 中保留。",
+      "planned_assertions": [
+        "当前对象解码沿用原请求 context。"
+      ],
+      "structured_refs": [
+        "requirement_info.explicit_rules.GRA-R006"
+      ],
+      "reasoning_refs": []
+    },
+    {
+      "coverage_id": "COV-EX-0013",
+      "coverage_type": "happy_path_combo",
+      "coverage_level": "business",
+      "emit_mode": "main_testcase",
+      "source_origin": "explicit_rule",
+      "source_scope": "primary_requirement",
+      "source_type": "structured_rule",
+      "title": "历史对象解码沿用原请求 context。",
+      "page_name": "APIStore 资源序列化",
+      "section_name": "序列化选择与对象往返",
+      "module_name": "APIStore 序列化",
+      "feature_name": "Watch 上下文传播",
+      "field_name": "",
+      "rule_name": "GRA-R006",
+      "atomic_assertion_index": 2,
+      "priority": "high",
+      "rationale": "该规则来自 Structured PRD 的显式需求规则，必须在 Coverage 中保留。",
+      "planned_assertions": [
+        "历史对象解码沿用原请求 context。"
+      ],
+      "structured_refs": [
+        "requirement_info.explicit_rules.GRA-R006"
+      ],
+      "reasoning_refs": []
+    },
+    {
+      "coverage_id": "COV-EX-0014",
+      "coverage_type": "happy_path_combo",
+      "coverage_level": "business",
+      "emit_mode": "main_testcase",
+      "source_origin": "explicit_rule",
+      "source_scope": "primary_requirement",
+      "source_type": "structured_rule",
+      "title": "请求取消能够终止相关解码工作。",
+      "page_name": "APIStore 资源序列化",
+      "section_name": "序列化选择与对象往返",
+      "module_name": "APIStore 序列化",
+      "feature_name": "Watch 上下文传播",
+      "field_name": "",
+      "rule_name": "GRA-R006",
+      "atomic_assertion_index": 3,
+      "priority": "high",
+      "rationale": "该规则来自 Structured PRD 的显式需求规则，必须在 Coverage 中保留。",
+      "planned_assertions": [
+        "请求取消能够终止相关解码工作。"
+      ],
+      "structured_refs": [
+        "requirement_info.explicit_rules.GRA-R006"
+      ],
+      "reasoning_refs": []
+    },
+    {
+      "coverage_id": "COV-AI-0015",
+      "coverage_type": "happy_path_combo",
+      "coverage_level": "audit_only",
+      "emit_mode": "audit_item",
+      "source_origin": "ai_reasoning",
+      "source_type": "edge_case",
+      "title": "未配置 Serializer 时，声明 GVK 与非声明 GVK 分别遵循既定写入路径。",
+      "page_name": "",
+      "section_name": "",
+      "module_name": "",
+      "feature_name": "",
+      "field_name": "",
+      "priority": "medium",
+      "rationale": "该项来自 Reasoning Pack，保留为风险/边界审计，不自动升级为产品验收主用例。",
+      "planned_assertions": [
+        "审计并确认：未配置 Serializer 时，声明 GVK 与非声明 GVK 分别遵循既定写入路径。"
+      ],
+      "structured_refs": [],
+      "reasoning_refs": [
+        "EC-001"
+      ]
+    },
+    {
+      "coverage_id": "COV-EX-0020",
+      "coverage_type": "happy_path_combo",
+      "coverage_level": "business",
+      "emit_mode": "main_testcase",
+      "source_origin": "ai_reasoning",
+      "source_scope": "primary_requirement",
+      "source_type": "coverage_candidate",
+      "title": "写入时显式 Serializer 接收原请求 context。",
+      "page_name": "APIStore 资源序列化",
+      "section_name": "序列化选择与对象往返",
+      "module_name": "APIStore 序列化",
+      "feature_name": "资源序列化选择",
+      "field_name": "",
+      "rule_name": "ER-002",
+      "atomic_assertion_index": 1,
+      "priority": "high",
+      "rationale": "该规则来自已批准需求摘要与 Reasoning Pack，并已通过 TG-012 回灌为正式可测决策。",
+      "planned_assertions": [
+        "写入调用的显式 Serializer 接收原请求 context。"
+      ],
+      "structured_refs": [],
+      "reasoning_refs": [
+        "ER-002"
+      ]
+    },
+    {
+      "coverage_id": "COV-EX-0021",
+      "coverage_type": "happy_path_combo",
+      "coverage_level": "business",
+      "emit_mode": "main_testcase",
+      "source_origin": "ai_reasoning",
+      "source_scope": "primary_requirement",
+      "source_type": "coverage_candidate",
+      "title": "单条读取时显式 Serializer 接收原请求 context。",
+      "page_name": "APIStore 资源序列化",
+      "section_name": "序列化选择与对象往返",
+      "module_name": "APIStore 序列化",
+      "feature_name": "资源序列化选择",
+      "field_name": "",
+      "rule_name": "ER-002",
+      "atomic_assertion_index": 2,
+      "priority": "high",
+      "rationale": "该规则来自已批准需求摘要与 Reasoning Pack，并已通过 TG-012 回灌为正式可测决策。",
+      "planned_assertions": [
+        "单条读取调用的显式 Serializer 接收原请求 context。"
+      ],
+      "structured_refs": [],
+      "reasoning_refs": [
+        "ER-002"
+      ]
+    },
+    {
+      "coverage_id": "COV-EX-0022",
+      "coverage_type": "happy_path_combo",
+      "coverage_level": "business",
+      "emit_mode": "main_testcase",
+      "source_origin": "ai_reasoning",
+      "source_scope": "primary_requirement",
+      "source_type": "coverage_candidate",
+      "title": "列表读取时显式 Serializer 接收原请求 context。",
+      "page_name": "APIStore 资源序列化",
+      "section_name": "序列化选择与对象往返",
+      "module_name": "APIStore 序列化",
+      "feature_name": "资源序列化选择",
+      "field_name": "",
+      "rule_name": "ER-002",
+      "atomic_assertion_index": 3,
+      "priority": "high",
+      "rationale": "该规则来自已批准需求摘要与 Reasoning Pack，并已通过 TG-012 回灌为正式可测决策。",
+      "planned_assertions": [
+        "列表读取调用的显式 Serializer 接收原请求 context。"
+      ],
+      "structured_refs": [],
+      "reasoning_refs": [
+        "ER-002"
+      ]
+    },
+    {
+      "coverage_id": "COV-AI-0016",
+      "coverage_type": "happy_path_combo",
+      "coverage_level": "audit_only",
+      "emit_mode": "audit_item",
+      "source_origin": "ai_reasoning",
+      "source_type": "business_risk",
+      "title": "默认分支若发生变化，可能破坏既有资源的存储格式兼容性。",
+      "page_name": "",
+      "section_name": "",
+      "module_name": "",
+      "feature_name": "",
+      "field_name": "",
+      "priority": "medium",
+      "rationale": "该项来自 Reasoning Pack，保留为风险/边界审计，不自动升级为产品验收主用例。",
+      "planned_assertions": [
+        "审计并确认：默认分支若发生变化，可能破坏既有资源的存储格式兼容性。"
+      ],
+      "structured_refs": [],
+      "reasoning_refs": [
+        "RISK-001"
+      ]
+    },
+    {
+      "coverage_id": "COV-AI-0017",
+      "coverage_type": "happy_path_combo",
+      "coverage_level": "audit_only",
+      "emit_mode": "audit_item",
+      "source_origin": "ai_reasoning",
+      "source_type": "business_risk",
+      "title": "列表或 watch 中混合版本/GVK 的对象可能暴露选择不一致。",
+      "page_name": "",
+      "section_name": "",
+      "module_name": "",
+      "feature_name": "",
+      "field_name": "",
+      "priority": "medium",
+      "rationale": "该项来自 Reasoning Pack，保留为风险/边界审计，不自动升级为产品验收主用例。",
+      "planned_assertions": [
+        "审计并确认：列表或 watch 中混合版本/GVK 的对象可能暴露选择不一致。"
+      ],
+      "structured_refs": [],
+      "reasoning_refs": [
+        "RISK-002"
+      ]
+    },
+    {
+      "coverage_id": "COV-AI-0018",
+      "coverage_type": "happy_path_combo",
+      "coverage_level": "audit_only",
+      "emit_mode": "audit_item",
+      "source_origin": "ai_reasoning",
+      "source_type": "business_risk",
+      "title": "错误的上下文传播可能导致取消失效、资源泄漏或请求结束后继续解码。",
+      "page_name": "",
+      "section_name": "",
+      "module_name": "",
+      "feature_name": "",
+      "field_name": "",
+      "priority": "medium",
+      "rationale": "该项来自 Reasoning Pack，保留为风险/边界审计，不自动升级为产品验收主用例。",
+      "planned_assertions": [
+        "审计并确认：错误的上下文传播可能导致取消失效、资源泄漏或请求结束后继续解码。"
+      ],
+      "structured_refs": [],
+      "reasoning_refs": [
+        "RISK-003"
+      ]
+    },
+    {
+      "coverage_id": "COV-AI-0019",
+      "coverage_type": "happy_path_combo",
+      "coverage_level": "audit_only",
+      "emit_mode": "audit_item",
+      "source_origin": "ai_reasoning",
+      "source_type": "business_risk",
+      "title": "显式 Serializer 与 codec 的职责边界不清时可能出现双重转换。",
+      "page_name": "",
+      "section_name": "",
+      "module_name": "",
+      "feature_name": "",
+      "field_name": "",
+      "priority": "medium",
+      "rationale": "该项来自 Reasoning Pack，保留为风险/边界审计，不自动升级为产品验收主用例。",
+      "planned_assertions": [
+        "审计并确认：显式 Serializer 与 codec 的职责边界不清时可能出现双重转换。"
+      ],
+      "structured_refs": [],
+      "reasoning_refs": [
+        "RISK-004"
+      ]
+    }
+  ]
+}

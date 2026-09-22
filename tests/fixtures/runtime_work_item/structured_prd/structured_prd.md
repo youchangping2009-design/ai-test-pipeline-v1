@@ -1,0 +1,2944 @@
+# Structured PRD
+
+## project_info
+```json
+{
+  "project_code": "FIXTURE",
+  "project_name": "云挂机",
+  "business_line": "云手机/云挂机",
+  "prd_source": "FIXTURE-RUNTIME-001 已批准需求摘要、来源清单、6张图片证据与已校验 reasoning pack",
+  "prd_version": "FIXTURE-RUNTIME-001"
+}
+```
+
+## requirement_info
+```json
+{
+  "requirement_title": "云挂机免费体验3",
+  "requirement_background": "通过免费体验云机提升新增用户云挂机覆盖率；更新云机SDK，并调整云机画面尺寸，以改善画质、流畅度及脚本兼容。",
+  "requirement_goal": "改版C端云挂机购买页，扩展B端商品与宣传内容配置，并保留所有图片明确的字段、边界、数据来源和待确认语义。",
+  "explicit_rules": [
+    {
+      "rule_id": "TECH-001",
+      "rule_text": "云机SDK目标版本、发布范围和回滚方案未明确。",
+      "rule_type": "coverage_constraint",
+      "priority": "high",
+      "applies_to": "FIXTURE-RUNTIME-001",
+      "notes": "由当前FIXTURE-RUNTIME-001上游证据按可测性主题归一化，不改变feature rules原文。"
+    },
+    {
+      "rule_id": "TECH-002",
+      "rule_text": "画面模糊和卡顿缺少帧率、延迟、码率、丢帧或主观评分阈值。",
+      "rule_type": "coverage_constraint",
+      "priority": "high",
+      "applies_to": "FIXTURE-RUNTIME-001",
+      "notes": "由当前FIXTURE-RUNTIME-001上游证据按可测性主题归一化，不改变feature rules原文。"
+    },
+    {
+      "rule_id": "TECH-003",
+      "rule_text": "720*1280尚未明确是系统、渲染还是客户端展示分辨率。",
+      "rule_type": "coverage_constraint",
+      "priority": "high",
+      "applies_to": "FIXTURE-RUNTIME-001",
+      "notes": "由当前FIXTURE-RUNTIME-001上游证据按可测性主题归一化，不改变feature rules原文。"
+    },
+    {
+      "rule_id": "TECH-004",
+      "rule_text": "脚本类型、接入方式及与720*1280的兼容范围未明确。",
+      "rule_type": "coverage_constraint",
+      "priority": "high",
+      "applies_to": "FIXTURE-RUNTIME-001",
+      "notes": "由当前FIXTURE-RUNTIME-001上游证据按可测性主题归一化，不改变feature rules原文。"
+    },
+    {
+      "rule_id": "TECH-005",
+      "rule_text": "库存校验固定频率、并发下单、重复告警及恢复展示口径未明确。",
+      "rule_type": "coverage_constraint",
+      "priority": "high",
+      "applies_to": "FIXTURE-RUNTIME-001",
+      "notes": "由当前FIXTURE-RUNTIME-001上游证据按可测性主题归一化，不改变feature rules原文。"
+    },
+    {
+      "rule_id": "TECH-006",
+      "rule_text": "MVP历史覆盖、破冰率和后续购买数据属于活动复盘背景，不是本期功能验收。",
+      "rule_type": "coverage_constraint",
+      "priority": "high",
+      "applies_to": "FIXTURE-RUNTIME-001",
+      "notes": "由当前FIXTURE-RUNTIME-001上游证据按可测性主题归一化，不改变feature rules原文。"
+    },
+    {
+      "rule_id": "TECH-007",
+      "rule_text": "商品编辑弹窗和商品顺序编辑弹窗未展开，不能补写未知交互。",
+      "rule_type": "coverage_constraint",
+      "priority": "high",
+      "applies_to": "FIXTURE-RUNTIME-001",
+      "notes": "由当前FIXTURE-RUNTIME-001上游证据按可测性主题归一化，不改变feature rules原文。"
+    },
+    {
+      "rule_id": "TECH-008",
+      "rule_text": "既有下拉字段完整枚举、默认值及未展示数据源不在当前输入范围内。",
+      "rule_type": "coverage_constraint",
+      "priority": "high",
+      "applies_to": "FIXTURE-RUNTIME-001",
+      "notes": "由当前FIXTURE-RUNTIME-001上游证据按可测性主题归一化，不改变feature rules原文。"
+    }
+  ],
+  "scope": {
+    "in_scope": [
+      "SDK更新与720*1280画面尺寸",
+      "C端云挂机购买页全新版/常规版展示",
+      "B端云手机商品管理",
+      "B端宣传内容管理"
+    ],
+    "out_of_scope": [
+      "未展示的编辑弹窗和排序弹窗细节",
+      "未给出的SDK版本及画质流畅度量化阈值",
+      "库存校验频率、并发和恢复口径"
+    ]
+  }
+}
+```
+
+## pages
+```json
+[
+  {
+    "page_name": "需求介绍",
+    "page_desc": "来源于 FIXTURE-RUNTIME-001 图片 inputs/images/FIXTURE-RUNTIME-001-01_副本.png。",
+    "sections": [
+      {
+        "section_name": "云机免费体验背景",
+        "section_type": "other",
+        "section_desc": "承接需求介绍的云机免费体验背景图片证据。",
+        "module_name": "云机技术与需求背景",
+        "feature_names": [
+          "云机免费体验背景"
+        ],
+        "section_rules": [
+          "图片只展示活动复盘链接名称，没有可访问URL或正文",
+          "背景数据没有定义免费体验资格、时长、次数或活动周期"
+        ],
+        "field_refs": [],
+        "field_rule_table_refs": []
+      },
+      {
+        "section_name": "云机质量及尺寸问题",
+        "section_type": "other",
+        "section_desc": "承接需求介绍的云机质量及尺寸问题图片证据。",
+        "module_name": "云机技术与需求背景",
+        "feature_names": [
+          "云机质量及尺寸问题"
+        ],
+        "section_rules": [
+          "图片明确描述画面模糊和卡顿不流畅",
+          "图片将镜像和SDK版本过旧列为定位原因",
+          "图片没有提供SDK目标版本、脚本类型或画质量化验收标准"
+        ],
+        "field_refs": [
+          "cloud_machine_resolution"
+        ],
+        "field_rule_table_refs": []
+      },
+      {
+        "section_name": "需求目的",
+        "section_type": "other",
+        "section_desc": "承接需求介绍的需求目的图片证据。",
+        "module_name": "云机技术与需求背景",
+        "feature_names": [
+          "需求目的"
+        ],
+        "section_rules": [
+          "免费体验目标为提升云机覆盖率",
+          "更新SDK目标为改善画面模糊和卡顿",
+          "画面尺寸固定为720*1280以支持脚本接入"
+        ],
+        "field_refs": [],
+        "field_rule_table_refs": []
+      }
+    ]
+  },
+  {
+    "page_name": "云挂机购买页",
+    "page_desc": "来源于 FIXTURE-RUNTIME-001 图片 inputs/images/FIXTURE-RUNTIME-001-02_副本.png。",
+    "sections": [
+      {
+        "section_name": "版本Tab",
+        "section_type": "tab_area",
+        "section_desc": "承接云挂机购买页的版本Tab图片证据。",
+        "module_name": "云挂机购买页",
+        "feature_names": [
+          "版本Tab"
+        ],
+        "section_rules": [
+          "本图所有区域改动同时适用于全新版Tab和常规版Tab"
+        ],
+        "field_refs": [
+          "cloud_machine_version"
+        ],
+        "field_rule_table_refs": []
+      },
+      {
+        "section_name": "宣传图占位",
+        "section_type": "display_area",
+        "section_desc": "承接云挂机购买页的宣传图占位图片证据。",
+        "module_name": "云挂机购买页",
+        "feature_names": [
+          "宣传图占位"
+        ],
+        "section_rules": [
+          "宣传图建议尺寸为1008*160",
+          "宣传图来自后台编辑宣传内容中的宣传图片",
+          "首屏普通区商品列表需展示两个及以上商品"
+        ],
+        "field_refs": [
+          "promotion_image"
+        ],
+        "field_rule_table_refs": []
+      },
+      {
+        "section_name": "宣传区",
+        "section_type": "display_area",
+        "section_desc": "承接云挂机购买页的宣传区图片证据。",
+        "module_name": "云挂机购买页",
+        "feature_names": [
+          "宣传区"
+        ],
+        "section_rules": [
+          "宣传区展示宣传口号和性能参数",
+          "两个字段来自后台编辑宣传内容",
+          "后台每项可配置20个字符",
+          "C端超过一行时换行展示"
+        ],
+        "field_refs": [
+          "promotion_slogan",
+          "performance_parameters"
+        ],
+        "field_rule_table_refs": []
+      },
+      {
+        "section_name": "特价专区",
+        "section_type": "display_area",
+        "section_desc": "承接云挂机购买页的特价专区图片证据。",
+        "module_name": "云挂机购买页",
+        "feature_names": [
+          "特价专区"
+        ],
+        "section_rules": [
+          "后台未配置特殊区商品时隐藏特价专区",
+          "展示现价、原价、商品名称、商品标签类型",
+          "横向首屏展示2.5个，最多展示4个商品"
+        ],
+        "field_refs": [
+          "special_product_list"
+        ],
+        "field_rule_table_refs": []
+      },
+      {
+        "section_name": "普通商品列表",
+        "section_type": "list_area",
+        "section_desc": "承接云挂机购买页的普通商品列表图片证据。",
+        "module_name": "云挂机购买页",
+        "feature_names": [
+          "普通商品列表"
+        ],
+        "section_rules": [
+          "区域名称为限时购买",
+          "纵向展示，商品数量沿用之前逻辑",
+          "展示现价、原价、商品名称、商品标签类型",
+          "其余逻辑不变"
+        ],
+        "field_refs": [
+          "regular_product_list"
+        ],
+        "field_rule_table_refs": []
+      }
+    ]
+  },
+  {
+    "page_name": "盒子管理后台-云手机商品管理",
+    "page_desc": "来源于 FIXTURE-RUNTIME-001 图片 inputs/images/FIXTURE-RUNTIME-001-03-01_副本.png。",
+    "sections": [
+      {
+        "section_name": "云手机商品类型筛选",
+        "section_type": "filter_area",
+        "section_desc": "承接盒子管理后台-云手机商品管理的云手机商品类型筛选图片证据。",
+        "module_name": "云手机商品管理",
+        "feature_names": [
+          "云手机商品类型筛选"
+        ],
+        "section_rules": [],
+        "field_refs": [
+          "cloud_phone_product_type"
+        ],
+        "field_rule_table_refs": []
+      },
+      {
+        "section_name": "商品列表",
+        "section_type": "list_area",
+        "section_desc": "承接盒子管理后台-云手机商品管理的商品列表图片证据。",
+        "module_name": "云手机商品管理",
+        "feature_names": [
+          "商品列表"
+        ],
+        "section_rules": [
+          "示例行多数单元格显示未配置",
+          "单天服务价格显示系统生成"
+        ],
+        "field_refs": [
+          "product_list_columns"
+        ],
+        "field_rule_table_refs": []
+      },
+      {
+        "section_name": "操作区",
+        "section_type": "action_area",
+        "section_desc": "承接盒子管理后台-云手机商品管理的操作区图片证据。",
+        "module_name": "云手机商品管理",
+        "feature_names": [
+          "操作区"
+        ],
+        "section_rules": [
+          "点击添加展示商品配置界面",
+          "原编辑宣传图按钮更名为编辑宣传内容",
+          "点击编辑宣传内容展示宣传配置界面",
+          "列表增加商品区字段且数据来源于配置"
+        ],
+        "field_refs": [],
+        "field_rule_table_refs": []
+      },
+      {
+        "section_name": "商品编辑弹窗",
+        "section_type": "edit_modal",
+        "section_desc": "承接盒子管理后台-云手机商品管理的商品编辑弹窗图片证据。",
+        "module_name": "云手机商品管理",
+        "feature_names": [
+          "商品编辑弹窗"
+        ],
+        "section_rules": [
+          "只能确认编辑入口存在，不能确认编辑字段与添加表单完全同构"
+        ],
+        "field_refs": [
+          "product_edit_fields"
+        ],
+        "field_rule_table_refs": []
+      },
+      {
+        "section_name": "商品顺序编辑弹窗",
+        "section_type": "sort_modal",
+        "section_desc": "承接盒子管理后台-云手机商品管理的商品顺序编辑弹窗图片证据。",
+        "module_name": "云手机商品管理",
+        "feature_names": [
+          "商品顺序编辑弹窗"
+        ],
+        "section_rules": [
+          "只能确认排序入口，排序对象、交互和保存规则待确认"
+        ],
+        "field_refs": [],
+        "field_rule_table_refs": []
+      }
+    ]
+  },
+  {
+    "page_name": "盒子管理后台-云手机商品管理-添加",
+    "page_desc": "来源于 FIXTURE-RUNTIME-001 图片 inputs/images/FIXTURE-RUNTIME-001-03-02_副本.png。",
+    "sections": [
+      {
+        "section_name": "商品添加表单",
+        "section_type": "edit_modal",
+        "section_desc": "承接盒子管理后台-云手机商品管理-添加的商品添加表单图片证据。",
+        "module_name": "云手机商品管理",
+        "feature_names": [
+          "商品添加表单"
+        ],
+        "section_rules": [
+          "仅将图片明确带红色星号的字段记录为必填",
+          "原价和现价沿用已有能力且数值限制大于0.00",
+          "状态可选开启或关闭，默认值未说明"
+        ],
+        "field_refs": [
+          "cloud_phone_product_type",
+          "cloud_machine_type",
+          "product_name",
+          "original_price",
+          "current_price",
+          "service_duration",
+          "product_region",
+          "in_box_sort_order",
+          "product_tag_type",
+          "display_users",
+          "user_purchase_limit",
+          "product_display_time",
+          "inventory_warning_threshold",
+          "purchase_alert_recipient",
+          "status"
+        ],
+        "field_rule_table_refs": []
+      },
+      {
+        "section_name": "商品区与库存规则说明表",
+        "section_type": "field_rule_table",
+        "section_desc": "承接盒子管理后台-云手机商品管理-添加的商品区与库存规则说明表图片证据。",
+        "module_name": "云手机商品管理",
+        "feature_names": [
+          "商品区与库存规则说明表"
+        ],
+        "section_rules": [
+          "库存充足时C端正常展示并分配云机",
+          "库存不足时C端隐藏商品、不分配云机并通知管理员"
+        ],
+        "field_refs": [
+          "product_configuration",
+          "inventory_warning_threshold"
+        ],
+        "field_rule_table_refs": [
+          "云手机商品添加字段说明",
+          "库存不足通知模板"
+        ]
+      }
+    ]
+  },
+  {
+    "page_name": "盒子管理后台-编辑宣传内容",
+    "page_desc": "来源于 FIXTURE-RUNTIME-001 图片 inputs/images/FIXTURE-RUNTIME-001-03-03_副本.png。",
+    "sections": [
+      {
+        "section_name": "宣传内容编辑表单",
+        "section_type": "edit_modal",
+        "section_desc": "承接盒子管理后台-编辑宣传内容的宣传内容编辑表单图片证据。",
+        "module_name": "宣传内容管理",
+        "feature_names": [
+          "宣传内容编辑表单"
+        ],
+        "section_rules": [
+          "云机类型、宣传图片、宣传口号和性能参数均带必填标识",
+          "最多额外新增1块内容，达到2条配置时禁用新增按钮",
+          "新增内容在C端全屏展示"
+        ],
+        "field_refs": [
+          "cloud_machine_type",
+          "promotion_image",
+          "promotion_slogan",
+          "performance_parameters"
+        ],
+        "field_rule_table_refs": []
+      },
+      {
+        "section_name": "宣传内容字段说明表",
+        "section_type": "field_rule_table",
+        "section_desc": "承接盒子管理后台-编辑宣传内容的宣传内容字段说明表图片证据。",
+        "module_name": "宣传内容管理",
+        "feature_names": [
+          "宣传内容字段说明表"
+        ],
+        "section_rules": [],
+        "field_refs": [
+          "promotion_content"
+        ],
+        "field_rule_table_refs": [
+          "编辑宣传内容字段说明"
+        ]
+      }
+    ]
+  },
+  {
+    "page_name": "云机技术调整结论",
+    "page_desc": "来源于 FIXTURE-RUNTIME-001 图片 inputs/images/FIXTURE-RUNTIME-001-04_副本.png。",
+    "sections": [
+      {
+        "section_name": "SDK与画面尺寸调整",
+        "section_type": "other",
+        "section_desc": "承接云机技术调整结论的SDK与画面尺寸调整图片证据。",
+        "module_name": "云机技术与需求背景",
+        "feature_names": [
+          "SDK与画面尺寸调整"
+        ],
+        "section_rules": [
+          "更新云机SDK",
+          "画面尺寸调整为720*1280"
+        ],
+        "field_refs": [
+          "cloud_machine_resolution"
+        ],
+        "field_rule_table_refs": []
+      }
+    ]
+  }
+]
+```
+
+## modules
+```json
+[
+  {
+    "module_name": "云机技术与需求背景",
+    "module_desc": "FIXTURE-RUNTIME-001 云机技术与需求背景结构化模块。",
+    "features": [
+      {
+        "feature_name": "云机免费体验背景",
+        "page_name": "需求介绍",
+        "section_name": "云机免费体验背景",
+        "feature_desc": "承接需求介绍的云机免费体验背景图片证据。",
+        "actors": [
+          "后台管理员"
+        ],
+        "entry_conditions": [
+          "已进入对应页面或具备对应配置权限。"
+        ],
+        "rules": [
+          "图片只展示活动复盘链接名称，没有可访问URL或正文",
+          "背景数据没有定义免费体验资格、时长、次数或活动周期"
+        ],
+        "fields": [],
+        "field_definitions": [],
+        "field_rules": [],
+        "field_rule_tables": [],
+        "visible_elements": [
+          "需求介绍标题",
+          "背景章节",
+          "两条免费领云机活动复盘链接名称"
+        ],
+        "interactive_entries": [
+          "免费领云机第二轮活动复盘链接",
+          "免费领云机第三轮活动复盘链接"
+        ],
+        "abnormal_scenarios": [],
+        "boundary_scenarios": [],
+        "dependencies": []
+      },
+      {
+        "feature_name": "云机质量及尺寸问题",
+        "page_name": "需求介绍",
+        "section_name": "云机质量及尺寸问题",
+        "feature_desc": "承接需求介绍的云机质量及尺寸问题图片证据。",
+        "actors": [
+          "后台管理员"
+        ],
+        "entry_conditions": [
+          "已进入对应页面或具备对应配置权限。"
+        ],
+        "rules": [
+          "图片明确描述画面模糊和卡顿不流畅",
+          "图片将镜像和SDK版本过旧列为定位原因"
+        ],
+        "fields": [
+          {
+            "field_name": "cloud_machine_resolution",
+            "display_name": "云机画面尺寸",
+            "data_type": "string",
+            "control_type": "display_text",
+            "required": false,
+            "editable": false,
+            "default_value": "720*1280",
+            "content_values": [
+              "720*1280"
+            ],
+            "data_source": "需求介绍图片",
+            "name": "cloud_machine_resolution",
+            "description": "来源于当前 FIXTURE-RUNTIME-001 图片证据。",
+            "type": "display_text",
+            "default": "720*1280",
+            "display": "云机画面尺寸"
+          }
+        ],
+        "field_definitions": [
+          {
+            "field_name": "cloud_machine_resolution",
+            "display_name": "云机画面尺寸",
+            "data_type": "string",
+            "control_type": "display_text",
+            "required": false,
+            "editable": false,
+            "default_value": "720*1280",
+            "content_values": [
+              "720*1280"
+            ],
+            "data_source": "需求介绍图片",
+            "name": "cloud_machine_resolution",
+            "description": "来源于当前 FIXTURE-RUNTIME-001 图片证据。",
+            "type": "display_text",
+            "default": "720*1280",
+            "display": "云机画面尺寸"
+          }
+        ],
+        "field_rules": [],
+        "field_rule_tables": [],
+        "visible_elements": [
+          "画质问题说明",
+          "脚本接入说明",
+          "720*1280尺寸说明"
+        ],
+        "interactive_entries": [],
+        "abnormal_scenarios": [],
+        "boundary_scenarios": [],
+        "dependencies": []
+      },
+      {
+        "feature_name": "需求目的",
+        "page_name": "需求介绍",
+        "section_name": "需求目的",
+        "feature_desc": "承接需求介绍的需求目的图片证据。",
+        "actors": [
+          "后台管理员"
+        ],
+        "entry_conditions": [
+          "已进入对应页面或具备对应配置权限。"
+        ],
+        "rules": [
+          "免费体验目标为提升云机覆盖率"
+        ],
+        "fields": [],
+        "field_definitions": [],
+        "field_rules": [],
+        "field_rule_tables": [],
+        "visible_elements": [
+          "目的章节",
+          "三项目的列表"
+        ],
+        "interactive_entries": [],
+        "abnormal_scenarios": [],
+        "boundary_scenarios": [],
+        "dependencies": []
+      },
+      {
+        "feature_name": "SDK与画面尺寸调整",
+        "page_name": "云机技术调整结论",
+        "section_name": "SDK与画面尺寸调整",
+        "feature_desc": "承接云机技术调整结论的SDK与画面尺寸调整图片证据。",
+        "actors": [
+          "后台管理员"
+        ],
+        "entry_conditions": [
+          "已进入对应页面或具备对应配置权限。"
+        ],
+        "rules": [
+          "更新云机SDK",
+          "画面尺寸调整为720*1280"
+        ],
+        "fields": [
+          {
+            "field_name": "cloud_machine_resolution",
+            "display_name": "云机画面尺寸",
+            "data_type": "string",
+            "control_type": "display_text",
+            "required": false,
+            "editable": false,
+            "default_value": "720*1280",
+            "content_values": [
+              "720*1280"
+            ],
+            "data_source": "技术调整结论图片",
+            "name": "cloud_machine_resolution",
+            "description": "来源于当前 FIXTURE-RUNTIME-001 图片证据。",
+            "type": "display_text",
+            "default": "720*1280",
+            "display": "云机画面尺寸"
+          }
+        ],
+        "field_definitions": [
+          {
+            "field_name": "cloud_machine_resolution",
+            "display_name": "云机画面尺寸",
+            "data_type": "string",
+            "control_type": "display_text",
+            "required": false,
+            "editable": false,
+            "default_value": "720*1280",
+            "content_values": [
+              "720*1280"
+            ],
+            "data_source": "技术调整结论图片",
+            "name": "cloud_machine_resolution",
+            "description": "来源于当前 FIXTURE-RUNTIME-001 图片证据。",
+            "type": "display_text",
+            "default": "720*1280",
+            "display": "云机画面尺寸"
+          }
+        ],
+        "field_rules": [],
+        "field_rule_tables": [],
+        "visible_elements": [
+          "更新云机SDK文字",
+          "画面尺寸调整为720*1280文字"
+        ],
+        "interactive_entries": [],
+        "abnormal_scenarios": [],
+        "boundary_scenarios": [],
+        "dependencies": []
+      }
+    ]
+  },
+  {
+    "module_name": "云挂机购买页",
+    "module_desc": "FIXTURE-RUNTIME-001 云挂机购买页结构化模块。",
+    "features": [
+      {
+        "feature_name": "版本Tab",
+        "page_name": "云挂机购买页",
+        "section_name": "版本Tab",
+        "feature_desc": "承接云挂机购买页的版本Tab图片证据。",
+        "actors": [
+          "C端用户"
+        ],
+        "entry_conditions": [
+          "已进入对应页面或具备对应配置权限。"
+        ],
+        "rules": [
+          "本图所有区域改动同时适用于全新版Tab和常规版Tab"
+        ],
+        "fields": [
+          {
+            "name": "cloud_machine_version",
+            "field_name": "cloud_machine_version",
+            "type": "tab",
+            "control_type": "tab",
+            "display_name": "云机版本Tab",
+            "description": "全新版与常规版两个版本入口；页面证据未表达其为可空提交字段。",
+            "required": false,
+            "display": "云机版本Tab"
+          }
+        ],
+        "field_definitions": [
+          {
+            "name": "cloud_machine_version",
+            "field_name": "cloud_machine_version",
+            "type": "tab",
+            "control_type": "tab",
+            "display_name": "云机版本Tab",
+            "description": "全新版与常规版两个版本入口；页面证据未表达其为可空提交字段。",
+            "required": false,
+            "display": "云机版本Tab"
+          }
+        ],
+        "field_rules": [],
+        "field_rule_tables": [],
+        "visible_elements": [
+          "常规版Tab",
+          "全新版Tab"
+        ],
+        "interactive_entries": [
+          "切换常规版Tab",
+          "切换全新版Tab"
+        ],
+        "abnormal_scenarios": [],
+        "boundary_scenarios": [],
+        "dependencies": []
+      },
+      {
+        "feature_name": "宣传图占位",
+        "page_name": "云挂机购买页",
+        "section_name": "宣传图占位",
+        "feature_desc": "承接云挂机购买页的宣传图占位图片证据。",
+        "actors": [
+          "C端用户"
+        ],
+        "entry_conditions": [
+          "已进入对应页面或具备对应配置权限。"
+        ],
+        "rules": [
+          "宣传图建议尺寸为1008*160",
+          "宣传图来自后台编辑宣传内容中的宣传图片",
+          "首屏普通区商品列表需展示两个及以上商品",
+          {
+            "name": "promotion_image_value_constraint",
+            "rule_type": "value_constraint",
+            "field_name": "promotion_image",
+            "formats": [
+              "建议尺寸1008*160"
+            ],
+            "rule_text": "promotion_image; value_constraint"
+          }
+        ],
+        "fields": [
+          {
+            "field_name": "promotion_image",
+            "display_name": "宣传图片",
+            "data_type": "image",
+            "control_type": "display_text",
+            "required": false,
+            "editable": false,
+            "format_rule": "建议尺寸1008*160",
+            "data_source": "盒子管理后台-云挂机-云手机商品管理-编辑宣传内容-宣传图片",
+            "name": "promotion_image",
+            "description": "来源于当前 FIXTURE-RUNTIME-001 图片证据。",
+            "type": "display_text",
+            "formats": [
+              "建议尺寸1008*160"
+            ],
+            "display": "宣传图片"
+          }
+        ],
+        "field_definitions": [
+          {
+            "field_name": "promotion_image",
+            "display_name": "宣传图片",
+            "data_type": "image",
+            "control_type": "display_text",
+            "required": false,
+            "editable": false,
+            "format_rule": "建议尺寸1008*160",
+            "data_source": "盒子管理后台-云挂机-云手机商品管理-编辑宣传内容-宣传图片",
+            "name": "promotion_image",
+            "description": "来源于当前 FIXTURE-RUNTIME-001 图片证据。",
+            "type": "display_text",
+            "formats": [
+              "建议尺寸1008*160"
+            ],
+            "display": "宣传图片"
+          }
+        ],
+        "field_rules": [
+          {
+            "rule_id": "",
+            "field_name": "promotion_image",
+            "rule_text": "promotion_image; value_constraint",
+            "rule_type": "range_constraint",
+            "must_cover": true
+          }
+        ],
+        "field_rule_tables": [],
+        "visible_elements": [
+          "宣传图占位框",
+          "轮播圆点"
+        ],
+        "interactive_entries": [],
+        "abnormal_scenarios": [],
+        "boundary_scenarios": [],
+        "dependencies": []
+      },
+      {
+        "feature_name": "宣传区",
+        "page_name": "云挂机购买页",
+        "section_name": "宣传区",
+        "feature_desc": "承接云挂机购买页的宣传区图片证据。",
+        "actors": [
+          "C端用户"
+        ],
+        "entry_conditions": [
+          "已进入对应页面或具备对应配置权限。"
+        ],
+        "rules": [
+          "宣传区展示宣传口号和性能参数",
+          "两个字段来自后台编辑宣传内容",
+          "后台每项可配置20个字符",
+          "C端超过一行时换行展示",
+          {
+            "name": "promotion_slogan_value_constraint",
+            "rule_type": "value_constraint",
+            "field_name": "promotion_slogan",
+            "formats": [
+              "C端超过一行时换行展示"
+            ],
+            "rule_text": "promotion_slogan; value_constraint",
+            "rule_id": "OBJ-001"
+          },
+          {
+            "name": "performance_parameters_value_constraint",
+            "rule_type": "value_constraint",
+            "field_name": "performance_parameters",
+            "formats": [
+              "C端超过一行时换行展示"
+            ],
+            "rule_text": "performance_parameters; value_constraint",
+            "rule_id": "OBJ-002"
+          }
+        ],
+        "fields": [
+          {
+            "field_name": "promotion_slogan",
+            "display_name": "宣传口号",
+            "data_type": "string",
+            "control_type": "display_text",
+            "required": false,
+            "editable": false,
+            "length_rule": "后台可配置20个字符",
+            "format_rule": "C端超过一行时换行展示",
+            "data_source": "编辑宣传内容-宣传口号",
+            "name": "promotion_slogan",
+            "description": "来源于当前 FIXTURE-RUNTIME-001 图片证据。",
+            "type": "display_text",
+            "formats": [
+              "C端超过一行时换行展示"
+            ],
+            "display": "宣传口号"
+          },
+          {
+            "field_name": "performance_parameters",
+            "display_name": "性能参数",
+            "data_type": "string",
+            "control_type": "display_text",
+            "required": false,
+            "editable": false,
+            "length_rule": "后台可配置20个字符",
+            "format_rule": "C端超过一行时换行展示",
+            "data_source": "编辑宣传内容-性能参数",
+            "name": "performance_parameters",
+            "description": "来源于当前 FIXTURE-RUNTIME-001 图片证据。",
+            "type": "display_text",
+            "formats": [
+              "C端超过一行时换行展示"
+            ],
+            "display": "性能参数"
+          }
+        ],
+        "field_definitions": [
+          {
+            "field_name": "promotion_slogan",
+            "display_name": "宣传口号",
+            "data_type": "string",
+            "control_type": "display_text",
+            "required": false,
+            "editable": false,
+            "length_rule": "后台可配置20个字符",
+            "format_rule": "C端超过一行时换行展示",
+            "data_source": "编辑宣传内容-宣传口号",
+            "name": "promotion_slogan",
+            "description": "来源于当前 FIXTURE-RUNTIME-001 图片证据。",
+            "type": "display_text",
+            "formats": [
+              "C端超过一行时换行展示"
+            ],
+            "display": "宣传口号"
+          },
+          {
+            "field_name": "performance_parameters",
+            "display_name": "性能参数",
+            "data_type": "string",
+            "control_type": "display_text",
+            "required": false,
+            "editable": false,
+            "length_rule": "后台可配置20个字符",
+            "format_rule": "C端超过一行时换行展示",
+            "data_source": "编辑宣传内容-性能参数",
+            "name": "performance_parameters",
+            "description": "来源于当前 FIXTURE-RUNTIME-001 图片证据。",
+            "type": "display_text",
+            "formats": [
+              "C端超过一行时换行展示"
+            ],
+            "display": "性能参数"
+          }
+        ],
+        "field_rules": [
+          {
+            "rule_id": "",
+            "field_name": "promotion_slogan",
+            "rule_text": "promotion_slogan; value_constraint",
+            "rule_type": "range_constraint",
+            "must_cover": true
+          },
+          {
+            "rule_id": "",
+            "field_name": "performance_parameters",
+            "rule_text": "performance_parameters; value_constraint",
+            "rule_type": "range_constraint",
+            "must_cover": true
+          }
+        ],
+        "field_rule_tables": [],
+        "visible_elements": [
+          "宣传口号文案",
+          "性能参数文案"
+        ],
+        "interactive_entries": [],
+        "abnormal_scenarios": [],
+        "boundary_scenarios": [],
+        "dependencies": []
+      },
+      {
+        "feature_name": "特价专区",
+        "page_name": "云挂机购买页",
+        "section_name": "特价专区",
+        "feature_desc": "承接云挂机购买页的特价专区图片证据。",
+        "actors": [
+          "C端用户"
+        ],
+        "entry_conditions": [
+          "已进入对应页面或具备对应配置权限。"
+        ],
+        "rules": [
+          "后台未配置特殊区商品时隐藏特价专区",
+          "展示现价、原价、商品名称、商品标签类型",
+          "横向首屏展示2.5个，最多展示4个商品",
+          "最多展示4个商品",
+          {
+            "name": "special_product_list_conditional_visibility",
+            "rule_type": "conditional_visibility",
+            "field_name": "special_product_list",
+            "visible_when": "后台未配置特殊区商品时隐藏",
+            "rule_text": "后台未配置特殊区商品时隐藏",
+            "rule_id": "OBJ-003"
+          },
+          {
+            "name": "special_product_list_value_constraint",
+            "rule_type": "value_constraint",
+            "field_name": "special_product_list",
+            "formats": [
+              "横向展示，首屏2.5个"
+            ],
+            "rule_text": "special_product_list; value_constraint"
+          }
+        ],
+        "fields": [
+          {
+            "field_name": "special_product_list",
+            "display_name": "特殊区商品列表",
+            "data_type": "array",
+            "control_type": "display_text",
+            "required": false,
+            "editable": false,
+            "content_values": [
+              "现价",
+              "原价",
+              "商品名称",
+              "商品标签类型"
+            ],
+            "format_rule": "横向展示，首屏2.5个",
+            "length_rule": "最多4个商品",
+            "data_source": "盒子管理后台-云挂机-云手机商品管理",
+            "conditional_visibility": "后台未配置特殊区商品时隐藏",
+            "name": "special_product_list",
+            "description": "来源于当前 FIXTURE-RUNTIME-001 图片证据。",
+            "type": "display_text",
+            "visible_when": "后台未配置特殊区商品时隐藏",
+            "formats": [
+              "横向展示，首屏2.5个"
+            ],
+            "display": "特殊区商品列表"
+          }
+        ],
+        "field_definitions": [
+          {
+            "field_name": "special_product_list",
+            "display_name": "特殊区商品列表",
+            "data_type": "array",
+            "control_type": "display_text",
+            "required": false,
+            "editable": false,
+            "content_values": [
+              "现价",
+              "原价",
+              "商品名称",
+              "商品标签类型"
+            ],
+            "format_rule": "横向展示，首屏2.5个",
+            "length_rule": "最多4个商品",
+            "data_source": "盒子管理后台-云挂机-云手机商品管理",
+            "conditional_visibility": "后台未配置特殊区商品时隐藏",
+            "name": "special_product_list",
+            "description": "来源于当前 FIXTURE-RUNTIME-001 图片证据。",
+            "type": "display_text",
+            "visible_when": "后台未配置特殊区商品时隐藏",
+            "formats": [
+              "横向展示，首屏2.5个"
+            ],
+            "display": "特殊区商品列表"
+          }
+        ],
+        "field_rules": [
+          {
+            "rule_id": "FR-云挂机购买页-特价专区-01",
+            "field_name": "special_product_list",
+            "display_name": "特殊区商品列表",
+            "rule_text": "最多展示4个商品",
+            "rule_type": "other",
+            "must_cover": true
+          },
+          {
+            "rule_id": "",
+            "field_name": "special_product_list",
+            "rule_text": "后台未配置特殊区商品时隐藏",
+            "rule_type": "conditional_visibility_rule",
+            "must_cover": true
+          },
+          {
+            "rule_id": "",
+            "field_name": "special_product_list",
+            "rule_text": "special_product_list; value_constraint",
+            "rule_type": "range_constraint",
+            "must_cover": true
+          }
+        ],
+        "field_rule_tables": [],
+        "visible_elements": [
+          "特价专区标题",
+          "横向商品卡片",
+          "商品标签",
+          "现价",
+          "原价"
+        ],
+        "interactive_entries": [],
+        "abnormal_scenarios": [],
+        "boundary_scenarios": [],
+        "dependencies": []
+      },
+      {
+        "feature_name": "普通商品列表",
+        "page_name": "云挂机购买页",
+        "section_name": "普通商品列表",
+        "feature_desc": "承接云挂机购买页的普通商品列表图片证据。",
+        "actors": [
+          "C端用户"
+        ],
+        "entry_conditions": [
+          "已进入对应页面或具备对应配置权限。"
+        ],
+        "rules": [
+          "区域名称为限时购买",
+          "纵向展示，商品数量沿用之前逻辑",
+          {
+            "name": "regular_product_list_value_constraint",
+            "rule_type": "value_constraint",
+            "field_name": "regular_product_list",
+            "formats": [
+              "纵向展示"
+            ],
+            "rule_text": "regular_product_list; value_constraint"
+          }
+        ],
+        "fields": [
+          {
+            "field_name": "regular_product_list",
+            "display_name": "普通区商品列表",
+            "data_type": "array",
+            "control_type": "display_text",
+            "required": false,
+            "editable": false,
+            "content_values": [
+              "现价",
+              "原价",
+              "商品名称",
+              "商品标签类型"
+            ],
+            "format_rule": "纵向展示",
+            "data_source": "盒子管理后台-云挂机-云手机商品管理",
+            "name": "regular_product_list",
+            "description": "来源于当前 FIXTURE-RUNTIME-001 图片证据。",
+            "type": "display_text",
+            "formats": [
+              "纵向展示"
+            ],
+            "display": "普通区商品列表"
+          }
+        ],
+        "field_definitions": [
+          {
+            "field_name": "regular_product_list",
+            "display_name": "普通区商品列表",
+            "data_type": "array",
+            "control_type": "display_text",
+            "required": false,
+            "editable": false,
+            "content_values": [
+              "现价",
+              "原价",
+              "商品名称",
+              "商品标签类型"
+            ],
+            "format_rule": "纵向展示",
+            "data_source": "盒子管理后台-云挂机-云手机商品管理",
+            "name": "regular_product_list",
+            "description": "来源于当前 FIXTURE-RUNTIME-001 图片证据。",
+            "type": "display_text",
+            "formats": [
+              "纵向展示"
+            ],
+            "display": "普通区商品列表"
+          }
+        ],
+        "field_rules": [
+          {
+            "rule_id": "",
+            "field_name": "regular_product_list",
+            "rule_text": "regular_product_list; value_constraint",
+            "rule_type": "range_constraint",
+            "must_cover": true
+          }
+        ],
+        "field_rule_tables": [],
+        "visible_elements": [
+          "限时购买标题",
+          "纵向商品列表",
+          "商品名称",
+          "原价",
+          "现价"
+        ],
+        "interactive_entries": [],
+        "abnormal_scenarios": [],
+        "boundary_scenarios": [],
+        "dependencies": []
+      }
+    ]
+  },
+  {
+    "module_name": "云手机商品管理",
+    "module_desc": "FIXTURE-RUNTIME-001 云手机商品管理结构化模块。",
+    "features": [
+      {
+        "feature_name": "云手机商品类型筛选",
+        "page_name": "盒子管理后台-云手机商品管理",
+        "section_name": "云手机商品类型筛选",
+        "feature_desc": "承接盒子管理后台-云手机商品管理的云手机商品类型筛选图片证据。",
+        "actors": [
+          "后台管理员"
+        ],
+        "entry_conditions": [
+          "已进入对应页面或具备对应配置权限。"
+        ],
+        "rules": [
+          "云"
+        ],
+        "fields": [
+          {
+            "field_name": "cloud_phone_product_type",
+            "display_name": "云手机商品类型",
+            "data_type": "enum",
+            "control_type": "select_single",
+            "required": false,
+            "editable": true,
+            "default_value": "玩心盒子",
+            "enum_values": [
+              "玩心盒子"
+            ],
+            "name": "cloud_phone_product_type",
+            "description": "来源于当前 FIXTURE-RUNTIME-001 图片证据。",
+            "type": "select_single",
+            "default": "玩心盒子",
+            "display": "云手机商品类型"
+          }
+        ],
+        "field_definitions": [
+          {
+            "field_name": "cloud_phone_product_type",
+            "display_name": "云手机商品类型",
+            "data_type": "enum",
+            "control_type": "select_single",
+            "required": false,
+            "editable": true,
+            "default_value": "玩心盒子",
+            "enum_values": [
+              "玩心盒子"
+            ],
+            "name": "cloud_phone_product_type",
+            "description": "来源于当前 FIXTURE-RUNTIME-001 图片证据。",
+            "type": "select_single",
+            "default": "玩心盒子",
+            "display": "云手机商品类型"
+          }
+        ],
+        "field_rules": [],
+        "field_rule_tables": [],
+        "visible_elements": [
+          "云手机商品类型下拉框"
+        ],
+        "interactive_entries": [
+          "选择云手机商品类型"
+        ],
+        "abnormal_scenarios": [],
+        "boundary_scenarios": [],
+        "dependencies": []
+      },
+      {
+        "feature_name": "商品列表",
+        "page_name": "盒子管理后台-云手机商品管理",
+        "section_name": "商品列表",
+        "feature_desc": "承接盒子管理后台-云手机商品管理的商品列表图片证据。",
+        "actors": [
+          "后台管理员"
+        ],
+        "entry_conditions": [
+          "已进入对应页面或具备对应配置权限。"
+        ],
+        "rules": [
+          "示例行多数单元格显示未配置"
+        ],
+        "fields": [
+          {
+            "name": "product_list_columns",
+            "field_name": "product_list_columns",
+            "type": "list_columns",
+            "control_type": "list_columns",
+            "display_name": "商品列表列",
+            "description": "承接图片可见的商品列表列头和操作列。",
+            "required": false,
+            "display": "商品列表列"
+          }
+        ],
+        "field_definitions": [
+          {
+            "name": "product_list_columns",
+            "field_name": "product_list_columns",
+            "type": "list_columns",
+            "control_type": "list_columns",
+            "display_name": "商品列表列",
+            "description": "承接图片可见的商品列表列头和操作列。",
+            "required": false,
+            "display": "商品列表列"
+          }
+        ],
+        "field_rules": [],
+        "field_rule_tables": [],
+        "visible_elements": [
+          "ID列",
+          "云手机商品类型列",
+          "商品类型列",
+          "云机类型列",
+          "商品展示时间列",
+          "服务时长列",
+          "原价列",
+          "现价列",
+          "盒子内价格列",
+          "商品区列",
+          "盒子内排序列",
+          "单天服务价格列",
+          "展示用户列",
+          "状态列",
+          "备注列",
+          "操作列"
+        ],
+        "interactive_entries": [
+          "点击操作列编辑入口",
+          "点击操作列删除入口"
+        ],
+        "abnormal_scenarios": [],
+        "boundary_scenarios": [],
+        "dependencies": []
+      },
+      {
+        "feature_name": "操作区",
+        "page_name": "盒子管理后台-云手机商品管理",
+        "section_name": "操作区",
+        "feature_desc": "承接盒子管理后台-云手机商品管理的操作区图片证据。",
+        "actors": [
+          "后台管理员"
+        ],
+        "entry_conditions": [
+          "已进入对应页面或具备对应配置权限。"
+        ],
+        "rules": [
+          "点击添加展示商品配置界面",
+          "原编辑宣传图按钮更名为编辑宣传内容"
+        ],
+        "fields": [],
+        "field_definitions": [],
+        "field_rules": [],
+        "field_rule_tables": [],
+        "visible_elements": [
+          "编辑商品顺序按钮",
+          "添加按钮",
+          "编辑宣传内容按钮",
+          "黄色说明便签"
+        ],
+        "interactive_entries": [
+          "点击编辑商品顺序",
+          "点击添加",
+          "点击编辑宣传内容"
+        ],
+        "abnormal_scenarios": [],
+        "boundary_scenarios": [],
+        "dependencies": []
+      },
+      {
+        "feature_name": "商品编辑弹窗",
+        "page_name": "盒子管理后台-云手机商品管理",
+        "section_name": "商品编辑弹窗",
+        "feature_desc": "承接盒子管理后台-云手机商品管理的商品编辑弹窗图片证据。",
+        "actors": [
+          "后台管理员"
+        ],
+        "entry_conditions": [
+          "已进入对应页面或具备对应配置权限。"
+        ],
+        "rules": [
+          "只能确认编辑入口存在，不能确认编辑字段与添加表单完全同构"
+        ],
+        "fields": [
+          {
+            "field_name": "product_edit_fields",
+            "display_name": "商品编辑字段集合",
+            "data_type": "other",
+            "control_type": "other",
+            "required": false,
+            "editable": true,
+            "name": "product_edit_fields",
+            "description": "来源于当前 FIXTURE-RUNTIME-001 图片证据。",
+            "type": "other",
+            "display": "商品编辑字段集合"
+          }
+        ],
+        "field_definitions": [
+          {
+            "field_name": "product_edit_fields",
+            "display_name": "商品编辑字段集合",
+            "data_type": "other",
+            "control_type": "other",
+            "required": false,
+            "editable": true,
+            "name": "product_edit_fields",
+            "description": "来源于当前 FIXTURE-RUNTIME-001 图片证据。",
+            "type": "other",
+            "display": "商品编辑字段集合"
+          }
+        ],
+        "field_rules": [],
+        "field_rule_tables": [],
+        "visible_elements": [
+          "操作列编辑文字入口"
+        ],
+        "interactive_entries": [
+          "点击编辑"
+        ],
+        "abnormal_scenarios": [],
+        "boundary_scenarios": [],
+        "dependencies": []
+      },
+      {
+        "feature_name": "商品顺序编辑弹窗",
+        "page_name": "盒子管理后台-云手机商品管理",
+        "section_name": "商品顺序编辑弹窗",
+        "feature_desc": "承接盒子管理后台-云手机商品管理的商品顺序编辑弹窗图片证据。",
+        "actors": [
+          "后台管理员"
+        ],
+        "entry_conditions": [
+          "已进入对应页面或具备对应配置权限。"
+        ],
+        "rules": [
+          "只能确认排序入口，排序对象、交互和保存规则待确认"
+        ],
+        "fields": [],
+        "field_definitions": [],
+        "field_rules": [],
+        "field_rule_tables": [],
+        "visible_elements": [
+          "编辑商品顺序按钮"
+        ],
+        "interactive_entries": [
+          "点击编辑商品顺序"
+        ],
+        "abnormal_scenarios": [],
+        "boundary_scenarios": [],
+        "dependencies": []
+      },
+      {
+        "feature_name": "商品添加表单",
+        "page_name": "盒子管理后台-云手机商品管理-添加",
+        "section_name": "商品添加表单",
+        "feature_desc": "承接盒子管理后台-云手机商品管理-添加的商品添加表单图片证据。",
+        "actors": [
+          "后台管理员"
+        ],
+        "entry_conditions": [
+          "已进入对应页面或具备对应配置权限。"
+        ],
+        "rules": [
+          "仅将图片明确带红色星号的字段记录为必填",
+          "原价和现价沿用已有能力且数值限制大于0.00",
+          "状态可选开启或关闭，默认值未说明",
+          "天数最大370，小时最大23，所有项不可同时为0，后端以秒为单位",
+          "特殊区商品数量必须小于等于4，超过4个时不可保存",
+          "正整数，上限1000；相同排序值按创建时间倒序排列",
+          "正整数，上限200；按固定频率校验库存是否小于等于配置数量",
+          "添",
+          "加",
+          "表",
+          "单",
+          "包",
+          "含",
+          "云",
+          "手",
+          "机",
+          {
+            "name": "original_price_value_constraint",
+            "rule_type": "value_constraint",
+            "field_name": "original_price",
+            "formats": [
+              "数值限制大于0.00"
+            ],
+            "rule_text": "original_price; value_constraint",
+            "rule_id": "OBJ-004"
+          },
+          {
+            "name": "current_price_value_constraint",
+            "rule_type": "value_constraint",
+            "field_name": "current_price",
+            "formats": [
+              "数值限制大于0.00"
+            ],
+            "rule_text": "current_price; value_constraint",
+            "rule_id": "OBJ-005"
+          },
+          {
+            "name": "service_duration_value_constraint",
+            "rule_type": "value_constraint",
+            "field_name": "service_duration",
+            "formats": [
+              "天最大370，时最大23，所有项不可同时为0，后端以秒为单位"
+            ],
+            "rule_text": "service_duration; value_constraint",
+            "rule_id": "OBJ-006"
+          },
+          {
+            "name": "in_box_sort_order_value_constraint",
+            "rule_type": "value_constraint",
+            "field_name": "in_box_sort_order",
+            "integer_only": true,
+            "formats": [
+              "正整数，最大1000"
+            ],
+            "rule_text": "in_box_sort_order; value_constraint; integer_only=True",
+            "rule_id": "OBJ-007"
+          },
+          {
+            "name": "inventory_warning_threshold_value_constraint",
+            "rule_type": "value_constraint",
+            "field_name": "inventory_warning_threshold",
+            "integer_only": true,
+            "formats": [
+              "正整数，最大200"
+            ],
+            "rule_text": "inventory_warning_threshold; value_constraint; integer_only=True",
+            "rule_id": "OBJ-008"
+          },
+          {
+            "name": "purchase_alert_recipient_data_source_constraint",
+            "rule_type": "data_source_constraint",
+            "field_name": "purchase_alert_recipient",
+            "data_source": "盒子后台管理员列表",
+            "display": "购买数量报警通知人",
+            "rule_text": "purchase_alert_recipient; data_source_constraint; data_source=盒子后台管理员列表",
+            "rule_id": "OBJ-009"
+          }
+        ],
+        "fields": [
+          {
+            "field_name": "cloud_phone_product_type",
+            "display_name": "云手机商品类型",
+            "data_type": "enum",
+            "control_type": "select_single",
+            "required": true,
+            "editable": true,
+            "name": "cloud_phone_product_type",
+            "description": "来源于当前 FIXTURE-RUNTIME-001 图片证据。",
+            "type": "select_single",
+            "display": "云手机商品类型"
+          },
+          {
+            "field_name": "cloud_machine_type",
+            "display_name": "云机类型",
+            "data_type": "enum",
+            "control_type": "select_single",
+            "required": true,
+            "editable": true,
+            "name": "cloud_machine_type",
+            "description": "来源于当前 FIXTURE-RUNTIME-001 图片证据。",
+            "type": "select_single",
+            "display": "云机类型"
+          },
+          {
+            "field_name": "product_name",
+            "display_name": "商品名称",
+            "data_type": "string",
+            "control_type": "text_input",
+            "required": true,
+            "editable": true,
+            "name": "product_name",
+            "description": "来源于当前 FIXTURE-RUNTIME-001 图片证据。",
+            "type": "text_input",
+            "display": "商品名称"
+          },
+          {
+            "field_name": "original_price",
+            "display_name": "原价（元）",
+            "data_type": "float",
+            "control_type": "number_input",
+            "required": true,
+            "editable": true,
+            "format_rule": "数值限制大于0.00",
+            "name": "original_price",
+            "description": "来源于当前 FIXTURE-RUNTIME-001 图片证据。",
+            "type": "number_input",
+            "formats": [
+              "数值限制大于0.00"
+            ],
+            "display": "原价（元）"
+          },
+          {
+            "field_name": "current_price",
+            "display_name": "现价（元）",
+            "data_type": "float",
+            "control_type": "number_input",
+            "required": true,
+            "editable": true,
+            "format_rule": "数值限制大于0.00",
+            "name": "current_price",
+            "description": "来源于当前 FIXTURE-RUNTIME-001 图片证据。",
+            "type": "number_input",
+            "formats": [
+              "数值限制大于0.00"
+            ],
+            "display": "现价（元）"
+          },
+          {
+            "field_name": "service_duration",
+            "display_name": "服务时长",
+            "data_type": "other",
+            "control_type": "number_input_pair",
+            "required": true,
+            "editable": true,
+            "content_values": [
+              "天",
+              "时"
+            ],
+            "format_rule": "天最大370，时最大23，所有项不可同时为0，后端以秒为单位",
+            "name": "service_duration",
+            "description": "来源于当前 FIXTURE-RUNTIME-001 图片证据。",
+            "type": "number_input_pair",
+            "formats": [
+              "天最大370，时最大23，所有项不可同时为0，后端以秒为单位"
+            ],
+            "display": "服务时长"
+          },
+          {
+            "field_name": "product_region",
+            "display_name": "商品区",
+            "data_type": "enum",
+            "control_type": "select_single",
+            "required": true,
+            "editable": true,
+            "enum_values": [
+              "特殊区",
+              "普通区"
+            ],
+            "name": "product_region",
+            "description": "来源于当前 FIXTURE-RUNTIME-001 图片证据。",
+            "type": "select_single",
+            "display": "商品区"
+          },
+          {
+            "field_name": "in_box_sort_order",
+            "display_name": "盒子内排序",
+            "data_type": "integer",
+            "control_type": "number_input",
+            "required": true,
+            "editable": true,
+            "format_rule": "正整数，最大1000",
+            "name": "in_box_sort_order",
+            "description": "来源于当前 FIXTURE-RUNTIME-001 图片证据。",
+            "type": "number_input",
+            "formats": [
+              "正整数，最大1000"
+            ],
+            "integer_only": true,
+            "display": "盒子内排序"
+          },
+          {
+            "field_name": "product_tag_type",
+            "display_name": "商品标签类型",
+            "data_type": "enum",
+            "control_type": "select_single",
+            "required": false,
+            "editable": true,
+            "name": "product_tag_type",
+            "description": "来源于当前 FIXTURE-RUNTIME-001 图片证据。",
+            "type": "select_single",
+            "display": "商品标签类型"
+          },
+          {
+            "field_name": "display_users",
+            "display_name": "展示用户",
+            "data_type": "enum",
+            "control_type": "select_single",
+            "required": false,
+            "editable": true,
+            "name": "display_users",
+            "description": "来源于当前 FIXTURE-RUNTIME-001 图片证据。",
+            "type": "select_single",
+            "display": "展示用户"
+          },
+          {
+            "field_name": "user_purchase_limit",
+            "display_name": "用户可购买次数",
+            "data_type": "integer",
+            "control_type": "number_input",
+            "required": false,
+            "editable": true,
+            "name": "user_purchase_limit",
+            "description": "来源于当前 FIXTURE-RUNTIME-001 图片证据。",
+            "type": "number_input",
+            "display": "用户可购买次数"
+          },
+          {
+            "field_name": "product_display_time",
+            "display_name": "商品展示时间",
+            "data_type": "datetime",
+            "control_type": "text_input",
+            "required": false,
+            "editable": true,
+            "name": "product_display_time",
+            "description": "来源于当前 FIXTURE-RUNTIME-001 图片证据。",
+            "type": "text_input",
+            "display": "商品展示时间"
+          },
+          {
+            "field_name": "inventory_warning_threshold",
+            "display_name": "库存预警值",
+            "data_type": "integer",
+            "control_type": "number_input",
+            "required": false,
+            "editable": true,
+            "format_rule": "正整数，最大200",
+            "name": "inventory_warning_threshold",
+            "description": "来源于当前 FIXTURE-RUNTIME-001 图片证据。",
+            "type": "number_input",
+            "formats": [
+              "正整数，最大200"
+            ],
+            "integer_only": true,
+            "display": "库存预警值"
+          },
+          {
+            "field_name": "purchase_alert_recipient",
+            "display_name": "购买数量报警通知人",
+            "data_type": "enum",
+            "control_type": "select_single",
+            "required": true,
+            "editable": true,
+            "data_source": "盒子后台管理员列表",
+            "name": "purchase_alert_recipient",
+            "description": "来源于当前 FIXTURE-RUNTIME-001 图片证据。",
+            "type": "select_single",
+            "display": "购买数量报警通知人"
+          },
+          {
+            "field_name": "status",
+            "display_name": "状态",
+            "data_type": "enum",
+            "control_type": "radio",
+            "required": false,
+            "editable": true,
+            "enum_values": [
+              "开启",
+              "关闭"
+            ],
+            "name": "status",
+            "description": "来源于当前 FIXTURE-RUNTIME-001 图片证据。",
+            "type": "radio",
+            "display": "状态"
+          }
+        ],
+        "field_definitions": [
+          {
+            "field_name": "cloud_phone_product_type",
+            "display_name": "云手机商品类型",
+            "data_type": "enum",
+            "control_type": "select_single",
+            "required": true,
+            "editable": true,
+            "name": "cloud_phone_product_type",
+            "description": "来源于当前 FIXTURE-RUNTIME-001 图片证据。",
+            "type": "select_single",
+            "display": "云手机商品类型"
+          },
+          {
+            "field_name": "cloud_machine_type",
+            "display_name": "云机类型",
+            "data_type": "enum",
+            "control_type": "select_single",
+            "required": true,
+            "editable": true,
+            "name": "cloud_machine_type",
+            "description": "来源于当前 FIXTURE-RUNTIME-001 图片证据。",
+            "type": "select_single",
+            "display": "云机类型"
+          },
+          {
+            "field_name": "product_name",
+            "display_name": "商品名称",
+            "data_type": "string",
+            "control_type": "text_input",
+            "required": true,
+            "editable": true,
+            "name": "product_name",
+            "description": "来源于当前 FIXTURE-RUNTIME-001 图片证据。",
+            "type": "text_input",
+            "display": "商品名称"
+          },
+          {
+            "field_name": "original_price",
+            "display_name": "原价（元）",
+            "data_type": "float",
+            "control_type": "number_input",
+            "required": true,
+            "editable": true,
+            "format_rule": "数值限制大于0.00",
+            "name": "original_price",
+            "description": "来源于当前 FIXTURE-RUNTIME-001 图片证据。",
+            "type": "number_input",
+            "formats": [
+              "数值限制大于0.00"
+            ],
+            "display": "原价（元）"
+          },
+          {
+            "field_name": "current_price",
+            "display_name": "现价（元）",
+            "data_type": "float",
+            "control_type": "number_input",
+            "required": true,
+            "editable": true,
+            "format_rule": "数值限制大于0.00",
+            "name": "current_price",
+            "description": "来源于当前 FIXTURE-RUNTIME-001 图片证据。",
+            "type": "number_input",
+            "formats": [
+              "数值限制大于0.00"
+            ],
+            "display": "现价（元）"
+          },
+          {
+            "field_name": "service_duration",
+            "display_name": "服务时长",
+            "data_type": "other",
+            "control_type": "number_input_pair",
+            "required": true,
+            "editable": true,
+            "content_values": [
+              "天",
+              "时"
+            ],
+            "format_rule": "天最大370，时最大23，所有项不可同时为0，后端以秒为单位",
+            "name": "service_duration",
+            "description": "来源于当前 FIXTURE-RUNTIME-001 图片证据。",
+            "type": "number_input_pair",
+            "formats": [
+              "天最大370，时最大23，所有项不可同时为0，后端以秒为单位"
+            ],
+            "display": "服务时长"
+          },
+          {
+            "field_name": "product_region",
+            "display_name": "商品区",
+            "data_type": "enum",
+            "control_type": "select_single",
+            "required": true,
+            "editable": true,
+            "enum_values": [
+              "特殊区",
+              "普通区"
+            ],
+            "name": "product_region",
+            "description": "来源于当前 FIXTURE-RUNTIME-001 图片证据。",
+            "type": "select_single",
+            "display": "商品区"
+          },
+          {
+            "field_name": "in_box_sort_order",
+            "display_name": "盒子内排序",
+            "data_type": "integer",
+            "control_type": "number_input",
+            "required": true,
+            "editable": true,
+            "format_rule": "正整数，最大1000",
+            "name": "in_box_sort_order",
+            "description": "来源于当前 FIXTURE-RUNTIME-001 图片证据。",
+            "type": "number_input",
+            "formats": [
+              "正整数，最大1000"
+            ],
+            "integer_only": true,
+            "display": "盒子内排序"
+          },
+          {
+            "field_name": "product_tag_type",
+            "display_name": "商品标签类型",
+            "data_type": "enum",
+            "control_type": "select_single",
+            "required": false,
+            "editable": true,
+            "name": "product_tag_type",
+            "description": "来源于当前 FIXTURE-RUNTIME-001 图片证据。",
+            "type": "select_single",
+            "display": "商品标签类型"
+          },
+          {
+            "field_name": "display_users",
+            "display_name": "展示用户",
+            "data_type": "enum",
+            "control_type": "select_single",
+            "required": false,
+            "editable": true,
+            "name": "display_users",
+            "description": "来源于当前 FIXTURE-RUNTIME-001 图片证据。",
+            "type": "select_single",
+            "display": "展示用户"
+          },
+          {
+            "field_name": "user_purchase_limit",
+            "display_name": "用户可购买次数",
+            "data_type": "integer",
+            "control_type": "number_input",
+            "required": false,
+            "editable": true,
+            "name": "user_purchase_limit",
+            "description": "来源于当前 FIXTURE-RUNTIME-001 图片证据。",
+            "type": "number_input",
+            "display": "用户可购买次数"
+          },
+          {
+            "field_name": "product_display_time",
+            "display_name": "商品展示时间",
+            "data_type": "datetime",
+            "control_type": "text_input",
+            "required": false,
+            "editable": true,
+            "name": "product_display_time",
+            "description": "来源于当前 FIXTURE-RUNTIME-001 图片证据。",
+            "type": "text_input",
+            "display": "商品展示时间"
+          },
+          {
+            "field_name": "inventory_warning_threshold",
+            "display_name": "库存预警值",
+            "data_type": "integer",
+            "control_type": "number_input",
+            "required": false,
+            "editable": true,
+            "format_rule": "正整数，最大200",
+            "name": "inventory_warning_threshold",
+            "description": "来源于当前 FIXTURE-RUNTIME-001 图片证据。",
+            "type": "number_input",
+            "formats": [
+              "正整数，最大200"
+            ],
+            "integer_only": true,
+            "display": "库存预警值"
+          },
+          {
+            "field_name": "purchase_alert_recipient",
+            "display_name": "购买数量报警通知人",
+            "data_type": "enum",
+            "control_type": "select_single",
+            "required": true,
+            "editable": true,
+            "data_source": "盒子后台管理员列表",
+            "name": "purchase_alert_recipient",
+            "description": "来源于当前 FIXTURE-RUNTIME-001 图片证据。",
+            "type": "select_single",
+            "display": "购买数量报警通知人"
+          },
+          {
+            "field_name": "status",
+            "display_name": "状态",
+            "data_type": "enum",
+            "control_type": "radio",
+            "required": false,
+            "editable": true,
+            "enum_values": [
+              "开启",
+              "关闭"
+            ],
+            "name": "status",
+            "description": "来源于当前 FIXTURE-RUNTIME-001 图片证据。",
+            "type": "radio",
+            "display": "状态"
+          }
+        ],
+        "field_rules": [
+          {
+            "rule_id": "FR-盒子管理后台-云手机商品管理-添加-商品添加表单-01",
+            "field_name": "service_duration",
+            "display_name": "服务时长",
+            "rule_text": "天数最大370，小时最大23，所有项不可同时为0，后端以秒为单位",
+            "rule_type": "other",
+            "must_cover": true
+          },
+          {
+            "rule_id": "FR-盒子管理后台-云手机商品管理-添加-商品添加表单-02",
+            "field_name": "product_region",
+            "display_name": "商品区",
+            "rule_text": "特殊区商品数量必须小于等于4，超过4个时不可保存",
+            "rule_type": "other",
+            "must_cover": true
+          },
+          {
+            "rule_id": "FR-盒子管理后台-云手机商品管理-添加-商品添加表单-03",
+            "field_name": "in_box_sort_order",
+            "display_name": "盒子内排序",
+            "rule_text": "正整数，上限1000；相同排序值按创建时间倒序排列",
+            "rule_type": "other",
+            "must_cover": true
+          },
+          {
+            "rule_id": "FR-盒子管理后台-云手机商品管理-添加-商品添加表单-04",
+            "field_name": "inventory_warning_threshold",
+            "display_name": "库存预警值",
+            "rule_text": "正整数，上限200；按固定频率校验库存是否小于等于配置数量",
+            "rule_type": "other",
+            "must_cover": true
+          },
+          {
+            "rule_id": "",
+            "field_name": "original_price",
+            "rule_text": "original_price; value_constraint",
+            "rule_type": "range_constraint",
+            "must_cover": true
+          },
+          {
+            "rule_id": "",
+            "field_name": "current_price",
+            "rule_text": "current_price; value_constraint",
+            "rule_type": "range_constraint",
+            "must_cover": true
+          },
+          {
+            "rule_id": "",
+            "field_name": "service_duration",
+            "rule_text": "service_duration; value_constraint",
+            "rule_type": "range_constraint",
+            "must_cover": true
+          },
+          {
+            "rule_id": "",
+            "field_name": "in_box_sort_order",
+            "rule_text": "in_box_sort_order; value_constraint; integer_only=True",
+            "rule_type": "range_constraint",
+            "must_cover": true
+          },
+          {
+            "rule_id": "",
+            "field_name": "inventory_warning_threshold",
+            "rule_text": "inventory_warning_threshold; value_constraint; integer_only=True",
+            "rule_type": "range_constraint",
+            "must_cover": true
+          },
+          {
+            "rule_id": "",
+            "field_name": "purchase_alert_recipient",
+            "rule_text": "purchase_alert_recipient; data_source_constraint; data_source=盒子后台管理员列表",
+            "rule_type": "data_source_constraint",
+            "must_cover": true
+          }
+        ],
+        "field_rule_tables": [],
+        "visible_elements": [
+          "云手机商品类型下拉框",
+          "云机类型下拉框",
+          "商品名称输入框",
+          "原价输入框",
+          "现价输入框",
+          "服务时长天/时输入框",
+          "商品区下拉框",
+          "盒子内排序输入框",
+          "商品标签类型下拉框",
+          "展示用户下拉框",
+          "用户可购买次数输入框",
+          "商品展示时间输入框",
+          "库存预警值输入框",
+          "购买数量报警通知人下拉框",
+          "状态单选项",
+          "取消按钮",
+          "确定按钮"
+        ],
+        "interactive_entries": [
+          "填写商品配置",
+          "切换状态",
+          "点击取消",
+          "点击确定"
+        ],
+        "abnormal_scenarios": [],
+        "boundary_scenarios": [],
+        "dependencies": []
+      },
+      {
+        "feature_name": "商品区与库存规则说明表",
+        "page_name": "盒子管理后台-云手机商品管理-添加",
+        "section_name": "商品区与库存规则说明表",
+        "feature_desc": "承接盒子管理后台-云手机商品管理-添加的商品区与库存规则说明表图片证据。",
+        "actors": [
+          "后台管理员"
+        ],
+        "entry_conditions": [
+          "已进入对应页面或具备对应配置权限。"
+        ],
+        "rules": [
+          "库存充足时C端正常展示并分配云机",
+          "库存不足时C端隐藏商品、不分配云机并通知管理员"
+        ],
+        "fields": [
+          {
+            "name": "product_configuration",
+            "field_name": "product_configuration",
+            "type": "rule_table",
+            "control_type": "rule_table",
+            "display_name": "商品配置",
+            "description": "承接商品区、数量、排序和状态的说明表规则。",
+            "required": false,
+            "display": "商品配置"
+          },
+          {
+            "name": "inventory_warning_threshold",
+            "field_name": "inventory_warning_threshold",
+            "type": "integer",
+            "control_type": "integer",
+            "display_name": "库存预警值",
+            "description": "承接库存阈值、C端隐藏、停止分配和告警规则。",
+            "required": false,
+            "display": "库存预警值"
+          }
+        ],
+        "field_definitions": [
+          {
+            "name": "product_configuration",
+            "field_name": "product_configuration",
+            "type": "rule_table",
+            "control_type": "rule_table",
+            "display_name": "商品配置",
+            "description": "承接商品区、数量、排序和状态的说明表规则。",
+            "required": false,
+            "display": "商品配置"
+          },
+          {
+            "name": "inventory_warning_threshold",
+            "field_name": "inventory_warning_threshold",
+            "type": "integer",
+            "control_type": "integer",
+            "display_name": "库存预警值",
+            "description": "承接库存阈值、C端隐藏、停止分配和告警规则。",
+            "required": false,
+            "display": "库存预警值"
+          }
+        ],
+        "field_rules": [
+          {
+            "rule_id": "FR-盒子管理后台-云手机商品管理-添加-商品区与库存规则说明表-01",
+            "field_name": "inventory_warning_threshold",
+            "display_name": "库存预警值",
+            "rule_text": "库存小于等于预警值时，C端隐藏商品、不分配云机并发送库存不足通知",
+            "rule_type": "other",
+            "must_cover": true
+          },
+          {
+            "rule_id": "FR-盒子管理后台-云手机商品管理-添加-商品区与库存规则说明表-02",
+            "field_name": "product_configuration",
+            "display_name": "现价",
+            "rule_text": "已有功能，数值限制大于0.00",
+            "rule_type": "other",
+            "must_cover": true
+          },
+          {
+            "rule_id": "FR-盒子管理后台-云手机商品管理-添加-商品区与库存规则说明表-03",
+            "field_name": "product_configuration",
+            "display_name": "原价",
+            "rule_text": "已有功能，数值限制大于0.00",
+            "rule_type": "other",
+            "must_cover": true
+          },
+          {
+            "rule_id": "FR-盒子管理后台-云手机商品管理-添加-商品区与库存规则说明表-04",
+            "field_name": "product_configuration",
+            "display_name": "服务时长",
+            "rule_text": "数字选择器，必填；天最大370、时最大23，所有项不可同时为0，后端以秒为单位",
+            "rule_type": "other",
+            "must_cover": true
+          },
+          {
+            "rule_id": "FR-盒子管理后台-云手机商品管理-添加-商品区与库存规则说明表-05",
+            "field_name": "product_configuration",
+            "display_name": "商品区",
+            "rule_text": "下拉单选，必填，content：特殊区、普通区；特殊区商品数量小于等于4",
+            "rule_type": "other",
+            "must_cover": true
+          },
+          {
+            "rule_id": "FR-盒子管理后台-云手机商品管理-添加-商品区与库存规则说明表-06",
+            "field_name": "product_configuration",
+            "display_name": "盒子内排序",
+            "rule_text": "数字框，必填，正整数，上限1000；相同值按创建时间倒序",
+            "rule_type": "other",
+            "must_cover": true
+          },
+          {
+            "rule_id": "FR-盒子管理后台-云手机商品管理-添加-商品区与库存规则说明表-07",
+            "field_name": "product_configuration",
+            "display_name": "商品展示时间",
+            "rule_text": "已有功能，增加未配置提示；服务时长结束后C端不再展示",
+            "rule_type": "other",
+            "must_cover": true
+          },
+          {
+            "rule_id": "FR-盒子管理后台-云手机商品管理-添加-商品区与库存规则说明表-08",
+            "field_name": "product_configuration",
+            "display_name": "库存预警值",
+            "rule_text": "数字框，非必填，正整数，上限200；按固定频率校验库存",
+            "rule_type": "other",
+            "must_cover": true
+          },
+          {
+            "rule_id": "FR-盒子管理后台-云手机商品管理-添加-商品区与库存规则说明表-09",
+            "field_name": "product_configuration",
+            "display_name": "购买数量报警通知人",
+            "rule_text": "下拉单选，必填，content：盒子后台管理员列表",
+            "rule_type": "other",
+            "must_cover": true
+          },
+          {
+            "rule_id": "FR-盒子管理后台-云手机商品管理-添加-商品区与库存规则说明表-10",
+            "field_name": "inventory_warning_threshold",
+            "display_name": "通知群",
+            "rule_text": "云手机相关报警",
+            "rule_type": "other",
+            "must_cover": true
+          },
+          {
+            "rule_id": "FR-盒子管理后台-云手机商品管理-添加-商品区与库存规则说明表-11",
+            "field_name": "inventory_warning_threshold",
+            "display_name": "正式环境模板标题",
+            "rule_text": "【云挂机库存不足通知】",
+            "rule_type": "other",
+            "must_cover": true
+          },
+          {
+            "rule_id": "FR-盒子管理后台-云手机商品管理-添加-商品区与库存规则说明表-12",
+            "field_name": "inventory_warning_threshold",
+            "display_name": "功能模块",
+            "rule_text": "玩心盒子后台_云挂机_云手机商品管理",
+            "rule_type": "other",
+            "must_cover": true
+          },
+          {
+            "rule_id": "FR-盒子管理后台-云手机商品管理-添加-商品区与库存规则说明表-13",
+            "field_name": "inventory_warning_threshold",
+            "display_name": "动态字段",
+            "rule_text": "配置ID、商品名称、云机类型、云机服务时长、通知时间、通知人由配置或系统生成",
+            "rule_type": "other",
+            "must_cover": true
+          }
+        ],
+        "field_rule_tables": [
+          {
+            "field_name": "product_configuration",
+            "table_name": "云手机商品添加字段说明",
+            "table_desc": "商品添加字段属性及效果",
+            "rows": [
+              {
+                "row_id": "ROW-01-01",
+                "row_name": "现价",
+                "rule_text": "已有功能，数值限制大于0.00",
+                "expected_effect": "按既有现价能力保存和展示"
+              },
+              {
+                "row_id": "ROW-01-02",
+                "row_name": "原价",
+                "rule_text": "已有功能，数值限制大于0.00",
+                "expected_effect": "按既有原价能力保存和展示"
+              },
+              {
+                "row_id": "ROW-01-03",
+                "row_name": "服务时长",
+                "rule_text": "数字选择器，必填；天最大370、时最大23，所有项不可同时为0，后端以秒为单位",
+                "expected_effect": "保存符合范围的服务时长"
+              },
+              {
+                "row_id": "ROW-01-04",
+                "row_name": "商品区",
+                "rule_text": "下拉单选，必填，content：特殊区、普通区；特殊区商品数量小于等于4",
+                "expected_effect": "特殊区超限时不可保存并展示指定提示"
+              },
+              {
+                "row_id": "ROW-01-05",
+                "row_name": "盒子内排序",
+                "rule_text": "数字框，必填，正整数，上限1000；相同值按创建时间倒序",
+                "expected_effect": "按排序值及创建时间展示"
+              },
+              {
+                "row_id": "ROW-01-06",
+                "row_name": "商品展示时间",
+                "rule_text": "已有功能，增加未配置提示；服务时长结束后C端不再展示",
+                "expected_effect": "按配置时间控制C端展示"
+              },
+              {
+                "row_id": "ROW-01-07",
+                "row_name": "库存预警值",
+                "rule_text": "数字框，非必填，正整数，上限200；按固定频率校验库存",
+                "expected_effect": "库存不足时隐藏商品、不分配云机并告警"
+              },
+              {
+                "row_id": "ROW-01-08",
+                "row_name": "购买数量报警通知人",
+                "rule_text": "下拉单选，必填，content：盒子后台管理员列表",
+                "expected_effect": "保存选择的通知人"
+              }
+            ]
+          },
+          {
+            "field_name": "inventory_warning_threshold",
+            "table_name": "库存不足通知模板",
+            "table_desc": "库存不足时通知管理员的模板说明",
+            "rows": [
+              {
+                "row_id": "ROW-02-01",
+                "row_name": "通知群",
+                "rule_text": "云手机相关报警",
+                "expected_effect": "向指定群发送告警"
+              },
+              {
+                "row_id": "ROW-02-02",
+                "row_name": "正式环境模板标题",
+                "rule_text": "【云挂机库存不足通知】",
+                "expected_effect": "正式环境使用该标题"
+              },
+              {
+                "row_id": "ROW-02-03",
+                "row_name": "功能模块",
+                "rule_text": "玩心盒子后台_云挂机_云手机商品管理",
+                "expected_effect": "通知展示固定模块文案"
+              },
+              {
+                "row_id": "ROW-02-04",
+                "row_name": "动态字段",
+                "rule_text": "配置ID、商品名称、云机类型、云机服务时长、通知时间、通知人由配置或系统生成",
+                "expected_effect": "通知展示对应动态值"
+              }
+            ]
+          }
+        ],
+        "visible_elements": [
+          "序号列",
+          "名称列",
+          "展示形式列",
+          "是否必填列",
+          "默认值列",
+          "是否可编辑列",
+          "说明列"
+        ],
+        "interactive_entries": [],
+        "abnormal_scenarios": [],
+        "boundary_scenarios": [],
+        "dependencies": []
+      }
+    ]
+  },
+  {
+    "module_name": "宣传内容管理",
+    "module_desc": "FIXTURE-RUNTIME-001 宣传内容管理结构化模块。",
+    "features": [
+      {
+        "feature_name": "宣传内容编辑表单",
+        "page_name": "盒子管理后台-编辑宣传内容",
+        "section_name": "宣传内容编辑表单",
+        "feature_desc": "承接盒子管理后台-编辑宣传内容的宣传内容编辑表单图片证据。",
+        "actors": [
+          "后台管理员"
+        ],
+        "entry_conditions": [
+          "已进入对应页面或具备对应配置权限。"
+        ],
+        "rules": [
+          "云机类型、宣传图片、宣传口号和性能参数均带必填标识",
+          "最多额外新增1块内容，达到2条配置时禁用新增按钮",
+          "新增内容在C端全屏展示",
+          "保存前校验所有云机类型均已配置且不存在重复",
+          "最多上传5张，支持gif/jpg/jpeg/png，单张最大500K，建议尺寸1008*160",
+          "文本长度20个字符；C端超过一行换行展示",
+          "表",
+          "单",
+          "包",
+          {
+            "name": "cloud_machine_type_data_source_constraint",
+            "rule_type": "data_source_constraint",
+            "field_name": "cloud_machine_type",
+            "data_source": "盒子现有云机类型",
+            "display": "云机类型",
+            "rule_text": "cloud_machine_type; data_source_constraint; data_source=盒子现有云机类型",
+            "rule_id": "OBJ-010"
+          },
+          {
+            "name": "promotion_image_value_constraint",
+            "rule_type": "value_constraint",
+            "field_name": "promotion_image",
+            "formats": [
+              "最多5张，单张最大500K，建议尺寸1008*160，支持拖拽和删除"
+            ],
+            "rule_text": "promotion_image; value_constraint",
+            "rule_id": "OBJ-011"
+          },
+          {
+            "name": "promotion_slogan_value_constraint",
+            "rule_type": "value_constraint",
+            "field_name": "promotion_slogan",
+            "formats": [
+              "C端超过一行换行展示"
+            ],
+            "rule_text": "promotion_slogan; value_constraint",
+            "rule_id": "OBJ-012"
+          },
+          {
+            "name": "performance_parameters_value_constraint",
+            "rule_type": "value_constraint",
+            "field_name": "performance_parameters",
+            "formats": [
+              "C端超过一行换行展示"
+            ],
+            "rule_text": "performance_parameters; value_constraint",
+            "rule_id": "OBJ-013"
+          }
+        ],
+        "fields": [
+          {
+            "field_name": "cloud_machine_type",
+            "display_name": "云机类型",
+            "data_type": "enum",
+            "control_type": "select_single",
+            "required": true,
+            "editable": true,
+            "default_value": "",
+            "enum_values": [
+              "全新版",
+              "常规版"
+            ],
+            "data_source": "盒子现有云机类型",
+            "name": "cloud_machine_type",
+            "description": "来源于当前 FIXTURE-RUNTIME-001 图片证据。",
+            "type": "select_single",
+            "default": "",
+            "display": "云机类型"
+          },
+          {
+            "field_name": "promotion_image",
+            "display_name": "宣传图片",
+            "data_type": "image",
+            "control_type": "upload_image",
+            "required": true,
+            "editable": true,
+            "default_value": "",
+            "content_values": [
+              "gif",
+              "jpg",
+              "jpeg",
+              "png"
+            ],
+            "format_rule": "最多5张，单张最大500K，建议尺寸1008*160，支持拖拽和删除",
+            "length_rule": "最多5张",
+            "name": "promotion_image",
+            "description": "来源于当前 FIXTURE-RUNTIME-001 图片证据。",
+            "type": "upload_image",
+            "default": "",
+            "formats": [
+              "最多5张，单张最大500K，建议尺寸1008*160，支持拖拽和删除"
+            ],
+            "display": "宣传图片"
+          },
+          {
+            "field_name": "promotion_slogan",
+            "display_name": "宣传口号",
+            "data_type": "string",
+            "control_type": "text_input",
+            "required": true,
+            "editable": true,
+            "default_value": "",
+            "length_rule": "20个字符",
+            "format_rule": "C端超过一行换行展示",
+            "name": "promotion_slogan",
+            "description": "来源于当前 FIXTURE-RUNTIME-001 图片证据。",
+            "type": "text_input",
+            "default": "",
+            "formats": [
+              "C端超过一行换行展示"
+            ],
+            "display": "宣传口号"
+          },
+          {
+            "field_name": "performance_parameters",
+            "display_name": "性能参数",
+            "data_type": "string",
+            "control_type": "text_input",
+            "required": true,
+            "editable": true,
+            "default_value": "",
+            "length_rule": "20个字符",
+            "format_rule": "C端超过一行换行展示",
+            "name": "performance_parameters",
+            "description": "来源于当前 FIXTURE-RUNTIME-001 图片证据。",
+            "type": "text_input",
+            "default": "",
+            "formats": [
+              "C端超过一行换行展示"
+            ],
+            "display": "性能参数"
+          }
+        ],
+        "field_definitions": [
+          {
+            "field_name": "cloud_machine_type",
+            "display_name": "云机类型",
+            "data_type": "enum",
+            "control_type": "select_single",
+            "required": true,
+            "editable": true,
+            "default_value": "",
+            "enum_values": [
+              "全新版",
+              "常规版"
+            ],
+            "data_source": "盒子现有云机类型",
+            "name": "cloud_machine_type",
+            "description": "来源于当前 FIXTURE-RUNTIME-001 图片证据。",
+            "type": "select_single",
+            "default": "",
+            "display": "云机类型"
+          },
+          {
+            "field_name": "promotion_image",
+            "display_name": "宣传图片",
+            "data_type": "image",
+            "control_type": "upload_image",
+            "required": true,
+            "editable": true,
+            "default_value": "",
+            "content_values": [
+              "gif",
+              "jpg",
+              "jpeg",
+              "png"
+            ],
+            "format_rule": "最多5张，单张最大500K，建议尺寸1008*160，支持拖拽和删除",
+            "length_rule": "最多5张",
+            "name": "promotion_image",
+            "description": "来源于当前 FIXTURE-RUNTIME-001 图片证据。",
+            "type": "upload_image",
+            "default": "",
+            "formats": [
+              "最多5张，单张最大500K，建议尺寸1008*160，支持拖拽和删除"
+            ],
+            "display": "宣传图片"
+          },
+          {
+            "field_name": "promotion_slogan",
+            "display_name": "宣传口号",
+            "data_type": "string",
+            "control_type": "text_input",
+            "required": true,
+            "editable": true,
+            "default_value": "",
+            "length_rule": "20个字符",
+            "format_rule": "C端超过一行换行展示",
+            "name": "promotion_slogan",
+            "description": "来源于当前 FIXTURE-RUNTIME-001 图片证据。",
+            "type": "text_input",
+            "default": "",
+            "formats": [
+              "C端超过一行换行展示"
+            ],
+            "display": "宣传口号"
+          },
+          {
+            "field_name": "performance_parameters",
+            "display_name": "性能参数",
+            "data_type": "string",
+            "control_type": "text_input",
+            "required": true,
+            "editable": true,
+            "default_value": "",
+            "length_rule": "20个字符",
+            "format_rule": "C端超过一行换行展示",
+            "name": "performance_parameters",
+            "description": "来源于当前 FIXTURE-RUNTIME-001 图片证据。",
+            "type": "text_input",
+            "default": "",
+            "formats": [
+              "C端超过一行换行展示"
+            ],
+            "display": "性能参数"
+          }
+        ],
+        "field_rules": [
+          {
+            "rule_id": "FR-盒子管理后台-编辑宣传内容-宣传内容编辑表单-01",
+            "field_name": "cloud_machine_type",
+            "display_name": "云机类型",
+            "rule_text": "保存前校验所有云机类型均已配置且不存在重复",
+            "rule_type": "other",
+            "must_cover": true
+          },
+          {
+            "rule_id": "FR-盒子管理后台-编辑宣传内容-宣传内容编辑表单-02",
+            "field_name": "promotion_image",
+            "display_name": "宣传图片",
+            "rule_text": "最多上传5张，支持gif/jpg/jpeg/png，单张最大500K，建议尺寸1008*160",
+            "rule_type": "other",
+            "must_cover": true
+          },
+          {
+            "rule_id": "FR-盒子管理后台-编辑宣传内容-宣传内容编辑表单-03",
+            "field_name": "promotion_slogan",
+            "display_name": "宣传口号",
+            "rule_text": "文本长度20个字符；C端超过一行换行展示",
+            "rule_type": "other",
+            "must_cover": true
+          },
+          {
+            "rule_id": "FR-盒子管理后台-编辑宣传内容-宣传内容编辑表单-04",
+            "field_name": "performance_parameters",
+            "display_name": "性能参数",
+            "rule_text": "文本长度20个字符；C端超过一行换行展示",
+            "rule_type": "other",
+            "must_cover": true
+          },
+          {
+            "rule_id": "",
+            "field_name": "cloud_machine_type",
+            "rule_text": "cloud_machine_type; data_source_constraint; data_source=盒子现有云机类型",
+            "rule_type": "data_source_constraint",
+            "must_cover": true
+          },
+          {
+            "rule_id": "",
+            "field_name": "promotion_image",
+            "rule_text": "promotion_image; value_constraint",
+            "rule_type": "range_constraint",
+            "must_cover": true
+          },
+          {
+            "rule_id": "",
+            "field_name": "promotion_slogan",
+            "rule_text": "promotion_slogan; value_constraint",
+            "rule_type": "range_constraint",
+            "must_cover": true
+          },
+          {
+            "rule_id": "",
+            "field_name": "performance_parameters",
+            "rule_text": "performance_parameters; value_constraint",
+            "rule_type": "range_constraint",
+            "must_cover": true
+          }
+        ],
+        "field_rule_tables": [],
+        "visible_elements": [
+          "云机类型下拉框",
+          "宣传图片上传框",
+          "宣传口号输入框",
+          "性能参数输入框",
+          "删除图标",
+          "新增按钮",
+          "取消按钮",
+          "确定按钮"
+        ],
+        "interactive_entries": [
+          "选择云机类型",
+          "上传宣传图片",
+          "拖拽宣传图片排序",
+          "删除宣传图片",
+          "删除当前宣传配置",
+          "点击新增",
+          "点击取消",
+          "点击确定"
+        ],
+        "abnormal_scenarios": [],
+        "boundary_scenarios": [],
+        "dependencies": []
+      },
+      {
+        "feature_name": "宣传内容字段说明表",
+        "page_name": "盒子管理后台-编辑宣传内容",
+        "section_name": "宣传内容字段说明表",
+        "feature_desc": "承接盒子管理后台-编辑宣传内容的宣传内容字段说明表图片证据。",
+        "actors": [
+          "后台管理员"
+        ],
+        "entry_conditions": [
+          "已进入对应页面或具备对应配置权限。"
+        ],
+        "rules": [
+          "下拉列表框，必填，默认为空，可编辑；单选，content为盒子现有云机类型",
+          "图片按钮，必传，最多5张；支持gif/jpg/jpeg/png，最大500K，建议尺寸1008*160；支持拖拽和删除"
+        ],
+        "fields": [
+          {
+            "name": "promotion_content",
+            "field_name": "promotion_content",
+            "type": "rule_table",
+            "control_type": "rule_table",
+            "display_name": "宣传内容配置",
+            "description": "承接配置条数、云机类型完整性和不可重复规则。",
+            "required": false,
+            "display": "宣传内容配置"
+          }
+        ],
+        "field_definitions": [
+          {
+            "name": "promotion_content",
+            "field_name": "promotion_content",
+            "type": "rule_table",
+            "control_type": "rule_table",
+            "display_name": "宣传内容配置",
+            "description": "承接配置条数、云机类型完整性和不可重复规则。",
+            "required": false,
+            "display": "宣传内容配置"
+          }
+        ],
+        "field_rules": [
+          {
+            "rule_id": "FR-盒子管理后台-编辑宣传内容-宣传内容字段说明表-01",
+            "field_name": "promotion_content",
+            "display_name": "云机类型",
+            "rule_text": "下拉列表框，必填，默认为空，可编辑；单选，content为盒子现有云机类型",
+            "rule_type": "other",
+            "must_cover": true
+          },
+          {
+            "rule_id": "FR-盒子管理后台-编辑宣传内容-宣传内容字段说明表-02",
+            "field_name": "promotion_content",
+            "display_name": "宣传图片",
+            "rule_text": "图片按钮，必传，最多5张；支持gif/jpg/jpeg/png，最大500K，建议尺寸1008*160；支持拖拽和删除",
+            "rule_type": "other",
+            "must_cover": true
+          },
+          {
+            "rule_id": "FR-盒子管理后台-编辑宣传内容-宣传内容字段说明表-03",
+            "field_name": "promotion_content",
+            "display_name": "宣传口号",
+            "rule_text": "文本框，必填，20个字符；C端超过一行换行展示",
+            "rule_type": "other",
+            "must_cover": true
+          },
+          {
+            "rule_id": "FR-盒子管理后台-编辑宣传内容-宣传内容字段说明表-04",
+            "field_name": "promotion_content",
+            "display_name": "性能参数",
+            "rule_text": "文本框，必填，20个字符；C端超过一行换行展示",
+            "rule_type": "other",
+            "must_cover": true
+          },
+          {
+            "rule_id": "FR-盒子管理后台-编辑宣传内容-宣传内容字段说明表-05",
+            "field_name": "promotion_content",
+            "display_name": "新增",
+            "rule_text": "点击增加一条宣传配置，最多额外新增1块；达到2条时禁用按钮",
+            "rule_type": "other",
+            "must_cover": true
+          }
+        ],
+        "field_rule_tables": [
+          {
+            "field_name": "promotion_content",
+            "table_name": "编辑宣传内容字段说明",
+            "table_desc": "宣传内容配置字段属性和效果",
+            "rows": [
+              {
+                "row_id": "ROW-01-01",
+                "row_name": "云机类型",
+                "rule_text": "下拉列表框，必填，默认为空，可编辑；单选，content为盒子现有云机类型",
+                "expected_effect": "所有云机类型均配置且不重复时可保存"
+              },
+              {
+                "row_id": "ROW-01-02",
+                "row_name": "宣传图片",
+                "rule_text": "图片按钮，必传，最多5张；支持gif/jpg/jpeg/png，最大500K，建议尺寸1008*160；支持拖拽和删除",
+                "expected_effect": "图片在C端宣传位展示"
+              },
+              {
+                "row_id": "ROW-01-03",
+                "row_name": "宣传口号",
+                "rule_text": "文本框，必填，20个字符；C端超过一行换行展示",
+                "expected_effect": "宣传口号在C端宣传区展示"
+              },
+              {
+                "row_id": "ROW-01-04",
+                "row_name": "性能参数",
+                "rule_text": "文本框，必填，20个字符；C端超过一行换行展示",
+                "expected_effect": "性能参数在C端宣传区展示"
+              },
+              {
+                "row_id": "ROW-01-05",
+                "row_name": "新增",
+                "rule_text": "点击增加一条宣传配置，最多额外新增1块；达到2条时禁用按钮",
+                "expected_effect": "最多维护2条宣传内容配置"
+              }
+            ]
+          }
+        ],
+        "visible_elements": [
+          "序号列",
+          "名称列",
+          "展示形式列",
+          "是否必填列",
+          "默认值列",
+          "是否可编辑列",
+          "说明列"
+        ],
+        "interactive_entries": [],
+        "abnormal_scenarios": [],
+        "boundary_scenarios": [],
+        "dependencies": []
+      }
+    ]
+  }
+]
+```
+
+## flows
+```json
+[
+  {
+    "flow_id": "FLOW-001",
+    "flow_name": "后台配置投影到云挂机购买页",
+    "flow_type": "main_flow",
+    "business_goal": "使商品区、排序、商品信息和宣传内容按云机类型投影到C端对应版本Tab。",
+    "trigger": "后台管理员完成商品与宣传内容配置。",
+    "preconditions": [
+      "需求摘要已批准，配置对象存在。"
+    ],
+    "steps": [
+      {
+        "step_no": 1,
+        "step_name": "配置商品",
+        "step_type": "operation",
+        "module_name": "云手机商品管理",
+        "feature_name": "商品添加表单",
+        "actor": "后台管理员",
+        "action": "配置商品区、排序、库存和商品信息并保存。",
+        "expected_result": "后台保存图片明确且满足约束的商品配置。",
+        "is_key_checkpoint": true
+      },
+      {
+        "step_no": 2,
+        "step_name": "配置宣传内容",
+        "step_type": "operation",
+        "module_name": "宣传内容管理",
+        "feature_name": "宣传内容编辑表单",
+        "actor": "后台管理员",
+        "action": "配置宣传图片、口号、性能参数和云机类型。",
+        "expected_result": "宣传内容按云机类型形成可消费配置。",
+        "is_key_checkpoint": true
+      },
+      {
+        "step_no": 3,
+        "step_name": "展示购买页",
+        "step_type": "system_response",
+        "module_name": "云挂机购买页",
+        "feature_name": "版本Tab",
+        "actor": "C端用户",
+        "action": "分别进入全新版和常规版Tab。",
+        "expected_result": "对应宣传位、宣传区、特价专区和普通商品列表按后台配置展示。",
+        "is_key_checkpoint": true
+      }
+    ],
+    "postconditions": [
+      "C端展示与B端配置保持同源。"
+    ],
+    "success_criteria": [
+      "全新版与常规版分别展示对应类型内容",
+      "特殊区最多展示4个商品且未配置时隐藏"
+    ],
+    "related_modules": [
+      "云手机商品管理",
+      "宣传内容管理",
+      "云挂机购买页"
+    ],
+    "priority": "P0",
+    "tags": [
+      "B端到C端",
+      "配置投影"
+    ]
+  },
+  {
+    "flow_id": "FLOW-002",
+    "flow_name": "库存阈值联动",
+    "flow_type": "support_flow",
+    "business_goal": "库存不足时同步控制C端展示、云机分配和管理员通知。",
+    "trigger": "实际库存小于等于库存预警值。",
+    "preconditions": [
+      "库存预警值已配置。"
+    ],
+    "steps": [
+      {
+        "step_no": 1,
+        "step_name": "配置阈值",
+        "step_type": "operation",
+        "module_name": "云手机商品管理",
+        "feature_name": "商品添加表单",
+        "actor": "后台管理员",
+        "action": "配置1至200的正整数库存预警值及报警通知人。",
+        "expected_result": "阈值和通知人配置可用于库存判断。"
+      },
+      {
+        "step_no": 2,
+        "step_name": "触发不足",
+        "step_type": "data_validation",
+        "module_name": "云手机商品管理",
+        "feature_name": "商品区与库存规则说明表",
+        "actor": "系统",
+        "action": "比较实际库存与预警值。",
+        "expected_result": "库存小于等于阈值时隐藏C端商品、不分配云机并发送库存不足通知。",
+        "is_key_checkpoint": true
+      }
+    ],
+    "postconditions": [
+      "库存校验频率、并发和恢复展示口径仍保持待确认。"
+    ],
+    "success_criteria": [
+      "阈值临界关系按图片规则执行",
+      "三项联动结果一致"
+    ],
+    "related_modules": [
+      "云手机商品管理"
+    ],
+    "priority": "P0",
+    "tags": [
+      "库存",
+      "告警",
+      "待确认"
+    ]
+  },
+  {
+    "flow_id": "FLOW-003",
+    "flow_name": "SDK与画面尺寸调整",
+    "flow_type": "support_flow",
+    "business_goal": "更新云机SDK并将画面尺寸调整为720*1280，以支持脚本并改善画质流畅度。",
+    "trigger": "云机技术方案实施。",
+    "preconditions": [
+      "SDK目标版本、量化阈值及分辨率技术语义待确认。"
+    ],
+    "steps": [
+      {
+        "step_no": 1,
+        "step_name": "更新SDK",
+        "step_type": "operation",
+        "module_name": "云机技术与需求背景",
+        "feature_name": "SDK与画面尺寸调整",
+        "actor": "研发",
+        "action": "更新云机SDK。",
+        "expected_result": "不得在缺少版本和阈值时脑补硬验收口径。"
+      },
+      {
+        "step_no": 2,
+        "step_name": "调整画面尺寸",
+        "step_type": "state_change",
+        "module_name": "云机技术与需求背景",
+        "feature_name": "SDK与画面尺寸调整",
+        "actor": "研发",
+        "action": "将云机画面尺寸调整为720*1280。",
+        "expected_result": "固定尺寸结论被保留，旋转、缩放、触控和终端适配边界仍待确认。",
+        "is_key_checkpoint": true
+      }
+    ],
+    "postconditions": [
+      "脚本类型和兼容性范围仍待确认。"
+    ],
+    "success_criteria": [
+      "结构化产物保留720*1280原值",
+      "未确认技术语义不升级为强断言"
+    ],
+    "related_modules": [
+      "云机技术与需求背景"
+    ],
+    "priority": "P1",
+    "tags": [
+      "SDK",
+      "分辨率",
+      "待确认"
+    ]
+  }
+]
+```

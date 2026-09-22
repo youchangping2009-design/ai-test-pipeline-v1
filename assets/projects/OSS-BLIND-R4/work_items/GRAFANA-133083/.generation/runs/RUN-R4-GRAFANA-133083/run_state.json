@@ -1,0 +1,202 @@
+{
+  "schema_version": "1.0.0",
+  "run_id": "RUN-R4-GRAFANA-133083",
+  "project_code": "OSS-BLIND-R4",
+  "work_item_id": "GRAFANA-133083",
+  "work_item_level": "M",
+  "mode": "validate",
+  "strict": true,
+  "status": "completed",
+  "stop_at": "strict_gate",
+  "current_stage": null,
+  "created_at": "2026-09-22T02:50:57+00:00",
+  "updated_at": "2026-09-22T05:13:34+00:00",
+  "run_dir": "assets/projects/OSS-BLIND-R4/work_items/GRAFANA-133083/.generation/runs/RUN-R4-GRAFANA-133083",
+  "stages": [
+    {
+      "stage_id": "requirement_intake",
+      "order": 0,
+      "kind": "validation",
+      "status": "succeeded",
+      "attempts": 1,
+      "required_files": [
+        "inputs/requirement_summary.md",
+        "inputs/source_manifest.json"
+      ],
+      "input_fingerprint": "4ed1d46a10da6153c63ddc232feef9b0899aa6823828bcbe4605de46cd56048a",
+      "started_at": "2026-09-22T02:50:57+00:00",
+      "completed_at": "2026-09-22T02:50:57+00:00",
+      "last_exit_code": 0,
+      "log_path": "assets/projects/OSS-BLIND-R4/work_items/GRAFANA-133083/.generation/runs/RUN-R4-GRAFANA-133083/logs/requirement_intake.log"
+    },
+    {
+      "stage_id": "evidence",
+      "order": 1,
+      "kind": "checkpoint",
+      "status": "succeeded",
+      "attempts": 1,
+      "required_files": [
+        "evidence/evidence_inventory.json"
+      ],
+      "input_fingerprint": "d0e9eb6cec4bc5c268acf57cbf56e05d3a9f934f667c141a3b2f389e732f21cf",
+      "started_at": "2026-09-22T02:54:42+00:00",
+      "completed_at": "2026-09-22T02:54:42+00:00",
+      "last_exit_code": 0,
+      "log_path": "assets/projects/OSS-BLIND-R4/work_items/GRAFANA-133083/.generation/runs/RUN-R4-GRAFANA-133083/logs/evidence.log"
+    },
+    {
+      "stage_id": "reasoning",
+      "order": 2,
+      "kind": "validation",
+      "status": "succeeded",
+      "attempts": 1,
+      "required_files": [
+        "analysis/reasoning_pack.json"
+      ],
+      "input_fingerprint": "1440c2d719d23c3684408b59bbbd0b89c5ce1ef360372f1df6a4d0a1e04af719",
+      "started_at": "2026-09-22T02:54:42+00:00",
+      "completed_at": "2026-09-22T02:54:42+00:00",
+      "last_exit_code": 0,
+      "log_path": "assets/projects/OSS-BLIND-R4/work_items/GRAFANA-133083/.generation/runs/RUN-R4-GRAFANA-133083/logs/reasoning.log"
+    },
+    {
+      "stage_id": "structured_prd",
+      "order": 3,
+      "kind": "validation",
+      "status": "succeeded",
+      "attempts": 3,
+      "required_files": [
+        "structured_prd/structured_prd.json"
+      ],
+      "input_fingerprint": "57a6cf67ce8fb9bf0eaac8837ca2c9d619398ac5290f4f04bf69f70cbb9086ef",
+      "started_at": "2026-09-22T03:21:58+00:00",
+      "completed_at": "2026-09-22T03:21:58+00:00",
+      "last_exit_code": 0,
+      "log_path": "assets/projects/OSS-BLIND-R4/work_items/GRAFANA-133083/.generation/runs/RUN-R4-GRAFANA-133083/logs/structured_prd.log"
+    },
+    {
+      "stage_id": "coverage",
+      "order": 4,
+      "kind": "validation",
+      "status": "succeeded",
+      "attempts": 3,
+      "required_files": [
+        "coverage/coverage_matrix.json"
+      ],
+      "input_fingerprint": "e304d63e42c96df26aacce89269c12187e48c2bfb065c268f96e3c9b39a65b61",
+      "started_at": "2026-09-22T05:01:13+00:00",
+      "completed_at": "2026-09-22T05:01:13+00:00",
+      "last_exit_code": 0,
+      "log_path": "assets/projects/OSS-BLIND-R4/work_items/GRAFANA-133083/.generation/runs/RUN-R4-GRAFANA-133083/logs/coverage.log"
+    },
+    {
+      "stage_id": "testability_gate",
+      "order": 5,
+      "kind": "validation",
+      "status": "succeeded",
+      "attempts": 3,
+      "required_files": [
+        "acceptance/testability_gate.json"
+      ],
+      "input_fingerprint": "426950b3e9377570f9f7915731471cb6de80244f207fdddc49cbb6563e3936f5",
+      "started_at": "2026-09-22T05:01:13+00:00",
+      "completed_at": "2026-09-22T05:01:13+00:00",
+      "last_exit_code": 0,
+      "log_path": "assets/projects/OSS-BLIND-R4/work_items/GRAFANA-133083/.generation/runs/RUN-R4-GRAFANA-133083/logs/testability_gate.log"
+    },
+    {
+      "stage_id": "acceptance_examples",
+      "order": 6,
+      "kind": "validation",
+      "status": "succeeded",
+      "attempts": 2,
+      "required_files": [
+        "acceptance/acceptance_examples.json"
+      ],
+      "input_fingerprint": "5bf0afff88c71c7742144de4ef65afa9ee00bec50337d2bb848656dfd786b11d",
+      "started_at": "2026-09-22T05:01:13+00:00",
+      "completed_at": "2026-09-22T05:01:13+00:00",
+      "last_exit_code": 0,
+      "log_path": "assets/projects/OSS-BLIND-R4/work_items/GRAFANA-133083/.generation/runs/RUN-R4-GRAFANA-133083/logs/acceptance_examples.log"
+    },
+    {
+      "stage_id": "case_plan",
+      "order": 7,
+      "kind": "validation",
+      "status": "succeeded",
+      "attempts": 3,
+      "required_files": [
+        "testcases/case_plan.json"
+      ],
+      "input_fingerprint": "85593e4f950df23ab0ba940e3e8ea0b6695dbaf4ef97f13cf636d0be10ebebad",
+      "started_at": "2026-09-22T05:01:13+00:00",
+      "completed_at": "2026-09-22T05:01:13+00:00",
+      "last_exit_code": 0,
+      "log_path": "assets/projects/OSS-BLIND-R4/work_items/GRAFANA-133083/.generation/runs/RUN-R4-GRAFANA-133083/logs/case_plan.log"
+    },
+    {
+      "stage_id": "testcases",
+      "order": 8,
+      "kind": "validation",
+      "status": "succeeded",
+      "attempts": 2,
+      "required_files": [
+        "testcases/testcases_main.md",
+        "testcases/testpoints.json"
+      ],
+      "input_fingerprint": "c08e7a86bbef687ca7c3c2f08bc42c522e3b0ef7c878d067eaec92c45bc5a159",
+      "started_at": "2026-09-22T05:01:13+00:00",
+      "completed_at": "2026-09-22T05:01:13+00:00",
+      "last_exit_code": 0,
+      "log_path": "assets/projects/OSS-BLIND-R4/work_items/GRAFANA-133083/.generation/runs/RUN-R4-GRAFANA-133083/logs/testcases.log"
+    },
+    {
+      "stage_id": "traceability",
+      "order": 9,
+      "kind": "validation",
+      "status": "succeeded",
+      "attempts": 2,
+      "required_files": [
+        "traceability/coverage_first_traceability.json"
+      ],
+      "input_fingerprint": "15d80b4594bd3b3b279a3f6c955a8c237428cbf415d31c351568158784413efd",
+      "started_at": "2026-09-22T05:01:13+00:00",
+      "completed_at": "2026-09-22T05:01:13+00:00",
+      "last_exit_code": 0,
+      "log_path": "assets/projects/OSS-BLIND-R4/work_items/GRAFANA-133083/.generation/runs/RUN-R4-GRAFANA-133083/logs/traceability.log"
+    },
+    {
+      "stage_id": "review",
+      "order": 10,
+      "kind": "validation",
+      "status": "skipped",
+      "attempts": 5,
+      "required_files": [
+        "reviews/review_record.md",
+        "reviews/quality_report.json",
+        "design/design_feedback.json"
+      ],
+      "input_fingerprint": "4fd7786c7127d2a801b0bb33ee4d20c5aee8fe2173a00320943cb2d9fd99a5ef",
+      "started_at": "2026-09-22T05:13:33+00:00",
+      "completed_at": "2026-09-22T05:13:33+00:00",
+      "last_exit_code": 0,
+      "log_path": "assets/projects/OSS-BLIND-R4/work_items/GRAFANA-133083/.generation/runs/RUN-R4-GRAFANA-133083/logs/review.log"
+    },
+    {
+      "stage_id": "strict_gate",
+      "order": 11,
+      "kind": "gate",
+      "status": "succeeded",
+      "attempts": 1,
+      "required_files": [
+        "manifest.json"
+      ],
+      "input_fingerprint": "35b5a0e9539b17879396efd5812176e64ebc88d7237d7177cba50637b40b5e5f",
+      "started_at": "2026-09-22T05:13:33+00:00",
+      "completed_at": "2026-09-22T05:13:33+00:00",
+      "last_exit_code": 0,
+      "log_path": "assets/projects/OSS-BLIND-R4/work_items/GRAFANA-133083/.generation/runs/RUN-R4-GRAFANA-133083/logs/strict_gate.log"
+    }
+  ],
+  "last_error": null
+}

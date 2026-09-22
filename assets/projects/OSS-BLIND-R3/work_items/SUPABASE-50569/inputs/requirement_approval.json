@@ -1,0 +1,13 @@
+{
+  "schema_version": "1.0.0",
+  "approval_id": "RUN-SUPABASE-50569-BLIND-R3-20260921-requirement-920896fb1179cf00fd4fd65b",
+  "status": "approved",
+  "reviewed_by": "user",
+  "reviewed_at": "2026-09-21T11:26:14+00:00",
+  "note": "用户已批准第三轮公开盲测四份需求摘要，允许进入后续盲测阶段",
+  "run_id": "RUN-SUPABASE-50569-BLIND-R3-20260921",
+  "requirement_summary_sha256": "b1b76c4d019c1dd59b1c7af0425d435192a1450644698eb7ba43741ec7dabf70",
+  "source_manifest_sha256": "4b5ac14b7c82f13fd91333e78eb9ca3db93467885c8d3094e8d234e2fc497f16",
+  "raw_inputs_fingerprint": "e4f8bb8a6bb5b4f363c6ccd34a0f4ce8c0b35fc27a911d909d6da5c3cb38710c",
+  "requirement_version": "1.0.0"
+}

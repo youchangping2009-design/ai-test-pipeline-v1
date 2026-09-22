@@ -1,0 +1,766 @@
+{
+  "project_code": "OSS-BLIND-R3",
+  "work_item_id": "CELERY-10668",
+  "grounding_contract_version": "1.0",
+  "generated_at": "2026-09-21T19:32:52",
+  "generated_from": [
+    "assets/projects/OSS-BLIND-R3/work_items/CELERY-10668/manifest.json",
+    "assets/projects/OSS-BLIND-R3/work_items/CELERY-10668/inputs/requirement_summary.md",
+    "assets/projects/OSS-BLIND-R3/work_items/CELERY-10668/inputs/source_manifest.json",
+    "assets/projects/OSS-BLIND-R3/work_items/CELERY-10668/image_evidence/image_evidence_inventory.json"
+  ],
+  "requirement_summary": {
+    "title": "CELERY-10668 跨 Worker 时钟域保留撤销任务需求整理",
+    "summary_text": "Worker 从其他主机或持久化状态接收已撤销任务时，不得直接复用来源主机的 monotonic 时间戳。接收的任务 ID 应在本机时钟域重新建立有效期，避免外部时间戳长期占满撤销集合并驱逐本机新撤销任务。被撤销的 ETA/countdown 任务在有效期内不得执行。",
+    "primary_pages": [],
+    "primary_user_surfaces": [],
+    "source_notes": [
+      "归一化需求来源：assets/projects/OSS-BLIND-R3/work_items/CELERY-10668/inputs/requirement_summary.md",
+      "SRC-001: https://github.com/celery/celery/pull/10668 (available)",
+      "SRC-002: https://github.com/celery/celery/issues/4300 (available)",
+      "SRC-003: inputs/public_source_snapshot.md (available)"
+    ]
+  },
+  "explicit_rules": [
+    {
+      "id": "ER-001",
+      "title": "需求整理-explicit_rule",
+      "statement": "Worker 从其他主机或持久化状态接收已撤销任务时，不得直接复用来源主机的 monotonic 时间戳。接收的任务 ID 应在本机时钟域重新建立有效期，避免外部时间戳长期占满撤销集合并驱逐本机新撤销任务。被撤销的 ETA/countdown 任务在有效期内不得执行。",
+      "confidence": 0.99,
+      "reasoning_notes": [
+        "来自主流程 requirement_summary.md 的确认需求。"
+      ],
+      "must_preserve_terms": [],
+      "source_refs": [
+        {
+          "source_type": "input_markdown",
+          "path": "assets/projects/OSS-BLIND-R3/work_items/CELERY-10668/inputs/requirement_summary.md",
+          "excerpt": "Worker 从其他主机或持久化状态接收已撤销任务时，不得直接复用来源主机的 monotonic 时间戳。接收的任务 ID 应在本机时钟域重新建立有效期，避免外部时间戳长期占满撤销集合并驱逐本机新撤销任务。被撤销的 ETA/countdown 任务在有效期内不得执行。"
+        }
+      ]
+    },
+    {
+      "id": "ER-002",
+      "title": "需求整理-explicit_rule",
+      "statement": "外部撤销状态只以任务 ID 参与合并，不把外部 monotonic 时间戳作为本机有效期依据。",
+      "confidence": 0.99,
+      "reasoning_notes": [
+        "来自主流程 requirement_summary.md 的确认需求。"
+      ],
+      "must_preserve_terms": [],
+      "source_refs": [
+        {
+          "source_type": "input_markdown",
+          "path": "assets/projects/OSS-BLIND-R3/work_items/CELERY-10668/inputs/requirement_summary.md",
+          "excerpt": "外部撤销状态只以任务 ID 参与合并，不把外部 monotonic 时间戳作为本机有效期依据。"
+        }
+      ]
+    },
+    {
+      "id": "ER-003",
+      "title": "需求整理-explicit_rule",
+      "statement": "接收的任务 ID 从本机收到时开始计算撤销有效期。",
+      "confidence": 0.99,
+      "reasoning_notes": [
+        "来自主流程 requirement_summary.md 的确认需求。"
+      ],
+      "must_preserve_terms": [],
+      "source_refs": [
+        {
+          "source_type": "input_markdown",
+          "path": "assets/projects/OSS-BLIND-R3/work_items/CELERY-10668/inputs/requirement_summary.md",
+          "excerpt": "接收的任务 ID 从本机收到时开始计算撤销有效期。"
+        }
+      ]
+    },
+    {
+      "id": "ER-004",
+      "title": "需求整理-explicit_rule",
+      "statement": "集合达到容量时，本机刚撤销的任务不得被错误驱逐。",
+      "confidence": 0.99,
+      "reasoning_notes": [
+        "来自主流程 requirement_summary.md 的确认需求。"
+      ],
+      "must_preserve_terms": [],
+      "source_refs": [
+        {
+          "source_type": "input_markdown",
+          "path": "assets/projects/OSS-BLIND-R3/work_items/CELERY-10668/inputs/requirement_summary.md",
+          "excerpt": "集合达到容量时，本机刚撤销的任务不得被错误驱逐。"
+        }
+      ]
+    },
+    {
+      "id": "ER-005",
+      "title": "需求整理-explicit_rule",
+      "statement": "`hello`、mingle 和 `--statedb` 三条入口保持一致语义。",
+      "confidence": 0.99,
+      "reasoning_notes": [
+        "来自主流程 requirement_summary.md 的确认需求。"
+      ],
+      "must_preserve_terms": [],
+      "source_refs": [
+        {
+          "source_type": "input_markdown",
+          "path": "assets/projects/OSS-BLIND-R3/work_items/CELERY-10668/inputs/requirement_summary.md",
+          "excerpt": "`hello`、mingle 和 `--statedb` 三条入口保持一致语义。"
+        }
+      ]
+    },
+    {
+      "id": "ER-006",
+      "title": "需求整理-explicit_rule",
+      "statement": "新旧 Worker 混合集群应能兼容两种撤销状态表示。",
+      "confidence": 0.99,
+      "reasoning_notes": [
+        "来自主流程 requirement_summary.md 的确认需求。"
+      ],
+      "must_preserve_terms": [],
+      "source_refs": [
+        {
+          "source_type": "input_markdown",
+          "path": "assets/projects/OSS-BLIND-R3/work_items/CELERY-10668/inputs/requirement_summary.md",
+          "excerpt": "新旧 Worker 混合集群应能兼容两种撤销状态表示。"
+        }
+      ]
+    },
+    {
+      "id": "ER-007",
+      "title": "需求整理-explicit_rule",
+      "statement": "同一时刻加入不同类型任务 ID 时不得因比较 ID 类型产生错误。",
+      "confidence": 0.99,
+      "reasoning_notes": [
+        "来自主流程 requirement_summary.md 的确认需求。"
+      ],
+      "must_preserve_terms": [
+        "任务 ID 时不得因比较 ID 类型产生错误"
+      ],
+      "source_refs": [
+        {
+          "source_type": "input_markdown",
+          "path": "assets/projects/OSS-BLIND-R3/work_items/CELERY-10668/inputs/requirement_summary.md",
+          "excerpt": "同一时刻加入不同类型任务 ID 时不得因比较 ID 类型产生错误。"
+        }
+      ]
+    },
+    {
+      "id": "ER-008",
+      "title": "需求整理-explicit_rule",
+      "statement": "来源 Worker 时间戳明显领先时，接收 Worker 仍按本机时间处理撤销状态。",
+      "confidence": 0.99,
+      "reasoning_notes": [
+        "来自主流程 requirement_summary.md 的确认需求。"
+      ],
+      "must_preserve_terms": [],
+      "source_refs": [
+        {
+          "source_type": "input_markdown",
+          "path": "assets/projects/OSS-BLIND-R3/work_items/CELERY-10668/inputs/requirement_summary.md",
+          "excerpt": "来源 Worker 时间戳明显领先时，接收 Worker 仍按本机时间处理撤销状态。"
+        }
+      ]
+    },
+    {
+      "id": "ER-009",
+      "title": "需求整理-explicit_rule",
+      "statement": "集合满载后新增本机撤销任务仍保留，被撤销 ETA 任务不会执行。",
+      "confidence": 0.99,
+      "reasoning_notes": [
+        "来自主流程 requirement_summary.md 的确认需求。"
+      ],
+      "must_preserve_terms": [],
+      "source_refs": [
+        {
+          "source_type": "input_markdown",
+          "path": "assets/projects/OSS-BLIND-R3/work_items/CELERY-10668/inputs/requirement_summary.md",
+          "excerpt": "集合满载后新增本机撤销任务仍保留，被撤销 ETA 任务不会执行。"
+        }
+      ]
+    },
+    {
+      "id": "ER-010",
+      "title": "需求整理-explicit_rule",
+      "statement": "收到的撤销 ID 在配置有效期内有效，并可在有效期后正常过期。",
+      "confidence": 0.99,
+      "reasoning_notes": [
+        "来自主流程 requirement_summary.md 的确认需求。"
+      ],
+      "must_preserve_terms": [],
+      "source_refs": [
+        {
+          "source_type": "input_markdown",
+          "path": "assets/projects/OSS-BLIND-R3/work_items/CELERY-10668/inputs/requirement_summary.md",
+          "excerpt": "收到的撤销 ID 在配置有效期内有效，并可在有效期后正常过期。"
+        }
+      ]
+    },
+    {
+      "id": "ER-011",
+      "title": "需求整理-explicit_rule",
+      "statement": "`hello`、mingle 与 `--statedb` 恢复分别验证。",
+      "confidence": 0.99,
+      "reasoning_notes": [
+        "来自主流程 requirement_summary.md 的确认需求。"
+      ],
+      "must_preserve_terms": [],
+      "source_refs": [
+        {
+          "source_type": "input_markdown",
+          "path": "assets/projects/OSS-BLIND-R3/work_items/CELERY-10668/inputs/requirement_summary.md",
+          "excerpt": "`hello`、mingle 与 `--statedb` 恢复分别验证。"
+        }
+      ]
+    },
+    {
+      "id": "ER-012",
+      "title": "需求整理-explicit_rule",
+      "statement": "新旧版本双向交换撤销状态时不丢失撤销 ID。",
+      "confidence": 0.99,
+      "reasoning_notes": [
+        "来自主流程 requirement_summary.md 的确认需求。"
+      ],
+      "must_preserve_terms": [],
+      "source_refs": [
+        {
+          "source_type": "input_markdown",
+          "path": "assets/projects/OSS-BLIND-R3/work_items/CELERY-10668/inputs/requirement_summary.md",
+          "excerpt": "新旧版本双向交换撤销状态时不丢失撤销 ID。"
+        }
+      ]
+    },
+    {
+      "id": "ER-013",
+      "title": "需求整理-order_rule",
+      "statement": "`now=0`、相同时间戳及 int/string 混合 ID 不触发排序或比较异常。",
+      "confidence": 0.99,
+      "reasoning_notes": [
+        "来自主流程 requirement_summary.md 的确认需求。"
+      ],
+      "must_preserve_terms": [],
+      "source_refs": [
+        {
+          "source_type": "input_markdown",
+          "path": "assets/projects/OSS-BLIND-R3/work_items/CELERY-10668/inputs/requirement_summary.md",
+          "excerpt": "`now=0`、相同时间戳及 int/string 混合 ID 不触发排序或比较异常。"
+        }
+      ]
+    },
+    {
+      "id": "ER-014",
+      "title": "需求整理-explicit_rule",
+      "statement": "关键状态：revoked task ID 集合、接收时间、过期时间、集合容量。",
+      "confidence": 0.99,
+      "reasoning_notes": [
+        "来自主流程 requirement_summary.md 的确认需求。"
+      ],
+      "must_preserve_terms": [],
+      "source_refs": [
+        {
+          "source_type": "input_markdown",
+          "path": "assets/projects/OSS-BLIND-R3/work_items/CELERY-10668/inputs/requirement_summary.md",
+          "excerpt": "关键状态：revoked task ID 集合、接收时间、过期时间、集合容量。"
+        }
+      ]
+    },
+    {
+      "id": "ER-015",
+      "title": "需求整理-explicit_rule",
+      "statement": "关键配置：`CELERY_WORKER_REVOKE_EXPIRES` / `REVOKE_EXPIRES`、`maxlen`、`--statedb`。",
+      "confidence": 0.99,
+      "reasoning_notes": [
+        "来自主流程 requirement_summary.md 的确认需求。"
+      ],
+      "must_preserve_terms": [],
+      "source_refs": [
+        {
+          "source_type": "input_markdown",
+          "path": "assets/projects/OSS-BLIND-R3/work_items/CELERY-10668/inputs/requirement_summary.md",
+          "excerpt": "关键配置：`CELERY_WORKER_REVOKE_EXPIRES` / `REVOKE_EXPIRES`、`maxlen`、`--statedb`。"
+        }
+      ]
+    },
+    {
+      "id": "ER-016",
+      "title": "需求整理-explicit_rule",
+      "statement": "可观察结果：任务未执行、撤销 ID 是否存在及是否按期过期、Worker 是否异常。",
+      "confidence": 0.99,
+      "reasoning_notes": [
+        "来自主流程 requirement_summary.md 的确认需求。"
+      ],
+      "must_preserve_terms": [],
+      "source_refs": [
+        {
+          "source_type": "input_markdown",
+          "path": "assets/projects/OSS-BLIND-R3/work_items/CELERY-10668/inputs/requirement_summary.md",
+          "excerpt": "可观察结果：任务未执行、撤销 ID 是否存在及是否按期过期、Worker 是否异常。"
+        }
+      ]
+    }
+  ],
+  "implicit_rules": [],
+  "field_constraints": [],
+  "data_source_rules": [],
+  "business_risks": [
+    {
+      "risk_id": "RISK-001",
+      "title": "滚动升级期间旧 Worker 与新 Worker 的状态格式兼容是核心风…",
+      "risk_statement": "滚动升级期间旧 Worker 与新 Worker 的状态格式兼容是核心风险。",
+      "severity": "medium",
+      "impact_scope": [],
+      "source_refs": [
+        {
+          "source_type": "input_markdown",
+          "path": "assets/projects/OSS-BLIND-R3/work_items/CELERY-10668/inputs/requirement_summary.md",
+          "excerpt": "滚动升级期间旧 Worker 与新 Worker 的状态格式兼容是核心风险。"
+        }
+      ]
+    },
+    {
+      "risk_id": "RISK-002",
+      "title": "重新从接收时间计算有效期会延长部分撤销 ID 的存活时间",
+      "risk_statement": "重新从接收时间计算有效期会延长部分撤销 ID 的存活时间，但优先保证不错误执行任务。",
+      "severity": "high",
+      "impact_scope": [],
+      "source_refs": [
+        {
+          "source_type": "input_markdown",
+          "path": "assets/projects/OSS-BLIND-R3/work_items/CELERY-10668/inputs/requirement_summary.md",
+          "excerpt": "重新从接收时间计算有效期会延长部分撤销 ID 的存活时间，但优先保证不错误执行任务。"
+        }
+      ]
+    },
+    {
+      "risk_id": "RISK-003",
+      "title": "高频撤销和满容量条件下才容易暴露驱逐问题",
+      "risk_statement": "高频撤销和满容量条件下才容易暴露驱逐问题，普通小样本可能产生假通过。",
+      "severity": "medium",
+      "impact_scope": [],
+      "source_refs": [
+        {
+          "source_type": "input_markdown",
+          "path": "assets/projects/OSS-BLIND-R3/work_items/CELERY-10668/inputs/requirement_summary.md",
+          "excerpt": "高频撤销和满容量条件下才容易暴露驱逐问题，普通小样本可能产生假通过。"
+        }
+      ]
+    },
+    {
+      "risk_id": "RISK-004",
+      "title": "跨主机 monotonic 时钟不可比较",
+      "risk_statement": "跨主机 monotonic 时钟不可比较，测试不能用墙钟调整替代真实时钟域差异。",
+      "severity": "medium",
+      "impact_scope": [],
+      "source_refs": [
+        {
+          "source_type": "input_markdown",
+          "path": "assets/projects/OSS-BLIND-R3/work_items/CELERY-10668/inputs/requirement_summary.md",
+          "excerpt": "跨主机 monotonic 时钟不可比较，测试不能用墙钟调整替代真实时钟域差异。"
+        }
+      ]
+    }
+  ],
+  "edge_cases": [
+    {
+      "edge_case_id": "EC-001",
+      "title": "`now=0`、相同时间戳及 int/string 混合 ID 不触发排…",
+      "scenario": "`now=0`、相同时间戳及 int/string 混合 ID 不触发排序或比较异常。",
+      "priority": "P1",
+      "source_refs": [
+        {
+          "source_type": "input_markdown",
+          "path": "assets/projects/OSS-BLIND-R3/work_items/CELERY-10668/inputs/requirement_summary.md",
+          "excerpt": "`now=0`、相同时间戳及 int/string 混合 ID 不触发排序或比较异常。"
+        }
+      ]
+    }
+  ],
+  "ambiguities": [
+    {
+      "ambiguity_id": "AMB-001",
+      "title": "新旧版本兼容范围覆盖哪些 Celery 版本",
+      "description": "新旧版本兼容范围覆盖哪些 Celery 版本？",
+      "status": "open",
+      "suggested_resolution": "在进入正式测试设计前由需求方确认；未确认时保持显式缺失，不推断为强规则。",
+      "source_refs": [
+        {
+          "source_type": "input_markdown",
+          "path": "assets/projects/OSS-BLIND-R3/work_items/CELERY-10668/inputs/requirement_summary.md",
+          "excerpt": "新旧版本兼容范围覆盖哪些 Celery 版本？"
+        }
+      ]
+    },
+    {
+      "ambiguity_id": "AMB-002",
+      "title": "接收后的撤销有效期延长是否有可接受的最大边界",
+      "description": "接收后的撤销有效期延长是否有可接受的最大边界？",
+      "status": "open",
+      "suggested_resolution": "在进入正式测试设计前由需求方确认；未确认时保持显式缺失，不推断为强规则。",
+      "source_refs": [
+        {
+          "source_type": "input_markdown",
+          "path": "assets/projects/OSS-BLIND-R3/work_items/CELERY-10668/inputs/requirement_summary.md",
+          "excerpt": "接收后的撤销有效期延长是否有可接受的最大边界？"
+        }
+      ]
+    },
+    {
+      "ambiguity_id": "AMB-003",
+      "title": "重复接收相同撤销 ID 是否重置本地有效期",
+      "description": "重复接收相同撤销 ID 是否重置本地有效期？",
+      "status": "open",
+      "suggested_resolution": "在进入正式测试设计前由需求方确认；未确认时保持显式缺失，不推断为强规则。",
+      "source_refs": [
+        {
+          "source_type": "input_markdown",
+          "path": "assets/projects/OSS-BLIND-R3/work_items/CELERY-10668/inputs/requirement_summary.md",
+          "excerpt": "重复接收相同撤销 ID 是否重置本地有效期？"
+        }
+      ]
+    },
+    {
+      "ambiguity_id": "AMB-004",
+      "title": "集群中撤销状态交换的最大载荷或性能阈值未说明",
+      "description": "集群中撤销状态交换的最大载荷或性能阈值未说明。",
+      "status": "open",
+      "suggested_resolution": "在进入正式测试设计前由需求方确认；未确认时保持显式缺失，不推断为强规则。",
+      "source_refs": [
+        {
+          "source_type": "input_markdown",
+          "path": "assets/projects/OSS-BLIND-R3/work_items/CELERY-10668/inputs/requirement_summary.md",
+          "excerpt": "集群中撤销状态交换的最大载荷或性能阈值未说明。"
+        }
+      ]
+    }
+  ],
+  "recommended_test_dimensions": [
+    {
+      "dimension_id": "TD-001",
+      "dimension": "显式规则逐条验证",
+      "rationale": "需求摘要已给出可追溯规则，后续设计应保持单规则单断言并验证成功与失败结果。",
+      "priority": "high",
+      "related_reasoning_ids": [
+        "ER-001",
+        "ER-002",
+        "ER-003",
+        "ER-004",
+        "ER-005",
+        "ER-006",
+        "ER-007",
+        "ER-008"
+      ]
+    },
+    {
+      "dimension_id": "TD-002",
+      "dimension": "异常与失败处理",
+      "rationale": "需求包含明确拒绝或失败语义，需要验证失败状态、错误反馈及副作用隔离。",
+      "priority": "high",
+      "related_reasoning_ids": [
+        "ER-001",
+        "ER-004",
+        "ER-007",
+        "ER-013",
+        "ER-016"
+      ]
+    },
+    {
+      "dimension_id": "TD-003",
+      "dimension": "兼容性与回归",
+      "rationale": "需求要求保留既有合法行为或历史关系，需要同时验证变更路径与未变路径。",
+      "priority": "high",
+      "related_reasoning_ids": [
+        "ER-006"
+      ]
+    },
+    {
+      "dimension_id": "TD-004",
+      "dimension": "数据一致性与状态保留",
+      "rationale": "需求涉及关系或状态保留，应核对操作前后数据集合而非只看接口成功。",
+      "priority": "high",
+      "related_reasoning_ids": [
+        "ER-001",
+        "ER-002",
+        "ER-004",
+        "ER-005",
+        "ER-006",
+        "ER-008",
+        "ER-009",
+        "ER-012"
+      ]
+    },
+    {
+      "dimension_id": "TD-005",
+      "dimension": "输入类型与边界",
+      "rationale": "输入的类型、边界值和协议格式会影响判断结果，需要覆盖合法、非法及临界输入。",
+      "priority": "high",
+      "related_reasoning_ids": [
+        "ER-007",
+        "ER-013"
+      ]
+    },
+    {
+      "dimension_id": "TD-006",
+      "dimension": "风险与非功能约束",
+      "rationale": "需求摘要已明确兼容性、性能或一致性风险，需与产品验收规则分层承接。",
+      "priority": "medium",
+      "related_reasoning_ids": [
+        "RISK-001",
+        "RISK-002",
+        "RISK-003",
+        "RISK-004"
+      ]
+    },
+    {
+      "dimension_id": "TD-007",
+      "dimension": "未决项追踪",
+      "rationale": "摘要存在尚未确认的输入或验收口径，后续不得将其自动升级为强制规则。",
+      "priority": "medium",
+      "related_reasoning_ids": [
+        "AMB-001",
+        "AMB-002",
+        "AMB-003",
+        "AMB-004"
+      ]
+    }
+  ],
+  "coverage_candidates": [
+    {
+      "candidate_id": "COV-001",
+      "candidate_type": "rule_cluster",
+      "title": "Worker 从其他主机或持久化状态接收已撤销任务时",
+      "scope": "文本需求规则",
+      "priority": "high",
+      "rationale": "文本需求中的显式规则需要在后续 Structured PRD 与测试设计中保持可追溯。",
+      "suggested_test_types": [
+        "功能",
+        "异常"
+      ],
+      "source_reasoning_ids": [
+        "ER-001"
+      ]
+    },
+    {
+      "candidate_id": "COV-002",
+      "candidate_type": "rule_cluster",
+      "title": "外部撤销状态只以任务 ID 参与合并",
+      "scope": "文本需求规则",
+      "priority": "high",
+      "rationale": "文本需求中的显式规则需要在后续 Structured PRD 与测试设计中保持可追溯。",
+      "suggested_test_types": [
+        "功能",
+        "异常"
+      ],
+      "source_reasoning_ids": [
+        "ER-002"
+      ]
+    },
+    {
+      "candidate_id": "COV-003",
+      "candidate_type": "rule_cluster",
+      "title": "接收的任务 ID 从本机收到时开始计算撤销有效期",
+      "scope": "文本需求规则",
+      "priority": "high",
+      "rationale": "文本需求中的显式规则需要在后续 Structured PRD 与测试设计中保持可追溯。",
+      "suggested_test_types": [
+        "功能",
+        "异常"
+      ],
+      "source_reasoning_ids": [
+        "ER-003"
+      ]
+    },
+    {
+      "candidate_id": "COV-004",
+      "candidate_type": "rule_cluster",
+      "title": "集合达到容量时",
+      "scope": "文本需求规则",
+      "priority": "high",
+      "rationale": "文本需求中的显式规则需要在后续 Structured PRD 与测试设计中保持可追溯。",
+      "suggested_test_types": [
+        "功能",
+        "异常"
+      ],
+      "source_reasoning_ids": [
+        "ER-004"
+      ]
+    },
+    {
+      "candidate_id": "COV-005",
+      "candidate_type": "rule_cluster",
+      "title": "`hello`、mingle 和 `--statedb` 三条入口保持一…",
+      "scope": "文本需求规则",
+      "priority": "high",
+      "rationale": "文本需求中的显式规则需要在后续 Structured PRD 与测试设计中保持可追溯。",
+      "suggested_test_types": [
+        "功能",
+        "异常"
+      ],
+      "source_reasoning_ids": [
+        "ER-005"
+      ]
+    },
+    {
+      "candidate_id": "COV-006",
+      "candidate_type": "rule_cluster",
+      "title": "新旧 Worker 混合集群应能兼容两种撤销状态表示",
+      "scope": "文本需求规则",
+      "priority": "high",
+      "rationale": "文本需求中的显式规则需要在后续 Structured PRD 与测试设计中保持可追溯。",
+      "suggested_test_types": [
+        "功能",
+        "异常"
+      ],
+      "source_reasoning_ids": [
+        "ER-006"
+      ]
+    },
+    {
+      "candidate_id": "COV-007",
+      "candidate_type": "rule_cluster",
+      "title": "同一时刻加入不同类型任务 ID 时不得因比较 ID 类型产生错误",
+      "scope": "文本需求规则",
+      "priority": "high",
+      "rationale": "文本需求中的显式规则需要在后续 Structured PRD 与测试设计中保持可追溯。",
+      "suggested_test_types": [
+        "功能",
+        "异常"
+      ],
+      "source_reasoning_ids": [
+        "ER-007"
+      ]
+    },
+    {
+      "candidate_id": "COV-008",
+      "candidate_type": "rule_cluster",
+      "title": "来源 Worker 时间戳明显领先时",
+      "scope": "文本需求规则",
+      "priority": "high",
+      "rationale": "文本需求中的显式规则需要在后续 Structured PRD 与测试设计中保持可追溯。",
+      "suggested_test_types": [
+        "功能",
+        "异常"
+      ],
+      "source_reasoning_ids": [
+        "ER-008"
+      ]
+    },
+    {
+      "candidate_id": "COV-009",
+      "candidate_type": "rule_cluster",
+      "title": "集合满载后新增本机撤销任务仍保留",
+      "scope": "文本需求规则",
+      "priority": "high",
+      "rationale": "文本需求中的显式规则需要在后续 Structured PRD 与测试设计中保持可追溯。",
+      "suggested_test_types": [
+        "功能",
+        "异常"
+      ],
+      "source_reasoning_ids": [
+        "ER-009"
+      ]
+    },
+    {
+      "candidate_id": "COV-010",
+      "candidate_type": "rule_cluster",
+      "title": "收到的撤销 ID 在配置有效期内有效",
+      "scope": "文本需求规则",
+      "priority": "high",
+      "rationale": "文本需求中的显式规则需要在后续 Structured PRD 与测试设计中保持可追溯。",
+      "suggested_test_types": [
+        "功能",
+        "异常"
+      ],
+      "source_reasoning_ids": [
+        "ER-010"
+      ]
+    },
+    {
+      "candidate_id": "COV-011",
+      "candidate_type": "rule_cluster",
+      "title": "`hello`、mingle 与 `--statedb` 恢复分别验证",
+      "scope": "文本需求规则",
+      "priority": "high",
+      "rationale": "文本需求中的显式规则需要在后续 Structured PRD 与测试设计中保持可追溯。",
+      "suggested_test_types": [
+        "功能",
+        "异常"
+      ],
+      "source_reasoning_ids": [
+        "ER-011"
+      ]
+    },
+    {
+      "candidate_id": "COV-012",
+      "candidate_type": "rule_cluster",
+      "title": "新旧版本双向交换撤销状态时不丢失撤销 ID",
+      "scope": "文本需求规则",
+      "priority": "high",
+      "rationale": "文本需求中的显式规则需要在后续 Structured PRD 与测试设计中保持可追溯。",
+      "suggested_test_types": [
+        "功能",
+        "异常"
+      ],
+      "source_reasoning_ids": [
+        "ER-012"
+      ]
+    },
+    {
+      "candidate_id": "COV-013",
+      "candidate_type": "rule_cluster",
+      "title": "`now=0`、相同时间戳及 int/string 混合 ID 不触发排…",
+      "scope": "文本需求规则",
+      "priority": "high",
+      "rationale": "文本需求中的显式规则需要在后续 Structured PRD 与测试设计中保持可追溯。",
+      "suggested_test_types": [
+        "功能",
+        "异常"
+      ],
+      "source_reasoning_ids": [
+        "ER-013"
+      ]
+    },
+    {
+      "candidate_id": "COV-014",
+      "candidate_type": "rule_cluster",
+      "title": "关键状态",
+      "scope": "文本需求规则",
+      "priority": "high",
+      "rationale": "文本需求中的显式规则需要在后续 Structured PRD 与测试设计中保持可追溯。",
+      "suggested_test_types": [
+        "功能",
+        "异常"
+      ],
+      "source_reasoning_ids": [
+        "ER-014"
+      ]
+    },
+    {
+      "candidate_id": "COV-015",
+      "candidate_type": "rule_cluster",
+      "title": "关键配置",
+      "scope": "文本需求规则",
+      "priority": "high",
+      "rationale": "文本需求中的显式规则需要在后续 Structured PRD 与测试设计中保持可追溯。",
+      "suggested_test_types": [
+        "功能",
+        "异常"
+      ],
+      "source_reasoning_ids": [
+        "ER-015"
+      ]
+    },
+    {
+      "candidate_id": "COV-016",
+      "candidate_type": "rule_cluster",
+      "title": "可观察结果",
+      "scope": "文本需求规则",
+      "priority": "high",
+      "rationale": "文本需求中的显式规则需要在后续 Structured PRD 与测试设计中保持可追溯。",
+      "suggested_test_types": [
+        "功能",
+        "异常"
+      ],
+      "source_reasoning_ids": [
+        "ER-016"
+      ]
+    }
+  ]
+}

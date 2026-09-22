@@ -97,6 +97,8 @@ Schema：
 - 模块拆分合理
 - feature 足够原子化
 - rules 不是模糊语句
+- `explicit_rules[].source_scope` 能区分正式需求、背景信息与后置 oracle；`context_only/oracle_only` 不得升级为正式验收规则
+- 复合规则使用 `atomic_assertions` 拆出可独立失败的断言
 - 对后台配置页优先输出 `fields[]`，`field_definitions` 作为兼容层保留
 - 字段级规则优先进入对象版 `rules[]`，不要只留在 `field_rules.rule_text`
 - `visible_elements / interactive_entries` 可承接截图证据

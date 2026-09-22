@@ -1,0 +1,9 @@
+{
+  "stage": "frontend_code_review",
+  "review_type": "frontend_code",
+  "manual_confirmation_required": true,
+  "confirmation_status": "pending",
+  "confirmed_by": "",
+  "confirmed_at": "",
+  "confirmation_note": ""
+}

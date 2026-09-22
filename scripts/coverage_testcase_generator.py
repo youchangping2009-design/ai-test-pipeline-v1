@@ -11,6 +11,23 @@ from datetime import datetime
 from pathlib import Path
 from typing import Any
 
+try:
+    from scripts.case_plan_semantics import (
+        build_source_index,
+        direct_case_steps_expected,
+        normalized_plan_semantics,
+        testcase_type,
+        source_descriptor,
+    )
+except ModuleNotFoundError:
+    from case_plan_semantics import (
+        build_source_index,
+        direct_case_steps_expected,
+        normalized_plan_semantics,
+        testcase_type,
+        source_descriptor,
+    )
+
 
 HEADERS = [
     "用例编号",
@@ -2098,6 +2115,120 @@ def build_case_plan_testcase_index(
     return {key: dedupe_preserve_order(value) for key, value in index.items()}
 
 
+def build_direct_case_plan_rows(
+    structured_prd: dict[str, Any],
+    coverage_matrix: dict[str, Any],
+    case_plan: dict[str, Any],
+    acceptance_examples: dict[str, Any] | None = None,
+) -> list[dict[str, Any]]:
+    source_index = build_source_index(structured_prd, coverage_matrix)
+    example_index = {
+        str(item.get("example_id", "")).strip(): item
+        for item in (acceptance_examples or {}).get("examples", []) or []
+        if isinstance(item, dict) and str(item.get("example_id", "")).strip()
+    }
+    rows: list[dict[str, Any]] = []
+    seen_ids: set[str] = set()
+    for plan in case_plan.get("case_plans", []) or []:
+        if not isinstance(plan, dict) or not bool(plan.get("should_generate_case")):
+            continue
+        descriptor = source_descriptor(plan, source_index)
+        semantics = normalized_plan_semantics(plan, descriptor)
+        testcase_ids = [
+            str(item).strip()
+            for item in plan.get("generated_testcase_ids", []) or []
+            if str(item).strip()
+        ]
+        if len(testcase_ids) != 1:
+            raise ValueError(
+                f"{plan.get('case_plan_id', '')} 在 case_plan_direct 模式下必须且只能提供一个 generated_testcase_id"
+            )
+        testcase_id = testcase_ids[0]
+        if testcase_id in seen_ids:
+            raise ValueError(f"case_plan_direct 生成的 testcase_id 重复: {testcase_id}")
+        seen_ids.add(testcase_id)
+        plan_id = str(plan.get("case_plan_id", "")).strip()
+        page_name = str(plan.get("page_name", "")).strip()
+        section_name = str(plan.get("section_name", "")).strip()
+        module_name = str(plan.get("module_name", "")).strip()
+        feature_name = str(plan.get("feature_name", "")).strip()
+        source_example_ids = [
+            str(item).strip() for item in plan.get("source_example_ids", []) or [] if str(item).strip()
+        ]
+        source_example = next((example_index[item] for item in source_example_ids if item in example_index), None)
+        preconditions, steps, expected = direct_case_steps_expected(
+            plan, semantics, descriptor, source_example
+        )
+        # case_plan_direct 以 Case Plan 为测试类型真源；语义推断只用于补齐文案，
+        # 不应把已明确的 field_constraint 等类型重新解释为 ui_display。
+        plan_type = str(plan.get("case_type", "")).strip() or semantics["case_type"]
+        test_type = testcase_type(
+            plan_type,
+            " ".join(
+                [
+                    semantics["detail"],
+                    str(plan.get("title", "")),
+                    str(plan.get("assertion", "")),
+                ]
+            ),
+        )
+        source_ids = [str(item).strip() for item in plan.get("source_rule_ids", []) or [] if str(item).strip()]
+        example_ids = source_example_ids
+        remark_parts = [f"来源 CasePlan：{plan_id}"]
+        if plan_type == "linkage":
+            remark_parts.append(f"来源 Flow：{plan_id}")
+        remark_parts.extend(f"来源 Acceptance：{item}" for item in example_ids)
+        remark_parts.extend(f"来源 Rule：{item}" for item in source_ids)
+        remark_parts.extend(
+            f"来源coverage：{str(item).strip()}"
+            for item in plan.get("source_coverage_ids", []) or []
+            if str(item).strip()
+        )
+        verification_side = str(plan.get("verification_side", "")).strip()
+        tags = []
+        if any(token in verification_side for token in ("API", "服务端", "请求层", "数据层")):
+            tags.append("AI-API用例")
+        if any(token in verification_side for token in ("前端", "页面", "展示", "C端", "B端")):
+            tags.append("AI-UI用例")
+        if not tags and re.search(r"-(?:API|SERVER)-(?:FN|BD|AB|PM|FL|ST|DV)-\d{3,}$", testcase_id):
+            tags.append("AI-API用例")
+        if not tags:
+            tags = case_tags(test_type, ["case_plan_direct"], False, "").split(",")
+        if str(plan.get("priority", "")).strip() == "P0":
+            tags.extend(["开发必测", "测试必测"])
+        plan_title = str(plan.get("title", "")).strip()
+        if re.match(
+            r"^(约束判定|读侧展示|业务结果|提示展示|后台任务|跨端联动)[:：]",
+            plan_title,
+        ):
+            plan_title = semantics["title"]
+        rows.append(
+            {
+                "__page_name": page_name,
+                "__section_name": section_name,
+                "__case_type": test_type,
+                "__emit_mode": "main_testcase",
+                "__coverage_ids": list(plan.get("source_coverage_ids", []) or []),
+                "__source_origins": ["case_plan_direct"],
+                "__reasoning_refs": [],
+                "__case_plan_ids": [plan_id],
+                "__flow_ids": [],
+                "用例编号": testcase_id,
+                "所属模块": module_name,
+                "所属功能点": feature_name,
+                "用例标题": plan_title or semantics["title"],
+                "前置条件": "<br>".join(preconditions),
+                "测试步骤": html_lines(steps),
+                "预期结果": html_lines(expected),
+                "优先级": str(plan.get("priority", "P1")).strip() or "P1",
+                "标签": ",".join(dedupe_preserve_order(tags)),
+                "测试类型": test_type,
+                "备注": "；".join(remark_parts),
+            }
+        )
+    return rows
+
+
 def apply_planned_testcase_trace(
     cases: list[dict[str, Any]],
     testcase_plan_index: dict[str, list[str]],
@@ -2360,6 +2491,7 @@ def generate_testcases_bundle(
     structured_prd: dict[str, Any],
     coverage_matrix: dict[str, Any],
     case_plan: dict[str, Any] | None = None,
+    acceptance_examples: dict[str, Any] | None = None,
 ) -> dict[str, Any]:
     project_code = str(structured_prd.get("project_info", {}).get("project_code", "DEMO")).strip() or "DEMO"
     feature_map = structured_feature_map(structured_prd)
@@ -2377,6 +2509,36 @@ def generate_testcases_bundle(
             "存在 should_generate_case=true 的 Case Plan，但 coverage_matrix.entries 为空；"
             "禁止用空生成结果覆盖正式 testcase"
         )
+    if isinstance(case_plan, dict) and case_plan.get("generation_mode") == "case_plan_direct":
+        main_cases = build_direct_case_plan_rows(
+            structured_prd, coverage_matrix, case_plan, acceptance_examples
+        )
+        duplicate_report = {
+            "generated_at": datetime.now().isoformat(timespec="seconds"),
+            "total_case_drafts_before_merge": len(main_cases),
+            "total_cases_after_merge": len(main_cases),
+            "merged_group_count": 0,
+            "reduced_case_count": 0,
+            "groups": [],
+            "total_cases_after_flow_append": len(main_cases),
+            "flow_case_count": 0,
+            **compute_residual_duplicate_report(main_cases),
+        }
+        field_audit = build_field_audit(coverage_matrix)
+        grouped_audit = build_grouped_audit(coverage_matrix)
+        return {
+            "markdown": render_markdown(main_cases),
+            "main_markdown": render_markdown(main_cases),
+            "main_case_count": len(main_cases),
+            "field_audit": field_audit,
+            "grouped_audit": grouped_audit,
+            "duplicate_case_report": duplicate_report,
+            "case_count_before_merge": len(main_cases),
+            "case_count_after_merge": len(main_cases),
+            "case_plan_trace_count": len(main_cases),
+            "untraced_case_count_filtered": 0,
+        }
+
     seqs: defaultdict[tuple[str, str, str], int] = defaultdict(int)
     case_drafts: list[dict[str, Any]] = []
 

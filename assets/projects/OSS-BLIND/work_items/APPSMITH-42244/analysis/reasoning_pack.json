@@ -1,0 +1,705 @@
+{
+  "project_code": "OSS-BLIND",
+  "work_item_id": "APPSMITH-42244",
+  "grounding_contract_version": "1.0",
+  "generated_at": "2026-09-21T15:05:29",
+  "generated_from": [
+    "assets/projects/OSS-BLIND/work_items/APPSMITH-42244/manifest.json",
+    "assets/projects/OSS-BLIND/work_items/APPSMITH-42244/inputs/requirement_summary.md",
+    "assets/projects/OSS-BLIND/work_items/APPSMITH-42244/inputs/source_manifest.json",
+    "assets/projects/OSS-BLIND/work_items/APPSMITH-42244/image_evidence/image_evidence_inventory.json"
+  ],
+  "requirement_summary": {
+    "title": "APPSMITH-42244 Databricks JDBC URL validation 需求整理",
+    "summary_text": "Databricks 插件在建立数据源连接前必须验证自定义 JDBC URL。非 Databricks URL 应被拒绝；有效的 Databricks URL，包括既有自定义 `jdbc:databricks://` 配置，应继续正常建立连接。连接应由 Databricks JDBC driver 直接处理，并在 driver 拒绝 URL 时采用失败关闭策略。",
+    "primary_pages": [],
+    "primary_user_surfaces": [],
+    "source_notes": [
+      "归一化需求来源：assets/projects/OSS-BLIND/work_items/APPSMITH-42244/inputs/requirement_summary.md",
+      "SRC-001: https://github.com/appsmithorg/appsmith/pull/42244 (available)",
+      "SRC-002: inputs/public_source_snapshot.md (available)",
+      "SRC-003: https://linear.app/appsmith/issue/APP-15972 (pending_auth)",
+      "SRC-004: https://github.com/advisories/GHSA-4frm-93mv-j963 (failed)"
+    ]
+  },
+  "explicit_rules": [
+    {
+      "id": "ER-001",
+      "title": "需求整理-explicit_rule",
+      "statement": "Databricks 插件在建立数据源连接前必须验证自定义 JDBC URL。非 Databricks URL 应被拒绝；有效的 Databricks URL，包括既有自定义 `jdbc:databricks://` 配置，应继续正常建立连接。连接应由 Databricks JDBC driver 直接处理，并在 driver 拒绝 URL 时采用失败关闭策略。",
+      "confidence": 0.99,
+      "reasoning_notes": [
+        "来自主流程 requirement_summary.md 的确认需求。"
+      ],
+      "must_preserve_terms": [
+        "既有自定义 `jdbc:databricks:",
+        "配置",
+        "应继续正常建立连接"
+      ],
+      "source_refs": [
+        {
+          "source_type": "input_markdown",
+          "path": "assets/projects/OSS-BLIND/work_items/APPSMITH-42244/inputs/requirement_summary.md",
+          "excerpt": "Databricks 插件在建立数据源连接前必须验证自定义 JDBC URL。非 Databricks URL 应被拒绝；有效的 Databricks URL，包括既有自定义 `jdbc:databricks://` 配置，应继续正常建立连接。连接应由 Databricks JDBC driver 直接处理，并在 driver 拒绝 URL 时采用失败关闭策略。"
+        }
+      ]
+    },
+    {
+      "id": "ER-002",
+      "title": "需求整理-explicit_rule",
+      "statement": "在真正创建连接之前检查 URL 是否属于 Databricks JDBC 协议。",
+      "confidence": 0.99,
+      "reasoning_notes": [
+        "来自主流程 requirement_summary.md 的确认需求。"
+      ],
+      "must_preserve_terms": [],
+      "source_refs": [
+        {
+          "source_type": "input_markdown",
+          "path": "assets/projects/OSS-BLIND/work_items/APPSMITH-42244/inputs/requirement_summary.md",
+          "excerpt": "在真正创建连接之前检查 URL 是否属于 Databricks JDBC 协议。"
+        }
+      ]
+    },
+    {
+      "id": "ER-003",
+      "title": "需求整理-explicit_rule",
+      "statement": "连接由明确的 Databricks JDBC driver 处理。",
+      "confidence": 0.99,
+      "reasoning_notes": [
+        "来自主流程 requirement_summary.md 的确认需求。"
+      ],
+      "must_preserve_terms": [],
+      "source_refs": [
+        {
+          "source_type": "input_markdown",
+          "path": "assets/projects/OSS-BLIND/work_items/APPSMITH-42244/inputs/requirement_summary.md",
+          "excerpt": "连接由明确的 Databricks JDBC driver 处理。"
+        }
+      ]
+    },
+    {
+      "id": "ER-004",
+      "title": "需求整理-explicit_rule",
+      "statement": "URL 被校验逻辑或 driver 拒绝时，返回连接创建错误并停止后续连接行为。",
+      "confidence": 0.99,
+      "reasoning_notes": [
+        "来自主流程 requirement_summary.md 的确认需求。"
+      ],
+      "must_preserve_terms": [],
+      "source_refs": [
+        {
+          "source_type": "input_markdown",
+          "path": "assets/projects/OSS-BLIND/work_items/APPSMITH-42244/inputs/requirement_summary.md",
+          "excerpt": "URL 被校验逻辑或 driver 拒绝时，返回连接创建错误并停止后续连接行为。"
+        }
+      ]
+    },
+    {
+      "id": "ER-005",
+      "title": "需求整理-explicit_rule",
+      "statement": "有效 URL 继续使用当前认证信息建立连接，不改变既有合法配置行为。",
+      "confidence": 0.99,
+      "reasoning_notes": [
+        "来自主流程 requirement_summary.md 的确认需求。"
+      ],
+      "must_preserve_terms": [],
+      "source_refs": [
+        {
+          "source_type": "input_markdown",
+          "path": "assets/projects/OSS-BLIND/work_items/APPSMITH-42244/inputs/requirement_summary.md",
+          "excerpt": "有效 URL 继续使用当前认证信息建立连接，不改变既有合法配置行为。"
+        }
+      ]
+    },
+    {
+      "id": "ER-006",
+      "title": "需求整理-explicit_rule",
+      "statement": "非 Databricks JDBC URL 被拒绝，且不会被其他已注册 driver 接管。",
+      "confidence": 0.99,
+      "reasoning_notes": [
+        "来自主流程 requirement_summary.md 的确认需求。"
+      ],
+      "must_preserve_terms": [],
+      "source_refs": [
+        {
+          "source_type": "input_markdown",
+          "path": "assets/projects/OSS-BLIND/work_items/APPSMITH-42244/inputs/requirement_summary.md",
+          "excerpt": "非 Databricks JDBC URL 被拒绝，且不会被其他已注册 driver 接管。"
+        }
+      ]
+    },
+    {
+      "id": "ER-007",
+      "title": "需求整理-explicit_rule",
+      "statement": "有效 `jdbc:databricks://` URL 可以进入 Databricks driver 的连接流程。",
+      "confidence": 0.99,
+      "reasoning_notes": [
+        "来自主流程 requirement_summary.md 的确认需求。"
+      ],
+      "must_preserve_terms": [],
+      "source_refs": [
+        {
+          "source_type": "input_markdown",
+          "path": "assets/projects/OSS-BLIND/work_items/APPSMITH-42244/inputs/requirement_summary.md",
+          "excerpt": "有效 `jdbc:databricks://` URL 可以进入 Databricks driver 的连接流程。"
+        }
+      ]
+    },
+    {
+      "id": "ER-008",
+      "title": "需求整理-explicit_rule",
+      "statement": "自定义但合法的 Databricks URL 保持兼容。",
+      "confidence": 0.99,
+      "reasoning_notes": [
+        "来自主流程 requirement_summary.md 的确认需求。"
+      ],
+      "must_preserve_terms": [],
+      "source_refs": [
+        {
+          "source_type": "input_markdown",
+          "path": "assets/projects/OSS-BLIND/work_items/APPSMITH-42244/inputs/requirement_summary.md",
+          "excerpt": "自定义但合法的 Databricks URL 保持兼容。"
+        }
+      ]
+    },
+    {
+      "id": "ER-009",
+      "title": "需求整理-explicit_rule",
+      "statement": "driver 明确拒绝 URL 或无法返回连接时，系统不得把连接创建判为成功。",
+      "confidence": 0.99,
+      "reasoning_notes": [
+        "来自主流程 requirement_summary.md 的确认需求。"
+      ],
+      "must_preserve_terms": [],
+      "source_refs": [
+        {
+          "source_type": "input_markdown",
+          "path": "assets/projects/OSS-BLIND/work_items/APPSMITH-42244/inputs/requirement_summary.md",
+          "excerpt": "driver 明确拒绝 URL 或无法返回连接时，系统不得把连接创建判为成功。"
+        }
+      ]
+    },
+    {
+      "id": "ER-010",
+      "title": "需求整理-explicit_rule",
+      "statement": "既有有效安装和升级场景行为不回退。",
+      "confidence": 0.99,
+      "reasoning_notes": [
+        "来自主流程 requirement_summary.md 的确认需求。"
+      ],
+      "must_preserve_terms": [],
+      "source_refs": [
+        {
+          "source_type": "input_markdown",
+          "path": "assets/projects/OSS-BLIND/work_items/APPSMITH-42244/inputs/requirement_summary.md",
+          "excerpt": "既有有效安装和升级场景行为不回退。"
+        }
+      ]
+    },
+    {
+      "id": "ER-011",
+      "title": "需求整理-explicit_rule",
+      "statement": "验证失败发生在连接创建阶段，不应先对错误目标建立网络连接。",
+      "confidence": 0.99,
+      "reasoning_notes": [
+        "来自主流程 requirement_summary.md 的确认需求。"
+      ],
+      "must_preserve_terms": [],
+      "source_refs": [
+        {
+          "source_type": "input_markdown",
+          "path": "assets/projects/OSS-BLIND/work_items/APPSMITH-42244/inputs/requirement_summary.md",
+          "excerpt": "验证失败发生在连接创建阶段，不应先对错误目标建立网络连接。"
+        }
+      ]
+    },
+    {
+      "id": "ER-012",
+      "title": "需求整理-explicit_rule",
+      "statement": "关键输入：Databricks 数据源的 JDBC URL 与 token 认证信息。",
+      "confidence": 0.99,
+      "reasoning_notes": [
+        "来自主流程 requirement_summary.md 的确认需求。"
+      ],
+      "must_preserve_terms": [],
+      "source_refs": [
+        {
+          "source_type": "input_markdown",
+          "path": "assets/projects/OSS-BLIND/work_items/APPSMITH-42244/inputs/requirement_summary.md",
+          "excerpt": "关键输入：Databricks 数据源的 JDBC URL 与 token 认证信息。"
+        }
+      ]
+    },
+    {
+      "id": "ER-013",
+      "title": "需求整理-explicit_rule",
+      "statement": "已知合法协议前缀：`jdbc:databricks://`。",
+      "confidence": 0.99,
+      "reasoning_notes": [
+        "来自主流程 requirement_summary.md 的确认需求。"
+      ],
+      "must_preserve_terms": [],
+      "source_refs": [
+        {
+          "source_type": "input_markdown",
+          "path": "assets/projects/OSS-BLIND/work_items/APPSMITH-42244/inputs/requirement_summary.md",
+          "excerpt": "已知合法协议前缀：`jdbc:databricks://`。"
+        }
+      ]
+    },
+    {
+      "id": "ER-014",
+      "title": "需求整理-explicit_rule",
+      "statement": "PR 未声明新增 API 字段、数据库迁移、埋点或持久化配置。",
+      "confidence": 0.99,
+      "reasoning_notes": [
+        "来自主流程 requirement_summary.md 的确认需求。"
+      ],
+      "must_preserve_terms": [],
+      "source_refs": [
+        {
+          "source_type": "input_markdown",
+          "path": "assets/projects/OSS-BLIND/work_items/APPSMITH-42244/inputs/requirement_summary.md",
+          "excerpt": "PR 未声明新增 API 字段、数据库迁移、埋点或持久化配置。"
+        }
+      ]
+    }
+  ],
+  "implicit_rules": [],
+  "field_constraints": [],
+  "data_source_rules": [],
+  "business_risks": [
+    {
+      "risk_id": "RISK-001",
+      "title": "仅检查字符串前缀可能遗漏大小写、前后空白、编码或相似协议边界",
+      "risk_statement": "仅检查字符串前缀可能遗漏大小写、前后空白、编码或相似协议边界，应由后续设计区分正式验收与风险加固。",
+      "severity": "medium",
+      "impact_scope": [],
+      "source_refs": [
+        {
+          "source_type": "input_markdown",
+          "path": "assets/projects/OSS-BLIND/work_items/APPSMITH-42244/inputs/requirement_summary.md",
+          "excerpt": "仅检查字符串前缀可能遗漏大小写、前后空白、编码或相似协议边界，应由后续设计区分正式验收与风险加固。"
+        }
+      ]
+    },
+    {
+      "risk_id": "RISK-002",
+      "title": "driver 返回空连接、抛出异常和拒绝 URL 的错误口径尚未完全定义",
+      "risk_statement": "driver 返回空连接、抛出异常和拒绝 URL 的错误口径尚未完全定义。",
+      "severity": "high",
+      "impact_scope": [],
+      "source_refs": [
+        {
+          "source_type": "input_markdown",
+          "path": "assets/projects/OSS-BLIND/work_items/APPSMITH-42244/inputs/requirement_summary.md",
+          "excerpt": "driver 返回空连接、抛出异常和拒绝 URL 的错误口径尚未完全定义。"
+        }
+      ]
+    },
+    {
+      "risk_id": "RISK-003",
+      "title": "历史非 Databricks URL 配置会从可尝试连接变为明确失败",
+      "risk_statement": "历史非 Databricks URL 配置会从可尝试连接变为明确失败，这是预期行为变化。",
+      "severity": "medium",
+      "impact_scope": [],
+      "source_refs": [
+        {
+          "source_type": "input_markdown",
+          "path": "assets/projects/OSS-BLIND/work_items/APPSMITH-42244/inputs/requirement_summary.md",
+          "excerpt": "历史非 Databricks URL 配置会从可尝试连接变为明确失败，这是预期行为变化。"
+        }
+      ]
+    }
+  ],
+  "edge_cases": [
+    {
+      "edge_case_id": "EC-001",
+      "title": "非 Databricks JDBC URL 被拒绝",
+      "scenario": "非 Databricks JDBC URL 被拒绝，且不会被其他已注册 driver 接管。",
+      "priority": "P1",
+      "source_refs": [
+        {
+          "source_type": "input_markdown",
+          "path": "assets/projects/OSS-BLIND/work_items/APPSMITH-42244/inputs/requirement_summary.md",
+          "excerpt": "非 Databricks JDBC URL 被拒绝，且不会被其他已注册 driver 接管。"
+        }
+      ]
+    },
+    {
+      "edge_case_id": "EC-002",
+      "title": "driver 明确拒绝 URL 或无法返回连接时",
+      "scenario": "driver 明确拒绝 URL 或无法返回连接时，系统不得把连接创建判为成功。",
+      "priority": "P1",
+      "source_refs": [
+        {
+          "source_type": "input_markdown",
+          "path": "assets/projects/OSS-BLIND/work_items/APPSMITH-42244/inputs/requirement_summary.md",
+          "excerpt": "driver 明确拒绝 URL 或无法返回连接时，系统不得把连接创建判为成功。"
+        }
+      ]
+    },
+    {
+      "edge_case_id": "EC-003",
+      "title": "验证失败发生在连接创建阶段",
+      "scenario": "验证失败发生在连接创建阶段，不应先对错误目标建立网络连接。",
+      "priority": "P1",
+      "source_refs": [
+        {
+          "source_type": "input_markdown",
+          "path": "assets/projects/OSS-BLIND/work_items/APPSMITH-42244/inputs/requirement_summary.md",
+          "excerpt": "验证失败发生在连接创建阶段，不应先对错误目标建立网络连接。"
+        }
+      ]
+    }
+  ],
+  "ambiguities": [
+    {
+      "ambiguity_id": "AMB-001",
+      "title": "空 URL、纯空白 URL、大小写变化和前导空白是否统一按非法处理",
+      "description": "空 URL、纯空白 URL、大小写变化和前导空白是否统一按非法处理？",
+      "status": "open",
+      "suggested_resolution": "在进入正式测试设计前由需求方确认；未确认时保持显式缺失，不推断为强规则。",
+      "source_refs": [
+        {
+          "source_type": "input_markdown",
+          "path": "assets/projects/OSS-BLIND/work_items/APPSMITH-42244/inputs/requirement_summary.md",
+          "excerpt": "空 URL、纯空白 URL、大小写变化和前导空白是否统一按非法处理？"
+        }
+      ]
+    },
+    {
+      "ambiguity_id": "AMB-002",
+      "title": "失败时的正式错误码和用户可见文案是什么",
+      "description": "失败时的正式错误码和用户可见文案是什么？",
+      "status": "open",
+      "suggested_resolution": "在进入正式测试设计前由需求方确认；未确认时保持显式缺失，不推断为强规则。",
+      "source_refs": [
+        {
+          "source_type": "input_markdown",
+          "path": "assets/projects/OSS-BLIND/work_items/APPSMITH-42244/inputs/requirement_summary.md",
+          "excerpt": "失败时的正式错误码和用户可见文案是什么？"
+        }
+      ]
+    },
+    {
+      "ambiguity_id": "AMB-003",
+      "title": "URL 参数、端口、catalog/schema 和编码边界由插件还是…",
+      "description": "URL 参数、端口、catalog/schema 和编码边界由插件还是 driver 最终判定？",
+      "status": "open",
+      "suggested_resolution": "在进入正式测试设计前由需求方确认；未确认时保持显式缺失，不推断为强规则。",
+      "source_refs": [
+        {
+          "source_type": "input_markdown",
+          "path": "assets/projects/OSS-BLIND/work_items/APPSMITH-42244/inputs/requirement_summary.md",
+          "excerpt": "URL 参数、端口、catalog/schema 和编码边界由插件还是 driver 最终判定？"
+        }
+      ]
+    },
+    {
+      "ambiguity_id": "AMB-004",
+      "title": "安全公告的具体威胁模型和受影响版本未公开取得",
+      "description": "安全公告的具体威胁模型和受影响版本未公开取得。",
+      "status": "open",
+      "suggested_resolution": "在进入正式测试设计前由需求方确认；未确认时保持显式缺失，不推断为强规则。",
+      "source_refs": [
+        {
+          "source_type": "input_markdown",
+          "path": "assets/projects/OSS-BLIND/work_items/APPSMITH-42244/inputs/requirement_summary.md",
+          "excerpt": "安全公告的具体威胁模型和受影响版本未公开取得。"
+        }
+      ]
+    }
+  ],
+  "recommended_test_dimensions": [
+    {
+      "dimension_id": "TD-001",
+      "dimension": "显式规则逐条验证",
+      "rationale": "需求摘要已给出可追溯规则，后续设计应保持单规则单断言并验证成功与失败结果。",
+      "priority": "high",
+      "related_reasoning_ids": [
+        "ER-001",
+        "ER-002",
+        "ER-003",
+        "ER-004",
+        "ER-005",
+        "ER-006",
+        "ER-007",
+        "ER-008"
+      ]
+    },
+    {
+      "dimension_id": "TD-002",
+      "dimension": "异常与失败处理",
+      "rationale": "需求包含明确拒绝或失败语义，需要验证失败状态、错误反馈及副作用隔离。",
+      "priority": "high",
+      "related_reasoning_ids": [
+        "ER-001",
+        "ER-004",
+        "ER-006",
+        "ER-009",
+        "ER-011"
+      ]
+    },
+    {
+      "dimension_id": "TD-003",
+      "dimension": "兼容性与回归",
+      "rationale": "需求要求保留既有合法行为或历史关系，需要同时验证变更路径与未变路径。",
+      "priority": "high",
+      "related_reasoning_ids": [
+        "ER-001",
+        "ER-005",
+        "ER-008",
+        "ER-010"
+      ]
+    },
+    {
+      "dimension_id": "TD-004",
+      "dimension": "输入类型与边界",
+      "rationale": "输入的类型、边界值和协议格式会影响判断结果，需要覆盖合法、非法及临界输入。",
+      "priority": "high",
+      "related_reasoning_ids": [
+        "ER-001",
+        "ER-002",
+        "ER-004",
+        "ER-005"
+      ]
+    },
+    {
+      "dimension_id": "TD-005",
+      "dimension": "风险与非功能约束",
+      "rationale": "需求摘要已明确兼容性、性能或一致性风险，需与产品验收规则分层承接。",
+      "priority": "medium",
+      "related_reasoning_ids": [
+        "RISK-001",
+        "RISK-002",
+        "RISK-003"
+      ]
+    },
+    {
+      "dimension_id": "TD-006",
+      "dimension": "未决项追踪",
+      "rationale": "摘要存在尚未确认的输入或验收口径，后续不得将其自动升级为强制规则。",
+      "priority": "medium",
+      "related_reasoning_ids": [
+        "AMB-001",
+        "AMB-002",
+        "AMB-003",
+        "AMB-004"
+      ]
+    }
+  ],
+  "coverage_candidates": [
+    {
+      "candidate_id": "COV-001",
+      "candidate_type": "rule_cluster",
+      "title": "Databricks 插件在建立数据源连接前必须验证自定义 JDBC U…",
+      "scope": "文本需求规则",
+      "priority": "high",
+      "rationale": "文本需求中的显式规则需要在后续 Structured PRD 与测试设计中保持可追溯。",
+      "suggested_test_types": [
+        "功能",
+        "异常"
+      ],
+      "source_reasoning_ids": [
+        "ER-001"
+      ]
+    },
+    {
+      "candidate_id": "COV-002",
+      "candidate_type": "rule_cluster",
+      "title": "在真正创建连接之前检查 URL 是否属于 Databricks JDBC…",
+      "scope": "文本需求规则",
+      "priority": "high",
+      "rationale": "文本需求中的显式规则需要在后续 Structured PRD 与测试设计中保持可追溯。",
+      "suggested_test_types": [
+        "功能",
+        "异常"
+      ],
+      "source_reasoning_ids": [
+        "ER-002"
+      ]
+    },
+    {
+      "candidate_id": "COV-003",
+      "candidate_type": "rule_cluster",
+      "title": "连接由明确的 Databricks JDBC driver 处理",
+      "scope": "文本需求规则",
+      "priority": "high",
+      "rationale": "文本需求中的显式规则需要在后续 Structured PRD 与测试设计中保持可追溯。",
+      "suggested_test_types": [
+        "功能",
+        "异常"
+      ],
+      "source_reasoning_ids": [
+        "ER-003"
+      ]
+    },
+    {
+      "candidate_id": "COV-004",
+      "candidate_type": "rule_cluster",
+      "title": "URL 被校验逻辑或 driver 拒绝时",
+      "scope": "文本需求规则",
+      "priority": "high",
+      "rationale": "文本需求中的显式规则需要在后续 Structured PRD 与测试设计中保持可追溯。",
+      "suggested_test_types": [
+        "功能",
+        "异常"
+      ],
+      "source_reasoning_ids": [
+        "ER-004"
+      ]
+    },
+    {
+      "candidate_id": "COV-005",
+      "candidate_type": "rule_cluster",
+      "title": "有效 URL 继续使用当前认证信息建立连接",
+      "scope": "文本需求规则",
+      "priority": "high",
+      "rationale": "文本需求中的显式规则需要在后续 Structured PRD 与测试设计中保持可追溯。",
+      "suggested_test_types": [
+        "功能",
+        "异常"
+      ],
+      "source_reasoning_ids": [
+        "ER-005"
+      ]
+    },
+    {
+      "candidate_id": "COV-006",
+      "candidate_type": "rule_cluster",
+      "title": "非 Databricks JDBC URL 被拒绝",
+      "scope": "文本需求规则",
+      "priority": "high",
+      "rationale": "文本需求中的显式规则需要在后续 Structured PRD 与测试设计中保持可追溯。",
+      "suggested_test_types": [
+        "功能",
+        "异常"
+      ],
+      "source_reasoning_ids": [
+        "ER-006"
+      ]
+    },
+    {
+      "candidate_id": "COV-007",
+      "candidate_type": "rule_cluster",
+      "title": "有效 `jdbc:databricks://` URL 可以进入 Dat…",
+      "scope": "文本需求规则",
+      "priority": "high",
+      "rationale": "文本需求中的显式规则需要在后续 Structured PRD 与测试设计中保持可追溯。",
+      "suggested_test_types": [
+        "功能",
+        "异常"
+      ],
+      "source_reasoning_ids": [
+        "ER-007"
+      ]
+    },
+    {
+      "candidate_id": "COV-008",
+      "candidate_type": "rule_cluster",
+      "title": "自定义但合法的 Databricks URL 保持兼容",
+      "scope": "文本需求规则",
+      "priority": "high",
+      "rationale": "文本需求中的显式规则需要在后续 Structured PRD 与测试设计中保持可追溯。",
+      "suggested_test_types": [
+        "功能",
+        "异常"
+      ],
+      "source_reasoning_ids": [
+        "ER-008"
+      ]
+    },
+    {
+      "candidate_id": "COV-009",
+      "candidate_type": "rule_cluster",
+      "title": "driver 明确拒绝 URL 或无法返回连接时",
+      "scope": "文本需求规则",
+      "priority": "high",
+      "rationale": "文本需求中的显式规则需要在后续 Structured PRD 与测试设计中保持可追溯。",
+      "suggested_test_types": [
+        "功能",
+        "异常"
+      ],
+      "source_reasoning_ids": [
+        "ER-009"
+      ]
+    },
+    {
+      "candidate_id": "COV-010",
+      "candidate_type": "rule_cluster",
+      "title": "既有有效安装和升级场景行为不回退",
+      "scope": "文本需求规则",
+      "priority": "high",
+      "rationale": "文本需求中的显式规则需要在后续 Structured PRD 与测试设计中保持可追溯。",
+      "suggested_test_types": [
+        "功能",
+        "异常"
+      ],
+      "source_reasoning_ids": [
+        "ER-010"
+      ]
+    },
+    {
+      "candidate_id": "COV-011",
+      "candidate_type": "rule_cluster",
+      "title": "验证失败发生在连接创建阶段",
+      "scope": "文本需求规则",
+      "priority": "high",
+      "rationale": "文本需求中的显式规则需要在后续 Structured PRD 与测试设计中保持可追溯。",
+      "suggested_test_types": [
+        "功能",
+        "异常"
+      ],
+      "source_reasoning_ids": [
+        "ER-011"
+      ]
+    },
+    {
+      "candidate_id": "COV-012",
+      "candidate_type": "rule_cluster",
+      "title": "关键输入",
+      "scope": "文本需求规则",
+      "priority": "high",
+      "rationale": "文本需求中的显式规则需要在后续 Structured PRD 与测试设计中保持可追溯。",
+      "suggested_test_types": [
+        "功能",
+        "异常"
+      ],
+      "source_reasoning_ids": [
+        "ER-012"
+      ]
+    },
+    {
+      "candidate_id": "COV-013",
+      "candidate_type": "rule_cluster",
+      "title": "已知合法协议前缀",
+      "scope": "文本需求规则",
+      "priority": "high",
+      "rationale": "文本需求中的显式规则需要在后续 Structured PRD 与测试设计中保持可追溯。",
+      "suggested_test_types": [
+        "功能",
+        "异常"
+      ],
+      "source_reasoning_ids": [
+        "ER-013"
+      ]
+    },
+    {
+      "candidate_id": "COV-014",
+      "candidate_type": "rule_cluster",
+      "title": "PR 未声明新增 API 字段、数据库迁移、埋点或持久化配置",
+      "scope": "文本需求规则",
+      "priority": "high",
+      "rationale": "文本需求中的显式规则需要在后续 Structured PRD 与测试设计中保持可追溯。",
+      "suggested_test_types": [
+        "功能",
+        "异常"
+      ],
+      "source_reasoning_ids": [
+        "ER-014"
+      ]
+    }
+  ]
+}

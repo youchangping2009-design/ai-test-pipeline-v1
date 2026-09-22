@@ -1,0 +1,126 @@
+{
+  "project_code": "OSS-BLIND-R4",
+  "work_item_id": "KUBERNETES-141831",
+  "items": [
+    {
+      "gate_id": "TG-001",
+      "source_rule_id": "K8S-R001",
+      "source_text": "create 或 update DeviceTaintRule 时，若 `spec.deviceSelector` 存在且 driver、pool、device 全为空，必须返回 Warning。",
+      "classification": "backend_job",
+      "testability": "testable",
+      "decision": "generate_acceptance_example",
+      "reason": "create 与 update 均可构造空 selector 并读取响应 Warning。",
+      "confidence": "confirmed"
+    },
+    {
+      "gate_id": "TG-002",
+      "source_rule_id": "K8S-R002",
+      "source_text": "空 selector 的警告文本必须为 `spec.deviceSelector: an empty selector matches every device from every driver in the cluster`。",
+      "classification": "backend_job",
+      "testability": "testable",
+      "decision": "generate_acceptance_example",
+      "reason": "Warning header 文本可逐字断言。",
+      "confidence": "confirmed"
+    },
+    {
+      "gate_id": "TG-003",
+      "source_rule_id": "K8S-R003",
+      "source_text": "`spec.deviceSelector` 省略时不得返回空 selector Warning。",
+      "classification": "backend_job",
+      "testability": "testable",
+      "decision": "generate_acceptance_example",
+      "reason": "可构造 nil selector 并确认响应中不存在目标警告。",
+      "confidence": "confirmed"
+    },
+    {
+      "gate_id": "TG-004",
+      "source_rule_id": "K8S-R004",
+      "source_text": "selector 指定 driver、pool 或 device 任一范围字段时不得返回空 selector Warning。",
+      "classification": "backend_job",
+      "testability": "testable",
+      "decision": "generate_acceptance_example",
+      "reason": "三个范围字段均可分别构造并检查无目标警告。",
+      "confidence": "confirmed"
+    },
+    {
+      "gate_id": "TG-005",
+      "source_rule_id": "K8S-R005",
+      "source_text": "空 selector Warning 不得阻止 create/update 成功，也不得改变既有校验、持久化或 taint 执行语义。",
+      "classification": "backend_job",
+      "testability": "testable",
+      "decision": "generate_acceptance_example",
+      "reason": "可同时核对响应、对象持久化和既有校验/执行结果。",
+      "confidence": "confirmed"
+    },
+    {
+      "gate_id": "TG-006",
+      "source_rule_id": "K8S-R006",
+      "source_text": "空 selector 的告警判断不受 taint effect 取值影响，包括既有 `None` 预览取值。",
+      "classification": "backend_job",
+      "testability": "testable",
+      "decision": "generate_acceptance_example",
+      "reason": "可对不同 effect 组合重复空 selector 请求并比较告警。",
+      "confidence": "confirmed"
+    },
+    {
+      "gate_id": "TG-007",
+      "source_rule_id": "K8S-R007",
+      "source_text": "使用 `kubectl --warnings-as-errors` 时客户端可返回非零状态，但服务端对象仍已创建。",
+      "classification": "platform_scope",
+      "testability": "testable",
+      "decision": "generate_acceptance_example",
+      "reason": "可同时检查客户端退出码与服务端对象存在性。",
+      "confidence": "confirmed"
+    },
+    {
+      "gate_id": "TG-008",
+      "source_rule_id": "RISK-001",
+      "source_text": "最大风险是把 `soft_prompt` 错升为 `hard_block`，导致兼容性破坏。",
+      "classification": "risk_hardening",
+      "testability": "risk_only",
+      "decision": "risk_note_only",
+      "reason": "非阻塞行为已由 K8S-R005 承接，本项仅保留风险说明。",
+      "confidence": "confirmed"
+    },
+    {
+      "gate_id": "TG-009",
+      "source_rule_id": "RISK-002",
+      "source_text": "nil 与 `{}` 的语义必须区分，否则会对合法的省略场景产生噪声。",
+      "classification": "risk_hardening",
+      "testability": "risk_only",
+      "decision": "risk_note_only",
+      "reason": "正式 nil/空对象分支已由 K8S-R001/K8S-R003 承接，本项不重复生成。",
+      "confidence": "confirmed"
+    },
+    {
+      "gate_id": "TG-010",
+      "source_rule_id": "RISK-003",
+      "source_text": "客户端的 warnings-as-errors 行为容易被误判为服务端创建失败，需要同时核对对象状态。",
+      "classification": "risk_hardening",
+      "testability": "risk_only",
+      "decision": "risk_note_only",
+      "reason": "客户端与服务端结果已由 K8S-R007 承接，本项只保留 Oracle 风险。",
+      "confidence": "confirmed"
+    },
+    {
+      "gate_id": "TG-011",
+      "source_rule_id": "RISK-004",
+      "source_text": "多条警告并存时的去重和顺序可能影响客户端断言。",
+      "classification": "risk_hardening",
+      "testability": "risk_only",
+      "decision": "risk_note_only",
+      "reason": "公开需求未定义多警告顺序与去重，不能升级为强断言。",
+      "confidence": "confirmed"
+    },
+    {
+      "gate_id": "TG-012",
+      "source_rule_id": "AMB-001",
+      "source_text": "driver/pool/device 组合为空字符串或只含空白时如何判定？",
+      "classification": "field_constraint",
+      "testability": "needs_confirmation",
+      "decision": "needs_confirmation",
+      "reason": "公开实现按指针是否为 nil 判断，但已批准需求未定义空字符串或空白值是否合法、是否会被默认化，确认前不生成正式用例。",
+      "confidence": "unknown"
+    }
+  ]
+}

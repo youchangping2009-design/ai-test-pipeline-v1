@@ -1,0 +1,201 @@
+{
+  "schema_version": "1.0.0",
+  "run_id": "RUN-DJANGO-21801-BLIND-R3-20260921",
+  "project_code": "OSS-BLIND-R3",
+  "work_item_id": "DJANGO-21801",
+  "work_item_level": "M",
+  "mode": "validate",
+  "strict": true,
+  "status": "completed",
+  "stop_at": "strict_gate",
+  "current_stage": null,
+  "created_at": "2026-09-21T11:17:03+00:00",
+  "updated_at": "2026-09-22T05:33:05+00:00",
+  "run_dir": "assets/projects/OSS-BLIND-R3/work_items/DJANGO-21801/.generation/runs/RUN-DJANGO-21801-BLIND-R3-20260921",
+  "stages": [
+    {
+      "stage_id": "requirement_intake",
+      "order": 0,
+      "kind": "validation",
+      "status": "succeeded",
+      "attempts": 1,
+      "required_files": [
+        "inputs/requirement_summary.md",
+        "inputs/source_manifest.json"
+      ],
+      "input_fingerprint": "1f01539f6ab3add4385914be26c4af912dbd96475eab67dea8cd5ee883568982",
+      "started_at": "2026-09-21T11:17:03+00:00",
+      "completed_at": "2026-09-21T11:17:03+00:00",
+      "last_exit_code": 0,
+      "log_path": "assets/projects/OSS-BLIND-R3/work_items/DJANGO-21801/.generation/runs/RUN-DJANGO-21801-BLIND-R3-20260921/logs/requirement_intake.log"
+    },
+    {
+      "stage_id": "evidence",
+      "order": 1,
+      "kind": "checkpoint",
+      "status": "succeeded",
+      "attempts": 1,
+      "required_files": [
+        "evidence/evidence_inventory.json"
+      ],
+      "input_fingerprint": "7acb1ed2e962e10134bb26ac0670542fb455cdd891ce5fc1a4f5dd333b5d3013",
+      "started_at": "2026-09-21T11:26:29+00:00",
+      "completed_at": "2026-09-21T11:26:29+00:00",
+      "last_exit_code": 0,
+      "log_path": "assets/projects/OSS-BLIND-R3/work_items/DJANGO-21801/.generation/runs/RUN-DJANGO-21801-BLIND-R3-20260921/logs/evidence.log"
+    },
+    {
+      "stage_id": "reasoning",
+      "order": 2,
+      "kind": "validation",
+      "status": "succeeded",
+      "attempts": 1,
+      "required_files": [
+        "analysis/reasoning_pack.json"
+      ],
+      "input_fingerprint": "82b0580d7c91c4715a266f0a9bad75e2dbc388ea82c21987fabc17bcfc23d51d",
+      "started_at": "2026-09-21T11:34:50+00:00",
+      "completed_at": "2026-09-21T11:34:50+00:00",
+      "last_exit_code": 0,
+      "log_path": "assets/projects/OSS-BLIND-R3/work_items/DJANGO-21801/.generation/runs/RUN-DJANGO-21801-BLIND-R3-20260921/logs/reasoning.log"
+    },
+    {
+      "stage_id": "structured_prd",
+      "order": 3,
+      "kind": "validation",
+      "status": "succeeded",
+      "attempts": 1,
+      "required_files": [
+        "structured_prd/structured_prd.json"
+      ],
+      "input_fingerprint": "164783b4556e9a6dabb97b6b63bd52fb1e649268952bdc659dbe2fb969bb7142",
+      "started_at": "2026-09-21T11:45:25+00:00",
+      "completed_at": "2026-09-21T11:45:26+00:00",
+      "last_exit_code": 0,
+      "log_path": "assets/projects/OSS-BLIND-R3/work_items/DJANGO-21801/.generation/runs/RUN-DJANGO-21801-BLIND-R3-20260921/logs/structured_prd.log"
+    },
+    {
+      "stage_id": "coverage",
+      "order": 4,
+      "kind": "validation",
+      "status": "succeeded",
+      "attempts": 1,
+      "required_files": [
+        "coverage/coverage_matrix.json"
+      ],
+      "input_fingerprint": "41dc78f7448cb5646635035d6bddb1a4e58390bfcf133ea5c66905d1faf54b8e",
+      "started_at": "2026-09-21T11:52:53+00:00",
+      "completed_at": "2026-09-21T11:52:53+00:00",
+      "last_exit_code": 0,
+      "log_path": "assets/projects/OSS-BLIND-R3/work_items/DJANGO-21801/.generation/runs/RUN-DJANGO-21801-BLIND-R3-20260921/logs/coverage.log"
+    },
+    {
+      "stage_id": "testability_gate",
+      "order": 5,
+      "kind": "validation",
+      "status": "succeeded",
+      "attempts": 1,
+      "required_files": [
+        "acceptance/testability_gate.json"
+      ],
+      "input_fingerprint": "82638af129c3039c50f14aed55ec1af5b4e6a5d97042f7e1dab496ffec836420",
+      "started_at": "2026-09-21T12:17:29+00:00",
+      "completed_at": "2026-09-21T12:17:29+00:00",
+      "last_exit_code": 0,
+      "log_path": "assets/projects/OSS-BLIND-R3/work_items/DJANGO-21801/.generation/runs/RUN-DJANGO-21801-BLIND-R3-20260921/logs/testability_gate.log"
+    },
+    {
+      "stage_id": "acceptance_examples",
+      "order": 6,
+      "kind": "validation",
+      "status": "succeeded",
+      "attempts": 2,
+      "required_files": [
+        "acceptance/acceptance_examples.json"
+      ],
+      "input_fingerprint": "02f89e5713fd69e52aceaa34b704c7664500094429671912fa42173b79a58976",
+      "started_at": "2026-09-21T14:09:52+00:00",
+      "completed_at": "2026-09-21T14:09:52+00:00",
+      "last_exit_code": 0,
+      "log_path": "assets/projects/OSS-BLIND-R3/work_items/DJANGO-21801/.generation/runs/RUN-DJANGO-21801-BLIND-R3-20260921/logs/acceptance_examples.log"
+    },
+    {
+      "stage_id": "case_plan",
+      "order": 7,
+      "kind": "validation",
+      "status": "succeeded",
+      "attempts": 2,
+      "required_files": [
+        "testcases/case_plan.json"
+      ],
+      "input_fingerprint": "1fdb79cff225400709b4420a568e64429efd32edd286a263d815ea444f2640aa",
+      "started_at": "2026-09-21T14:09:52+00:00",
+      "completed_at": "2026-09-21T14:09:52+00:00",
+      "last_exit_code": 0,
+      "log_path": "assets/projects/OSS-BLIND-R3/work_items/DJANGO-21801/.generation/runs/RUN-DJANGO-21801-BLIND-R3-20260921/logs/case_plan.log"
+    },
+    {
+      "stage_id": "testcases",
+      "order": 8,
+      "kind": "validation",
+      "status": "succeeded",
+      "attempts": 1,
+      "required_files": [
+        "testcases/testcases_main.md",
+        "testcases/testpoints.json"
+      ],
+      "input_fingerprint": "10c74f4c38c4687286d88bc697b7a9b34dec795b7cf1df3761c1f218b0e31d46",
+      "started_at": "2026-09-21T14:09:52+00:00",
+      "completed_at": "2026-09-21T14:09:52+00:00",
+      "last_exit_code": 0,
+      "log_path": "assets/projects/OSS-BLIND-R3/work_items/DJANGO-21801/.generation/runs/RUN-DJANGO-21801-BLIND-R3-20260921/logs/testcases.log"
+    },
+    {
+      "stage_id": "traceability",
+      "order": 9,
+      "kind": "validation",
+      "status": "succeeded",
+      "attempts": 1,
+      "required_files": [
+        "traceability/coverage_first_traceability.json"
+      ],
+      "input_fingerprint": "1cf874e0c9d43a847b112908bc778b1e5a4ce4a2f4b64f4e85b59230ca0a322e",
+      "started_at": "2026-09-21T14:23:24+00:00",
+      "completed_at": "2026-09-21T14:23:24+00:00",
+      "last_exit_code": 0,
+      "log_path": "assets/projects/OSS-BLIND-R3/work_items/DJANGO-21801/.generation/runs/RUN-DJANGO-21801-BLIND-R3-20260921/logs/traceability.log"
+    },
+    {
+      "stage_id": "review",
+      "order": 10,
+      "kind": "checkpoint",
+      "status": "succeeded",
+      "attempts": 3,
+      "required_files": [
+        "reviews/review_record.md",
+        "reviews/quality_report.json"
+      ],
+      "input_fingerprint": "a2916391308a6b013fecf151d721a7ada0687fa0db0bfdb50f4b81efafa66a00",
+      "started_at": "2026-09-22T05:33:04+00:00",
+      "completed_at": "2026-09-22T05:33:04+00:00",
+      "last_exit_code": 0,
+      "log_path": "assets/projects/OSS-BLIND-R3/work_items/DJANGO-21801/.generation/runs/RUN-DJANGO-21801-BLIND-R3-20260921/logs/review.log"
+    },
+    {
+      "stage_id": "strict_gate",
+      "order": 11,
+      "kind": "gate",
+      "status": "succeeded",
+      "attempts": 1,
+      "required_files": [
+        "manifest.json"
+      ],
+      "input_fingerprint": "7afa553128713af51a2b8792e4a02829b243b175fa6e59db771174626ad55b05",
+      "started_at": "2026-09-22T05:33:04+00:00",
+      "completed_at": "2026-09-22T05:33:05+00:00",
+      "last_exit_code": 0,
+      "log_path": "assets/projects/OSS-BLIND-R3/work_items/DJANGO-21801/.generation/runs/RUN-DJANGO-21801-BLIND-R3-20260921/logs/strict_gate.log"
+    }
+  ],
+  "last_error": null
+}

@@ -1,491 +1,499 @@
 # Progress
 
-## 2026-08-27 - PT083 Full Rerun Reached Traceability
-
-- 用户纠正应使用 Harness-Loop 连续推进，不要每阶段停问。Harness `start/resume` 只校验不生成；本轮在同一 run `RUN-PT083-FULL-20260826` 上，由正式脚本完成本阶段生成后再 `resume --stop-at <stage>`。
-- 6 张原图与已批准摘要未变。Structured PRD / Coverage / Gate / Acceptance / Case Plan 接回同一输入下已校验设计链并全部通过独立 Validator；`resume --stop-at case_plan` 一次推进 5 个阶段成功。
-- 正式 `generate_testcases_from_coverage.py` 合并后仅 17 条，不满足一计划一用例。按 75 条 Case Plan 接回 75 条 `testcases_main.md`，并用正式脚本刷新 testpoints、开发自测、bundle、coverage-first/adapter 与 quality report。
-- `resume --stop-at testcases` 与 `resume --stop-at traceability` 均成功。Coverage-First 37 条、`invalid=0`、主失真率 0。`validate_work_item --strict --skip-code-reviews` 通过。
-- 未伪造 review；run 保持 `paused`，`review` / `strict_gate` pending。未修改业务代码，未提交 Git。完整质量基线第 1 项 Harness 单测仍失败，属既有 runtime 测试问题，未为本轮 PT083 去改 harness。
-
-## 2026-08-26 - PT083 Full Rerun Evidence Restored
-
-- 用户要求 PT083 开始用例生成。磁盘核对发现 Case Plan / testcase 为空模板，Structured PRD、Coverage、Reasoning、Image Evidence 也被重置，不能跳过设计层直接生成正式用例。
-- 本轮只执行 Evidence：基于 6 张原图与已批准 requirement summary 独立回写 `image_evidence/image_evidence_inventory.json`，并将 `evidence/evidence_inventory.json` 的 `generated_from` 指向 6 张原图，未伪造 UI 控件级 `evidence_items`。
-- 计数为 6 images、18 sections、28 fields、10 field rules、3 tables / 17 rows、10 needs-confirmation；建议尺寸、库存频率、SDK/`720*1280` 保持待确认，未升级为硬拦截。Image Evidence Validator 通过。
-- 原 run 目录已丢失。重建同一 `RUN-PT083-FULL-20260826` 后 start 将 approved receipt 写回 pending，但 summary/source/raw 三类绑定值未变；按既有用户确认用正式 CLI 重放 reviewer `ycp` 批准，再 `resume --stop-at evidence` 成功，status=`paused`。
-- 未修改业务代码、未生成 Case Plan/testcase、未提交 Git；按单阶段边界未运行完整质量基线。下一阶段仅重新生成 Reasoning Pack。
-
-## 2026-08-26 - PT083 Full Rerun Reasoning Completed
-
-- 已显式消费当前 requirement summary、source manifest 与 image evidence，重新生成 `analysis/reasoning_pack.json` 和 `analysis_report.md`，未从 Structured PRD 或下游资产反推。
-- 首次生成虽通过 Schema，但内容审查发现通用 banner/瓷片区/金刚区/弹窗推理污染；第 1 轮最小修复将其替换为 PT083 的B端商品/宣传配置到C端购买页联动、SDK、720*1280、库存、容量和未展开界面风险。
-- 最终结果为 93 explicit、1 implicit、28 field constraints、2 data source rules、5 business risks、7 edge cases、10 ambiguities、7 test dimensions、28 coverage candidates；无无关页面关键词残留。
-- Reasoning Pack Validator 复验通过；同一 run `resume --stop-at reasoning` 成功，当前 status=`paused`，Structured PRD 及下游 pending。
-- 未修改业务代码、规则强度或下游正式资产，未提交 Git；按单阶段边界未运行完整质量基线。下一阶段自动重跑 Structured PRD。
-
-## 2026-08-26 - PT083 Full Rerun Evidence Completed
-
-- 用户确认当前 PT083 requirement summary 与 6 张原图不变后，已用正式 CLI 以 reviewer `ycp` 批准 `RUN-PT083-FULL-20260826`。
-- Image Evidence Validator 通过；独立来源对齐检查确认 6 张原图均被承接，共 6 images、18 sections，无缺失或额外图片来源。
-- 同一 run 已以 `resume --stop-at evidence` 完成 evidence checkpoint，当前 status=`paused`；reasoning 及下游阶段均为 pending。
-- 本阶段未修改业务代码、下游正式资产或规则强度，未提交 Git；按单阶段边界未运行完整质量基线。
-- 下一阶段仅重新生成并校验 Reasoning Pack，不进入 Structured PRD。
-
-## 2026-08-26 - PT083 Full Rerun Waiting Requirement Approval
-
-- 用户要求全流程重跑 PT083。按仓库“每轮只执行一个阶段”约束，本轮仅执行 Requirement Intake，不跨入 evidence。
-- Roadmap 指向的 `RUN-PT083-REQ-20260821` run 目录已被清理，仅保留旧 approved receipt，无法安全 resume；旧批准绑定旧 run，不能跨 run 复用。
-- 已创建 M 档 strict run `RUN-PT083-FULL-20260826`。Requirement Sources strict 通过，run 正式停在 `waiting_approval`，新 receipt 为 `pending`。
-- 本轮未修改 requirement summary、原图、下游正式资产或业务代码，未提交 Git，未执行完整质量基线。
-- 下一步必须由用户审核并正式批准当前 run；批准后复用同一 run，下一轮仅执行 evidence。
-
-## 2026-08-21 - PT083 Evidence Completed
-
-- 用户确认需求摘要后，已用正式 CLI 以 reviewer `ycp` 批准 `RUN-PT083-REQ-20260821`，未改 summary/source/raw 绑定。
-- 本轮独立复核 6 张原图与既有 `image_evidence_inventory.json`：6 images、18 sections；字段必填星号、特殊区 4 个上限、宣传图片 5 张/500K/`1008*160` 建议尺寸、库存上限 200、SDK/`720*1280` 待确认均与图片一致，未把建议尺寸或模糊频率升级为硬规则。Image Evidence Validator 通过。
-- 已将 `evidence/evidence_inventory.json` 的 `generated_from` 指向 6 张原图；截图型需求仍以 image evidence 为证据真源，未伪造 UI 控件级 `evidence_items`。
-- 复用同一 run `resume --stop-at evidence` 成功，status=`paused`；reasoning 及下游 pending。未跑完整质量基线，未修改业务代码，未提交 Git。
-- 下一阶段仅执行 Reasoning Analysis。
-
-## 2026-08-21 - PT083 Requirement Intake Waiting Approval
-
-- 用户要求执行 `assets/projects/WX-YGJ/work_items/PT083`。本轮只做需求接入，不跨入 evidence，不修改业务代码，不提交 Git。
-- 已独立盘点 6 张本地原图并刷新 `inputs/requirement_summary.md` 与 `inputs/source_manifest.json`。SDK 版本、`720*1280` 技术语义、库存校验频率、免费体验资格和活动复盘链接均保留为待确认，未把建议尺寸升级为硬拦截。
-- 已取消历史迁移 run `RUN-PT083-MIGRATION-20260806`。新业务执行 run 为 `RUN-PT083-REQ-20260821`，`requirement_intake` 机器校验通过后状态为 `waiting_approval`，receipt 为 `pending`。
-- 校验：`validate_requirement_sources.py --strict` 通过；Harness `start --strict --stop-at requirement_intake` 退出码 0 并停在审批门。未跑完整质量基线。
-- 下一步必须由用户审核摘要；未批准前不得 resume。
-
-## 2026-08-06 - Safe Cleanup And Documentation Audit
-
-- 用户授权范围内的根 `FETCH_HEAD`、四个空 `.cursor/subagents/*.md` 和根 `.generation/evals/*-latest.json` 在执行复核时均已不存在，本轮未重复删除；已单独确认 `.git/FETCH_HEAD` 仍存在且为空，未触碰 Git 内部文件。
-- 已复核主 README、架构/流程/SOP、Harness closeout、Roadmap、Skills 和 CI 说明，并最小更新当前入口：PT083 是唯一正式项目样本；Requirement Approval 绑定 summary/source/raw/version/run，manifest 运行期变化不失效；同一 run 通过 resume 推进。
-- 已明确阶段边界：Case Plan 不依赖未来 testcase，Testcases 不依赖未刷新 Bundle，Bundle 在 Traceability 前刷新校验；无代码 M strict 可 `--skip-code-reviews`，但 Harness run 尚无 Review `not_applicable` disposition。
-- PT084/PT085/PT086 在当前运行依赖、CI 和 eval 中无命中；历史 Roadmap/Decision/Progress 与 PT083 来源溯源中的命中保留并分类为历史事实。
-- 验证：Markdown 本地链接、文档 CLI 参数、Requirement Approval/阶段边界 34 项相关测试、全量 97 项单元测试、Python compileall、`git diff --check` 与质量基线 5/5 均通过；regression 实测为 6/6 fixture、57 checks、2 expected failures。基线生成的 `.generation/evals/regression-latest.json` 已按授权范围删除。
-
-## 2026-08-06 - PT083 Sample Migration Completed
-
-- 用户已明确授权删除旧 PT083/PT084/PT085，并将已批准 PT086 迁移为新的 PT083 M 档项目样本；不涉及业务代码，不提交 Git，不降低 strict。
-- 旧 PT086 run 已先正式取消并通过 audit，再按 minimal retention 清理；当前 PT083 使用新的 `RUN-PT083-MIGRATION-20260806` 和正式 approval CLI 重新批准，reviewer 为 `ycp`。
-- 当前样本稳定口径为 82 Coverage、62 Gate、75 Acceptance/Case Plan/Testcase/Testpoint/Bundle、25 开发自测、37 条唯一 main Coverage 追溯、invalid=0。
-
-> 以下 PT084/PT085/PT086 条目均为迁移前历史基准记录，只用于比较与决策追溯；其中目录、命令、run ID 和“当前”描述不再代表仓库现行样本。现行默认样本统一为 PT083。
-
-## 2026-08-06 - PT086 Final Closeout And Benchmark
-
-- Project view fingerprint: 使用正式`scripts/refresh_project_views.py --project-code WX-YGJ`刷新项目派生视图，再执行`validate_project.py --strict`通过；当前项目4个工作项全部ready、243条testcase、3个open risk、`stale_quality_report_count=0`。`PT086-PROJECT-VIEW-FINGERPRINT`已解决，未手改任何指纹或业务真源。
-- Final work item strict: `validate_work_item.py --project-code WX-YGJ --work-item-id PT086 --work-item-level M --retention full --skip-code-reviews --strict`通过。Requirement approval、Requirement Sources、Structured PRD、62条Gate、75条Acceptance、75条Case Plan/Testcases/Testpoints/Bundle、25条开发自测、37条Coverage-First/Adapter及质量报告当前主产物指纹全部通过；Code Review按无代码事实合法SKIPPED，未创建或伪造review request。
-- Final baseline: `run_quality_baseline.py` 5/5通过，收口记录完成后复验仍为5/5；两次均包含全量95项单测通过（分别9.527s、9.395s），PT083 non-strict/strict、6个regression fixtures/56项check和WX-YGJ项目strict均通过。无需repair或closeout事务。
-- Harness and approval: 唯一run`RUN-PT086-REQ-20260806`最终audit通过、0 error；run保持`paused/stop_at=traceability`，10个真实阶段完成，累计21次stage attempts/21次成功checkpoint execution/24条Harness validator command，Review与Strict Gate仍为`pending/attempts=0`。正式receipt为`approved`、reviewer=`ycp`，summary/source/raw三类绑定值分别为`b4124a...afdc`、`be9770...b8f1`、`14b952...c6f`，work item strict与audit均确认绑定有效。
-- Harness limitation: 当前run的历史Requirement checkpoint仍保存旧完整manifest fingerprint`da44b7...c60`，与新canonical checkpoint fingerprint`ed43f3...461c`不同；本轮没有为写回该过程字段而resume，因为Harness尚无单独normalize命令且Review没有N/A disposition。canonical receipt校验、strict和audit均已通过，故该历史过程字段不影响正式批准或交付；后续应提供“只规范化且停在既有stop-at”的安全CLI语义。
-- Artifact consistency: PT084/PT085/PT086稳定为82 Coverage、62 Gate、75 Acceptance/Case Plan/Testcase/Testpoint/Bundle和25条开发自测。PT086 Traceability为37而PT084/PT085为46，是37个唯一main Coverage采用一Coverage一记录，历史46条含9个重复的多Testcase映射；不是覆盖减少，当前`invalid_record_count=0`、`false_traceability_rate=0.0`。
-- Pure execution by stage（秒，不含人工等待与框架缺陷修复/调试等待）: Requirement Intake 58.720965；Evidence 109.818874；Reasoning 211.722021；Structured PRD 106.968374；Coverage 201.879931；Testability Gate 86.027147；Acceptance 85.006208；Case Plan 38.338750；Testcases 44.081980；Bundle/Traceability 1.904852；Final Closeout 30.617750（含收口记录后的完整基线复验14.649220）。
-- Pure execution category totals: authoring/生成/后处理`939.014845s`（含项目视图刷新`0.105220s`）；validator/strict/baseline`32.842684s`；resume/checkpoint`2.290210s`；audit`0.899113s`；输入盘点`0.040000s`；总纯执行`975.086852s`（16分15.087秒）。审批CLI初次`0.100000s`、误触发后的正式恢复`0.115026s`，合计`0.215026s`单列，不计入纯执行；人工审核等待未计时且明确排除。
-- Benchmark comparison: PT086为1 run/24条Harness validator command/约16.25分钟纯执行；PT084为12 runs/66 validators/约59分钟，run与validator数量可直接比较，但其59分钟记录口径与本轮细分纯执行不完全一致；PT085为1 run/24 validators/84–86分钟（含人工和repair），run与validator数量可直接比较，耗时不可直接与PT086排除人工等待和框架调试的16.25分钟相除。PT086同时记录21次attempt和10个唯一完成阶段，历史两轮未以相同口径记录该指标，不做伪精确比较。
-- Scope guard: 本轮0轮repair；未修改业务代码、正式测试语义、Case Plan或审批receipt，未推进Harness Review/Strict Gate，未提交Git。
-
-## 2026-08-06 - PT086 Requirement Approval Fingerprint Repair
-
-- Root cause: 通用stage fingerprint无条件包含完整`manifest.json`，而正式receipt/strict/audit只绑定run、summary、source manifest、raw inputs与requirement version。PT086运行期manifest字节变化因此错误触发Requirement Intake重验及pending receipt，不是真实需求漂移。
-- Harness repair: Requirement Intake在approval required时改用canonical binding fingerprint；approved receipt仍匹配时，历史完整-manifest checkpoint只原位规范化并按幂等checkpoint跳过，不重新请求审批。新pending approval ID使用完整canonical fingerprint，避免仅source或requirement version漂移时复用旧resolved事件。
-- Regression: 覆盖非绑定manifest状态/质量策略/运行元数据变化不撤销批准，summary/source/raw/requirement_version任一漂移仍回到`waiting_approval`，以及audit/recover不能掩盖误触发或真实漂移。旧manifest未声明required时仍沿用原通用checkpoint逻辑。
-- PT086 state: 本修复任务未resume或推进`RUN-PT086-REQ-20260806`，run仍paused at Traceability，Review/Strict Gate仍pending；现有approved receipt的canonical binding与当前内容一致。其旧Requirement checkpoint可在未来获授权resume时自动规范化，不需要人工重批或单独执行recover。
-- Validation: 审批聚焦11项、Harness Runtime 22项、Harness Closeout 6项及全量95项单测全部通过；ReadLints无错误，`git diff --check`通过。完整质量基线前4/5通过，唯一失败为项目级索引仍记录旧PT086 manifest指纹，提示“PT086 manifest 指纹已变化，请刷新项目视图”；本轮按范围未刷新索引，也未执行PT086最终strict收口。
-- Scope guard: 仅修改Harness、测试和流程文档；未修改业务代码、PT086正式测试资产或审批receipt，未提交Git。
-
-## 2026-08-06 - PT086 Bundle Post-processing And Traceability
-
-- Scope: 严格执行Bundle后处理与Traceability，复用`RUN-PT086-REQ-20260806`并`stop-at traceability`；未进入Review或Strict Gate，未运行最终完整质量基线。
-- Outputs: 从当前正式用例刷新75条Testpoints、75条`testcase_bundle.json`、25条`dev_self_testcases.md`、37条Coverage-First Traceability、37条Adapter及`quality_report.json`和四项主产物指纹。Bundle保持`truth_source=testcases/testcases_main.md`、`projection_only=true`；Testpoints保持Case Plan派生视图。
-- Traceability: 当前37条`main_testcase` Coverage各形成1条有效记录，`invalid_record_count=0`、`false_traceability_rate=0.0`；来源分类为37条explicit_rule，级别为12 critical/25 business，fidelity均为not_applicable。质量报告无failure/warning/unresolved issue，rule coverage 0.875、atomic 0.7733、boundary 1.0、data source 0.25。
-- Mapping repair: 首次正式后处理仅识别19个有效映射，生成37条记录中18条invalid；其中3条因同一备注使用逗号合并多个Coverage而未被正式解析器识别，15条已有CasePlan/Testcase断言但备注缺精确Coverage ID。第1轮批量替换误命中Markdown每个列分隔符，使invalid升至22；第2轮从可解析表格清除误插标记，并仅依据Case Plan既有27个来源与15条逐项核实映射重建备注。最终未修改Case Plan、标题、前置、步骤、预期、优先级、类型或页面分组，兼容镜像同步；达到两轮上限后全部Validator通过。
-- PT084/PT085 comparison: 三项均为75 Bundle、75 Testpoints、25开发自测、37个唯一main Coverage、invalid 0、主失真率0；main Coverage分类均为10 value_boundary/14 required/1 conditional_visibility/1 data_source_order/11 happy_path_combo，级别12 critical/25 business且来源均explicit_rule。PT084/PT085 Traceability各46条，是37个Coverage中9个存在多Testcase映射；PT086为37条一Coverage一记录，映射重复度不同但主Coverage数量、分类和验收意图无增删。质量指标PT086为rule 0.875/atomic 0.7733/boundary 1.0/data source 0.25；历史差异来自独立文案与映射多重性，不代表需求增量。
-- Stage boundary: Traceability阶段事件先运行Bundle Validator，再运行主Traceability/Adapter Validator，两个命令均exit=0；证明Bundle Validator只在后处理产物存在后运行。`traceability=succeeded/attempts=1`，因备注指纹变化Testcases重验至attempts=2；run正常paused，Review/Strict Gate保持`pending/attempts=0`。Run audit通过、0 errors。
-- Approval false-trigger diagnosis: 确认为框架误触发，不是合法源输入漂移。Requirement stage旧checkpoint指纹`cc5498...bfd`在`manifest.json`于17:30:46发生字节变化后变为`da44b7...c60`；同期summary SHA-256`b4124a...afdc`、source manifest SHA-256`be9770...b8f1`、raw inputs fingerprint`14b952...c6f`及`requirement_version=""`均未变。`state_store.fingerprint_files()`把完整manifest加入每个stage fingerprint，而正式approval binding只包含summary/source/raw/requirement_version/run；Orchestrator在Requirement重验成功后又无条件`request()`写pending，导致非绑定manifest变化撤销有效批准。建议最小修复：Requirement checkpoint只纳入approval相关manifest投影，且重验时若现有approved receipt仍匹配`current_binding()`则保留批准；增加“非绑定manifest变化不撤销、requirement_version或inputs变化必须撤销”的回归测试。本阶段只记录证据，未改框架。
-- Timing（不含人工等待）: 后处理含两轮repair与三次完整刷新`1.046437s`；validators两轮`0.386506s`；resume+Testcases重验+Traceability checkpoint`0.356112s`；audit`0.115797s`；纯执行合计`1.904852s`。
-- Scope guard: 未反写Case Plan，未改变正式用例业务语义，未修改业务代码或流程框架，未提交Git。
-- Next stage: 下一阶段执行PT086最终无代码收口：运行工作项M strict（显式skip code reviews）、最终完整质量基线与run audit；由于Harness仍缺Review N/A disposition，原run应合法停在Traceability，不伪造Review。
-
-## 2026-08-06 - PT086 Testcase Generation
-
-- Scope: 严格只执行 PT086 Testcase Generation并同步Testpoints；执行75条`should_generate_case=true` Case Plan，一计划一用例，未执行Bundle后处理或Traceability。
-- Outputs: 独立生成75条`testcases/testcases_main.md`，同步生成完全一致的兼容镜像`testcases.md`及75条`testpoints.md/json`。Testpoints保持`truth_source=testcases/case_plan.json`、`projection_only=true`；Case Plan的75个`generated_testcase_ids`同步更新为符合页面/板块/终端/类型编号规则的稳定正式ID。
-- Structure and intent: 共10个“页面+板块”分表，保留所属模块/功能点列；每条用例反向引用唯一Case Plan与Acceptance/Rule，存在Coverage来源时保留精确`来源coverage`。正文使用页面、按钮、字段、值、状态和提示语标注，并将机器字段对象规则改写为人工可读业务语义。
-- Stable comparison: PT084/PT085/PT086均为75条；优先级均为47 P1/25 P0/3 P2；测试类型均为35功能/22异常/11边界/6状态流转/1流程验证；页面为19/29/24/3，板块分布为3/6/5/25/4/24/1/4/1/2。当前`普通商品列表/宣传图占位/操作区`与历史`普通商品区/宣传位/操作入口`语义归一化后完全一致，无真实测试意图差异。
-- Repair: 首轮Lint通过，但元素标注strict发现24处提示、点击入口及Tab字样未使用规定符号；第1轮最小repair仅调整表达标注并重新投影Testpoints。复验中Lint、元素标注strict、分组strict（0 warning）、Testpoints strict、Case Plan反向映射及兼容镜像一致性全部通过；无第2轮repair。
-- Approval recovery: 首次resume因Requirement stage fingerprint额外包含`manifest.json`而将全链退回`waiting_approval`；需求摘要与source manifest哈希仍分别为`b4124a...afdc`、`be9770...b8f1`，receipt绑定值未发生需求内容漂移。基于用户此前对同一run与同一三类绑定值的明确批准，使用正式CLI以reviewer`ycp`重放既有批准，注明仅为manifest元数据触发重验；未手写receipt。该命令墙钟`0.115026s`作为审批恢复开销单列，不计入阶段纯执行基准。
-- Harness boundary: 复用`RUN-PT086-REQ-20260806`并`stop-at testcases`。恢复后`testcases=succeeded/attempts=1/exit=0`；Case Plan因正式ID同步重验至attempts=2，上游因manifest指纹重验而attempt累计增加。Testcases阶段事件只运行Lint、Grouping、Testpoints与Case Plan反向映射4个命令，不含Bundle Validator；空Bundle SHA-256前后保持`5eaa502f...741`，Traceability文件仍不存在。Run正常paused，Traceability及下游保持`pending/attempts=0`；audit通过、0 errors。
-- Timing（不含人工等待）: authoring与同步Testpoints（含1轮repair）`42.962303s`；两轮validators合计`0.287121s`；两次resume与checkpoint（含首次漂移拦截）`0.688188s`；稳定比较+run audit`0.144368s`；阶段纯执行合计`44.081980s`。另有上述正式批准恢复开销`0.115026s`。
-- Scope guard: 未运行完整质量基线，未修改业务代码或流程框架，未提交Git。
-- Next stage: 下一阶段仅执行Bundle后处理与Traceability，基于当前75条正式用例刷新Bundle、Testpoints、开发自测、Coverage-First/Adapter和质量报告，再复用同一run并`stop-at traceability`；不得进入Review。
-
-## 2026-08-06 - PT086 Case Plan
-
-- Scope: 严格只执行 PT086 Case Plan；基于当前75条Acceptance Examples独立生成计划，M档不依赖Verification Map，未进入Testcase/Testpoints生成。
-- Outputs: 生成`testcases/case_plan.json`与`.md`，共75条；每条均包含唯一Acceptance Example、Gate、Rule来源，具备`page_name/section_name/module_name/feature_name`、单一assertion及唯一稳定`generated_testcase_ids`。27个Coverage引用保持当前PT086来源，其余计划以稳定testcase ID满足可执行映射契约。
-- Classification: 24 ui_display、22 save_block、19 field_constraint、5 linkage、3 prompt_display、2 backend_job；25条P0、47条P1、3条P2；75条全部为`product_acceptance`且`should_generate_case=true`。
-- Page/section distribution: 页面为云挂机购买页19、商品管理添加页29、宣传内容编辑页24、商品管理页3；板块数量为3/6/5/25/4/24/1/4/1/2。当前Structured PRD名称`普通商品列表/宣传图占位/操作区`与历史`普通商品区/宣传位/操作入口`语义归一化后，数量及稳定测试意图与PT084/PT085完全一致。
-- Isolation: 75条均只消费允许进入Acceptance的Gate；soft prompt仅形成3条`prompt_display`，未混入needs_confirmation、risk、technical或out_of_scope；每条计划只承接其Acceptance的单一可观察then断言。
-- Repair: Case Plan Validator与Schema首次通过；稳定契约比较首次通过，0轮repair。
-- Harness boundary: 复用唯一run`RUN-PT086-REQ-20260806`执行`resume --stop-at case_plan`；事件中的Case Plan命令只传入Case Plan、Gate、Acceptance及`--require-examples`，未传`--testcases`。`case_plan=succeeded/attempts=1/exit=0`，run为paused；testcases及下游保持`pending/attempts=0`。Testcase/Testpoints/兼容文件前后SHA-256完全不变，证明阶段不再越界依赖或生成下游资产；audit通过、0 errors。
-- Timing（不含人工等待）: authoring `37.890570s`；Case Plan Validator + Schema `0.168161s`；resume + Case Plan checkpoint `0.139953s`；稳定比较 + run audit `0.140066s`；纯执行合计`38.338750s`。
-- Scope guard: 未运行完整质量基线，未修改业务代码，未提交Git。
-- Next stage: 下一阶段仅执行PT086 Testcase Generation与同步Testpoints，严格执行75条Case Plan，复用同一run并使用`resume --stop-at testcases`；不得跨入Bundle/Traceability。
-
-## 2026-08-06 - PT086 Acceptance Examples
-
-- Scope: 严格只执行 PT086 Acceptance Examples；M档按契约跳过Verification Map，消费44条`generate_acceptance_example` Gate独立生成G/W/T，未进入Case Plan。
-- Output: 生成`acceptance/acceptance_examples.json`与`.md`，共75条confirmed原子示例；44个允许Gate全部至少映射1条示例，10 needs_confirmation、3 out_of_scope、5 risk_note_only及全部technical background均为0引用。
-- Oracle: 22 hard_block、28 business_behavior、15 display_only、5 linkage、3 soft_display、2 backend_job。两个soft Gate仅生成3条提示/建议展示Oracle，then中无保存失败、提交失败、阻止保存、不可保存或强拦截语义。
-- Verification sides: 48 B端写侧、18 C端读侧、2 B端写侧与C端读侧、2服务端任务与C端读侧，B端写侧与列表读侧/B端写侧与服务端/B端列表与C端读侧/服务端与C端读侧/服务端通知侧各1；与PT084/PT085完全一致。
-- Source mapping: 75条均保留唯一或明确Gate/Rule来源；Coverage共27个引用，分布于24条示例，类别为16 happy_path_combo、10 required、1 value_boundary。来源映射只引用当前PT086 Coverage ID，不复制历史示例。
-- Stable comparison: PT084/PT085/PT086均为75条；Oracle、验证侧、confidence、允许Gate覆盖、排除项隔离、Coverage引用数量/类别保持稳定。独立G/W/T措辞和具体Coverage落点可不同，但可观察Oracle与责任面无真实需求差异。
-- Repair: Validator与Schema首次通过；对比发现27个Coverage引用分散到25条示例而PT085稳定为24条，第1轮最小repair仅让额外3个引用复用已建立来源映射的示例，未修改G/W/T、Oracle或数量；复验通过，无第2轮repair。
-- Harness: 复用唯一run`RUN-PT086-REQ-20260806`执行`resume --stop-at acceptance_examples`；`acceptance_examples=succeeded/attempts=1/exit=0`，run为paused，Case Plan及下游均`pending/attempts=0`；audit通过、0 errors。
-- Timing（不含人工等待）: authoring（含生成、比较及1轮repair）`84.475679s`；两次Validator/Schema/稳定契约比较合计`0.316574s`；resume + Acceptance checkpoint`0.132968s`；audit`0.080987s`；纯执行合计`85.006208s`。
-- Scope guard: 未运行完整质量基线，未修改业务代码，未提交Git。
-- Next stage: 下一阶段仅执行 PT086 Case Plan，基于75条Acceptance Examples生成可评审计划，复用同一run并使用`resume --stop-at case_plan`；不得跨入Testcase Generation。
-
-## 2026-08-06 - PT086 Testability Gate
-
-- Scope: 严格只执行 PT086 Testability Gate；消费已归一化82条Coverage、Structured PRD、reasoning与上游证据，独立生成并校验 `acceptance/testability_gate.json` / `.md`，未进入 Acceptance Examples。
-- Output: 最终62条Gate；44条 `generate_acceptance_example`、10条 `needs_confirmation`、3条 `out_of_scope`、5条 `risk_note_only`。分类为24 field_constraint、19 product_behavior、8 technical_background、5 risk_hardening、2 backend_job、2 linkage、2 soft_prompt；可测性为35 testable、9 partially_testable、10 needs_confirmation、3 out_of_scope、5 risk_only。
-- Rule identity investigation: Gate Validator会递归要求所有Structured PRD `rule_id`。初始PT086为121个强制ID（94个reasoning逐句ER + 27个字段FR），相同需求会被错误放大，无法形成62条稳定决策。第1轮最小上游身份归一化未删除72条feature rule文本：将94个逐句身份收敛为8个技术/待确认主题，并为13个真实字段对象规则补稳定ID；最终48个独立Structured PRD规则进入Gate强制覆盖，与9个额外产品验收决策及5个风险决策共同形成62条。
-- Disposition and isolation: 44条Acceptance候选中24字段约束、14产品行为、2后台任务、2跨端联动、2 soft prompt；soft prompt均为`partially_testable`，仅生成提示展示验收，不升级为强拦截。8条technical background中5条`needs_confirmation`、3条`out_of_scope`；5条business risk全部`risk_only/risk_note_only`，不进入产品验收。
-- Stable comparison: PT084/PT085/PT086的Gate总数、classification、testability、decision和confidence分布完全一致；稳定规则语义均覆盖字段边界、B/C端联动、库存任务、宣传内容、SDK/分辨率待确认及风险隔离。独立措辞、source ID与rule identity归一化不同，不构成需求差异。
-- Repair: 共1轮最小repair，即上述rule identity归一化；Structured PRD Schema、图片映射和Gate Validator首次执行均通过，无第2轮repair。
-- Harness: 复用唯一run `RUN-PT086-REQ-20260806`执行`resume --stop-at testability_gate`。因Structured PRD身份指纹变化，Harness合法重验Structured PRD和Coverage（attempts均由1增至2），随后`testability_gate=succeeded/attempts=1/exit=0`；run为`paused`，Acceptance及下游保持`pending/attempts=0`；audit通过、0 errors。
-- Timing（不含人工等待）: authoring（含调查、rule identity归一化与Gate生成）`85.349984s`；Structured PRD/图片映射/Gate validators合计`0.269517s`；resume + checkpoints `0.310046s`；audit `0.097600s`；纯执行合计`86.027147s`。
-- Scope guard: 未运行完整质量基线，未修改业务代码，未提交Git。
-- Next stage: 下一阶段仅执行 PT086 Acceptance Examples，消费44条允许生成的Gate，复用同一run并使用`resume --stop-at acceptance_examples`；不得跨入Case Plan。
-
-## 2026-08-06 - PT086 Coverage Planning
-
-- Scope: 严格只执行 PT086 Coverage Planning；消费当前 72 条 Structured PRD feature rules、33 个 fields 与 reasoning pack，独立生成并归一化 `coverage/coverage_matrix.json`，未进入 Testability Gate。
-- Output: 最终 82 条 coverage，与 PT084/PT085 同为 37 条 `main_testcase`、45 条 `audit_item`。类型分布为 34 field_property、14 required、10 value_boundary、1 conditional_visibility、3 data_source_display、1 data_source_order、19 happy_path_combo；级别为 12 critical、25 business、36 structural、9 audit_only。
-- 56→72 investigation: PT086 的 72 条由 56 条来源文本规则与 compiler 追加的16条字段对象投影组成，新增投影为13条 value_constraint、1条 conditional_visibility、2条 data_source_constraint；这些是字段属性的机器细化，与对应来源文本存在语义重叠，不代表新增16个业务需求。Coverage 按“来源规则 + 页面/板块 + 字段/可观察断言”归一化，未把同义投影重复膨胀为正式用例。
-- Normalized additions over formal generator: 正式生成器先得到49条字段信号；基于当前 PT086 图片、字段规则和 reasoning 独立补齐33条未被通用生成器识别的信号：10条真实边界、1条排序、1条宣传内容必填、1条Tab展示审计、1条列表列头展示、14条业务/审计组合以及5条风险审计。B/C端相同字段因页面与可观察结果不同保留独立覆盖；字段属性与边界/组合因断言不同不合并。
-- Stable comparison: PT084/PT085/PT086在 coverage type、level、emit mode、source origin/type、priority、页面分布及“页面+板块+字段+类型+分流+来源分类”多重集合上完全一致；不存在新增或缺失覆盖意图。
-- Signal routing: 5条 business risk 全部为 `audit_only/audit_item`；`720*1280`技术背景、`其余逻辑不变`和建议尺寸`1008*160`均为audit，不进入正式用例；建议尺寸只验证提示展示，不生成上传/保存阻断。其余37条main均有明确来源与可观察业务断言。
-- Repair: Validator 首次通过；历史分类复核发现服务时长边界应从当前字段 `formats` 追溯而非泛化为 structured rule，第1轮最小修复仅将其 `source_type` 改为 `structured_field` 并修正ref。复验及稳定契约比较通过，无第2轮repair。
-- Harness: 复用唯一 run `RUN-PT086-REQ-20260806` 执行 `resume --stop-at coverage`；`coverage=succeeded/attempts=1/exit=0`，run为`paused`，Testability Gate及全部下游保持`pending/attempts=0`；audit通过、0 errors。
-- Timing（不含人工等待）: 正式 generator `0.054962s`；从生成开始到语义调查、归一化及repair前落盘的authoring总墙钟`201.294818s`（含generator）；两次validator/稳定比较合计`0.276922s`；resume + coverage checkpoint `0.191088s`；audit `0.117103s`；纯执行合计`201.879931s`。
-- Scope guard: 未运行完整质量基线，未修改业务代码，未提交Git。
-- Next stage: 下一阶段仅执行 PT086 Testability Gate，复用同一run并使用`resume --stop-at testability_gate`；不得跨入 Acceptance Examples。
-
-## 2026-08-06 - PT086 Structured PRD
-
-- Scope: 严格只执行 PT086 Structured PRD authoring → compile；显式消费已批准的 `requirement_summary.md`、`source_manifest.json`、6 张图片证据和已校验 reasoning pack，未把 PT084/PT085 Structured PRD 作为生成输入，未进入 Coverage。
-- Outputs: 独立编写 `structured_prd/structured_prd.md` authoring 真源，并通过正式编译器生成 `structured_prd/structured_prd.json`；共 6 pages、18 sections、4 modules、18 features、33 fields、72 compiled feature rules、3 field rule tables、17 table rows、3 flows，Requirement Info 保留 94 条 reasoning explicit rules。
-- Fidelity: 33 个字段键、3 张说明表及 17 行规则与 PT084/PT085 全部一致；保留 SDK 版本与量化阈值、`720*1280` 技术语义、脚本兼容、库存校验频率/并发/恢复、未展开弹窗、枚举默认值等待确认语义，未将建议尺寸或模糊技术目标升级为硬拦截。
-- Repair rounds: 第 1 轮按 Structured PRD Validator 删除库存 Flow 中没有对应 step 的额外 `related_modules` 引用；第 2 轮按图片映射 Validator 修正 authoring 适配键，完整承接 section 级 `field_rules` 和 3 张 `field_rule_tables`/17 行。达到两轮上限后不再为贴合历史命名字面或数量改写真源。
-- Validation: Markdown 经正式 compiler 成功解析；JSON 显式 Schema/Structured PRD Validator 通过；Image Evidence Mapping Validator 通过；Harness strict `structured_prd` 阶段通过；run audit `passed=true/errors=0`。
-- Stable comparison: PT084/PT085/PT086 的 page、section、module、field、table/table-row 集合及数量完全一致；PT086 feature/flow 名称为独立生成的同义表达。PT086 feature rules 为 72（历史 56），Requirement explicit rules 为 94（历史 Structured PRD 8），差异来自当前 reasoning 的字段规则细粒度投影，不存在输入页面、字段、边界、流程结果或待确认语义增删。
-- Same-run resume: 复用唯一 run `RUN-PT086-REQ-20260806` 执行 `resume --stop-at structured_prd`；`structured_prd=succeeded/attempts=1/exit=0`，run 为 `paused`，Coverage 及全部下游保持 `pending/attempts=0`。
-- Timing（不含人工等待）: authoring（含两轮最小修复）`106.127974s`；compile/validators 三次执行合计 `0.553409s`；resume + structured_prd checkpoint `0.201855s`；audit `0.085136s`；纯执行合计 `106.968374s`。
-- Scope guard: 未运行完整质量基线，未修改业务代码，未提交 Git。
-- Next stage: 下一阶段仅执行 PT086 Coverage Planning，继续复用同一 run 并使用 `resume --stop-at coverage`；不得跨入 Testability Gate。
-
-## 2026-08-06 - PT086 Reasoning Analysis
-
-- Scope: 严格只执行 PT086 Reasoning Analysis；显式消费已正式批准的 `inputs/requirement_summary.md`、`inputs/source_manifest.json`、`image_evidence/image_evidence_inventory.json` 和 manifest，未读取 PT084/PT085 下游产物作为生成输入，未进入 Structured PRD。
-- Outputs: 使用正式生成器独立生成 `analysis/reasoning_pack.json` 与 `analysis/analysis_report.md`。最终包含94条 explicit rules、1条 implicit rule、28条 field constraints、2条 data source rules、5条 business risks、7条 edge cases、10条 ambiguities、7个 recommended test dimensions、28条 coverage candidates。
-- Source cleanup and repair: 初始生成器产出虽具备94/1/28/2/10/7/28主体数量，但混入无来源的 banner、瓷片区、金刚区、营销弹窗、触达用户类型等通用推断，并仅产生3条错误风险、0条边界场景。第1轮最小 repair 仅修改本阶段 reasoning pack/report：移除全部无来源通用语义，以PT086图片证明的B端商品/宣传配置到云挂机购买页映射替换 implicit rule，补齐5条真实风险、7条证据支持的边界及7个本需求测试维度；未脑补待确认项。无第2轮 repair。
-- Validation: Reasoning Pack Validator 在 repair 后首次执行即通过；无来源通用关键词搜索为0命中，ReadLints无报错。
-- Stable comparison: PT084/PT085/PT086均为6 pages、28 fields、5 risks、7 edge cases、10 ambiguities、28 coverage candidates；规范化后的页面集合、字段页面/板块/名称/类型/约束、风险标题、边界标题/字段、ambiguity标题、coverage类型/标题/scope均完全一致。PT084 explicit rules为112，PT085/PT086为94，差异来自图片证据文字展开粒度，不构成页面、字段、风险、边界、待确认或coverage语义差异。
-- Same-run resume: 复用唯一 run `RUN-PT086-REQ-20260806` 执行 `resume --stop-at reasoning`；requirement_intake和evidence均按幂等checkpoint跳过，reasoning为`succeeded/attempts=1/exit=0`，run在reasoning后`paused`。Structured PRD及全部下游保持`pending/attempts=0`；恢复后audit通过，0 error。
-- Timing（不含人工等待）: 正式生成器自身 `0.05s`；从生成开始、内容审查到第1轮repair落盘的authoring总墙钟 `211.582021s`（包含生成器）；独立Validator `0.07s`；同run resume（含reasoning checkpoint）`0.07s`；纯执行合计 `211.722021s`。checkpoint started/completed事件同为`2026-08-06T08:57:06+00:00`，内部耗时低于事件1秒分辨率并已包含在resume耗时。
-- Scope guard: 未运行完整质量基线，未修改业务代码，未提交Git。
-- Next stage: 下一阶段仅执行 PT086 Structured PRD authoring/compile，继续复用同一run并使用`resume --stop-at structured_prd`；不得跨入Coverage Planning。
-
-## 2026-08-06 - PT086 Requirement Approval And Image Evidence
-
-- Formal approval: 用户明确确认 PT086 与 PT084/PT085 完全同图符合预期、PT086 无需求增量且仅用于基准重跑，并批准当前 requirement summary。使用正式 CLI 对 `RUN-PT086-REQ-20260806` 执行 `approve-requirement`，reviewer 为 `ycp`，未手写或伪造 receipt。
-- Receipt evidence: `inputs/requirement_approval.json` 为 `approved`，`reviewed_by=ycp`，note 完整记录三项确认；绑定 summary SHA-256 `b4124a118ce71c35f44a5948745ea42070dda6c79386fe1b079ccac4232aafdc`、source SHA-256 `be97702a25778ad8ab1f4963649e6091f0ffd64c27ccec0c1f6c40cd77f4b8f1`、raw inputs fingerprint `14b95263a0a916db4ffd27e8a81563d7a96d3dd3cacfd53f888fec2f57811c6f`。
-- Approval state/event: receipt 先由正式服务更新；事件序列新增 `approval_resolved(status=approved,resolved_by=ycp)`，run 从 `waiting_approval` 转为 `paused`，`requirement_intake` 从 `waiting_approval` 转为 `succeeded`。审批后 audit 通过，0 error。
-- Evidence authoring: 基于 PT086 六张原图独立编写 `image_evidence/image_evidence_inventory.json`，未复制 PT084/PT085 文件；共 6 images、18 sections、28 fields、10 field rules、3 rule tables、17 rows、10 个 needs-confirmation sections。
-- Stable comparison: PT084、PT085、PT086 上述数量完全一致；页面集合、`页面+板块+类型`、字段显示名/类型/必填属性、字段规则类型、规则表名和规则表行名均一致。文本压缩、工作项 ID、source path、OCR/notes 可选字段导致原始 JSON 表述不同，不构成需求语义差异。
-- Validation: Image Evidence Validator 首次通过，无 repair；ReadLints 无报错。
-- Same-run resume: 复用 `RUN-PT086-REQ-20260806` 执行 `resume --stop-at evidence`，未创建新 run。`requirement_intake` 作为幂等 checkpoint 跳过，`evidence` 为 `succeeded/attempts=1/exit=0`，run 在 evidence 后 `paused`；`reasoning` 及全部下游保持 `pending/attempts=0`。恢复后 audit 通过，0 error。
-- Timing: 正式审批 CLI `0.10s`，作为人工审批操作开销独立记录，不计入纯执行基准。Evidence authoring `109.628874s`、独立 Validator `0.10s`、同 run resume（含 evidence checkpoint）`0.09s`；纯执行合计 `109.818874s`。checkpoint 的 started/completed 事件同为 `2026-08-06T08:51:28+00:00`，内部耗时低于事件的 1 秒分辨率，已包含在 resume 的 `0.09s` 中。
-- Scope: 未进入 reasoning，未运行完整质量基线，未修改业务代码，未提交 Git。
-- Next stage: 下一阶段仅执行 PT086 Reasoning Analysis，显式消费 approved requirement summary、source manifest 与 image evidence，并继续复用同一 run 以 `resume --stop-at reasoning`；不得跨入 Structured PRD。
-
-## 2026-08-06 - PT086 Requirement Intake Waiting Approval
-
-- Scope: 仅执行 PT086 输入盘点、`requirement_summary.md` / `source_manifest.json` 归一化、Requirement Sources strict 与正式 requirement approval 门验证；未进入 evidence，未修改下游测试资产或业务代码，未提交 Git。
-- Existing work item preserved: `assets/projects/WX-YGJ/work_items/PT086/` 和 `manifest.json` 已初始化，未重建目录或覆盖原始输入；只在现有 manifest 中补入 `pipeline_policy.requirement_approval_required=true` 和正式 receipt 路径。
-- Inputs: 盘点到 6 张 PNG 原图和 4 个文本文件。六张 PT086 图片与 PT084、PT085 对应图片逐张 SHA-256 完全一致；是否属于有意无增量复用仍待人工确认。
-- Summary: 已生成 `inputs/requirement_summary.md` 和含 6 条可用图片来源的 `inputs/source_manifest.json`；保留免费体验资格、SDK 版本与量化标准、`720*1280` 技术含义、脚本兼容、库存频率、展示时间及宣传轮播等待确认问题。
-- Requirement Sources strict: `skills/requirement-summary/scripts/validate_requirement_sources.py --input .../source_manifest.json --strict` 通过，`source_count=6`。
-- Harness: 本阶段创建且仅创建一个 run `RUN-PT086-REQ-20260806`。run 与 `requirement_intake` stage 均为 `waiting_approval`，stage `attempts=1/exit=0`；`evidence` 及全部下游保持 `pending/attempts=0`。
-- Receipt: `inputs/requirement_approval.json` 为 `pending`，`reviewed_by/reviewed_at/note` 均为空；绑定摘要 SHA-256 `b4124a118ce71c35f44a5948745ea42070dda6c79386fe1b079ccac4232aafdc`、来源 SHA-256 `be97702a25778ad8ab1f4963649e6091f0ffd64c27ccec0c1f6c40cd77f4b8f1`、原始输入 fingerprint `14b95263a0a916db4ffd27e8a81563d7a96d3dd3cacfd53f888fec2f57811c6f`。
-- Anti-bypass: 对该 run 执行 `resume` 返回非零，明确报错 `requirement approval 仍为 pending，resume 被拒绝`；拒绝后状态仍为 `waiting_approval`，未产生 evidence attempt。
-- Focused verification: `tests.test_requirement_approval` 10/10 通过；未运行完整质量基线，留待最终里程碑。
-- Benchmark machine wall time（排除人工等待）: input inventory `0.04s`；summary authoring `58.550965s`；Requirement Sources validator `0.02s`；Harness start `0.11s`；四项合计 `58.720965s`。摘要 authoring 为本次写作开始到落盘完成的墙钟，包含本机工具往返；总计不包含后续人工审核等待。
-- Next action: 用户审核 `inputs/requirement_summary.md`，确认 PT086 与 PT084/PT085 同图是否符合预期及 PT086 是否无需求增量。未获人工决议前不得 approve、resume 或进入 evidence。
-
-## 2026-08-06 - PT085 Harness Testcase Bundle Boundary Repair
-
-- Root cause: `scripts/harness/stage_registry.py` 的 `testcases` 阶段在75条正式 testcase、75条testpoint及Case Plan反向映射全部通过后，继续校验尚未刷新的占位 `testcase_bundle.json`，以 `0 != 75` 错误阻断 Testcase checkpoint。PT084 曾暴露同一原因。
-- Test-first repair: 新增回归测试，先稳定复现“有效Case Plan + 正式testcase/testpoints + 0条占位Bundle”导致Testcase阶段失败；修复后Testcase checkpoint通过，同时相同Bundle在`traceability`阶段仍被原Validator以`0 != 75`阻断。
-- Harness change: 仅将现有 `validate_testcase_bundle.py` 命令从 `testcases` 移到现有阶段模型的 `traceability` 阶段。未修改Bundle Validator、strict gate、兼容逻辑、正式资产、生成器或业务代码，也未提前刷新Bundle。
-- Validation: 聚焦回归通过；`tests.test_harness_runtime tests.test_harness_closeout` 28项通过；全量Harness 84项通过；ReadLints无报错。`run_quality_baseline.py`前4/5通过，第5项因PT085尚未刷新Bundle并完成后续阶段失败，未做无关修复。
-- Recovery: 复用原run `RUN-20260806T063753Z`执行`resume --stop-at testcases`，未新建run。当前`status=paused`，`testcases=succeeded`、累计attempts=2，`traceability/review/strict_gate`均pending且attempts=0；本次Testcase日志仅执行4个当前阶段Validator，未执行Bundle命令。
-- Next stage: 后续先按契约执行Bundle后处理并同步刷新testpoints、开发自测、traceability和quality report，再复用同一run进入`traceability`；当前不提前执行。
-
-## 2026-08-06 - PT085 Harness Case Plan Boundary Repair
-
-- Root cause: `scripts/harness/stage_registry.py` 的 `case_plan` 阶段无条件向 Case Plan Validator 传入未来 `testcases_main.md`；初始化空模板因此触发“必须包含真实用例”，把 testcase 反向追溯错误前移。PT084 的 `RUN-20260806T024251Z` 曾暴露同一原因。
-- Test-first repair: 新增回归测试，先复现“有效 PT085 Case Plan + 空 testcase 模板”无法建立 checkpoint；修复后该 checkpoint 通过，同时同一空模板在 `testcases` 阶段仍被原 Validator 阻断。
-- Harness change: `case_plan` 阶段仅校验 Case Plan、Testability Gate、M/L Acceptance Examples 与 L 档 Responsibility Map；`validate_case_plan --testcases` 原样移动到 `testcases` 阶段。未修改 Validator 强度、兼容逻辑、bundle、正式 testcase 或业务代码。
-- Validation: 聚焦回归测试通过；`tests.test_harness_runtime tests.test_harness_closeout` 27项通过；全量 Harness 83项通过；ReadLints 无报错。`run_quality_baseline.py` 前4/5通过，第5项仅因PT085按当前停点尚无正式testcase及后续产物失败，未做无关修复。
-- Recovery: 复用原 run `RUN-20260806T063753Z` 执行 `resume --stop-at case_plan`，未新建 run。当前 `status=paused`，`case_plan=succeeded`、累计attempts=2，`testcases=pending`、attempts=0；未进入 testcase。
-- Next stage: 仅在后续明确授权后执行 PT085 Testcase Generation，并按契约同步生成 testpoints；继续复用同一 run。
-
-## 2026-08-06 - PT085 Case Plan
-
-- Inputs consumed: `acceptance/acceptance_examples.json`、`acceptance/testability_gate.json`、`coverage/coverage_matrix.json` 与 `structured_prd/structured_prd.json`。
-- Outputs: `testcases/case_plan.json` 与 `testcases/case_plan.md`；从75条Acceptance Example独立生成75条Case Plan，未直接复制PT084。authoring墙钟41.518023秒。
-- Plan contract: 75/75均`should_generate_case=true`，均具备非空page/section/module/feature、单一`assertion`字段、稳定且唯一的`generated_testcase_ids`，并完整提供source gate/example/rule/coverage；本阶段未生成或修改正式testcase/testpoints。
-- PT084 comparison: 两者均为75条且计划类型、优先级、validation path、页面和页面+板块数量完全一致：24 ui_display、22 save_block、2 backend_job、3 prompt_display、5 linkage、19 field_constraint；47 P1、25 P0、3 P2；页面分布19/29/24/3，10个页面+板块组合数量一致；75条均进入product_acceptance并映射75个稳定testcase ID。
-- Source mapping difference: PT085按本轮明确要求为75/75计划都提供source_coverage_ids，而PT084最终产物为41/75；这是追溯完整度增强，不是需求语义、分类或优先级变化。soft prompt仅生成3条prompt_display，未引用needs_confirmation/out_of_scope/risk/technical_background Gate。
-- Repair: 独立Validator初验通过；语义比较发现CP-010～015的6条宣传图片计划被上下文推断误归商品添加页，第1轮最小修复仅校正page/section/module/feature，复验通过。未进行第2轮repair。
-- Independent validation: 不传未来testcase、启用`--require-examples`的Case Plan Validator通过两次；追溯完整性、soft prompt分流、generated ID唯一性和75条上下文守卫均通过。
-- Harness boundary defect: 复用`RUN-20260806T063753Z`执行`resume --stop-at case_plan`，resume墙钟0.119109秒；Harness在case_plan阶段硬编码传入仍为空模板的未来`testcases_main.md`，因此以“testcases_main.md 必须包含真实用例”失败。该失败不是Case Plan本体错误；按阶段边界未生成testcase/testpoints、未修改Harness或绕过Validator。
-- Harness accounting: 新执行1个Harness validator command并失败，未新增成功checkpoint；case_plan累计attempts=1/status=failed，testcases仍pending。此前累计attempts保持requirement_intake=2、evidence=1、reasoning=1、structured_prd=1、coverage=1、testability_gate=1、acceptance_examples=1。
-- Baseline and scope: 未运行完整质量基线，未修改业务代码，未提交Git。阶段边界缺陷已记录到`HUMAN_ACTION_REQUIRED.md`。
-
-## 2026-08-06 - PT085 Acceptance Examples
-
-- Inputs consumed: `acceptance/testability_gate.json`、`structured_prd/structured_prd.json`、`coverage/coverage_matrix.json`、`inputs/source_manifest.json` 与 `image_evidence/image_evidence_inventory.json`；仅消费44条`decision=generate_acceptance_example` Gate。
-- Outputs: `acceptance/acceptance_examples.json` 与 `acceptance/acceptance_examples.md`，独立authoring并生成75条Given/When/Then；未直接复制PT084产物。authoring墙钟60.091760秒。
-- PT084 comparison: 两者均为75条、覆盖44个允许Gate/44个规则和24个稳定Coverage来源；Oracle分布完全一致：28 business_behavior、15 display_only、22 hard_block、2 backend_job、3 soft_display、5 linkage；verification side分布和75条confirmed confidence亦完全一致。
-- Stable semantics: 保留双版本四区域、特价专区显隐/2.5/4、限时购买纵向布局、特殊区容量和提示、库存三项联动、宣传配置、服务时长、排序、价格、通知、必填与跨端展示等核心G/W/T集合。PT085因Gate规则ID与粒度不同，将商品区与状态枚举合并验证，并在库存预警边界Example中同步承接三个未标星字段非必填；这是同源规则粒度差异，不是新增需求或规则降级。
-- Source mapping: 44个允许Gate全部有Example，44个source rule均可追溯；Coverage引用收敛为与PT084相同的24类稳定来源（10个明确必填、13个高优fidelity、1个排序边界），PT085具体ID因独立生成排序不同而不同。
-- Repair: 第1轮修复两条soft prompt的Then中触发守卫的“阻止保存”否定字样，改为纯提示展示且可继续操作，并补齐状态枚举Gate引用；第2轮去除字段边界与高层fidelity的重复Coverage引用，收敛到24类。两轮均未降低硬拦截、边界或提示规则。
-- Exclusion guard: 未引用needs_confirmation、out_of_scope、risk_note_only或technical_background Gate；2条soft_prompt只生成3条`soft_display` Example，不包含hard block或保存失败断言。
-- Validation: Acceptance Examples Validator及排除守卫最终通过；本轮只执行该阶段校验，未运行完整质量基线。
-- Harness: 成功复用`RUN-20260806T063753Z`并使用`resume --stop-at acceptance_examples`；resume墙钟0.115751秒，新增1个acceptance_examples checkpoint和1个Harness validator command。累计attempts：requirement_intake=2、evidence=1、reasoning=1、structured_prd=1、coverage=1、testability_gate=1、acceptance_examples=1；run保持`paused`，Case Plan及下游为pending。
-- M-level policy: M档继续跳过Verification Responsibility Map和Test Design Matrix，本轮未生成或修改这些L档资产。
-- Scope: 未生成或修改Case Plan、testcase、traceability或业务代码，未提交Git。
-
-## 2026-08-06 - PT085 Testability Gate
-
-- Inputs consumed: `structured_prd/structured_prd.json`、`coverage/coverage_matrix.json`、`analysis/reasoning_pack.json`、`inputs/requirement_summary.md`、`inputs/source_manifest.json` 与 `image_evidence/image_evidence_inventory.json`。
-- Outputs: `acceptance/testability_gate.json` 与 `acceptance/testability_gate.md`；仓库无自动生成器，本轮按Schema、Skill与来源证据独立authoring，未直接复制PT084 Gate。authoring墙钟149.329010秒。
-- Gate conclusion: 共62条；44条`generate_acceptance_example`，其中35条`testable`、9条`partially_testable`；10条`needs_confirmation`、3条`out_of_scope`、5条`risk_note_only`。
-- PT084 comparison: 两者gate count、classification、testability、decision和confidence数量完全一致：19 product_behavior、24 field_constraint、2 backend_job、8 technical_background、2 soft_prompt、2 linkage、5 risk_hardening；35 testable、9 partially_testable、10 needs_confirmation、3 out_of_scope、5 risk_only；44 generate_acceptance_example、10 needs_confirmation、3 out_of_scope、5 risk_note_only；52 confirmed、10 unknown。稳定语义均覆盖双版本展示、商品与宣传字段、库存联动、SDK/720*1280、未展开弹窗/枚举、活动复盘和必填证据，无真实需求差异。
-- Granularity handling: PT085 Structured PRD 比PT084多1条按未标星字段拆分的显式规则；Gate必须覆盖全部Structured PRD规则，因此以该字段规则承接非必填语义，并由`PROMO-RULE-002`直接承接宣传配置“云机类型必填且完整唯一”，避免再新增等价synthetic required Gate。最终数量和原子业务语义与PT084一致，未降低必填或字段约束。
-- Disposition safety: 8条technical_background全部为needs_confirmation或out_of_scope；5条business risk全部为risk_only/risk_note_only；2条soft_prompt均为partially_testable，只允许提示展示，不升级为hard block；needs_confirmation与out_of_scope均未生成confirmed强断言。
-- Validation: Testability Gate Validator（含Structured PRD全规则覆盖检查）初验和最终复验均通过，无repair轮次；本轮未运行完整质量基线。
-- Harness: 成功复用`RUN-20260806T063753Z`，使用`resume --stop-at testability_gate`；resume墙钟0.116173秒，新增1个testability_gate checkpoint和1个Harness validator command。累计attempts：requirement_intake=2、evidence=1、reasoning=1、structured_prd=1、coverage=1、testability_gate=1；run保持`paused`，acceptance_examples及全部下游仍为pending。
-- Scope: 未生成或修改acceptance examples、Case Plan、testcase、traceability或业务代码，未提交Git。
-
-## 2026-08-06 - PT085 Coverage Planning
-
-- Inputs consumed: `structured_prd/structured_prd.json`、`analysis/reasoning_pack.json` 与 `docs/testcase_signal_policy.md`；用户已明确 Structured PRD 不新增人工门，本轮直接进入 Coverage Planning。
-- Output: `coverage/coverage_matrix.json`，由正式生成器针对 PT085 独立生成后按同一来源做最小语义修复，未直接复制 PT084 coverage。
-- Initial generation: 正式生成器墙钟0.049850秒，产出61条：25 `main_testcase`、36 `audit_item`。对比发现缺少1条服务时长边界、1条版本Tab展示审计、14条高优 fidelity coverage 和5条 business risk 审计。
-- Investigation and repair: 缺口来自当前 PT085 Structured PRD 的高优 explicit rules 未携带生成器识别的 `fidelity_points`，且通用 reasoning adapter 仅为历史特定字段生成条目，未自动承接本工作项5条业务风险。第1轮最小修复仅补齐同源21条 coverage：明确字段/展示/提示/跨端联动进入主链，列表/旧逻辑、建议尺寸、technical background与business risk进入审计；未修改生成器、Structured PRD或规则强度。
-- Final comparison: PT084/PT085 均为82条，`main_testcase=37`、`audit_item=45`；source origin均为77 explicit + 5 AI reasoning；source type均为51 structured_field、12 structured_rule、14 coverage_candidate、5 business_risk；coverage type和level数量完全一致。以 `coverage_type + title + emit_mode` 比较的稳定语义多重集合完全一致，无真实分类或需求语义差异。
-- Signal routing: 5条business risk全部为`audit_only/audit_item`；`720*1280`技术背景、建议尺寸`1008*160`和“其余逻辑不变”均未进入正式主用例；未发现soft prompt、technical background或risk被升级为hard block/product acceptance。
-- Validation: Coverage Matrix Schema Validator 初始生成后通过，修复后复验通过；本轮只执行该阶段Validator，未运行完整质量基线。
-- Harness: 成功复用 `RUN-20260806T063753Z`，使用 `resume --stop-at coverage`；resume墙钟0.172713秒，新增1个coverage checkpoint和1个Harness validator command。累计attempts：requirement_intake=2、evidence=1、reasoning=1、structured_prd=1、coverage=1；run保持`paused`，testability_gate及全部下游仍为pending。
-- Scope: 未生成或修改testability gate、acceptance examples、Case Plan、testcase、traceability或业务代码，未提交Git。
-
-## 2026-08-06 - PT085 Structured PRD
-
-- Inputs consumed: 已通过的 `inputs/requirement_summary.md`、`inputs/source_manifest.json`、`image_evidence/image_evidence_inventory.json` 与 `analysis/reasoning_pack.json`；保留用户已确认“PT085 与 PT084 无需求语义变更、仅用于流程重跑比对”的事实。
-- Outputs: 以 `structured_prd/structured_prd.md` 为 authoring 真源，使用正式编译器生成 `structured_prd/structured_prd.json`；未直接复制 PT084 派生产物。
-- Fidelity: 承接6个页面、18个板块、4个模块、18个功能、33个字段、56条编译后对象规则、3张字段规则表/17行和3条流程；SDK版本、`720*1280`技术层级、库存校验频率、枚举默认值、未展开弹窗和活动复盘正文继续显式待确认。
-- Repair: 第1轮校验发现1个 feature rule 使用 schema 不支持的 `interaction_rule` 类型，最小修复为同强度 `other`；第2轮语义比较发现14条由“显式规则 + 字段约束自动派生”造成的同义重复，合并重复表达但保留字段约束、上限、必填、数据源、显隐、排序和提示强度。两轮后停止 repair。
-- PT084 comparison: 两者 pages=6、sections=18、modules=4、features=18、fields=33、compiled rules=56、field-rule tables=3、rows=17、flows=3；页面名、页面+板块、模块+功能、页面+板块+字段、流程名、规则表名和行名稳定集合全部一致。风险/待确认语义均覆盖SDK版本与兼容、720*1280技术语义、库存容量/频率、宣传图片与文案边界、未展开弹窗、枚举默认值和活动复盘正文，未发现需求增删。JSON SHA-256不同是PT085标识、来源引用、独立表述和规则ID造成，不代表需求语义变化。
-- Validation: 正式 MD→JSON 编译通过；Structured PRD Schema Validator 最终通过；Image Evidence Mapping Validator 通过。后台配置链 Validator 需要下游 testcase 参数，本阶段尚未生成且用户禁止跨入coverage，故未运行该跨阶段检查。
-- Harness: 成功复用 `RUN-20260806T063753Z`，使用 `resume --stop-at structured_prd`；resume墙钟0.186675秒，新增1个structured_prd checkpoint，Harness内部新执行1个validator command。累计attempts：requirement_intake=2、evidence=1、reasoning=1、structured_prd=1；run保持`paused`，coverage及全部下游仍为pending。
-- Baseline: 按单阶段边界未运行完整质量基线。
-- Scope: 未生成或修改coverage、测试设计、Case Plan、testcase、traceability或业务代码，未提交Git。
-
-## 2026-08-06 - PT085 Reasoning Analysis
-
-- Inputs consumed: `inputs/requirement_summary.md`、`inputs/source_manifest.json`、`image_evidence/image_evidence_inventory.json`，并保留用户已确认“PT085 与 PT084 无需求语义变更、仅用于流程重跑比对”的事实；未读取 PT084 Structured PRD 或其他下游产物作为生成输入。
-- Outputs: `analysis/reasoning_pack.json` 与 `analysis/analysis_report.md`，由当前正式生成器针对 PT085 独立生成。
-- Generator result: 首次生成 94 explicit rules、1 implicit rule、28 field constraints、1 data source rule、3 business risks、0 edge cases、10 ambiguities、7 test dimensions、27 coverage candidates；生成命令墙钟约 0.21 秒。
-- Repair: 内容审查发现生成器注入与 PT085 无关的 banner/瓷片/金刚区/弹窗通用推理。第1轮最小修复仅调整本阶段产物：删除无来源推理，恢复云挂机购买页、商品配置、库存、SDK、720*1280与脚本兼容性相关的映射、风险、边界和测试维度；未修改生成器、Validator 或规则强度。
-- Final counts: 94 explicit rules、1 implicit rule、28 field constraints、2 data source rules、5 business risks、7 edge cases、10 ambiguities、7 test dimensions、28 coverage candidates。
-- PT084 comparison: PT084 为112 explicit rules，其余上述8类数量与PT085完全一致。两者主要页面、展示面、字段名、风险标题、边界标题、待确认板块和coverage标题集合全部一致；18条explicit rule数量差来自PT085本轮更精简的图片证据表达、可选OCR/空字段省略及人工确认语句，不代表需求语义增删。Reasoning Pack SHA-256：PT084 `ec922609...65127`，PT085 `ad0f6333...99696`，hash差异包含工作项ID、来源路径、生成时间和表达粒度。
-- Validation: Reasoning Pack Validator 首次通过；发现语义污染后完成第1轮修复并再次通过。本轮实际执行本阶段 Validator 2次（初验1、repair复验1），未运行其他阶段 Validator。
-- Harness: 成功复用 `RUN-20260806T063753Z`，使用 `resume --stop-at reasoning`；本次resume仅新增1个reasoning artifact checkpoint，Harness内部新执行validator 0个、checkpoint 1个（`commands=0`）。resume墙钟约0.21秒。
-- Cumulative Harness attempts: requirement_intake=2、evidence=1、reasoning=1；run保持`paused`，Structured PRD及全部下游阶段均为pending。
-- Baseline: 按单阶段边界未运行完整质量基线。
-- Scope: 未生成或修改Structured PRD、coverage、测试设计、Case Plan、testcase、traceability或业务代码，未提交Git。
-
-## 2026-08-06 - PT085 Image Evidence
-
-- Human confirmation consumed: 用户已明确审核 requirement summary 通过，并确认 PT085 的 6 张图片与 PT084 完全相同符合预期，PT085 无需求增量，仅用于重跑比对近期流程修改；该确认记录在 requirement summary、source manifest 和上一阶段进度中，不伪造 approval receipt 或 reviewer 字段。
-- Input provenance: PT085 6 张原图与 PT084 对应原图逐张 SHA-256 相同；本轮逐图重新抽取 PT085 自身证据，不直接复制 PT084 未经核验的派生产物。
-- Output: `assets/projects/WX-YGJ/work_items/PT085/image_evidence/image_evidence_inventory.json`。
-- Counts: 6 张图片、18 个 section、28 个字段候选、10 条字段规则、3 张规则表、17 行规则表记录、10 个待确认 section；数量与 PT084 完全一致。
-- Comparison: 页面、section、字段名、规则类型、规则表名和表格行名集合与 PT084 全部一致；原始 JSON SHA-256 为 PT084 `d0a9e95d...7a007`、PT085 `47182729...09e87`，去除 PT084/PT085 标识后的规范化 hash 仍不同，差异来自本轮独立抽取的文案压缩、可选空字段/OCR 字段省略和工作项标识，不是需求语义增删。
-- Validation: Requirement Sources strict 通过（7 个来源）；Image Evidence Validator 通过。显式执行 2 次 validator；Harness resume 内因输入确认改变 fingerprint，重新执行 1 条 requirement intake validator，并完成 1 个 evidence artifact checkpoint（checkpoint 自身 `commands=0`）。
-- Harness: 成功复用 `RUN-20260806T063753Z`，使用 `resume --stop-at evidence`；`requirement_intake` succeeded（累计 attempts=2），`evidence` succeeded（attempts=1），run 继续保持 `paused`，`reasoning` 及下游均为 pending。resume 本地命令墙钟约 0.24 秒，run 状态时间戳精度为秒，因此两个阶段均记录在同一秒完成。
-- Baseline: 按单阶段边界未运行完整质量基线；将在后续里程碑执行。
-- Scope: 未生成或修改 reasoning、structured PRD、coverage、测试设计、Case Plan、testcase、traceability 或业务代码，未提交 Git。
-
-## 2026-08-06 - PT085 Requirement Intake
-
-- Sources read: `inputs/images/` 下 6 张 PT085 需求图片；图片均可读取且与 PT084 对应图片的 SHA-256 逐张完全一致，用户已确认该同源事实符合预期且 PT085 无需求增量。
-- Outputs: `assets/projects/WX-YGJ/work_items/PT085/inputs/requirement_summary.md`、`source_manifest.json`。
-- Validation: Requirement Sources strict 通过；Harness run `RUN-20260806T063753Z` 的 `requirement_intake` 阶段通过并按 `stop_at=requirement_intake` 暂停，可在人工审核后复用 run 恢复。
-- Human confirmation: 用户于 2026-08-06 明确审核 requirement summary 通过，并确认 6 张图片与 PT084 完全相同符合预期；PT085 相对 PT084 无新增、删除或变更，仅用于重新运行并比对近期流程修改。本记录不是 approval receipt，不记录仓库契约中尚不存在的 receipt 或 reviewer 字段。
-- Stage authorization: 本次只允许复用 `RUN-20260806T063753Z` 恢复到 `evidence` 停点；不得新建 run，不得进入 reasoning 或任何下游阶段。
-- Baseline: 本轮为需求接入单阶段，按用户明确要求未重复运行完整质量基线；将在后续里程碑按仓库要求执行。
-- Scope: 本轮仅完成需求接入与归一化，未生成或修改 evidence、reasoning、structured PRD、测试设计、Case Plan、testcase、traceability 或业务代码，未提交 Git。
-
-## 2026-08-06 - PT084 Requirement Intake
-
-- Sources read: `inputs/images/` 下 6 张已修正为 PT084 文件名的需求图片，以及用户对文件名修正的确认。
-- Outputs: `assets/projects/WX-YGJ/work_items/PT084/inputs/requirement_summary.md`、`source_manifest.json`。
-- Validation: Requirement Sources strict 与 Harness `requirement_intake` 阶段通过；PT084 全工作项 strict 因图片证据及后续设计/用例/追溯仍为初始化模板而未通过。
-- Scope: 本轮仅完成需求接入与归一化，不修改业务代码，不生成下游正式产物。
-
-## 2026-08-06 - PT084 Image Evidence Extraction
-
-- Sources read: `inputs/images/` 下 6 张 PT084 需求图片。
-- Output: `assets/projects/WX-YGJ/work_items/PT084/image_evidence/image_evidence_inventory.json`，逐图记录页面、板块、字段、规则、说明表、置信度与待确认项。
-- Validation: 图片证据 Validator 与 Harness strict `evidence` 阶段通过；全工作项 strict 的图片证据本体已通过，映射及后续门禁因 Structured PRD、测试设计、Case Plan、testcase、traceability 尚未执行而失败。
-- Baseline: 82 项单元测试、PT083 门禁和 regression 通过；项目级基线仅因 PT084 尚未完成后续阶段失败。
-- Scope: 本轮未修改 Structured PRD、测试设计、Case Plan、testcase、traceability 或业务代码。
-
-## 2026-08-06 - PT084 Structured PRD
-
-- Inputs consumed: 已通过的 requirement summary、source manifest、image evidence 与 reasoning pack。
-- Outputs: 以 `structured_prd/structured_prd.md` 为 authoring 真源，编译生成 `structured_prd/structured_prd.json`。
-- Fidelity: 承接6个证据页面、18个板块、后台商品和宣传字段、字段说明表、精确提示、数据源、B端到C端联动及3条业务流程；SDK版本、`720*1280`技术语义、库存频率、模糊文案、枚举默认值和活动复盘继续标记为待确认。
-- Validation: Markdown/JSON Schema、图片证据映射及 Harness strict `structured_prd` 阶段通过；md->json 编译未发现关键规则丢失。
-- Full gate: 全工作项 strict 中 Structured PRD 与图片映射已通过，当前仅因 testability gate、acceptance examples、Case Plan、testcase 和 traceability 尚未执行而失败。
-- Baseline: 82项单元测试、PT083门禁和regression通过；项目级基线仅因PT084未完成后续阶段失败。
-- Scope: 本轮未修改测试设计、Case Plan、testcase、traceability、业务代码或生成器。
-
-## 2026-08-06 - PT084 Reasoning Analysis
-
-- Inputs consumed: `inputs/requirement_summary.md`、`inputs/source_manifest.json`、`image_evidence/image_evidence_inventory.json`。
-- Outputs: `analysis/reasoning_pack.json` 与 `analysis/analysis_report.md`。
-- Repair: 正式生成脚本首次产物包含与 PT084 无关的 banner/瓷片/金刚区通用推断；已在本阶段产物内移除并替换为云挂机购买页、商品配置、库存、SDK、分辨率和脚本兼容性相关推理，未修改生成器或降低 Validator。
-- Validation: Reasoning Pack Schema Validator 与 Harness strict `reasoning` 阶段通过；全工作项 strict 仍因 Structured PRD 映射、测试设计、Case Plan、testcase 和 traceability 尚未执行而失败。
-- Baseline: 82 项单元测试、PT083 门禁和 regression 通过；项目级基线仅因 PT084 尚未完成后续阶段失败。
-- Scope: 本轮未修改 Structured PRD、测试设计、Case Plan、testcase、traceability 或业务代码。
-
-## 2026-08-06 - PT084 Coverage Planning
-
-- Inputs consumed: `structured_prd/structured_prd.json`、`analysis/reasoning_pack.json` 与 Coverage signal policy。
-- Output: `coverage/coverage_matrix.json`，共 82 条 coverage；38 条进入 `main_testcase` 候选，44 条为 `audit_item`。
-- Classification repair: 自动生成后将“其余逻辑不变”、建议尺寸 `1008*160` 和技术背景 `720*1280` 从正式主用例池改为审计项；5 条 reasoning business risk 以 `audit_only/audit_item` 独立保留，未混入 product acceptance，未把 soft prompt 升级为 hard block。
-- Validation: Coverage Matrix Schema Validator 与 Harness strict `coverage` 阶段通过，Harness run `RUN-20260806T023139Z` 在 coverage 后按预期暂停。
-- Full gate: PT084 全工作项 strict 未通过；除后续 `testability_gate`、`acceptance_examples`、Case Plan、testcase/traceability/review 尚未执行外，code review request 仍缺失且质量报告尚未刷新。M 档按契约跳过 `verification_responsibility_map`。
-- Baseline: 82 项单元测试、PT083 non-strict/strict 与 regression 通过；项目级第 5 项仅因 PT084 strict 未完成而失败。
-- Scope: 本轮未修改 testability gate、acceptance examples、verification map、Case Plan、正式 testcase、发布资产、生成器或业务代码。
-
-## 2026-08-06 - PT084 Testability Gate
-
-- Inputs consumed: `structured_prd/structured_prd.json`、`coverage/coverage_matrix.json`、`analysis/reasoning_pack.json`、requirement/source manifest 与 image evidence。
-- Outputs: `acceptance/testability_gate.json` 与 `acceptance/testability_gate.md`，共 52 条 gate；完整处理 47 个 Structured PRD 稳定规则，并将 5 条 reasoning business risk 独立归为 `risk_hardening/risk_only/risk_note_only`。
-- Decisions: 34 条进入后续 acceptance example 候选，10 条 `needs_confirmation`，3 条技术/背景项 `out_of_scope`，5 条风险仅作 risk note。8 条 technical background 无正式验收决策；2 条 soft prompt 均为 `partially_testable`，未升级为 hard block。
-- Validation: Testability Gate Schema、阶段 Validator 与 Harness strict `testability_gate` 均通过；Harness run `RUN-20260806T023609Z` 在本阶段后按预期暂停。
-- Full gate: PT084 全工作项 strict 中 Testability Gate 已 PASS；当前失败项为后续 Acceptance Examples、Case Plan、testcase/traceability/review、缺失 code review request 与未刷新质量报告。
-- Baseline: 82 项单元测试、PT083 non-strict/strict 与 regression 通过；项目级第 5 项仅因 PT084 strict 尚未完成而失败。
-- Scope: 本轮未修改 Acceptance Examples、Verification Map、Case Plan、正式 testcase、发布资产、生成器或业务代码。
-
-## 2026-08-06 - PT084 Acceptance Examples
-
-- Inputs consumed: `acceptance/testability_gate.json` 中 34 条 `generate_acceptance_example` 候选，以及 Structured PRD、Coverage Matrix 与来源追溯。
-- Outputs: `acceptance/acceptance_examples.json` 与 `acceptance/acceptance_examples.md`，按单规则单断言倾向拆分为 64 条 Given/When/Then 场景，完整承接全部 34 个允许进入验收的 gate。
-- Exclusions: 未引用 10 条 `needs_confirmation`、3 条 `out_of_scope`、5 条 `risk_note_only` 或任何 technical background gate；2 条 soft prompt 仅验证建议尺寸提示/展示，未生成上传、保存或提交阻断。
-- Validation: Acceptance Examples Schema、阶段 Validator、排除项守卫与 Harness strict `acceptance_examples` 均通过；Harness run `RUN-20260806T024003Z` 在本阶段后按预期暂停。
-- Full gate: PT084 全工作项 strict 中 Testability Gate 与 Acceptance Examples 已 PASS；当前失败项为后续 Case Plan、testcase/traceability/review、缺失 code review request 与未刷新质量报告。
-- Baseline: 82 项单元测试、PT083 non-strict/strict 与 regression 通过；项目级第 5 项仅因 PT084 strict 尚未完成而失败。
-- Scope: M 档按契约跳过 Verification Responsibility Map；本轮未修改 Case Plan、正式 testcase、发布资产、生成器或业务代码。
-
-## 2026-08-06 - PT084 Case Plan
-
-- Inputs consumed: 已通过的 `acceptance_examples.json`、`testability_gate.json`、`coverage_matrix.json` 与 `structured_prd.json`。
-- Outputs: `testcases/case_plan.json` 与 `case_plan.md`，从 64 条原子 Acceptance Examples 生成 64 条 Case Plan；每条均先确定 `page_name/section_name`，再确定 `module_name/feature_name`，并提供 source gate、source example、source rule 与稳定 `generated_testcase_ids`。
-- Classification: 2 条 `backend_job`、18 条 `field_constraint`、5 条 `linkage`、3 条 `prompt_display`、12 条 `save_block`、24 条 `ui_display`；15 条 P0、46 条 P1、3 条 P2。
-- Exclusions: 未纳入 `needs_confirmation`、`risk_note_only`、technical background 或 `out_of_scope`；所有计划均为 `product_acceptance`，soft prompt 仅生成 `prompt_display`。
-- Validation: Case Plan Schema、独立阶段 Validator（M 档 `--require-examples`）与生成守卫通过。Harness strict run `RUN-20260806T024251Z` 在 `case_plan` 失败，唯一原因是该阶段命令同时强制校验尚未生成的 `testcases_main.md`；本轮按阶段边界未生成正式 testcase，未绕过该依赖。
-- Full gate: PT084 全工作项 strict 中 Testability Gate 与 Acceptance Examples 已 PASS；Case Plan 因正式 testcase 尚未生成而被组合校验判 FAIL，同时 testpoints、traceability/review、code review request 与质量报告仍待后续阶段。
-- Baseline: 82 项单元测试、PT083 non-strict/strict 与 regression 通过；项目级第 5 项仅因 PT084 strict 尚未完成而失败。
-- Scope: 本轮未修改正式 testcase、testpoints、bundle、traceability、发布资产、生成器或业务代码。
-
-## 2026-08-06 - PT084 Testcase Generation
-
-- Truth source: 严格执行 `testcases/case_plan.json` 的 64 条 `should_generate_case=true` 计划，未绕过 Case Plan 直接从 Structured PRD 生成。
-- Outputs: 生成 `testcases/testcases_main.md`、兼容镜像 `testcases/testcases.md`，并使用正式投影脚本同步生成 `testpoints.json/md`；同时将 Case Plan 的 64 个稳定 `generated_testcase_ids` 更新为符合编号规则的正式用例编号。
-- Counts: 64 条正式 testcase、64 条 testpoint，按 4 个页面、10 个“页面+板块”表输出；表内保留所属模块/所属功能点。Testpoints 保持 `truth_source=testcases/case_plan.json`、`projection_only=true`。
-- Repair: 首轮发现1条流程终态表达不足和4处元素标注缺失；第1轮最小修复后 Testcase Lint、元素标注 strict、页面板块 strict、Case Plan追溯、Testpoints strict及兼容镜像一致性全部通过。
-- Harness: strict run `RUN-20260806T024634Z` 中 case_plan 已通过，testcase lint、grouping、testpoints 均通过；testcases stage 仅因初始化 `testcase_bundle.json` 仍为0条而失败（0 != 64）。本轮按边界未执行 bundle 后处理。
-- Full gate: PT084 全工作项 strict 中 Testcase、Grouping、Testpoints、Case Plan 均 PASS；当前失败项为 Testcase Bundle、traceability/review、缺失 code review request 与未刷新质量报告。
-- Baseline: 82 项单元测试、PT083 non-strict/strict 与 regression 通过；项目级第5项仅因 PT084 strict 尚未完成而失败。
-- Scope: 本轮未执行 bundle、dev self、traceability、review、publish 或 closeout，未修改业务代码。
-
-## 2026-08-06 - PT084 Bundle Post-processing
-
-- Truth sources preserved: 未修改 `testcases/case_plan.json`、`testcases/testcases_main.md` 或 `testcases/testcases.md`；本轮仅从当前正式主产物刷新派生资产。
-- Outputs: 刷新 64 条 `testpoints.json/md`、64 条 `testcase_bundle.json` 投影、15 条 `dev_self_testcases.md`、44 条 `field_audit.json` 审计项、0 组 `grouped_audit.json`；生成 45 条 `coverage_first_traceability.json` 记录及 45 条 `traceability_adapter.json` 兼容记录，并刷新 legacy traceability 对照。
-- Traceability repair: 官方生成器因正式 testcase 备注没有 `来源coverage` 标记而生成 38 条空映射；第1轮最小修复仅把能够由当前 testcase 正文与 CasePlan 直接证明的 27 个 coverage 映射为 45 条记录，未删除或伪映射剩余缺口。第2轮删除不在 schema 中的说明字段后，schema 噪音已消除。
-- Blocker: 仍有 11 条主 coverage 没有语义对应 testcase，Coverage-First 主失真率为 `11/45 = 0.2444`：`COV-EX-0004/0020/0022/0024/0026/0029/0032/0035/0037/0038/0055`。继续自动挂接会构成虚假追溯，修复需要回到 Testability Gate / Case Plan / Testcase Generation 补计划与正式用例，或由人工明确调整 coverage 分级。
-- Quality report: 已刷新 `reviews/quality_report.json`；四项当前指纹为 Structured PRD `ae16b9c...d9fc`、Coverage Matrix `44e79bb0...7f48`、Testcases `a5a16971...0617`、Coverage-First Traceability `db6642e2...0e48`，只读指纹校验通过，旧指纹不能继续通过。
-- Validation: Testcase Bundle、Testpoints、Dev Self Testcases 与质量报告指纹通过；Traceability strict 因上述 11 条空 testcase 记录失败。Harness strict run `RUN-20260806T025228Z` 到 traceability 前各阶段均通过，在 traceability 以 13 条诊断失败。
-- Full gate: PT084 全工作项 strict 还因 Traceability、缺失前后端 code review request、前后端确认仍为 pending 而失败；Quality Gate 为 `report_only`，明确记录 false traceability 超阈值。
-- Baseline: 82 项单元测试、PT083 non-strict/strict 与 regression 通过；项目级第5项仅因 PT084 strict 失败而失败。
-- Scope: 未执行人工 review、code review 映证、publish 或 closeout，未修改业务代码。
-
-## 2026-08-06 - PT084 Traceability Blocker Repair
-
-- Investigation: 逐条核对 `COV-EX-0004/0020/0022/0024/0026/0029/0032/0035/0037/0038/0055` 的图片证据、Requirement Summary、Structured PRD、Gate、Acceptance、Case Plan 与 testcase。`COV-EX-0004` 只有页面 Tab 展示/切换证据，不存在必填星号、输入空值或保存动作；其余10项均有红色星号、“必传”或正整数最小边界证据。
-- Classification repair: 将 `COV-EX-0004` 从 `required/business/main_testcase` 修正为 `field_property/audit_only/audit_item`，同步将 C 端 `cloud_machine_version.required` 修正为 false；未降低任何真实字段规则，也未生成虚构的 Tab 空值保存阻断。Coverage 总数保持82，main 从38降为37，audit 从44增为45。
-- Design increments: 新增10条 Testability Gate、11条 Acceptance Example、11条 Case Plan 和11条正式 testcase。10个原 blocker 分别由 `CP-065..CP-074` 承接；语义复核另发现旧映射将宣传内容“云机类型必填”错误挂到“所有类型均需配置”组合用例，新增 `TG-062/AE-075/CP-075` 单独承接 `COV-EX-0053`，消除潜在虚假追溯。
-- Traceability repair: 清理 Case Plan 中过宽的 coverage 列表，逐 testcase 写入精确 `来源coverage` 标记。官方 `build_coverage_first_traceability.py` 可确定性重建46条有效记录，`invalid_record_count=0`、`false_traceability_rate=0.0`；未删除主 coverage、未映射到语义不相关 testcase。
-- Counts: Gate 52→62，Acceptance 64→75，Case Plan/Testcase/Testpoint/Bundle 64→75，开发自测15→25，Field Audit 44→45，Coverage-First/Adapter 46条。
-- Repair rounds: 首轮 Testcase Lint 发现 `CP-073` 的“保存成功”结果偏抽象，改为保存后重新打开并核对“盒子内排序”仍为 `{1}`；后续语义复核收紧旧 coverage 宽映射并补 `COV-EX-0053` 独立必填链。最终 Gate、Acceptance、Case Plan、Testcase Lint、元素标注、分组、Bundle、Testpoints 与 Traceability 全部通过。
-- Quality fingerprints: Structured PRD `366386d0...7218`、Coverage Matrix `35630fd5...a832`、Testcases `b4a83666...01ac`、Coverage-First Traceability `fdadd462...44e4`；报告 `false_traceability_rate_primary=0.0`、无 quality failures。
-- Harness: strict run `RUN-20260806T030007Z` 从 Requirement Intake 到 Traceability 全部 succeeded，并在 stop-at 后正常 paused。
-- Full gate: `validate_work_item --strict --skip-code-reviews` 通过；不跳过 code review 的全工作项 strict 仅因前后端 review request 缺失及人工 confirmation=pending 失败，属于本轮明确排除的后续人工 code review 阶段。
-- Baseline: 82项单元测试、PT083 non-strict/strict、regression 和 WX-YGJ 项目 strict 全部通过，质量基线5/5通过。
-- Scope: 未修改业务代码，未执行人工 review、code review 映证、publish 或 closeout，未提交 Git。
-
-## 2026-08-06 - PT085 Testcase Generation
-
-- Scope: 严格只执行 Testcase Generation，复用 `RUN-20260806T063753Z` 并以 `resume --stop-at testcases` 恢复；未进入 bundle 生成、traceability、review 或 strict gate。
-- Authoring: 正式 Coverage-First 入口首次生成18条主用例，暴露其 Coverage 合并路径无法执行75条 Case Plan；随后仅在本阶段按 `case_plan.json` 确定性重建75条 `testcases_main.md` 与兼容镜像，并同步生成75条 `testpoints.md/json`。正式生成命令墙钟0.230秒，最终75条渲染墙钟0.002897秒。
-- Repair rounds: 第1轮将18条收敛结果修复为一计划一用例；第2轮修复正式编号、类型归类、元素标注和唯一流程终态。最终75个 `generated_testcase_ids` 均为页面/板块/终端/类型可读的稳定编号，每条用例反向引用唯一 Case Plan，并保留 Acceptance、Rule 和 Coverage 来源；未直接复制PT084用例。
-- Comparison: PT084/PT085均为75条；优先级均为47 P1/25 P0/3 P2；测试类型均为35功能/22异常/11边界/6状态流转/1流程验证；10个页面+板块分布逐组一致（3/6/5/25/4/24/1/4/1/2）。稳定测试意图覆盖双版本展示、特价/普通商品区、商品字段约束、库存联动、宣传内容配置与后台操作入口，无真实需求语义差异。
-- Independent validation: testcase lint通过75条；元素标注strict通过；页面/板块分组strict通过且0 warning；testpoints strict通过75条且 `truth_source=testcases/case_plan.json` / `projection_only=true`；Case Plan携正式testcase反向映射校验通过75条；兼容镜像与主真源一致。
-- Harness: resume墙钟0.25秒。Case Plan因稳定ID更新重新建立1个checkpoint（attempts累计3）；Testcase阶段新增5个Validator命令，前4个全部通过，证明lint、分组、testpoints和正式testcase反向映射边界生效。第5个命令越界校验尚未生成的空 `testcase_bundle.json`，以 `0 != 75` 失败；Testcase attempts=1且无checkpoint。该次resume合计新增6个Validator命令、1个成功checkpoint。
-- Blocker: `testcases` 阶段仍硬编码 `validate_testcase_bundle.py`。Bundle是从正式testcase派生的后续兼容投影，本轮按用户要求未生成且不跨阶段绕过；run保留failed证据，traceability/review/strict_gate均保持pending。
-- Baseline: 未重复运行完整质量基线；框架边界修复前已执行83项/基线。本轮未修改业务代码，未提交Git。
-
-## 2026-08-06 - PT085 Bundle Post-processing And Traceability
-
-- Scope: 在原run `RUN-20260806T063753Z` 已暂停于Testcases后，严格执行Bundle后处理并恢复到Traceability；未进入review或strict_gate，未反写Case Plan。
-- Post-processing: 从75条 `testcases_main.md` 刷新75条 `testpoints.md/json`、25条 `dev_self_testcases.md`、75条 `testcase_bundle.json`、Coverage-First Traceability、46条Adapter及质量报告与主产物指纹。首次后处理墙钟0.32秒，映射修复后完整刷新墙钟0.30秒，合计0.62秒。
-- Mapping repair: 首次Coverage-First为42条，15条缺少testcase且失真率0.3571。调查确认15个main coverage缺精确 `来源coverage`，且CP-033/040/041/045等正文丢失Case Plan已有的服务时长、库存边界和原价断言。第1轮仅恢复既有Case Plan断言并补精确备注；Case Plan哈希保持 `1ba738d95790...`，未新增计划、未伪造来源、未降低规则。最终生成46条记录，invalid=0、false_traceability_rate=0.0，无第2轮repair。
-- PT084 comparison: 两项均为Bundle 75、Testpoints 75、开发自测25、Coverage-First/Adapter 46、invalid 0、失真率0；测试类型均为35功能/22异常/11边界/6状态流转/1流程验证。PT085 rule coverage 0.8125（PT084 0.7917）、atomic 0.7867（PT084 0.8133），边界1.0、数据源0.25、generalized/duplicate/missing fidelity/quality failures均为0；差异来自PT085更完整的Coverage备注及combo标记，不代表需求语义变化。
-- Fingerprints: PT085 Testcases `3748adf6e2e4...`、Bundle `6485282e3059...`、Coverage-First `f9301646b2ae...`、Quality `f3b299d64e71...`；PT084对应Bundle `bedc0d5799fb...`、Coverage-First `fdadd4629564...`、Quality `5d4031620109...`。工作项ID、正式编号、生成时间和表达差异会改变hash，数量、分类和主追溯语义一致。
-- Validation: Bundle Validator通过75条且 `projection_only=true`；Traceability Validator通过46条/0失真，Adapter 46条；Testpoints strict、testcase lint、元素标注、Case Plan反向映射均通过；质量报告只读指纹校验通过且无quality failures。
-- Harness: `resume --stop-at traceability` 墙钟0.37秒；因Testcase正文指纹变化，Testcases重验4个Validator并成功建立attempt 3 checkpoint；Traceability attempt 1执行Bundle与Traceability 2个Validator并建立checkpoint。本次新增6个Harness Validator命令、2个成功checkpoint。Run状态paused；累计attempts为requirement_intake 2/evidence 1/reasoning 1/structured_prd 1/coverage 1/testability_gate 1/acceptance_examples 1/case_plan 3/testcases 3/traceability 1，review/strict_gate仍pending。
-- Baseline: 按要求未重复运行完整质量基线；框架修复已运行84项/基线。未修改业务代码，未提交Git；当前阶段无剩余blocker。
-
-## 2026-08-06 - PT085 No-code Comparison Rerun Closeout
-
-- Final state: PT085工作项使用正式入口 `/usr/bin/python3 scripts/validate_work_item.py --project-code WX-YGJ --work-item-id PT085 --work-item-level M --retention full --skip-code-reviews --strict` 通过，墙钟0.81秒；Code Reviews明确为SKIPPED，未创建或伪造前后端review request/confirmation。质量报告指纹、主Traceability、Bundle、Testpoints、开发自测、Case Plan和Review Gate均通过。
-- Harness legality: 原run `RUN-20260806T063753Z` 保持paused at Traceability。Harness review阶段无Validator和显式N/A/skip语义，仅按`review_record.md`与质量报告存在建立checkpoint；当前review record仍为“待评审”，因此未resume到review/strict_gate，避免把模板存在伪装为人工评审完成。`audit-run`墙钟0.09秒，passed=true、errors=0。
-- Final artifact comparison: PT084/PT085均为6张同源图片、18个证据板块、6 pages/18 sections/4 modules/18 features/33 fields/56 compiled rules/3 flows、82 Coverage（37 main/45 audit）、62 Gate、75 Acceptance、75 Case Plan、75正式Testcase、75 Testpoints、75 Bundle、25开发自测、46 Coverage-First/46 Adapter；invalid=0、主失真率0。测试类型均为35功能/22异常/11边界/6状态流转/1流程验证，稳定页面、字段、规则、流程、风险/待确认和测试意图一致。Reasoning explicit rule数量和各JSON/hash因独立表达、工作项ID、来源路径与生成时间不同，不代表需求变化。
-- Quality comparison: PT085 rule coverage 0.8125（PT084 0.7917）、atomic 0.7867（PT084 0.8133），边界1.0、数据源0.25、generalized/duplicate/missing fidelity/quality failures均为0。差异来自PT085更完整的Coverage备注及combo标记，不改变正式用例数量或业务语义。
-- Run efficiency: PT085全程只创建1个Harness run，累计15次stage attempts、13次成功stage checkpoint（9个唯一阶段）、24个Harness Validator命令、11次resume、3条diagnostic；PT084历史对比为12 runs/66 validators。按run对象计减少11/12（91.7%），按Harness Validator命令计减少42/66（63.6%）。该比较不包含独立authoring复验、质量基线或人工等待，不能解释为端到端耗时同比下降。
-- Timing separation: 已记录的模型authoring墙钟包括Testability Gate 149.329010秒、Acceptance 60.091760秒、Case Plan 41.518023秒，合计250.938793秒；Structured PRD、Requirement Summary、Image Evidence等人工/模型authoring未完整计时。已记录的生成器/后处理为Reasoning约0.21秒、Coverage 0.049850秒、首次Testcase正式入口0.230秒、Bundle后处理含repair刷新0.62秒。已记录的各阶段Harness resume样本合计约1.78秒，但Requirement初始start及两次框架修复后的外部resume未单独计时。run从06:37:53创建到07:56:21 Traceability暂停为78分28秒；到08:01:24 audit约83分31秒，连同最终baseline收口可视为约84～86分钟区间，包含人工确认、authoring、调查、框架修复与等待，不能归因于Validator本身。
-- Boundary defects: 本轮发现并修复两个阶段越界：Case Plan不再提前校验未来Testcase；Testcase不再提前校验未刷新的Bundle，Bundle Validator移动到Traceability且最终通过。规则强度、反向映射和最终strict检查均保留。
-- Quality baseline: 首轮84项中1项边界测试失败，原因是测试从正式PT085复制已刷新的Bundle，却仍假定Bundle为空。第1轮最小修复仅在临时测试夹具中显式置空Bundle，使测试不依赖正式工作项当前状态；聚焦单测通过，第二次完整baseline墙钟13.51秒并5/5通过（84 unit tests、PT083 non-strict/strict、6/6 regression fixtures 56 checks/2 expected failures、WX-YGJ project strict）。首轮失败baseline墙钟13.52秒；未降低规则，未修改业务代码。
-- Remaining limitations: requirement_summary强制人工审批尚无正式approval status/receipt/CLI门禁，本次只能保留用户确认记录和stop-at审计，不伪造reviewer。Harness同样缺少无代码review的N/A disposition。下一项建议优先实现这两个显式状态，先解决requirement_summary approval，再补review N/A到strict_gate。
-- Scope: 仅修改流程产物、roadmap记录和1处Harness边界测试夹具；未修改业务代码，未创建新run，未执行Harness review/strict_gate，未提交Git。
+本文件是阶段流水账，不是真源，也不进 strict。当前任务、决策和阻塞分别写在 `docs/roadmap/NEXT_ACTION.md`、`DECISION_LOG.md`、`HUMAN_ACTION_REQUIRED.md`。新条目只追加到文末，禁止插入文件顶部或按 newest-first 回写。
+
+## 2026-09-21 - OSS Blind Round Requirement Intake
+
+- 初始化 `OSS-BLIND` 项目及 `APPSMITH-42244`、`CHATWOOT-15768`、`SALEOR-19804` 三个 M 档工作项。
+- 只消费公开 PR 描述与其明确关联的公开 issue/原始 PR，分别生成 `inputs/public_source_snapshot.md`、`requirement_summary.md` 和 `source_manifest.json`；代码 diff 与已有测试被隔离为后续评分 oracle，不进入需求输入。
+- Appsmith 的 Linear issue 需要授权，GitHub Advisory API 未返回详情，均记录为未解决来源；未据此脑补安全规则。
+- 本轮只执行 Requirement Intake，未进入 Evidence、Reasoning、Structured PRD、Coverage、Case Plan 或 Testcase；下一步必须先由用户审核三个摘要并通过正式 approval CLI。
+- 三份 Requirement Sources strict 均通过；对应 Harness run 已创建并停在 `waiting_approval`，下游阶段全部为 `pending`。
+- `scripts/run_quality_baseline.py` 5/5 通过，包含105项单测、PT083 non-strict/strict、regression和项目壳校验。
+
+## 2026-09-21 - OSS Blind Round Requirement Approval And Evidence
+
+- 用户明确批准三份需求摘要后，使用正式 CLI 以 reviewer `ycp` 分别批准三个当前内容绑定的 receipt；未手写或复制 approval 文件。
+- 三个 run 的 `requirement_intake` 均转为 `succeeded`，并分别 `resume --stop-at evidence`；Evidence 均为 `succeeded/attempts=1/exit=0`。
+- 三个样本均为纯文本公开来源，保留初始化的合法空图片证据状态；未因缺少截图阻塞，也未伪造图片 evidence。
+- 当前三个 run 均为 `paused`，Reasoning 及全部下游阶段为 `pending`。本轮未跨入 Reasoning、未修改业务代码、未读取 oracle 生成下游资产。
+
+## 2026-09-21 - OSS Blind Round Reasoning Analysis
+
+- 使用正式 `reasoning-analysis` 入口，分别从已批准的 `requirement_summary.md`、`source_manifest.json` 与空图片 Evidence 生成三份 `reasoning_pack.json` / `analysis_report.md`；未读取 Structured PRD、代码 diff 或已有测试作为生成输入。
+- 首次内容审查发现通用生成器无条件注入 PT083 的 banner/瓷片/金刚区风险与测试维度，Schema 虽可通过但构成跨样本语义污染。
+- 第 1 轮最小修复移除无条件业务模板：文本需求现在从摘要第 8 节生成风险、第 9 节生成待确认项、第 6 节提取边界场景，并从显式规则生成通用测试维度与 coverage candidates；图片输入的排序、状态和说明表风险只在存在对应证据时生成。
+- 修复后 Appsmith 为 14 explicit / 3 risks / 3 edges / 4 ambiguities / 14 candidates；Chatwoot 为 15 / 3 / 4 / 4 / 15；Saleor 为 15 / 4 / 4 / 4 / 15。三个 analysis 目录均无 PT083 领域词残留。
+- 新增 2 项文本需求回归测试；三份 Reasoning Pack Schema Validator 与三个 Harness `reasoning` checkpoint 均通过。三个 run 继续为 `paused`，Structured PRD 及下游保持 `pending`。
+- `scripts/run_quality_baseline.py` 5/5 通过，包含 107 项单元测试、PT083 non-strict/strict、regression 和项目壳校验；未修改业务代码或降低门禁。
+
+## 2026-09-21 - Reasoning Three-layer Hardening And Blind Retest
+
+- 完成领域解耦：移除通用生成器中 banner、瓷片、金刚区、企微、小程序活动等 PT083 专用业务模板；图片输入的共享结构、重复字段和跨页面承接改为使用当前 Evidence 的页面、板块与字段动态表达。
+- 完成来源语义门禁：新增 Grounding Contract 1.0。内容型 reasoning 必须有非空来源，文本摘录必须能在来源文件回查，来源文件必须存在，测试维度与 coverage candidate 不得引用不存在的 reasoning ID；新工作项默认 `reasoning_grounding_required=true`。
+- 完成跨领域回归：覆盖 API/安全 URL、前端 `0/false` 类型保持、数据关系一致性、图片配置页与文本图片混合需求，并补充无来源污染、摘录不匹配、悬空 ID、缺失契约和 Harness 实际执行 Validator 的故障注入测试。
+- Harness 的 Reasoning 从空命令 checkpoint 改为 validation。复验时进一步发现“显式 stop-at 已成功 checkpoint 会继续向下执行”缺陷，已修复为立即暂停；显式回退到较早 stop-at 时，下游旧 checkpoint 重置为 pending。
+- 三份公开盲测均重新通过 Grounding Contract，Reasoning 日志各执行 1 条 Validator 命令；三个 run 已恢复为 `paused at reasoning`，Structured PRD 及下游均为 `pending`。过程中误触发的空 Testability Gate 失败已保留 attempt 计数但清除为 pending，未伪造成功。
+- 全量 119 项单元测试通过；质量基线 5/5 通过，PT083 non-strict/strict、regression 与项目级 strict 均未回退。
+
+## 2026-09-21 - OSS-BLIND Structured PRD
+
+- Scope: 本轮仅处理 Appsmith #42244、Chatwoot #15768、Saleor #19804 的 Structured PRD；未读取代码 diff 或已有测试 oracle，未进入 Coverage、Testability Gate、Case Plan 或 testcase。
+- Inputs consumed: 三份已批准的 `inputs/requirement_summary.md`、`inputs/source_manifest.json` 与通过 Grounding Contract 的 `analysis/reasoning_pack.json`。
+- Outputs: 分别编写 `structured_prd/structured_prd.md` 真源，并由正式编译器生成 `structured_prd/structured_prd.json`。Appsmith 为 6 条显式规则、5 条 feature rule、2 个字段、1 条 flow；Chatwoot 为 7 条显式规则、8 条编译后 feature rule、5 个字段、1 条 flow；Saleor 为 7 条显式规则、7 条编译后 feature rule、8 个字段、1 条 flow。
+- Semantics: Appsmith 聚焦连接前协议校验、Databricks driver 独占处理与失败关闭；Chatwoot 聚焦类型化值、0/false 保留、缺失值区分与严格相等；Saleor 聚焦跨批次标签关系追加、历史成员保留与返回契约。未把风险边界提升为已确认规则，三个产物均无 PT083 的 banner/瓷片/金刚区语义。
+- Validation: 三份 Markdown 均成功编译且 Structured PRD Schema Validator 通过，无 repair；三个既有 run 均以 `resume --stop-at structured_prd` 成功暂停，Structured PRD 为 succeeded，Coverage 及下游保持 pending。
+- Baseline: 119 项单元测试、PT083 non-strict/strict、6/6 regression fixtures 与 WX-YGJ project strict 全部通过，质量基线 5/5 通过。
+- Next: 下一阶段仅生成并校验三个样本的 Coverage Matrix，不进入 Testability Gate。
+
+## 2026-09-21 - OSS-BLIND Coverage Planning
+
+- Scope: 本轮仅生成和校验三个公开盲测样本的 `coverage/coverage_matrix.json`，未读取代码 diff 或已有测试 oracle，未进入 Testability Gate、Acceptance Examples、Case Plan 或 testcase。
+- Initial finding: 正式生成器首轮虽通过 Schema，但 Appsmith、Chatwoot、Saleor 分别只有1、2、2条 main Coverage；原因是通用业务规则未进入主链，生成器主要依赖字段形态及 PT083 专用关键词分支。
+- Repair 1: 新增通用显式规则投影；优先从 `requirement_info.explicit_rules` 建立主 Coverage，旧资产缺少显式规则时才回退 `feature.rules`。Reasoning 的 edge case 与 business risk 统一保留为 `ai_reasoning/audit_item`，PT083 专用注入分支不再进入正式生成路径。
+- Repair 2: 只允许可编辑输入字段生成 min/max/max_length 边界 Coverage，避免只读响应字段 `result_count` 被错误生成输入边界用例。
+- Outputs: Appsmith 14条（6 main / 8 audit）、Chatwoot 19条（7 main / 12 audit）、Saleor 23条（6 main / 17 audit）。三个样本全部已确认显式规则均已映射，AI reasoning 进入 main 数量为0，未出现 banner/瓷片/金刚区/PT083 语义污染。
+- Validation: Coverage Schema/Semantic Validator 全部通过；新增4项生成器回归测试通过；三个既有 run 均以 `resume --stop-at coverage` 成功暂停，Coverage 为 succeeded，Testability Gate 及下游保持 pending。
+- Baseline: 123项单元测试、PT083 non-strict/strict、6/6 regression fixtures 与 WX-YGJ project strict 全部通过，质量基线5/5通过。
+- Next: 下一阶段仅生成并校验三个样本的 Testability Gate，不进入 Acceptance Examples。
+
+## 2026-09-21 - OSS-BLIND Testability Gate
+
+- Scope: 本轮仅生成并校验三个公开盲测样本的 `acceptance/testability_gate.json/md`，未读取代码 diff 或已有测试 oracle，未生成 Acceptance Examples、Case Plan 或 testcase。
+- Coverage consistency repair: Gate 前复核发现 priority=medium 的已确认规则被统一降为 audit；已改为仅依据“待确认”语义降级。Chatwoot“数量徽标与会话列表一致”恢复为 main，Saleor 缺性能阈值的规则继续保持 audit。
+- Outputs: Appsmith 14条 Gate（6 generate / 5 skip duplicate / 3 risk note）；Chatwoot 18条（7 generate / 8 skip duplicate / 3 risk note）；Saleor 18条（6 generate / 7 skip duplicate / 4 risk note / 1 needs confirmation）。
+- Guardrails: Structured PRD 中全部稳定 rule_id 均经过 Gate；feature/field 同义规则使用 `skip_case` 去重。10条 Reasoning business risk 全部为 `risk_hardening/risk_only/risk_note_only`，Saleor 性能阈值为 `needs_confirmation`，没有风险或未决项进入正式验收候选。
+- Validation: 三份 Testability Gate Validator 均通过；Appsmith 首轮仅因 reason 中“验收示例”触发占位词检查，最小改写措辞后通过。三个既有 run 均以 `resume --stop-at testability_gate` 成功暂停，Acceptance Examples 及下游保持 pending。
+- Baseline: 124项单元测试、PT083 non-strict/strict、6/6 regression fixtures 与 WX-YGJ project strict 全部通过，质量基线5/5通过。
+- Next: 下一阶段仅生成并校验三个样本的 Acceptance Examples，不进入 Case Plan。
+
+## 2026-09-21 - OSS-BLIND Acceptance Examples
+
+- Scope: 本轮仅生成并校验三个公开盲测样本的 `acceptance/acceptance_examples.json/md`，未读取代码 diff 或已有测试 oracle，未进入 Case Plan、testcase 或更下游阶段。
+- Outputs: Appsmith 6条、Chatwoot 7条、Saleor 6条规则级 Given/When/Then；19个 `generate_acceptance_example` Gate 全部且仅被覆盖，每条均保留 source gate、source rule 与 main coverage 引用。
+- Semantics: Appsmith 覆盖连接前协议校验、driver 选择、失败关闭、token 兼容和无错误目标连接副作用；Chatwoot 覆盖 number 类型、0/false、缺失值、严格相等、运算符、列表计数及既有筛选回归；Saleor 覆盖标签追加、新标签创建、跨批次集合、混合标签、返回契约及既有接口回归。
+- Guardrails: 10条 Reasoning 风险、所有 `skip_case` 及 Saleor 性能阈值 `needs_confirmation` 均未进入正式验收示例；未出现 PT083 的 banner/瓷片/金刚区语义。
+- Validation: 三份 Acceptance Examples Validator、JSON/Markdown 数量一致性和 gate/rule/coverage 追溯守卫均通过。三个既有 run 均以 `resume --stop-at acceptance_examples` 成功暂停，Case Plan 及下游保持 pending。
+- Baseline: 124项单元测试、PT083 non-strict/strict、6/6 regression fixtures 与 WX-YGJ project strict 全部通过，质量基线5/5通过。
+- Next: 下一阶段仅生成并校验三个样本的 Case Plan，不进入 Testcase Generation。
+
+## 2026-09-21 - OSS-BLIND Case Plan
+
+- Scope: 本轮仅生成并校验三个公开盲测样本的 `testcases/case_plan.json/md`，未读取代码 diff 或已有测试 oracle，未生成正式 testcase、testpoints、traceability 或 review 产物。
+- Outputs: Appsmith 6条、Chatwoot 7条、Saleor 6条 Case Plan；全部使用 `generation_mode=case_plan_direct`，19条计划分别映射唯一稳定 testcase ID。
+- Traceability: 19个 Acceptance Example 与19个允许 Gate 全量且仅被承接；每条计划同时记录 source rule 与 main Coverage，所有计划均为 `product_acceptance`、`should_generate_case=true`。
+- Semantics: Appsmith 计划覆盖协议、driver 路由、失败关闭、token 兼容与网络副作用；Chatwoot 覆盖类型、falsy 值、严格相等、运算符、数量展示及回归；Saleor 覆盖新旧标签、跨批次成员集合、响应落库一致性及既有错误/接口行为。
+- Numbering: 在统一编号规则中登记 `DATABRICKS/CONNECT`、`CONVERSATION/FILTER`、`GIFTCARDBULK/BULKCREATE` 页面与板块编码，未引入未登记的 testcase 编号片段。
+- Guardrails: 未纳入风险、`skip_case` 或 Saleor 性能阈值待确认项；M 档未伪造 `source_responsibility_ids`，未出现 PT083 领域语义。
+- Validation: 三份 Case Plan Schema/Validator、Gate/Acceptance/Rule/Coverage 追溯、唯一 testcase ID 与 JSON/Markdown 数量一致性检查均通过。三个既有 run 均以 `resume --stop-at case_plan` 成功暂停，Testcase Generation 及下游保持 pending。
+- Baseline: 124项单元测试、PT083 non-strict/strict、6/6 regression fixtures 与 WX-YGJ project strict 全部通过，质量基线5/5通过。
+- Next: 下一阶段仅从 Case Plan 生成正式 testcase 与同步 testpoints，不进入 Traceability 或 Review。
+
+## 2026-09-21 - OSS-BLIND Testcase Generation
+
+- Scope: 本轮仅执行 Testcase Generation，并同步生成 `testcases_main.md`、`testcases.md`、`testpoints.json/md`、开发自测与审计派生物；未刷新 bundle、traceability、review 或 strict gate，未读取代码 diff/已有测试 oracle。
+- Initial finding: direct-mode 首次虽正确生成6/7/6条并保持一计划一用例，但通用步骤模板仍把 Chatwoot 筛选与 Saleor GraphQL 场景写成“点击保存/重新打开记录”，Appsmith linkage 出现泛化 B端/服务端/C端检查，API 场景还被标记为 AI-UI。
+- Repair 1: direct renderer 显式消费 Acceptance Example 的 Given/When/Then，保留 Case Plan 标题与类型意图，并按 `verification_side` 分配 API/UI 标签；新增跨领域 API 回归单测。
+- Repair 2: 按正式 lint 结果对尚未发布的 Case Plan 稳定编号与测试类型做一致性收敛；Chatwoot 输入到请求到匹配作为流程计划，其余值判断归入数据校验；技术运算符正文转为“等于/不等于”；linkage 补充可查询最终状态。
+- Outputs: Appsmith 6条（功能/异常/流程验证）、Chatwoot 7条（功能/数据校验/流程验证）、Saleor 6条（数据校验/权限/流程验证）。三份主用例与兼容镜像一致，19条 testpoints 与19条 Case Plan 一一对应。
+- Guardrails: 正式用例中不再出现错误的保存模板、泛化 B/C 端检查或 PT083 领域词；所有用例均保留 CasePlan、Acceptance、Rule、Coverage 引用。Saleor 元素标注仅剩6条普通“接口”名词建议反引号的 warning，无 error。
+- Validation: 三份 testcase lint、元素标注 strict、页面板块 strict、testpoints strict、携 testcase 的 Case Plan Validator 均通过；三个既有 run 以 `resume --stop-at testcases` 成功暂停，Traceability 及下游保持 pending。
+- Baseline: 125项单元测试、PT083 non-strict/strict、6/6 regression fixtures 与 WX-YGJ project strict 全部通过，质量基线5/5通过。
+- Next: 下一阶段仅刷新 bundle、必要派生资产与 Coverage-First Traceability，不进入 Review 或 strict gate。
+
+## 2026-09-21 - OSS-BLIND Bundle And Coverage-First Traceability
+
+- Scope: 本轮仅刷新三个公开盲测样本的 testcase 派生资产并生成 Coverage-First Traceability；未读取代码 diff 或已有测试 oracle，未进入 Review 或 strict gate。
+- Outputs: Appsmith、Chatwoot、Saleor 的 Bundle/Testpoints 分别为 6/6、7/7、6/6，开发自测分别为 5、5、4 条；Coverage-First/Adapter 分别为 6/6、7/7、6/6。
+- Authenticity: 三个工作项的 main Coverage ID、追溯 Coverage ID、Bundle testcase ID 与追溯 testcase ID 均精确一致；全部 `invalid_record_count=0`、`false_traceability_rate=0.0`，未补写虚假映射。
+- Validation: 三份 testpoints strict、Bundle Validator、Traceability Primary Validator 均通过；三个既有 run 均以 `resume --stop-at traceability` 成功暂停，Traceability 为 succeeded，Review 与 strict gate 保持 pending。
+- Baseline: 125 项单元测试、PT083 non-strict/strict、6/6 regression fixtures 与 WX-YGJ project strict 全部通过，质量基线 5/5 通过。
+- Next: 下一阶段仅进入 Review，冻结当前资产后使用隔离的公开 diff 与已有测试作为评分 oracle；不直接改写 testcase，不进入 strict gate。
+
+## 2026-09-21 - OSS-BLIND Oracle Review
+
+- Scope: 在读取 oracle 前冻结三份工作项从 requirement summary 到 Coverage-First Traceability 的 8 类资产；随后只读取三个公开 PR 的固定 head SHA、changed files patch 与新增测试断言。未修改正式 testcase 或上游设计真源，未进入 strict gate。
+- Appsmith: 核心协议拦截、指定 driver、失败关闭和 token 兼容命中；确认精确错误文案、`UID/PWD` 映射与失败分支原子性 3 条反馈，建议开始测试。
+- Chatwoot: number 输入、0/false、缺失值和严格匹配命中；确认空数组/空对象、`days_before=0` 两条遗漏，以及 context-only 数量徽标进入 main 的范围过伸，建议带风险开始测试。
+- Saleor: `add(*instances)` 关系追加与跨批次标签集合主链命中；确认标签大小写归一/重复去重遗漏及 CP-003 oracle 抽象两条反馈，建议带风险开始测试。
+- Review outputs: 三份 `reviews/code_change_risk_report.md`、三份 `reviews/blind_asset_freeze.json`、三份 `review_record.md` 与 8 条 `design_feedback`；聚合结论写入 `reports/round_2_oracle_review.md`。
+- Validation: 三份 design feedback validator 通过；内置 scorer 已刷新质量报告，Appsmith/Chatwoot 无 weak case，Saleor 报告 1 条 abstract oracle warning；三个既有 run 均以 `resume --stop-at review` 成功暂停，Review succeeded，strict gate pending。
+- Limitation: 三个业务仓库未本地 checkout，因此仅完成 L0/L1 静态映证，上游单测 L2 未执行；不把 PR 已合并或测试代码存在等同于本地测试通过。
+- Next: 下一阶段先归类并修复可通用化的流程问题，不针对单个样本直接补写 testcase，也不进入 strict gate。
+
+## 2026-09-21 - Generic Source Scope, Atomicity And Oracle Delta
+
+- Scope: 只修复公开盲测暴露出的通用流水线能力；未改三份冻结的 Structured PRD、Coverage、Gate、Acceptance、Case Plan、testcase 或 traceability，未进入 strict gate。
+- Source scope: Structured PRD 显式规则新增兼容字段 `source_scope=primary_requirement/context_only/oracle_only`；Coverage 生成器将后两类固定降为 audit，Validator 阻止其进入 main。
+- Atomicity: 显式规则可提供 `atomic_assertions`，Coverage 按独立断言拆分；scorer 新增多失败分支弱用例识别，能够命中 Appsmith CP-004。
+- Oracle scoring: 新增 `scripts/score_oracle_delta.py`，强制全部冻结 testcase 完成范围分类，并分别计算 oracle coverage 与 testcase relevance；missing/partial 必须关联 design feedback。
+- Blind scores: Appsmith `0.8333/1.0`，Chatwoot `0.6875/0.8571`，Saleor `0.5833/1.0`（oracle coverage/testcase relevance）。
+- Compatibility: 新字段保持可选，旧 Structured PRD 缺省按 `primary_requirement` 处理；未降低任何既有 gate。
+- Validation: 聚焦单测 17/17、三份 oracle-delta 输入校验与评分、质量基线 5/5（132 项单测）全部通过；三份冻结清单中的正式资产哈希保持一致。
+- Next: 下一阶段应用 8 条 design feedback，从设计层重生成三份样本并对比冻结基线，不直接手改 testcase。
+
+## 2026-09-21 - Process Journal Write Rules Unified
+
+- 盘点过程文档职责后统一写法：当前状态就地改，带日期流水账只追加到文末。
+- `PROGRESS.md`、`DECISION_LOG` 带日期条目、`NEXT_ACTION` Completion Notes 禁止插到顶部；`WORK_QUEUE` 只改表格；`HUMAN_ACTION_REQUIRED` 未决项就地改，Resolved 追加到末尾。
+- 将误插在 `DECISION_LOG` 顶部的 `2026-09-21 Blind Oracle Feedback Isolation` 移回文末；将 `NEXT_ACTION` 中 2026-09-04 walkthrough 从 Completion Notes 节首移到节末。
+- 未修改业务代码、工作项产物或规则强度。
+
+## 2026-09-21 - OSS-BLIND Round 2 Strict Gate Closeout
+
+- Scope: 仅将 Appsmith #42244、Chatwoot #15768、Saleor #19804 三个既有 run 从 Review 推进到 Harness `strict_gate`，未修改三份业务设计或正式 testcase。
+- First attempt: 三个 strict gate 均只因纯文本来源的空 `image_evidence` 被旧校验分支判定为失败；其余 Manifest、Requirement、Design、Traceability、Testcase、Bundle、Testpoints、Case Plan 与 Review Gate 全部通过。
+- Repair 1: `validate_work_item.py` 改为仅在来源清单含可用图片或 inventory 实际非空时执行图片非空校验；纯文本空 inventory 显式记为 SKIPPED，有图片来源及非空 inventory 仍保持强校验。
+- Result: 三个原 run 的 strict gate 均在第 2 次尝试成功，run 状态全部为 completed。OSS-BLIND 项目视图刷新为 3/3 ready、25 条 testcase、0 个开放风险、0 个过期质量报告。
+- Baseline repair: 全量基线额外暴露 strict 开发自测参数未接通、恢复到既有 checkpoint 误记 completed，以及四角色测试夹具依赖已删除导出文件；第 2 轮最小修复后聚焦 3 项测试和全量 134 项单测通过。
+- Validation: 三份工作项 strict 均返回 0；`scripts/run_quality_baseline.py` 5/5 通过；未修改业务代码、未降低门禁、无需新增人工阻塞。
+
+## 2026-09-21 - OSS-BLIND Round 2 Evaluation Closeout
+
+- 汇总三份样本首轮与设计回修后的 Oracle 指标，新增 `reports/round_2_blind_test_closeout.md`；明确回修后的 1.0 是反馈闭环结果，不替代首轮真实能力。
+- 首轮 Oracle coverage 为 Appsmith 0.8333、Chatwoot 0.6875、Saleor 0.5833；回修后三份 Oracle coverage 与 testcase relevance 均为 1.0。
+- 归纳 7 类通用问题：领域模板污染、main Coverage 投影不足、来源范围过伸、复合断言未拆分、API 用例模板错误、纯文本图片门禁误阻断，以及 Harness checkpoint/strict 派生契约缺口。
+- 扩测判断：可继续新增 3–5 个公开文本型 PR，但必须冻结后解封 Oracle、分别报告首轮与回修后指标，并优先覆盖本轮未涉及的需求形态。
+
+## 2026-09-21 - OSS-BLIND-R3 Requirement Intake
+
+- 初始化独立项目 `OSS-BLIND-R3` 和四个 M 档工作项：Django #21801（数据库迁移/唯一约束）、Celery #10668（撤销任务/跨主机时钟/滚动升级）、Temporal #11968（SignalWithStart 关闭后重试幂等）、Supabase #50569（MFA 恢复码/一次性消费/功能开关）。
+- 每项写入 `inputs/public_source_snapshot.md`、`requirement_summary.md` 与 `source_manifest.json`；只消费 PR 作者正文及明确的公开问题描述，排除 changed files、提交 diff、新增测试和自动生成摘要。
+- 四份 Requirement Sources strict 全部通过；四个 Harness run 完成 Requirement Intake 后均停在 `waiting_approval`，Evidence 及下游全部 pending。
+- 当前需要用户审核四份需求摘要；未自动生成 approval receipt，未修改业务代码，未读取后置 Oracle。
+
+## 2026-09-21 - OSS-BLIND-R3 Requirement Approval And Evidence
+
+- 用户明确批准 Django #21801、Celery #10668、Temporal #11968、Supabase #50569 四份需求摘要；通过正式 `approve-requirement` CLI 写入四份与摘要、来源清单、原始输入和 run 绑定的 approved receipt，未手写或伪造审批文件。
+- 复用四个既有 Harness run，以 `resume --stop-at evidence` 推进；四项 Requirement Intake 与 Evidence 均为 `succeeded`、attempt=1、exit=0，run 在 Reasoning 前保持 `paused`。
+- 四个工作项均为纯文本来源，Evidence 阶段保持空图片 inventory 和空通用 evidence items 的显式边界；未读取 changed files、代码 patch、新增测试或自动摘要，Oracle 继续隔离。
+- 本阶段未生成 Reasoning、Structured PRD 或后续测试资产，未修改业务代码。下一阶段仅生成并校验四份 Reasoning Pack。
+- 四个 run 的审计均 `audit_passed=true`、`audit_errors=0`；全量质量基线 5/5 通过，134 项单元测试通过。
+
+## 2026-09-21 - OSS-BLIND-R3 Reasoning Analysis
+
+- Scope: 本轮仅从已批准的 `requirement_summary.md`、`source_manifest.json` 与纯文本 Evidence 边界生成四份 `analysis/reasoning_pack.json` 和 `analysis_report.md`；未读取代码 diff、新增测试或自动摘要，未进入 Structured PRD。
+- Outputs: Django 14 条显式规则、3 条风险、1 条边界、3 条待确认、5 个测试维度、14 个 Coverage Candidate；Celery 为 16/4/1/4/7/16；Temporal 为 15/4/2/4/6/15；Supabase 为 15/4/1/4/6/15。
+- Grounding: 四份产物均声明 Grounding Contract 1.0，内容型条目可回查当前需求摘要；测试维度与 Coverage Candidate 无悬空 Reasoning ID，未检出 PT083 或上一轮样本领域词污染。
+- Validation: 四份 Reasoning Pack Validator 全部通过；四个原 Harness run 均以 `resume --stop-at reasoning` 成功暂停，Reasoning attempt=1、exit=0；run audit 4/4 通过。
+- Baseline: 全量质量基线 5/5 通过，134 项单元测试通过。
+- Next: Structured PRD 阶段需去重重复语义，并将“来源未声明接口/埋点”等缺失说明及示例配置信息保持为背景或审计信息，避免进入正式产品验收主规则。
+
+## 2026-09-21 - OSS-BLIND-R3 Structured PRD
+
+- Scope: 本轮仅生成并校验四份 `structured_prd.md/json`；未读取代码 diff、新增测试或自动摘要，未进入 Coverage。
+- Outputs: Django、Celery、Temporal 各 6 条 primary rule，Supabase 为 6 条 primary rule 加 1 条 `context_only` 安全背景；四项均具备页面/系统观察面、模块、功能和 1 条三步骤 main flow。
+- Semantics: Reasoning 中重复的目标、研发拆解和测试关注点已合并；复合分支通过 `atomic_assertions` 保留；“来源未声明接口/埋点”等缺失说明未进入显式规则，服务端样本未虚构 UI 控件。
+- Repair 1: 首轮发现 Temporal 的 namespace、workflow ID、request ID、signal name 仅被列为关键输入，并无必填证据；已将 `required=true` 修正为 `false`，重新编译、校验并使 Harness 重新建立 Structured PRD checkpoint。
+- Validation: 四份 Structured PRD Validator 全部通过；Harness Structured PRD 均 succeeded，Temporal attempts=2、其余 attempts=1；规则引用与 module/flow 映射检查通过，run audit 4/4 通过。
+- Baseline: 全量质量基线 5/5 通过，134 项单元测试通过。
+- Next: Coverage 阶段按原子断言拆分 main coverage，并将 Supabase `context_only` 安全背景固定降为 audit。
+
+## 2026-09-21 - OSS-BLIND-R3 Coverage Planning
+
+- Scope: 本轮仅从四份 Structured PRD 与 Reasoning Pack 生成并校验 `coverage/coverage_matrix.json`；未进入 Testability Gate，未读取后置 Oracle。
+- Initial finding: Supabase 的父规则同时包含三个明确拒绝断言和“具体格式/错误文案待确认”，生成器按父句统一判断，将三个已确认原子断言全部错误降为 audit，造成主覆盖缺失。
+- Repair 1: `generate_coverage_matrix.py` 改为在存在 `atomic_assertions` 时逐断言判断“待确认”，不继承父句中与该断言无关的未决限定；新增回归测试验证已确认原子断言保持 `main_testcase/business`。
+- Outputs: Django 7 main / 4 audit，Celery 11 / 5，Temporal 8 / 11，Supabase 11 / 9；所有复合规则完成原子拆分，Supabase 3 条 `context_only` 安全断言全部为 audit。
+- Validation: Coverage Generator 聚焦单测 9/9 通过；四份 Coverage Matrix Validator 全部通过；四个原 Harness run 均以 `resume --stop-at coverage` 成功暂停，Coverage attempt=1、exit=0；run audit 4/4 通过。
+- Baseline: 全量质量基线 5/5 通过，135 项单元测试通过。
+- Next: 下一阶段仅生成并校验 Testability Gate，不进入 Acceptance Examples。
+
+## 2026-09-21 - OSS-BLIND-R3 Testability Gate
+
+- Scope: 本轮仅生成并校验 Django #21801、Celery #10668、Temporal #11968、Supabase #50569 的 `acceptance/testability_gate.json/md`；未进入 Acceptance Examples，未读取后置 Oracle。
+- Outputs: Django 12 条、Celery 14 条、Temporal 15 条、Supabase 18 条；全部 Structured PRD 稳定规则 ID 均经过门禁。
+- Decisions: 主需求明确行为进入 `generate_acceptance_example`；feature/field 同义规则使用 `skip_case`；Reasoning 风险与 Supabase `context_only` 安全规则使用 `risk_note_only`。
+- Pending semantics: Supabase 无效、空值、格式不正确输入的“不建立会话”结果可测，但具体格式规则和错误文案仍为 `partially_testable`，未生成强断言。
+- Validation: 四份 Testability Gate Validator 全部通过；四个既有 run 均以 `resume --stop-at testability_gate` 成功暂停，Gate attempt=1、exit=0；run audit 4/4 通过。
+- Baseline: 135 项单元测试、PT083 non-strict/strict、6/6 regression fixtures 与 WX-YGJ project strict 全部通过，质量基线 5/5 通过。
+- Next: 下一阶段仅生成 Acceptance Examples，不进入 Case Plan。
+
+## 2026-09-21 - OSS-BLIND-R3 Acceptance Examples
+
+- Scope: 本轮仅从 Testability Gate、Structured PRD 与 main Coverage 生成四份 `acceptance/acceptance_examples.json/md`；未进入 Case Plan，未读取后置 Oracle。
+- Outputs: Django 7 条、Celery 11 条、Temporal 8 条、Supabase 11 条，共 37 条原子 Given/When/Then。
+- Traceability: 24 个 `generate_acceptance_example` Gate 全部覆盖；37 个 main Coverage 均被且仅被一个验收示例引用，Gate、Rule、Coverage 三向引用一致。
+- Guardrails: 未消费 `skip_case`、`risk_note_only` 或 audit Coverage；Supabase 只验证明确的会话拒绝结果，不固化未定义的恢复码格式和错误文案。
+- Validation: 四份 Acceptance Examples Validator 全部通过；JSON/Markdown 数量一致；四个既有 run 均以 `resume --stop-at acceptance_examples` 成功暂停，Acceptance attempt=1、exit=0；run audit 4/4 通过。
+- Baseline: 135 项单元测试、PT083 non-strict/strict、6/6 regression fixtures 与 WX-YGJ project strict 全部通过，质量基线 5/5 通过。
+- Next: 下一阶段仅生成 Case Plan，不进入正式 testcase。
+
+## 2026-09-21 - OSS-BLIND-R3 Case Plan
+
+- Scope: 本轮仅从四份 Acceptance Examples 生成并校验 `testcases/case_plan.json/md`；未生成正式 testcase，未读取后置 Oracle。
+- Outputs: Django 7 条、Celery 11 条、Temporal 8 条、Supabase 11 条，共 37 条 `case_plan_direct` 计划。
+- Traceability: 37 条计划与 Acceptance Example 一对一，均保留 Gate、Example、Rule、Coverage 引用；37 个 `generated_testcase_ids` 全局唯一。
+- Numbering: 在统一编号规则中登记 `DJANGOMIG/INDEXSCHEMA`、`CELERYWORKER/REVOKE`、`TEMPORALAPI/SIGNALSTART`、`RECOVERYAUTH/RECOVERYCODE`；未使用未登记编号片段。
+- Guardrails: 全部计划为 `product_acceptance` 且使用明确页面/板块和业务断言；M 档 `source_responsibility_ids` 保持为空，未纳入风险、context-only 或待确认细节。
+- Validation: 四份 Case Plan Validator 全部通过；JSON/Markdown 数量一致；四个既有 run 均以 `resume --stop-at case_plan` 成功暂停，Case Plan attempt=1、exit=0；run audit 4/4 通过。
+- Baseline: 135 项单元测试、PT083 non-strict/strict、6/6 regression fixtures 与 WX-YGJ project strict 全部通过，质量基线 5/5 通过。
+- Next: 下一阶段仅生成正式 testcase、testpoints 与开发自测派生视图，不进入 Traceability。
+
+## 2026-09-21 - OSS-BLIND-R3 Testcase Generation
+
+- Scope: 本轮仅从四份 `case_plan_direct` 生成正式 testcase、兼容镜像、testpoints、开发自测和当前阶段审计产物；未生成 Bundle/Traceability，未进入 Review/strict gate，Oracle 继续隔离。
+- Candidate findings: 首轮候选发现服务端验证端标签不明确、Django/Temporal 缺少流程型计划、Celery 两条边界计划被推断为功能、Supabase 两条异常计划类型不清及两个页面标题缺少元素标注。
+- Repair: 语义债务回写 Acceptance/Case Plan；direct 生成器改为尊重显式 `case_type`，新增回归测试。未手改生成后的正式 testcase，未降低任何校验规则。
+- Outputs: Django 7、Celery 11、Temporal 8、Supabase 11 条正式用例，共 37 条；每条均复用 Case Plan 预留 ID，并与 37 条 testpoint 一一对应。兼容 `testcases.md` 与主真源一致。
+- Validation: 四份 testcase lint、元素标注 strict、页面板块 strict、testpoints strict、携 testcase 的 Case Plan Validator 全部通过；四个既有 run 均以 `resume --stop-at testcases` 成功暂停，testcases attempt=1、Traceability 及下游 pending；run audit 4/4 通过。
+- Baseline: 全量质量基线 5/5 通过，136 项单元测试通过。
+- Next: 下一阶段仅执行 Bundle 后处理与 Traceability，刷新派生产物和质量报告指纹后复用原 run 停在 Traceability，不进入 Review 或 strict gate。
+
+## 2026-09-21 - OSS-BLIND-R3 Bundle And Traceability
+
+- Scope: 本轮仅刷新 testcase bundle、testpoints、开发自测、Coverage-First Traceability、兼容 Adapter、legacy 空对照与质量报告；未进入 Review/strict gate，未读取 PR diff、新增测试或其它 Oracle。
+- Candidate result: Django/Celery/Temporal/Supabase 分别生成 7/11/8/11 条 Bundle、Testpoint、主追溯和 Adapter，合计 37；四份主追溯均 invalid=0、false traceability rate=0。
+- Finding: 初次质量评分把 Django 的迁移前后记录逐项比较、Temporal 的重试前后最终状态比较误报为 abstract oracle；两条均有前置记录基线和明确比较对象，属于评分器误报而非用例缺陷。
+- Repair 1: 通用评分规则增加显式基线比较识别，覆盖迁移前、重试前、认证前、首次、原始和基线值；保留无基线“一致”抽象表述的告警。新增回归测试后四份 weak/generalized/duplicate/semantic mismatch 均为0。
+- Outputs: 37 条 Bundle、37 条 Testpoint、34 条开发自测、37 条 Coverage-First Traceability、37 条兼容 Adapter；质量报告指纹均绑定当前 Structured PRD、Coverage、testcase 与主追溯。
+- Validation: Bundle、Testpoints strict、Traceability primary+adapter Validator 四项全部通过；四个既有 run 均以 `resume --stop-at traceability` 成功暂停，Traceability attempt=1、Review/strict gate pending；run audit 4/4 通过。
+- Baseline: 全量质量基线 5/5 通过，137 项单元测试通过。
+- Next: 冻结四份盲测资产及哈希后解封固定 PR head Oracle，仅通过 Review/Design Feedback 反馈发现，不直接修改正式 testcase。
+## 2026-09-21 - OSS-BLIND-R3 Oracle Review
+
+- Scope: 在解封 Oracle 前冻结四个工作项从 requirement summary 到 Coverage-First Traceability 的 8 类资产；随后只检查四个公开 PR 的固定 head、changed-files patch 与已有测试。未修改 Coverage、Gate、Acceptance、Case Plan 或正式 testcase，未进入 strict gate。
+- Results: Django 6/6 Oracle assertions 命中，coverage 1.0；Celery 8 covered + 1 partial，coverage 0.9444；Temporal 6 covered + 1 partial + 3 missing，coverage 0.65；Supabase 4 covered + 5 partial + 2 missing，coverage 0.5909。37 条 testcase 全部为 direct match 或 requirement regression，相关率 1.0。
+- Feedback: 共记录 9 条 open design feedback：Celery 1 条同步载荷契约；Temporal 4 条响应字段、冲突策略、动态开关、错误传播；Supabase 4 条 returnTo、失败反馈、直接访问目标待确认、异步交互。Django 无新增设计缺口。所有反馈目标均为 testability gate、acceptance examples 或 case plan。
+- Evidence: 四份 `blind_asset_freeze.json` 哈希复验一致；详细报告为各工作项 `reviews/code_change_risk_report.md` 与聚合 `reports/round_3_oracle_review.md`。四个上游仓库未 checkout，L2 测试未执行。
+- Validation: 四份 design feedback validator、四份 oracle delta scorer、冻结哈希检查均通过；四个既有 run 以 `resume --stop-at review` 成功暂停，Review succeeded、strict pending；run audit 4/4、质量基线 5/5（137 项单测）通过。
+- Next: 下一阶段从设计层处理已确认反馈；Supabase CP-010 的返回目标必须先确认，不得按当前实现直接覆盖用例。
+
+## 2026-09-21 - OSS-BLIND-R3 Oracle Feedback Triage
+
+- Scope: 复核四份已批准 requirement summary，对 9 条 Oracle 反馈做来源分流；仅更新 design feedback 分类/状态与聚合分流报告，未修改 Gate、Acceptance、Case Plan、testcase 或 traceability。
+- Result: Celery 载荷契约和 Temporal 公共响应字段共 2 条进入正式设计补强候选；Temporal 3 条与 Supabase 3 条实现独有行为保持 oracle-only risk/audit；Supabase 功能关闭跳转确认是实现与批准需求不一致，保留 CP-010。
+- Correction: 上一阶段把 Supabase 返回目标标为 needs_confirmation；复核批准摘要后更正为 implementation_gap，不再要求用户在既有明确需求上二次选择。
+- Validation: 四份 design feedback validator 通过，四份冻结清单 SHA-256 复验一致，质量基线 5/5（137 项单测）通过。
+- Next: 从设计层应用已接受反馈并重生成；正式主链只吸收 2 条需求支持的补强，其余保持 risk/audit 或实现问题。
+
+## 2026-09-22 - Oracle Scope Scoring
+
+- Scope: 修复 Oracle 单一覆盖率混合批准需求、实现细节和风险路径的问题；未修改业务代码、Gate、Acceptance、Case Plan、testcase 或冻结资产。
+- Implementation: `score_oracle_delta.py` 支持可选 `oracle_scope=requirement/implementation/risk`，旧输入缺省 requirement；输出保留总体兼容分并新增三类 assertion 数量、disposition 分布和独立覆盖率。
+- Blind validation: 两批 7 份样本全部复算。第一批 Appsmith/Chatwoot/Saleor requirement 与 implementation 均为 1.0；Django requirement=1.0，Celery requirement=0.9444，Temporal requirement/implementation/risk=1.0/0.25/0.0，Supabase requirement/implementation=1.0/0.3571；7 份 testcase relevance 均为 1.0。
+- Correction: Temporal 额外响应字段未进入批准摘要，DF-001 从正式 case gap 收敛为 oracle-only risk；当前 9 条反馈应按 1 条正式设计补强、7 条 oracle-only 风险、1 条实现差异处理。
+- Validation: Oracle scorer 聚焦单测 5/5、7 份 CLI 复算、design feedback validator、冻结资产哈希检查、质量基线 5/5（139 项单测）通过。
+- Next: 修复 Harness Review checkpoint 的空校验，接入 design feedback、Oracle delta 和冻结哈希检查，并用四份 R3 run 验证。
+
+## 2026-09-22 - Harness Review Checkpoint Validation
+
+- Scope: 修复 Review 阶段无命令、只看文件存在的问题；未修改业务代码、正式 testcase、Case Plan、Gate 或冻结资产，未进入 Strict Gate。
+- Implementation: Review StageSpec 改为 validation，始终运行 design feedback validator；新增只读 `validate_oracle_review.py` 校验 Oracle 三件套、冻结路径/hash、manifest 身份与 score 重算一致性；Review fingerprint 纳入全部相关输入。
+- Compatibility: 非盲测工作项只执行 design feedback validator；历史反馈回灌样本在 requirement summary 未漂移且所有 feedback=applied 时允许保留原始 freeze，并标记 post-feedback regeneration。
+- Blind validation: Django/Celery/Temporal/Supabase 四个既有 run 均自动重跑 Review，attempt=2、commands=2、exit=0，Review succeeded、Strict pending；run audit 4/4 通过。
+- Negative tests: 未应用反馈时冻结资产漂移失败、过期 Oracle score 失败、Oracle 文件变化触发 fingerprint 变化；历史 Appsmith 回灌样本兼容通过。
+- Validation: 聚焦测试 28/28，质量基线 5/5（144 项单测）通过。
+- Next: 实现受限 design feedback apply 流程，并用 Celery 的 requirement gap 从设计层补强与重生成。
+
+## 2026-09-22 - Design Feedback Application And Celery Regeneration
+
+- Scope: 本阶段新增可审计的设计反馈回灌凭证，并仅处理 Celery DF-001；未修改任何业务代码，也未手工编辑正式 testcase。
+- Finding: 首次从已更新 Case Plan 重生成后，正式用例仍使用 Acceptance Example 的旧 Then，证明 `case_plan_direct` 没有把 Case Plan assertion 当作最终预期真源。
+- Repair: 新增 `design_feedback_application` schema 与 validator，限制每条 applied feedback 只能修改其声明的设计层并记录 before/after SHA-256；Review fingerprint、Review 命令和统一工作项校验均在凭证存在时纳入该产物。通用生成器改为使用 Acceptance Example 的 Given/When、使用 Case Plan assertion 的 expected。
+- Celery: DF-001/DF-002 已将“hello/mingle/双向同步载荷仅包含任务 ID、不传播远端 monotonic 时间戳”依次写入 AE-005/006/008 与 CP-005/006/008，并由生成器重建 11 条正式用例、testpoints、开发自测、bundle、traceability 与质量报告。oldest-first 只保留为 implementation oracle，不进入产品验收主链。
+- Result: requirement Oracle coverage 由 0.9444 升至 1.0；implementation coverage=0.5，overall compatibility=0.95，testcase relevance=1.0；主追溯 invalid=0、false traceability rate=0。
+- Validation: 聚焦单测 19/19；Celery strict 通过；原 run 完整重放后 Review attempt=4、Strict Gate attempt=2 均 succeeded；全量质量基线 5/5、149 项单测通过。
+- Next: 下一阶段评估新 applied feedback 强制 receipt 的兼容迁移策略；历史已 applied 样本不得伪造旧变更哈希。
+
+## 2026-09-22 - Feedback Receipt Lifecycle Enforcement
+
+- Scope: 本阶段只强化 feedback application 生命周期；未修改业务代码、正式 testcase 或 Oracle 结论。
+- Policy: `create_work_item.py` 新建 manifest 默认启用 `feedback_application_receipt_required=true`，并登记 `design/feedback_application.json` 产物路径；manifest schema 在策略启用时要求该路径声明。
+- Enforcement: Harness Review 与 `validate_work_item.py` 不再按 receipt 是否存在决定是否执行 validator。强制策略下 applied feedback 缺 receipt 必须失败；receipt 存在时继续校验目标层、完整 feedback 集合、合法 SHA-256 与当前 after hash。
+- Compatibility: 旧 manifest 未声明策略且存在历史 applied feedback 时返回 `legacy_compatible`。Appsmith、Chatwoot、Saleor 三份历史样本均通过该路径，没有补写或伪造 before hash。
+- Validation: 聚焦测试 29/29；Celery receipt verified（2 applications / 4 artifacts）、strict 和 Oracle Review 通过；全量质量基线 5/5、152 项单测通过。
+- Next: 增加两阶段 prepare/record 命令，在设计层修改前自动捕获 baseline hash，修改后自动生成并校验 receipt。
+
+## 2026-09-22 - Feedback Application Two-Phase Workflow
+
+- Scope: 本阶段只实现 feedback 回灌 baseline 捕获与 receipt 记录工具；未修改任何工作项设计资产、正式 testcase 或业务代码。
+- Prepare: 新命令只接受 accepted feedback，按 target_layer 解析允许路径，冻结当前 SHA-256 到 `.generation/feedback_applications/<DF-ID>.before.json`，并拒绝覆盖已有快照和越界 target。
+- Record: 校验项目/工作项/feedback/target layer/fingerprint 未漂移，至少一个已冻结设计产物发生变化后生成或合并 receipt，再把 feedback 状态置为 applied；已有相同 receipt 时可幂等完成状态收口。
+- Safety: receipt-first/status-second 确保中断时不会出现 applied 但无凭证的放行窗口；已有其它 applied feedback 缺 receipt 时拒绝写入新状态。
+- Validation: 两阶段正常链路、正式 testcase 越界、无变更、feedback 漂移、中断恢复 5 类测试通过；与 receipt/review 联合聚焦测试 18/18；全量质量基线 5/5、157 项单测通过。
+- Next: 评估接入受限 Action Runtime，只允许 Agent 通过白名单 prepare/record 动作改变反馈生命周期。
+
+## 2026-09-22 - Feedback Application Restricted Action Runtime
+
+- Scope: 本阶段只增加 Agent 反馈回灌的受限动作入口；未修改业务代码、盲测设计资产、正式 testcase 或 Oracle 结论。
+- Contract: 新增 `harness_feedback_action.schema.json`，仅允许 prepare、propose、record 三类动作；arbitrary shell 和其它动作在 schema 层拒绝。
+- Isolation: propose 复核 feedback identity/fingerprint/target layer，只能写 prepare 快照冻结的路径，禁止直接修改 feedback 状态、receipt 和正式 testcase。
+- Lifecycle: propose 后 feedback 仍为 accepted；只有 record 可复用 receipt-first/status-second 事务迁移到 applied，并保留中断恢复能力。
+- Validation: 5 类 Runtime 新测试通过；与两阶段、receipt 和 Harness contract 联合聚焦测试 40/40；全量质量基线 5/5、162 项单测通过；`git diff --check` 通过。
+- Next: 为三类 feedback action 增加不可变 action journal、action ID 幂等和 Harness audit 重放。
+
+## 2026-09-22 - Feedback Action Journal And Audit
+
+- Scope: 本阶段只补强 feedback Action 的过程证据、幂等恢复与审计；未修改业务代码、盲测正式资产或 Oracle 结论。
+- Journal: 每个 Action ID 在执行前写不可覆盖 intent，成功或确定性失败后写不可覆盖 result；请求 SHA-256 将两者绑定，禁止不同请求复用 ID。
+- Recovery: 已完成动作重复调用直接返回原 result；prepare 在 intent 后中断且快照已落盘时可用原 action 恢复。失败动作形成终态 result，修正后必须使用新 ID。
+- Audit: 新增独立 `audit-feedback-actions` CLI；Review 与 strict 同步检查配对、hash、成功动作顺序、receipt 和 applied 状态，journal 文件已进入 Review fingerprint。
+- Compatibility: 新工作项默认要求 action journal；旧 Celery 等已 applied 样本无历史日志时返回 `legacy_compatible`，不补造记录。
+- Validation: 聚焦测试 66/66、Celery strict、全量质量基线 5/5（170 项单测）与 `git diff --check` 均通过。
+- Next: 可选增强为 journal 增加 Harness run、actor/provider 身份绑定；当前反馈应用正确性闭环无阻塞。
+
+## 2026-09-22 - Framework Sample Independence
+
+- Scope: 解除质量基线、Golden、Harness 收口入口和 Runtime 单元测试对 PT083/WX-YGJ 业务样本的默认或隐式依赖；未修改业务代码，未删除真实样本或历史盲测证据。
+- Implementation: Eval fixture 匿名化为 `CONFIGURATION_RULES / FIXTURE-CONFIG-001`；Runtime 测试使用 `tests/fixtures/runtime_work_item`；收口 CLI 的项目与工作项参数改为必填；隔离生成可从显式外部工作项目录播种验证副本。
+- Guard: 新增 `validate_framework_sample_independence.py` 并接入质量基线，扫描框架脚本、测试、Eval 和当前指南，同时拒绝基线或 Eval 命令绑定 `validate_work_item.py`、`validate_project.py` 或 `assets/projects/`。
+- Documentation: 当前入口、SOP、架构和收口文档不再把具体业务需求描述为框架正向样例；`assets/projects/` 明确为业务样本与历史产物。
+- Validation: 独立性门禁通过；Runtime 聚焦测试 64/64、Eval 测试 7/7、全量质量基线 4/4（170 项单测）通过；Golden baseline 已按匿名 fixture 指纹刷新。
+
+## 2026-09-22 - Feedback Action Execution Identity
+
+- Scope: 只增强 feedback Action journal、Runtime、CLI 与 Harness audit 的执行身份追溯；未修改业务代码、正式 testcase、设计反馈内容或历史 journal。
+- Contract: journal 1.1 新增 `execution_context`，记录 Harness `run_id`、`actor`、`provider`；request hash 同时覆盖 action 与执行上下文。
+- Enforcement: CLI 从 action payload 外部接收身份；Runtime 校验 run 存在及项目/工作项一致；审计拒绝 intent/result 身份漂移、身份篡改和同一 feedback 跨 run 成功执行，并按 run 汇总反馈动作。
+- Compatibility: 新工作项默认要求执行身份；旧 1.0 journal 保持 `legacy_compatible`，不补造历史身份。
+- Validation: 聚焦回归 55/55；全量质量基线 4/4，177 项单测通过；Regression/Golden Eval 均为 6/6；`git diff --check` 通过。
+- Remaining risk: `actor` / `provider` 仍是调用方提供的可审计声明，只有宿主传入认证 principal/provider 元数据后才能升级为认证身份。
+
+## 2026-09-22 - Harness Review Not-Applicable Disposition
+
+- Scope: 修复无代码工作项无法在不伪造 Review 成功的前提下进入 Harness strict gate 的状态缺口；未修改业务代码、正式 testcase、设计反馈或历史 run。
+- Contract: 新增 `harness_review_disposition.schema.json` 和 run-scoped `review_disposition.json`，记录 `not_applicable`、人工声明者、原因及代码评审 scope 哈希。
+- Runtime: 新增 `mark-review-not-applicable` CLI；只接受已完成 Traceability、代码目录为空的 validate run，并拒绝 CI 自声明、重复冲突和 scope 漂移。
+- Enforcement: N/A 后 Review validators 仍完整执行；通过后 Review 记为 `skipped` 并产生审计事件。新工作项仅凭有效 disposition 才在 strict gate 使用 `--skip-code-reviews`，正常代码评审路径不受影响。
+- Audit: run audit 校验凭证、声明事件、`stage_not_applicable` 事件、Review 尝试结果与 Traceability 前置状态。
+- Validation: 聚焦回归 28/28、关联回归 32/32；全量质量基线 4/4，182 项单测通过；Regression/Golden Eval 均 6/6；`git diff --check` 通过。
+- Remaining risk: 既有历史 run 需要实际责任人显式声明 N/A 后才能恢复到 strict；框架不会自动补造该事实。
+
+## 2026-09-22 - OSS-BLIND-R4 Final-Round Requirement Intake
+
+- Scope: 启动发布前最终公开盲测轮，仅执行需求接入与归一化；未修改业务代码，未进入 Reasoning、Structured PRD、测试设计、用例生成或 Oracle Review。
+- Samples: 新建 `OSS-BLIND-R4` 及四个 M 档工作项：Grafana #133083、Home Assistant #182800、Rails #58429、Kubernetes #141831；均未与前两轮 7 个样本重复。
+- Blind boundary: 只消费 PR 作者公开描述与合并元数据，逐项冻结 `inputs/public_source_snapshot.md`；代码 diff、commit、Review 评论、实现路径和测试断言均排除在生成输入之外。
+- Outputs: 四个工作项均完成 `inputs/requirement_summary.md` 与 `inputs/source_manifest.json`，分别覆盖显式 Serializer、重复 ID3、BroadcastLogger tagged 语义、空 DeviceTaintRule selector 警告四类行为。
+- Validation: 四份 Requirement Sources strict 通过；全仓质量基线 4/4、182 项单元测试通过，Regression/Golden 均为 6/6；`git diff --check` 通过。
+- Next: 等待人工批准四份需求摘要；批准后单独执行 Reasoning Analysis 阶段。
+
+## 2026-09-22 - OSS-BLIND-R4 Reasoning Analysis
+
+- Scope: 记录四份需求摘要的人工批准并执行 Reasoning Analysis；未读取代码 diff、commit、测试实现或 Review Oracle，未生成 Structured PRD 之后的正式资产。
+- Approval: 四份 `inputs/requirement_approval.json` 分别绑定 `RUN-R4-<WORK_ITEM_ID>`、当前摘要/来源指纹与用户批准事实。
+- Finding: 生成器会把摘要第 7 节的说明性元数据当成显式规则和 Coverage 候选，可能把“PR 未声明新增项”等非行为信息带入后续主覆盖。
+- Repair: `generate_reasoning_pack.py` 新增说明性前缀过滤，仅排除关键数据/契约/API/资源字段清单和未声明项，保留真实输出契约；新增单元回归测试后重生成四份产物，共移除 8 条伪规则。
+- Outputs: 四份 Reasoning Pack 共 53 条显式规则、16 条风险、9 条边界场景、16 条待确认项；未发现 PT083 或前两轮样本语义污染。
+- Validation: 四份来源语义 strict 校验、四个 Harness run audit 均通过；全仓质量基线 4/4、183 项单元测试通过，Regression/Golden 均为 6/6；`git diff --check` 通过。
+- Boundary note: Grafana run 首次恢复时未显式传 `--stop-at reasoning`，按 Harness 既定语义继续只读校验至 Testability Gate 并失败；未写下游资产，随后已显式恢复为 reasoning checkpoint。后续阶段必须每次传入目标 `--stop-at`。
+- Next: 下一阶段仅生成和校验四份 Structured PRD。
+
+## 2026-09-22 - OSS-BLIND-R4 Structured PRD
+
+- Scope: 只执行四份 Structured PRD authoring、编译与阶段校验；未读取实现 Oracle，未生成 Coverage、测试设计或正式 testcase。
+- Outputs: Grafana/Home Assistant/Rails/Kubernetes 分别形成 6/6/7/7 条正式规则，共 4 个系统观察面、8 个 feature 和 6 条 flow。
+- Semantics: 显式 Serializer、ID3 元数据保真、BroadcastLogger block/非 block 语义、DeviceTaintRule 非阻塞 Warning 均拆成可独立判断规则；未决错误契约、格式兼容和并发边界未被脑补为验收要求。
+- Traceability: 所有 flow step 均映射到存在的 module/feature 并引用正式 rule ID；Markdown 为 authoring 真源，JSON 由仓库编译器生成。
+- Validation: 四份 Structured PRD validator、四个 Harness checkpoint、四个 run audit 均通过；未发现 PT083 或历史盲测样本语义污染。全仓质量基线 4/4、183 项单元测试通过，Regression/Golden 均为 6/6；`git diff --check` 通过。
+- Next: 下一阶段仅生成并校验 Coverage Matrix。
+
+## 2026-09-22 - OSS-BLIND-R4 Coverage Planning
+
+- Scope: 只执行四份 Coverage Matrix 的生成、语义抽查和 Harness checkpoint；未进入 Testability Gate、Acceptance Examples、Case Plan 或 testcase，也未读取代码 Oracle。
+- Finding: 多 feature Structured PRD 的顶层规则没有按 `applies_to` 绑定 feature 上下文；补上映射后，相同 `applies_to` 又被当作 Coverage 标题参与去重，导致不同正式规则被合并。
+- Repair: Coverage 生成器按 `applies_to -> feature_name` 映射页面/板块/模块/功能点，并始终以具体规则文本或 atomic assertion 作为 Coverage 标题；新增“多 feature 上下文映射”和“同 feature 多规则不误合并”回归测试。
+- Outputs: 四份矩阵共 68 项；Grafana 14 main/5 audit、Home Assistant 6/4、Rails 10/6、Kubernetes 13/10。43 项主覆盖上下文完整且唯一，25 项风险/边界保持 audit-only，0 项 drop。
+- Validation: 四份 Coverage validator、四个 Harness checkpoint、四个 run audit 通过；无 PT083 或历史样本语义污染。全仓质量基线 4/4、185 项单元测试通过，Regression/Golden 均为 6/6；`git diff --check` 通过。
+- Next: 下一阶段只生成并校验 Testability Gate。
+
+## 2026-09-22 - OSS-BLIND-R4 Testability Gate
+
+- Scope: 只执行四份 Testability Gate 分类、校验和 Harness checkpoint；未生成 Acceptance Examples、Case Plan 或 testcase，未读取代码 Oracle。
+- Decisions: 四份 Gate 共 42 条；26 条已确认 Structured PRD 规则均为可测并进入 `generate_acceptance_example`，16 条 Reasoning 风险全部保持 `risk_note_only`。
+- Isolation: 9 条边界场景继续由 audit Coverage 承接，不在 Gate 中重复升级；没有 technical background、soft prompt、待确认项或风险进入正式验收主链。
+- Finding and repair: 原 Validator 只检查 `source_rule_id` 是否覆盖，无法发现相同 ID 下 `source_text` 漂移；现已强制 Gate 正文与 Structured PRD 对应规则一致，并新增正反向回归测试。
+- Validation: 四份 Gate validator、四个 Harness checkpoint、四个 run audit 通过；全仓质量基线 4/4、187 项单元测试通过，Regression/Golden 均为 6/6；`git diff --check` 通过。
+- Next: 下一阶段按 43 项 main Coverage 生成原子 Acceptance Examples，并关联 26 条允许 Gate。
+
+## 2026-09-22 - OSS-BLIND-R4 Acceptance Examples
+
+- Scope: 只执行四份 Acceptance Examples 编写、校验和 Harness checkpoint；未进入 Case Plan、正式 testcase 或代码 Oracle Review。
+- Outputs: Grafana/Home Assistant/Rails/Kubernetes 分别生成 14/6/10/13 条原子 Given/When/Then，共 43 条，覆盖序列化路径、MP3 标签保真、BroadcastLogger 标签语义和 DeviceTaintRule 非阻塞 Warning。
+- Traceability: 每条示例同时绑定 Gate、Structured Rule 和一项 main Coverage；43 项 main Coverage 全覆盖、无重复，16 条 risk-note Gate 与 25 项 audit-only Coverage 均未进入正式验收示例。
+- Oracle: Kubernetes Warning 使用 `soft_display`，非阻塞 create/update、持久化和 warnings-as-errors 分离断言；其余后端行为按可观察调用、状态或数据结果判断，未把风险提示升级成强契约。
+- Validation: 四份 Acceptance validator、四个 Harness `acceptance_examples` checkpoint、四个 run audit 均通过；全仓质量基线 4/4、187 项单元测试通过，Regression/Golden 均为 6/6；`git diff --check` 通过。
+- Next: 下一阶段仅生成并校验四份 Case Plan，显式停在正式 testcase 之前。
+
+## 2026-09-22 - OSS-BLIND-R4 Case Plan
+
+- Scope: 只执行四份 Case Plan 设计、编号映射登记、校验和 Harness checkpoint；未生成正式 testcase，未进入 Traceability、Review 或代码 Oracle。
+- Outputs: Grafana/Home Assistant/Rails/Kubernetes 分别生成 14/6/10/13 条 `case_plan_direct` 计划，共 43 条；Acceptance Example、Case Plan、main Coverage 和稳定 testcase ID 均为 43/43 一一对应。
+- Semantics: 后端任务、数据持久化、跨层联动、字段契约分别进入对应 case type；Kubernetes 的 8 条 Warning 展示保持 `prompt_display`，未升级为 `save_block`，非阻塞 create/update、持久化和客户端退出码单独承接。
+- Numbering: 在公共编号规则中登记 APIStore、TTS 音频、BroadcastLogger、DeviceTaintRule 四个页面编码及其板块编码，后续正式 testcase 不使用临时或未登记编号。
+- Validation: 四份 Case Plan validator、四个 Harness `case_plan` checkpoint、四个 run audit 均通过；全仓质量基线 4/4、187 项单元测试通过，Regression/Golden 均为 6/6；`git diff --check` 通过。
+- Next: 下一阶段按 Case Plan 直出正式 testcase 与规定派生视图，并显式停在 `testcases`。
+
+## 2026-09-22 - OSS-BLIND-R4 Testcase Generation
+
+- Scope: 只执行四份 `case_plan_direct` 正式用例生成及同轮 testcase 派生产物刷新；未进入 Traceability、Review、Strict Gate 或代码 Oracle。
+- Outputs: Grafana/Home Assistant/Rails/Kubernetes 分别生成 14/6/10/13 条正式 testcase，共 43 条；同步生成兼容镜像、testpoints、开发自测、field/grouped audit、duplicate report 与 testcase bundle，未追溯候选为 0。
+- Design repair: 首轮 lint 发现 Grafana 缺流程型计划，已将“同一 Go 类型不同 GVK 持久化与读回”调整为 P0 linkage，并为四个样本的 linkage 断言补充可观察终态；Home Assistant 的模糊“正常/成功”预期改成解码结果与样本数量断言；Kubernetes 校验错误用例编号修正为 `AB`。
+- Generator repair: `case_plan_direct` 标签生成新增 `API/SERVER` 终端兜底，并移除仅凭“列表”判为 UI 的规则，防止后端 list/日志/音频/持久化用例误标 `AI-UI用例`；新增 2 项回归测试，R4 后端样本当前无错误 UI 标签。
+- Validation: 四份 testcase lint、元素标注、分组、testpoints、Case Plan、bundle validator 通过；四个 Harness `testcases` checkpoint 与 run audit 通过；全仓质量基线 4/4、189 项单元测试通过，Regression/Golden 均为 6/6。
+- Next: 下一阶段生成 coverage-first traceability 与兼容 adapter，并显式停在 `traceability`。
+
+## 2026-09-22 - OSS-BLIND-R4 Traceability
+
+- Scope: 只生成和校验四份 coverage-first traceability 与兼容 adapter；未读取实现 diff，未执行 Oracle Review、反馈回灌或 Strict Gate。
+- Outputs: Grafana/Home Assistant/Rails/Kubernetes 分别生成 14/6/10/13 条追溯记录，共 43 条；Coverage 到 testcase 映射与 Case Plan 完全一致，`false_traceability_rate=0.0`、`invalid_record_count=0`。
+- Finding: 追溯生成器只接受 `ER-数字` 形式的显式规则 ID，`GRA-R001`、`HA-R001` 等有效业务规则会退化成模块/功能/coverage-type 合成标识，同一规则的原子覆盖因此不能可靠绑定真实规则身份。
+- Repair: `infer_rule_id` 改为优先解析 `structured_refs` 中的任意合法 `explicit_rules.<ID>`，其次接受无空格、含数字的 ID 型 `rule_name`，最后才使用上下文 fallback；新增 2 项单元测试验证自定义规则前缀和旧式描述型 fallback。
+- Validation: 四份 Traceability validator、四个 Harness `traceability` checkpoint、四个 run audit 通过；全仓质量基线 4/4、191 项单元测试通过，Regression/Golden 均为 6/6；`git diff --check` 通过。
+- Next: 冻结四份盲测资产后读取公开 PR 实现作为 Oracle，执行差异评分与 Review，并保持反馈只回到 design 层。
+
+## 2026-09-22 - OSS-BLIND-R4 Oracle Review
+
+- Scope: 在读取任何实现 Oracle 前冻结四份工作项的 Requirement、Structured PRD、Coverage、Gate、Acceptance、Case Plan、正式 testcase 与 Traceability 共 8 类资产；本阶段只做后置静态映证，未修改设计层或正式 testcase。
+- Oracle: 固定 Grafana #133083 `9aeaf1e7`、Home Assistant #182800 `e1734829`、Rails #58429 `edd687c7`、Kubernetes #141831 `42d2a3f1`，审阅公开 PR diff、新增测试与公开验证说明；未 checkout 上游仓库，未执行 L2 上游测试。
+- Results: 四份分别形成 8/6/6/8 个 Oracle assertion；coverage 为 0.375/1.0/0.8333/0.875，需求层 coverage 为 0.8333/1.0/1.0/1.0。43 条正式 testcase 全部为 direct match 或 requirement regression，相关率均为 1.0，无样本污染。
+- Feedback: 形成 6 条 accepted design feedback：Grafana 4 条（非 watch context、错误与 JSON 异常、版本策略、并发安全）、Rails 1 条（零 tagging logger）、Kubernetes 1 条（空字符串指针语义）；Home Assistant 无新增缺口。反馈未标记 applied，未直接覆盖 testcase。
+- Validation: 四份 design feedback validator 与 Oracle Review validator 通过，冻结哈希 4/4 完整；四个 Harness run 均以 `resume --stop-at review` 成功暂停，Review succeeded、Strict Gate pending；run audit 4/4、质量基线 4/4（191 项单测）、Regression/Golden 6/6 与 `git diff --check` 通过。
+- Next: 下一阶段只做 6 条 feedback 的来源分流与处置设计，不直接回灌或重生成。
+
+## 2026-09-22 - OSS-BLIND-R4 Feedback Triage
+
+- Scope: 仅对 Oracle Review 的 6 条 design feedback 做来源分流、目标层复核和后续处置设计；未修改 Gate、Acceptance、Case Plan、正式 testcase 或业务代码。
+- Triage: Grafana DF-002 为已批准需求在正式设计链中的漏传，应从 Testability Gate 重新进入 Acceptance/Case Plan；Grafana DF-001/003/004 与 Rails DF-001 为 oracle-only 实现风险，只进入 Gate risk-note；Kubernetes DF-001 保持 needs-confirmation，不生成正式用例。
+- Routing repair: 将 Grafana DF-002 的 target layer 从 `case_plan` 调整为 `testability_gate`，避免在没有 Gate/Acceptance 来源的情况下直接扩写 Case Plan。
+- Outputs: 新增 `assets/projects/OSS-BLIND-R4/reports/round_4_feedback_triage.md`，记录 1/4/1 分流、逐项理由、Action 顺序和验收边界。
+- Validation: 四份 design feedback validator、四份 Oracle Review validator、Harness run audit 4/4、质量基线 4/4（191 项单测）、Regression/Golden 6/6 与 `git diff --check` 通过；Grafana Review 因 feedback 路由变化完成 attempt=2。
+- Next: 下一阶段仅通过 Harness 白名单 feedback Action 回灌 6 条 Testability Gate 反馈并生成 receipt/journal，不跨入下游重生成。
+
+## 2026-09-22 - OSS-BLIND-R4 Feedback Application
+
+- Scope: 通过 Harness 白名单 feedback Action 回灌 6 条 Testability Gate 反馈；未修改业务代码，未生成 Acceptance、Case Plan 或正式 testcase。
+- Applied: Grafana 4 条、Rails 1 条、Kubernetes 1 条均为 `applied`；Home Assistant 无反馈且保持不变。Grafana DF-002 进入 `generate_acceptance_example`，4 条实现风险保持 `risk_note_only`，Kubernetes 歧义保持 `needs_confirmation`。
+- Audit: Grafana/Rails/Kubernetes 分别产生 12/3/3 个成功 Action，均具备 intent/result journal、run/actor/provider 身份与 before/after SHA-256；无失败动作或跨 run 混用。
+- Framework repair: `validate_feedback_application.py` 改为验证同一路径的顺序哈希链，解决同一 Gate 多次合法回灌被历史 receipt 误报的问题；新增链成功与断链失败测试。
+- Outputs: 更新三份 `acceptance/testability_gate.{json,md}`、三份 `design/feedback_application.json`、对应 Action journal，并新增 `reports/round_4_feedback_application.md`。
+- Validation: Gate、feedback application、Action journal/audit、design feedback、Oracle Review 全部通过；聚焦回归 34/34；质量基线 4/4，193 项单测通过，Regression/Golden 均 6/6。
+- Next: 仅重建 Grafana DF-002 的 Acceptance/Case Plan/testcase 与派生产物，随后刷新 Rails/Kubernetes 的 Review/Strict 状态；risk-only 与 needs-confirmation 不进入正式用例。
+
+## 2026-09-22 - OSS-BLIND-R4 Downstream Regeneration
+
+- Scope: 将已批准的 Grafana DF-002 从 `ER-002` / `TG-012` 顺序下传到 Coverage、Acceptance、Case Plan、正式 testcase 与派生产物；未修改业务代码。
+- Outputs: 新增 3 个原子 Coverage、`AE-015`～`AE-017`、`CP-015`～`CP-017` 和 3 条 context 传播 API testcase；Grafana 用例由 14 增至 17，R4 总数由 43 增至 46。
+- Isolation: Grafana 3 条实现风险、Rails 1 条实现风险和 Kubernetes 1 条待确认歧义均未生成正式 testcase；其他三份样本 testcase 不变。
+- Metrics: Grafana requirement Oracle coverage 从 `0.8333` 提升到 `1.0`，testcase relevance 保持 `1.0`；17 条 coverage-first traceability 全部有效，失真率为 0。
+- Refresh: 刷新 Grafana testcase bundle、testpoints、开发自测、审计、traceability、quality report 和 Oracle score；刷新其余三份缺少当前源指纹的 quality report；项目视图为 4 个 ready 工作项、46 条 testcase、0 个过期质量报告。
+- Validation: 四个 Harness Review 与 run audit 通过；四份资产级 strict 使用显式 `--skip-code-reviews` 均通过。
+- Blocker: 四份 code review scope 都没有本地代码目录且 policy 要求人工作出 run-scoped N/A 声明。未获用户明确授权前不代填声明，Harness Strict Gate 保持 pending。
+
+## 2026-09-22 - OSS-BLIND-R4 Strict Closeout
+
+- Approval: 用户明确批准四份最终轮 run 的本地代码评审 `not_applicable` 声明；每份凭证均绑定原 run、声明者 `ycp` 和当前 code review scope 哈希。
+- Lifecycle repair: 修复 Review 已成功但 Strict 尚未执行时无法补充 disposition 的死锁；声明后只重开 Review，由 Harness 重新执行确定性 validator，再写入 `skipped/not_applicable` 终态。
+- Validation: 新增“成功 Review 后声明并重跑”的单元测试；四个 run 的 Review 均重新执行且 Strict Gate succeeded，run audit 4/4 通过。
+- Project: `OSS-BLIND-R4` 项目 strict 通过，4 个工作项均 ready，共 46 条 testcase、3 个开放风险、0 个过期质量报告。
+- Next: 生成最终轮及累计 11 份公开 PR 盲测的发布前收口评估，不再修改测试资产语义。
+
+## 2026-09-22 - Release Readiness Closeout
+
+- Scope: 完成三批 11 份公开 PR 盲测的发布前收口与仓库清理；未修改任何业务代码或测试资产语义。
+- Completion: 补齐 Django、Temporal、Supabase 三个 R3 run 的 Strict Gate，四个 R3 run audit 全部通过，并刷新 R3 项目视图为 4/4 ready、37 条 testcase、0 个过期质量报告。
+- Packaging repair: `.gitignore` 不再整体忽略 `.generation/`，保留新工作项 strict 所需的 feedback application baseline、不可变 Action journal、`run_state.json` 与人工 disposition；继续忽略 events、诊断、hook、阶段日志、当前 run 指针、根级评测缓存和临时 Action 输入。
+- Documentation repair: `P1_2_RESPONSIBILITY_VALIDATION.md` 的正向命令改用已有且校验通过的匿名 `LINKAGE_ONLY` fixture，移除已删除 PT083 expected fixture 的失效引用；R4 N/A 样本的直接 strict 命令明确使用 `--skip-code-reviews`。
+- Release assessment: 三个项目共 11/11 ready、108 条正式 testcase；R3 的 8 条实现/风险观察与 R4 的 3 个软质量风险保留为非阻塞项。详细结论见 `assets/projects/OSS-BLIND-R4/reports/final_release_readiness.md`。
+- Validation: 匿名责任图文档示例改用可通过 validator 的 `LINKAGE_ONLY` fixture；全量质量基线 4/4（194 项单测）、Regression/Golden 6/6、三项目 strict、R4 四工作项 strict、11 个 Harness run audit 和模拟发布包 R4 strict 4/4 全部通过。

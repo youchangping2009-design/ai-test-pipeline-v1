@@ -47,7 +47,10 @@ class EvalSuiteTests(unittest.TestCase):
         self.assertTrue(smoke < regression)
         self.assertEqual(regression, golden)
         self.assertGreaterEqual(len(regression), 5)
-        self.assertGreater(len(tiers["golden"]["commands"]), 0)
+        for command in tiers["golden"]["commands"]:
+            rendered = " ".join(command["argv"])
+            self.assertNotIn("validate_work_item.py", rendered)
+            self.assertNotIn("assets/projects/", rendered)
 
     def test_smoke_tier_passes_and_matches_report_contract(self) -> None:
         report = run_suite("smoke")

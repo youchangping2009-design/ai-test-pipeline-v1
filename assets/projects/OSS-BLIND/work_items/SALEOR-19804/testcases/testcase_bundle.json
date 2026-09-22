@@ -1,0 +1,205 @@
+{
+  "project_code": "OSS-BLIND",
+  "work_item_id": "SALEOR-19804",
+  "truth_source": "testcases/testcases_main.md",
+  "projection_only": true,
+  "generated_from": [
+    "testcases/testcases_main.md"
+  ],
+  "cases": [
+    {
+      "testcase_id": "OSS-BLIND-GIFTCARDBULK-BULKCREATE-API-FL-001",
+      "page_name": "giftCardBulkCreate GraphQL 接口",
+      "section_name": "批量创建请求",
+      "module": "礼品卡批量创建",
+      "feature": "批量礼品卡标签关系追加",
+      "title": "复用已有标签时追加新礼品卡并保留历史成员",
+      "preconditions": "已有标签 T 与历史礼品卡 A 建立关联。",
+      "steps": "1. 调用 `giftCardBulkCreate` 创建新礼品卡 B 并复用标签 T。",
+      "expected_results": "1. 标签 T 同时关联历史礼品卡 A 和新礼品卡 B。<br>2. 历史礼品卡 A 与标签 T 的关系未被移除。<br>3. 最终关系状态可通过接口响应与数据查询核对。",
+      "priority": "P0",
+      "tags": [
+        "AI-API用例",
+        "开发必测",
+        "测试必测"
+      ],
+      "test_type": "流程验证",
+      "remark": "来源 CasePlan：CP-001；来源 Flow：CP-001；来源 Acceptance：AE-001；来源 Rule：SL-R001；来源coverage：COV-EX-0009",
+      "source_case_plan_ids": [
+        "CP-001"
+      ]
+    },
+    {
+      "testcase_id": "OSS-BLIND-GIFTCARDBULK-BULKCREATE-API-FL-002",
+      "page_name": "giftCardBulkCreate GraphQL 接口",
+      "section_name": "批量创建请求",
+      "module": "礼品卡批量创建",
+      "feature": "批量礼品卡标签关系追加",
+      "title": "新标签创建后关联当前批次礼品卡",
+      "preconditions": "输入标签 N 尚不存在。",
+      "steps": "1. 调用 `giftCardBulkCreate` 创建一批礼品卡并指定标签 N。",
+      "expected_results": "1. 系统创建标签 N。<br>2. 标签 N 关联本次本次新建的全部礼品卡。<br>3. 最终关系状态可通过接口响应与数据查询核对。",
+      "priority": "P1",
+      "tags": [
+        "AI-API用例"
+      ],
+      "test_type": "流程验证",
+      "remark": "来源 CasePlan：CP-002；来源 Flow：CP-002；来源 Acceptance：AE-002；来源 Rule：SL-R002；来源coverage：COV-EX-0010",
+      "source_case_plan_ids": [
+        "CP-002"
+      ]
+    },
+    {
+      "testcase_id": "OSS-BLIND-GIFTCARDBULK-BULKCREATE-API-FL-003",
+      "page_name": "giftCardBulkCreate GraphQL 接口",
+      "section_name": "批量创建请求",
+      "module": "礼品卡批量创建",
+      "feature": "批量礼品卡标签关系追加",
+      "title": "四个连续批次后标签成员集合等于批次并集",
+      "preconditions": "第一批创建礼品卡 G1、G2 并指定标签 {red, blue}。<br>第二批创建 G3、G4 并指定相同标签 {red, blue}。<br>第三批创建 G5、G6 并指定部分重叠标签 {blue, green}。<br>第四批创建 G7、G8 并指定完全不同标签 {yellow}。",
+      "steps": "1. 按第一批至第四批的顺序连续调用 `giftCardBulkCreate`。",
+      "expected_results": "1. 标签 {red} 的成员集合精确等于 {G1,G2,G3,G4}。<br>2. 标签 {blue} 的成员集合精确等于 {G1,G2,G3,G4,G5,G6}。<br>3. 标签 {green} 的成员集合精确等于 {G5,G6}。<br>4. 标签 {yellow} 的成员集合精确等于 {G7,G8}。<br>5. 最终关系状态可通过接口响应与数据查询核对。",
+      "priority": "P0",
+      "tags": [
+        "AI-API用例",
+        "开发必测",
+        "测试必测"
+      ],
+      "test_type": "流程验证",
+      "remark": "来源 CasePlan：CP-003；来源 Flow：CP-003；来源 Acceptance：AE-003；来源 Rule：SL-R003；来源coverage：COV-EX-0011",
+      "source_case_plan_ids": [
+        "CP-003"
+      ]
+    },
+    {
+      "testcase_id": "OSS-BLIND-GIFTCARDBULK-BULKCREATE-API-FL-004",
+      "page_name": "giftCardBulkCreate GraphQL 接口",
+      "section_name": "批量创建请求",
+      "module": "礼品卡批量创建",
+      "feature": "批量礼品卡标签关系追加",
+      "title": "新旧标签混合输入只建立指定关系",
+      "preconditions": "已有标签 T1 及其历史礼品卡关系，输入同时包含已有标签 T1 和新标签 T2。",
+      "steps": "1. 调用 `giftCardBulkCreate` 创建当前批次礼品卡。",
+      "expected_results": "1. 当前批次每张礼品卡只关联输入指定的 T1 和 T2。<br>2. T1 的历史礼品卡关系继续保留，T2 创建后仅建立本次所需关系。<br>3. 最终关系状态可通过接口响应与数据查询核对。",
+      "priority": "P0",
+      "tags": [
+        "AI-API用例",
+        "开发必测",
+        "测试必测"
+      ],
+      "test_type": "流程验证",
+      "remark": "来源 CasePlan：CP-004；来源 Flow：CP-004；来源 Acceptance：AE-004；来源 Rule：SL-R004；来源coverage：COV-EX-0012",
+      "source_case_plan_ids": [
+        "CP-004"
+      ]
+    },
+    {
+      "testcase_id": "OSS-BLIND-GIFTCARDBULK-BULKCREATE-API-DV-005",
+      "page_name": "giftCardBulkCreate GraphQL 接口",
+      "section_name": "批量创建请求",
+      "module": "礼品卡批量创建",
+      "feature": "批量礼品卡标签关系追加",
+      "title": "成功响应数量与实际新建礼品卡一致",
+      "preconditions": "已准备合法的 `giftCardBulkCreate` 输入及标签数据。",
+      "steps": "1. 调用接口批量创建指定数量的礼品卡。",
+      "expected_results": "1. 响应 `count` 等于数据库实际新建的礼品卡数量。<br>2. 仅当响应 `errors` 为空时判定本次批量创建处于无错误完成状态，标签结果符合既有接口契约。",
+      "priority": "P0",
+      "tags": [
+        "AI-API用例",
+        "开发必测",
+        "测试必测"
+      ],
+      "test_type": "数据校验",
+      "remark": "来源 CasePlan：CP-005；来源 Acceptance：AE-005；来源 Rule：SL-R005；来源coverage：COV-EX-0013",
+      "source_case_plan_ids": [
+        "CP-005"
+      ]
+    },
+    {
+      "testcase_id": "OSS-BLIND-GIFTCARDBULK-BULKCREATE-API-PM-001",
+      "page_name": "giftCardBulkCreate GraphQL 接口",
+      "section_name": "批量创建请求",
+      "module": "礼品卡批量创建",
+      "feature": "批量礼品卡标签关系追加",
+      "title": "权限、非法输入及非批量礼品卡操作行为不回退",
+      "preconditions": "分别准备无权限请求、非法输入，以及 `giftCardCreate` 和 `giftCardUpdate` 的既有合法调用。",
+      "steps": "1. 依次执行上述礼品卡接口调用。",
+      "expected_results": "1. 无权限和非法输入继续返回各自既有错误结果。<br>2. `giftCardCreate` 与 `giftCardUpdate` 的既有返回结果和标签关系行为保持不变。",
+      "priority": "P1",
+      "tags": [
+        "AI-API用例"
+      ],
+      "test_type": "权限",
+      "remark": "来源 CasePlan：CP-006；来源 Acceptance：AE-006；来源 Rule：SL-R007；来源coverage：COV-EX-0015",
+      "source_case_plan_ids": [
+        "CP-006"
+      ]
+    },
+    {
+      "testcase_id": "OSS-BLIND-GIFTCARDBULK-BULKCREATE-API-FL-005",
+      "page_name": "giftCardBulkCreate GraphQL 接口",
+      "section_name": "批量创建请求",
+      "module": "礼品卡批量创建",
+      "feature": "批量礼品卡标签关系追加",
+      "title": "已有标签大小写变体复用同一小写记录",
+      "preconditions": "数据库中已存在唯一标签 {vip}。",
+      "steps": "1. 调用 `giftCardBulkCreate` 并输入标签 {VIP}。",
+      "expected_results": "1. 系统复用已有的 {vip} 标签。<br>2. 数据库中标签名称归一为 {vip}，且仍只有一条该名称记录。<br>3. 最终关系状态可通过接口响应与数据查询核对。",
+      "priority": "P0",
+      "tags": [
+        "AI-API用例",
+        "开发必测",
+        "测试必测"
+      ],
+      "test_type": "流程验证",
+      "remark": "来源 CasePlan：CP-007；来源 Flow：CP-007；来源 Acceptance：AE-007；来源 Rule：SL-R008；来源coverage：COV-EX-0016",
+      "source_case_plan_ids": [
+        "CP-007"
+      ]
+    },
+    {
+      "testcase_id": "OSS-BLIND-GIFTCARDBULK-BULKCREATE-API-DV-006",
+      "page_name": "giftCardBulkCreate GraphQL 接口",
+      "section_name": "批量创建请求",
+      "module": "礼品卡批量创建",
+      "feature": "批量礼品卡标签关系追加",
+      "title": "重复输入的新标签只创建一条小写记录",
+      "preconditions": "数据库中不存在标签 {new}。",
+      "steps": "1. 调用 `giftCardBulkCreate` 并在同一请求输入标签 {New,new,NEW}。",
+      "expected_results": "1. 数据库只新增一条名称为 {new} 的标签记录。",
+      "priority": "P0",
+      "tags": [
+        "AI-API用例",
+        "开发必测",
+        "测试必测"
+      ],
+      "test_type": "数据校验",
+      "remark": "来源 CasePlan：CP-008；来源 Acceptance：AE-008；来源 Rule：SL-R008；来源coverage：COV-EX-0017",
+      "source_case_plan_ids": [
+        "CP-008"
+      ]
+    },
+    {
+      "testcase_id": "OSS-BLIND-GIFTCARDBULK-BULKCREATE-API-FL-007",
+      "page_name": "giftCardBulkCreate GraphQL 接口",
+      "section_name": "批量创建请求",
+      "module": "礼品卡批量创建",
+      "feature": "批量礼品卡标签关系追加",
+      "title": "大小写变体和重复标签只建立一次礼品卡关系",
+      "preconditions": "已准备一个批量创建请求，其中同一标签以大小写变体重复出现。",
+      "steps": "1. 调用 `giftCardBulkCreate` 创建当前批次礼品卡。",
+      "expected_results": "1. 每张当前批次礼品卡与归一后的标签只存在一条关系。<br>2. 重复输入不会增加重复关系或重复返回标签。<br>3. 最终关系状态可通过接口响应与数据查询核对。",
+      "priority": "P0",
+      "tags": [
+        "AI-API用例",
+        "开发必测",
+        "测试必测"
+      ],
+      "test_type": "流程验证",
+      "remark": "来源 CasePlan：CP-009；来源 Flow：CP-009；来源 Acceptance：AE-009；来源 Rule：SL-R008；来源coverage：COV-EX-0018",
+      "source_case_plan_ids": [
+        "CP-009"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "project_code": "OSS-BLIND-R4",
+  "work_item_id": "KUBERNETES-141831",
+  "applications": [
+    {
+      "feedback_id": "DF-001",
+      "target_layer": "testability_gate",
+      "artifacts": [
+        {
+          "path": "acceptance/testability_gate.json",
+          "before_sha256": "66bea0f9ad98040cb3b40b82e5949d339d29dc69d7a75be509fb53f3c9a463b9",
+          "after_sha256": "e999b7fff3356709e122404697a8f517a0d10ab759be8372916d5f4efc6ae5a7"
+        },
+        {
+          "path": "acceptance/testability_gate.md",
+          "before_sha256": "d16d8959d8629c6936245767a0fab19bd41fd1d1678c1dc04d58f894bf2b69b8",
+          "after_sha256": "ad827dfde573b45b8a1601a472df849c1701cd40989c40c84327d2ff009f8e31"
+        }
+      ]
+    }
+  ]
+}

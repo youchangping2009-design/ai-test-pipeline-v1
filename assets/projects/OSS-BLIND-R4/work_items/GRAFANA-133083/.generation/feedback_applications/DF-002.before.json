@@ -1,0 +1,15 @@
+{
+  "schema_version": "1.0.0",
+  "project_code": "OSS-BLIND-R4",
+  "work_item_id": "GRAFANA-133083",
+  "feedback_id": "DF-002",
+  "target_layer": "testability_gate",
+  "feedback_fingerprint": "1acd8b30514dbbae2090208d80220d70bd4f1734540b4596164c6348c283d7e4",
+  "prepared_at": "2026-09-22T04:38:24.817054+00:00",
+  "artifacts": [
+    {
+      "path": "acceptance/testability_gate.json",
+      "before_sha256": "6325765dd3f0b7c606f09bc1d680914952881440c8cbba41c0d08fec3594150a"
+    }
+  ]
+}

@@ -1,0 +1,48 @@
+{
+  "project_code": "OSS-BLIND",
+  "work_item_id": "APPSMITH-42244",
+  "feedback_items": [
+    {
+      "feedback_id": "DF-001",
+      "source_review_stage": "manual_review",
+      "source_confirmation_file": "reviews/review_record.md",
+      "source_case_plan_ids": ["CP-001"],
+      "source_testcase_ids": ["OSS-BLIND-DATABRICKS-CONNECT-SERVER-AB-001"],
+      "feedback_type": "case_gap",
+      "target_layer": "acceptance_examples",
+      "title": "补充非法 JDBC URL 的精确错误文案",
+      "finding": "公开回归测试断言错误消息包含 The JDBC URL must use the jdbc:databricks:// protocol.，当前验收与用例只断言连接创建错误。",
+      "recommended_action": "在 Acceptance 与 Case Plan 中保留精确错误文案，再由生成器重建正式用例。",
+      "must_not_directly_overwrite_testcase": true,
+      "status": "applied"
+    },
+    {
+      "feedback_id": "DF-002",
+      "source_review_stage": "manual_review",
+      "source_confirmation_file": "reviews/review_record.md",
+      "source_case_plan_ids": ["CP-005"],
+      "source_testcase_ids": ["OSS-BLIND-DATABRICKS-CONNECT-SERVER-FL-002"],
+      "feedback_type": "case_gap",
+      "target_layer": "case_plan",
+      "title": "明确 token 到 JDBC 属性的映射",
+      "finding": "公开回归测试捕获连接属性并断言 UID=token、PWD=test-token，当前计划只描述沿用当前 token。",
+      "recommended_action": "在 Case Plan 中加入可观测的 UID 与 PWD 属性断言。",
+      "must_not_directly_overwrite_testcase": true,
+      "status": "applied"
+    },
+    {
+      "feedback_id": "DF-003",
+      "source_review_stage": "manual_review",
+      "source_confirmation_file": "reviews/review_record.md",
+      "source_case_plan_ids": ["CP-004"],
+      "source_testcase_ids": ["OSS-BLIND-DATABRICKS-CONNECT-SERVER-AB-002"],
+      "feedback_type": "case_gap",
+      "target_layer": "case_plan",
+      "title": "拆分连接失败分支",
+      "finding": "CP-004 将前缀校验拒绝、driver 拒绝和空连接三类结果合并，无法定位具体失败分支。",
+      "recommended_action": "将前缀拒绝与 driver 返回 null 拆成单规则单断言计划。",
+      "must_not_directly_overwrite_testcase": true,
+      "status": "applied"
+    }
+  ]
+}

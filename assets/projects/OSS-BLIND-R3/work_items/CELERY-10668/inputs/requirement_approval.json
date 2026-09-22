@@ -1,0 +1,13 @@
+{
+  "schema_version": "1.0.0",
+  "approval_id": "RUN-CELERY-10668-BLIND-R3-20260921-requirement-d9b5feaa98eafef7c05a6b7d",
+  "status": "approved",
+  "reviewed_by": "user",
+  "reviewed_at": "2026-09-22T00:38:04+00:00",
+  "note": "用户已在本线程明确批准四份需求摘要；需求摘要与来源哈希未变化，本次恢复原批准状态。",
+  "run_id": "RUN-CELERY-10668-BLIND-R3-20260921",
+  "requirement_summary_sha256": "6a739965905030aa2bc86ef9875f3760abb696814c6257b2b70b04cf4cc92236",
+  "source_manifest_sha256": "f9900a2547ee7c28a6514518477d0a0cf410bd8a5b370c4f9011dfdabc9eea10",
+  "raw_inputs_fingerprint": "3989605d182e5adf25ef9fc8ab1a26ee55bdce6f3d0111677f4ca38275d12e64",
+  "requirement_version": "1.0.0"
+}

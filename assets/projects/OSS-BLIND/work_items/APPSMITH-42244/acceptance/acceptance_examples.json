@@ -1,0 +1,109 @@
+{
+  "project_code": "OSS-BLIND",
+  "work_item_id": "APPSMITH-42244",
+  "generated_from": [
+    "acceptance/testability_gate.json",
+    "structured_prd/structured_prd.json",
+    "coverage/coverage_matrix.json"
+  ],
+  "examples": [
+    {
+      "example_id": "AE-001",
+      "source_gate_ids": ["TG-001"],
+      "source_rule_ids": ["APP-R001"],
+      "coverage_refs": ["COV-EX-0003"],
+      "title": "非 Databricks JDBC URL 在创建连接前被拒绝",
+      "given": ["已准备一个不属于 `jdbc:databricks://` 协议的 JDBC URL。"],
+      "when": ["客户端请求创建 Databricks 数据源连接。"],
+      "then": ["服务端在真正创建连接前判定该 URL 不属于 Databricks JDBC 协议。", "错误消息包含「The JDBC URL must use the jdbc:databricks:// protocol.」。"],
+      "verification_side": "服务端连接层",
+      "oracle_strength": "business_behavior",
+      "confidence": "confirmed",
+      "source_trace": "来源：APP-R001 / TG-001 / COV-EX-0003。"
+    },
+    {
+      "example_id": "AE-002",
+      "source_gate_ids": ["TG-002"],
+      "source_rule_ids": ["APP-R002"],
+      "coverage_refs": ["COV-EX-0004"],
+      "title": "合法的自定义 Databricks JDBC URL 继续建立连接",
+      "given": ["已准备以 `jdbc:databricks://` 开头且其余连接参数合法的自定义 URL。"],
+      "when": ["客户端请求创建 Databricks 数据源连接。"],
+      "then": ["URL 通过协议校验，并继续进入 Databricks 连接流程。"],
+      "verification_side": "服务端连接层",
+      "oracle_strength": "business_behavior",
+      "confidence": "confirmed",
+      "source_trace": "来源：APP-R002 / TG-002 / COV-EX-0004。"
+    },
+    {
+      "example_id": "AE-003",
+      "source_gate_ids": ["TG-003"],
+      "source_rule_ids": ["APP-R003"],
+      "coverage_refs": ["COV-EX-0005"],
+      "title": "Databricks URL 只交由 Databricks JDBC driver 处理",
+      "given": ["系统同时注册 Databricks JDBC driver 和其他 JDBC driver。", "分别准备合法 Databricks URL 与非 Databricks URL。"],
+      "when": ["客户端分别请求创建 Databricks 数据源连接。"],
+      "then": ["合法 URL 由 Databricks JDBC driver 处理。", "非 Databricks URL 被拒绝后，不会转交其他已注册 driver。"],
+      "verification_side": "服务端连接层",
+      "oracle_strength": "business_behavior",
+      "confidence": "confirmed",
+      "source_trace": "来源：APP-R003 / TG-003 / COV-EX-0005。"
+    },
+    {
+      "example_id": "AE-004",
+      "source_gate_ids": ["TG-004"],
+      "source_rule_ids": ["APP-R004"],
+      "coverage_refs": ["COV-EX-0006"],
+      "title": "Databricks JDBC driver 拒绝 URL 时失败关闭",
+      "given": ["已构造 Databricks JDBC driver 明确拒绝 URL 的结果。"],
+      "when": ["客户端请求创建 Databricks 数据源连接。"],
+      "then": ["服务端返回连接创建错误。", "连接流程停止，且不会返回连接成功。"],
+      "verification_side": "服务端连接层",
+      "oracle_strength": "business_behavior",
+      "confidence": "confirmed",
+      "source_trace": "来源：APP-R004 / TG-004 / COV-EX-0006。"
+    },
+    {
+      "example_id": "AE-005",
+      "source_gate_ids": ["TG-005"],
+      "source_rule_ids": ["APP-R005"],
+      "coverage_refs": ["COV-EX-0008"],
+      "title": "既有合法 Databricks 配置使用明确的 JDBC token 属性",
+      "given": ["已准备升级前可用的 Databricks 配置、合法 JDBC URL 与当前 token 认证信息。"],
+      "when": ["安装或升级后的系统使用该配置创建连接。"],
+      "then": ["提交给 JDBC driver 的属性 `UID` 等于 {token}。", "属性 `PWD` 等于当前 token 值。", "既有合法配置能够建立连接，其原有成功行为不回退。"],
+      "verification_side": "服务端连接层",
+      "oracle_strength": "business_behavior",
+      "confidence": "confirmed",
+      "source_trace": "来源：APP-R005 / TG-005 / COV-EX-0008。"
+    },
+    {
+      "example_id": "AE-006",
+      "source_gate_ids": ["TG-006"],
+      "source_rule_ids": ["APP-R006"],
+      "coverage_refs": ["COV-EX-0009"],
+      "title": "URL 校验失败时不连接错误目标",
+      "given": ["已准备一个非 Databricks JDBC URL，并启用对 driver 或网络连接调用的观测。"],
+      "when": ["客户端请求创建 Databricks 数据源连接。"],
+      "then": ["URL 校验在连接创建阶段失败。", "失败前后均未向该错误目标建立网络连接。"],
+      "verification_side": "服务端连接层",
+      "oracle_strength": "business_behavior",
+      "confidence": "confirmed",
+      "source_trace": "来源：APP-R006 / TG-006 / COV-EX-0009。"
+    },
+    {
+      "example_id": "AE-007",
+      "source_gate_ids": ["TG-004"],
+      "source_rule_ids": ["APP-R004"],
+      "coverage_refs": ["COV-EX-0007"],
+      "title": "Databricks JDBC driver 返回空连接时失败关闭",
+      "given": ["已构造 Databricks JDBC driver 接受 URL 但返回空连接的结果。"],
+      "when": ["客户端请求创建 Databricks 数据源连接。"],
+      "then": ["服务端返回连接创建错误。", "连接流程停止，且不会返回连接成功。"],
+      "verification_side": "服务端连接层",
+      "oracle_strength": "business_behavior",
+      "confidence": "confirmed",
+      "source_trace": "来源：APP-R004 / TG-004 / COV-EX-0007。"
+    }
+  ]
+}

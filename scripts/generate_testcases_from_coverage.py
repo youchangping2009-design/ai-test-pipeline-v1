@@ -38,6 +38,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--duplicate-report", required=False, help="duplicate_case_report.json 输出路径")
     parser.add_argument("--dev-self-output", required=False, help="dev_self_testcases.md 输出路径")
     parser.add_argument("--case-plan", required=False, help="case_plan.json 路径；提供后用例备注会写入来源 CasePlan 追溯")
+    parser.add_argument("--acceptance-examples", required=False, help="acceptance_examples.json 路径；direct mode 用于生成可执行 Given/When/Then")
     parser.add_argument("--testpoints-json-output", required=False, help="testpoints.json 输出路径")
     parser.add_argument("--testpoints-md-output", required=False, help="testpoints.md 输出路径")
     return parser.parse_args()
@@ -56,6 +57,7 @@ def main() -> int:
         duplicate_report_path = Path(args.duplicate_report).resolve() if args.duplicate_report else root / "reviews" / "duplicate_case_report.json"
         dev_self_output_path = Path(args.dev_self_output).resolve() if args.dev_self_output else root / "testcases" / "dev_self_testcases.md"
         case_plan_path = Path(args.case_plan).resolve() if args.case_plan else root / "testcases" / "case_plan.json"
+        acceptance_examples_path = Path(args.acceptance_examples).resolve() if args.acceptance_examples else root / "acceptance" / "acceptance_examples.json"
         testpoints_json_path = Path(args.testpoints_json_output).resolve() if args.testpoints_json_output else root / "testcases" / "testpoints.json"
         testpoints_md_path = Path(args.testpoints_md_output).resolve() if args.testpoints_md_output else root / "testcases" / "testpoints.md"
     else:
@@ -70,13 +72,21 @@ def main() -> int:
         duplicate_report_path = Path(args.duplicate_report).resolve() if args.duplicate_report else output_path.parent / "duplicate_case_report.json"
         dev_self_output_path = Path(args.dev_self_output).resolve() if args.dev_self_output else output_path.parent / "dev_self_testcases.md"
         case_plan_path = Path(args.case_plan).resolve() if args.case_plan else None
+        acceptance_examples_path = Path(args.acceptance_examples).resolve() if args.acceptance_examples else None
         testpoints_json_path = Path(args.testpoints_json_output).resolve() if args.testpoints_json_output else output_path.parent / "testpoints.json"
         testpoints_md_path = Path(args.testpoints_md_output).resolve() if args.testpoints_md_output else output_path.parent / "testpoints.md"
 
     structured_prd = read_json(structured_prd_path)
     coverage_matrix = read_json(coverage_matrix_path)
     case_plan = read_json(case_plan_path) if case_plan_path and case_plan_path.exists() else None
-    bundle = generate_testcases_bundle(structured_prd, coverage_matrix, case_plan)
+    acceptance_examples = (
+        read_json(acceptance_examples_path)
+        if acceptance_examples_path and acceptance_examples_path.exists()
+        else None
+    )
+    bundle = generate_testcases_bundle(
+        structured_prd, coverage_matrix, case_plan, acceptance_examples
+    )
     markdown = bundle["main_markdown"]
     output_path.parent.mkdir(parents=True, exist_ok=True)
     output_path.write_text(markdown, encoding="utf-8")

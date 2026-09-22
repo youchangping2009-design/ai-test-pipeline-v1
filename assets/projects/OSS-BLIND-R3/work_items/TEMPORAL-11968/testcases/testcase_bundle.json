@@ -1,0 +1,183 @@
+{
+  "project_code": "OSS-BLIND-R3",
+  "work_item_id": "TEMPORAL-11968",
+  "truth_source": "testcases/testcases_main.md",
+  "projection_only": true,
+  "generated_from": [
+    "testcases/testcases_main.md"
+  ],
+  "cases": [
+    {
+      "testcase_id": "OSS-BLIND-R3-TEMPORALAPI-SIGNALSTART-API-FL-001",
+      "page_name": "Temporal Workflow API",
+      "section_name": "SignalWithStart 去重",
+      "module": "SignalWithStart 幂等",
+      "feature": "关闭后重试去重",
+      "title": "Workflow 关闭后仍可按原 request ID 去重",
+      "preconditions": "首次 `SignalWithStart` 已创建 run 并记录 request ID，且该 Workflow Execution 已关闭。",
+      "steps": "1. 使用相同 namespace、workflow ID 和 request ID 重试 `SignalWithStart`。",
+      "expected_results": "1. Workflow 关闭后，首次 request ID 与原始 run 的去重关联状态仍可被命中。",
+      "priority": "P0",
+      "tags": [
+        "AI-API用例",
+        "开发必测",
+        "测试必测"
+      ],
+      "test_type": "流程验证",
+      "remark": "来源 CasePlan：CP-001；来源 Flow：CP-001；来源 Acceptance：AE-001；来源 Rule：TMP-R001；来源coverage：COV-EX-0006",
+      "source_case_plan_ids": [
+        "CP-001"
+      ]
+    },
+    {
+      "testcase_id": "OSS-BLIND-R3-TEMPORALAPI-SIGNALSTART-API-DV-001",
+      "page_name": "Temporal Workflow API",
+      "section_name": "SignalWithStart 去重",
+      "module": "SignalWithStart 幂等",
+      "feature": "关闭后重试去重",
+      "title": "相同请求重试返回首次创建的 run ID",
+      "preconditions": "已记录首次 `SignalWithStart` 使用的 namespace、workflow ID、request ID 和返回 run ID。",
+      "steps": "1. 以相同三个标识重试 `SignalWithStart`。",
+      "expected_results": "1. 重试响应中的 run ID 等于首次请求创建的 run ID。",
+      "priority": "P0",
+      "tags": [
+        "AI-API用例",
+        "开发必测",
+        "测试必测"
+      ],
+      "test_type": "数据校验",
+      "remark": "来源 CasePlan：CP-002；来源 Acceptance：AE-002；来源 Rule：TMP-R002；来源coverage：COV-EX-0007",
+      "source_case_plan_ids": [
+        "CP-002"
+      ]
+    },
+    {
+      "testcase_id": "OSS-BLIND-R3-TEMPORALAPI-SIGNALSTART-API-ST-001",
+      "page_name": "Temporal Workflow API",
+      "section_name": "SignalWithStart 去重",
+      "module": "SignalWithStart 幂等",
+      "feature": "关闭后重试去重",
+      "title": "去重命中不创建新的 Workflow run",
+      "preconditions": "首次 `SignalWithStart` 创建的 run 已关闭，并记录当前 workflow ID 下的 run 数量。",
+      "steps": "1. 使用相同 request ID 重试 `SignalWithStart`。",
+      "expected_results": "1. 该 workflow ID 下的 run 数量不增加。",
+      "priority": "P0",
+      "tags": [
+        "AI-API用例",
+        "开发必测",
+        "测试必测"
+      ],
+      "test_type": "状态流转",
+      "remark": "来源 CasePlan：CP-003；来源 Acceptance：AE-003；来源 Rule：TMP-R003；来源coverage：COV-EX-0008",
+      "source_case_plan_ids": [
+        "CP-003"
+      ]
+    },
+    {
+      "testcase_id": "OSS-BLIND-R3-TEMPORALAPI-SIGNALSTART-API-ST-002",
+      "page_name": "Temporal Workflow API",
+      "section_name": "SignalWithStart 去重",
+      "module": "SignalWithStart 幂等",
+      "feature": "关闭后重试去重",
+      "title": "去重命中不再次投递 signal",
+      "preconditions": "首次 `SignalWithStart` 的 signal 已被原 run 处理，并记录 signal 处理次数。",
+      "steps": "1. 使用相同 request ID 重试 `SignalWithStart`。",
+      "expected_results": "1. signal 处理次数不增加。<br>2. 原 run 不收到第二次相同 signal。",
+      "priority": "P0",
+      "tags": [
+        "AI-API用例",
+        "开发必测",
+        "测试必测"
+      ],
+      "test_type": "状态流转",
+      "remark": "来源 CasePlan：CP-004；来源 Acceptance：AE-004；来源 Rule：TMP-R003；来源coverage：COV-EX-0009",
+      "source_case_plan_ids": [
+        "CP-004"
+      ]
+    },
+    {
+      "testcase_id": "OSS-BLIND-R3-TEMPORALAPI-SIGNALSTART-API-DV-002",
+      "page_name": "Temporal Workflow API",
+      "section_name": "SignalWithStart 去重",
+      "module": "SignalWithStart 幂等",
+      "feature": "关闭后重试去重",
+      "title": "去重命中增加专用指标",
+      "preconditions": "已记录 `SignalWithStartWorkflowStartDeduped` 指标当前值，且首次请求的 run 已存在。",
+      "steps": "1. 使用相同 request ID 发起命中去重的 `SignalWithStart` 重试。",
+      "expected_results": "1. `SignalWithStartWorkflowStartDeduped` 指标按本次去重命中递增。",
+      "priority": "P1",
+      "tags": [
+        "AI-API用例"
+      ],
+      "test_type": "数据校验",
+      "remark": "来源 CasePlan：CP-005；来源 Acceptance：AE-005；来源 Rule：TMP-R004；来源coverage：COV-EX-0010",
+      "source_case_plan_ids": [
+        "CP-005"
+      ]
+    },
+    {
+      "testcase_id": "OSS-BLIND-R3-TEMPORALAPI-SIGNALSTART-API-DV-003",
+      "page_name": "Temporal Workflow API",
+      "section_name": "SignalWithStart 去重",
+      "module": "SignalWithStart 幂等",
+      "feature": "关闭后重试去重",
+      "title": "非去重请求不增加专用指标",
+      "preconditions": "已记录 `SignalWithStartWorkflowStartDeduped` 指标当前值。",
+      "steps": "1. 发起未命中历史 request ID 的 `SignalWithStart` 请求。",
+      "expected_results": "1. `SignalWithStartWorkflowStartDeduped` 指标不因该请求增加。",
+      "priority": "P1",
+      "tags": [
+        "AI-API用例"
+      ],
+      "test_type": "数据校验",
+      "remark": "来源 CasePlan：CP-006；来源 Acceptance：AE-006；来源 Rule：TMP-R004；来源coverage：COV-EX-0011",
+      "source_case_plan_ids": [
+        "CP-006"
+      ]
+    },
+    {
+      "testcase_id": "OSS-BLIND-R3-TEMPORALAPI-SIGNALSTART-API-AB-001",
+      "page_name": "Temporal Workflow API",
+      "section_name": "SignalWithStart 去重",
+      "module": "SignalWithStart 幂等",
+      "feature": "关闭后重试去重",
+      "title": "不同 request ID 不命中首次请求去重结果",
+      "preconditions": "已存在一次 `SignalWithStart` 请求及其 request ID。",
+      "steps": "1. 使用不同 request ID 发起 `SignalWithStart`。",
+      "expected_results": "1. 该请求不返回首次 request ID 对应的去重结果。<br>2. 该请求不计为首次请求的重复。",
+      "priority": "P0",
+      "tags": [
+        "AI-API用例",
+        "开发必测",
+        "测试必测"
+      ],
+      "test_type": "异常",
+      "remark": "来源 CasePlan：CP-007；来源 Acceptance：AE-007；来源 Rule：TMP-R005；来源coverage：COV-EX-0012",
+      "source_case_plan_ids": [
+        "CP-007"
+      ]
+    },
+    {
+      "testcase_id": "OSS-BLIND-R3-TEMPORALAPI-SIGNALSTART-API-ST-003",
+      "page_name": "Temporal Workflow API",
+      "section_name": "SignalWithStart 去重",
+      "module": "SignalWithStart 幂等",
+      "feature": "关闭后重试去重",
+      "title": "关闭后重试不改变原 run 最终状态",
+      "preconditions": "首次请求创建的 run 已关闭，并记录其最终状态。",
+      "steps": "1. 使用相同 request ID 重试 `SignalWithStart`。",
+      "expected_results": "1. 原 run 的最终状态与重试前一致。",
+      "priority": "P0",
+      "tags": [
+        "AI-API用例",
+        "开发必测",
+        "测试必测"
+      ],
+      "test_type": "状态流转",
+      "remark": "来源 CasePlan：CP-008；来源 Acceptance：AE-008；来源 Rule：TMP-R006；来源coverage：COV-EX-0013",
+      "source_case_plan_ids": [
+        "CP-008"
+      ]
+    }
+  ]
+}

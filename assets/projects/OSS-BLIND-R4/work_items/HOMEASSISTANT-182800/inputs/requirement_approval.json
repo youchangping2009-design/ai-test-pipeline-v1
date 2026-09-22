@@ -1,0 +1,13 @@
+{
+  "schema_version": "1.0.0",
+  "approval_id": "RUN-R4-HOMEASSISTANT-182800-requirement-699ba8ad562cb4e91154af36",
+  "status": "approved",
+  "reviewed_by": "user",
+  "reviewed_at": "2026-09-22T02:51:06+00:00",
+  "note": "用户于 2026-09-22 明确批准本轮四份需求摘要。",
+  "run_id": "RUN-R4-HOMEASSISTANT-182800",
+  "requirement_summary_sha256": "fe0f9d2b326baf1f175b2dd7067dea055d6a44410e50f9528f37c685f07eb59e",
+  "source_manifest_sha256": "3c9062fb5c9d744733392bb8da3a7c4ce893dd0a4be910b2fff890ce19e16bdd",
+  "raw_inputs_fingerprint": "60e89fe62e775edda1a37605658a8b002bb96d3ec9704676d68d4f141f174073",
+  "requirement_version": "1.0.0"
+}

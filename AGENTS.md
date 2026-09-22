@@ -57,12 +57,15 @@
 
 ### Completion Record
 
-完成任务后，当前 Agent 必须：
+完成任务后，当前 Agent 必须按文件职责写入，不得把同一段流水账复制到多份过程文档：
 
-1. 更新 `docs/roadmap/NEXT_ACTION.md` 的任务状态或下一步建议。
-2. 如产生新的关键决策，更新 `docs/roadmap/DECISION_LOG.md`。
-3. 如存在真实阻塞，更新 `docs/roadmap/HUMAN_ACTION_REQUIRED.md`。
-4. 在最终回复中说明新增/修改文件、校验命令与结果、剩余风险。
+1. 更新 `docs/roadmap/NEXT_ACTION.md` 的当前任务状态或下一步建议；`Completion Notes` 只追加到该节文末。yaml 必填 `task_id` / `title` / `status`；`priority` 仅当任务来自 `WORK_QUEUE.md` 时填 `P1`–`P5`。
+2. 如产生新的关键决策，把带日期条目追加到 `docs/roadmap/DECISION_LOG.md` 文末。
+3. 如存在真实阻塞，更新 `docs/roadmap/HUMAN_ACTION_REQUIRED.md` 顶部未决项；解除后把摘要追加到 `Resolved` 末尾。
+4. 阶段执行流水账只追加到根目录 `PROGRESS.md` 文末。需求接入阶段必须写；其它阶段有独立校验结果或范围边界时再写。
+5. 在最终回复中说明新增/修改文件、校验命令与结果、剩余风险。
+
+过程文档统一写法：当前状态就地改；带日期流水账只追加到文末。禁止把新条目插到文件或章节顶部，也禁止 newest-first 回写历史。
 
 本仓库中的 AI Agent 分工如下：
 
@@ -119,6 +122,12 @@
 23. `should_generate_case=true` 的 Case Plan 必须提供 `source_coverage_ids` 或稳定的 `generated_testcase_ids`，否则不得进入正式用例生成。
 24. bundle 后处理必须刷新 testcase bundle、testpoints、开发自测、traceability 与 quality report；旧质量报告指纹与当前主产物不一致时必须失败。
 25. 正式测试资产只存在于 `work_items/<WORK_ITEM_ID>/`；项目根只保留公共输入、派生索引、质量汇总和人工确认知识，项目级视图不得反写工作项。
+26. 新建工作项默认启用 `pipeline_policy.feedback_application_receipt_required=true`；一旦 design feedback 标记为 `applied`，必须提供 `design/feedback_application.json`，记录目标设计层产物的前后 SHA-256。旧工作项缺少该 policy 时只按 legacy compatibility 处理，不得伪造历史回灌哈希。
+27. 应通过 `scripts/manage_feedback_application.py prepare` 在修改设计层前冻结目标，再在修改完成后通过 `record` 生成凭证并把 feedback 置为 `applied`；不得先修改后倒填 before hash。
+28. Agent 执行反馈回灌时必须使用 `run_work_item_pipeline.py feedback-action` 的白名单动作；设计修改只能通过 `propose_feedback_design_artifacts` 写入 prepare 已冻结的目标，`record_feedback_application` 是唯一允许把 feedback 置为 `applied` 的动作。不得通过 `propose` 修改 `design_feedback.json`、凭证或正式 testcase。
+29. 新工作项默认启用 `feedback_action_journal_required=true`。每个反馈动作必须保留不可覆盖的 intent/result 双记录；相同 `action_id` 只能绑定同一请求。Review 与 strict 必须拒绝未完成 intent、请求哈希漂移、动作顺序错误或 applied feedback 缺完整 journal。
+30. 新工作项默认启用 `feedback_action_execution_identity_required=true`。feedback Action 必须绑定已存在且工作项身份一致的 Harness `run_id`，并记录受信调用侧提供的 `actor` 与 `provider`；同一 feedback 的成功动作不得跨 run 混用。
+31. 新工作项默认启用 `review_disposition_required=true`。无代码映证时必须由人工通过 `mark-review-not-applicable` 为具体 validate run 声明原因；N/A 只跳过代码评审资产要求，不得跳过 Review 的 design feedback、回灌凭证、Action journal 或 Oracle 校验。
 
 # Case Generation Rules
 

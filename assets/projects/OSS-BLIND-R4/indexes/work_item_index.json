@@ -1,0 +1,79 @@
+{
+  "project_code": "OSS-BLIND-R4",
+  "index_type": "work_item",
+  "generated_at": "2026-09-22T13:13:56",
+  "items": [
+    {
+      "work_item_id": "GRAFANA-133083",
+      "title": "APIStore explicit serializer",
+      "status": "initialized",
+      "work_item_level": "M",
+      "manifest_path": "work_items/GRAFANA-133083/manifest.json",
+      "manifest_sha256": "e59ee7fd53857b11e2480842ec8dfd9d92d8784ddc9f9d71aeb849fc53ce5cb6",
+      "artifact_status": "ready",
+      "missing_artifacts": [],
+      "testcase_count": 17,
+      "open_risk_count": 1,
+      "quality_report_status": "current",
+      "primary_artifacts": {
+        "structured_prd": "work_items/GRAFANA-133083/structured_prd/structured_prd.md",
+        "testcases_main": "work_items/GRAFANA-133083/testcases/testcases_main.md",
+        "traceability_primary": "work_items/GRAFANA-133083/traceability/coverage_first_traceability.json"
+      }
+    },
+    {
+      "work_item_id": "HOMEASSISTANT-182800",
+      "title": "Prevent duplicate ID3 tags in cached TTS audio",
+      "status": "initialized",
+      "work_item_level": "M",
+      "manifest_path": "work_items/HOMEASSISTANT-182800/manifest.json",
+      "manifest_sha256": "0d47e107151dc010841c08a7e456627458ae2c33a312620014b12fe7e416f0b0",
+      "artifact_status": "ready",
+      "missing_artifacts": [],
+      "testcase_count": 6,
+      "open_risk_count": 1,
+      "quality_report_status": "current",
+      "primary_artifacts": {
+        "structured_prd": "work_items/HOMEASSISTANT-182800/structured_prd/structured_prd.md",
+        "testcases_main": "work_items/HOMEASSISTANT-182800/testcases/testcases_main.md",
+        "traceability_primary": "work_items/HOMEASSISTANT-182800/traceability/coverage_first_traceability.json"
+      }
+    },
+    {
+      "work_item_id": "KUBERNETES-141831",
+      "title": "Warn on empty DeviceTaintRule selector",
+      "status": "initialized",
+      "work_item_level": "M",
+      "manifest_path": "work_items/KUBERNETES-141831/manifest.json",
+      "manifest_sha256": "c34e05d63089eeb14aa03a40754543769d6f084aa1333f0a68ff4f67355dc0fa",
+      "artifact_status": "ready",
+      "missing_artifacts": [],
+      "testcase_count": 13,
+      "open_risk_count": 1,
+      "quality_report_status": "current",
+      "primary_artifacts": {
+        "structured_prd": "work_items/KUBERNETES-141831/structured_prd/structured_prd.md",
+        "testcases_main": "work_items/KUBERNETES-141831/testcases/testcases_main.md",
+        "traceability_primary": "work_items/KUBERNETES-141831/traceability/coverage_first_traceability.json"
+      }
+    },
+    {
+      "work_item_id": "RAILS-58429",
+      "title": "BroadcastLogger tagged semantics across multiple loggers",
+      "status": "initialized",
+      "work_item_level": "M",
+      "manifest_path": "work_items/RAILS-58429/manifest.json",
+      "manifest_sha256": "00826d6c1ddbe8207be7ede26625c128b95b21ec2f1b10449fc5e901ab90d3fb",
+      "artifact_status": "ready",
+      "missing_artifacts": [],
+      "testcase_count": 10,
+      "open_risk_count": 0,
+      "quality_report_status": "current",
+      "primary_artifacts": {
+        "structured_prd": "work_items/RAILS-58429/structured_prd/structured_prd.md",
+        "testcases_main": "work_items/RAILS-58429/testcases/testcases_main.md",
+        "traceability_primary": "work_items/RAILS-58429/traceability/coverage_first_traceability.json"
+      }
+    }
+  ]
+}

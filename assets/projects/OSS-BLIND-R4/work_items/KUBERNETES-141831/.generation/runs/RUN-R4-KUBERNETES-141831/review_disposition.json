@@ -1,0 +1,15 @@
+{
+  "schema_version": "1.0.0",
+  "disposition": "not_applicable",
+  "run_id": "RUN-R4-KUBERNETES-141831",
+  "project_code": "OSS-BLIND-R4",
+  "work_item_id": "KUBERNETES-141831",
+  "declared_by": "ycp",
+  "declared_at": "2026-09-22T05:13:15+00:00",
+  "reason": "用户已确认本轮未提供本地业务代码目录；公开 PR Oracle Review 已完成，本声明仅用于本地代码评审不适用。",
+  "code_review_scope": {
+    "path": "code_reviews/code_review_scope.json",
+    "sha256": "37c2d4de60a024d58367ddea102ab9221e61231fb6d2371416eb31b40fcc9621",
+    "status": "awaiting_code_directories"
+  }
+}

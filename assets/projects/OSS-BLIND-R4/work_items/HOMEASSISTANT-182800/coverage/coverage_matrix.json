@@ -1,0 +1,259 @@
+{
+  "project_code": "OSS-BLIND-R4",
+  "work_item_id": "HOMEASSISTANT-182800",
+  "generated_at": "2026-09-22T11:21:41",
+  "generated_from": [
+    "structured_prd/structured_prd.json",
+    "analysis/reasoning_pack.json"
+  ],
+  "entries": [
+    {
+      "coverage_id": "COV-EX-0001",
+      "coverage_type": "happy_path_combo",
+      "coverage_level": "business",
+      "emit_mode": "main_testcase",
+      "source_origin": "explicit_rule",
+      "source_scope": "primary_requirement",
+      "source_type": "structured_rule",
+      "title": "已带 ID3 标签的 MP3 写入 Home Assistant 标签后只能保留一个有效 ID3 头。",
+      "page_name": "TTS 音频缓存处理",
+      "section_name": "MP3 标签写入与缓存回放",
+      "module_name": "TTS 音频标签",
+      "feature_name": "ID3 标签合并",
+      "field_name": "",
+      "rule_name": "HA-R001",
+      "atomic_assertion_index": null,
+      "priority": "high",
+      "rationale": "该规则来自 Structured PRD 的显式需求规则，必须在 Coverage 中保留。",
+      "planned_assertions": [
+        "已带 ID3 标签的 MP3 写入 Home Assistant 标签后只能保留一个有效 ID3 头。"
+      ],
+      "structured_refs": [
+        "requirement_info.explicit_rules.HA-R001"
+      ],
+      "reasoning_refs": []
+    },
+    {
+      "coverage_id": "COV-EX-0002",
+      "coverage_type": "happy_path_combo",
+      "coverage_level": "business",
+      "emit_mode": "main_testcase",
+      "source_origin": "explicit_rule",
+      "source_scope": "primary_requirement",
+      "source_type": "structured_rule",
+      "title": "更新标签时必须保留输入中的 TSSE 元数据。",
+      "page_name": "TTS 音频缓存处理",
+      "section_name": "MP3 标签写入与缓存回放",
+      "module_name": "TTS 音频标签",
+      "feature_name": "ID3 标签合并",
+      "field_name": "",
+      "rule_name": "HA-R002",
+      "atomic_assertion_index": null,
+      "priority": "high",
+      "rationale": "该规则来自 Structured PRD 的显式需求规则，必须在 Coverage 中保留。",
+      "planned_assertions": [
+        "更新标签时必须保留输入中的 TSSE 元数据。"
+      ],
+      "structured_refs": [
+        "requirement_info.explicit_rules.HA-R002"
+      ],
+      "reasoning_refs": []
+    },
+    {
+      "coverage_id": "COV-EX-0003",
+      "coverage_type": "happy_path_combo",
+      "coverage_level": "business",
+      "emit_mode": "main_testcase",
+      "source_origin": "explicit_rule",
+      "source_scope": "primary_requirement",
+      "source_type": "structured_rule",
+      "title": "标签处理不得改变 MP3 音频帧内容。",
+      "page_name": "TTS 音频缓存处理",
+      "section_name": "MP3 标签写入与缓存回放",
+      "module_name": "TTS 音频标签",
+      "feature_name": "ID3 标签合并",
+      "field_name": "",
+      "rule_name": "HA-R003",
+      "atomic_assertion_index": null,
+      "priority": "high",
+      "rationale": "该规则来自 Structured PRD 的显式需求规则，必须在 Coverage 中保留。",
+      "planned_assertions": [
+        "标签处理不得改变 MP3 音频帧内容。"
+      ],
+      "structured_refs": [
+        "requirement_info.explicit_rules.HA-R003"
+      ],
+      "reasoning_refs": []
+    },
+    {
+      "coverage_id": "COV-EX-0004",
+      "coverage_type": "happy_path_combo",
+      "coverage_level": "business",
+      "emit_mode": "main_testcase",
+      "source_origin": "explicit_rule",
+      "source_scope": "primary_requirement",
+      "source_type": "structured_rule",
+      "title": "缓存文件从内存路径切换为磁盘读取后仍应可被严格解码器正常播放，不能静音。",
+      "page_name": "TTS 音频缓存处理",
+      "section_name": "MP3 标签写入与缓存回放",
+      "module_name": "TTS 音频标签",
+      "feature_name": "缓存音频回放",
+      "field_name": "",
+      "rule_name": "HA-R004",
+      "atomic_assertion_index": null,
+      "priority": "high",
+      "rationale": "该规则来自 Structured PRD 的显式需求规则，必须在 Coverage 中保留。",
+      "planned_assertions": [
+        "缓存文件从内存路径切换为磁盘读取后仍应可被严格解码器正常播放，不能静音。"
+      ],
+      "structured_refs": [
+        "requirement_info.explicit_rules.HA-R004"
+      ],
+      "reasoning_refs": []
+    },
+    {
+      "coverage_id": "COV-EX-0005",
+      "coverage_type": "happy_path_combo",
+      "coverage_level": "business",
+      "emit_mode": "main_testcase",
+      "source_origin": "explicit_rule",
+      "source_scope": "primary_requirement",
+      "source_type": "structured_rule",
+      "title": "未带 ID3 标签的 MP3 仍可添加所需标签并保持可播放。",
+      "page_name": "TTS 音频缓存处理",
+      "section_name": "MP3 标签写入与缓存回放",
+      "module_name": "TTS 音频标签",
+      "feature_name": "ID3 标签合并",
+      "field_name": "",
+      "rule_name": "HA-R005",
+      "atomic_assertion_index": null,
+      "priority": "medium",
+      "rationale": "该规则来自 Structured PRD 的显式需求规则，必须在 Coverage 中保留。",
+      "planned_assertions": [
+        "未带 ID3 标签的 MP3 仍可添加所需标签并保持可播放。"
+      ],
+      "structured_refs": [
+        "requirement_info.explicit_rules.HA-R005"
+      ],
+      "reasoning_refs": []
+    },
+    {
+      "coverage_id": "COV-EX-0006",
+      "coverage_type": "happy_path_combo",
+      "coverage_level": "business",
+      "emit_mode": "main_testcase",
+      "source_origin": "explicit_rule",
+      "source_scope": "primary_requirement",
+      "source_type": "structured_rule",
+      "title": "已带标签音频的处理结果不应依赖具体 TTS provider。",
+      "page_name": "TTS 音频缓存处理",
+      "section_name": "MP3 标签写入与缓存回放",
+      "module_name": "TTS 音频标签",
+      "feature_name": "ID3 标签合并",
+      "field_name": "",
+      "rule_name": "HA-R006",
+      "atomic_assertion_index": null,
+      "priority": "high",
+      "rationale": "该规则来自 Structured PRD 的显式需求规则，必须在 Coverage 中保留。",
+      "planned_assertions": [
+        "已带标签音频的处理结果不应依赖具体 TTS provider。"
+      ],
+      "structured_refs": [
+        "requirement_info.explicit_rules.HA-R006"
+      ],
+      "reasoning_refs": []
+    },
+    {
+      "coverage_id": "COV-AI-0007",
+      "coverage_type": "happy_path_combo",
+      "coverage_level": "audit_only",
+      "emit_mode": "audit_item",
+      "source_origin": "ai_reasoning",
+      "source_type": "business_risk",
+      "title": "标签版本、扩展头、padding 或异常标签可能影响合并兼容性。",
+      "page_name": "",
+      "section_name": "",
+      "module_name": "",
+      "feature_name": "",
+      "field_name": "",
+      "priority": "medium",
+      "rationale": "该项来自 Reasoning Pack，保留为风险/边界审计，不自动升级为产品验收主用例。",
+      "planned_assertions": [
+        "审计并确认：标签版本、扩展头、padding 或异常标签可能影响合并兼容性。"
+      ],
+      "structured_refs": [],
+      "reasoning_refs": [
+        "RISK-001"
+      ]
+    },
+    {
+      "coverage_id": "COV-AI-0008",
+      "coverage_type": "happy_path_combo",
+      "coverage_level": "audit_only",
+      "emit_mode": "audit_item",
+      "source_origin": "ai_reasoning",
+      "source_type": "business_risk",
+      "title": "只验证播放器返回成功可能漏掉静音，应检查实际可解码音频。",
+      "page_name": "",
+      "section_name": "",
+      "module_name": "",
+      "feature_name": "",
+      "field_name": "",
+      "priority": "medium",
+      "rationale": "该项来自 Reasoning Pack，保留为风险/边界审计，不自动升级为产品验收主用例。",
+      "planned_assertions": [
+        "审计并确认：只验证播放器返回成功可能漏掉静音，应检查实际可解码音频。"
+      ],
+      "structured_refs": [],
+      "reasoning_refs": [
+        "RISK-002"
+      ]
+    },
+    {
+      "coverage_id": "COV-AI-0009",
+      "coverage_type": "happy_path_combo",
+      "coverage_level": "audit_only",
+      "emit_mode": "audit_item",
+      "source_origin": "ai_reasoning",
+      "source_type": "business_risk",
+      "title": "处理过程若重编码音频会引入不必要的质量与性能回退。",
+      "page_name": "",
+      "section_name": "",
+      "module_name": "",
+      "feature_name": "",
+      "field_name": "",
+      "priority": "medium",
+      "rationale": "该项来自 Reasoning Pack，保留为风险/边界审计，不自动升级为产品验收主用例。",
+      "planned_assertions": [
+        "审计并确认：处理过程若重编码音频会引入不必要的质量与性能回退。"
+      ],
+      "structured_refs": [],
+      "reasoning_refs": [
+        "RISK-003"
+      ]
+    },
+    {
+      "coverage_id": "COV-AI-0010",
+      "coverage_type": "happy_path_combo",
+      "coverage_level": "audit_only",
+      "emit_mode": "audit_item",
+      "source_origin": "ai_reasoning",
+      "source_type": "business_risk",
+      "title": "对未带标签输入的兼容路径也可能被标签定位逻辑影响。",
+      "page_name": "",
+      "section_name": "",
+      "module_name": "",
+      "feature_name": "",
+      "field_name": "",
+      "priority": "medium",
+      "rationale": "该项来自 Reasoning Pack，保留为风险/边界审计，不自动升级为产品验收主用例。",
+      "planned_assertions": [
+        "审计并确认：对未带标签输入的兼容路径也可能被标签定位逻辑影响。"
+      ],
+      "structured_refs": [],
+      "reasoning_refs": [
+        "RISK-004"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,28 @@
+{
+  "project_code": "OSS-BLIND-R4",
+  "work_item_id": "RAILS-58429",
+  "oracle": {
+    "source_url": "https://github.com/rails/rails/pull/58429",
+    "head_sha": "edd687c7a77f31f1de6ae646afe4a32d76b6bc9d"
+  },
+  "assertions": [
+    {"assertion_id": "OA-001", "oracle_scope": "requirement", "summary": "无 block 的 tagged 返回可继续记录日志的 BroadcastLogger，多个 tagging logger 都收到带标签消息", "disposition": "covered", "testcase_ids": ["OSS-BLIND-R4-BROADCASTLOGGER-TAGGED-SERVER-FN-001", "OSS-BLIND-R4-BROADCASTLOGGER-TAGGED-SERVER-ST-001"]},
+    {"assertion_id": "OA-002", "oracle_scope": "requirement", "summary": "有 block 的 tagged 只 yield 一次且所有 tagging logger 同时带标签", "disposition": "covered", "testcase_ids": ["OSS-BLIND-R4-BROADCASTLOGGER-TAGGED-SERVER-ST-003", "OSS-BLIND-R4-BROADCASTLOGGER-TAGGED-SERVER-ST-004"]},
+    {"assertion_id": "OA-003", "oracle_scope": "requirement", "summary": "block 抛出异常后所有 logger 的临时标签均被清理且异常继续传播", "disposition": "covered", "testcase_ids": ["OSS-BLIND-R4-BROADCASTLOGGER-TAGGED-SERVER-ST-006", "OSS-BLIND-R4-BROADCASTLOGGER-TAGGED-SERVER-FN-002"]},
+    {"assertion_id": "OA-004", "oracle_scope": "requirement", "summary": "不支持 tagged 的广播目标仍被保留并接收无标签消息", "disposition": "covered", "testcase_ids": ["OSS-BLIND-R4-BROADCASTLOGGER-TAGGED-SERVER-ST-002", "OSS-BLIND-R4-BROADCASTLOGGER-TAGGED-SERVER-ST-007"]},
+    {"assertion_id": "OA-005", "oracle_scope": "implementation", "summary": "正常结束通过各 logger 自身 block 清理标签，并保持单 logger 与普通广播兼容", "disposition": "covered", "testcase_ids": ["OSS-BLIND-R4-BROADCASTLOGGER-TAGGED-SERVER-ST-005", "OSS-BLIND-R4-BROADCASTLOGGER-TAGGED-SERVER-FL-001"]},
+    {"assertion_id": "OA-006", "oracle_scope": "risk", "summary": "没有任何 tagging logger 时，block 形式仍应只 yield 一次并保持普通广播可用", "disposition": "missing", "testcase_ids": [], "design_feedback_ids": ["DF-001"]}
+  ],
+  "testcase_assessments": [
+    {"testcase_id": "OSS-BLIND-R4-BROADCASTLOGGER-TAGGED-SERVER-FN-001", "disposition": "direct_match"},
+    {"testcase_id": "OSS-BLIND-R4-BROADCASTLOGGER-TAGGED-SERVER-ST-001", "disposition": "direct_match"},
+    {"testcase_id": "OSS-BLIND-R4-BROADCASTLOGGER-TAGGED-SERVER-ST-002", "disposition": "direct_match"},
+    {"testcase_id": "OSS-BLIND-R4-BROADCASTLOGGER-TAGGED-SERVER-ST-003", "disposition": "direct_match"},
+    {"testcase_id": "OSS-BLIND-R4-BROADCASTLOGGER-TAGGED-SERVER-ST-004", "disposition": "direct_match"},
+    {"testcase_id": "OSS-BLIND-R4-BROADCASTLOGGER-TAGGED-SERVER-ST-005", "disposition": "requirement_regression"},
+    {"testcase_id": "OSS-BLIND-R4-BROADCASTLOGGER-TAGGED-SERVER-ST-006", "disposition": "direct_match"},
+    {"testcase_id": "OSS-BLIND-R4-BROADCASTLOGGER-TAGGED-SERVER-FN-002", "disposition": "direct_match"},
+    {"testcase_id": "OSS-BLIND-R4-BROADCASTLOGGER-TAGGED-SERVER-ST-007", "disposition": "direct_match"},
+    {"testcase_id": "OSS-BLIND-R4-BROADCASTLOGGER-TAGGED-SERVER-FL-001", "disposition": "requirement_regression"}
+  ]
+}

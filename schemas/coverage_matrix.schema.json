@@ -84,6 +84,14 @@
               "ai_reasoning"
             ]
           },
+          "source_scope": {
+            "type": "string",
+            "enum": [
+              "primary_requirement",
+              "context_only",
+              "oracle_only"
+            ]
+          },
           "source_type": {
             "type": "string",
             "enum": [
@@ -117,6 +125,10 @@
           },
           "rule_name": {
             "type": "string"
+          },
+          "atomic_assertion_index": {
+            "type": ["integer", "null"],
+            "minimum": 1
           },
           "priority": {
             "type": "string",

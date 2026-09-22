@@ -15,21 +15,23 @@
         "TG-001"
       ],
       "source_example_ids": [
-        "AE-001"
+        "AE-001",
+        "AE-045",
+        "AE-048"
       ],
       "source_responsibility_ids": [],
-      "page_name": "盒子管理后台-云手机商品管理-添加",
-      "section_name": "商品添加表单",
-      "module_name": "云手机商品管理",
-      "feature_name": "商品添加表单",
-      "test_dimension": "save_block",
-      "test_point": "约束判定：promotion_slogan; value_constraint",
-      "assertion": "系统按来源规则判定并明确反馈：promotion_slogan; value_constraint。",
+      "page_name": "云挂机购买页",
+      "section_name": "宣传区",
+      "module_name": "云挂机购买页",
+      "feature_name": "宣传区",
+      "test_dimension": "ui_display",
+      "test_point": "验证“宣传口号”超过一行时在C端换行展示",
+      "assertion": "页面可直接观察到：“宣传口号”超过一行时在C端换行展示。",
       "priority": "P0",
       "validation_path": "product_acceptance",
       "should_generate_case": true,
       "generated_testcase_ids": [
-        "WX-YGJ-ADD-FORM-B-AB-001"
+        "WX-YGJ-ADD-FORM-B-FN-001"
       ]
     },
     {
@@ -39,21 +41,23 @@
         "TG-002"
       ],
       "source_example_ids": [
-        "AE-002"
+        "AE-002",
+        "AE-046",
+        "AE-049"
       ],
       "source_responsibility_ids": [],
-      "page_name": "盒子管理后台-云手机商品管理-添加",
-      "section_name": "商品添加表单",
-      "module_name": "云手机商品管理",
-      "feature_name": "商品添加表单",
-      "test_dimension": "save_block",
-      "test_point": "约束判定：performance_parameters; value_constraint",
-      "assertion": "系统按来源规则判定并明确反馈：performance_parameters; value_constraint。",
+      "page_name": "云挂机购买页",
+      "section_name": "宣传区",
+      "module_name": "云挂机购买页",
+      "feature_name": "宣传区",
+      "test_dimension": "ui_display",
+      "test_point": "验证“性能参数”超过一行时在C端换行展示",
+      "assertion": "页面可直接观察到：“性能参数”超过一行时在C端换行展示。",
       "priority": "P0",
       "validation_path": "product_acceptance",
       "should_generate_case": true,
       "generated_testcase_ids": [
-        "WX-YGJ-ADD-FORM-B-AB-002"
+        "WX-YGJ-ADD-FORM-B-FN-002"
       ]
     },
     {
@@ -63,7 +67,9 @@
         "TG-003"
       ],
       "source_example_ids": [
-        "AE-003"
+        "AE-003",
+        "AE-047",
+        "AE-050"
       ],
       "source_responsibility_ids": [],
       "page_name": "云挂机购买页",
@@ -71,8 +77,8 @@
       "module_name": "云挂机购买页",
       "feature_name": "特价专区",
       "test_dimension": "ui_display",
-      "test_point": "读侧展示：后台未配置特殊区商品时隐藏",
-      "assertion": "页面可直接观察到来源规则所述结果：后台未配置特殊区商品时隐藏。",
+      "test_point": "验证“特殊区商品列表”后台未配置特殊区商品时隐藏",
+      "assertion": "页面可直接观察到：“特殊区商品列表”后台未配置特殊区商品时隐藏。",
       "priority": "P1",
       "validation_path": "product_acceptance",
       "should_generate_case": true,
@@ -87,7 +93,8 @@
         "TG-004"
       ],
       "source_example_ids": [
-        "AE-004"
+        "AE-004",
+        "AE-051"
       ],
       "source_responsibility_ids": [],
       "page_name": "云挂机购买页",
@@ -95,8 +102,8 @@
       "module_name": "云挂机购买页",
       "feature_name": "特价专区",
       "test_dimension": "ui_display",
-      "test_point": "读侧展示：最多展示4个商品",
-      "assertion": "页面可直接观察到来源规则所述结果：最多展示4个商品。",
+      "test_point": "验证“特殊区商品列表”最多展示4个商品",
+      "assertion": "页面可直接观察到：“特殊区商品列表”最多展示4个商品。",
       "priority": "P1",
       "validation_path": "product_acceptance",
       "should_generate_case": true,
@@ -111,21 +118,22 @@
         "TG-005"
       ],
       "source_example_ids": [
-        "AE-005"
+        "AE-005",
+        "AE-058"
       ],
       "source_responsibility_ids": [],
-      "page_name": "云挂机购买页",
-      "section_name": "版本Tab",
-      "module_name": "云挂机购买页",
-      "feature_name": "版本Tab",
-      "test_dimension": "ui_display",
-      "test_point": "业务结果：original_price; value_constraint",
-      "assertion": "最终业务状态与来源规则一致：original_price; value_constraint。",
+      "page_name": "盒子管理后台-云手机商品管理-添加",
+      "section_name": "商品添加表单",
+      "module_name": "云手机商品管理",
+      "feature_name": "商品添加表单",
+      "test_dimension": "save_block",
+      "test_point": "验证“原价（元）”必须填写大于{0.00}的数值",
+      "assertion": "违反“原价（元）”必须填写大于{0.00}的数值时，系统阻止保存并保留原配置。",
       "priority": "P1",
       "validation_path": "product_acceptance",
       "should_generate_case": true,
       "generated_testcase_ids": [
-        "WX-YGJ-BUY-TAB-C-FN-005"
+        "WX-YGJ-BUY-TAB-C-AB-005"
       ]
     },
     {
@@ -135,21 +143,22 @@
         "TG-006"
       ],
       "source_example_ids": [
-        "AE-006"
+        "AE-006",
+        "AE-059"
       ],
       "source_responsibility_ids": [],
-      "page_name": "云挂机购买页",
-      "section_name": "普通商品列表",
-      "module_name": "云挂机购买页",
-      "feature_name": "普通商品列表",
-      "test_dimension": "ui_display",
-      "test_point": "业务结果：current_price; value_constraint",
-      "assertion": "最终业务状态与来源规则一致：current_price; value_constraint。",
+      "page_name": "盒子管理后台-云手机商品管理-添加",
+      "section_name": "商品添加表单",
+      "module_name": "云手机商品管理",
+      "feature_name": "商品添加表单",
+      "test_dimension": "save_block",
+      "test_point": "验证“现价（元）”必须填写大于{0.00}的数值",
+      "assertion": "违反“现价（元）”必须填写大于{0.00}的数值时，系统阻止保存并保留原配置。",
       "priority": "P1",
       "validation_path": "product_acceptance",
       "should_generate_case": true,
       "generated_testcase_ids": [
-        "WX-YGJ-BUY-REG-C-FN-006"
+        "WX-YGJ-BUY-REG-C-AB-006"
       ]
     },
     {
@@ -159,21 +168,22 @@
         "TG-007"
       ],
       "source_example_ids": [
-        "AE-007"
+        "AE-007",
+        "AE-060"
       ],
       "source_responsibility_ids": [],
-      "page_name": "云挂机购买页",
-      "section_name": "普通商品列表",
-      "module_name": "云挂机购买页",
-      "feature_name": "普通商品列表",
-      "test_dimension": "ui_display",
-      "test_point": "业务结果：service_duration; value_constraint",
-      "assertion": "最终业务状态与来源规则一致：service_duration; value_constraint。",
+      "page_name": "盒子管理后台-云手机商品管理-添加",
+      "section_name": "商品添加表单",
+      "module_name": "云手机商品管理",
+      "feature_name": "商品添加表单",
+      "test_dimension": "save_block",
+      "test_point": "验证“服务时长”天数最大{370}、小时最大{23}且不能同时为{0}",
+      "assertion": "违反“服务时长”天数最大{370}、小时最大{23}且不能同时为{0}时，系统阻止保存并保留原配置。",
       "priority": "P1",
       "validation_path": "product_acceptance",
       "should_generate_case": true,
       "generated_testcase_ids": [
-        "WX-YGJ-BUY-REG-C-FN-007"
+        "WX-YGJ-BUY-REG-C-AB-007"
       ]
     },
     {
@@ -183,21 +193,22 @@
         "TG-008"
       ],
       "source_example_ids": [
-        "AE-008"
+        "AE-008",
+        "AE-061"
       ],
       "source_responsibility_ids": [],
-      "page_name": "云挂机购买页",
-      "section_name": "普通商品列表",
-      "module_name": "云挂机购买页",
-      "feature_name": "普通商品列表",
-      "test_dimension": "ui_display",
-      "test_point": "业务结果：in_box_sort_order; value_constraint; integer_only=True",
-      "assertion": "最终业务状态与来源规则一致：in_box_sort_order; value_constraint; integer_only=True。",
+      "page_name": "盒子管理后台-云手机商品管理-添加",
+      "section_name": "商品添加表单",
+      "module_name": "云手机商品管理",
+      "feature_name": "商品添加表单",
+      "test_dimension": "save_block",
+      "test_point": "验证“盒子内排序”只能填写不大于{1000}的正整数",
+      "assertion": "违反“盒子内排序”只能填写不大于{1000}的正整数时，系统阻止保存并保留原配置。",
       "priority": "P1",
       "validation_path": "product_acceptance",
       "should_generate_case": true,
       "generated_testcase_ids": [
-        "WX-YGJ-BUY-REG-C-FN-008"
+        "WX-YGJ-BUY-REG-C-AB-008"
       ]
     },
     {
@@ -207,21 +218,22 @@
         "TG-009"
       ],
       "source_example_ids": [
-        "AE-009"
+        "AE-009",
+        "AE-062"
       ],
       "source_responsibility_ids": [],
-      "page_name": "云挂机购买页",
-      "section_name": "普通商品列表",
-      "module_name": "云挂机购买页",
-      "feature_name": "普通商品列表",
-      "test_dimension": "ui_display",
-      "test_point": "业务结果：inventory_warning_threshold; value_constraint; integer_only=True",
-      "assertion": "最终业务状态与来源规则一致：inventory_warning_threshold; value_constraint; integer_only=True。",
+      "page_name": "盒子管理后台-云手机商品管理-添加",
+      "section_name": "商品添加表单",
+      "module_name": "云手机商品管理",
+      "feature_name": "商品添加表单",
+      "test_dimension": "save_block",
+      "test_point": "验证“库存预警值”只能填写不大于{200}的正整数",
+      "assertion": "违反“库存预警值”只能填写不大于{200}的正整数时，系统阻止保存并保留原配置。",
       "priority": "P1",
       "validation_path": "product_acceptance",
       "should_generate_case": true,
       "generated_testcase_ids": [
-        "WX-YGJ-BUY-REG-C-FN-009"
+        "WX-YGJ-BUY-REG-C-AB-009"
       ]
     },
     {
@@ -231,16 +243,17 @@
         "TG-010"
       ],
       "source_example_ids": [
-        "AE-010"
+        "AE-010",
+        "AE-063"
       ],
       "source_responsibility_ids": [],
-      "page_name": "云挂机购买页",
-      "section_name": "普通商品列表",
-      "module_name": "云挂机购买页",
-      "feature_name": "普通商品列表",
+      "page_name": "盒子管理后台-云手机商品管理-添加",
+      "section_name": "商品添加表单",
+      "module_name": "云手机商品管理",
+      "feature_name": "商品添加表单",
       "test_dimension": "ui_display",
-      "test_point": "业务结果：purchase_alert_recipient; data_source_constraint; data_source=盒子后台管理员列表",
-      "assertion": "最终业务状态与来源规则一致：purchase_alert_recipient; data_source_constraint; data_source=盒子后台管理员列表。",
+      "test_point": "验证“购买数量报警通知人”候选项来自盒子后台管理员列表",
+      "assertion": "页面可直接观察到：“购买数量报警通知人”候选项来自盒子后台管理员列表。",
       "priority": "P1",
       "validation_path": "product_acceptance",
       "should_generate_case": true,
@@ -255,16 +268,17 @@
         "TG-011"
       ],
       "source_example_ids": [
-        "AE-011"
+        "AE-011",
+        "AE-052"
       ],
       "source_responsibility_ids": [],
-      "page_name": "盒子管理后台-云手机商品管理",
-      "section_name": "操作区",
+      "page_name": "盒子管理后台-云手机商品管理-添加",
+      "section_name": "商品添加表单",
       "module_name": "云手机商品管理",
-      "feature_name": "操作区",
+      "feature_name": "商品添加表单",
       "test_dimension": "save_block",
-      "test_point": "约束判定：天数最大370，小时最大23，所有项不可同时为0，后端以秒为单位",
-      "assertion": "系统按来源规则判定并明确反馈：天数最大370，小时最大23，所有项不可同时为0，后端以秒为单位。",
+      "test_point": "验证“服务时长”天数最大370，小时最大23，所有项不可同时为0，后端以秒为单位",
+      "assertion": "违反“服务时长”天数最大370，小时最大23，所有项不可同时为0，后端以秒为单位时，系统阻止保存并保留原配置。",
       "priority": "P0",
       "validation_path": "product_acceptance",
       "should_generate_case": true,
@@ -279,16 +293,17 @@
         "TG-012"
       ],
       "source_example_ids": [
-        "AE-012"
+        "AE-012",
+        "AE-053"
       ],
       "source_responsibility_ids": [],
-      "page_name": "盒子管理后台-云手机商品管理",
-      "section_name": "操作区",
+      "page_name": "盒子管理后台-云手机商品管理-添加",
+      "section_name": "商品添加表单",
       "module_name": "云手机商品管理",
-      "feature_name": "操作区",
+      "feature_name": "商品添加表单",
       "test_dimension": "save_block",
-      "test_point": "约束判定：特殊区商品数量必须小于等于4，超过4个时不可保存",
-      "assertion": "系统按来源规则判定并明确反馈：特殊区商品数量必须小于等于4，超过4个时不可保存。",
+      "test_point": "验证“商品区”特殊区商品数量必须小于等于4，超过4个时不可保存",
+      "assertion": "违反“商品区”特殊区商品数量必须小于等于4，超过4个时不可保存时，系统阻止保存并保留原配置。",
       "priority": "P0",
       "validation_path": "product_acceptance",
       "should_generate_case": true,
@@ -303,7 +318,8 @@
         "TG-013"
       ],
       "source_example_ids": [
-        "AE-013"
+        "AE-013",
+        "AE-054"
       ],
       "source_responsibility_ids": [],
       "page_name": "盒子管理后台-云手机商品管理-添加",
@@ -311,8 +327,8 @@
       "module_name": "云手机商品管理",
       "feature_name": "商品添加表单",
       "test_dimension": "save_block",
-      "test_point": "约束判定：正整数，上限1000；相同排序值按创建时间倒序排列",
-      "assertion": "系统按来源规则判定并明确反馈：正整数，上限1000；相同排序值按创建时间倒序排列。",
+      "test_point": "验证“盒子内排序”正整数，上限1000；相同排序值按创建时间倒序排列",
+      "assertion": "违反“盒子内排序”正整数，上限1000；相同排序值按创建时间倒序排列时，系统阻止保存并保留原配置。",
       "priority": "P0",
       "validation_path": "product_acceptance",
       "should_generate_case": true,
@@ -331,12 +347,12 @@
       ],
       "source_responsibility_ids": [],
       "page_name": "盒子管理后台-云手机商品管理-添加",
-      "section_name": "商品区与库存规则说明表",
+      "section_name": "商品添加表单",
       "module_name": "云手机商品管理",
-      "feature_name": "商品区与库存规则说明表",
+      "feature_name": "商品添加表单",
       "test_dimension": "backend_job",
-      "test_point": "后台任务：正整数，上限200；按固定频率校验库存是否小于等于配置数量",
-      "assertion": "任务结果和可观察通知符合来源规则：正整数，上限200；按固定频率校验库存是否小于等于配置数量。",
+      "test_point": "验证“库存预警值”正整数，上限200；按固定频率校验库存是否小于等于配置数量",
+      "assertion": "后台任务执行后可观察到：“库存预警值”正整数，上限200；按固定频率校验库存是否小于等于配置数量。",
       "priority": "P0",
       "validation_path": "product_acceptance",
       "should_generate_case": true,
@@ -351,7 +367,9 @@
         "TG-015"
       ],
       "source_example_ids": [
-        "AE-015"
+        "AE-015",
+        "AE-072",
+        "AE-073"
       ],
       "source_responsibility_ids": [],
       "page_name": "盒子管理后台-云手机商品管理-添加",
@@ -359,13 +377,13 @@
       "module_name": "云手机商品管理",
       "feature_name": "商品区与库存规则说明表",
       "test_dimension": "cross_surface_linkage",
-      "test_point": "跨端联动：库存小于等于预警值时，C端隐藏商品、不分配云机并发送库存不足通知",
-      "assertion": "B端、服务端与C端的可观察结果保持一致：库存小于等于预警值时，C端隐藏商品、不分配云机并发送库存不足通知。",
+      "test_point": "验证“库存预警值”库存小于等于预警值时，C端隐藏商品、不分配云机并发送库存不足通知",
+      "assertion": "触发条件后，各验证端分别出现以下结果：“库存预警值”库存小于等于预警值时，C端隐藏商品、不分配云机并发送库存不足通知。",
       "priority": "P0",
       "validation_path": "product_acceptance",
       "should_generate_case": true,
       "generated_testcase_ids": [
-        "WX-YGJ-ADD-RULE-B-ST-015"
+        "WX-YGJ-ADD-RULE-B-FL-015"
       ]
     },
     {
@@ -375,16 +393,17 @@
         "TG-016"
       ],
       "source_example_ids": [
-        "AE-016"
+        "AE-016",
+        "AE-055"
       ],
       "source_responsibility_ids": [],
       "page_name": "盒子管理后台-云手机商品管理-添加",
-      "section_name": "商品添加表单",
+      "section_name": "商品区与库存规则说明表",
       "module_name": "云手机商品管理",
-      "feature_name": "商品添加表单",
+      "feature_name": "商品区与库存规则说明表",
       "test_dimension": "save_block",
-      "test_point": "约束判定：已有功能，数值限制大于0.00",
-      "assertion": "系统按来源规则判定并明确反馈：已有功能，数值限制大于0.00。",
+      "test_point": "验证“现价”已有功能，数值限制大于0.00",
+      "assertion": "违反“现价”已有功能，数值限制大于0.00时，系统阻止保存并保留原配置。",
       "priority": "P0",
       "validation_path": "product_acceptance",
       "should_generate_case": true,
@@ -399,16 +418,17 @@
         "TG-017"
       ],
       "source_example_ids": [
-        "AE-017"
+        "AE-017",
+        "AE-056"
       ],
       "source_responsibility_ids": [],
       "page_name": "盒子管理后台-云手机商品管理-添加",
-      "section_name": "商品添加表单",
+      "section_name": "商品区与库存规则说明表",
       "module_name": "云手机商品管理",
-      "feature_name": "商品添加表单",
+      "feature_name": "商品区与库存规则说明表",
       "test_dimension": "save_block",
-      "test_point": "约束判定：已有功能，数值限制大于0.00",
-      "assertion": "系统按来源规则判定并明确反馈：已有功能，数值限制大于0.00。",
+      "test_point": "验证“原价”已有功能，数值限制大于0.00",
+      "assertion": "违反“原价”已有功能，数值限制大于0.00时，系统阻止保存并保留原配置。",
       "priority": "P0",
       "validation_path": "product_acceptance",
       "should_generate_case": true,
@@ -423,16 +443,17 @@
         "TG-018"
       ],
       "source_example_ids": [
-        "AE-018"
+        "AE-018",
+        "AE-057"
       ],
       "source_responsibility_ids": [],
       "page_name": "盒子管理后台-云手机商品管理-添加",
-      "section_name": "商品添加表单",
+      "section_name": "商品区与库存规则说明表",
       "module_name": "云手机商品管理",
-      "feature_name": "商品添加表单",
+      "feature_name": "商品区与库存规则说明表",
       "test_dimension": "save_block",
-      "test_point": "约束判定：数字选择器，必填；天最大370、时最大23，所有项不可同时为0，后端以秒为单位",
-      "assertion": "系统按来源规则判定并明确反馈：数字选择器，必填；天最大370、时最大23，所有项不可同时为0，后端以秒为单位。",
+      "test_point": "验证“服务时长”数字选择器，必填；天最大370、时最大23，所有项不可同时为0，后端以秒为单位",
+      "assertion": "违反“服务时长”数字选择器，必填；天最大370、时最大23，所有项不可同时为0，后端以秒为单位时，系统阻止保存并保留原配置。",
       "priority": "P0",
       "validation_path": "product_acceptance",
       "should_generate_case": true,
@@ -451,12 +472,12 @@
       ],
       "source_responsibility_ids": [],
       "page_name": "盒子管理后台-云手机商品管理-添加",
-      "section_name": "商品添加表单",
+      "section_name": "商品区与库存规则说明表",
       "module_name": "云手机商品管理",
-      "feature_name": "商品添加表单",
+      "feature_name": "商品区与库存规则说明表",
       "test_dimension": "save_block",
-      "test_point": "约束判定：下拉单选，必填，content：特殊区、普通区；特殊区商品数量小于等于4",
-      "assertion": "系统按来源规则判定并明确反馈：下拉单选，必填，content：特殊区、普通区；特殊区商品数量小于等于4。",
+      "test_point": "验证“商品区”下拉单选，必填，content：特殊区、普通区；特殊区商品数量小于等于4",
+      "assertion": "违反“商品区”下拉单选，必填，content：特殊区、普通区；特殊区商品数量小于等于4时，系统阻止保存并保留原配置。",
       "priority": "P0",
       "validation_path": "product_acceptance",
       "should_generate_case": true,
@@ -475,12 +496,12 @@
       ],
       "source_responsibility_ids": [],
       "page_name": "盒子管理后台-云手机商品管理-添加",
-      "section_name": "商品添加表单",
+      "section_name": "商品区与库存规则说明表",
       "module_name": "云手机商品管理",
-      "feature_name": "商品添加表单",
+      "feature_name": "商品区与库存规则说明表",
       "test_dimension": "save_block",
-      "test_point": "约束判定：数字框，必填，正整数，上限1000；相同值按创建时间倒序",
-      "assertion": "系统按来源规则判定并明确反馈：数字框，必填，正整数，上限1000；相同值按创建时间倒序。",
+      "test_point": "验证“盒子内排序”数字框，必填，正整数，上限1000；相同值按创建时间倒序",
+      "assertion": "违反“盒子内排序”数字框，必填，正整数，上限1000；相同值按创建时间倒序时，系统阻止保存并保留原配置。",
       "priority": "P0",
       "validation_path": "product_acceptance",
       "should_generate_case": true,
@@ -499,12 +520,12 @@
       ],
       "source_responsibility_ids": [],
       "page_name": "盒子管理后台-云手机商品管理-添加",
-      "section_name": "商品添加表单",
+      "section_name": "商品区与库存规则说明表",
       "module_name": "云手机商品管理",
-      "feature_name": "商品添加表单",
+      "feature_name": "商品区与库存规则说明表",
       "test_dimension": "ui_display",
-      "test_point": "读侧展示：已有功能，增加未配置提示；服务时长结束后C端不再展示",
-      "assertion": "页面可直接观察到来源规则所述结果：已有功能，增加未配置提示；服务时长结束后C端不再展示。",
+      "test_point": "验证“商品展示时间”已有功能，增加未配置状态说明；服务时长结束后C端不再展示",
+      "assertion": "页面可直接观察到：“商品展示时间”已有功能，增加未配置状态说明；服务时长结束后C端不再展示。",
       "priority": "P1",
       "validation_path": "product_acceptance",
       "should_generate_case": true,
@@ -523,12 +544,12 @@
       ],
       "source_responsibility_ids": [],
       "page_name": "盒子管理后台-云手机商品管理-添加",
-      "section_name": "商品添加表单",
+      "section_name": "商品区与库存规则说明表",
       "module_name": "云手机商品管理",
-      "feature_name": "商品添加表单",
+      "feature_name": "商品区与库存规则说明表",
       "test_dimension": "save_block",
-      "test_point": "约束判定：数字框，非必填，正整数，上限200；按固定频率校验库存",
-      "assertion": "系统按来源规则判定并明确反馈：数字框，非必填，正整数，上限200；按固定频率校验库存。",
+      "test_point": "验证“库存预警值”数字框，非必填，正整数，上限200；按固定频率校验库存",
+      "assertion": "违反“库存预警值”数字框，非必填，正整数，上限200；按固定频率校验库存时，系统阻止保存并保留原配置。",
       "priority": "P0",
       "validation_path": "product_acceptance",
       "should_generate_case": true,
@@ -547,12 +568,12 @@
       ],
       "source_responsibility_ids": [],
       "page_name": "盒子管理后台-云手机商品管理-添加",
-      "section_name": "商品添加表单",
+      "section_name": "商品区与库存规则说明表",
       "module_name": "云手机商品管理",
-      "feature_name": "商品添加表单",
+      "feature_name": "商品区与库存规则说明表",
       "test_dimension": "save_block",
-      "test_point": "约束判定：下拉单选，必填，content：盒子后台管理员列表",
-      "assertion": "系统按来源规则判定并明确反馈：下拉单选，必填，content：盒子后台管理员列表。",
+      "test_point": "验证“购买数量报警通知人”下拉单选，必填，content：盒子后台管理员列表",
+      "assertion": "违反“购买数量报警通知人”下拉单选，必填，content：盒子后台管理员列表时，系统阻止保存并保留原配置。",
       "priority": "P0",
       "validation_path": "product_acceptance",
       "should_generate_case": true,
@@ -571,12 +592,12 @@
       ],
       "source_responsibility_ids": [],
       "page_name": "盒子管理后台-云手机商品管理-添加",
-      "section_name": "商品添加表单",
+      "section_name": "商品区与库存规则说明表",
       "module_name": "云手机商品管理",
-      "feature_name": "商品添加表单",
+      "feature_name": "商品区与库存规则说明表",
       "test_dimension": "backend_job",
-      "test_point": "后台任务：云手机相关报警",
-      "assertion": "任务结果和可观察通知符合来源规则：云手机相关报警。",
+      "test_point": "验证“通知群”云手机相关报警",
+      "assertion": "后台任务执行后可观察到：“通知群”云手机相关报警。",
       "priority": "P0",
       "validation_path": "product_acceptance",
       "should_generate_case": true,
@@ -594,13 +615,13 @@
         "AE-025"
       ],
       "source_responsibility_ids": [],
-      "page_name": "盒子管理后台-云手机商品管理",
-      "section_name": "商品列表",
+      "page_name": "盒子管理后台-云手机商品管理-添加",
+      "section_name": "商品区与库存规则说明表",
       "module_name": "云手机商品管理",
-      "feature_name": "商品列表",
-      "test_dimension": "ui_display",
-      "test_point": "读侧展示：【云挂机库存不足通知】",
-      "assertion": "页面可直接观察到来源规则所述结果：【云挂机库存不足通知】。",
+      "feature_name": "商品区与库存规则说明表",
+      "test_dimension": "field_rule",
+      "test_point": "验证“正式环境模板标题”【云挂机库存不足通知】",
+      "assertion": "页面可直接观察到：“正式环境模板标题”【云挂机库存不足通知】。",
       "priority": "P1",
       "validation_path": "product_acceptance",
       "should_generate_case": true,
@@ -619,12 +640,12 @@
       ],
       "source_responsibility_ids": [],
       "page_name": "盒子管理后台-云手机商品管理-添加",
-      "section_name": "商品添加表单",
+      "section_name": "商品区与库存规则说明表",
       "module_name": "云手机商品管理",
-      "feature_name": "商品添加表单",
-      "test_dimension": "ui_display",
-      "test_point": "读侧展示：玩心盒子后台_云挂机_云手机商品管理",
-      "assertion": "页面可直接观察到来源规则所述结果：玩心盒子后台_云挂机_云手机商品管理。",
+      "feature_name": "商品区与库存规则说明表",
+      "test_dimension": "field_rule",
+      "test_point": "验证“功能模块”玩心盒子后台_云挂机_云手机商品管理",
+      "assertion": "页面可直接观察到：“功能模块”玩心盒子后台_云挂机_云手机商品管理。",
       "priority": "P1",
       "validation_path": "product_acceptance",
       "should_generate_case": true,
@@ -639,21 +660,22 @@
         "TG-027"
       ],
       "source_example_ids": [
-        "AE-027"
+        "AE-027",
+        "AE-074"
       ],
       "source_responsibility_ids": [],
       "page_name": "盒子管理后台-云手机商品管理-添加",
-      "section_name": "商品添加表单",
+      "section_name": "商品区与库存规则说明表",
       "module_name": "云手机商品管理",
-      "feature_name": "商品添加表单",
+      "feature_name": "商品区与库存规则说明表",
       "test_dimension": "cross_surface_linkage",
-      "test_point": "跨端联动：配置ID、商品名称、云机类型、云机服务时长、通知时间、通知人由配置或系统生成",
-      "assertion": "B端、服务端与C端的可观察结果保持一致：配置ID、商品名称、云机类型、云机服务时长、通知时间、通知人由配置或系统生成。",
+      "test_point": "验证“动态字段”配置ID、商品名称、云机类型、云机服务时长、通知时间、通知人由配置或系统生成",
+      "assertion": "触发条件后，各验证端分别出现以下结果：“动态字段”配置ID、商品名称、云机类型、云机服务时长、通知时间、通知人由配置或系统生成。",
       "priority": "P0",
       "validation_path": "product_acceptance",
       "should_generate_case": true,
       "generated_testcase_ids": [
-        "WX-YGJ-ADD-FORM-B-ST-027"
+        "WX-YGJ-ADD-FORM-B-FL-027"
       ]
     },
     {
@@ -663,7 +685,8 @@
         "TG-028"
       ],
       "source_example_ids": [
-        "AE-028"
+        "AE-028",
+        "AE-064"
       ],
       "source_responsibility_ids": [],
       "page_name": "盒子管理后台-编辑宣传内容",
@@ -671,8 +694,8 @@
       "module_name": "宣传内容管理",
       "feature_name": "宣传内容编辑表单",
       "test_dimension": "ui_display",
-      "test_point": "业务结果：cloud_machine_type; data_source_constraint; data_source=盒子现有云机类型",
-      "assertion": "最终业务状态与来源规则一致：cloud_machine_type; data_source_constraint; data_source=盒子现有云机类型。",
+      "test_point": "验证“云机类型”候选项来自盒子现有云机类型",
+      "assertion": "页面可直接观察到：“云机类型”候选项来自盒子现有云机类型。",
       "priority": "P1",
       "validation_path": "product_acceptance",
       "should_generate_case": true,
@@ -687,21 +710,22 @@
         "TG-029"
       ],
       "source_example_ids": [
-        "AE-029"
+        "AE-029",
+        "AE-065"
       ],
       "source_responsibility_ids": [],
-      "page_name": "云挂机购买页",
-      "section_name": "宣传图占位",
-      "module_name": "云挂机购买页",
-      "feature_name": "宣传图占位",
-      "test_dimension": "ui_display",
-      "test_point": "业务结果：promotion_image; value_constraint",
-      "assertion": "最终业务状态与来源规则一致：promotion_image; value_constraint。",
+      "page_name": "盒子管理后台-编辑宣传内容",
+      "section_name": "宣传内容编辑表单",
+      "module_name": "宣传内容管理",
+      "feature_name": "宣传内容编辑表单",
+      "test_dimension": "save_block",
+      "test_point": "验证“宣传图片”最多5张，单张最大500K，建议尺寸1008*160，支持拖拽和删除",
+      "assertion": "违反“宣传图片”最多5张，单张最大500K，建议尺寸1008*160，支持拖拽和删除时，系统阻止保存并保留原配置。",
       "priority": "P1",
       "validation_path": "product_acceptance",
       "should_generate_case": true,
       "generated_testcase_ids": [
-        "WX-YGJ-BUY-PIC-C-FN-029"
+        "WX-YGJ-BUY-PIC-C-AB-029"
       ]
     },
     {
@@ -711,16 +735,17 @@
         "TG-030"
       ],
       "source_example_ids": [
-        "AE-030"
+        "AE-030",
+        "AE-066"
       ],
       "source_responsibility_ids": [],
-      "page_name": "盒子管理后台-云手机商品管理-添加",
-      "section_name": "商品添加表单",
-      "module_name": "云手机商品管理",
-      "feature_name": "商品添加表单",
+      "page_name": "盒子管理后台-编辑宣传内容",
+      "section_name": "宣传内容编辑表单",
+      "module_name": "宣传内容管理",
+      "feature_name": "宣传内容编辑表单",
       "test_dimension": "ui_display",
-      "test_point": "业务结果：promotion_slogan; value_constraint",
-      "assertion": "最终业务状态与来源规则一致：promotion_slogan; value_constraint。",
+      "test_point": "验证“宣传口号”超过一行时在C端换行展示",
+      "assertion": "页面可直接观察到：“宣传口号”超过一行时在C端换行展示。",
       "priority": "P1",
       "validation_path": "product_acceptance",
       "should_generate_case": true,
@@ -735,21 +760,22 @@
         "TG-031"
       ],
       "source_example_ids": [
-        "AE-031"
+        "AE-031",
+        "AE-067"
       ],
       "source_responsibility_ids": [],
-      "page_name": "盒子管理后台-云手机商品管理-添加",
-      "section_name": "商品添加表单",
-      "module_name": "云手机商品管理",
-      "feature_name": "商品添加表单",
-      "test_dimension": "field_rule",
-      "test_point": "业务结果：performance_parameters; value_constraint",
-      "assertion": "最终业务状态与来源规则一致：performance_parameters; value_constraint。",
+      "page_name": "盒子管理后台-编辑宣传内容",
+      "section_name": "宣传内容编辑表单",
+      "module_name": "宣传内容管理",
+      "feature_name": "宣传内容编辑表单",
+      "test_dimension": "ui_display",
+      "test_point": "验证“性能参数”超过一行时在C端换行展示",
+      "assertion": "页面可直接观察到：“性能参数”超过一行时在C端换行展示。",
       "priority": "P1",
       "validation_path": "product_acceptance",
       "should_generate_case": true,
       "generated_testcase_ids": [
-        "WX-YGJ-ADD-FORM-B-BD-031"
+        "WX-YGJ-ADD-FORM-B-FN-031"
       ]
     },
     {
@@ -766,14 +792,14 @@
       "section_name": "宣传内容编辑表单",
       "module_name": "宣传内容管理",
       "feature_name": "宣传内容编辑表单",
-      "test_dimension": "save_block",
-      "test_point": "约束判定：保存前校验所有云机类型均已配置且不存在重复",
-      "assertion": "系统按来源规则判定并明确反馈：保存前校验所有云机类型均已配置且不存在重复。",
+      "test_dimension": "field_rule",
+      "test_point": "验证保存前校验所有“云机类型”均已配置且不存在重复",
+      "assertion": "页面可直接观察到：保存前校验所有“云机类型”均已配置且不存在重复。",
       "priority": "P0",
       "validation_path": "product_acceptance",
       "should_generate_case": true,
       "generated_testcase_ids": [
-        "WX-YGJ-PROMO-FORM-B-AB-032"
+        "WX-YGJ-PROMO-FORM-B-FN-032"
       ]
     },
     {
@@ -783,7 +809,8 @@
         "TG-033"
       ],
       "source_example_ids": [
-        "AE-033"
+        "AE-033",
+        "AE-075"
       ],
       "source_responsibility_ids": [],
       "page_name": "盒子管理后台-编辑宣传内容",
@@ -791,8 +818,8 @@
       "module_name": "宣传内容管理",
       "feature_name": "宣传内容编辑表单",
       "test_dimension": "prompt_display",
-      "test_point": "提示展示：最多上传5张，支持gif/jpg/jpeg/png，单张最大500K，建议尺寸1008*160",
-      "assertion": "页面展示来源中的建议或提示文案：最多上传5张，支持gif/jpg/jpeg/png，单张最大500K，建议尺寸1008*160；建议内容不作为提交结果判定。",
+      "test_point": "验证“宣传图片”最多上传5张，支持gif/jpg/jpeg/png，单张最大500K，建议尺寸1008*160",
+      "assertion": "页面展示与“宣传图片”最多上传5张，支持gif/jpg/jpeg/png，单张最大500K，建议尺寸1008*160对应的说明，其中建议内容不作为提交拦截条件。",
       "priority": "P2",
       "validation_path": "product_acceptance",
       "should_generate_case": true,
@@ -810,18 +837,18 @@
         "AE-034"
       ],
       "source_responsibility_ids": [],
-      "page_name": "云挂机购买页",
-      "section_name": "宣传区",
-      "module_name": "云挂机购买页",
-      "feature_name": "宣传区",
-      "test_dimension": "save_block",
-      "test_point": "约束判定：文本长度20个字符；C端超过一行换行展示",
-      "assertion": "系统按来源规则判定并明确反馈：文本长度20个字符；C端超过一行换行展示。",
+      "page_name": "盒子管理后台-编辑宣传内容",
+      "section_name": "宣传内容编辑表单",
+      "module_name": "宣传内容管理",
+      "feature_name": "宣传内容编辑表单",
+      "test_dimension": "ui_display",
+      "test_point": "验证“宣传口号”文本长度20个字符；C端超过一行换行展示",
+      "assertion": "页面可直接观察到：“宣传口号”文本长度20个字符；C端超过一行换行展示。",
       "priority": "P0",
       "validation_path": "product_acceptance",
       "should_generate_case": true,
       "generated_testcase_ids": [
-        "WX-YGJ-BUY-PROMO-C-AB-034"
+        "WX-YGJ-BUY-PROMO-C-FN-034"
       ]
     },
     {
@@ -834,18 +861,18 @@
         "AE-035"
       ],
       "source_responsibility_ids": [],
-      "page_name": "云挂机购买页",
-      "section_name": "宣传区",
-      "module_name": "云挂机购买页",
-      "feature_name": "宣传区",
-      "test_dimension": "save_block",
-      "test_point": "约束判定：文本长度20个字符；C端超过一行换行展示",
-      "assertion": "系统按来源规则判定并明确反馈：文本长度20个字符；C端超过一行换行展示。",
+      "page_name": "盒子管理后台-编辑宣传内容",
+      "section_name": "宣传内容编辑表单",
+      "module_name": "宣传内容管理",
+      "feature_name": "宣传内容编辑表单",
+      "test_dimension": "ui_display",
+      "test_point": "验证“性能参数”文本长度20个字符；C端超过一行换行展示",
+      "assertion": "页面可直接观察到：“性能参数”文本长度20个字符；C端超过一行换行展示。",
       "priority": "P0",
       "validation_path": "product_acceptance",
       "should_generate_case": true,
       "generated_testcase_ids": [
-        "WX-YGJ-BUY-PROMO-C-AB-035"
+        "WX-YGJ-BUY-PROMO-C-FN-035"
       ]
     },
     {
@@ -859,12 +886,12 @@
       ],
       "source_responsibility_ids": [],
       "page_name": "盒子管理后台-编辑宣传内容",
-      "section_name": "宣传内容编辑表单",
+      "section_name": "宣传内容字段说明表",
       "module_name": "宣传内容管理",
-      "feature_name": "宣传内容编辑表单",
+      "feature_name": "宣传内容字段说明表",
       "test_dimension": "save_block",
-      "test_point": "约束判定：下拉列表框，必填，默认为空，可编辑；单选，content为盒子现有云机类型",
-      "assertion": "系统按来源规则判定并明确反馈：下拉列表框，必填，默认为空，可编辑；单选，content为盒子现有云机类型。",
+      "test_point": "验证下拉列表框，必填，默认为空，可编辑；单选，content为盒子现有“云机类型”",
+      "assertion": "违反下拉列表框，必填，默认为空，可编辑；单选，content为盒子现有“云机类型”时，系统阻止保存并保留原配置。",
       "priority": "P0",
       "validation_path": "product_acceptance",
       "should_generate_case": true,
@@ -883,12 +910,12 @@
       ],
       "source_responsibility_ids": [],
       "page_name": "盒子管理后台-编辑宣传内容",
-      "section_name": "宣传内容编辑表单",
+      "section_name": "宣传内容字段说明表",
       "module_name": "宣传内容管理",
-      "feature_name": "宣传内容编辑表单",
+      "feature_name": "宣传内容字段说明表",
       "test_dimension": "prompt_display",
-      "test_point": "提示展示：图片按钮，必传，最多5张；支持gif/jpg/jpeg/png，最大500K，建议尺寸1008*160；支持拖拽和删除",
-      "assertion": "页面展示来源中的建议或提示文案：图片按钮，必传，最多5张；支持gif/jpg/jpeg/png，最大500K，建议尺寸1008*160；支持拖拽和删除；建议内容不作为提交结果判定。",
+      "test_point": "验证“宣传图片”图片按钮，必传，最多5张；支持gif/jpg/jpeg/png，最大500K，建议尺寸1008*160；支持拖拽和删除",
+      "assertion": "页面展示与“宣传图片”图片按钮，必传，最多5张；支持gif/jpg/jpeg/png，最大500K，建议尺寸1008*160；支持拖拽和删除对应的说明，其中建议内容不作为提交拦截条件。",
       "priority": "P2",
       "validation_path": "product_acceptance",
       "should_generate_case": true,
@@ -906,13 +933,13 @@
         "AE-038"
       ],
       "source_responsibility_ids": [],
-      "page_name": "云挂机购买页",
-      "section_name": "宣传区",
-      "module_name": "云挂机购买页",
-      "feature_name": "宣传区",
+      "page_name": "盒子管理后台-编辑宣传内容",
+      "section_name": "宣传内容字段说明表",
+      "module_name": "宣传内容管理",
+      "feature_name": "宣传内容字段说明表",
       "test_dimension": "save_block",
-      "test_point": "约束判定：文本框，必填，20个字符；C端超过一行换行展示",
-      "assertion": "系统按来源规则判定并明确反馈：文本框，必填，20个字符；C端超过一行换行展示。",
+      "test_point": "验证“宣传口号”文本框，必填，20个字符；C端超过一行换行展示",
+      "assertion": "违反“宣传口号”文本框，必填，20个字符；C端超过一行换行展示时，系统阻止保存并保留原配置。",
       "priority": "P0",
       "validation_path": "product_acceptance",
       "should_generate_case": true,
@@ -930,13 +957,13 @@
         "AE-039"
       ],
       "source_responsibility_ids": [],
-      "page_name": "云挂机购买页",
-      "section_name": "宣传区",
-      "module_name": "云挂机购买页",
-      "feature_name": "宣传区",
+      "page_name": "盒子管理后台-编辑宣传内容",
+      "section_name": "宣传内容字段说明表",
+      "module_name": "宣传内容管理",
+      "feature_name": "宣传内容字段说明表",
       "test_dimension": "save_block",
-      "test_point": "约束判定：文本框，必填，20个字符；C端超过一行换行展示",
-      "assertion": "系统按来源规则判定并明确反馈：文本框，必填，20个字符；C端超过一行换行展示。",
+      "test_point": "验证“性能参数”文本框，必填，20个字符；C端超过一行换行展示",
+      "assertion": "违反“性能参数”文本框，必填，20个字符；C端超过一行换行展示时，系统阻止保存并保留原配置。",
       "priority": "P0",
       "validation_path": "product_acceptance",
       "should_generate_case": true,
@@ -954,18 +981,18 @@
         "AE-040"
       ],
       "source_responsibility_ids": [],
-      "page_name": "盒子管理后台-云手机商品管理-添加",
-      "section_name": "商品添加表单",
-      "module_name": "云手机商品管理",
-      "feature_name": "商品添加表单",
-      "test_dimension": "save_block",
-      "test_point": "约束判定：点击增加一条宣传配置，最多额外新增1块；达到2条时禁用按钮",
-      "assertion": "系统按来源规则判定并明确反馈：点击增加一条宣传配置，最多额外新增1块；达到2条时禁用按钮。",
+      "page_name": "盒子管理后台-编辑宣传内容",
+      "section_name": "宣传内容字段说明表",
+      "module_name": "宣传内容管理",
+      "feature_name": "宣传内容字段说明表",
+      "test_dimension": "field_rule",
+      "test_point": "验证通过【增加一条】新增宣传配置，最多额外“新增”1块；达到2条时禁用按钮",
+      "assertion": "页面可直接观察到：通过【增加一条】新增宣传配置，最多额外“新增”1块；达到2条时禁用按钮。",
       "priority": "P1",
       "validation_path": "product_acceptance",
       "should_generate_case": true,
       "generated_testcase_ids": [
-        "WX-YGJ-ADD-FORM-B-AB-040"
+        "WX-YGJ-ADD-FORM-B-FN-040"
       ]
     },
     {
@@ -975,21 +1002,22 @@
         "TG-049"
       ],
       "source_example_ids": [
-        "AE-041"
+        "AE-041",
+        "AE-068"
       ],
       "source_responsibility_ids": [],
       "page_name": "云挂机购买页",
-      "section_name": "版本Tab",
+      "section_name": "宣传区",
       "module_name": "云挂机购买页",
-      "feature_name": "版本Tab",
-      "test_dimension": "field_rule",
-      "test_point": "业务结果：全新版和常规版两个Tab均可见、可切换并展示对应内容",
-      "assertion": "最终业务状态与来源规则一致：全新版和常规版两个Tab均可见、可切换并展示对应内容。",
+      "feature_name": "宣传区",
+      "test_dimension": "ui_display",
+      "test_point": "验证“宣传口号”分别覆盖19、20、21个字符，超过一行时C端换行展示",
+      "assertion": "页面可直接观察到：“宣传口号”分别覆盖19、20、21个字符，超过一行时C端换行展示。",
       "priority": "P1",
       "validation_path": "product_acceptance",
       "should_generate_case": true,
       "generated_testcase_ids": [
-        "WX-YGJ-BUY-TAB-C-BD-041"
+        "WX-YGJ-BUY-TAB-C-FN-041"
       ]
     },
     {
@@ -999,21 +1027,22 @@
         "TG-050"
       ],
       "source_example_ids": [
-        "AE-042"
+        "AE-042",
+        "AE-069"
       ],
       "source_responsibility_ids": [],
-      "page_name": "云挂机购买页",
-      "section_name": "特价专区",
-      "module_name": "云挂机购买页",
-      "feature_name": "特价专区",
-      "test_dimension": "field_rule",
-      "test_point": "业务结果：后台未配置特殊区商品时，C端隐藏整个特价专区",
-      "assertion": "最终业务状态与来源规则一致：后台未配置特殊区商品时，C端隐藏整个特价专区。",
+      "page_name": "盒子管理后台-云手机商品管理-添加",
+      "section_name": "商品添加表单",
+      "module_name": "云手机商品管理",
+      "feature_name": "商品添加表单",
+      "test_dimension": "ui_display",
+      "test_point": "验证相同“盒子内排序”值按创建时间倒序展示",
+      "assertion": "页面可直接观察到：相同“盒子内排序”值按创建时间倒序展示。",
       "priority": "P1",
       "validation_path": "product_acceptance",
       "should_generate_case": true,
       "generated_testcase_ids": [
-        "WX-YGJ-BUY-SALE-C-BD-042"
+        "WX-YGJ-BUY-SALE-C-FN-042"
       ]
     },
     {
@@ -1023,21 +1052,22 @@
         "TG-051"
       ],
       "source_example_ids": [
-        "AE-043"
+        "AE-043",
+        "AE-070"
       ],
       "source_responsibility_ids": [],
-      "page_name": "盒子管理后台-云手机商品管理-添加",
-      "section_name": "商品添加表单",
-      "module_name": "云手机商品管理",
-      "feature_name": "商品添加表单",
-      "test_dimension": "field_rule",
-      "test_point": "业务结果：库存不足时同步隐藏商品、停止分配云机并发送告警",
-      "assertion": "最终业务状态与来源规则一致：库存不足时同步隐藏商品、停止分配云机并发送告警。",
+      "page_name": "云挂机购买页",
+      "section_name": "普通商品列表",
+      "module_name": "云挂机购买页",
+      "feature_name": "普通商品列表",
+      "test_dimension": "ui_display",
+      "test_point": "验证“普通区商品列表”普通商品列表保持纵向展示",
+      "assertion": "页面可直接观察到：“普通区商品列表”普通商品列表保持纵向展示。",
       "priority": "P1",
       "validation_path": "product_acceptance",
       "should_generate_case": true,
       "generated_testcase_ids": [
-        "WX-YGJ-ADD-FORM-B-BD-043"
+        "WX-YGJ-ADD-FORM-B-FN-043"
       ]
     },
     {
@@ -1047,765 +1077,22 @@
         "TG-052"
       ],
       "source_example_ids": [
-        "AE-044"
-      ],
-      "source_responsibility_ids": [],
-      "page_name": "盒子管理后台-编辑宣传内容",
-      "section_name": "宣传内容编辑表单",
-      "module_name": "宣传内容管理",
-      "feature_name": "宣传内容编辑表单",
-      "test_dimension": "field_rule",
-      "test_point": "业务结果：所有云机类型均需配置宣传内容且云机类型不可重复",
-      "assertion": "最终业务状态与来源规则一致：所有云机类型均需配置宣传内容且云机类型不可重复。",
-      "priority": "P1",
-      "validation_path": "product_acceptance",
-      "should_generate_case": true,
-      "generated_testcase_ids": [
-        "WX-YGJ-PROMO-FORM-B-BD-044"
-      ]
-    },
-    {
-      "testpoint_id": "TP-045",
-      "source_case_plan_id": "CP-045",
-      "source_gate_ids": [
-        "TG-001"
-      ],
-      "source_example_ids": [
-        "AE-045"
-      ],
-      "source_responsibility_ids": [],
-      "page_name": "盒子管理后台-云手机商品管理-添加",
-      "section_name": "商品添加表单",
-      "module_name": "云手机商品管理",
-      "feature_name": "商品添加表单",
-      "test_dimension": "save_block",
-      "test_point": "约束判定：promotion_slogan; value_constraint（场景2）",
-      "assertion": "系统按来源规则判定并明确反馈：promotion_slogan; value_constraint。",
-      "priority": "P1",
-      "validation_path": "product_acceptance",
-      "should_generate_case": true,
-      "generated_testcase_ids": [
-        "WX-YGJ-ADD-FORM-B-AB-045"
-      ]
-    },
-    {
-      "testpoint_id": "TP-046",
-      "source_case_plan_id": "CP-046",
-      "source_gate_ids": [
-        "TG-002"
-      ],
-      "source_example_ids": [
-        "AE-046"
-      ],
-      "source_responsibility_ids": [],
-      "page_name": "盒子管理后台-云手机商品管理-添加",
-      "section_name": "商品添加表单",
-      "module_name": "云手机商品管理",
-      "feature_name": "商品添加表单",
-      "test_dimension": "save_block",
-      "test_point": "约束判定：performance_parameters; value_constraint（场景3）",
-      "assertion": "系统按来源规则判定并明确反馈：performance_parameters; value_constraint。",
-      "priority": "P1",
-      "validation_path": "product_acceptance",
-      "should_generate_case": true,
-      "generated_testcase_ids": [
-        "WX-YGJ-ADD-FORM-B-AB-046"
-      ]
-    },
-    {
-      "testpoint_id": "TP-047",
-      "source_case_plan_id": "CP-047",
-      "source_gate_ids": [
-        "TG-003"
-      ],
-      "source_example_ids": [
-        "AE-047"
-      ],
-      "source_responsibility_ids": [],
-      "page_name": "云挂机购买页",
-      "section_name": "特价专区",
-      "module_name": "云挂机购买页",
-      "feature_name": "特价专区",
-      "test_dimension": "save_block",
-      "test_point": "约束判定：后台未配置特殊区商品时隐藏（场景4）",
-      "assertion": "系统按来源规则判定并明确反馈：后台未配置特殊区商品时隐藏。",
-      "priority": "P1",
-      "validation_path": "product_acceptance",
-      "should_generate_case": true,
-      "generated_testcase_ids": [
-        "WX-YGJ-BUY-SALE-C-AB-047"
-      ]
-    },
-    {
-      "testpoint_id": "TP-048",
-      "source_case_plan_id": "CP-048",
-      "source_gate_ids": [
-        "TG-001"
-      ],
-      "source_example_ids": [
-        "AE-048"
-      ],
-      "source_responsibility_ids": [],
-      "page_name": "盒子管理后台-编辑宣传内容",
-      "section_name": "宣传内容编辑表单",
-      "module_name": "宣传内容管理",
-      "feature_name": "宣传内容编辑表单",
-      "test_dimension": "ui_display",
-      "test_point": "读侧展示：promotion_slogan; value_constraint（场景2）",
-      "assertion": "页面可直接观察到来源规则所述结果：promotion_slogan; value_constraint。",
-      "priority": "P1",
-      "validation_path": "product_acceptance",
-      "should_generate_case": true,
-      "generated_testcase_ids": [
-        "WX-YGJ-PROMO-FORM-B-FN-048"
-      ]
-    },
-    {
-      "testpoint_id": "TP-049",
-      "source_case_plan_id": "CP-049",
-      "source_gate_ids": [
-        "TG-002"
-      ],
-      "source_example_ids": [
-        "AE-049"
-      ],
-      "source_responsibility_ids": [],
-      "page_name": "盒子管理后台-编辑宣传内容",
-      "section_name": "宣传内容编辑表单",
-      "module_name": "宣传内容管理",
-      "feature_name": "宣传内容编辑表单",
-      "test_dimension": "ui_display",
-      "test_point": "读侧展示：performance_parameters; value_constraint（场景3）",
-      "assertion": "页面可直接观察到来源规则所述结果：performance_parameters; value_constraint。",
-      "priority": "P1",
-      "validation_path": "product_acceptance",
-      "should_generate_case": true,
-      "generated_testcase_ids": [
-        "WX-YGJ-PROMO-FORM-B-FN-049"
-      ]
-    },
-    {
-      "testpoint_id": "TP-050",
-      "source_case_plan_id": "CP-050",
-      "source_gate_ids": [
-        "TG-003"
-      ],
-      "source_example_ids": [
-        "AE-050"
-      ],
-      "source_responsibility_ids": [],
-      "page_name": "盒子管理后台-编辑宣传内容",
-      "section_name": "宣传内容编辑表单",
-      "module_name": "宣传内容管理",
-      "feature_name": "宣传内容编辑表单",
-      "test_dimension": "ui_display",
-      "test_point": "读侧展示：后台未配置特殊区商品时隐藏（场景4）",
-      "assertion": "页面可直接观察到来源规则所述结果：后台未配置特殊区商品时隐藏。",
-      "priority": "P1",
-      "validation_path": "product_acceptance",
-      "should_generate_case": true,
-      "generated_testcase_ids": [
-        "WX-YGJ-PROMO-FORM-B-FN-050"
-      ]
-    },
-    {
-      "testpoint_id": "TP-051",
-      "source_case_plan_id": "CP-051",
-      "source_gate_ids": [
-        "TG-004"
-      ],
-      "source_example_ids": [
-        "AE-051"
-      ],
-      "source_responsibility_ids": [],
-      "page_name": "云挂机购买页",
-      "section_name": "特价专区",
-      "module_name": "云挂机购买页",
-      "feature_name": "特价专区",
-      "test_dimension": "ui_display",
-      "test_point": "读侧展示：最多展示4个商品（场景5）",
-      "assertion": "页面可直接观察到来源规则所述结果：最多展示4个商品。",
-      "priority": "P1",
-      "validation_path": "product_acceptance",
-      "should_generate_case": true,
-      "generated_testcase_ids": [
-        "WX-YGJ-BUY-SALE-C-FN-051"
-      ]
-    },
-    {
-      "testpoint_id": "TP-052",
-      "source_case_plan_id": "CP-052",
-      "source_gate_ids": [
-        "TG-011"
-      ],
-      "source_example_ids": [
-        "AE-052"
-      ],
-      "source_responsibility_ids": [],
-      "page_name": "盒子管理后台-编辑宣传内容",
-      "section_name": "宣传内容编辑表单",
-      "module_name": "宣传内容管理",
-      "feature_name": "宣传内容编辑表单",
-      "test_dimension": "ui_display",
-      "test_point": "读侧展示：天数最大370，小时最大23，所有项不可同时为0，后端以秒为单位（场景6）",
-      "assertion": "页面可直接观察到来源规则所述结果：天数最大370，小时最大23，所有项不可同时为0，后端以秒为单位。",
-      "priority": "P1",
-      "validation_path": "product_acceptance",
-      "should_generate_case": true,
-      "generated_testcase_ids": [
-        "WX-YGJ-PROMO-FORM-B-FN-052"
-      ]
-    },
-    {
-      "testpoint_id": "TP-053",
-      "source_case_plan_id": "CP-053",
-      "source_gate_ids": [
-        "TG-012"
-      ],
-      "source_example_ids": [
-        "AE-053"
-      ],
-      "source_responsibility_ids": [],
-      "page_name": "盒子管理后台-编辑宣传内容",
-      "section_name": "宣传内容编辑表单",
-      "module_name": "宣传内容管理",
-      "feature_name": "宣传内容编辑表单",
-      "test_dimension": "ui_display",
-      "test_point": "读侧展示：特殊区商品数量必须小于等于4，超过4个时不可保存（场景7）",
-      "assertion": "页面可直接观察到来源规则所述结果：特殊区商品数量必须小于等于4，超过4个时不可保存。",
-      "priority": "P1",
-      "validation_path": "product_acceptance",
-      "should_generate_case": true,
-      "generated_testcase_ids": [
-        "WX-YGJ-PROMO-FORM-B-FN-053"
-      ]
-    },
-    {
-      "testpoint_id": "TP-054",
-      "source_case_plan_id": "CP-054",
-      "source_gate_ids": [
-        "TG-013"
-      ],
-      "source_example_ids": [
-        "AE-054"
-      ],
-      "source_responsibility_ids": [],
-      "page_name": "盒子管理后台-云手机商品管理-添加",
-      "section_name": "商品添加表单",
-      "module_name": "云手机商品管理",
-      "feature_name": "商品添加表单",
-      "test_dimension": "ui_display",
-      "test_point": "读侧展示：正整数，上限1000；相同排序值按创建时间倒序排列（场景8）",
-      "assertion": "页面可直接观察到来源规则所述结果：正整数，上限1000；相同排序值按创建时间倒序排列。",
-      "priority": "P1",
-      "validation_path": "product_acceptance",
-      "should_generate_case": true,
-      "generated_testcase_ids": [
-        "WX-YGJ-ADD-FORM-B-FN-054"
-      ]
-    },
-    {
-      "testpoint_id": "TP-055",
-      "source_case_plan_id": "CP-055",
-      "source_gate_ids": [
-        "TG-016"
-      ],
-      "source_example_ids": [
-        "AE-055"
-      ],
-      "source_responsibility_ids": [],
-      "page_name": "盒子管理后台-云手机商品管理-添加",
-      "section_name": "商品添加表单",
-      "module_name": "云手机商品管理",
-      "feature_name": "商品添加表单",
-      "test_dimension": "ui_display",
-      "test_point": "读侧展示：已有功能，数值限制大于0.00（场景9）",
-      "assertion": "页面可直接观察到来源规则所述结果：已有功能，数值限制大于0.00。",
-      "priority": "P1",
-      "validation_path": "product_acceptance",
-      "should_generate_case": true,
-      "generated_testcase_ids": [
-        "WX-YGJ-ADD-FORM-B-FN-055"
-      ]
-    },
-    {
-      "testpoint_id": "TP-056",
-      "source_case_plan_id": "CP-056",
-      "source_gate_ids": [
-        "TG-017"
-      ],
-      "source_example_ids": [
-        "AE-056"
-      ],
-      "source_responsibility_ids": [],
-      "page_name": "盒子管理后台-云手机商品管理-添加",
-      "section_name": "商品添加表单",
-      "module_name": "云手机商品管理",
-      "feature_name": "商品添加表单",
-      "test_dimension": "ui_display",
-      "test_point": "读侧展示：已有功能，数值限制大于0.00（场景10）",
-      "assertion": "页面可直接观察到来源规则所述结果：已有功能，数值限制大于0.00。",
-      "priority": "P1",
-      "validation_path": "product_acceptance",
-      "should_generate_case": true,
-      "generated_testcase_ids": [
-        "WX-YGJ-ADD-FORM-B-FN-056"
-      ]
-    },
-    {
-      "testpoint_id": "TP-057",
-      "source_case_plan_id": "CP-057",
-      "source_gate_ids": [
-        "TG-018"
-      ],
-      "source_example_ids": [
-        "AE-057"
-      ],
-      "source_responsibility_ids": [],
-      "page_name": "盒子管理后台-云手机商品管理-添加",
-      "section_name": "商品添加表单",
-      "module_name": "云手机商品管理",
-      "feature_name": "商品添加表单",
-      "test_dimension": "ui_display",
-      "test_point": "读侧展示：数字选择器，必填；天最大370、时最大23，所有项不可同时为0，后端以秒为单位（场景11）",
-      "assertion": "页面可直接观察到来源规则所述结果：数字选择器，必填；天最大370、时最大23，所有项不可同时为0，后端以秒为单位。",
-      "priority": "P1",
-      "validation_path": "product_acceptance",
-      "should_generate_case": true,
-      "generated_testcase_ids": [
-        "WX-YGJ-ADD-FORM-B-FN-057"
-      ]
-    },
-    {
-      "testpoint_id": "TP-058",
-      "source_case_plan_id": "CP-058",
-      "source_gate_ids": [
-        "TG-005"
-      ],
-      "source_example_ids": [
-        "AE-058"
-      ],
-      "source_responsibility_ids": [],
-      "page_name": "盒子管理后台-编辑宣传内容",
-      "section_name": "宣传内容编辑表单",
-      "module_name": "宣传内容管理",
-      "feature_name": "宣传内容编辑表单",
-      "test_dimension": "field_rule",
-      "test_point": "业务结果：original_price; value_constraint（场景2）",
-      "assertion": "最终业务状态与来源规则一致：original_price; value_constraint。",
-      "priority": "P1",
-      "validation_path": "product_acceptance",
-      "should_generate_case": true,
-      "generated_testcase_ids": [
-        "WX-YGJ-PROMO-FORM-B-BD-058"
-      ]
-    },
-    {
-      "testpoint_id": "TP-059",
-      "source_case_plan_id": "CP-059",
-      "source_gate_ids": [
-        "TG-006"
-      ],
-      "source_example_ids": [
-        "AE-059"
-      ],
-      "source_responsibility_ids": [],
-      "page_name": "盒子管理后台-编辑宣传内容",
-      "section_name": "宣传内容编辑表单",
-      "module_name": "宣传内容管理",
-      "feature_name": "宣传内容编辑表单",
-      "test_dimension": "field_rule",
-      "test_point": "业务结果：current_price; value_constraint（场景2）",
-      "assertion": "最终业务状态与来源规则一致：current_price; value_constraint。",
-      "priority": "P1",
-      "validation_path": "product_acceptance",
-      "should_generate_case": true,
-      "generated_testcase_ids": [
-        "WX-YGJ-PROMO-FORM-B-BD-059"
-      ]
-    },
-    {
-      "testpoint_id": "TP-060",
-      "source_case_plan_id": "CP-060",
-      "source_gate_ids": [
-        "TG-007"
-      ],
-      "source_example_ids": [
-        "AE-060"
-      ],
-      "source_responsibility_ids": [],
-      "page_name": "盒子管理后台-编辑宣传内容",
-      "section_name": "宣传内容编辑表单",
-      "module_name": "宣传内容管理",
-      "feature_name": "宣传内容编辑表单",
-      "test_dimension": "field_rule",
-      "test_point": "业务结果：service_duration; value_constraint（场景2）",
-      "assertion": "最终业务状态与来源规则一致：service_duration; value_constraint。",
-      "priority": "P1",
-      "validation_path": "product_acceptance",
-      "should_generate_case": true,
-      "generated_testcase_ids": [
-        "WX-YGJ-PROMO-FORM-B-BD-060"
-      ]
-    },
-    {
-      "testpoint_id": "TP-061",
-      "source_case_plan_id": "CP-061",
-      "source_gate_ids": [
-        "TG-008"
-      ],
-      "source_example_ids": [
-        "AE-061"
-      ],
-      "source_responsibility_ids": [],
-      "page_name": "盒子管理后台-编辑宣传内容",
-      "section_name": "宣传内容编辑表单",
-      "module_name": "宣传内容管理",
-      "feature_name": "宣传内容编辑表单",
-      "test_dimension": "field_rule",
-      "test_point": "业务结果：in_box_sort_order; value_constraint; integer_only=True（场景2）",
-      "assertion": "最终业务状态与来源规则一致：in_box_sort_order; value_constraint; integer_only=True。",
-      "priority": "P1",
-      "validation_path": "product_acceptance",
-      "should_generate_case": true,
-      "generated_testcase_ids": [
-        "WX-YGJ-PROMO-FORM-B-BD-061"
-      ]
-    },
-    {
-      "testpoint_id": "TP-062",
-      "source_case_plan_id": "CP-062",
-      "source_gate_ids": [
-        "TG-009"
-      ],
-      "source_example_ids": [
-        "AE-062"
-      ],
-      "source_responsibility_ids": [],
-      "page_name": "盒子管理后台-编辑宣传内容",
-      "section_name": "宣传内容编辑表单",
-      "module_name": "宣传内容管理",
-      "feature_name": "宣传内容编辑表单",
-      "test_dimension": "field_rule",
-      "test_point": "业务结果：inventory_warning_threshold; value_constraint; integer_only=True（场景2）",
-      "assertion": "最终业务状态与来源规则一致：inventory_warning_threshold; value_constraint; integer_only=True。",
-      "priority": "P1",
-      "validation_path": "product_acceptance",
-      "should_generate_case": true,
-      "generated_testcase_ids": [
-        "WX-YGJ-PROMO-FORM-B-BD-062"
-      ]
-    },
-    {
-      "testpoint_id": "TP-063",
-      "source_case_plan_id": "CP-063",
-      "source_gate_ids": [
-        "TG-010"
-      ],
-      "source_example_ids": [
-        "AE-063"
-      ],
-      "source_responsibility_ids": [],
-      "page_name": "盒子管理后台-编辑宣传内容",
-      "section_name": "宣传内容编辑表单",
-      "module_name": "宣传内容管理",
-      "feature_name": "宣传内容编辑表单",
-      "test_dimension": "field_rule",
-      "test_point": "业务结果：purchase_alert_recipient; data_source_constraint; data_source=盒子后台管理员列表（场景2）",
-      "assertion": "最终业务状态与来源规则一致：purchase_alert_recipient; data_source_constraint; data_source=盒子后台管理员列表。",
-      "priority": "P1",
-      "validation_path": "product_acceptance",
-      "should_generate_case": true,
-      "generated_testcase_ids": [
-        "WX-YGJ-PROMO-FORM-B-BD-063"
-      ]
-    },
-    {
-      "testpoint_id": "TP-064",
-      "source_case_plan_id": "CP-064",
-      "source_gate_ids": [
-        "TG-028"
-      ],
-      "source_example_ids": [
-        "AE-064"
-      ],
-      "source_responsibility_ids": [],
-      "page_name": "盒子管理后台-编辑宣传内容",
-      "section_name": "宣传内容编辑表单",
-      "module_name": "宣传内容管理",
-      "feature_name": "宣传内容编辑表单",
-      "test_dimension": "field_rule",
-      "test_point": "业务结果：cloud_machine_type; data_source_constraint; data_source=盒子现有云机类型（场景2）",
-      "assertion": "最终业务状态与来源规则一致：cloud_machine_type; data_source_constraint; data_source=盒子现有云机类型。",
-      "priority": "P1",
-      "validation_path": "product_acceptance",
-      "should_generate_case": true,
-      "generated_testcase_ids": [
-        "WX-YGJ-PROMO-FORM-B-FN-064"
-      ]
-    },
-    {
-      "testpoint_id": "TP-065",
-      "source_case_plan_id": "CP-065",
-      "source_gate_ids": [
-        "TG-029"
-      ],
-      "source_example_ids": [
-        "AE-065"
-      ],
-      "source_responsibility_ids": [],
-      "page_name": "盒子管理后台-编辑宣传内容",
-      "section_name": "宣传内容编辑表单",
-      "module_name": "宣传内容管理",
-      "feature_name": "宣传内容编辑表单",
-      "test_dimension": "field_rule",
-      "test_point": "业务结果：promotion_image; value_constraint（场景2）",
-      "assertion": "最终业务状态与来源规则一致：promotion_image; value_constraint。",
-      "priority": "P1",
-      "validation_path": "product_acceptance",
-      "should_generate_case": true,
-      "generated_testcase_ids": [
-        "WX-YGJ-PROMO-FORM-B-FN-065"
-      ]
-    },
-    {
-      "testpoint_id": "TP-066",
-      "source_case_plan_id": "CP-066",
-      "source_gate_ids": [
-        "TG-030"
-      ],
-      "source_example_ids": [
-        "AE-066"
-      ],
-      "source_responsibility_ids": [],
-      "page_name": "盒子管理后台-编辑宣传内容",
-      "section_name": "宣传内容编辑表单",
-      "module_name": "宣传内容管理",
-      "feature_name": "宣传内容编辑表单",
-      "test_dimension": "field_rule",
-      "test_point": "业务结果：promotion_slogan; value_constraint（场景2）",
-      "assertion": "最终业务状态与来源规则一致：promotion_slogan; value_constraint。",
-      "priority": "P1",
-      "validation_path": "product_acceptance",
-      "should_generate_case": true,
-      "generated_testcase_ids": [
-        "WX-YGJ-PROMO-FORM-B-FN-066"
-      ]
-    },
-    {
-      "testpoint_id": "TP-067",
-      "source_case_plan_id": "CP-067",
-      "source_gate_ids": [
-        "TG-031"
-      ],
-      "source_example_ids": [
-        "AE-067"
-      ],
-      "source_responsibility_ids": [],
-      "page_name": "盒子管理后台-编辑宣传内容",
-      "section_name": "宣传内容编辑表单",
-      "module_name": "宣传内容管理",
-      "feature_name": "宣传内容编辑表单",
-      "test_dimension": "field_rule",
-      "test_point": "业务结果：performance_parameters; value_constraint（场景2）",
-      "assertion": "最终业务状态与来源规则一致：performance_parameters; value_constraint。",
-      "priority": "P1",
-      "validation_path": "product_acceptance",
-      "should_generate_case": true,
-      "generated_testcase_ids": [
-        "WX-YGJ-PROMO-FORM-B-FN-067"
-      ]
-    },
-    {
-      "testpoint_id": "TP-068",
-      "source_case_plan_id": "CP-068",
-      "source_gate_ids": [
-        "TG-049"
-      ],
-      "source_example_ids": [
-        "AE-068"
-      ],
-      "source_responsibility_ids": [],
-      "page_name": "云挂机购买页",
-      "section_name": "版本Tab",
-      "module_name": "云挂机购买页",
-      "feature_name": "版本Tab",
-      "test_dimension": "field_rule",
-      "test_point": "业务结果：全新版和常规版两个Tab均可见、可切换并展示对应内容（场景2）",
-      "assertion": "最终业务状态与来源规则一致：全新版和常规版两个Tab均可见、可切换并展示对应内容。",
-      "priority": "P1",
-      "validation_path": "product_acceptance",
-      "should_generate_case": true,
-      "generated_testcase_ids": [
-        "WX-YGJ-BUY-TAB-C-FN-068"
-      ]
-    },
-    {
-      "testpoint_id": "TP-069",
-      "source_case_plan_id": "CP-069",
-      "source_gate_ids": [
-        "TG-050"
-      ],
-      "source_example_ids": [
-        "AE-069"
-      ],
-      "source_responsibility_ids": [],
-      "page_name": "云挂机购买页",
-      "section_name": "特价专区",
-      "module_name": "云挂机购买页",
-      "feature_name": "特价专区",
-      "test_dimension": "field_rule",
-      "test_point": "业务结果：后台未配置特殊区商品时，C端隐藏整个特价专区（场景2）",
-      "assertion": "最终业务状态与来源规则一致：后台未配置特殊区商品时，C端隐藏整个特价专区。",
-      "priority": "P1",
-      "validation_path": "product_acceptance",
-      "should_generate_case": true,
-      "generated_testcase_ids": [
-        "WX-YGJ-BUY-SALE-C-FN-069"
-      ]
-    },
-    {
-      "testpoint_id": "TP-070",
-      "source_case_plan_id": "CP-070",
-      "source_gate_ids": [
-        "TG-051"
-      ],
-      "source_example_ids": [
-        "AE-070"
-      ],
-      "source_responsibility_ids": [],
-      "page_name": "盒子管理后台-编辑宣传内容",
-      "section_name": "宣传内容编辑表单",
-      "module_name": "宣传内容管理",
-      "feature_name": "宣传内容编辑表单",
-      "test_dimension": "field_rule",
-      "test_point": "业务结果：库存不足时同步隐藏商品、停止分配云机并发送告警（场景2）",
-      "assertion": "最终业务状态与来源规则一致：库存不足时同步隐藏商品、停止分配云机并发送告警。",
-      "priority": "P1",
-      "validation_path": "product_acceptance",
-      "should_generate_case": true,
-      "generated_testcase_ids": [
-        "WX-YGJ-PROMO-FORM-B-FN-070"
-      ]
-    },
-    {
-      "testpoint_id": "TP-071",
-      "source_case_plan_id": "CP-071",
-      "source_gate_ids": [
-        "TG-052"
-      ],
-      "source_example_ids": [
+        "AE-044",
         "AE-071"
       ],
       "source_responsibility_ids": [],
-      "page_name": "盒子管理后台-编辑宣传内容",
-      "section_name": "宣传内容编辑表单",
-      "module_name": "宣传内容管理",
-      "feature_name": "宣传内容编辑表单",
-      "test_dimension": "field_rule",
-      "test_point": "业务结果：所有云机类型均需配置宣传内容且云机类型不可重复（场景2）",
-      "assertion": "最终业务状态与来源规则一致：所有云机类型均需配置宣传内容且云机类型不可重复。",
-      "priority": "P1",
-      "validation_path": "product_acceptance",
-      "should_generate_case": true,
-      "generated_testcase_ids": [
-        "WX-YGJ-PROMO-FORM-B-FN-071"
-      ]
-    },
-    {
-      "testpoint_id": "TP-072",
-      "source_case_plan_id": "CP-072",
-      "source_gate_ids": [
-        "TG-015"
-      ],
-      "source_example_ids": [
-        "AE-072"
-      ],
-      "source_responsibility_ids": [],
-      "page_name": "盒子管理后台-云手机商品管理-添加",
-      "section_name": "商品区与库存规则说明表",
-      "module_name": "云手机商品管理",
-      "feature_name": "商品区与库存规则说明表",
-      "test_dimension": "cross_surface_linkage",
-      "test_point": "跨端联动：库存小于等于预警值时，C端隐藏商品、不分配云机并发送库存不足通知（场景2）",
-      "assertion": "B端、服务端与C端的可观察结果保持一致：库存小于等于预警值时，C端隐藏商品、不分配云机并发送库存不足通知。",
-      "priority": "P0",
-      "validation_path": "product_acceptance",
-      "should_generate_case": true,
-      "generated_testcase_ids": [
-        "WX-YGJ-ADD-RULE-B-ST-072"
-      ]
-    },
-    {
-      "testpoint_id": "TP-073",
-      "source_case_plan_id": "CP-073",
-      "source_gate_ids": [
-        "TG-015"
-      ],
-      "source_example_ids": [
-        "AE-073"
-      ],
-      "source_responsibility_ids": [],
-      "page_name": "盒子管理后台-云手机商品管理-添加",
-      "section_name": "商品区与库存规则说明表",
-      "module_name": "云手机商品管理",
-      "feature_name": "商品区与库存规则说明表",
-      "test_dimension": "cross_surface_linkage",
-      "test_point": "跨端联动：库存小于等于预警值时，C端隐藏商品、不分配云机并发送库存不足通知（场景3）",
-      "assertion": "B端、服务端与C端的可观察结果保持一致：库存小于等于预警值时，C端隐藏商品、不分配云机并发送库存不足通知。",
-      "priority": "P0",
-      "validation_path": "product_acceptance",
-      "should_generate_case": true,
-      "generated_testcase_ids": [
-        "WX-YGJ-ADD-RULE-B-ST-073"
-      ]
-    },
-    {
-      "testpoint_id": "TP-074",
-      "source_case_plan_id": "CP-074",
-      "source_gate_ids": [
-        "TG-027"
-      ],
-      "source_example_ids": [
-        "AE-074"
-      ],
-      "source_responsibility_ids": [],
       "page_name": "盒子管理后台-云手机商品管理-添加",
       "section_name": "商品添加表单",
       "module_name": "云手机商品管理",
       "feature_name": "商品添加表单",
-      "test_dimension": "cross_surface_linkage",
-      "test_point": "跨端联动：配置ID、商品名称、云机类型、云机服务时长、通知时间、通知人由配置或系统生成（场景2）",
-      "assertion": "B端、服务端与C端的可观察结果保持一致：配置ID、商品名称、云机类型、云机服务时长、通知时间、通知人由配置或系统生成。",
-      "priority": "P0",
+      "test_dimension": "save_block",
+      "test_point": "验证“商品区”配置第{5}个特殊区商品时不可保存",
+      "assertion": "违反“商品区”配置第{5}个特殊区商品时不可保存时，系统阻止保存并保留原配置。",
+      "priority": "P1",
       "validation_path": "product_acceptance",
       "should_generate_case": true,
       "generated_testcase_ids": [
-        "WX-YGJ-ADD-FORM-B-FL-074"
-      ]
-    },
-    {
-      "testpoint_id": "TP-075",
-      "source_case_plan_id": "CP-075",
-      "source_gate_ids": [
-        "TG-033"
-      ],
-      "source_example_ids": [
-        "AE-075"
-      ],
-      "source_responsibility_ids": [],
-      "page_name": "盒子管理后台-编辑宣传内容",
-      "section_name": "宣传内容编辑表单",
-      "module_name": "宣传内容管理",
-      "feature_name": "宣传内容编辑表单",
-      "test_dimension": "prompt_display",
-      "test_point": "提示展示：最多上传5张，支持gif/jpg/jpeg/png，单张最大500K，建议尺寸1008*160（场景2）",
-      "assertion": "页面展示来源中的建议或提示文案：最多上传5张，支持gif/jpg/jpeg/png，单张最大500K，建议尺寸1008*160；建议内容不作为提交结果判定。",
-      "priority": "P2",
-      "validation_path": "product_acceptance",
-      "should_generate_case": true,
-      "generated_testcase_ids": [
-        "WX-YGJ-PROMO-FORM-B-FN-075"
+        "WX-YGJ-PROMO-FORM-B-AB-044"
       ]
     }
   ]

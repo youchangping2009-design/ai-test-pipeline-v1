@@ -1,0 +1,20 @@
+{
+  "schema_version": "1.1.0",
+  "record_type": "result",
+  "action_id": "R4-RAI-DF001-RECORD",
+  "request_sha256": "6653c8688f5f05942e92ad9ad07390fa1fa12a1947c9152ae195db75d9ad716a",
+  "execution_context": {
+    "run_id": "RUN-R4-RAILS-58429",
+    "actor": "codex-agent",
+    "provider": "openai"
+  },
+  "observation": {
+    "ok": true,
+    "action_type": "record_feedback_application",
+    "result": {
+      "status": "applied",
+      "receipt_path": "design/feedback_application.json"
+    }
+  },
+  "recorded_at": "2026-09-22T04:46:21.428700+00:00"
+}

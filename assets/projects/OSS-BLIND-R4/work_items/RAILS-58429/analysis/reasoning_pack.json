@@ -1,0 +1,663 @@
+{
+  "project_code": "OSS-BLIND-R4",
+  "work_item_id": "RAILS-58429",
+  "grounding_contract_version": "1.0",
+  "generated_at": "2026-09-22T10:54:29",
+  "generated_from": [
+    "assets/projects/OSS-BLIND-R4/work_items/RAILS-58429/manifest.json",
+    "assets/projects/OSS-BLIND-R4/work_items/RAILS-58429/inputs/requirement_summary.md",
+    "assets/projects/OSS-BLIND-R4/work_items/RAILS-58429/inputs/source_manifest.json",
+    "assets/projects/OSS-BLIND-R4/work_items/RAILS-58429/image_evidence/image_evidence_inventory.json"
+  ],
+  "requirement_summary": {
+    "title": "RAILS-58429 BroadcastLogger tagged semantics across multiple loggers 需求整理",
+    "summary_text": "`BroadcastLogger#tagged` 在多个广播 logger 下应保持单一 logger 的可用语义：无 block 时返回可继续记录消息的 BroadcastLogger；有 block 时只 yield 一次，并使所有支持 tagged 的 logger 在 block 内带标签，异常退出后也完成清理。",
+    "primary_pages": [],
+    "primary_user_surfaces": [],
+    "source_notes": [
+      "归一化需求来源：assets/projects/OSS-BLIND-R4/work_items/RAILS-58429/inputs/requirement_summary.md",
+      "SRC-001: https://github.com/rails/rails/pull/58429 (available)",
+      "SRC-002: inputs/public_source_snapshot.md (available)"
+    ]
+  },
+  "explicit_rules": [
+    {
+      "id": "ER-001",
+      "title": "需求整理-explicit_rule",
+      "statement": "`BroadcastLogger#tagged` 在多个广播 logger 下应保持单一 logger 的可用语义：无 block 时返回可继续记录消息的 BroadcastLogger；有 block 时只 yield 一次，并使所有支持 tagged 的 logger 在 block 内带标签，异常退出后也完成清理。",
+      "confidence": 0.99,
+      "reasoning_notes": [
+        "来自主流程 requirement_summary.md 的确认需求。"
+      ],
+      "must_preserve_terms": [],
+      "source_refs": [
+        {
+          "source_type": "input_markdown",
+          "path": "assets/projects/OSS-BLIND-R4/work_items/RAILS-58429/inputs/requirement_summary.md",
+          "excerpt": "`BroadcastLogger#tagged` 在多个广播 logger 下应保持单一 logger 的可用语义：无 block 时返回可继续记录消息的 BroadcastLogger；有 block 时只 yield 一次，并使所有支持 tagged 的 logger 在 block 内带标签，异常退出后也完成清理。"
+        }
+      ]
+    },
+    {
+      "id": "ER-002",
+      "title": "需求整理-explicit_rule",
+      "statement": "无 block 调用必须返回可调用 `info` 等日志方法的 BroadcastLogger，而不是 logger 结果集合。",
+      "confidence": 0.99,
+      "reasoning_notes": [
+        "来自主流程 requirement_summary.md 的确认需求。"
+      ],
+      "must_preserve_terms": [],
+      "source_refs": [
+        {
+          "source_type": "input_markdown",
+          "path": "assets/projects/OSS-BLIND-R4/work_items/RAILS-58429/inputs/requirement_summary.md",
+          "excerpt": "无 block 调用必须返回可调用 `info` 等日志方法的 BroadcastLogger，而不是 logger 结果集合。"
+        }
+      ]
+    },
+    {
+      "id": "ER-003",
+      "title": "需求整理-explicit_rule",
+      "statement": "返回对象中的支持 tagged 的 logger 应带指定标签。",
+      "confidence": 0.99,
+      "reasoning_notes": [
+        "来自主流程 requirement_summary.md 的确认需求。"
+      ],
+      "must_preserve_terms": [],
+      "source_refs": [
+        {
+          "source_type": "input_markdown",
+          "path": "assets/projects/OSS-BLIND-R4/work_items/RAILS-58429/inputs/requirement_summary.md",
+          "excerpt": "返回对象中的支持 tagged 的 logger 应带指定标签。"
+        }
+      ]
+    },
+    {
+      "id": "ER-004",
+      "title": "需求整理-explicit_rule",
+      "statement": "不支持 tagged 的广播目标不得因此丢失，后续消息仍应发送给它们。",
+      "confidence": 0.99,
+      "reasoning_notes": [
+        "来自主流程 requirement_summary.md 的确认需求。"
+      ],
+      "must_preserve_terms": [],
+      "source_refs": [
+        {
+          "source_type": "input_markdown",
+          "path": "assets/projects/OSS-BLIND-R4/work_items/RAILS-58429/inputs/requirement_summary.md",
+          "excerpt": "不支持 tagged 的广播目标不得因此丢失，后续消息仍应发送给它们。"
+        }
+      ]
+    },
+    {
+      "id": "ER-005",
+      "title": "需求整理-explicit_rule",
+      "statement": "有 block 调用只执行一次用户 block，执行期间所有支持 tagged 的 logger 均处于标签上下文。",
+      "confidence": 0.99,
+      "reasoning_notes": [
+        "来自主流程 requirement_summary.md 的确认需求。"
+      ],
+      "must_preserve_terms": [],
+      "source_refs": [
+        {
+          "source_type": "input_markdown",
+          "path": "assets/projects/OSS-BLIND-R4/work_items/RAILS-58429/inputs/requirement_summary.md",
+          "excerpt": "有 block 调用只执行一次用户 block，执行期间所有支持 tagged 的 logger 均处于标签上下文。"
+        }
+      ]
+    },
+    {
+      "id": "ER-006",
+      "title": "需求整理-explicit_rule",
+      "statement": "block 正常结束或抛出异常后，临时标签都必须被清理。",
+      "confidence": 0.99,
+      "reasoning_notes": [
+        "来自主流程 requirement_summary.md 的确认需求。"
+      ],
+      "must_preserve_terms": [],
+      "source_refs": [
+        {
+          "source_type": "input_markdown",
+          "path": "assets/projects/OSS-BLIND-R4/work_items/RAILS-58429/inputs/requirement_summary.md",
+          "excerpt": "block 正常结束或抛出异常后，临时标签都必须被清理。"
+        }
+      ]
+    },
+    {
+      "id": "ER-007",
+      "title": "需求整理-explicit_rule",
+      "statement": "两个支持 tagged 的 logger：无 block 返回对象可继续写日志，两个目标均收到带标签消息。",
+      "confidence": 0.99,
+      "reasoning_notes": [
+        "来自主流程 requirement_summary.md 的确认需求。"
+      ],
+      "must_preserve_terms": [],
+      "source_refs": [
+        {
+          "source_type": "input_markdown",
+          "path": "assets/projects/OSS-BLIND-R4/work_items/RAILS-58429/inputs/requirement_summary.md",
+          "excerpt": "两个支持 tagged 的 logger：无 block 返回对象可继续写日志，两个目标均收到带标签消息。"
+        }
+      ]
+    },
+    {
+      "id": "ER-008",
+      "title": "需求整理-explicit_rule",
+      "statement": "支持与不支持 tagged 的混合组合：无 block 后所有目标仍收到消息，仅支持者应用标签。",
+      "confidence": 0.99,
+      "reasoning_notes": [
+        "来自主流程 requirement_summary.md 的确认需求。"
+      ],
+      "must_preserve_terms": [],
+      "source_refs": [
+        {
+          "source_type": "input_markdown",
+          "path": "assets/projects/OSS-BLIND-R4/work_items/RAILS-58429/inputs/requirement_summary.md",
+          "excerpt": "支持与不支持 tagged 的混合组合：无 block 后所有目标仍收到消息，仅支持者应用标签。"
+        }
+      ]
+    },
+    {
+      "id": "ER-009",
+      "title": "需求整理-explicit_rule",
+      "statement": "有 block 时计数证明 block 只执行一次，所有支持者在同一次执行中带标签。",
+      "confidence": 0.99,
+      "reasoning_notes": [
+        "来自主流程 requirement_summary.md 的确认需求。"
+      ],
+      "must_preserve_terms": [],
+      "source_refs": [
+        {
+          "source_type": "input_markdown",
+          "path": "assets/projects/OSS-BLIND-R4/work_items/RAILS-58429/inputs/requirement_summary.md",
+          "excerpt": "有 block 时计数证明 block 只执行一次，所有支持者在同一次执行中带标签。"
+        }
+      ]
+    },
+    {
+      "id": "ER-010",
+      "title": "需求整理-explicit_rule",
+      "statement": "block 抛异常时异常继续传播，随后写日志不再携带临时标签。",
+      "confidence": 0.99,
+      "reasoning_notes": [
+        "来自主流程 requirement_summary.md 的确认需求。"
+      ],
+      "must_preserve_terms": [],
+      "source_refs": [
+        {
+          "source_type": "input_markdown",
+          "path": "assets/projects/OSS-BLIND-R4/work_items/RAILS-58429/inputs/requirement_summary.md",
+          "excerpt": "block 抛异常时异常继续传播，随后写日志不再携带临时标签。"
+        }
+      ]
+    },
+    {
+      "id": "ER-011",
+      "title": "需求整理-explicit_rule",
+      "statement": "单个支持 tagged 的 logger 和既有常规广播行为不回退。",
+      "confidence": 0.99,
+      "reasoning_notes": [
+        "来自主流程 requirement_summary.md 的确认需求。"
+      ],
+      "must_preserve_terms": [],
+      "source_refs": [
+        {
+          "source_type": "input_markdown",
+          "path": "assets/projects/OSS-BLIND-R4/work_items/RAILS-58429/inputs/requirement_summary.md",
+          "excerpt": "单个支持 tagged 的 logger 和既有常规广播行为不回退。"
+        }
+      ]
+    },
+    {
+      "id": "ER-012",
+      "title": "需求整理-explicit_rule",
+      "statement": "嵌套 tagged 调用的标签顺序和清理应保持一致。",
+      "confidence": 0.99,
+      "reasoning_notes": [
+        "来自主流程 requirement_summary.md 的确认需求。"
+      ],
+      "must_preserve_terms": [],
+      "source_refs": [
+        {
+          "source_type": "input_markdown",
+          "path": "assets/projects/OSS-BLIND-R4/work_items/RAILS-58429/inputs/requirement_summary.md",
+          "excerpt": "嵌套 tagged 调用的标签顺序和清理应保持一致。"
+        }
+      ]
+    },
+    {
+      "id": "ER-013",
+      "title": "需求整理-explicit_rule",
+      "statement": "logger 是否参与标签处理以 `respond_to?(:tagged)` 为能力判断。",
+      "confidence": 0.99,
+      "reasoning_notes": [
+        "来自主流程 requirement_summary.md 的确认需求。"
+      ],
+      "must_preserve_terms": [],
+      "source_refs": [
+        {
+          "source_type": "input_markdown",
+          "path": "assets/projects/OSS-BLIND-R4/work_items/RAILS-58429/inputs/requirement_summary.md",
+          "excerpt": "logger 是否参与标签处理以 `respond_to?(:tagged)` 为能力判断。"
+        }
+      ]
+    }
+  ],
+  "implicit_rules": [],
+  "field_constraints": [],
+  "data_source_rules": [],
+  "business_risks": [
+    {
+      "risk_id": "RISK-001",
+      "title": "返回对象如果遗漏非 tagging logger",
+      "risk_statement": "返回对象如果遗漏非 tagging logger，会造成静默日志丢失。",
+      "severity": "high",
+      "impact_scope": [],
+      "source_refs": [
+        {
+          "source_type": "input_markdown",
+          "path": "assets/projects/OSS-BLIND-R4/work_items/RAILS-58429/inputs/requirement_summary.md",
+          "excerpt": "返回对象如果遗漏非 tagging logger，会造成静默日志丢失。"
+        }
+      ]
+    },
+    {
+      "risk_id": "RISK-002",
+      "title": "block 重复执行可能重复业务副作用",
+      "risk_statement": "block 重复执行可能重复业务副作用，属于高风险兼容问题。",
+      "severity": "medium",
+      "impact_scope": [],
+      "source_refs": [
+        {
+          "source_type": "input_markdown",
+          "path": "assets/projects/OSS-BLIND-R4/work_items/RAILS-58429/inputs/requirement_summary.md",
+          "excerpt": "block 重复执行可能重复业务副作用，属于高风险兼容问题。"
+        }
+      ]
+    },
+    {
+      "risk_id": "RISK-003",
+      "title": "异常路径清理不完整会把标签泄漏到后续请求或线程",
+      "risk_statement": "异常路径清理不完整会把标签泄漏到后续请求或线程。",
+      "severity": "medium",
+      "impact_scope": [],
+      "source_refs": [
+        {
+          "source_type": "input_markdown",
+          "path": "assets/projects/OSS-BLIND-R4/work_items/RAILS-58429/inputs/requirement_summary.md",
+          "excerpt": "异常路径清理不完整会把标签泄漏到后续请求或线程。"
+        }
+      ]
+    },
+    {
+      "risk_id": "RISK-004",
+      "title": "嵌套标签、并发日志和不同 logger 返回值可能暴露组合边界",
+      "risk_statement": "嵌套标签、并发日志和不同 logger 返回值可能暴露组合边界。",
+      "severity": "high",
+      "impact_scope": [],
+      "source_refs": [
+        {
+          "source_type": "input_markdown",
+          "path": "assets/projects/OSS-BLIND-R4/work_items/RAILS-58429/inputs/requirement_summary.md",
+          "excerpt": "嵌套标签、并发日志和不同 logger 返回值可能暴露组合边界。"
+        }
+      ]
+    }
+  ],
+  "edge_cases": [
+    {
+      "edge_case_id": "EC-001",
+      "title": "支持与不支持 tagged 的混合组合",
+      "scenario": "支持与不支持 tagged 的混合组合：无 block 后所有目标仍收到消息，仅支持者应用标签。",
+      "priority": "P1",
+      "source_refs": [
+        {
+          "source_type": "input_markdown",
+          "path": "assets/projects/OSS-BLIND-R4/work_items/RAILS-58429/inputs/requirement_summary.md",
+          "excerpt": "支持与不支持 tagged 的混合组合：无 block 后所有目标仍收到消息，仅支持者应用标签。"
+        }
+      ]
+    },
+    {
+      "edge_case_id": "EC-002",
+      "title": "block 抛异常时异常继续传播",
+      "scenario": "block 抛异常时异常继续传播，随后写日志不再携带临时标签。",
+      "priority": "P1",
+      "source_refs": [
+        {
+          "source_type": "input_markdown",
+          "path": "assets/projects/OSS-BLIND-R4/work_items/RAILS-58429/inputs/requirement_summary.md",
+          "excerpt": "block 抛异常时异常继续传播，随后写日志不再携带临时标签。"
+        }
+      ]
+    }
+  ],
+  "ambiguities": [
+    {
+      "ambiguity_id": "AMB-001",
+      "title": "零个或一个广播目标时的返回语义是否需要额外约束",
+      "description": "零个或一个广播目标时的返回语义是否需要额外约束？",
+      "status": "open",
+      "suggested_resolution": "在进入正式测试设计前由需求方确认；未确认时保持显式缺失，不推断为强规则。",
+      "source_refs": [
+        {
+          "source_type": "input_markdown",
+          "path": "assets/projects/OSS-BLIND-R4/work_items/RAILS-58429/inputs/requirement_summary.md",
+          "excerpt": "零个或一个广播目标时的返回语义是否需要额外约束？"
+        }
+      ]
+    },
+    {
+      "ambiguity_id": "AMB-002",
+      "title": "无 block 返回的新对象与原对象之间的身份和后续增删广播目标行为如何…",
+      "description": "无 block 返回的新对象与原对象之间的身份和后续增删广播目标行为如何定义？",
+      "status": "open",
+      "suggested_resolution": "在进入正式测试设计前由需求方确认；未确认时保持显式缺失，不推断为强规则。",
+      "source_refs": [
+        {
+          "source_type": "input_markdown",
+          "path": "assets/projects/OSS-BLIND-R4/work_items/RAILS-58429/inputs/requirement_summary.md",
+          "excerpt": "无 block 返回的新对象与原对象之间的身份和后续增删广播目标行为如何定义？"
+        }
+      ]
+    },
+    {
+      "ambiguity_id": "AMB-003",
+      "title": "嵌套标签的精确顺序与重复标签规则是什么",
+      "description": "嵌套标签的精确顺序与重复标签规则是什么？",
+      "status": "open",
+      "suggested_resolution": "在进入正式测试设计前由需求方确认；未确认时保持显式缺失，不推断为强规则。",
+      "source_refs": [
+        {
+          "source_type": "input_markdown",
+          "path": "assets/projects/OSS-BLIND-R4/work_items/RAILS-58429/inputs/requirement_summary.md",
+          "excerpt": "嵌套标签的精确顺序与重复标签规则是什么？"
+        }
+      ]
+    },
+    {
+      "ambiguity_id": "AMB-004",
+      "title": "标签上下文的线程/纤程隔离由 BroadcastLogger 还是各 l…",
+      "description": "标签上下文的线程/纤程隔离由 BroadcastLogger 还是各 logger 保证？",
+      "status": "open",
+      "suggested_resolution": "在进入正式测试设计前由需求方确认；未确认时保持显式缺失，不推断为强规则。",
+      "source_refs": [
+        {
+          "source_type": "input_markdown",
+          "path": "assets/projects/OSS-BLIND-R4/work_items/RAILS-58429/inputs/requirement_summary.md",
+          "excerpt": "标签上下文的线程/纤程隔离由 BroadcastLogger 还是各 logger 保证？"
+        }
+      ]
+    }
+  ],
+  "recommended_test_dimensions": [
+    {
+      "dimension_id": "TD-001",
+      "dimension": "显式规则逐条验证",
+      "rationale": "需求摘要已给出可追溯规则，后续设计应保持单规则单断言并验证成功与失败结果。",
+      "priority": "high",
+      "related_reasoning_ids": [
+        "ER-001",
+        "ER-002",
+        "ER-003",
+        "ER-004",
+        "ER-005",
+        "ER-006",
+        "ER-007",
+        "ER-008"
+      ]
+    },
+    {
+      "dimension_id": "TD-002",
+      "dimension": "异常与失败处理",
+      "rationale": "需求包含明确拒绝或失败语义，需要验证失败状态、错误反馈及副作用隔离。",
+      "priority": "high",
+      "related_reasoning_ids": [
+        "ER-001",
+        "ER-004",
+        "ER-006",
+        "ER-010"
+      ]
+    },
+    {
+      "dimension_id": "TD-003",
+      "dimension": "兼容性与回归",
+      "rationale": "需求要求保留既有合法行为或历史关系，需要同时验证变更路径与未变路径。",
+      "priority": "high",
+      "related_reasoning_ids": [
+        "ER-011"
+      ]
+    },
+    {
+      "dimension_id": "TD-004",
+      "dimension": "数据一致性与状态保留",
+      "rationale": "需求涉及关系或状态保留，应核对操作前后数据集合而非只看接口成功。",
+      "priority": "high",
+      "related_reasoning_ids": [
+        "ER-002",
+        "ER-012"
+      ]
+    },
+    {
+      "dimension_id": "TD-005",
+      "dimension": "风险与非功能约束",
+      "rationale": "需求摘要已明确兼容性、性能或一致性风险，需与产品验收规则分层承接。",
+      "priority": "medium",
+      "related_reasoning_ids": [
+        "RISK-001",
+        "RISK-002",
+        "RISK-003",
+        "RISK-004"
+      ]
+    },
+    {
+      "dimension_id": "TD-006",
+      "dimension": "未决项追踪",
+      "rationale": "摘要存在尚未确认的输入或验收口径，后续不得将其自动升级为强制规则。",
+      "priority": "medium",
+      "related_reasoning_ids": [
+        "AMB-001",
+        "AMB-002",
+        "AMB-003",
+        "AMB-004"
+      ]
+    }
+  ],
+  "coverage_candidates": [
+    {
+      "candidate_id": "COV-001",
+      "candidate_type": "rule_cluster",
+      "title": "`BroadcastLogger#tagged` 在多个广播 logge…",
+      "scope": "文本需求规则",
+      "priority": "high",
+      "rationale": "文本需求中的显式规则需要在后续 Structured PRD 与测试设计中保持可追溯。",
+      "suggested_test_types": [
+        "功能",
+        "异常"
+      ],
+      "source_reasoning_ids": [
+        "ER-001"
+      ]
+    },
+    {
+      "candidate_id": "COV-002",
+      "candidate_type": "rule_cluster",
+      "title": "无 block 调用必须返回可调用 `info` 等日志方法的 Broa…",
+      "scope": "文本需求规则",
+      "priority": "high",
+      "rationale": "文本需求中的显式规则需要在后续 Structured PRD 与测试设计中保持可追溯。",
+      "suggested_test_types": [
+        "功能",
+        "异常"
+      ],
+      "source_reasoning_ids": [
+        "ER-002"
+      ]
+    },
+    {
+      "candidate_id": "COV-003",
+      "candidate_type": "rule_cluster",
+      "title": "返回对象中的支持 tagged 的 logger 应带指定标签",
+      "scope": "文本需求规则",
+      "priority": "high",
+      "rationale": "文本需求中的显式规则需要在后续 Structured PRD 与测试设计中保持可追溯。",
+      "suggested_test_types": [
+        "功能",
+        "异常"
+      ],
+      "source_reasoning_ids": [
+        "ER-003"
+      ]
+    },
+    {
+      "candidate_id": "COV-004",
+      "candidate_type": "rule_cluster",
+      "title": "不支持 tagged 的广播目标不得因此丢失",
+      "scope": "文本需求规则",
+      "priority": "high",
+      "rationale": "文本需求中的显式规则需要在后续 Structured PRD 与测试设计中保持可追溯。",
+      "suggested_test_types": [
+        "功能",
+        "异常"
+      ],
+      "source_reasoning_ids": [
+        "ER-004"
+      ]
+    },
+    {
+      "candidate_id": "COV-005",
+      "candidate_type": "rule_cluster",
+      "title": "有 block 调用只执行一次用户 block",
+      "scope": "文本需求规则",
+      "priority": "high",
+      "rationale": "文本需求中的显式规则需要在后续 Structured PRD 与测试设计中保持可追溯。",
+      "suggested_test_types": [
+        "功能",
+        "异常"
+      ],
+      "source_reasoning_ids": [
+        "ER-005"
+      ]
+    },
+    {
+      "candidate_id": "COV-006",
+      "candidate_type": "rule_cluster",
+      "title": "block 正常结束或抛出异常后",
+      "scope": "文本需求规则",
+      "priority": "high",
+      "rationale": "文本需求中的显式规则需要在后续 Structured PRD 与测试设计中保持可追溯。",
+      "suggested_test_types": [
+        "功能",
+        "异常"
+      ],
+      "source_reasoning_ids": [
+        "ER-006"
+      ]
+    },
+    {
+      "candidate_id": "COV-007",
+      "candidate_type": "rule_cluster",
+      "title": "两个支持 tagged 的 logger",
+      "scope": "文本需求规则",
+      "priority": "high",
+      "rationale": "文本需求中的显式规则需要在后续 Structured PRD 与测试设计中保持可追溯。",
+      "suggested_test_types": [
+        "功能",
+        "异常"
+      ],
+      "source_reasoning_ids": [
+        "ER-007"
+      ]
+    },
+    {
+      "candidate_id": "COV-008",
+      "candidate_type": "rule_cluster",
+      "title": "支持与不支持 tagged 的混合组合",
+      "scope": "文本需求规则",
+      "priority": "high",
+      "rationale": "文本需求中的显式规则需要在后续 Structured PRD 与测试设计中保持可追溯。",
+      "suggested_test_types": [
+        "功能",
+        "异常"
+      ],
+      "source_reasoning_ids": [
+        "ER-008"
+      ]
+    },
+    {
+      "candidate_id": "COV-009",
+      "candidate_type": "rule_cluster",
+      "title": "有 block 时计数证明 block 只执行一次",
+      "scope": "文本需求规则",
+      "priority": "high",
+      "rationale": "文本需求中的显式规则需要在后续 Structured PRD 与测试设计中保持可追溯。",
+      "suggested_test_types": [
+        "功能",
+        "异常"
+      ],
+      "source_reasoning_ids": [
+        "ER-009"
+      ]
+    },
+    {
+      "candidate_id": "COV-010",
+      "candidate_type": "rule_cluster",
+      "title": "block 抛异常时异常继续传播",
+      "scope": "文本需求规则",
+      "priority": "high",
+      "rationale": "文本需求中的显式规则需要在后续 Structured PRD 与测试设计中保持可追溯。",
+      "suggested_test_types": [
+        "功能",
+        "异常"
+      ],
+      "source_reasoning_ids": [
+        "ER-010"
+      ]
+    },
+    {
+      "candidate_id": "COV-011",
+      "candidate_type": "rule_cluster",
+      "title": "单个支持 tagged 的 logger 和既有常规广播行为不回退",
+      "scope": "文本需求规则",
+      "priority": "high",
+      "rationale": "文本需求中的显式规则需要在后续 Structured PRD 与测试设计中保持可追溯。",
+      "suggested_test_types": [
+        "功能",
+        "异常"
+      ],
+      "source_reasoning_ids": [
+        "ER-011"
+      ]
+    },
+    {
+      "candidate_id": "COV-012",
+      "candidate_type": "rule_cluster",
+      "title": "嵌套 tagged 调用的标签顺序和清理应保持一致",
+      "scope": "文本需求规则",
+      "priority": "high",
+      "rationale": "文本需求中的显式规则需要在后续 Structured PRD 与测试设计中保持可追溯。",
+      "suggested_test_types": [
+        "功能",
+        "异常"
+      ],
+      "source_reasoning_ids": [
+        "ER-012"
+      ]
+    },
+    {
+      "candidate_id": "COV-013",
+      "candidate_type": "rule_cluster",
+      "title": "logger 是否参与标签处理以 `respond_to",
+      "scope": "文本需求规则",
+      "priority": "high",
+      "rationale": "文本需求中的显式规则需要在后续 Structured PRD 与测试设计中保持可追溯。",
+      "suggested_test_types": [
+        "功能",
+        "异常"
+      ],
+      "source_reasoning_ids": [
+        "ER-013"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,171 @@
+{
+  "project_code": "OSS-BLIND",
+  "work_item_id": "APPSMITH-42244",
+  "generated_at": "2026-09-21T18:17:20",
+  "generated_from": [
+    "coverage/coverage_matrix.json",
+    "evidence/evidence_inventory.json",
+    "testcases/testcases_main.md"
+  ],
+  "summary": {
+    "record_count": 7,
+    "invalid_record_count": 0,
+    "false_traceability_rate": 0.0
+  },
+  "records": [
+    {
+      "record_id": "CFT-0001",
+      "rule_id": "Databricks 数据源连接::自定义 JDBC URL 连接创建::happy_path_combo",
+      "coverage_id": "COV-EX-0003",
+      "testcase_id": "OSS-BLIND-DATABRICKS-CONNECT-SERVER-AB-001",
+      "testcase_title": "非 Databricks JDBC URL 在连接创建前被拒绝",
+      "source_origin": "explicit_rule",
+      "coverage_level": "business",
+      "emit_mode": "main_testcase",
+      "fidelity_status": "not_applicable",
+      "evidence_ids": [],
+      "reasoning_refs": [],
+      "structured_targets": [
+        {
+          "target_type": "feature",
+          "module_name": "Databricks 数据源连接",
+          "feature_name": "自定义 JDBC URL 连接创建",
+          "field_name": "",
+          "target_name": "Databricks 数据源连接创建"
+        }
+      ]
+    },
+    {
+      "record_id": "CFT-0002",
+      "rule_id": "Databricks 数据源连接::自定义 JDBC URL 连接创建::happy_path_combo",
+      "coverage_id": "COV-EX-0004",
+      "testcase_id": "OSS-BLIND-DATABRICKS-CONNECT-SERVER-FN-001",
+      "testcase_title": "合法自定义 Databricks JDBC URL 进入连接流程",
+      "source_origin": "explicit_rule",
+      "coverage_level": "business",
+      "emit_mode": "main_testcase",
+      "fidelity_status": "not_applicable",
+      "evidence_ids": [],
+      "reasoning_refs": [],
+      "structured_targets": [
+        {
+          "target_type": "feature",
+          "module_name": "Databricks 数据源连接",
+          "feature_name": "自定义 JDBC URL 连接创建",
+          "field_name": "",
+          "target_name": "JDBC URL"
+        }
+      ]
+    },
+    {
+      "record_id": "CFT-0003",
+      "rule_id": "Databricks 数据源连接::自定义 JDBC URL 连接创建::happy_path_combo",
+      "coverage_id": "COV-EX-0005",
+      "testcase_id": "OSS-BLIND-DATABRICKS-CONNECT-SERVER-FL-001",
+      "testcase_title": "Databricks URL 由指定 driver 处理且拒绝后不回退",
+      "source_origin": "explicit_rule",
+      "coverage_level": "business",
+      "emit_mode": "main_testcase",
+      "fidelity_status": "not_applicable",
+      "evidence_ids": [],
+      "reasoning_refs": [],
+      "structured_targets": [
+        {
+          "target_type": "feature",
+          "module_name": "Databricks 数据源连接",
+          "feature_name": "自定义 JDBC URL 连接创建",
+          "field_name": "",
+          "target_name": "JDBC driver 选择"
+        }
+      ]
+    },
+    {
+      "record_id": "CFT-0004",
+      "rule_id": "Databricks 数据源连接::自定义 JDBC URL 连接创建::happy_path_combo",
+      "coverage_id": "COV-EX-0006",
+      "testcase_id": "OSS-BLIND-DATABRICKS-CONNECT-SERVER-AB-002",
+      "testcase_title": "Databricks JDBC driver 拒绝 URL 时返回创建错误",
+      "source_origin": "explicit_rule",
+      "coverage_level": "business",
+      "emit_mode": "main_testcase",
+      "fidelity_status": "not_applicable",
+      "evidence_ids": [],
+      "reasoning_refs": [],
+      "structured_targets": [
+        {
+          "target_type": "feature",
+          "module_name": "Databricks 数据源连接",
+          "feature_name": "自定义 JDBC URL 连接创建",
+          "field_name": "",
+          "target_name": "Databricks JDBC driver 拒绝 URL 时返回连接创建错误并停止后续连接行为。"
+        }
+      ]
+    },
+    {
+      "record_id": "CFT-0005",
+      "rule_id": "Databricks 数据源连接::自定义 JDBC URL 连接创建::happy_path_combo",
+      "coverage_id": "COV-EX-0007",
+      "testcase_id": "OSS-BLIND-DATABRICKS-CONNECT-SERVER-AB-003",
+      "testcase_title": "Databricks JDBC driver 返回空连接时返回创建错误",
+      "source_origin": "explicit_rule",
+      "coverage_level": "business",
+      "emit_mode": "main_testcase",
+      "fidelity_status": "not_applicable",
+      "evidence_ids": [],
+      "reasoning_refs": [],
+      "structured_targets": [
+        {
+          "target_type": "feature",
+          "module_name": "Databricks 数据源连接",
+          "feature_name": "自定义 JDBC URL 连接创建",
+          "field_name": "",
+          "target_name": "Databricks JDBC driver 返回空连接时返回连接创建错误并停止后续连接行为。"
+        }
+      ]
+    },
+    {
+      "record_id": "CFT-0006",
+      "rule_id": "Databricks 数据源连接::自定义 JDBC URL 连接创建::happy_path_combo",
+      "coverage_id": "COV-EX-0008",
+      "testcase_id": "OSS-BLIND-DATABRICKS-CONNECT-SERVER-FL-002",
+      "testcase_title": "既有合法配置使用明确的 JDBC token 属性建立连接",
+      "source_origin": "explicit_rule",
+      "coverage_level": "business",
+      "emit_mode": "main_testcase",
+      "fidelity_status": "not_applicable",
+      "evidence_ids": [],
+      "reasoning_refs": [],
+      "structured_targets": [
+        {
+          "target_type": "feature",
+          "module_name": "Databricks 数据源连接",
+          "feature_name": "自定义 JDBC URL 连接创建",
+          "field_name": "",
+          "target_name": "既有合法 Databricks 配置"
+        }
+      ]
+    },
+    {
+      "record_id": "CFT-0007",
+      "rule_id": "Databricks 数据源连接::自定义 JDBC URL 连接创建::happy_path_combo",
+      "coverage_id": "COV-EX-0009",
+      "testcase_id": "OSS-BLIND-DATABRICKS-CONNECT-SERVER-FL-003",
+      "testcase_title": "URL 校验失败不产生错误目标网络连接",
+      "source_origin": "explicit_rule",
+      "coverage_level": "business",
+      "emit_mode": "main_testcase",
+      "fidelity_status": "not_applicable",
+      "evidence_ids": [],
+      "reasoning_refs": [],
+      "structured_targets": [
+        {
+          "target_type": "feature",
+          "module_name": "Databricks 数据源连接",
+          "feature_name": "自定义 JDBC URL 连接创建",
+          "field_name": "",
+          "target_name": "连接创建顺序"
+        }
+      ]
+    }
+  ]
+}

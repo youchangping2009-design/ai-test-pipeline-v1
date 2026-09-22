@@ -1,0 +1,34 @@
+{
+  "project_code": "OSS-BLIND",
+  "work_item_id": "SALEOR-19804",
+  "manifest_type": "requirement_source_manifest",
+  "summary_artifact": "inputs/requirement_summary.md",
+  "sources": [
+    {
+      "source_id": "SRC-001",
+      "source_type": "public_doc",
+      "location": "https://github.com/saleor/saleor/pull/19804",
+      "status": "available",
+      "retrieved_at": "2026-09-21",
+      "notes": "Main-branch port PR description and merge metadata; diff excluded from blind input"
+    },
+    {
+      "source_id": "SRC-002",
+      "source_type": "public_doc",
+      "location": "https://github.com/saleor/saleor/pull/19794",
+      "status": "available",
+      "retrieved_at": "2026-09-21",
+      "notes": "Original PR description supplies defect mechanism, compatibility scope and recovery boundary"
+    },
+    {
+      "source_id": "SRC-003",
+      "source_type": "local_file",
+      "location": "inputs/public_source_snapshot.md",
+      "status": "available",
+      "local_artifact": "inputs/public_source_snapshot.md",
+      "retrieved_at": "2026-09-21",
+      "notes": "Frozen public-input snapshot with oracle boundary"
+    }
+  ],
+  "unresolved_sources": []
+}

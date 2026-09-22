@@ -1,0 +1,70 @@
+{
+  "generated_at": "2026-09-22T13:03:41",
+  "total_cases": 10,
+  "total_coverage_entries": 16,
+  "coverage_empty_with_cases": false,
+  "rule_coverage_rate": 0.625,
+  "atomic_case_rate": 0.0,
+  "boundary_coverage_rate": 1.0,
+  "data_source_rule_coverage_rate": 1.0,
+  "generalized_case_count": 0,
+  "generalized_case_rate": 0.0,
+  "weak_case_count": 0,
+  "weak_case_rate": 0.0,
+  "semantic_mismatch_count": 0,
+  "duplicate_case_count": 0,
+  "duplicate_case_rate": 0.0,
+  "duplicate_group_count": 0,
+  "duplicate_metric_basis": "residual_after_merge",
+  "missing_fidelity_points": 0,
+  "high_priority_fidelity_missing": 0,
+  "false_traceability_rate": 0.0,
+  "false_traceability_rate_primary": 0.0,
+  "false_traceability_rate_legacy": 0.0,
+  "traceability_metric_source": "coverage_first_traceability",
+  "field_audit_item_count": 6,
+  "grouped_audit_group_count": 0,
+  "audit_artifacts_consumed": true,
+  "quality_gate": {
+    "enabled": false,
+    "mode": "soft",
+    "rollout_source": "new_work_item",
+    "status": "report_only",
+    "thresholds": {
+      "false_traceability_rate_fail": 0.05,
+      "generalized_case_rate_warn": 0.03,
+      "generalized_case_count_warn": 5,
+      "weak_case_rate_warn": 0.03,
+      "weak_case_count_warn": 5,
+      "semantic_mismatch_count_fail": 0,
+      "duplicate_case_rate_warn": 0.005,
+      "duplicate_case_count_warn": 1
+    },
+    "warnings": [],
+    "failures": []
+  },
+  "unresolved_issues": [],
+  "final_near_duplicate_groups": [],
+  "source_artifacts": {
+    "structured_prd": {
+      "path": "assets/projects/OSS-BLIND-R4/work_items/RAILS-58429/structured_prd/structured_prd.json",
+      "sha256": "b7283c23b05631bc8e1ed4c193f3d8c074903e1f97f173e77e60eee3eadbc01c",
+      "size_bytes": 13450
+    },
+    "coverage_matrix": {
+      "path": "assets/projects/OSS-BLIND-R4/work_items/RAILS-58429/coverage/coverage_matrix.json",
+      "sha256": "781d9b0bcf4508396e3056c07b7da9f441f40fdcab4780e089d3158ab6b53eaf",
+      "size_bytes": 15636
+    },
+    "testcases": {
+      "path": "assets/projects/OSS-BLIND-R4/work_items/RAILS-58429/testcases/testcases_main.md",
+      "sha256": "97a66037aef82229a9bc6b65f6539438fb4b4a2d424896f7a5271420adaa9d0b",
+      "size_bytes": 5880
+    },
+    "coverage_first_traceability": {
+      "path": "assets/projects/OSS-BLIND-R4/work_items/RAILS-58429/traceability/coverage_first_traceability.json",
+      "sha256": "5f74d07a4d302826d86a4803067f42e86882d55e69b5309996c130979187cfc1",
+      "size_bytes": 8293
+    }
+  }
+}

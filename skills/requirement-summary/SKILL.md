@@ -84,7 +84,7 @@ If an external document is a JavaScript app, extract its embedded data or use br
 5. Synthesize a development-and-testing oriented summary, not a marketing recap.
 6. Write or refresh `inputs/requirement_summary.md` with the structure in `references/output-contract.md`.
 7. Write or refresh `inputs/source_manifest.json` with every source actually consumed in this run.
-8. Update root `PROGRESS.md` with a concise record: sources read, output path, validation command, and scope boundary.
+8. 把一条简要记录追加到根目录 `PROGRESS.md` 文末：读过的来源、输出路径、校验命令和范围边界。禁止插到文件顶部。
 9. Run at least:
 
 ```bash
@@ -99,6 +99,7 @@ Read `references/output-contract.md` before writing the Markdown. The document m
 
 - Be useful to both developers and testers.
 - Separate confirmed requirements, inferred assumptions, risks, and pending questions.
+- Separate source roles as `primary_requirement`, `context_only`, and `oracle_only`; context/oracle facts must not be promoted into the formal generation scope without an explicit scope decision.
 - Include concrete pages, fields, APIs, parameters, statuses, versions, branches, domains, and error messages when available.
 - Preserve out-of-scope boundaries.
 - Use absolute source dates for chat-derived decisions.

@@ -1,0 +1,13 @@
+{
+  "schema_version": "1.0.0",
+  "approval_id": "RUN-FIXTURE-RUNTIME-001-FULL-20260826-requirement-8441625cb4a456e17f8e334d",
+  "status": "approved",
+  "reviewed_by": "ycp",
+  "reviewed_at": "2026-08-26T15:12:30+00:00",
+  "note": "重放既有批准：重建 run 后 summary/source/raw 三类绑定值未变，用户此前已确认当前 requirement summary 与 6 张原图不变",
+  "run_id": "RUN-FIXTURE-RUNTIME-001-FULL-20260826",
+  "requirement_summary_sha256": "b568c52d0fbab4b0c3ab2197648b9eded96b3bfff4f35663fd91dc1e0970c072",
+  "source_manifest_sha256": "5d5f6c8eacb3fe0b6463fd91e1d72ead3b7a778673e0c020e8cb2e9da02a30fa",
+  "raw_inputs_fingerprint": "2bf58de90dc5872543ad70c71bc78e7c9231d1f429b53c139b8f2885ce2201f2",
+  "requirement_version": ""
+}

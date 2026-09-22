@@ -1,0 +1,15 @@
+[
+  {
+    "case_id": "OSS-BLIND-R4-APISTORE-SERIALIZER-API-DV-001",
+    "title": "通用 JSON Serializer 往返保留对象 GVK",
+    "page_name": "APIStore 资源序列化",
+    "module_name": "APIStore 序列化",
+    "feature_name": "资源序列化选择",
+    "issue_types": [
+      "abstract_oracle"
+    ],
+    "reasons": [
+      "预期结果偏抽象，判定标准不够具体。"
+    ]
+  }
+]

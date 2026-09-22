@@ -53,7 +53,6 @@
 主要位置：
 
 - `tool_adapters/`
-- 宿主私有规则目录（当前为 `.cursor/rules/`）
 - `skills/numbering-tagging/rules/`
 - `skills/review-gate/checklists/`
 
@@ -89,7 +88,6 @@
 - `skills/`
 - `prompts/`
 - `tool_adapters/`
-- 宿主私有规则目录（当前为 `.cursor/rules/`）
 
 当前能力围绕以下阶段组织：
 
@@ -371,7 +369,6 @@ testcase 同时包含：
 
 ```text
 ai-test-pipeline-v1/
-├── .cursor/
 ├── docs/
 ├── prompts/
 ├── schemas/

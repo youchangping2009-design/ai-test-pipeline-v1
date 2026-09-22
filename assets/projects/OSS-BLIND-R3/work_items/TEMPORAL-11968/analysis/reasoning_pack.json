@@ -1,0 +1,728 @@
+{
+  "project_code": "OSS-BLIND-R3",
+  "work_item_id": "TEMPORAL-11968",
+  "grounding_contract_version": "1.0",
+  "generated_at": "2026-09-21T19:32:52",
+  "generated_from": [
+    "assets/projects/OSS-BLIND-R3/work_items/TEMPORAL-11968/manifest.json",
+    "assets/projects/OSS-BLIND-R3/work_items/TEMPORAL-11968/inputs/requirement_summary.md",
+    "assets/projects/OSS-BLIND-R3/work_items/TEMPORAL-11968/inputs/source_manifest.json",
+    "assets/projects/OSS-BLIND-R3/work_items/TEMPORAL-11968/image_evidence/image_evidence_inventory.json"
+  ],
+  "requirement_summary": {
+    "title": "TEMPORAL-11968 Workflow 关闭后 SignalWithStart 重试去重需求整理",
+    "summary_text": "客户端以相同 request ID 重试 `SignalWithStart` 时，即使原始 Workflow Execution 已关闭，也必须识别为同一启动请求。系统应返回原始 run，不创建新 run，也不再次发送 signal。",
+    "primary_pages": [],
+    "primary_user_surfaces": [],
+    "source_notes": [
+      "归一化需求来源：assets/projects/OSS-BLIND-R3/work_items/TEMPORAL-11968/inputs/requirement_summary.md",
+      "SRC-001: https://github.com/temporalio/temporal/pull/11968 (available)",
+      "SRC-002: inputs/public_source_snapshot.md (available)"
+    ]
+  },
+  "explicit_rules": [
+    {
+      "id": "ER-001",
+      "title": "需求整理-explicit_rule",
+      "statement": "客户端以相同 request ID 重试 `SignalWithStart` 时，即使原始 Workflow Execution 已关闭，也必须识别为同一启动请求。系统应返回原始 run，不创建新 run，也不再次发送 signal。",
+      "confidence": 0.99,
+      "reasoning_notes": [
+        "来自主流程 requirement_summary.md 的确认需求。"
+      ],
+      "must_preserve_terms": [],
+      "source_refs": [
+        {
+          "source_type": "input_markdown",
+          "path": "assets/projects/OSS-BLIND-R3/work_items/TEMPORAL-11968/inputs/requirement_summary.md",
+          "excerpt": "客户端以相同 request ID 重试 `SignalWithStart` 时，即使原始 Workflow Execution 已关闭，也必须识别为同一启动请求。系统应返回原始 run，不创建新 run，也不再次发送 signal。"
+        }
+      ]
+    },
+    {
+      "id": "ER-002",
+      "title": "需求整理-explicit_rule",
+      "statement": "首次 `SignalWithStart` 的 request ID 与原始 run 关系在执行关闭后仍可用于去重。",
+      "confidence": 0.99,
+      "reasoning_notes": [
+        "来自主流程 requirement_summary.md 的确认需求。"
+      ],
+      "must_preserve_terms": [],
+      "source_refs": [
+        {
+          "source_type": "input_markdown",
+          "path": "assets/projects/OSS-BLIND-R3/work_items/TEMPORAL-11968/inputs/requirement_summary.md",
+          "excerpt": "首次 `SignalWithStart` 的 request ID 与原始 run 关系在执行关闭后仍可用于去重。"
+        }
+      ]
+    },
+    {
+      "id": "ER-003",
+      "title": "需求整理-explicit_rule",
+      "statement": "相同 request ID 重试返回首次创建的 run 标识。",
+      "confidence": 0.99,
+      "reasoning_notes": [
+        "来自主流程 requirement_summary.md 的确认需求。"
+      ],
+      "must_preserve_terms": [],
+      "source_refs": [
+        {
+          "source_type": "input_markdown",
+          "path": "assets/projects/OSS-BLIND-R3/work_items/TEMPORAL-11968/inputs/requirement_summary.md",
+          "excerpt": "相同 request ID 重试返回首次创建的 run 标识。"
+        }
+      ]
+    },
+    {
+      "id": "ER-004",
+      "title": "需求整理-explicit_rule",
+      "statement": "去重命中不得创建新 workflow run。",
+      "confidence": 0.99,
+      "reasoning_notes": [
+        "来自主流程 requirement_summary.md 的确认需求。"
+      ],
+      "must_preserve_terms": [],
+      "source_refs": [
+        {
+          "source_type": "input_markdown",
+          "path": "assets/projects/OSS-BLIND-R3/work_items/TEMPORAL-11968/inputs/requirement_summary.md",
+          "excerpt": "去重命中不得创建新 workflow run。"
+        }
+      ]
+    },
+    {
+      "id": "ER-005",
+      "title": "需求整理-explicit_rule",
+      "statement": "去重命中不得再次投递 signal。",
+      "confidence": 0.99,
+      "reasoning_notes": [
+        "来自主流程 requirement_summary.md 的确认需求。"
+      ],
+      "must_preserve_terms": [],
+      "source_refs": [
+        {
+          "source_type": "input_markdown",
+          "path": "assets/projects/OSS-BLIND-R3/work_items/TEMPORAL-11968/inputs/requirement_summary.md",
+          "excerpt": "去重命中不得再次投递 signal。"
+        }
+      ]
+    },
+    {
+      "id": "ER-006",
+      "title": "需求整理-explicit_rule",
+      "statement": "去重事件应增加可识别的 `SignalWithStartWorkflowStartDeduped` 指标。",
+      "confidence": 0.99,
+      "reasoning_notes": [
+        "来自主流程 requirement_summary.md 的确认需求。"
+      ],
+      "must_preserve_terms": [],
+      "source_refs": [
+        {
+          "source_type": "input_markdown",
+          "path": "assets/projects/OSS-BLIND-R3/work_items/TEMPORAL-11968/inputs/requirement_summary.md",
+          "excerpt": "去重事件应增加可识别的 `SignalWithStartWorkflowStartDeduped` 指标。"
+        }
+      ]
+    },
+    {
+      "id": "ER-007",
+      "title": "需求整理-explicit_rule",
+      "statement": "原 workflow 运行中重试与关闭后重试都验证同一 request ID 的幂等性。",
+      "confidence": 0.99,
+      "reasoning_notes": [
+        "来自主流程 requirement_summary.md 的确认需求。"
+      ],
+      "must_preserve_terms": [],
+      "source_refs": [
+        {
+          "source_type": "input_markdown",
+          "path": "assets/projects/OSS-BLIND-R3/work_items/TEMPORAL-11968/inputs/requirement_summary.md",
+          "excerpt": "原 workflow 运行中重试与关闭后重试都验证同一 request ID 的幂等性。"
+        }
+      ]
+    },
+    {
+      "id": "ER-008",
+      "title": "需求整理-explicit_rule",
+      "statement": "关闭后重试返回的 run ID 与首次请求一致。",
+      "confidence": 0.99,
+      "reasoning_notes": [
+        "来自主流程 requirement_summary.md 的确认需求。"
+      ],
+      "must_preserve_terms": [],
+      "source_refs": [
+        {
+          "source_type": "input_markdown",
+          "path": "assets/projects/OSS-BLIND-R3/work_items/TEMPORAL-11968/inputs/requirement_summary.md",
+          "excerpt": "关闭后重试返回的 run ID 与首次请求一致。"
+        }
+      ]
+    },
+    {
+      "id": "ER-009",
+      "title": "需求整理-explicit_rule",
+      "statement": "workflow 历史或业务副作用中 signal 只出现一次。",
+      "confidence": 0.99,
+      "reasoning_notes": [
+        "来自主流程 requirement_summary.md 的确认需求。"
+      ],
+      "must_preserve_terms": [],
+      "source_refs": [
+        {
+          "source_type": "input_markdown",
+          "path": "assets/projects/OSS-BLIND-R3/work_items/TEMPORAL-11968/inputs/requirement_summary.md",
+          "excerpt": "workflow 历史或业务副作用中 signal 只出现一次。"
+        }
+      ]
+    },
+    {
+      "id": "ER-010",
+      "title": "需求整理-explicit_rule",
+      "statement": "不产生新的 run，也不改变已关闭原 run 的最终状态。",
+      "confidence": 0.99,
+      "reasoning_notes": [
+        "来自主流程 requirement_summary.md 的确认需求。"
+      ],
+      "must_preserve_terms": [],
+      "source_refs": [
+        {
+          "source_type": "input_markdown",
+          "path": "assets/projects/OSS-BLIND-R3/work_items/TEMPORAL-11968/inputs/requirement_summary.md",
+          "excerpt": "不产生新的 run，也不改变已关闭原 run 的最终状态。"
+        }
+      ]
+    },
+    {
+      "id": "ER-011",
+      "title": "需求整理-explicit_rule",
+      "statement": "使用不同 request ID 时不被错误去重。",
+      "confidence": 0.99,
+      "reasoning_notes": [
+        "来自主流程 requirement_summary.md 的确认需求。"
+      ],
+      "must_preserve_terms": [],
+      "source_refs": [
+        {
+          "source_type": "input_markdown",
+          "path": "assets/projects/OSS-BLIND-R3/work_items/TEMPORAL-11968/inputs/requirement_summary.md",
+          "excerpt": "使用不同 request ID 时不被错误去重。"
+        }
+      ]
+    },
+    {
+      "id": "ER-012",
+      "title": "需求整理-explicit_rule",
+      "statement": "去重发生时对应指标递增，非去重请求不误计数。",
+      "confidence": 0.99,
+      "reasoning_notes": [
+        "来自主流程 requirement_summary.md 的确认需求。"
+      ],
+      "must_preserve_terms": [],
+      "source_refs": [
+        {
+          "source_type": "input_markdown",
+          "path": "assets/projects/OSS-BLIND-R3/work_items/TEMPORAL-11968/inputs/requirement_summary.md",
+          "excerpt": "去重发生时对应指标递增，非去重请求不误计数。"
+        }
+      ]
+    },
+    {
+      "id": "ER-013",
+      "title": "需求整理-explicit_rule",
+      "statement": "关键输入：namespace、workflow ID、request ID、signal name 和 payload。",
+      "confidence": 0.99,
+      "reasoning_notes": [
+        "来自主流程 requirement_summary.md 的确认需求。"
+      ],
+      "must_preserve_terms": [],
+      "source_refs": [
+        {
+          "source_type": "input_markdown",
+          "path": "assets/projects/OSS-BLIND-R3/work_items/TEMPORAL-11968/inputs/requirement_summary.md",
+          "excerpt": "关键输入：namespace、workflow ID、request ID、signal name 和 payload。"
+        }
+      ]
+    },
+    {
+      "id": "ER-014",
+      "title": "需求整理-explicit_rule",
+      "statement": "关键输出：原始 run ID、run 数量、signal 处理次数。",
+      "confidence": 0.99,
+      "reasoning_notes": [
+        "来自主流程 requirement_summary.md 的确认需求。"
+      ],
+      "must_preserve_terms": [],
+      "source_refs": [
+        {
+          "source_type": "input_markdown",
+          "path": "assets/projects/OSS-BLIND-R3/work_items/TEMPORAL-11968/inputs/requirement_summary.md",
+          "excerpt": "关键输出：原始 run ID、run 数量、signal 处理次数。"
+        }
+      ]
+    },
+    {
+      "id": "ER-015",
+      "title": "需求整理-explicit_rule",
+      "statement": "指标：`SignalWithStartWorkflowStartDeduped`。",
+      "confidence": 0.99,
+      "reasoning_notes": [
+        "来自主流程 requirement_summary.md 的确认需求。"
+      ],
+      "must_preserve_terms": [],
+      "source_refs": [
+        {
+          "source_type": "input_markdown",
+          "path": "assets/projects/OSS-BLIND-R3/work_items/TEMPORAL-11968/inputs/requirement_summary.md",
+          "excerpt": "指标：`SignalWithStartWorkflowStartDeduped`。"
+        }
+      ]
+    }
+  ],
+  "implicit_rules": [],
+  "field_constraints": [],
+  "data_source_rules": [],
+  "business_risks": [
+    {
+      "risk_id": "RISK-001",
+      "title": "执行关闭与重试并发可能形成竞态",
+      "risk_statement": "执行关闭与重试并发可能形成竞态，需要验证关闭提交前后边界。",
+      "severity": "high",
+      "impact_scope": [],
+      "source_refs": [
+        {
+          "source_type": "input_markdown",
+          "path": "assets/projects/OSS-BLIND-R3/work_items/TEMPORAL-11968/inputs/requirement_summary.md",
+          "excerpt": "执行关闭与重试并发可能形成竞态，需要验证关闭提交前后边界。"
+        }
+      ]
+    },
+    {
+      "risk_id": "RISK-002",
+      "title": "去重记录保留时长未公开",
+      "risk_statement": "去重记录保留时长未公开，超出保留期后的行为不能脑补为永久去重。",
+      "severity": "medium",
+      "impact_scope": [],
+      "source_refs": [
+        {
+          "source_type": "input_markdown",
+          "path": "assets/projects/OSS-BLIND-R3/work_items/TEMPORAL-11968/inputs/requirement_summary.md",
+          "excerpt": "去重记录保留时长未公开，超出保留期后的行为不能脑补为永久去重。"
+        }
+      ]
+    },
+    {
+      "risk_id": "RISK-003",
+      "title": "不同 namespace、workflow ID 或 request I…",
+      "risk_statement": "不同 namespace、workflow ID 或 request ID 的请求不得被错误关联。",
+      "severity": "high",
+      "impact_scope": [],
+      "source_refs": [
+        {
+          "source_type": "input_markdown",
+          "path": "assets/projects/OSS-BLIND-R3/work_items/TEMPORAL-11968/inputs/requirement_summary.md",
+          "excerpt": "不同 namespace、workflow ID 或 request ID 的请求不得被错误关联。"
+        }
+      ]
+    },
+    {
+      "risk_id": "RISK-004",
+      "title": "返回原 run 与不发送重复 signal 必须同时满足",
+      "risk_statement": "返回原 run 与不发送重复 signal 必须同时满足，不能只验证其中一项。",
+      "severity": "medium",
+      "impact_scope": [],
+      "source_refs": [
+        {
+          "source_type": "input_markdown",
+          "path": "assets/projects/OSS-BLIND-R3/work_items/TEMPORAL-11968/inputs/requirement_summary.md",
+          "excerpt": "返回原 run 与不发送重复 signal 必须同时满足，不能只验证其中一项。"
+        }
+      ]
+    }
+  ],
+  "edge_cases": [
+    {
+      "edge_case_id": "EC-001",
+      "title": "workflow 历史或业务副作用中 signal 只出现一次",
+      "scenario": "workflow 历史或业务副作用中 signal 只出现一次。",
+      "priority": "P1",
+      "source_refs": [
+        {
+          "source_type": "input_markdown",
+          "path": "assets/projects/OSS-BLIND-R3/work_items/TEMPORAL-11968/inputs/requirement_summary.md",
+          "excerpt": "workflow 历史或业务副作用中 signal 只出现一次。"
+        }
+      ]
+    },
+    {
+      "edge_case_id": "EC-002",
+      "title": "去重发生时对应指标递增",
+      "scenario": "去重发生时对应指标递增，非去重请求不误计数。",
+      "priority": "P1",
+      "source_refs": [
+        {
+          "source_type": "input_markdown",
+          "path": "assets/projects/OSS-BLIND-R3/work_items/TEMPORAL-11968/inputs/requirement_summary.md",
+          "excerpt": "去重发生时对应指标递增，非去重请求不误计数。"
+        }
+      ]
+    }
+  ],
+  "ambiguities": [
+    {
+      "ambiguity_id": "AMB-001",
+      "title": "request ID 去重记录的正式保留期限是什么",
+      "description": "request ID 去重记录的正式保留期限是什么？",
+      "status": "open",
+      "suggested_resolution": "在进入正式测试设计前由需求方确认；未确认时保持显式缺失，不推断为强规则。",
+      "source_refs": [
+        {
+          "source_type": "input_markdown",
+          "path": "assets/projects/OSS-BLIND-R3/work_items/TEMPORAL-11968/inputs/requirement_summary.md",
+          "excerpt": "request ID 去重记录的正式保留期限是什么？"
+        }
+      ]
+    },
+    {
+      "ambiguity_id": "AMB-002",
+      "title": "Continue-As-New、Terminate、Cancel、Fai…",
+      "description": "Continue-As-New、Terminate、Cancel、Fail、Complete 等不同关闭类型是否一致？",
+      "status": "open",
+      "suggested_resolution": "在进入正式测试设计前由需求方确认；未确认时保持显式缺失，不推断为强规则。",
+      "source_refs": [
+        {
+          "source_type": "input_markdown",
+          "path": "assets/projects/OSS-BLIND-R3/work_items/TEMPORAL-11968/inputs/requirement_summary.md",
+          "excerpt": "Continue-As-New、Terminate、Cancel、Fail、Complete 等不同关闭类型是否一致？"
+        }
+      ]
+    },
+    {
+      "ambiguity_id": "AMB-003",
+      "title": "多节点并发重试时指标按请求数还是去重决策数计数",
+      "description": "多节点并发重试时指标按请求数还是去重决策数计数？",
+      "status": "open",
+      "suggested_resolution": "在进入正式测试设计前由需求方确认；未确认时保持显式缺失，不推断为强规则。",
+      "source_refs": [
+        {
+          "source_type": "input_markdown",
+          "path": "assets/projects/OSS-BLIND-R3/work_items/TEMPORAL-11968/inputs/requirement_summary.md",
+          "excerpt": "多节点并发重试时指标按请求数还是去重决策数计数？"
+        }
+      ]
+    },
+    {
+      "ambiguity_id": "AMB-004",
+      "title": "已关闭原 run 的历史清理后应返回什么结果",
+      "description": "已关闭原 run 的历史清理后应返回什么结果？",
+      "status": "open",
+      "suggested_resolution": "在进入正式测试设计前由需求方确认；未确认时保持显式缺失，不推断为强规则。",
+      "source_refs": [
+        {
+          "source_type": "input_markdown",
+          "path": "assets/projects/OSS-BLIND-R3/work_items/TEMPORAL-11968/inputs/requirement_summary.md",
+          "excerpt": "已关闭原 run 的历史清理后应返回什么结果？"
+        }
+      ]
+    }
+  ],
+  "recommended_test_dimensions": [
+    {
+      "dimension_id": "TD-001",
+      "dimension": "显式规则逐条验证",
+      "rationale": "需求摘要已给出可追溯规则，后续设计应保持单规则单断言并验证成功与失败结果。",
+      "priority": "high",
+      "related_reasoning_ids": [
+        "ER-001",
+        "ER-002",
+        "ER-003",
+        "ER-004",
+        "ER-005",
+        "ER-006",
+        "ER-007",
+        "ER-008"
+      ]
+    },
+    {
+      "dimension_id": "TD-002",
+      "dimension": "异常与失败处理",
+      "rationale": "需求包含明确拒绝或失败语义，需要验证失败状态、错误反馈及副作用隔离。",
+      "priority": "high",
+      "related_reasoning_ids": [
+        "ER-004",
+        "ER-005",
+        "ER-011"
+      ]
+    },
+    {
+      "dimension_id": "TD-003",
+      "dimension": "兼容性与回归",
+      "rationale": "需求要求保留既有合法行为或历史关系，需要同时验证变更路径与未变路径。",
+      "priority": "high",
+      "related_reasoning_ids": [
+        "ER-009",
+        "ER-010"
+      ]
+    },
+    {
+      "dimension_id": "TD-004",
+      "dimension": "数据一致性与状态保留",
+      "rationale": "需求涉及关系或状态保留，应核对操作前后数据集合而非只看接口成功。",
+      "priority": "high",
+      "related_reasoning_ids": [
+        "ER-002",
+        "ER-008",
+        "ER-010"
+      ]
+    },
+    {
+      "dimension_id": "TD-005",
+      "dimension": "风险与非功能约束",
+      "rationale": "需求摘要已明确兼容性、性能或一致性风险，需与产品验收规则分层承接。",
+      "priority": "medium",
+      "related_reasoning_ids": [
+        "RISK-001",
+        "RISK-002",
+        "RISK-003",
+        "RISK-004"
+      ]
+    },
+    {
+      "dimension_id": "TD-006",
+      "dimension": "未决项追踪",
+      "rationale": "摘要存在尚未确认的输入或验收口径，后续不得将其自动升级为强制规则。",
+      "priority": "medium",
+      "related_reasoning_ids": [
+        "AMB-001",
+        "AMB-002",
+        "AMB-003",
+        "AMB-004"
+      ]
+    }
+  ],
+  "coverage_candidates": [
+    {
+      "candidate_id": "COV-001",
+      "candidate_type": "rule_cluster",
+      "title": "客户端以相同 request ID 重试 `SignalWithStar…",
+      "scope": "文本需求规则",
+      "priority": "high",
+      "rationale": "文本需求中的显式规则需要在后续 Structured PRD 与测试设计中保持可追溯。",
+      "suggested_test_types": [
+        "功能",
+        "异常"
+      ],
+      "source_reasoning_ids": [
+        "ER-001"
+      ]
+    },
+    {
+      "candidate_id": "COV-002",
+      "candidate_type": "rule_cluster",
+      "title": "首次 `SignalWithStart` 的 request ID 与原…",
+      "scope": "文本需求规则",
+      "priority": "high",
+      "rationale": "文本需求中的显式规则需要在后续 Structured PRD 与测试设计中保持可追溯。",
+      "suggested_test_types": [
+        "功能",
+        "异常"
+      ],
+      "source_reasoning_ids": [
+        "ER-002"
+      ]
+    },
+    {
+      "candidate_id": "COV-003",
+      "candidate_type": "rule_cluster",
+      "title": "相同 request ID 重试返回首次创建的 run 标识",
+      "scope": "文本需求规则",
+      "priority": "high",
+      "rationale": "文本需求中的显式规则需要在后续 Structured PRD 与测试设计中保持可追溯。",
+      "suggested_test_types": [
+        "功能",
+        "异常"
+      ],
+      "source_reasoning_ids": [
+        "ER-003"
+      ]
+    },
+    {
+      "candidate_id": "COV-004",
+      "candidate_type": "rule_cluster",
+      "title": "去重命中不得创建新 workflow run",
+      "scope": "文本需求规则",
+      "priority": "high",
+      "rationale": "文本需求中的显式规则需要在后续 Structured PRD 与测试设计中保持可追溯。",
+      "suggested_test_types": [
+        "功能",
+        "异常"
+      ],
+      "source_reasoning_ids": [
+        "ER-004"
+      ]
+    },
+    {
+      "candidate_id": "COV-005",
+      "candidate_type": "rule_cluster",
+      "title": "去重命中不得再次投递 signal",
+      "scope": "文本需求规则",
+      "priority": "high",
+      "rationale": "文本需求中的显式规则需要在后续 Structured PRD 与测试设计中保持可追溯。",
+      "suggested_test_types": [
+        "功能",
+        "异常"
+      ],
+      "source_reasoning_ids": [
+        "ER-005"
+      ]
+    },
+    {
+      "candidate_id": "COV-006",
+      "candidate_type": "rule_cluster",
+      "title": "去重事件应增加可识别的 `SignalWithStartWorkflow…",
+      "scope": "文本需求规则",
+      "priority": "high",
+      "rationale": "文本需求中的显式规则需要在后续 Structured PRD 与测试设计中保持可追溯。",
+      "suggested_test_types": [
+        "功能",
+        "异常"
+      ],
+      "source_reasoning_ids": [
+        "ER-006"
+      ]
+    },
+    {
+      "candidate_id": "COV-007",
+      "candidate_type": "rule_cluster",
+      "title": "原 workflow 运行中重试与关闭后重试都验证同一 request…",
+      "scope": "文本需求规则",
+      "priority": "high",
+      "rationale": "文本需求中的显式规则需要在后续 Structured PRD 与测试设计中保持可追溯。",
+      "suggested_test_types": [
+        "功能",
+        "异常"
+      ],
+      "source_reasoning_ids": [
+        "ER-007"
+      ]
+    },
+    {
+      "candidate_id": "COV-008",
+      "candidate_type": "rule_cluster",
+      "title": "关闭后重试返回的 run ID 与首次请求一致",
+      "scope": "文本需求规则",
+      "priority": "high",
+      "rationale": "文本需求中的显式规则需要在后续 Structured PRD 与测试设计中保持可追溯。",
+      "suggested_test_types": [
+        "功能",
+        "异常"
+      ],
+      "source_reasoning_ids": [
+        "ER-008"
+      ]
+    },
+    {
+      "candidate_id": "COV-009",
+      "candidate_type": "rule_cluster",
+      "title": "workflow 历史或业务副作用中 signal 只出现一次",
+      "scope": "文本需求规则",
+      "priority": "high",
+      "rationale": "文本需求中的显式规则需要在后续 Structured PRD 与测试设计中保持可追溯。",
+      "suggested_test_types": [
+        "功能",
+        "异常"
+      ],
+      "source_reasoning_ids": [
+        "ER-009"
+      ]
+    },
+    {
+      "candidate_id": "COV-010",
+      "candidate_type": "rule_cluster",
+      "title": "不产生新的 run",
+      "scope": "文本需求规则",
+      "priority": "high",
+      "rationale": "文本需求中的显式规则需要在后续 Structured PRD 与测试设计中保持可追溯。",
+      "suggested_test_types": [
+        "功能",
+        "异常"
+      ],
+      "source_reasoning_ids": [
+        "ER-010"
+      ]
+    },
+    {
+      "candidate_id": "COV-011",
+      "candidate_type": "rule_cluster",
+      "title": "使用不同 request ID 时不被错误去重",
+      "scope": "文本需求规则",
+      "priority": "high",
+      "rationale": "文本需求中的显式规则需要在后续 Structured PRD 与测试设计中保持可追溯。",
+      "suggested_test_types": [
+        "功能",
+        "异常"
+      ],
+      "source_reasoning_ids": [
+        "ER-011"
+      ]
+    },
+    {
+      "candidate_id": "COV-012",
+      "candidate_type": "rule_cluster",
+      "title": "去重发生时对应指标递增",
+      "scope": "文本需求规则",
+      "priority": "high",
+      "rationale": "文本需求中的显式规则需要在后续 Structured PRD 与测试设计中保持可追溯。",
+      "suggested_test_types": [
+        "功能",
+        "异常"
+      ],
+      "source_reasoning_ids": [
+        "ER-012"
+      ]
+    },
+    {
+      "candidate_id": "COV-013",
+      "candidate_type": "rule_cluster",
+      "title": "关键输入",
+      "scope": "文本需求规则",
+      "priority": "high",
+      "rationale": "文本需求中的显式规则需要在后续 Structured PRD 与测试设计中保持可追溯。",
+      "suggested_test_types": [
+        "功能",
+        "异常"
+      ],
+      "source_reasoning_ids": [
+        "ER-013"
+      ]
+    },
+    {
+      "candidate_id": "COV-014",
+      "candidate_type": "rule_cluster",
+      "title": "关键输出",
+      "scope": "文本需求规则",
+      "priority": "high",
+      "rationale": "文本需求中的显式规则需要在后续 Structured PRD 与测试设计中保持可追溯。",
+      "suggested_test_types": [
+        "功能",
+        "异常"
+      ],
+      "source_reasoning_ids": [
+        "ER-014"
+      ]
+    },
+    {
+      "candidate_id": "COV-015",
+      "candidate_type": "rule_cluster",
+      "title": "指标",
+      "scope": "文本需求规则",
+      "priority": "high",
+      "rationale": "文本需求中的显式规则需要在后续 Structured PRD 与测试设计中保持可追溯。",
+      "suggested_test_types": [
+        "功能",
+        "异常"
+      ],
+      "source_reasoning_ids": [
+        "ER-015"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,190 @@
+{
+  "project_code": "OSS-BLIND-R3",
+  "work_item_id": "TEMPORAL-11968",
+  "generated_at": "2026-09-22T07:38:32",
+  "metric_scope": "post_generation_oracle_review_only",
+  "oracle": {
+    "source_url": "https://github.com/temporalio/temporal/pull/11968",
+    "head_sha": "3766f2e33362d34d958bd5d4a37a1823273a01a6"
+  },
+  "oracle_assertion_count": 10,
+  "assertion_disposition_counts": {
+    "covered": 6,
+    "missing": 3,
+    "partial": 1
+  },
+  "oracle_coverage_rate": 0.65,
+  "oracle_scope_metrics": {
+    "implementation": {
+      "assertion_count": 2,
+      "assertion_disposition_counts": {
+        "covered": 0,
+        "missing": 1,
+        "partial": 1
+      },
+      "coverage_rate": 0.25
+    },
+    "requirement": {
+      "assertion_count": 6,
+      "assertion_disposition_counts": {
+        "covered": 6,
+        "missing": 0,
+        "partial": 0
+      },
+      "coverage_rate": 1.0
+    },
+    "risk": {
+      "assertion_count": 2,
+      "assertion_disposition_counts": {
+        "covered": 0,
+        "missing": 2,
+        "partial": 0
+      },
+      "coverage_rate": 0.0
+    }
+  },
+  "requirement_oracle_coverage_rate": 1.0,
+  "implementation_oracle_coverage_rate": 0.25,
+  "risk_oracle_coverage_rate": 0.0,
+  "testcase_count": 8,
+  "testcase_disposition_counts": {
+    "context_overreach": 0,
+    "direct_match": 8,
+    "requirement_regression": 0
+  },
+  "testcase_relevance_rate": 1.0,
+  "assertions": [
+    {
+      "assertion_id": "OA-001",
+      "summary": "Workflow 关闭后使用相同 request ID 返回首次 run",
+      "disposition": "covered",
+      "testcase_ids": [
+        "OSS-BLIND-R3-TEMPORALAPI-SIGNALSTART-API-FL-001",
+        "OSS-BLIND-R3-TEMPORALAPI-SIGNALSTART-API-DV-001"
+      ],
+      "oracle_scope": "requirement"
+    },
+    {
+      "assertion_id": "OA-002",
+      "summary": "去重响应同时返回原 RunId、FirstExecutionRunId 且 Started=true",
+      "oracle_scope": "implementation",
+      "disposition": "partial",
+      "testcase_ids": [
+        "OSS-BLIND-R3-TEMPORALAPI-SIGNALSTART-API-DV-001"
+      ],
+      "design_feedback_ids": [
+        "DF-001"
+      ]
+    },
+    {
+      "assertion_id": "OA-003",
+      "summary": "去重命中不创建新 run",
+      "disposition": "covered",
+      "testcase_ids": [
+        "OSS-BLIND-R3-TEMPORALAPI-SIGNALSTART-API-ST-001"
+      ],
+      "oracle_scope": "requirement"
+    },
+    {
+      "assertion_id": "OA-004",
+      "summary": "去重命中不重复投递 signal",
+      "disposition": "covered",
+      "testcase_ids": [
+        "OSS-BLIND-R3-TEMPORALAPI-SIGNALSTART-API-ST-002"
+      ],
+      "oracle_scope": "requirement"
+    },
+    {
+      "assertion_id": "OA-005",
+      "summary": "只有命中去重时增加专用指标",
+      "disposition": "covered",
+      "testcase_ids": [
+        "OSS-BLIND-R3-TEMPORALAPI-SIGNALSTART-API-DV-002",
+        "OSS-BLIND-R3-TEMPORALAPI-SIGNALSTART-API-DV-003"
+      ],
+      "oracle_scope": "requirement"
+    },
+    {
+      "assertion_id": "OA-006",
+      "summary": "不同 request ID 不复用首次请求结果",
+      "disposition": "covered",
+      "testcase_ids": [
+        "OSS-BLIND-R3-TEMPORALAPI-SIGNALSTART-API-AB-001"
+      ],
+      "oracle_scope": "requirement"
+    },
+    {
+      "assertion_id": "OA-007",
+      "summary": "关闭后重试不改变原 run 最终状态",
+      "disposition": "covered",
+      "testcase_ids": [
+        "OSS-BLIND-R3-TEMPORALAPI-SIGNALSTART-API-ST-003"
+      ],
+      "oracle_scope": "requirement"
+    },
+    {
+      "assertion_id": "OA-008",
+      "summary": "重复 request ID 在 TERMINATE_EXISTING 冲突策略之前完成去重，不终止或替换当前 run",
+      "oracle_scope": "implementation",
+      "disposition": "missing",
+      "testcase_ids": [],
+      "design_feedback_ids": [
+        "DF-002"
+      ]
+    },
+    {
+      "assertion_id": "OA-009",
+      "summary": "关闭去重动态配置后保留旧行为且不增加去重指标",
+      "oracle_scope": "risk",
+      "disposition": "missing",
+      "testcase_ids": [],
+      "design_feedback_ids": [
+        "DF-003"
+      ]
+    },
+    {
+      "assertion_id": "OA-010",
+      "summary": "首次 run 查询失败或并发创建冲突时错误不被吞掉且不误记去重指标",
+      "oracle_scope": "risk",
+      "disposition": "missing",
+      "testcase_ids": [],
+      "design_feedback_ids": [
+        "DF-004"
+      ]
+    }
+  ],
+  "testcase_assessments": [
+    {
+      "testcase_id": "OSS-BLIND-R3-TEMPORALAPI-SIGNALSTART-API-FL-001",
+      "disposition": "direct_match"
+    },
+    {
+      "testcase_id": "OSS-BLIND-R3-TEMPORALAPI-SIGNALSTART-API-DV-001",
+      "disposition": "direct_match"
+    },
+    {
+      "testcase_id": "OSS-BLIND-R3-TEMPORALAPI-SIGNALSTART-API-ST-001",
+      "disposition": "direct_match"
+    },
+    {
+      "testcase_id": "OSS-BLIND-R3-TEMPORALAPI-SIGNALSTART-API-ST-002",
+      "disposition": "direct_match"
+    },
+    {
+      "testcase_id": "OSS-BLIND-R3-TEMPORALAPI-SIGNALSTART-API-DV-002",
+      "disposition": "direct_match"
+    },
+    {
+      "testcase_id": "OSS-BLIND-R3-TEMPORALAPI-SIGNALSTART-API-DV-003",
+      "disposition": "direct_match"
+    },
+    {
+      "testcase_id": "OSS-BLIND-R3-TEMPORALAPI-SIGNALSTART-API-AB-001",
+      "disposition": "direct_match"
+    },
+    {
+      "testcase_id": "OSS-BLIND-R3-TEMPORALAPI-SIGNALSTART-API-ST-003",
+      "disposition": "direct_match"
+    }
+  ]
+}

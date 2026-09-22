@@ -1,0 +1,256 @@
+{
+  "project_code": "OSS-BLIND-R4",
+  "work_item_id": "RAILS-58429",
+  "records": [
+    {
+      "record_id": "TRA-0001",
+      "evidence_id": "EVD-UNMAPPED",
+      "coverage_level": "full",
+      "structured_targets": [
+        {
+          "target_type": "feature",
+          "module_name": "BroadcastLogger tagged",
+          "feature_name": "无 block 标签广播",
+          "field_name": "",
+          "target_name": "无 block 调用 `BroadcastLogger#tagged` 必须返回可继续调用日志方法的 BroadcastLogger，而不是 Array。"
+        }
+      ],
+      "testcase_ids": [
+        "OSS-BLIND-R4-BROADCASTLOGGER-TAGGED-SERVER-FN-001"
+      ],
+      "gap_notes": "adapter_source=coverage_first_traceability; source_record_id=CFT-0001; rule_id=RAI-R001; coverage_id=COV-EX-0001; fidelity_status=not_applicable",
+      "implementation_binding": "shared_contract",
+      "recommended_cr_stage": "dual_code",
+      "manual_confirmation_required": true,
+      "cr_focus_points": [
+        "无 block 调用 `BroadcastLogger#tagged` 必须返回可继续调用日志方法的 BroadcastLogger，而不是 Array。",
+        "coverage_id=COV-EX-0001"
+      ]
+    },
+    {
+      "record_id": "TRA-0002",
+      "evidence_id": "EVD-UNMAPPED",
+      "coverage_level": "full",
+      "structured_targets": [
+        {
+          "target_type": "feature",
+          "module_name": "BroadcastLogger tagged",
+          "feature_name": "无 block 标签广播",
+          "field_name": "",
+          "target_name": "无 block 返回对象中，所有支持 tagged 的 logger 应应用指定标签。"
+        }
+      ],
+      "testcase_ids": [
+        "OSS-BLIND-R4-BROADCASTLOGGER-TAGGED-SERVER-ST-001"
+      ],
+      "gap_notes": "adapter_source=coverage_first_traceability; source_record_id=CFT-0002; rule_id=RAI-R002; coverage_id=COV-EX-0002; fidelity_status=not_applicable",
+      "implementation_binding": "shared_contract",
+      "recommended_cr_stage": "dual_code",
+      "manual_confirmation_required": true,
+      "cr_focus_points": [
+        "无 block 返回对象中，所有支持 tagged 的 logger 应应用指定标签。",
+        "coverage_id=COV-EX-0002"
+      ]
+    },
+    {
+      "record_id": "TRA-0003",
+      "evidence_id": "EVD-UNMAPPED",
+      "coverage_level": "full",
+      "structured_targets": [
+        {
+          "target_type": "feature",
+          "module_name": "BroadcastLogger tagged",
+          "feature_name": "无 block 标签广播",
+          "field_name": "",
+          "target_name": "不支持 tagged 的广播目标仍必须保留并收到后续日志消息。"
+        }
+      ],
+      "testcase_ids": [
+        "OSS-BLIND-R4-BROADCASTLOGGER-TAGGED-SERVER-ST-002"
+      ],
+      "gap_notes": "adapter_source=coverage_first_traceability; source_record_id=CFT-0003; rule_id=RAI-R003; coverage_id=COV-EX-0003; fidelity_status=not_applicable",
+      "implementation_binding": "shared_contract",
+      "recommended_cr_stage": "dual_code",
+      "manual_confirmation_required": true,
+      "cr_focus_points": [
+        "不支持 tagged 的广播目标仍必须保留并收到后续日志消息。",
+        "coverage_id=COV-EX-0003"
+      ]
+    },
+    {
+      "record_id": "TRA-0004",
+      "evidence_id": "EVD-UNMAPPED",
+      "coverage_level": "full",
+      "structured_targets": [
+        {
+          "target_type": "feature",
+          "module_name": "BroadcastLogger tagged",
+          "feature_name": "Block 标签上下文",
+          "field_name": "",
+          "target_name": "用户 block 只执行一次。"
+        }
+      ],
+      "testcase_ids": [
+        "OSS-BLIND-R4-BROADCASTLOGGER-TAGGED-SERVER-ST-003"
+      ],
+      "gap_notes": "adapter_source=coverage_first_traceability; source_record_id=CFT-0004; rule_id=RAI-R004; coverage_id=COV-EX-0004; fidelity_status=not_applicable",
+      "implementation_binding": "shared_contract",
+      "recommended_cr_stage": "dual_code",
+      "manual_confirmation_required": true,
+      "cr_focus_points": [
+        "用户 block 只执行一次。",
+        "coverage_id=COV-EX-0004"
+      ]
+    },
+    {
+      "record_id": "TRA-0005",
+      "evidence_id": "EVD-UNMAPPED",
+      "coverage_level": "full",
+      "structured_targets": [
+        {
+          "target_type": "feature",
+          "module_name": "BroadcastLogger tagged",
+          "feature_name": "Block 标签上下文",
+          "field_name": "",
+          "target_name": "所有支持 tagged 的 logger 在同一次 block 执行期间激活标签。"
+        }
+      ],
+      "testcase_ids": [
+        "OSS-BLIND-R4-BROADCASTLOGGER-TAGGED-SERVER-ST-004"
+      ],
+      "gap_notes": "adapter_source=coverage_first_traceability; source_record_id=CFT-0005; rule_id=RAI-R004; coverage_id=COV-EX-0005; fidelity_status=not_applicable",
+      "implementation_binding": "shared_contract",
+      "recommended_cr_stage": "dual_code",
+      "manual_confirmation_required": true,
+      "cr_focus_points": [
+        "所有支持 tagged 的 logger 在同一次 block 执行期间激活标签。",
+        "coverage_id=COV-EX-0005"
+      ]
+    },
+    {
+      "record_id": "TRA-0006",
+      "evidence_id": "EVD-UNMAPPED",
+      "coverage_level": "full",
+      "structured_targets": [
+        {
+          "target_type": "feature",
+          "module_name": "BroadcastLogger tagged",
+          "feature_name": "Block 标签上下文",
+          "field_name": "",
+          "target_name": "block 正常结束后清理临时标签。"
+        }
+      ],
+      "testcase_ids": [
+        "OSS-BLIND-R4-BROADCASTLOGGER-TAGGED-SERVER-ST-005"
+      ],
+      "gap_notes": "adapter_source=coverage_first_traceability; source_record_id=CFT-0006; rule_id=RAI-R005; coverage_id=COV-EX-0006; fidelity_status=not_applicable",
+      "implementation_binding": "shared_contract",
+      "recommended_cr_stage": "dual_code",
+      "manual_confirmation_required": true,
+      "cr_focus_points": [
+        "block 正常结束后清理临时标签。",
+        "coverage_id=COV-EX-0006"
+      ]
+    },
+    {
+      "record_id": "TRA-0007",
+      "evidence_id": "EVD-UNMAPPED",
+      "coverage_level": "full",
+      "structured_targets": [
+        {
+          "target_type": "feature",
+          "module_name": "BroadcastLogger tagged",
+          "feature_name": "Block 标签上下文",
+          "field_name": "",
+          "target_name": "block 抛出异常后清理临时标签。"
+        }
+      ],
+      "testcase_ids": [
+        "OSS-BLIND-R4-BROADCASTLOGGER-TAGGED-SERVER-ST-006"
+      ],
+      "gap_notes": "adapter_source=coverage_first_traceability; source_record_id=CFT-0007; rule_id=RAI-R005; coverage_id=COV-EX-0007; fidelity_status=not_applicable",
+      "implementation_binding": "shared_contract",
+      "recommended_cr_stage": "dual_code",
+      "manual_confirmation_required": true,
+      "cr_focus_points": [
+        "block 抛出异常后清理临时标签。",
+        "coverage_id=COV-EX-0007"
+      ]
+    },
+    {
+      "record_id": "TRA-0008",
+      "evidence_id": "EVD-UNMAPPED",
+      "coverage_level": "full",
+      "structured_targets": [
+        {
+          "target_type": "feature",
+          "module_name": "BroadcastLogger tagged",
+          "feature_name": "Block 标签上下文",
+          "field_name": "",
+          "target_name": "block 异常继续传播给调用方。"
+        }
+      ],
+      "testcase_ids": [
+        "OSS-BLIND-R4-BROADCASTLOGGER-TAGGED-SERVER-FN-002"
+      ],
+      "gap_notes": "adapter_source=coverage_first_traceability; source_record_id=CFT-0008; rule_id=RAI-R005; coverage_id=COV-EX-0008; fidelity_status=not_applicable",
+      "implementation_binding": "shared_contract",
+      "recommended_cr_stage": "dual_code",
+      "manual_confirmation_required": true,
+      "cr_focus_points": [
+        "block 异常继续传播给调用方。",
+        "coverage_id=COV-EX-0008"
+      ]
+    },
+    {
+      "record_id": "TRA-0009",
+      "evidence_id": "EVD-UNMAPPED",
+      "coverage_level": "full",
+      "structured_targets": [
+        {
+          "target_type": "feature",
+          "module_name": "BroadcastLogger tagged",
+          "feature_name": "无 block 标签广播",
+          "field_name": "",
+          "target_name": "是否参与标签处理以广播目标是否响应 `tagged` 为能力边界。"
+        }
+      ],
+      "testcase_ids": [
+        "OSS-BLIND-R4-BROADCASTLOGGER-TAGGED-SERVER-ST-007"
+      ],
+      "gap_notes": "adapter_source=coverage_first_traceability; source_record_id=CFT-0009; rule_id=RAI-R006; coverage_id=COV-EX-0009; fidelity_status=not_applicable",
+      "implementation_binding": "shared_contract",
+      "recommended_cr_stage": "dual_code",
+      "manual_confirmation_required": true,
+      "cr_focus_points": [
+        "是否参与标签处理以广播目标是否响应 `tagged` 为能力边界。",
+        "coverage_id=COV-EX-0009"
+      ]
+    },
+    {
+      "record_id": "TRA-0010",
+      "evidence_id": "EVD-UNMAPPED",
+      "coverage_level": "full",
+      "structured_targets": [
+        {
+          "target_type": "feature",
+          "module_name": "BroadcastLogger tagged",
+          "feature_name": "无 block 标签广播",
+          "field_name": "",
+          "target_name": "单个支持 tagged 的 logger 和既有普通广播行为不得回退。"
+        }
+      ],
+      "testcase_ids": [
+        "OSS-BLIND-R4-BROADCASTLOGGER-TAGGED-SERVER-FL-001"
+      ],
+      "gap_notes": "adapter_source=coverage_first_traceability; source_record_id=CFT-0010; rule_id=RAI-R007; coverage_id=COV-EX-0010; fidelity_status=not_applicable",
+      "implementation_binding": "shared_contract",
+      "recommended_cr_stage": "dual_code",
+      "manual_confirmation_required": true,
+      "cr_focus_points": [
+        "单个支持 tagged 的 logger 和既有普通广播行为不得回退。",
+        "coverage_id=COV-EX-0010"
+      ]
+    }
+  ]
+}

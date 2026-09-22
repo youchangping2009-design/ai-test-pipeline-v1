@@ -15,7 +15,9 @@ from harness.requirement_approval import (
     receipt_matches_binding,
     requirement_approval_required,
 )
-from harness.state_store import StateStore, atomic_write_json, utc_now
+from harness.review_disposition import ReviewDispositionService
+from harness.state_store import HarnessStateError, StateStore, atomic_write_json, utc_now
+from validate_feedback_action_journal import validate_feedback_action_journal
 
 
 class HarnessRunAuditor:
@@ -42,6 +44,8 @@ class HarnessRunAuditor:
             "parallel_review_bundles": 0,
             "multi_role_recoveries": 0,
             "requirement_approvals": 0,
+            "feedback_actions": 0,
+            "review_dispositions": 0,
         }
         try:
             state = self.store.load(run_id)
@@ -94,6 +98,15 @@ class HarnessRunAuditor:
         self._audit_action_linkage(events, actions, checks, errors)
         self._audit_approval_linkage(events, approvals, checks, errors)
         self._audit_requirement_approval(
+            state,
+            events,
+            checks,
+            errors,
+            counts,
+        )
+        self._audit_feedback_actions(run_id, checks, errors, counts)
+        self._audit_review_disposition(
+            run_id,
             state,
             events,
             checks,
@@ -156,6 +169,110 @@ class HarnessRunAuditor:
         validate_named(report, "harness_audit_report.schema.json")
         atomic_write_json(run_dir / "audit_report.json", report)
         return (0 if report["passed"] else 1), report
+
+    def _audit_feedback_actions(
+        self,
+        run_id: str,
+        checks: list[str],
+        errors: list[str],
+        counts: dict[str, int],
+    ) -> None:
+        feedback_path = self.item_root / "design" / "design_feedback.json"
+        action_dir = (
+            self.item_root / ".generation" / "feedback_applications" / "actions"
+        )
+        if not feedback_path.is_file() and not action_dir.exists():
+            checks.append("feedback_action_journal")
+            return
+        try:
+            result = validate_feedback_action_journal(self.item_root)
+            counts["feedback_actions"] = int(
+                result.get("actions_by_run", {}).get(run_id, 0)
+            )
+        except (OSError, ValueError, json.JSONDecodeError, ContractError) as exc:
+            errors.append(f"feedback_action_journal: {exc}")
+        checks.append("feedback_action_journal")
+
+    def _audit_review_disposition(
+        self,
+        run_id: str,
+        state: dict[str, Any],
+        events: list[dict[str, Any]],
+        checks: list[str],
+        errors: list[str],
+        counts: dict[str, int],
+    ) -> None:
+        service = ReviewDispositionService(self.item_root)
+        path = service.receipt_path(run_id)
+        records = {
+            str(record.get("stage_id")): record
+            for record in state.get("stages", [])
+            if isinstance(record, dict)
+        }
+        review = records.get("review")
+        disposition_events = [
+            event
+            for event in events
+            if event.get("event_type") == "review_disposition_declared"
+            and event.get("stage_id") == "review"
+        ]
+        terminal_events = [
+            event
+            for event in events
+            if event.get("event_type") == "stage_not_applicable"
+            and event.get("stage_id") == "review"
+        ]
+        if not path.is_file():
+            if (
+                state.get("mode") == "validate"
+                and review
+                and review.get("status") == "skipped"
+            ):
+                errors.append(
+                    "review_disposition: Review skipped 但缺少 not_applicable receipt"
+                )
+            if disposition_events or terminal_events:
+                errors.append("review_disposition: 有事件但 receipt 不存在")
+            checks.append("review_disposition")
+            return
+        counts["review_dispositions"] += 1
+        try:
+            receipt = service.validate(run_id)
+        except (HarnessStateError, OSError, ValueError) as exc:
+            errors.append(f"review_disposition: {exc}")
+            checks.append("review_disposition")
+            return
+        if len(disposition_events) != 1:
+            errors.append(
+                "review_disposition: declared event 数量应为 1，"
+                f"实际 {len(disposition_events)}"
+            )
+        else:
+            payload = disposition_events[0].get("payload", {})
+            if payload.get("disposition") != receipt.get("disposition"):
+                errors.append("review_disposition: declared event disposition 不一致")
+            if payload.get("declared_by") != receipt.get("declared_by"):
+                errors.append("review_disposition: declared event declared_by 不一致")
+            if payload.get("scope_sha256") != receipt.get("code_review_scope", {}).get("sha256"):
+                errors.append("review_disposition: declared event scope hash 不一致")
+        if review and review.get("status") == "skipped":
+            if review.get("attempts", 0) < 1 or review.get("last_exit_code") != 0:
+                errors.append("review_disposition: skipped Review 未完成确定性校验")
+            if len(terminal_events) != 1:
+                errors.append(
+                    "review_disposition: stage_not_applicable event 数量应为 1，"
+                    f"实际 {len(terminal_events)}"
+                )
+            traceability = records.get("traceability")
+            if not traceability or traceability.get("status") != "succeeded":
+                errors.append("review_disposition: Review N/A 前 Traceability 未成功")
+        elif terminal_events:
+            errors.append("review_disposition: Review 未 skipped 但存在终结事件")
+        if state.get("status") == "completed" and (
+            not review or review.get("status") != "skipped"
+        ):
+            errors.append("review_disposition: completed run 未以 skipped 记录 Review N/A")
+        checks.append("review_disposition")
 
     def _audit_events(
         self,
@@ -1167,4 +1284,3 @@ class HarnessRunAuditor:
                 "multi_role_recovery: partial parallel review 不得产生 bundle"
             )
         checks.append("multi_role_recovery")
-

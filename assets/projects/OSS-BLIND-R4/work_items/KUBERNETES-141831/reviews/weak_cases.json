@@ -1,0 +1,15 @@
+[
+  {
+    "case_id": "OSS-BLIND-R4-DEVICETAINT-WARNING-API-FL-003",
+    "title": "空 selector Warning 不改变持久化和 taint 执行语义",
+    "page_name": "DeviceTaintRule API",
+    "module_name": "DeviceTaintRule Admission Warning",
+    "feature_name": "非阻塞警告响应",
+    "issue_types": [
+      "abstract_oracle"
+    ],
+    "reasons": [
+      "预期结果偏抽象，判定标准不够具体。"
+    ]
+  }
+]

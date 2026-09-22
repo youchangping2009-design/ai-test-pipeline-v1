@@ -10,47 +10,36 @@
 
 ## Expanded Commands
 
-### 1. PT083 non-strict
+### 1. Framework/sample independence guard
 
 ```bash
-/usr/bin/python3 scripts/validate_work_item.py \
-  --project-code WX-YGJ \
-  --work-item-id PT083 \
-  --skip-code-reviews
+/usr/bin/python3 scripts/validate_framework_sample_independence.py
 ```
 
 Expected: PASS
 
-### 2. PT083 strict
+### 2. Harness unit tests
 
 ```bash
-/usr/bin/python3 scripts/validate_work_item.py \
-  --project-code WX-YGJ \
-  --work-item-id PT083 \
-  --skip-code-reviews \
-  --strict
+/usr/bin/python3 -m unittest discover -s tests -p 'test_*.py'
 ```
 
 Expected: PASS
 
-PT083 is the current M-level migrated sample with approved requirement intake, testability gate, acceptance examples, case plan, case_plan_id-backed testcases, and current quality fingerprints, so strict validation should pass with code reviews explicitly skipped.
-
-### 3. PT083 eval
+### 3. Generic regression fixtures
 
 ```bash
-/usr/bin/python3 scripts/run_evals.py --fixture PT083
+/usr/bin/python3 scripts/run_eval_suite.py --tier regression
 ```
 
 Expected: PASS
 
-### 4. WX-YGJ lightweight project shell
+### 4. Golden fixture snapshot
 
 ```bash
-/usr/bin/python3 scripts/validate_project.py \
-  --project-code WX-YGJ \
-  --strict \
-  --validate-work-items \
-  --skip-code-reviews
+/usr/bin/python3 scripts/run_eval_suite.py --tier golden
 ```
 
 Expected: PASS
+
+基线只验证仓库通用规则、Harness 与自包含 fixture，不直接验证 `assets/projects/` 下任何业务工作项。具体工作项必须通过显式 `--project-code` 与 `--work-item-id` 单独验收。

@@ -1,0 +1,281 @@
+{
+  "project_code": "OSS-BLIND-R3",
+  "work_item_id": "CELERY-10668",
+  "records": [
+    {
+      "record_id": "TRA-0001",
+      "evidence_id": "EVD-UNMAPPED",
+      "coverage_level": "full",
+      "structured_targets": [
+        {
+          "target_type": "feature",
+          "module_name": "Worker 撤销状态",
+          "feature_name": "跨时钟域撤销状态合并",
+          "field_name": "",
+          "target_name": "外部撤销状态合并"
+        }
+      ],
+      "testcase_ids": [
+        "OSS-BLIND-R3-CELERYWORKER-REVOKE-SERVER-DV-001"
+      ],
+      "gap_notes": "adapter_source=coverage_first_traceability; source_record_id=CFT-0001; rule_id=Worker 撤销状态::跨时钟域撤销状态合并::happy_path_combo; coverage_id=COV-EX-0001; fidelity_status=not_applicable",
+      "implementation_binding": "shared_contract",
+      "recommended_cr_stage": "dual_code",
+      "manual_confirmation_required": true,
+      "cr_focus_points": [
+        "外部撤销状态合并",
+        "coverage_id=COV-EX-0001"
+      ]
+    },
+    {
+      "record_id": "TRA-0002",
+      "evidence_id": "EVD-UNMAPPED",
+      "coverage_level": "full",
+      "structured_targets": [
+        {
+          "target_type": "feature",
+          "module_name": "Worker 撤销状态",
+          "feature_name": "跨时钟域撤销状态合并",
+          "field_name": "",
+          "target_name": "撤销有效期"
+        }
+      ],
+      "testcase_ids": [
+        "OSS-BLIND-R3-CELERYWORKER-REVOKE-SERVER-ST-001"
+      ],
+      "gap_notes": "adapter_source=coverage_first_traceability; source_record_id=CFT-0002; rule_id=Worker 撤销状态::跨时钟域撤销状态合并::happy_path_combo; coverage_id=COV-EX-0002; fidelity_status=not_applicable",
+      "implementation_binding": "shared_contract",
+      "recommended_cr_stage": "dual_code",
+      "manual_confirmation_required": true,
+      "cr_focus_points": [
+        "撤销有效期",
+        "coverage_id=COV-EX-0002"
+      ]
+    },
+    {
+      "record_id": "TRA-0003",
+      "evidence_id": "EVD-UNMAPPED",
+      "coverage_level": "full",
+      "structured_targets": [
+        {
+          "target_type": "feature",
+          "module_name": "Worker 撤销状态",
+          "feature_name": "跨时钟域撤销状态合并",
+          "field_name": "",
+          "target_name": "集合满载后本机新撤销任务仍保留。"
+        }
+      ],
+      "testcase_ids": [
+        "OSS-BLIND-R3-CELERYWORKER-REVOKE-SERVER-ST-002"
+      ],
+      "gap_notes": "adapter_source=coverage_first_traceability; source_record_id=CFT-0003; rule_id=Worker 撤销状态::跨时钟域撤销状态合并::happy_path_combo; coverage_id=COV-EX-0003; fidelity_status=not_applicable",
+      "implementation_binding": "shared_contract",
+      "recommended_cr_stage": "dual_code",
+      "manual_confirmation_required": true,
+      "cr_focus_points": [
+        "集合满载后本机新撤销任务仍保留。",
+        "coverage_id=COV-EX-0003"
+      ]
+    },
+    {
+      "record_id": "TRA-0004",
+      "evidence_id": "EVD-UNMAPPED",
+      "coverage_level": "full",
+      "structured_targets": [
+        {
+          "target_type": "feature",
+          "module_name": "Worker 撤销状态",
+          "feature_name": "跨时钟域撤销状态合并",
+          "field_name": "",
+          "target_name": "有效期内已撤销的 ETA/countdown 任务不执行。"
+        }
+      ],
+      "testcase_ids": [
+        "OSS-BLIND-R3-CELERYWORKER-REVOKE-SERVER-ST-003"
+      ],
+      "gap_notes": "adapter_source=coverage_first_traceability; source_record_id=CFT-0004; rule_id=Worker 撤销状态::跨时钟域撤销状态合并::happy_path_combo; coverage_id=COV-EX-0004; fidelity_status=not_applicable",
+      "implementation_binding": "shared_contract",
+      "recommended_cr_stage": "dual_code",
+      "manual_confirmation_required": true,
+      "cr_focus_points": [
+        "有效期内已撤销的 ETA/countdown 任务不执行。",
+        "coverage_id=COV-EX-0004"
+      ]
+    },
+    {
+      "record_id": "TRA-0005",
+      "evidence_id": "EVD-UNMAPPED",
+      "coverage_level": "full",
+      "structured_targets": [
+        {
+          "target_type": "feature",
+          "module_name": "Worker 撤销状态",
+          "feature_name": "跨时钟域撤销状态合并",
+          "field_name": "",
+          "target_name": "hello 接收的撤销 ID 使用本机时间。"
+        }
+      ],
+      "testcase_ids": [
+        "OSS-BLIND-R3-CELERYWORKER-REVOKE-SERVER-ST-004"
+      ],
+      "gap_notes": "adapter_source=coverage_first_traceability; source_record_id=CFT-0005; rule_id=Worker 撤销状态::跨时钟域撤销状态合并::happy_path_combo; coverage_id=COV-EX-0005; fidelity_status=not_applicable",
+      "implementation_binding": "shared_contract",
+      "recommended_cr_stage": "dual_code",
+      "manual_confirmation_required": true,
+      "cr_focus_points": [
+        "hello 接收的撤销 ID 使用本机时间。",
+        "coverage_id=COV-EX-0005"
+      ]
+    },
+    {
+      "record_id": "TRA-0006",
+      "evidence_id": "EVD-UNMAPPED",
+      "coverage_level": "full",
+      "structured_targets": [
+        {
+          "target_type": "feature",
+          "module_name": "Worker 撤销状态",
+          "feature_name": "跨时钟域撤销状态合并",
+          "field_name": "",
+          "target_name": "mingle 接收的撤销 ID 使用本机时间。"
+        }
+      ],
+      "testcase_ids": [
+        "OSS-BLIND-R3-CELERYWORKER-REVOKE-SERVER-ST-005"
+      ],
+      "gap_notes": "adapter_source=coverage_first_traceability; source_record_id=CFT-0006; rule_id=Worker 撤销状态::跨时钟域撤销状态合并::happy_path_combo; coverage_id=COV-EX-0006; fidelity_status=not_applicable",
+      "implementation_binding": "shared_contract",
+      "recommended_cr_stage": "dual_code",
+      "manual_confirmation_required": true,
+      "cr_focus_points": [
+        "mingle 接收的撤销 ID 使用本机时间。",
+        "coverage_id=COV-EX-0006"
+      ]
+    },
+    {
+      "record_id": "TRA-0007",
+      "evidence_id": "EVD-UNMAPPED",
+      "coverage_level": "full",
+      "structured_targets": [
+        {
+          "target_type": "feature",
+          "module_name": "Worker 撤销状态",
+          "feature_name": "跨时钟域撤销状态合并",
+          "field_name": "",
+          "target_name": "--statedb 恢复的撤销 ID 使用本机时间。"
+        }
+      ],
+      "testcase_ids": [
+        "OSS-BLIND-R3-CELERYWORKER-REVOKE-SERVER-ST-006"
+      ],
+      "gap_notes": "adapter_source=coverage_first_traceability; source_record_id=CFT-0007; rule_id=Worker 撤销状态::跨时钟域撤销状态合并::happy_path_combo; coverage_id=COV-EX-0007; fidelity_status=not_applicable",
+      "implementation_binding": "shared_contract",
+      "recommended_cr_stage": "dual_code",
+      "manual_confirmation_required": true,
+      "cr_focus_points": [
+        "--statedb 恢复的撤销 ID 使用本机时间。",
+        "coverage_id=COV-EX-0007"
+      ]
+    },
+    {
+      "record_id": "TRA-0008",
+      "evidence_id": "EVD-UNMAPPED",
+      "coverage_level": "full",
+      "structured_targets": [
+        {
+          "target_type": "feature",
+          "module_name": "Worker 撤销状态",
+          "feature_name": "跨时钟域撤销状态合并",
+          "field_name": "",
+          "target_name": "滚动升级兼容"
+        }
+      ],
+      "testcase_ids": [
+        "OSS-BLIND-R3-CELERYWORKER-REVOKE-SERVER-FL-001"
+      ],
+      "gap_notes": "adapter_source=coverage_first_traceability; source_record_id=CFT-0008; rule_id=Worker 撤销状态::跨时钟域撤销状态合并::happy_path_combo; coverage_id=COV-EX-0008; fidelity_status=not_applicable",
+      "implementation_binding": "shared_contract",
+      "recommended_cr_stage": "dual_code",
+      "manual_confirmation_required": true,
+      "cr_focus_points": [
+        "滚动升级兼容",
+        "coverage_id=COV-EX-0008"
+      ]
+    },
+    {
+      "record_id": "TRA-0009",
+      "evidence_id": "EVD-UNMAPPED",
+      "coverage_level": "full",
+      "structured_targets": [
+        {
+          "target_type": "feature",
+          "module_name": "Worker 撤销状态",
+          "feature_name": "跨时钟域撤销状态合并",
+          "field_name": "",
+          "target_name": "now=0 时撤销记录可正常加入和排序。"
+        }
+      ],
+      "testcase_ids": [
+        "OSS-BLIND-R3-CELERYWORKER-REVOKE-SERVER-BD-001"
+      ],
+      "gap_notes": "adapter_source=coverage_first_traceability; source_record_id=CFT-0009; rule_id=Worker 撤销状态::跨时钟域撤销状态合并::happy_path_combo; coverage_id=COV-EX-0009; fidelity_status=not_applicable",
+      "implementation_binding": "backend_contract",
+      "recommended_cr_stage": "backend_code",
+      "manual_confirmation_required": true,
+      "cr_focus_points": [
+        "now=0 时撤销记录可正常加入和排序。",
+        "coverage_id=COV-EX-0009"
+      ]
+    },
+    {
+      "record_id": "TRA-0010",
+      "evidence_id": "EVD-UNMAPPED",
+      "coverage_level": "full",
+      "structured_targets": [
+        {
+          "target_type": "feature",
+          "module_name": "Worker 撤销状态",
+          "feature_name": "跨时钟域撤销状态合并",
+          "field_name": "",
+          "target_name": "相同时间戳记录的排序稳定。"
+        }
+      ],
+      "testcase_ids": [
+        "OSS-BLIND-R3-CELERYWORKER-REVOKE-SERVER-BD-002"
+      ],
+      "gap_notes": "adapter_source=coverage_first_traceability; source_record_id=CFT-0010; rule_id=Worker 撤销状态::跨时钟域撤销状态合并::happy_path_combo; coverage_id=COV-EX-0010; fidelity_status=not_applicable",
+      "implementation_binding": "backend_contract",
+      "recommended_cr_stage": "backend_code",
+      "manual_confirmation_required": true,
+      "cr_focus_points": [
+        "相同时间戳记录的排序稳定。",
+        "coverage_id=COV-EX-0010"
+      ]
+    },
+    {
+      "record_id": "TRA-0011",
+      "evidence_id": "EVD-UNMAPPED",
+      "coverage_level": "full",
+      "structured_targets": [
+        {
+          "target_type": "feature",
+          "module_name": "Worker 撤销状态",
+          "feature_name": "跨时钟域撤销状态合并",
+          "field_name": "",
+          "target_name": "int/string 混合任务 ID 不触发类型比较异常。"
+        }
+      ],
+      "testcase_ids": [
+        "OSS-BLIND-R3-CELERYWORKER-REVOKE-SERVER-BD-003"
+      ],
+      "gap_notes": "adapter_source=coverage_first_traceability; source_record_id=CFT-0011; rule_id=Worker 撤销状态::跨时钟域撤销状态合并::happy_path_combo; coverage_id=COV-EX-0011; fidelity_status=not_applicable",
+      "implementation_binding": "shared_contract",
+      "recommended_cr_stage": "dual_code",
+      "manual_confirmation_required": true,
+      "cr_focus_points": [
+        "int/string 混合任务 ID 不触发类型比较异常。",
+        "coverage_id=COV-EX-0011"
+      ]
+    }
+  ]
+}

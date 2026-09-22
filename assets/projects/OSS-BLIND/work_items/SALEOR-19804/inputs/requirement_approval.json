@@ -1,0 +1,13 @@
+{
+  "schema_version": "1.0.0",
+  "approval_id": "RUN-SALEOR-19804-BLIND-20260921-requirement-8b6502ef46f29a202b357b69",
+  "status": "approved",
+  "reviewed_by": "ycp",
+  "reviewed_at": "2026-09-21T06:10:41+00:00",
+  "note": "用户于2026-09-21明确批准本轮公开盲测的三份需求摘要；输入与代码diff/已有测试oracle保持隔离。",
+  "run_id": "RUN-SALEOR-19804-BLIND-20260921",
+  "requirement_summary_sha256": "5a7cb5fc14845f9a151a82e5cf6a36f1514ff47a9e0c35e65441dc09a0e9539c",
+  "source_manifest_sha256": "52628eecaea49c85e9664ea02c5b7a8373ee2d1fb248ac7407a37ee15d4bde1c",
+  "raw_inputs_fingerprint": "b2527956b8d759a04cefc23c3100ee797e07fd62426b220392e130425e79b096",
+  "requirement_version": "github-pr-19804"
+}

@@ -1,0 +1,16 @@
+{
+  "project_code": "OSS-BLIND-R4",
+  "work_item_id": "HOMEASSISTANT-182800",
+  "items": [
+    {"gate_id":"TG-001","source_rule_id":"HA-R001","source_text":"已带 ID3 标签的 MP3 写入 Home Assistant 标签后只能保留一个有效 ID3 头。","classification":"backend_job","testability":"testable","decision":"generate_acceptance_example","reason":"可解析输出文件并确定性统计有效 ID3 头数量。","confidence":"confirmed"},
+    {"gate_id":"TG-002","source_rule_id":"HA-R002","source_text":"更新标签时必须保留输入中的 TSSE 元数据。","classification":"backend_job","testability":"testable","decision":"generate_acceptance_example","reason":"可在处理前后读取并比较 TSSE 标签。","confidence":"confirmed"},
+    {"gate_id":"TG-003","source_rule_id":"HA-R003","source_text":"标签处理不得改变 MP3 音频帧内容。","classification":"backend_job","testability":"testable","decision":"generate_acceptance_example","reason":"可排除标签区后比较音频帧内容或其稳定摘要。","confidence":"confirmed"},
+    {"gate_id":"TG-004","source_rule_id":"HA-R004","source_text":"缓存文件从内存路径切换为磁盘读取后仍应可被严格解码器正常播放，不能静音。","classification":"backend_job","testability":"testable","decision":"generate_acceptance_example","reason":"可控制缓存切换并对磁盘文件执行实际解码与非静音断言。","confidence":"confirmed"},
+    {"gate_id":"TG-005","source_rule_id":"HA-R005","source_text":"未带 ID3 标签的 MP3 仍可添加所需标签并保持可播放。","classification":"backend_job","testability":"testable","decision":"generate_acceptance_example","reason":"可提供无标签输入并检查标签与音频解码结果。","confidence":"confirmed"},
+    {"gate_id":"TG-006","source_rule_id":"HA-R006","source_text":"已带标签音频的处理结果不应依赖具体 TTS provider。","classification":"third_party_capability","testability":"testable","decision":"generate_acceptance_example","reason":"可使用不同来源但等价的已带标签 MP3 比较相同输出不变量。","confidence":"confirmed"},
+    {"gate_id":"TG-007","source_rule_id":"RISK-001","source_text":"标签版本、扩展头、padding 或异常标签可能影响合并兼容性。","classification":"risk_hardening","testability":"risk_only","decision":"risk_note_only","reason":"公开需求未定义支持矩阵和损坏输入策略，保留为兼容风险。","confidence":"confirmed"},
+    {"gate_id":"TG-008","source_rule_id":"RISK-002","source_text":"只验证播放器返回成功可能漏掉静音，应检查实际可解码音频。","classification":"risk_hardening","testability":"risk_only","decision":"risk_note_only","reason":"正式可播放结果由 HA-R004 承接，本项约束测试 Oracle 质量。","confidence":"confirmed"},
+    {"gate_id":"TG-009","source_rule_id":"RISK-003","source_text":"处理过程若重编码音频会引入不必要的质量与性能回退。","classification":"risk_hardening","testability":"risk_only","decision":"risk_note_only","reason":"音频内容保真由 HA-R003 承接，未声明性能阈值不生成强验收。","confidence":"confirmed"},
+    {"gate_id":"TG-010","source_rule_id":"RISK-004","source_text":"对未带标签输入的兼容路径也可能被标签定位逻辑影响。","classification":"risk_hardening","testability":"risk_only","decision":"risk_note_only","reason":"无标签兼容行为由 HA-R005 正式承接，此项仅保留回归提示。","confidence":"confirmed"}
+  ]
+}
